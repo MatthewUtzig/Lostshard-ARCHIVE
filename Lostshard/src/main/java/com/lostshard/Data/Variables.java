@@ -31,6 +31,9 @@ public class Variables {
 	private static Location lawfullSpawn;
 	//Karma
 	private static int murderPoint = 5;
+	//NPC
+	private static int guardRange = 15;
+	
 	
 	public static int getPlotCreatePrice() {
 		return plotCreatePrice;
@@ -139,6 +142,12 @@ public class Variables {
 	}
 	public static void setLawfullSpawn(Location lawfullSpawn) {
 		Variables.lawfullSpawn = lawfullSpawn;
+	}
+	public static int getGuardRange() {
+		return guardRange;
+	}
+	public static void setGuardRange(int guardRange) {
+		Variables.guardRange = guardRange;
 	}
 
 }
