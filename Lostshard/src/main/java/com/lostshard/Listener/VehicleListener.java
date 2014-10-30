@@ -1,5 +1,13 @@
 package com.lostshard.Listener;
 
-public class VehicleListener {
+import org.bukkit.event.Listener;
 
+import com.lostshard.Main.Lostshard;
+
+public class VehicleListener implements Listener {
+
+	public VehicleListener(Lostshard plugin) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+	
 }

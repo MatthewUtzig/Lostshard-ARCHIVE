@@ -8,10 +8,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.Main.Lostshard;
 import com.lostshard.Utils.Output;
 
 public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 
+	public ControlPointsCommand(Lostshard plugin) {
+		plugin.getCommand("capturepoints").setExecutor(this);
+		plugin.getCommand("claim").setExecutor(this);
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("capturepoints")) {
 			if(!(sender instanceof Player)) {

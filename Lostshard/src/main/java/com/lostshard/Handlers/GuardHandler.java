@@ -20,11 +20,11 @@ public class GuardHandler {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if(plot == null)
 			return;
-		//Checking to se if the player himself are criminal
+		//Checking to see if the player himself are criminal
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		if(pPlayer.isCriminal() || pPlayer.isMurder())
 			return;
-		//Finding the nearst guard, on the same plot.
+		//Finding the nearest guard, on the same plot.
 		NPC guard = null;
 		for(NPC g : Lostshard.getNpcs()) {
 			Plot gP = PlotHandler.findPlotAt(g.getLocation());
@@ -35,7 +35,7 @@ public class GuardHandler {
 		//Check if the plot is guarded
 		if(guard == null)
 			return;
-		//Storing all criminals in range
+		//Storing all criminals in range of the player
 		List<Player> criminals = new ArrayList<Player>();
 		//Going trough all players and checking for who's in range and who's criminal
 		for(Player pCP : Bukkit.getOnlinePlayers()) {
@@ -43,7 +43,7 @@ public class GuardHandler {
 			if(pPCP.isCriminal() || pPCP.isMurder())
 				criminals.add(pCP);
 		}
-		//Slaying all criminals
+		//Slaying all criminals that are in range
 		for(Player c : criminals) {
 			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(), TeleportCause.PLUGIN);
 			c.damage(0);

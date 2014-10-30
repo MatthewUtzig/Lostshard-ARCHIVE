@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.Handlers.PlotHandler;
+import com.lostshard.Main.Lostshard;
 import com.lostshard.Objects.Plot;
 import com.lostshard.Objects.PseudoPlayer;
 import com.lostshard.Utils.Output;
@@ -18,6 +19,10 @@ import com.lostshard.Utils.TabUtils;
 
 public class PlotCommand implements CommandExecutor, TabCompleter {
 
+	public PlotCommand(Lostshard plugin) {
+		plugin.getCommand("plot").setExecutor(this);
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("plot")) {
 			if(!(sender instanceof Player)) {

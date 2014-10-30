@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.Data.Variables;
 import com.lostshard.Handlers.NPCHandler;
 import com.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.Main.Lostshard;
 import com.lostshard.NPC.NPC;
 import com.lostshard.Objects.PseudoPlayer;
 import com.lostshard.Utils.Output;
@@ -20,6 +21,11 @@ import com.lostshard.Utils.Utils;
 
 public class BankCommand implements CommandExecutor, TabCompleter{
 
+	public BankCommand(Lostshard plugin) {
+		plugin.getCommand("bank").setExecutor(this);
+		plugin.getCommand("tradegold").setExecutor(this);
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("bank")) {
 			if(!(sender instanceof Player)) {
@@ -29,7 +35,7 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 			Player player = (Player) sender;
 			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 			for(NPC npc : NPCHandler.getBankers())
-				if(Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.getBankRadius())){
+				if(Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)){
 					player.openInventory(pPlayer.getBank().getInventory());
 				}else
 					Output.simpelError(player, "You are not close enough to a bank.");
@@ -42,7 +48,7 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 			Player player = (Player) sender;
 			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 			for(NPC npc : NPCHandler.getBankers())
-				if(Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.getBankRadius())){
+				if(Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)){
 					int amount;
 					try{
 						amount = Integer.parseInt(args[0]);
@@ -51,7 +57,7 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 						return true;
 					}
 					if(player.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), amount)) {
-						pPlayer.addMoney(amount*Variables.getGoldIngotValue());
+						pPlayer.addMoney(amount*Variables.goldIngotValue);
 						//TODO add nice msg
 						Output.positiveMessage(player, "Tradegold");
 					}else

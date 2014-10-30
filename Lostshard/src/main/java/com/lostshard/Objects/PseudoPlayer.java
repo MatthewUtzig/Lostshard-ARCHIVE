@@ -46,7 +46,7 @@ public class PseudoPlayer {
 	}
 	
 	public boolean isMurder() {
-		return this.murderCounts >= Variables.getMurderPoint();
+		return this.murderCounts >= Variables.murderPoint;
 	}
 	
 	public void addMurderCounts(int murderCounts) {

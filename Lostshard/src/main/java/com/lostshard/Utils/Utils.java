@@ -106,7 +106,7 @@ public class Utils {
 	
 	public static String getColoredName(Player player) {
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
-		return pPlayer.getMurderCounts() >= Variables.getMurderPoint() ? ChatColor.RED+player.getName() :
+		return pPlayer.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED+player.getName() :
 						pPlayer.isCriminal() ? ChatColor.GRAY+player.getName() : 
 											   ChatColor.BLUE+player.getName();
 	}

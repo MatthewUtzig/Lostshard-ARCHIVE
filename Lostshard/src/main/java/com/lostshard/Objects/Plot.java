@@ -322,13 +322,13 @@ public class Plot {
 			plotValue+=curSizeValue;
 		}
 		if(this.town)
-			plotValue += Variables.getPlotTownPrice();
+			plotValue += Variables.plotTownPrice;
 		if(this.isDungeon())
-			plotValue += Variables.getPlotDungeonPrice();
+			plotValue += Variables.plotDungeonPrice;
 		if(this.isAutoKick())
-			plotValue += Variables.getPlotAutoKickPrice();
+			plotValue += Variables.plotAutoKickPrice;
 		if(this.isNeutralAlignment())
-			plotValue += Variables.getPlotNeutralAlignmentPrice();
+			plotValue += Variables.plotNeutralAlignmentPrice;
 		
 		if(this.getLocation().getWorld().getEnvironment().equals(Environment.NETHER))
 			return plotValue;
