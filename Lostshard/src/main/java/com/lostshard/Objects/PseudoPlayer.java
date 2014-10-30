@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 
+import com.lostshard.Data.Variables;
+
 public class PseudoPlayer {
 	
 	private int money = 0;
@@ -41,6 +43,10 @@ public class PseudoPlayer {
 
 	public void setMurderCounts(int murderCounts) {
 		this.murderCounts = murderCounts;
+	}
+	
+	public boolean isMurder() {
+		return this.murderCounts >= Variables.getMurderPoint();
 	}
 	
 	public void addMurderCounts(int murderCounts) {

@@ -3,6 +3,7 @@ package com.lostshard.Main;
 import java.util.ArrayList;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import com.lostshard.NPC.NPC;
 import com.lostshard.Objects.Plot;
@@ -13,9 +14,14 @@ public class Lostshard extends JavaPlugin {
 	private static ArrayList<Plot> plots = new ArrayList<Plot>();
 	private static ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
 	private static ArrayList<NPC> npcs = new ArrayList<NPC>();
+	private static BukkitTask gameLoop;
+	
 	@Override
 	public void onEnable() {
 		
+		
+		//GameLoop should run last.
+		setGameLoop(new MainGameLoop(this).runTaskTimer(this, 0L, 20L));
 	}
 	
 	@Override
@@ -45,6 +51,14 @@ public class Lostshard extends JavaPlugin {
 
 	public static void setNpcs(ArrayList<NPC> npcs) {
 		Lostshard.npcs = npcs;
+	}
+
+	public static BukkitTask getGameLoop() {
+		return gameLoop;
+	}
+
+	public static void setGameLoop(BukkitTask gameLoop) {
+		Lostshard.gameLoop = gameLoop;
 	}
 	
 }
