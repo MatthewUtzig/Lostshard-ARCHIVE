@@ -1,6 +1,6 @@
 #Plots
 - [] Create
 - [] Disband
-#Bank
+##Bank
 - [] Tradegold
 - [] Bank box
