@@ -1,6 +1,7 @@
 #Plots
 - [ ] Create
 - [ ] Disband
+- [ ] Mysql plot
 
 #Bank
 - [x] Tradegold
