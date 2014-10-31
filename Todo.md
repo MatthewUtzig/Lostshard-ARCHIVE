@@ -1,3 +1,6 @@
-[] Plot
-[] Skills
-[x] Bank
+#Plots
+- [] Create
+- [] Disband
+#Bank
+- [] Tradegold
+- [] Bank box
