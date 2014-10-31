@@ -1,7 +1,7 @@
 #Plots
-- [] Create
-- [] Disband
+- [ ] Create
+- [ ] Disband
 
 #Bank
-- [] Tradegold
-- [] Bank box
+- [ ] Tradegold
+- [ ] Bank box
