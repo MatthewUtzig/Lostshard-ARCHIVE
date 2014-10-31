@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -109,6 +110,16 @@ public class Utils {
 		return pPlayer.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED+player.getName() :
 						pPlayer.isCriminal() ? ChatColor.GRAY+player.getName() : 
 											   ChatColor.BLUE+player.getName();
+	}
+	
+	public static String getUsernamesFromUUIDs(List<UUID> uuids) {
+		String result = "";
+		for(UUID uuid : uuids)
+			if(uuid == uuids.get(uuids.size()-1))
+				result += Bukkit.getOfflinePlayer(uuid);
+			else
+				result += Bukkit.getOfflinePlayer(uuid)+",";
+		return result;
 	}
 	
 }

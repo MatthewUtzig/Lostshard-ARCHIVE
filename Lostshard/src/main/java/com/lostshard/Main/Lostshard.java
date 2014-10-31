@@ -1,6 +1,7 @@
 package com.lostshard.Main; 
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -10,6 +11,8 @@ import com.lostshard.Objects.Plot;
 import com.lostshard.Objects.PseudoPlayer;
 
 public class Lostshard extends JavaPlugin {
+	
+	public static final Logger logger = Logger.getLogger("Lostshard");
 	
 	private static ArrayList<Plot> plots = new ArrayList<Plot>();
 	private static ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
