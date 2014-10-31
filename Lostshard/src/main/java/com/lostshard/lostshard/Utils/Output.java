@@ -48,7 +48,7 @@ public class Output {
 	}
 	
 	public static void plotNotIn(Player player) {
-		simpleError(player, "You are not in a plot.");
+		simpleError(player, "You are not currently in a plot.");
 	}
 	
 	public static void plotNotFriend(Player player) {

@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
@@ -95,13 +96,38 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	}
 		
 	private void plotExplosionToggle(Player player) {
-		// TODO Auto-generated method stub
-		
+		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		if(plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if(!plot.isCoownerOrAbove(player)) {
+			Output.plotNotCoowner(player);
+			return;
+		}
+		if(plot.isAllowExplosions()) {
+			plot.setAllowExplosions(false);
+			Output.positiveMessage(player, "You have disabled explosions on your plot.");
+		}
+		else {
+			plot.setAllowExplosions(true);
+			Output.positiveMessage(player, "You have enabled explosions on your plot.");
+		}
 	}
 
 	private void plotUnSell(Player player) {
-		// TODO Auto-generated method stub
-		
+		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		if(plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if(!plot.isOwner(player)) {
+			Output.plotNotCoowner(player);
+			return;
+		}
+		plot.setSalePrice(0);
+		Database.updatePlot(plot);
+		Output.positiveMessage(player, "This plot is no longer for sale.");
 	}
 
 	private void plotBuy(Player player) {
