@@ -3,5 +3,10 @@
 - [ ] Disband
 
 #Bank
-- [ ] Tradegold
-- [ ] Bank box
+- [x] Tradegold
+- [x] Bank box
+- [x] Bank npc
+- [ ] Serialze bank box and save
+
+#Player
+- [ ] Mysql save
