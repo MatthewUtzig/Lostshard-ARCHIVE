@@ -35,7 +35,7 @@ public class Output {
 	
 	//TODO Frank can u add some default response
 	
-	public static void simpelError(Player player, String message) {
+	public static void simpleError(Player player, String message) {
 		player.sendMessage(ChatColor.DARK_RED+message);
 	}
 	
@@ -44,23 +44,23 @@ public class Output {
 	}
 	
 	public static void notNumber(Player player) {
-		simpelError(player, "Need to be a number.");
+		simpleError(player, "Need to be a number.");
 	}
 	
 	public static void plotNotIn(Player player) {
-		simpelError(player, "You are not in a plot.");
+		simpleError(player, "You are not in a plot.");
 	}
 	
 	public static void plotNotFriend(Player player) {
-		simpelError(player, "You need to be friend.");
+		simpleError(player, "You need to be friend.");
 	}
 	
 	public static void plotNotOwner(Player player) {
-		simpelError(player, "You need to be owner.");
+		simpleError(player, "You need to be owner.");
 	}
 	
 	public static void plotNotCoowner(Player player) {
-		simpelError(player, "You need to be co-owner.");
+		simpleError(player, "You need to be co-owner.");
 	}
 	
 	public static void capturePointsInfo(Player player) {

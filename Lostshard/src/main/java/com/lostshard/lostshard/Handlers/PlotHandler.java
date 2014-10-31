@@ -48,7 +48,7 @@ import com.lostshard.lostshard.Utils.Utils;
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if(!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpelError(player, "Cannot break blocks here, "+plot.getName()+" is protected.");
+			Output.simpleError(player, "Cannot break blocks here, "+plot.getName()+" is protected.");
 		}
 	}
 	
@@ -60,7 +60,7 @@ import com.lostshard.lostshard.Utils.Utils;
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if(!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpelError(player, "Cannot place blocks here, "+plot.getName()+" is protected.");
+			Output.simpleError(player, "Cannot place blocks here, "+plot.getName()+" is protected.");
 		}
 	}
 	
@@ -90,7 +90,7 @@ import com.lostshard.lostshard.Utils.Utils;
 			Player player = event.getPlayer();
 			if(!plot.isAllowedToBuild(player)) {
 				event.setCancelled(true);
-				Output.simpelError(player, "Cannot ignite blocks here, "+plot.getName()+" is protected.");
+				Output.simpleError(player, "Cannot ignite blocks here, "+plot.getName()+" is protected.");
 			}
 		}else{
 			event.setCancelled(true);
@@ -129,7 +129,7 @@ import com.lostshard.lostshard.Utils.Utils;
 			return;
 		event.setCancelled(true);
 		Player player = event.getPlayer();
-		Output.simpelError(player, "Cannot click button in \""+plot.getName()+"\" is protected.");
+		Output.simpleError(player, "Cannot click button in \""+plot.getName()+"\" is protected.");
 	}
 	
 }

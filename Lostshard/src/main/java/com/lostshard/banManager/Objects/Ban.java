@@ -6,27 +6,24 @@ import java.util.UUID;
 public class Ban {
 
 	private UUID banned;
-	private String banned_ip;
 	private long expires = 0;
 	private String reason;
 	private long time;
 	private UUID by;
 	
-	public Ban(UUID banned, String banned_ip, long expires, String reason,
+	public Ban(UUID banned, long expires, String reason,
 			long time, UUID by) {
 		super();
 		this.banned = banned;
-		this.banned_ip = banned_ip;
 		this.expires = expires;
 		this.reason = reason;
 		this.time = time;
 		this.by = by;
 	}
 	
-	public Ban(UUID banned, String banned_ip, long expires, String reason, UUID by) {
+	public Ban(UUID banned, long expires, String reason, UUID by) {
 		super();
 		this.banned = banned;
-		this.banned_ip = banned_ip;
 		this.expires = expires;
 		this.reason = reason;
 		this.time = new Date().getTime();
@@ -39,14 +36,6 @@ public class Ban {
 
 	public void setBanned(UUID banned) {
 		this.banned = banned;
-	}
-
-	public String getBanned_ip() {
-		return banned_ip;
-	}
-
-	public void setBanned_ip(String banned_ip) {
-		this.banned_ip = banned_ip;
 	}
 
 	public long getExpires() {

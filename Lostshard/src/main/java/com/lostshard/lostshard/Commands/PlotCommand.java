@@ -32,22 +32,203 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Player player = (Player) sender;
 			if(args.length < 1)
 				player.sendMessage(ChatColor.GOLD + "use /help plot");
-			else if(args[0].equalsIgnoreCase("info"))
-				Output.PlotInfo(player);
+			String plotCommand = args[0];
+			if(plotCommand.equalsIgnoreCase("create"))
+				createPlot(player, args);
+			else if(plotCommand.equalsIgnoreCase("survey"))
+				plotSurvey(player);
+			else if(plotCommand.equalsIgnoreCase("info"))
+				plotInfo(player);
+			else if(plotCommand.equalsIgnoreCase("friend"))
+				plotFriend(player, args);
+			else if(plotCommand.equalsIgnoreCase("co-own") || plotCommand.equalsIgnoreCase("coown") || plotCommand.equalsIgnoreCase("co-owner") || plotCommand.equalsIgnoreCase("coowner"))
+				plotCoOwn(player, args);
+			else if(plotCommand.equalsIgnoreCase("unfriend"))
+				plotUnFriend(player, args);
+			else if(plotCommand.equalsIgnoreCase("protect"))
+				plotProtect(player);
+			else if(plotCommand.equalsIgnoreCase("unprotect"))
+				plotUnProtect(player);
+			else if(plotCommand.equalsIgnoreCase("private"))
+				plotLock(player);
+			else if(plotCommand.equalsIgnoreCase("public"))
+				plotUnLock(player);
+			else if(plotCommand.equalsIgnoreCase("expand"))
+				plotExpand(player, args);
+			else if(plotCommand.equalsIgnoreCase("deposit"))
+				plotDeposit(player, args);
+			else if(plotCommand.equalsIgnoreCase("withdraw"))
+				plotWithdraw(player, args);
+			else if(plotCommand.equalsIgnoreCase("test"))
+				plotTest(player);
+			else if(plotCommand.equalsIgnoreCase("endtest"))
+				plotEndTest(player);
+			else if(plotCommand.equalsIgnoreCase("disband"))
+				plotDisband(player);
+			else if(plotCommand.equalsIgnoreCase("list"))
+				plotList(player, args);
+			else if(plotCommand.equalsIgnoreCase("upgrade") || plotCommand.equalsIgnoreCase("upgrades"))
+				plotUpgrade(player, args);
+			else if(plotCommand.equalsIgnoreCase("downgrade"))
+				plotDowngrade(player, args);
+			else if(plotCommand.equalsIgnoreCase("transfer"))
+				plotTransfer(player, args);
+			else if(plotCommand.equalsIgnoreCase("shrink"))
+				plotShrink(player, args);
+			else if(plotCommand.equalsIgnoreCase("rename"))
+				plotRename(player, args);
+			else if(plotCommand.equalsIgnoreCase("friendbuild"))
+				plotFriendBuildToggle(player);
+			else if(plotCommand.equalsIgnoreCase("npc"))
+				plotNPC(player, args);
+			else if(plotCommand.equalsIgnoreCase("sell"))
+				plotSell(player, args);
+			else if(plotCommand.equalsIgnoreCase("buy"))
+				plotBuy(player);
+			else if(plotCommand.equalsIgnoreCase("unsell") || plotCommand.equalsIgnoreCase("unlist") || plotCommand.equalsIgnoreCase("un-sell"))
+				plotUnSell(player);
+			else if(plotCommand.equalsIgnoreCase("explosion"))
+				plotExplosionToggle(player);
 			return true;
 		}	
 		return false;
 	}
-	
-	public void plotCreate(Player player, Command cmd, String string, String[] args) {
+		
+	private void plotExplosionToggle(Player player) {
+		// TODO Auto-generated method stub
 		
 	}
-	
+
+	private void plotUnSell(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotBuy(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotSell(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotNPC(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotFriendBuildToggle(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotRename(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotShrink(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotTransfer(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotDowngrade(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotUpgrade(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotList(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotEndTest(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotWithdraw(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotTest(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotExpand(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotUnLock(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotLock(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotUnProtect(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotProtect(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotUnFriend(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotCoOwn(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotFriend(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotInfo(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void plotSurvey(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void createPlot(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	//TODO add some messages and global static messages.
-	public void plotDisband(Player player, Command cmd, String string, String[] args) {
+	public void plotDisband(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if(plot == null)
-			Output.simpelError(player, "Must be inside plot.");
+			Output.simpleError(player, "Must be inside plot.");
 		else if(plot.isOwner(player)) {
 			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 			pPlayer.setMoney(pPlayer.getMoney()+plot.getValue());
@@ -60,7 +241,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 	
-	public void plotDeposit(Player player, Command cmd, String string, String[] args) {
+	public void plotDeposit(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if(plot == null)
 			//TODO static msg
@@ -82,29 +263,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				Output.positiveMessage(player, "Deposit x amount of money.");
 			}else{
 				//TODO static msg
-				Output.simpelError(player, "ERROR dont have enugh money");
+				Output.simpleError(player, "ERROR dont have enugh money");
 				return;				
 			}
 		}else{
 			//TODO static msg Out put error if not owner, Frank u might be able to correct me on some words, plz do. 
 			Output.plotNotFriend(player);
 		}
-	}
-	
-	public void plotWithdraw(Player player, Command cmd, String string, String[] args) {
-		
-	}
-	
-	public void plotExpand(Player player, Command cmd, String string, String[] args) {
-		
-	}
-
-	public void plotShrink(Player player, Command cmd, String string, String[] args) {
-	
-	}
-	
-	public void plotNPCHire(Player player, Command cmd, String string, String[] args) {
-		
 	}
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {

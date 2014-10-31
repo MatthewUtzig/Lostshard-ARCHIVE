@@ -315,12 +315,7 @@ public class Plot {
 	}
 	
 	public int getValue() {
-		int plotValue = 0;
-		int adjustedPlotSize = this.size - 10;
-		for(int i=0; i<adjustedPlotSize; i++) {
-			int curSizeValue = (i+10)*10;
-			plotValue+=curSizeValue;
-		}
+		int plotValue = 10 * (((size-1)^2 + (size-1)) / 2) - (((10-1)^2 + (10-1)) / 2);
 		if(this.town)
 			plotValue += Variables.plotTownPrice;
 		if(this.isDungeon())
@@ -350,6 +345,10 @@ public class Plot {
 	
 	public boolean isCoownerOrAbove(Player player) {
 		return isOwner(player) ? true : isCoowner(player) ? true : false;
+	}
+	
+	public int getExpandPrice(int toSize) {
+		return 10 * (((toSize-1)^2 + (toSize-1)) / 2) - (((size-1)^2 + (size-1)) / 2);
 	}
 	
 	//Capturepoint stuff

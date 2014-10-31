@@ -38,7 +38,7 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 				if(Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)){
 					player.openInventory(pPlayer.getBank().getInventory());
 				}else
-					Output.simpelError(player, "You are not close enough to a bank.");
+					Output.simpleError(player, "You are not close enough to a bank.");
 			return true;
 		}else if(cmd.getName().equalsIgnoreCase("tradegold")) {
 			if(!(sender instanceof Player)) {
@@ -53,7 +53,7 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 					try{
 						amount = Integer.parseInt(args[0]);
 					}catch(Exception e){
-						Output.simpelError(player, "/tradegold (amount)");
+						Output.simpleError(player, "/tradegold (amount)");
 						return true;
 					}
 					if(player.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), amount)) {
@@ -61,9 +61,9 @@ public class BankCommand implements CommandExecutor, TabCompleter{
 						//TODO add nice msg
 						Output.positiveMessage(player, "Tradegold");
 					}else
-						Output.simpelError(player, "You dont have "+amount+" gold ingots in your inventory.");
+						Output.simpleError(player, "You dont have "+amount+" gold ingots in your inventory.");
 				}else
-					Output.simpelError(player, "You are not close enough to a bank.");
+					Output.simpleError(player, "You are not close enough to a bank.");
 			return true;
 		}
 		return false;
