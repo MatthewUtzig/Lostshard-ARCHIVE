@@ -1,7 +1,7 @@
 #Plots
-- [ ] Create
-- [ ] Disband
-- [ ] Mysql plot
+- [x] Commands
+- [x] Mysql
+- [ ] Vendors buy and sell stuff
 
 #Bank
 - [x] Tradegold
@@ -10,4 +10,4 @@
 - [ ] Serialze bank box and save
 
 #Player
-- [ ] Mysql save
+- [x] Mysql
