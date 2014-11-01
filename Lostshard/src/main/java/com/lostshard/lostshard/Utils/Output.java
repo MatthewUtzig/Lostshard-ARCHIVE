@@ -20,8 +20,7 @@ public class Output {
 		//etc
 	}
 	
-	public static void PlotInfo(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+	public static void plotInfo(Player player, Plot plot) {
 		// Show title to everyone
 		player.sendMessage(ChatColor.GOLD+"-"+plot.getName()+"'s Plot Info-");
 		//Show protected,status,alignment,allow explosions to every one

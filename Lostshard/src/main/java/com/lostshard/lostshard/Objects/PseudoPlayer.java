@@ -19,6 +19,7 @@ public class PseudoPlayer {
 	private int subscribeDays = 0;
 	private boolean wasSubscribed = false;
 	private int plotCreatePoints = 0;
+	private Plot testPlot = null;
 	
 	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
 			Bank bank, int criminal, boolean globalChat, int subscribeDays,
@@ -146,6 +147,14 @@ public class PseudoPlayer {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Plot getTestPlot() {
+		return testPlot;
+	}
+
+	public void setTestPlot(Plot testPlot) {
+		this.testPlot = testPlot;
 	}
 
 }

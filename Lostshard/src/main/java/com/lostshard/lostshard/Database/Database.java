@@ -12,7 +12,6 @@ import org.bukkit.Location;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
-import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -30,23 +29,36 @@ public class Database {
 			PreparedStatement prep = conn.prepareStatement("SELECT * FROM plots");
 			prep.execute();
 			ResultSet rs = prep.getResultSet();
-			ArrayList<Plot> plots = new ArrayList<Plot>();
 			while(rs.next()) {
 				String name = rs.getString("name");
 				try {
 					int id = rs.getInt("id");
 					//Location
 					Location location = Serializer.deserializeLocation(rs.getString("location"));
+					int size = rs.getInt("size");
+					int money = rs.getInt("money");
+					int salePrice = rs.getInt("salePrice");
+					//Toggles
+					boolean protection = rs.getBoolean("protection");
+					boolean allowExplosions = rs.getBoolean("allowExplosions");
+					boolean privatePlot = rs.getBoolean("private");
+					boolean friendBuild = rs.getBoolean("friendBuild");
 					//Upgrades
 					boolean town = rs.getBoolean("town");
 					boolean dungeon = rs.getBoolean("dungeon");
-					boolean neutralAlignment = rs.getBoolean("neutralalignment");
-					boolean autoKick = rs.getBoolean("autokick");
+					boolean neutralAlignment = rs.getBoolean("neutralAlignment");
+					boolean autoKick = rs.getBoolean("autoKick");
 					//Admin stuff
-					boolean capturepoint = rs.getBoolean("capturepoint");
-					boolean magic = rs.getBoolean("magic");
-					boolean pvp = rs.getBoolean("pvp");
+					boolean capturepoint = rs.getBoolean("capturePoint");
+					boolean magic = rs.getBoolean("allowMagic");
+					boolean pvp = rs.getBoolean("allowPvp");
 					//Friend and co-owners and owner
+					ArrayList<UUID> friends = (ArrayList<UUID>) Serializer.deserializeUUIDList(rs.getString("friends"));
+					ArrayList<UUID> coowners = (ArrayList<UUID>) Serializer.deserializeUUIDList(rs.getString("coowners"));
+					
+					Plot plot = new Plot(name, id, size, money, salePrice, friends, coowners, protection, allowExplosions, privatePlot, friendBuild, town, dungeon, autoKick, neutralAlignment, location, capturepoint, null, magic, pvp);
+					
+					Lostshard.getPlots().add(plot);
 					
 				} catch(Exception e) {
 					Lostshard.logger.log(Level.WARNING, "[PLOT] Exception when generating \""+name+"\" plot: "+e.toString());
@@ -58,11 +70,71 @@ public class Database {
 	}
 	
 	public static void updatePlot(Plot plot) {
-		
+		if(plot == null)
+			return;
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE plot SET "
+					+ "name=?, location=?, size=?, money=?, salePrice=?, protection=?, "
+					+ "allowExplosions=?, private=?, friendBuild=?, town=?, dungeon=?, "
+					+ "neutralAlignment=?, autoKick=?, capturePoint=?, allowMagic=?, allowPvp=? WHERE id=?");
+			
+			prep.setString(1, plot.getName());
+			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
+			prep.setInt(3, plot.getSize());
+			prep.setInt(4, plot.getMoney());
+			prep.setInt(5, plot.getSalePrice());
+			prep.setBoolean(6, plot.isProtected());
+			prep.setBoolean(7, plot.isAllowExplosions());
+			prep.setBoolean(8, plot.isPrivatePlot());
+			prep.setBoolean(9, plot.isFriendBuild());
+			prep.setBoolean(10, plot.isTown());
+			prep.setBoolean(11, plot.isDungeon());
+			prep.setBoolean(12, plot.isNeutralAlignment());
+			prep.setBoolean(13, plot.isAutoKick());
+			prep.setBoolean(14, plot.isCapturePoint());
+			prep.setBoolean(15, plot.isAllowMagic());
+			prep.setBoolean(16, plot.isAllowPvp());
+			prep.setInt(17, plot.getId());
+			
+			prep.executeUpdate();
+			} catch (Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[PLOT] updatePlot mysql error >> "+e.toString());
+			}
 	}
 	
 	public static void insertPlot(Plot plot) {
-		
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO plots "
+					+ "(name,location,size,money,salePrice,protection,allowExplosions,"
+					+ "private,friendBuild,town,dungeon,neutralAlignment,autoKick,"
+					+ "capturePoint,allowMagic,allowPvp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			prep.setString(1, plot.getName());
+			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
+			prep.setInt(3, plot.getSize());
+			prep.setInt(4, plot.getMoney());
+			prep.setInt(5, plot.getSalePrice());
+			prep.setBoolean(6, plot.isProtected());
+			prep.setBoolean(7, plot.isAllowExplosions());
+			prep.setBoolean(8, plot.isPrivatePlot());
+			prep.setBoolean(9, plot.isFriendBuild());
+			prep.setBoolean(10, plot.isTown());
+			prep.setBoolean(11, plot.isDungeon());
+			prep.setBoolean(12, plot.isNeutralAlignment());
+			prep.setBoolean(13, plot.isAutoKick());
+			prep.setBoolean(14, plot.isCapturePoint());
+			prep.setBoolean(15, plot.isAllowMagic());
+			prep.setBoolean(16, plot.isAllowPvp());
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while(rs.next())
+				id = rs.getInt(1);
+			plot.setId(id);
+			} catch (Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[PLOT] insertPlot mysql error >> "+e.toString());
+			}
 	}
 	
 	//NPC
@@ -101,7 +173,7 @@ public class Database {
 			prep.setString(1, npc.getName());
 			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
 			prep.setString(3, npc.getType().toString());
-			prep.setInt(1, npc.getId());
+			prep.setInt(4, npc.getId());
 			
 			prep.executeUpdate();
 			} catch (Exception e) {
