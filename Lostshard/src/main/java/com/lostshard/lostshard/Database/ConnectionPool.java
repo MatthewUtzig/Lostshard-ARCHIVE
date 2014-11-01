@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Main.Lostshard;
