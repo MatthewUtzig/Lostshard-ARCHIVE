@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
@@ -133,7 +132,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		plot.setSalePrice(0);
-		Database.updatePlot(plot);
 		Output.positiveMessage(player, "This plot is no longer for sale.");
 	}
 
@@ -165,7 +163,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		plot.setSalePrice(0);
 		plot.getCoowners().clear();
 		plot.getFriends().clear();
-		Database.updatePlot(plot);
 		
 		Output.positiveMessage(player, "You have purchased the plot "+plot.getName()+" from "+Bukkit.getOfflinePlayer(lastOwner).getName()+" for "+salePrice+".");
 		Player sellerPlayer = player.getServer().getPlayer(lastOwner);
@@ -218,7 +215,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		
 		plot.setSalePrice(amount);
-		Database.updatePlot(plot);
 		Output.positiveMessage(player, "You have set this plot for sale at "+amount+"gc.");
 	}
 
@@ -436,7 +432,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		//We are good to go
 		plot.setMoney(plot.getMoney()-Variables.plotRenamePrice);
 		plot.setName(plotName);
-		Database.updatePlot(plot);
 		Output.positiveMessage(player, "You have renamed the plot to "+plotName+".");
 	}
 
@@ -472,7 +467,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 			
 			plot.setSize(plot.getSize()-amount);
-			Database.updatePlot(plot);
 			Output.positiveMessage(player, "You have shrunk the plot by "+amount+" blocks.");
 	}
 
@@ -551,7 +545,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 									plot.setNeutralAlignment(false);
 									plot.setMoney(plot.getMoney()+7500);
 								}
-								Database.updatePlot(plot);
 								Output.positiveMessage(player, plot.getName()+" downgrade from a town to a normal plot.");
 							}
 						else Output.simpleError(player, plot.getName()+" is not a town.");
@@ -560,7 +553,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						if(plot.isDungeon()) {
 							plot.setMoney(plot.getMoney()+15000);
 							plot.setDungeon(false);
-							Database.updatePlot(plot);
 							Output.positiveMessage(player, plot.getName()+" downgrade from a dungeon to a normal plot.");
 						}
 					else Output.simpleError(player, plot.getName()+" is not a dungeon.");
@@ -569,7 +561,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						if(plot.isAutoKick()) {
 							plot.setMoney(plot.getMoney()+7500);
 							plot.setAutoKick(false);
-							Database.updatePlot(plot);
 							Output.positiveMessage(player, plot.getName()+" downgrade from autokick to a normal plot.");
 						}
 					else Output.simpleError(player, plot.getName()+" do not have autokick.");
@@ -579,7 +570,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							if(plot.isNeutralAlignment()) {
 								plot.setMoney(plot.getMoney()+7500);
 								plot.setNeutralAlignment(false);
-								Database.updatePlot(plot);
 								Output.positiveMessage(player, plot.getName()+" downgrade from a neutral town to a town.");
 							}
 						else Output.simpleError(player, plot.getName()+" is not a neutral.");
@@ -658,23 +648,23 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				numAvail = 0;
 				if(!plot.isTown()) {
 					numAvail++;
-					player.sendMessage(ChatColor.YELLOW+"- Town [$100,000]");
+					player.sendMessage(ChatColor.YELLOW+"- Town [100,000 gc]");
 				}
 				
 				if(!plot.isDungeon()) {
 					numAvail++;
-					player.sendMessage(ChatColor.YELLOW+"- Dungeon [$20,000]");
+					player.sendMessage(ChatColor.YELLOW+"- Dungeon [20,000 gc]");
 				}
 				
 				if(!plot.isAutoKick()) {
 					numAvail++;
-					player.sendMessage(ChatColor.YELLOW+"- AutoKick [$10,000]");
+					player.sendMessage(ChatColor.YELLOW+"- AutoKick [10,000 gc]");
 				}
 				
 				if(plot.isTown()) {
 					if(!plot.isNeutralAlignment()) {
 						numAvail++;
-						player.sendMessage(ChatColor.YELLOW+"- Neutral Alignment [$4,000]");
+						player.sendMessage(ChatColor.YELLOW+"- Neutral Alignment [4,000 gc]");
 					}
 				}					
 			}
@@ -684,10 +674,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						if(plot.getMoney() >= 100000) {
 							plot.setMoney(plot.getMoney()-100000);
 							plot.setTown(true);
-							Database.updatePlot(plot);
 							Output.positiveMessage(player, plot.getName()+" upgraded to a town.");
 						}
-						else Output.simpleError(player, "Not enough money in plot funds. ($100,000)");
+						else Output.simpleError(player, "Not enough money in plot funds. (100,000 gc)");
 					}
 					else Output.simpleError(player, plot.getName()+" is already a town.");
 				}
@@ -696,10 +685,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						if(plot.getMoney() >= 20000) {
 							plot.setMoney(plot.getMoney()-20000);
 							plot.setDungeon(true);
-							Database.updatePlot(plot);
 							Output.positiveMessage(player, plot.getName()+" upgraded to a dungeon.");
 						}
-						else Output.simpleError(player, "Not enough money in plot funds. ($20,000)");
+						else Output.simpleError(player, "Not enough money in plot funds. (20,000 gc)");
 					}
 					else Output.simpleError(player, plot.getName()+" is already a dungeon.");
 				}
@@ -708,10 +696,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						if(plot.getMoney() >= 10000) {
 							plot.setMoney(plot.getMoney()-10000);
 							plot.setAutoKick(true);
-							Database.updatePlot(plot);
 							Output.positiveMessage(player, plot.getName()+" upgraded with AutoKick.");
 						}
-						else Output.simpleError(player, "Not enough money in plot funds. ($10,000)");
+						else Output.simpleError(player, "Not enough money in plot funds. (10,000 gc)");
 					}
 					else Output.simpleError(player, plot.getName()+" already has the AutoKick upgrade.");
 				}
@@ -721,10 +708,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							if(plot.getMoney() >= 4000) {
 								plot.setMoney(plot.getMoney()-4000);
 								plot.setNeutralAlignment(true);
-								Database.updatePlot(plot);
 								Output.positiveMessage(player, plot.getName()+" upgraded to Neutral Alignment.");
 							}
-							else Output.simpleError(player, "Not enough money in plot funds. ($4,000)");
+							else Output.simpleError(player, "Not enough money in plot funds. (4,000 gc)");
 						}
 						else Output.simpleError(player, plot.getName()+" already has the Neutral Alignment upgrade.");
 					}
@@ -1207,7 +1193,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				
 				Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
 				Lostshard.getPlots().add(plot);
-				Database.insertPlot(plot);
 			} else {
 				player.sendMessage(ChatColor.DARK_RED+"Cannot create a plot there, too close to the following plots:");
 				int maxDisplay = 6;
