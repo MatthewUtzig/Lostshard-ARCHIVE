@@ -260,8 +260,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				Plot npcPlot = null;
 				
 				for(NPC npc : Lostshard.getNpcs()) {
-					if(!npc.getType().equals(NPCType.BANKER))
-						continue;
 					if(npc.getName().equalsIgnoreCase(name)) {
 						Output.simpleError(player, "An NPC with that name already exists.");
 						return;
@@ -272,7 +270,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						return;
 				}
 		
-				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation());
+				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(), plot.getId());
 				plot.getNpcs().add(npc);
 				npc.spawn();
 								
@@ -299,13 +297,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				int currentAmountOfVendors = 1;
 				
 				for(NPC npc : plot.getNpcs()) {
-					if(!npc.getType().equals(NPCType.VENDOR))
-						continue;
 					if(npc.getName().equalsIgnoreCase(name)) {
 						Output.simpleError(player, "An NPC with that name already exists.");
 						return;
 					}
-					currentAmountOfVendors++;
+					if(npc.getType().equals(NPCType.VENDOR))
+						currentAmountOfVendors++;
 				}
 				
 				if(currentAmountOfVendors < plot.getMaxVendors() && !player.isOp()) {
@@ -313,11 +310,47 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					return;
 				}
 		
-				NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation());
+				NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation(), plot.getId());
 				plot.getNpcs().add(npc);
 				npc.spawn();
 								
 				Output.positiveMessage(player, "You have hired a vendor named "+name+".");
+			}
+		else if(args[2].equalsIgnoreCase("guard")) {
+			
+			if(!player.isOp()) {
+				Output.simpleError(player, "Only op's may hire guards.");
+				return;
+			}
+				name = args[3];
+				name.trim();
+				if(name.length() > 7) {
+					Output.simpleError(player, "Guard name must be 7 characters or less.");
+					return;
+				}
+			
+				if(name.length() < 2) {
+					Output.simpleError(player, "Guard name must be more 1 character or more.");
+					return;
+				}
+				
+				if(name.contains("\"") || name.contains("'") || name.contains(" ")) {
+					Output.simpleError(player, "Cannot use \" or spaces in NPC names.");
+					return;
+				}
+				
+				for(NPC npc : plot.getNpcs()) {
+					if(npc.getName().equalsIgnoreCase(name)) {
+						Output.simpleError(player, "An NPC with that name already exists.");
+						return;
+					}
+				}
+		
+				NPC npc = new NPC(NPCType.GUARD, name, player.getLocation(), plot.getId());
+				plot.getNpcs().add(npc);
+				npc.spawn();
+								
+				Output.positiveMessage(player, "You have hired a guard named "+name+".");
 			}
 		}
 		else if(args[2].equalsIgnoreCase("move")) {

@@ -14,19 +14,21 @@ public class NPC {
 	private Location location;
 	private int plotId;
 	
-	public NPC(int id, NPCType type, String name, Location location) {
+	public NPC(int id, NPCType type, String name, Location location, int plotId) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.location = location;
+		this.plotId = plotId;
 	}
-	public NPC(NPCType type, String name, Location location) {
+	public NPC(NPCType type, String name, Location location, int plotId) {
 		super();
 		this.id = NPCHandler.getNextId();
 		this.type = type;
 		this.name = name;
 		this.location = location;
+		this.plotId = plotId;
 	}
 	public int getId() {
 		return id;
@@ -51,6 +53,12 @@ public class NPC {
 	}
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+	public int getPlotId() {
+		return this.plotId;
+	}
+	public void setPlotId(int plotId) {
+		this.plotId = plotId;
 	}
 	public void spawn() {
 		NPCManager.spawnNPC(this);

@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.Objects.Plot;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import com.lostshard.lostshard.Main.Lostshard;
@@ -151,10 +152,11 @@ public class Database {
 				int id = rs.getInt("id");
 				Location location = Serializer.deserializeLocation(rs.getString("location"));
 				NPCType type = NPCType.valueOf(rs.getString("type"));
-				NPC npc = new NPC(id, type, name, location);
+				int plotId = rs.getInt("plotId");
+				NPC npc = new NPC(id, type, name, location, plotId);
 				npcs.add(npc);
 			} catch(Exception e) {
-				Lostshard.logger.log(Level.WARNING, "[PLOT] Exception when generating \""+name+"\" NPC: "+e.toString());
+				Lostshard.logger.log(Level.WARNING, "[NPC] Exception when generating \""+name+"\" NPC >> "+e.toString());
 			}
 		}
 		} catch (Exception e) {
@@ -168,12 +170,13 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn.prepareStatement("UPDATE npcs SET "
-					+ "name=? location=?, type=? WHERE id=?");
+					+ "name=? location=?, type=?, plotId=? WHERE id=?");
 			
 			prep.setString(1, npc.getName());
 			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
 			prep.setString(3, npc.getType().toString());
-			prep.setInt(4, npc.getId());
+			prep.setInt(4, npc.getPlotId());
+			prep.setInt(5, npc.getId());
 			
 			prep.executeUpdate();
 			} catch (Exception e) {
@@ -184,10 +187,11 @@ public class Database {
 	public static void insertNPC(NPC npc) {
 		try {
 			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO npcs (name,location,type) VALUES (?,?,?)");
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO npcs (name,location,type,plotId) VALUES (?,?,?,?)");
 			prep.setString(1, npc.getName());
 			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
 			prep.setString(3, npc.getType().toString());
+			prep.setInt(4, npc.getPlotId());
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
@@ -200,69 +204,86 @@ public class Database {
 	}
 	
 	//Player
-		public static List<PseudoPlayer> getPlayers() {
+	public static List<PseudoPlayer> getPlayers() {
+		try {
+		Connection conn = connPool.getConnection();
+		PreparedStatement prep = conn.prepareStatement("SELECT * FROM players");
+		prep.execute();
+		ResultSet rs = prep.getResultSet();
+		ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+		while(rs.next()) {
+			UUID uuid = UUID.fromString(rs.getString("uuid"));
 			try {
-			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn.prepareStatement("SELECT * FROM players");
-			prep.execute();
-			ResultSet rs = prep.getResultSet();
-			ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-			while(rs.next()) {
-				String name = rs.getString("name");
-				try {
-					int id = rs.getInt("id");
-					int money = rs.getInt("money");
-					int murderCounts = rs.getInt("murderCounts");
-					UUID uuid = UUID.fromString(rs.getString("uuid"));
-					//Bank
-					int criminalTick = rs.getInt("criminalTick");
-					boolean globalChat = rs.getBoolean("globalChat");
-					int subscriberDays = rs.getInt("subscriberDays");
-					boolean wasSubscribed = rs.getBoolean("wasSubscribed");
-					int plotCreationPoints = rs.getInt("plotCreationPoints");
-					
-					PseudoPlayer pPlayer = new PseudoPlayer(id, money, murderCounts, uuid,
-							null, criminalTick, globalChat, subscriberDays, wasSubscribed, plotCreationPoints);
-					Lostshard.getPlayers().add(pPlayer);
-				} catch(Exception e) {
-					Lostshard.logger.log(Level.WARNING, "[PLOT] Exception when generating \""+name+"\" NPC: "+e.toString());
-				}
-				return players;
-			}
-			} catch (Exception e) {
-				Lostshard.logger.log(Level.WARNING, "[NPC] getNPCS mysql error >> "+e.toString());
-			}
-			return null;
-		}
-		
-		public static void updatePlayer(PseudoPlayer pPlayer) {
-			if(pPlayer == null)
-				return;
-			try {
-				Connection conn = connPool.getConnection();
-				PreparedStatement prep = conn.prepareStatement("UPDATE players SET "
-						+ "name=? location=?, type=? WHERE id=?");
-				prep.setInt(1, pPlayer.getId());
+				int id = rs.getInt("id");
+				int money = rs.getInt("money");
+				int murderCounts = rs.getInt("murderCounts");
+				//Bank
+				int criminalTick = rs.getInt("crimeTick");
+				boolean globalChat = rs.getBoolean("globalChat");
+				int subscriberDays = rs.getInt("subscriberDays");
+				boolean wasSubscribed = rs.getBoolean("wasSubscribed");
+				int plotCreationPoints = rs.getInt("plotCreationPoints");
 				
-				prep.executeUpdate();
-				} catch (Exception e) {
-					Lostshard.logger.log(Level.WARNING, "[NPC] updateNPC mysql error >> "+e.toString());
-				}
+				PseudoPlayer pPlayer = new PseudoPlayer(id, money, murderCounts, uuid,
+						null, criminalTick, globalChat, subscriberDays, wasSubscribed, plotCreationPoints);
+				Lostshard.getPlayers().add(pPlayer);
+			} catch(Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[PLAYER] Exception when generating \""+Bukkit.getOfflinePlayer(uuid).getName()+"\" player: "+e.toString());
+			}
+			return players;
 		}
-		
-		public static void insertPlayer(PseudoPlayer pPlayer) {
-			try {
-				Connection conn = connPool.getConnection();
-				PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO npcs (name,location,type) VALUES (?,?,?)");
-				prep.setString(1, "");
-				prep.execute();
-				ResultSet rs = prep.getGeneratedKeys();
-				int id = 0;
-				while(rs.next())
-					id = rs.getInt(1);
-				pPlayer.setId(id);
-				} catch (Exception e) {
-					Lostshard.logger.log(Level.WARNING, "[NPC] updateNPC mysql error >> "+e.toString());
-				}
+		} catch (Exception e) {
+			Lostshard.logger.log(Level.WARNING, "[PLAYER] getPlayers mysql error >> "+e.toString());
 		}
+		return null;
+	}
+	
+	public static void updatePlayer(PseudoPlayer pPlayer) {
+		if(pPlayer == null)
+			return;
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET "
+					+ "money=?, murderCounts=?, uuid=?, crimeTick=?, "
+					+ "globalChat=?, subscriberDays=?, wasSubscribed=?,"
+					+ " plotCreationPoints=? WHERE id=?");
+			prep.setInt(1, pPlayer.getMoney());
+			prep.setInt(2, pPlayer.getMurderCounts());
+			prep.setString(3, pPlayer.getPlayerUUID().toString());
+			prep.setInt(4, pPlayer.getCriminal());
+			prep.setBoolean(5, pPlayer.isGlobalChat());
+			prep.setInt(6, pPlayer.getSubscribeDays());
+			prep.setBoolean(7, pPlayer.wasSubscribed());
+			prep.setInt(8, pPlayer.getPlotCreatePoints());
+			prep.setInt(9, pPlayer.getId());
+			
+			prep.executeUpdate();
+			} catch (Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[PLAYER] updatePlayer mysql error >> "+e.toString());
+			}
+	}
+	
+	public static void insertPlayer(PseudoPlayer pPlayer) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO players "
+					+ "(money,murderCounts,uuid,crimeTick,globalChat,subscriberDays,wasSubscribed,plotCreationPoints) VALUES (?,?,?)");
+			prep.setInt(1, pPlayer.getMoney());
+			prep.setInt(2, pPlayer.getMurderCounts());
+			prep.setString(3, pPlayer.getPlayerUUID().toString());
+			prep.setInt(4, pPlayer.getCriminal());
+			prep.setBoolean(5, pPlayer.isGlobalChat());
+			prep.setInt(6, pPlayer.getSubscribeDays());
+			prep.setBoolean(7, pPlayer.wasSubscribed());
+			prep.setInt(8, pPlayer.getPlotCreatePoints());
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while(rs.next())
+				id = rs.getInt(1);
+			pPlayer.setId(id);
+			} catch (Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[PLAYER] updatePlayer mysql error >> "+e.toString());
+			}
+	}
 }
