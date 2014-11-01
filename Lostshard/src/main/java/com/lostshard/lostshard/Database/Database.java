@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 
 import org.bukkit.Location;
@@ -138,9 +139,19 @@ public class Database {
 				String name = rs.getString("name");
 				try {
 					int id = rs.getInt("id");
+					int money = rs.getInt("money");
+					int murderCounts = rs.getInt("murderCounts");
+					UUID uuid = UUID.fromString(rs.getString("uuid"));
+					//Bank
+					int criminalTick = rs.getInt("criminalTick");
+					boolean globalChat = rs.getBoolean("globalChat");
+					int subscriberDays = rs.getInt("subscriberDays");
+					boolean wasSubscribed = rs.getBoolean("wasSubscribed");
+					int plotCreationPoints = rs.getInt("plotCreationPoints");
 					
-					
-					PseudoPlayer pPlayer = new PseudoPlayer(id, id, id, null, null, id, false, id, false, id);
+					PseudoPlayer pPlayer = new PseudoPlayer(id, money, murderCounts, uuid,
+							null, criminalTick, globalChat, subscriberDays, wasSubscribed, plotCreationPoints);
+					Lostshard.getPlayers().add(pPlayer);
 				} catch(Exception e) {
 					Lostshard.logger.log(Level.WARNING, "[PLOT] Exception when generating \""+name+"\" NPC: "+e.toString());
 				}
