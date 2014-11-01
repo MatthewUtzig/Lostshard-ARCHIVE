@@ -7,13 +7,16 @@ import org.bukkit.inventory.ItemStack;
 public class Variables {
 
 	//Plot
-	public static final ItemStack plotItemPrice = new ItemStack(Material.DIAMOND, 1);
+	public static final ItemStack plotCreateItemPrice = new ItemStack(Material.DIAMOND, 1);
 	public static final int plotCreatePrice = 1000;
 	public static final int plotTownPrice = 100000;
 	public static final int plotDungeonPrice = 20000;
 	public static final int plotAutoKickPrice = 10000;
 	public static final int plotNeutralAlignmentPrice = 10000;
 	public static final int plotExpandPrice = 10;
+	public static final int plotMaxNameLength = 20;
+	public static final int plotRenamePrice = 1000;
+	public static final int plotStartingSize = 10;
 	//Vote
 	public static final int voteMoney = 1000;
 	//Bank

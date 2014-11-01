@@ -131,5 +131,12 @@ import com.lostshard.lostshard.Utils.Utils;
 		Player player = event.getPlayer();
 		Output.simpleError(player, "Cannot click button in \""+plot.getName()+"\" is protected.");
 	}
+
+	public static Plot getPlotById(int id) {
+		for(Plot plot : Lostshard.getPlots())
+			if(plot.getId() == id)
+				return plot;
+		return null;
+	}
 	
 }

@@ -26,7 +26,7 @@ public class NPCManager {
 	
 	@SuppressWarnings("deprecation")
 	public static NPC spawnNPC(com.lostshard.lostshard.NPC.NPC npc) {
-		NPC cNPC= NPCManager.registry.createNPC(EntityType.PLAYER, Bukkit.getOfflinePlayer(npc.getName()).getUniqueId(), npc.getId(), npc.getName());
+		NPC cNPC= NPCManager.registry.createNPC(EntityType.PLAYER, Bukkit.getOfflinePlayer(npc.getName()).getUniqueId(), npc.getId(), "["+npc.getType().toString()+"] "+npc.getName());
 		cNPC.setProtected(true);
 		cNPC.spawn(npc.getLocation());
 		
@@ -53,6 +53,9 @@ public class NPCManager {
 		return cNPC;
 	}
 	
+	public static NPC getNPC(com.lostshard.lostshard.NPC.NPC npc) {
+		return getRegistry().getById(npc.getId());
+	}
 	public static NPC getNPC(Entity entity) {
 		NPC npc = NPCManager.getRegistry().getNPC(entity);
 		return npc;

@@ -3,6 +3,8 @@ package com.lostshard.lostshard.NPC;
 import org.bukkit.Location;
 
 import com.lostshard.lostshard.Handlers.NPCHandler;
+import com.lostshard.lostshard.Handlers.PlotHandler;
+import com.lostshard.lostshard.Objects.Plot;
 
 public class NPC {
 
@@ -10,6 +12,7 @@ public class NPC {
 	private NPCType type;
 	private String name;
 	private Location location;
+	private int plotId;
 	
 	public NPC(int id, NPCType type, String name, Location location) {
 		super();
@@ -49,5 +52,15 @@ public class NPC {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	
+	public void spawn() {
+		NPCManager.spawnNPC(this);
+	}
+	public void move(Location location) {
+		this.location = location;
+		NPCManager.moveNPC(id, location);
+	}
+	public void fire() {
+		Plot plot = PlotHandler.getPlotById(plotId);
+		plot.getNpcs().remove(this);
+	}
 }

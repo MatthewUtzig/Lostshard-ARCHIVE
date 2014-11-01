@@ -26,11 +26,10 @@ public class GuardHandler {
 			return;
 		//Finding the nearest guard, on the same plot.
 		NPC guard = null;
-		for(NPC g : Lostshard.getNpcs()) {
+		for(NPC g : plot.getNpcs()) {
 			Plot gP = PlotHandler.findPlotAt(g.getLocation());
 			if(guard == null || gP.getLocation().distance(player.getLocation()) < guard.getLocation().distance(player.getLocation()))
-				if(gP == plot)
-					guard = g;
+				guard = g;
 		}
 		//Check if the plot is guarded
 		if(guard == null)

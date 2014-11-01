@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.NPC.NPC;
 
 public class Plot {
 	
@@ -45,16 +46,19 @@ public class Plot {
 	private boolean capturePoint = false;
 	private Clan owningClan = null;
 	
+	//NPCS
+	private ArrayList<NPC> npcs = new ArrayList<NPC>();
 	
 	//Admin
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
 	
-	public Plot(String name, UUID owner) {
+	public Plot(String name, UUID owner, Location location) {
 		super();
 		this.name = name;
 		this.id = nextId();
 		this.owner = owner;
+		this.location = location;
 	}
 
 	public Plot(String name, int id, int size, int money, int salePrice,
@@ -349,6 +353,18 @@ public class Plot {
 	
 	public int getExpandPrice(int toSize) {
 		return 10 * (((toSize-1)^2 + (toSize-1)) / 2) - (((size-1)^2 + (size-1)) / 2);
+	}
+
+	public ArrayList<NPC> getNpcs() {
+		return npcs;
+	}
+
+	public void setNpcs(ArrayList<NPC> npcs) {
+		this.npcs = npcs;
+	}
+	
+	public int getMaxVendors() {
+		return size / 15;
 	}
 	
 	//Capturepoint stuff

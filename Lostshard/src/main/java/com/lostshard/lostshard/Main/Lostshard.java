@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Main; 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,7 +17,6 @@ public class Lostshard extends JavaPlugin {
 	
 	private static ArrayList<Plot> plots = new ArrayList<Plot>();
 	private static ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-	private static ArrayList<NPC> npcs = new ArrayList<NPC>();
 	private static BukkitTask gameLoop;
 	
 	@Override
@@ -49,11 +49,11 @@ public class Lostshard extends JavaPlugin {
 	}
 
 	public static ArrayList<NPC> getNpcs() {
-		return npcs;
-	}
-
-	public static void setNpcs(ArrayList<NPC> npcs) {
-		Lostshard.npcs = npcs;
+		ArrayList<NPC> rs = new ArrayList<NPC>();
+		for(Plot plot : plots)
+			for(NPC npc : plot.getNpcs())
+				rs.add(npc);
+		return rs;
 	}
 
 	public static BukkitTask getGameLoop() {

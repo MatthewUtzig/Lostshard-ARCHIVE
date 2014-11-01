@@ -4,7 +4,7 @@ public enum NPCType {
 
 	GUARD("GUARD"),
 	BANKER("BANKER"),
-	VENDOR("VENDOR");
+	VENDOR("VEND");
 	
 	private NPCType(String type) {
 		

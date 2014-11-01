@@ -15,5 +15,10 @@ public class HelpHandler {
 		player.sendMessage(ChatColor.GOLD+"-Plot Help-");
 		player.sendMessage(ChatColor.YELLOW+"/plot create");
 	}
+
+	public static void plotNpcHelp(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

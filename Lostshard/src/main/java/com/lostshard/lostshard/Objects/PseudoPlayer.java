@@ -2,12 +2,14 @@ package com.lostshard.lostshard.Objects;
 
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Data.Variables;
 
 public class PseudoPlayer {
 	
+	private int id = 0;
 	private int money = 0;
 	private int murderCounts = 0;
 	private UUID playerUUID;
@@ -16,9 +18,26 @@ public class PseudoPlayer {
 	private boolean globalChat = true;
 	private int subscribeDays = 0;
 	private boolean wasSubscribed = false;
+	private int plotCreatePoints = 0;
+	
+	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
+			Bank bank, int criminal, boolean globalChat, int subscribeDays,
+			boolean wasSubscribed, int plotCreatePoints) {
+		super();
+		this.id = id;
+		this.money = money;
+		this.murderCounts = murderCounts;
+		this.playerUUID = playerUUID;
+		this.bank = bank;
+		this.criminal = criminal;
+		this.globalChat = globalChat;
+		this.subscribeDays = subscribeDays;
+		this.wasSubscribed = wasSubscribed;
+		this.plotCreatePoints = plotCreatePoints;
+	}
 	
 	public OfflinePlayer getPlayer() {
-		return null;
+		return Bukkit.getOfflinePlayer(this.playerUUID);
 	}
 
 	public int getMoney() {
@@ -111,6 +130,22 @@ public class PseudoPlayer {
 
 	public void setWasSubscribed(boolean wasSubscribed) {
 		this.wasSubscribed = wasSubscribed;
+	}
+
+	public int getPlotCreatePoints() {
+		return plotCreatePoints;
+	}
+
+	public void setPlotCreatePoints(int plotCreatePoints) {
+		this.plotCreatePoints = plotCreatePoints;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

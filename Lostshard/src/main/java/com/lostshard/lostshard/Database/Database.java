@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 import org.bukkit.Location;
@@ -13,6 +14,7 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Serializer;
 
 public class Database {
@@ -58,8 +60,8 @@ public class Database {
 		
 	}
 	
-	public static Plot insertPlot() {
-		return null;
+	public static void insertPlot(Plot plot) {
+		
 	}
 	
 	//NPC
@@ -106,22 +108,78 @@ public class Database {
 			}
 	}
 	
-	public static NPC insertNPC(String name, NPCType type, Location location) {
+	public static void insertNPC(NPC npc) {
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO npcs (name,location,type) VALUES (?,?,?)");
-			prep.setString(1, name);
-			prep.setString(2, Serializer.serializeLocation(location));
-			prep.setString(3, type.toString());
+			prep.setString(1, npc.getName());
+			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
+			prep.setString(3, npc.getType().toString());
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
 			while(rs.next())
 				id = rs.getInt(1);
-			return new NPC(id,type,name,location);
+			npc.setId(id);
 			} catch (Exception e) {
 				Lostshard.logger.log(Level.WARNING, "[NPC] updateNPC mysql error >> "+e.toString());
 			}
-		return null;
 	}
+	
+	//Player
+		public static List<PseudoPlayer> getPlayers() {
+			try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("SELECT * FROM players");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+			while(rs.next()) {
+				String name = rs.getString("name");
+				try {
+					int id = rs.getInt("id");
+					
+					
+					PseudoPlayer pPlayer = new PseudoPlayer(id, id, id, null, null, id, false, id, false, id);
+				} catch(Exception e) {
+					Lostshard.logger.log(Level.WARNING, "[PLOT] Exception when generating \""+name+"\" NPC: "+e.toString());
+				}
+				return players;
+			}
+			} catch (Exception e) {
+				Lostshard.logger.log(Level.WARNING, "[NPC] getNPCS mysql error >> "+e.toString());
+			}
+			return null;
+		}
+		
+		public static void updatePlayer(PseudoPlayer pPlayer) {
+			if(pPlayer == null)
+				return;
+			try {
+				Connection conn = connPool.getConnection();
+				PreparedStatement prep = conn.prepareStatement("UPDATE players SET "
+						+ "name=? location=?, type=? WHERE id=?");
+				prep.setInt(1, pPlayer.getId());
+				
+				prep.executeUpdate();
+				} catch (Exception e) {
+					Lostshard.logger.log(Level.WARNING, "[NPC] updateNPC mysql error >> "+e.toString());
+				}
+		}
+		
+		public static void insertPlayer(PseudoPlayer pPlayer) {
+			try {
+				Connection conn = connPool.getConnection();
+				PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO npcs (name,location,type) VALUES (?,?,?)");
+				prep.setString(1, "");
+				prep.execute();
+				ResultSet rs = prep.getGeneratedKeys();
+				int id = 0;
+				while(rs.next())
+					id = rs.getInt(1);
+				pPlayer.setId(id);
+				} catch (Exception e) {
+					Lostshard.logger.log(Level.WARNING, "[NPC] updateNPC mysql error >> "+e.toString());
+				}
+		}
 }
