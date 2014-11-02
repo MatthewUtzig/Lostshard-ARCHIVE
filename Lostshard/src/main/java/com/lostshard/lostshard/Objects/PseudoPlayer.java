@@ -8,7 +8,7 @@ import org.bukkit.OfflinePlayer;
 import com.lostshard.lostshard.Data.Variables;
 
 public class PseudoPlayer {
-	
+
 	private int id = 0;
 	private int money = 0;
 	private int murderCounts = 0;
@@ -20,7 +20,7 @@ public class PseudoPlayer {
 	private boolean wasSubscribed = false;
 	private int plotCreatePoints = 0;
 	private Plot testPlot = null;
-	
+
 	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
 			Bank bank, int criminal, boolean globalChat, int subscribeDays,
 			boolean wasSubscribed, int plotCreatePoints) {
@@ -36,7 +36,7 @@ public class PseudoPlayer {
 		this.wasSubscribed = wasSubscribed;
 		this.plotCreatePoints = plotCreatePoints;
 	}
-	
+
 	public OfflinePlayer getPlayer() {
 		return Bukkit.getOfflinePlayer(this.playerUUID);
 	}
@@ -48,11 +48,11 @@ public class PseudoPlayer {
 	public void setMoney(int money) {
 		this.money = money;
 	}
-	
+
 	public void addMoney(int money) {
 		this.money += money;
 	}
-	
+
 	public void subtractMoney(int money) {
 		this.money -= money;
 	}
@@ -64,15 +64,15 @@ public class PseudoPlayer {
 	public void setMurderCounts(int murderCounts) {
 		this.murderCounts = murderCounts;
 	}
-	
+
 	public boolean isMurder() {
 		return this.murderCounts >= Variables.murderPoint;
 	}
-	
+
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
 	}
-	
+
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
 	}
@@ -100,7 +100,7 @@ public class PseudoPlayer {
 	public void setCriminal(int criminal) {
 		this.criminal = criminal;
 	}
-	
+
 	public boolean isCriminal() {
 		return this.criminal > 0;
 	}
@@ -120,7 +120,7 @@ public class PseudoPlayer {
 	public void setSubscribeDays(int subscribe) {
 		this.subscribeDays = subscribe;
 	}
-	
+
 	public boolean isSubscriber() {
 		return subscribeDays > 0;
 	}

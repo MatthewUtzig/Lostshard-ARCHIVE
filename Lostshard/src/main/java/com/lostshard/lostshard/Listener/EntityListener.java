@@ -10,12 +10,12 @@ import com.lostshard.lostshard.Main.Lostshard;
 public class EntityListener implements Listener {
 
 	public EntityListener(Lostshard plugin) {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-    }
-	
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityExplodeEvent(EntityExplodeEvent event) {
-		
+
 	}
-	
+
 }

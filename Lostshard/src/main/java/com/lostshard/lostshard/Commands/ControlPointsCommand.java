@@ -17,29 +17,31 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("capturepoints").setExecutor(this);
 		plugin.getCommand("claim").setExecutor(this);
 	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("capturepoints")) {
-			if(!(sender instanceof Player)) {
+
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("capturepoints")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
 			Player player = (Player) sender;
 			Output.capturePointsInfo(player);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("claim")) {
-			if(!(sender instanceof Player)) {
+		} else if (cmd.getName().equalsIgnoreCase("claim")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			//TODO add claim function
-//			Player player = (Player) sender;
+			// TODO add claim function
+			// Player player = (Player) sender;
 			return true;
 		}
 		return false;
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
 		return null;
 	}
 

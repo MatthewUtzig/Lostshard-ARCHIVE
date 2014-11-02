@@ -11,19 +11,20 @@ import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 
 public class VoteListener implements Listener {
-	
+
 	public VoteListener(Lostshard plugin) {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-    }
-	
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onVote(VotifierEvent event) {
 		Vote vote = event.getVote();
-		for(PseudoPlayer player : Lostshard.getPlayers())
-			if(player.getPlayer().getName().equalsIgnoreCase(vote.getUsername())) {
-				//Set player money
-				player.setMoney(player.getMoney()+Variables.voteMoney);
-				//Add a notification
+		for (PseudoPlayer player : Lostshard.getPlayers())
+			if (player.getPlayer().getName()
+					.equalsIgnoreCase(vote.getUsername())) {
+				// Set player money
+				player.setMoney(player.getMoney() + Variables.voteMoney);
+				// Add a notification
 				break;
 			}
 	}

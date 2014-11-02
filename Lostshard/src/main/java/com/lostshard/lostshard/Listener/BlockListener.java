@@ -15,29 +15,29 @@ import com.lostshard.lostshard.Main.Lostshard;
 public class BlockListener implements Listener {
 
 	public BlockListener(Lostshard plugin) {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
-    }
-	
+		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBreak(BlockBreakEvent event) {
 		PlotHandler.breakeBlockInPlot(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockPlace(BlockPlaceEvent event) {
 		PlotHandler.placeBlockInPlot(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBurn(BlockBurnEvent event) {
 		PlotHandler.burnBlockInPlot(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockIgnite(BlockIgniteEvent event) {
 		PlotHandler.igniteBlockInPlot(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockFromTo(BlockFromToEvent event) {
 		PlotHandler.fromBlockToBlock(event);

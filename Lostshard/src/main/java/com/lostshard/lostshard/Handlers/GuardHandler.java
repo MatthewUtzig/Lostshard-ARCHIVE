@@ -14,40 +14,45 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class GuardHandler {
 
-	public static void  Guard(Player player) {
-		//Checking if the player are inside a plot
+	public static void Guard(Player player) {
+		// Checking if the player are inside a plot
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
-		if(plot == null)
+		if (plot == null)
 			return;
-		//Checking to see if the player himself are criminal
+		// Checking to see if the player himself are criminal
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
-		if(pPlayer.isCriminal() || pPlayer.isMurder())
+		if (pPlayer.isCriminal() || pPlayer.isMurder())
 			return;
-		//Finding the nearest guard, on the same plot.
+		// Finding the nearest guard, on the same plot.
 		NPC guard = null;
-		for(NPC g : plot.getNpcs()) {
+		for (NPC g : plot.getNpcs()) {
 			Plot gP = PlotHandler.findPlotAt(g.getLocation());
-			if(guard == null || gP.getLocation().distance(player.getLocation()) < guard.getLocation().distance(player.getLocation()))
+			if (guard == null
+					|| gP.getLocation().distance(player.getLocation()) < guard
+							.getLocation().distance(player.getLocation()))
 				guard = g;
 		}
-		//Check if the plot is guarded
-		if(guard == null)
+		// Check if the plot is guarded
+		if (guard == null)
 			return;
-		//Storing all criminals in range of the player
+		// Storing all criminals in range of the player
 		List<Player> criminals = new ArrayList<Player>();
-		//Going trough all players and checking for who's in range and who's criminal
-		for(Player pCP : Bukkit.getOnlinePlayers()) {
+		// Going trough all players and checking for who's in range and who's
+		// criminal
+		for (Player pCP : Bukkit.getOnlinePlayers()) {
 			PseudoPlayer pPCP = PseudoPlayerHandler.getPlayer(pCP);
-			if(pPCP.isCriminal() || pPCP.isMurder())
+			if (pPCP.isCriminal() || pPCP.isMurder())
 				criminals.add(pCP);
 		}
-		//Slaying all criminals that are in range
-		for(Player c : criminals) {
-			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(), TeleportCause.PLUGIN);
+		// Slaying all criminals that are in range
+		for (Player c : criminals) {
+			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(),
+					TeleportCause.PLUGIN);
 			c.damage(0);
 			c.setHealth(0);
 		}
-		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(), TeleportCause.PLUGIN);
+		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(),
+				TeleportCause.PLUGIN);
 	}
-	
+
 }

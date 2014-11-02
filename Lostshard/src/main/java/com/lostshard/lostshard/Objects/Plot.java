@@ -12,47 +12,47 @@ import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
 
 public class Plot {
-	
-	//String's
+
+	// String's
 	private String name;
-	
-	//Int's
+
+	// Int's
 	private int id;
 	private int size = 10;
 	private int money = 0;
 	private int salePrice = 0;
-	
-	//Array's
+
+	// Array's
 	private ArrayList<UUID> friends = new ArrayList<UUID>();
 	private ArrayList<UUID> coowners = new ArrayList<UUID>();
-	//UUID
+	// UUID
 	private UUID owner;
-	
-	//Boolean's
+
+	// Boolean's
 	private boolean protection = true;
 	private boolean allowExplosions = false;
 	private boolean privatePlot = true;
 	private boolean friendBuild = false;
-	//Upgrade's
+	// Upgrade's
 	private boolean town = false;
 	private boolean dungeon = false;
 	private boolean autoKick = false;
 	private boolean neutralAlignment = false;
-	
-	//Location
+
+	// Location
 	private Location location;
-	
-	//CapturePoint
+
+	// CapturePoint
 	private boolean capturePoint = false;
 	private Clan owningClan = null;
-	
-	//NPCS
+
+	// NPCS
 	private ArrayList<NPC> npcs = new ArrayList<NPC>();
-	
-	//Admin
+
+	// Admin
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
-	
+
 	public Plot(String name, UUID owner, Location location) {
 		super();
 		this.name = name;
@@ -90,8 +90,8 @@ public class Plot {
 		this.allowMagic = allowMagic;
 		this.allowPvp = allowPvp;
 	}
-	
-	//Getters and Setters
+
+	// Getters and Setters
 
 	public String getName() {
 		return name;
@@ -116,11 +116,11 @@ public class Plot {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	
+
 	public void expandSize(int size) {
 		this.size += size;
 	}
-	
+
 	public void shrinkSize(int size) {
 		this.size -= size;
 	}
@@ -136,11 +136,11 @@ public class Plot {
 	public void addMoney(int money) {
 		this.money += money;
 	}
-	
+
 	public void subtractMoney(int money) {
 		this.money -= money;
 	}
-	
+
 	public int getSalePrice() {
 		return salePrice;
 	}
@@ -148,7 +148,7 @@ public class Plot {
 	public void setSalePrice(int salePrice) {
 		this.salePrice = salePrice;
 	}
-	
+
 	public boolean isForSale() {
 		return (this.salePrice > 0) ? true : false;
 	}
@@ -272,40 +272,42 @@ public class Plot {
 	public void setAllowPvp(boolean allowPvp) {
 		this.allowPvp = allowPvp;
 	}
-	//Getting next id
+
+	// Getting next id
 	public int nextId() {
 		int nextId = 0;
-		for(Plot p : Lostshard.getPlots())
-			if(p.getId() > nextId)
+		for (Plot p : Lostshard.getPlots())
+			if (p.getId() > nextId)
 				nextId = p.getId() + 1;
 		return nextId;
 	}
-	
+
 	public boolean isOwner(Player player) {
 		return player.isOp() || player.getUniqueId() == owner;
 	}
-	
+
 	public boolean isFriend(Player player) {
 		return player.isOp() || friends.contains(player.getUniqueId());
 	}
-	
-	//Friends
+
+	// Friends
 	public void addFriend(Player player) {
 		friends.add(player.getUniqueId());
 	}
-	
+
 	public void removeFriend(Player player) {
 		friends.remove(player.getUniqueId());
 	}
-	//Coowners
+
+	// Coowners
 	public boolean isCoowner(Player player) {
 		return player.isOp() || coowners.contains(player.getUniqueId());
 	}
-	
+
 	public void addCoowner(Player player) {
 		coowners.add(player.getUniqueId());
 	}
-	
+
 	public void removeCoowner(Player player) {
 		coowners.remove(player.getUniqueId());
 	}
@@ -317,42 +319,49 @@ public class Plot {
 	public void setOwner(UUID owner) {
 		this.owner = owner;
 	}
-	
+
 	public int getValue() {
-		int plotValue = 10 * (((size-1)^2 + (size-1)) / 2) - (((10-1)^2 + (10-1)) / 2);
-		if(this.town)
+		int plotValue = 10 * (((size - 1) ^ 2 + (size - 1)) / 2)
+				- (((10 - 1) ^ 2 + (10 - 1)) / 2);
+		if (this.town)
 			plotValue += Variables.plotTownPrice;
-		if(this.isDungeon())
+		if (this.isDungeon())
 			plotValue += Variables.plotDungeonPrice;
-		if(this.isAutoKick())
+		if (this.isAutoKick())
 			plotValue += Variables.plotAutoKickPrice;
-		if(this.isNeutralAlignment())
+		if (this.isNeutralAlignment())
 			plotValue += Variables.plotNeutralAlignmentPrice;
-		
-		if(this.getLocation().getWorld().getEnvironment().equals(Environment.NETHER))
+
+		if (this.getLocation().getWorld().getEnvironment()
+				.equals(Environment.NETHER))
 			return plotValue;
-		return (int) Math.floor(plotValue*.75);
+		return (int) Math.floor(plotValue * .75);
 	}
-	
+
 	public String getPlayerStatusOfPlotString(Player player) {
-		return isOwner(player) ? "You are the owner of this plot." : isCoowner(player) ? "You are a co-owner of this plot."
-				: isFriend(player) ? "You are a friend of this plot." : "You are not friend of this plot.";
+		return isOwner(player) ? "You are the owner of this plot."
+				: isCoowner(player) ? "You are a co-owner of this plot."
+						: isFriend(player) ? "You are a friend of this plot."
+								: "You are not friend of this plot.";
 	}
-	
+
 	public boolean isAllowedToBuild(Player player) {
-		return isCoownerOrAbove(player) ? true : isFriend(player) && isFriendBuild() ? true : !isProtected() ? true : false;
+		return isCoownerOrAbove(player) ? true : isFriend(player)
+				&& isFriendBuild() ? true : !isProtected() ? true : false;
 	}
-	
+
 	public boolean isFriendOrAbove(Player player) {
-		return isOwner(player) ? true : isCoowner(player) ? true : isFriend(player) ? true : false;
+		return isOwner(player) ? true : isCoowner(player) ? true
+				: isFriend(player) ? true : false;
 	}
-	
+
 	public boolean isCoownerOrAbove(Player player) {
 		return isOwner(player) ? true : isCoowner(player) ? true : false;
 	}
-	
+
 	public int getExpandPrice(int toSize) {
-		return 10 * (((toSize-1)^2 + (toSize-1)) / 2) - (((size-1)^2 + (size-1)) / 2);
+		return 10 * (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
+				- (((size - 1) ^ 2 + (size - 1)) / 2);
 	}
 
 	public ArrayList<NPC> getNpcs() {
@@ -362,13 +371,12 @@ public class Plot {
 	public void setNpcs(ArrayList<NPC> npcs) {
 		this.npcs = npcs;
 	}
-	
+
 	public int getMaxVendors() {
 		return size / 15;
 	}
-	
-	//Capturepoint stuff
-	
-	
-	//TODO Commands and Capture and NPC's
+
+	// Capturepoint stuff
+
+	// TODO Commands and Capture and NPC's
 }

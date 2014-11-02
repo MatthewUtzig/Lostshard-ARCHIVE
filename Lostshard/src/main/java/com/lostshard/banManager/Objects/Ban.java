@@ -10,9 +10,8 @@ public class Ban {
 	private String reason;
 	private long time;
 	private UUID by;
-	
-	public Ban(UUID banned, long expires, String reason,
-			long time, UUID by) {
+
+	public Ban(UUID banned, long expires, String reason, long time, UUID by) {
 		super();
 		this.banned = banned;
 		this.expires = expires;
@@ -20,7 +19,7 @@ public class Ban {
 		this.time = time;
 		this.by = by;
 	}
-	
+
 	public Ban(UUID banned, long expires, String reason, UUID by) {
 		super();
 		this.banned = banned;
@@ -69,5 +68,5 @@ public class Ban {
 	public void setBy(UUID by) {
 		this.by = by;
 	}
-	
+
 }

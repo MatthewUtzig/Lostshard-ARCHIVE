@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 
 public class Spell {
-	
+
 	private String name;
 	private String spellWords;
 	private int manaCost;
@@ -12,8 +12,8 @@ public class Spell {
 	private int circle;
 	private int castingDelay;
 	private boolean wand;
-	
-	private String[] description = {ChatColor.LIGHT_PURPLE+"No description"};
+
+	private String[] description = { ChatColor.LIGHT_PURPLE + "No description" };
 
 	public String getName() {
 		return name;
@@ -79,5 +79,4 @@ public class Spell {
 		this.description = description;
 	}
 
-	
 }
