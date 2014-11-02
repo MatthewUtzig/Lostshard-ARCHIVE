@@ -10,7 +10,4 @@ public enum NPCType {
 		
 	}
 	
-	
-	
-	
 }

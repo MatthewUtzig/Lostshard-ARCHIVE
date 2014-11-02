@@ -1,3 +1,13 @@
 name: Lostshard
 main: com.lostshard.Main.Main
 version: 0.01
+commands:
+   plot:
+      Plot commands.
+      usage: /<command>
+   bank:
+      Access your bank inventory at the local bank.
+      usage: /<command>
+   tradegold:
+      trade 1 gold ingot to 100gc at a bank.
+      usage: /<command>

@@ -29,7 +29,13 @@ public class TabUtils {
 	
 	public static List<String> OnlinePlayersTab(String[] args, Player[] exclude) {
 		List<String> completions = new ArrayList<String>();
-		for(Player option : Bukkit.getOnlinePlayers()) {
+		List<Player> players = new ArrayList<Player>();
+		for(Player p : Bukkit.getOnlinePlayers())
+			players.add(p);
+		for(Player p : exclude)
+			if(players.contains(p))
+				players.remove(p);
+		for(Player option : players) {
 			if(StringUtil.startsWithIgnoreCase(option.getName(), args[0]))
 				completions.add(option.getName());
 		}

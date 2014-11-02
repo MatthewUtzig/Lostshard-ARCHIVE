@@ -96,11 +96,54 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				plotUnSell(player);
 			else if(plotCommand.equalsIgnoreCase("explosion"))
 				plotExplosionToggle(player);
+			else if(plotCommand.equalsIgnoreCase("pvp") && player.isOp())
+				plotPvpToggle(player);
+			else if(plotCommand.equalsIgnoreCase("magic") && player.isOp())
+				plotMagicToggle(player);
+			else {
+				Output.plotHelp(player);
+			}
 			return true;
 		}	
 		return false;
 	}
 		
+	private void plotMagicToggle(Player player) {
+		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		if(plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if(!player.isOp()) {
+			Output.simpleError(player, "Ops may only toggle magic for plots.");
+		}
+		if(plot.isAllowMagic()) {
+			Output.positiveMessage(player, "You have turned off magic for "+plot.getName()+".");
+			plot.setAllowMagic(false);
+		}else{
+			Output.positiveMessage(player, "You have turned on magic for "+plot.getName()+".");
+			plot.setAllowMagic(true);
+		}
+	}
+
+	private void plotPvpToggle(Player player) {
+		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		if(plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if(!player.isOp()) {
+			Output.simpleError(player, "Ops may only toggle pvp for plots.");
+		}
+		if(plot.isAllowPvp()) {
+			Output.positiveMessage(player, "You have turned off pvp for "+plot.getName()+".");
+			plot.setAllowPvp(false);
+		}else{
+			Output.positiveMessage(player, "You have turned on pvp for "+plot.getName()+".");
+			plot.setAllowPvp(true);
+		}
+	}
+
 	private void plotExplosionToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if(plot == null) {

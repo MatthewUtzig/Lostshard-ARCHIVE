@@ -3,11 +3,15 @@ package com.lostshard.lostshard.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 
+import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
+import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 
 public class PlayerListener implements Listener {
@@ -24,6 +28,16 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		PlotHandler.buttonPush(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		ChatHandler.onPlayerChat(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerLogin(PlayerLoginEvent event) {
+		PseudoPlayerHandler.onPlayerLogin(event);
 	}
 	
 }

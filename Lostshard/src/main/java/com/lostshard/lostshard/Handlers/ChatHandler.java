@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Utils;
@@ -35,6 +36,10 @@ public class ChatHandler {
 
 	public static void setShoutChatRange(int shoutChatRange) {
 		ChatHandler.shoutChatRange = shoutChatRange;
+	}
+	
+	public static void onPlayerChat(AsyncPlayerChatEvent event) {
+		
 	}
 	
 	public static void whisperChat(Player player, String message) {
