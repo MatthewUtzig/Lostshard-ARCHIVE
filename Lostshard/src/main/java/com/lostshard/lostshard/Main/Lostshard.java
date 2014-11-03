@@ -9,6 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.lostshard.lostshard.Commands.BankCommand;
+import com.lostshard.lostshard.Commands.ControlPointsCommand;
+import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Plot;
@@ -28,7 +31,10 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-
+		//Commands
+		new PlotCommand(this);
+		new BankCommand(this);
+		new ControlPointsCommand(this);
 		// GameLoop should run last.
 		gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
 	}
