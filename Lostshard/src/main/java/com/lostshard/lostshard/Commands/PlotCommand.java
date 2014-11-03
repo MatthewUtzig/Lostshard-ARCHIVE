@@ -50,8 +50,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			Player player = (Player) sender;
-			if (args.length < 1)
+			if (args.length < 1) {
 				player.sendMessage(ChatColor.GOLD + "use /help plot");
+				return true;
+			}
 			String plotCommand = args[0];
 			if (plotCommand.equalsIgnoreCase("create"))
 				createPlot(player, args);

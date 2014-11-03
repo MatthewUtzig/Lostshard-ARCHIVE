@@ -32,13 +32,14 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		logger.log(Level.FINEST, "Lostshard has invoke.");
+		logger.log(Level.FINEST, ChatColor.GREEN+"Lostshard has invoke.");
+		Bukkit.broadcastMessage(ChatColor.GREEN+"Lostshard has invoke.");
 		//Commands
 		new PlotCommand(this);
 		new BankCommand(this);
 		new ControlPointsCommand(this);
 		// GameLoop should run last.
-		gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
+//		gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
 	}
 
 	@Override
