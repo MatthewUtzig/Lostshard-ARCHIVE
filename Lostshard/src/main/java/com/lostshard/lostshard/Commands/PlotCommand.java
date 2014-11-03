@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,6 +27,7 @@ import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.RegionUtils;
 import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -53,6 +55,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			String plotCommand = args[0];
 			if (plotCommand.equalsIgnoreCase("create"))
 				createPlot(player, args);
+			else if(plotCommand.equalsIgnoreCase("sphere")) {
+				for(Location pos : RegionUtils.getSphere(player.getLocation().getBlock().getLocation(), 10))
+					pos.getBlock().setType(Material.GLASS);
+			}
 			else if (plotCommand.equalsIgnoreCase("survey"))
 				plotSurvey(player);
 			else if (plotCommand.equalsIgnoreCase("info"))
