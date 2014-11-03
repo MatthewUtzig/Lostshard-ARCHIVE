@@ -320,4 +320,8 @@ public class Database {
 					"[PLAYER] updatePlayer mysql error >> " + e.toString());
 		}
 	}
+
+	public static void saveAll() {
+		
+	}
 }

@@ -22,8 +22,15 @@ import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class BankCommand implements CommandExecutor, TabCompleter {
 
+	/**
+	 * @param Lostshard
+	 */
 	public BankCommand(Lostshard plugin) {
 		plugin.getCommand("bank").setExecutor(this);
 		plugin.getCommand("tradegold").setExecutor(this);
@@ -41,6 +48,11 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
+	/**
+	 * @param sender
+	 * @param args
+	 * Let player pay money to another player.
+	 */
 	private void pay(CommandSender sender, String[] args) {
 		if (args.length < 2) {
 			sender.sendMessage(ChatColor.DARK_RED + "/pay (player) (amount)");
@@ -87,6 +99,11 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 				+ amount + "gc.");
 	}
 
+	/**
+	 * @param sender
+	 * @param args
+	 * Let players tradegold into goldcoins.
+	 */
 	private void tradegold(CommandSender sender, String[] args) {
 		if (!(sender instanceof Player)) {
 			Output.mustBePlayer(sender);
@@ -121,6 +138,10 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		return;
 	}
 
+	/**
+	 * @param sender
+	 * Let player access bank.
+	 */
 	private void bank(CommandSender sender) {
 		if (!(sender instanceof Player)) {
 			Output.mustBePlayer(sender);

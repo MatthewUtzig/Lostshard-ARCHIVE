@@ -7,6 +7,10 @@ import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Data.Variables;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class PseudoPlayer {
 
 	private int id = 0;

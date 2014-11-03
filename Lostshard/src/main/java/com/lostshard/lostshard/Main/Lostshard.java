@@ -3,13 +3,21 @@ package com.lostshard.lostshard.Main;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class Lostshard extends JavaPlugin {
 
 	public static final Logger logger = Logger.getLogger("Lostshard");
@@ -22,12 +30,12 @@ public class Lostshard extends JavaPlugin {
 	public void onEnable() {
 
 		// GameLoop should run last.
-		setGameLoop(new MainGameLoop(this).runTaskTimer(this, 0L, 20L));
+		gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
 	}
 
 	@Override
 	public void onDisable() {
-
+		Database.saveAll();
 	}
 
 	public static ArrayList<Plot> getPlots() {
@@ -58,8 +66,9 @@ public class Lostshard extends JavaPlugin {
 		return gameLoop;
 	}
 
-	public static void setGameLoop(BukkitTask gameLoop) {
-		Lostshard.gameLoop = gameLoop;
+	public static void shutdown() {
+		for(Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED+"Server rebooting.");
 	}
 
 }

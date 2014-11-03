@@ -11,6 +11,10 @@ import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class Plot {
 
 	// String's
@@ -321,8 +325,8 @@ public class Plot {
 	}
 
 	public int getValue() {
-		int plotValue = 10 * (((size - 1) ^ 2 + (size - 1)) / 2)
-				- (((10 - 1) ^ 2 + (10 - 1)) / 2);
+		int plotValue = Variables.plotExpandPrice * (((size - 1) ^ 2 + (size - 1)) / 2)
+				- (((Variables.plotStartingSize - 1) ^ 2 + (Variables.plotStartingSize - 1)) / 2);
 		if (this.town)
 			plotValue += Variables.plotTownPrice;
 		if (this.isDungeon())
@@ -359,8 +363,13 @@ public class Plot {
 		return isOwner(player) ? true : isCoowner(player) ? true : false;
 	}
 
+	/**
+	 * @author Frank Oliver
+	 * @param toSize
+	 * @return Expand price from current size to size.
+	 */
 	public int getExpandPrice(int toSize) {
-		return 10 * (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
+		return Variables.plotExpandPrice * (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
 				- (((size - 1) ^ 2 + (size - 1)) / 2);
 	}
 

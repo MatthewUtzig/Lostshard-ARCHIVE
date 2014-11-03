@@ -29,6 +29,11 @@ import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
+/**
+ * @author Jacob Rosborg
+ * @author Luciddream
+ *
+ */
 public class PlotCommand implements CommandExecutor, TabCompleter {
 
 	public PlotCommand(Lostshard plugin) {
@@ -204,8 +209,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		Output.positiveMessage(player, "This plot is no longer for sale.");
 	}
 
-	/*
-	 * Buy the plot at player.
+	/**
+	 * @param player
+	 * 
+	 * Buy plot at player.
 	 */
 	private void plotBuy(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -250,7 +257,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		// player.addOflinemsg
 	}
 
-	/*
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Sell plot at player.
 	 */
 	private void plotSell(Player player, String[] args) {
@@ -465,6 +475,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 			for (NPC npc : plot.getNpcs())
 				if (npc.getName().equalsIgnoreCase(npcName)) {
+					npc.setLocation(player.getLocation());
 					npc.move(player.getLocation());
 					Output.positiveMessage(player, "You have moved " + npcName
 							+ ".");
@@ -1011,8 +1022,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				"You are currently testing " + plot.getName() + ".");
 	}
 
-	/*
-	 * Expand plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Expand plot to given size.
 	 */
 	private void plotExpand(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1025,45 +1039,66 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"Only the owner and co-owner may expand the plot.");
 			return;
 		}
+		int amount = 1;
+		if(args.length >= 2) {
+			try {
+				amount = Integer.parseInt(args[1]);
+			} catch(Exception e) {
+				Output.simpleError(player, "Invalid amount. /plot expand (amount)");
+				return;
+			}
+		}
+		if(amount < 1) {
+			Output.simpleError(player, "Expand size must be greater than 0.");
+			return;
+		}
 		// see if we would expand into an existing region
 		for (Plot p : Lostshard.getPlots()) {
-			if (p.getLocation().getWorld().equals(player.getWorld())) {
-				if (p != plot) {
-					int sphereOfInfluence;
-					if (p.isCoownerOrAbove(player)) {
-						sphereOfInfluence = p.getSize();
-					} else {
-						if (p.isTown())
-							sphereOfInfluence = p.getSize() * 2;
-						else
-							sphereOfInfluence = (int) Math
-									.ceil(p.getSize() * 1.5);
-					}
+			if (!p.getLocation().getWorld().equals(player.getWorld()))
+				continue;
+			if (p == plot)
+				continue;
+			
+			int sphereOfInfluence;
+			if (p.isCoownerOrAbove(player)) {
+				sphereOfInfluence = p.getSize();
+			} else {
+				if (p.isTown())
+					sphereOfInfluence = p.getSize() * 2;
+				else
+					sphereOfInfluence = (int) Math
+							.ceil(p.getSize() * 1.5);
+			}
 
-					if (Utils.isWithin(p.getLocation(), plot.getLocation(),
-							sphereOfInfluence + plot.getSize() + 1)) {
-						Output.simpleError(player,
-								"Cannot expand, " + p.getName()
-										+ " is too close.");
-						return;
-					}
-				}
+			if (Utils.isWithin(p.getLocation(), plot.getLocation(),
+					sphereOfInfluence + plot.getSize() + 1 + amount)) {
+				if(amount == 1)
+				Output.simpleError(player,
+						"Cannot expand, " + p.getName()
+								+ " is too close.");
+				else
+					Output.simpleError(player, "You may only expand "+
+						plot.getName()+" "+
+						p.getLocation().distanceSquared(player.getLocation())+".");
+				return;
 			}
 		}
 
 		// verify that we can afford the expansion
 		int plotMoney = plot.getMoney();
-		int expansionCost = plot.getSize() * 10;
+		int expansionCost = plot.getExpandPrice(amount);
 		if (plotMoney >= expansionCost) {
 			// we are good to go
 			plot.setMoney(plot.getMoney() - expansionCost);
-			plot.setSize(plot.getSize() + 1);
+			plot.setSize(plot.getSize() + amount);
 			Output.positiveMessage(player,
 					"You have expanded the plot to size " + plot.getSize()
 							+ ".");
 		} else
 			Output.simpleError(player,
-					"Not enough money in the plot treasury to expand.");
+					"Not enough money in the plot treasury to expand. "
+					+ "It will cost "+expansionCost+" to expand to "+
+							plot.getSize()+amount);
 	}
 
 	/*

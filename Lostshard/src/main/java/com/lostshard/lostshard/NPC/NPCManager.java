@@ -12,6 +12,10 @@ import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.npc.NPCRegistry;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class NPCManager {
 
 	private static NPCRegistry registry = CitizensAPI
