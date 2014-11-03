@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Main;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -31,6 +32,7 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		logger.log(Level.FINEST, "Lostshard has invoke.");
 		//Commands
 		new PlotCommand(this);
 		new BankCommand(this);
