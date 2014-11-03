@@ -14,6 +14,13 @@ import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Listener.BlockListener;
+import com.lostshard.lostshard.Listener.EntityListener;
+import com.lostshard.lostshard.Listener.PlayerListener;
+import com.lostshard.lostshard.Listener.ServerListener;
+import com.lostshard.lostshard.Listener.VehicleListener;
+import com.lostshard.lostshard.Listener.VoteListener;
+import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -33,7 +40,16 @@ public class Lostshard extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		logger.log(Level.FINEST, ChatColor.GREEN+"Lostshard has invoke.");
-		Bukkit.broadcastMessage(ChatColor.GREEN+"Lostshard has invoke.");
+		System.out.println(ChatColor.GREEN+"Lostshard has invoke.");
+		//Lisenters
+		new BlockListener(this);
+		new EntityListener(this);
+		new PlayerListener(this);
+		new ServerListener(this);
+		new VehicleListener(this);
+		if(getServer().getPluginManager().isPluginEnabled("votifier"))
+			new VoteListener(this);
+		new WorldListener(this);
 		//Commands
 		new PlotCommand(this);
 		new BankCommand(this);

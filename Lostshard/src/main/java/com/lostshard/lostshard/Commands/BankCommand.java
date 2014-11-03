@@ -34,6 +34,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 	public BankCommand(Lostshard plugin) {
 		plugin.getCommand("bank").setExecutor(this);
 		plugin.getCommand("tradegold").setExecutor(this);
+		plugin.getCommand("pay").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -112,8 +113,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
-					Variables.bankRadius)) {
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
 				int amount;
 				try {
 					amount = Integer.parseInt(args[0]);
@@ -132,9 +132,9 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 				} else
 					Output.simpleError(player, "You dont have " + amount
 							+ " gold ingots in your inventory.");
-			} else
-				Output.simpleError(player,
-						"You are not close enough to a bank.");
+			}
+		Output.simpleError(player,
+				"You are not close enough to a bank.");
 		return;
 	}
 
@@ -150,12 +150,11 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
-					Variables.bankRadius)) {
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
 				player.openInventory(pPlayer.getBank().getInventory());
-			} else
-				Output.simpleError(player,
-						"You are not close enough to a bank.");
+				return;
+			}
+		Output.simpleError(player, "You are not close enough to a bank.");
 		return;
 	}
 

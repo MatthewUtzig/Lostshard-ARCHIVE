@@ -19,5 +19,4 @@ public class ServerListener implements Listener {
 		event.setMotd(Variables.motd);
 		event.setMaxPlayers(Variables.maxPlayers);
 	}
-
 }
