@@ -2,7 +2,6 @@
 - [x] Commands
 - [x] Mysql
 - [ ] Plot enter and leave
-- 
 - [ ] Vendors buy and sell stuff
 
 #Bank
