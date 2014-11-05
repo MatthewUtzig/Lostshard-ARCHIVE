@@ -35,6 +35,6 @@
 - [ ] Clan
 - [ ] Party
 - [ ] Global disable and ignore players and disable msg's
-- 
+
 #Admin
 - [ ] Utils
