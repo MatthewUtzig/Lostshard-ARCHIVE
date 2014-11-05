@@ -1,6 +1,8 @@
 #Plots
 - [x] Commands
 - [x] Mysql
+- [ ] Plot enter and leave
+- 
 - [ ] Vendors buy and sell stuff
 
 #Bank
@@ -26,6 +28,7 @@
 
 #Chat
 - [ ] Msg
+- [ ] Replay
 - [x] Global
 - [x] Shout
 - [x] Local
@@ -33,3 +36,6 @@
 - [ ] Clan
 - [ ] Party
 - [ ] Global disable and ignore players and disable msg's
+- 
+#Admin
+- [ ] Utils
