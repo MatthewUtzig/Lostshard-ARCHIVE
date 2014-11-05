@@ -36,5 +36,10 @@
 - [ ] Party
 - [ ] Global disable and ignore players and disable msg's
 
+#Utils
+- [x] Who
+- [x] Whois
+- [x] stats
+
 #Admin
 - [ ] Utils
