@@ -3,6 +3,7 @@
 - [x] Mysql
 - [ ] Plot enter and leave
 - [ ] Vendors buy and sell stuff
+- [ ] Lisenter
 
 #Bank
 - [x] Tradegold
@@ -40,6 +41,8 @@
 - [x] Who
 - [x] Whois
 - [x] stats
+- [ ] Spawn
+- [ ] Reset spawn
 
 #Admin
 - [ ] Utils
