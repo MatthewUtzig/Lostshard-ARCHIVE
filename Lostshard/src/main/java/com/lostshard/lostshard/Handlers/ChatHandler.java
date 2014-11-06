@@ -5,9 +5,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Utils;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class ChatHandler {
 
 	private static int whisperChatRange = 5;
@@ -39,30 +44,42 @@ public class ChatHandler {
 	}
 
 	public static void onPlayerChat(AsyncPlayerChatEvent event) {
-
+		event.getRecipients().clear();
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
+		if(pPlayer.getChatChannel().equals(ChatChannel.LOCAL))
+			localChat(event);
+		else if(pPlayer.getChatChannel().equals(ChatChannel.SHOUT))
+			shoutChat(event);
+		else if(pPlayer.getChatChannel().equals(ChatChannel.WHISPER))
+			whisperChat(event);
+		else
+			globalChat(event);
 	}
 
-	public static void whisperChat(Player player, String message) {
-		for (Player p : Utils.getPlayersNear(player, getWhisperChatRange()))
-			p.sendMessage(Utils.getColoredName(player) + ChatColor.WHITE
-					+ " whisper: " + message);
+	public static void whisperChat(AsyncPlayerChatEvent event) {
+		for (Player p : Utils.getPlayersNear(event.getPlayer(), getWhisperChatRange()))
+			event.getRecipients().add(p);
+		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE
+				+ " whisper: " + event.getMessage());
 	}
 
-	public static void localChat(Player player, String message) {
-		for (Player p : Utils.getPlayersNear(player, getLocalChatRange()))
-			p.sendMessage(Utils.getColoredName(player) + ChatColor.WHITE + ": "
-					+ message);
+	public static void localChat(AsyncPlayerChatEvent event) {
+		for (Player p : Utils.getPlayersNear(event.getPlayer(), getLocalChatRange()))
+			event.getRecipients().add(p);
+		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE + ": "
+			+ event.getMessage());
 	}
 
-	public static void shoutChat(Player player, String message) {
-		for (Player p : Utils.getPlayersNear(player, getShoutChatRange()))
-			p.sendMessage(Utils.getColoredName(player) + ChatColor.WHITE
-					+ " shouts: " + message);
+	public static void shoutChat(AsyncPlayerChatEvent event) {
+		for (Player p : Utils.getPlayersNear(event.getPlayer(), getShoutChatRange()))
+			event.getRecipients().add(p);
+		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE
+				+ " shouts: " + event.getMessage());
 	}
 
-	public static void globalChat(Player player, String message) {
+	public static void globalChat(AsyncPlayerChatEvent event) {
 		String prefix;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
 		if (pPlayer.isSubscriber())
 			prefix = ChatColor.GOLD + "[" + ChatColor.YELLOW + "Global"
 					+ ChatColor.GOLD + "]* ";
@@ -73,18 +90,19 @@ public class ChatHandler {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			pPlayer = PseudoPlayerHandler.getPlayer(p);
 			if (pPlayer.isGlobalChat())
-				p.sendMessage(prefix + Utils.getColoredName(player)
-						+ ChatColor.WHITE + ": ");
+				event.getRecipients().add(p);
 		}
+		event.setFormat(prefix + Utils.getColoredName(event.getPlayer())
+				+ ChatColor.WHITE + ": "+event.getMessage());
 	}
 
-	public static void clanChat(Player player, String message) {
+	public static void clanChat(AsyncPlayerChatEvent event) {
 		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
 		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
 
 	}
 
-	public static void partyChat(Player player, String message) {
+	public static void partyChat(AsyncPlayerChatEvent event) {
 		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
 		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
 

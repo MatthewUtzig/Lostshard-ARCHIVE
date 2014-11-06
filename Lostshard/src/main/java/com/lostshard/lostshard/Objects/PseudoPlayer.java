@@ -3,6 +3,8 @@ package com.lostshard.lostshard.Objects;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Data.Variables;
@@ -24,6 +26,13 @@ public class PseudoPlayer {
 	private boolean wasSubscribed = false;
 	private int plotCreatePoints = 0;
 	private Plot testPlot = null;
+	private ChatChannel chatChannel = ChatChannel.GLOBAL;
+	private int mana = 100;
+	private int stamina = 100;
+	private int rank = 800;
+	private Clan clan = null;
+	private Location customSpawn;
+	private int spawnTick = 0;
 
 	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
 			Bank bank, int criminal, boolean globalChat, int subscribeDays,
@@ -161,4 +170,68 @@ public class PseudoPlayer {
 		this.testPlot = testPlot;
 	}
 
+	public ChatChannel getChatChannel() {
+		return chatChannel;
+	}
+
+	public void setChatChannel(ChatChannel chatChannel) {
+		this.chatChannel = chatChannel;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public int getStamina() {
+		return stamina;
+	}
+
+	public void setStamina(int stamina) {
+		this.stamina = stamina;
+	}
+
+	public String getColoredName() {
+		OfflinePlayer player = Bukkit.getOfflinePlayer(this.playerUUID);
+		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
+				+ player.getName()
+				: this.isCriminal() ? ChatColor.GRAY + player.getName()
+						: ChatColor.BLUE + player.getName();
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public Clan getClan() {
+		return clan;
+	}
+
+	public void setClan(Clan clan) {
+		this.clan = clan;
+	}
+
+	public Location getCustomSpawn() {
+		return customSpawn;
+	}
+
+	public void setCustomSpawn(Location customSpawn) {
+		this.customSpawn = customSpawn;
+	}
+
+	public int getSpawnTick() {
+		return spawnTick;
+	}
+
+	public void setSpawnTick(int spawnTick) {
+		this.spawnTick = spawnTick;
+	}
+	
 }

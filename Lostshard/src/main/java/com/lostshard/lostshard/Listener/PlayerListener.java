@@ -7,6 +7,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
@@ -27,7 +28,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
-		PlotHandler.buttonPush(event);
+		PlotHandler.onButtonPush(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -39,5 +40,11 @@ public class PlayerListener implements Listener {
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		PseudoPlayerHandler.onPlayerLogin(event);
 	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerMoveEvent(PlayerMoveEvent event) {
+		PlotHandler.onPlotEnter(event);
+	}
+	
 
 }

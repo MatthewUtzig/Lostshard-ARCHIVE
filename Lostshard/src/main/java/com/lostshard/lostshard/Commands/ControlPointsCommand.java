@@ -11,6 +11,10 @@ import org.bukkit.entity.Player;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Utils.Output;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 
 	public ControlPointsCommand(Lostshard plugin) {

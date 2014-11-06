@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Handlers;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -10,16 +11,24 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
+/**
+ * @author Jacob Rosborg
+ *
+ */
 public class PlotHandler {
 
-	/*
-	 * Find the plot on the location.
+	/**
+	 * @param location
+	 * @return
+	 * 
+	 * Find plot at location.
 	 */
 	public static Plot findPlotAt(Location location) {
 		for (Plot plot : Lostshard.getPlots())
@@ -30,8 +39,12 @@ public class PlotHandler {
 		return null;
 	}
 
-	/*
-	 * Find the plot on the location with a buffer
+	/**
+	 * @param location
+	 * @param buffer
+	 * @return Plot
+	 * 
+	 * Find plot at location
 	 */
 	public static Plot findPlotAt(Location location, int buffer) {
 		for (Plot plot : Lostshard.getPlots())
@@ -43,7 +56,9 @@ public class PlotHandler {
 		return null;
 	}
 
-	/*
+	/**
+	 * @param event
+	 * 
 	 * Allow only friends of the plot to break blocks.
 	 */
 	public static void breakeBlockInPlot(BlockBreakEvent event) {
@@ -57,7 +72,9 @@ public class PlotHandler {
 		}
 	}
 
-	/*
+	/**
+	 * @param event
+	 * 
 	 * Allow only friends of the plot to place blocks.
 	 */
 	public static void placeBlockInPlot(BlockPlaceEvent event) {
@@ -75,7 +92,9 @@ public class PlotHandler {
 		Lostshard.getPlots().remove(plot);
 	}
 
-	/*
+	/**
+	 * @param event
+	 * 
 	 * Prevent blocks from burning inside a plot.
 	 */
 	public static void burnBlockInPlot(BlockBurnEvent event) {
@@ -86,7 +105,9 @@ public class PlotHandler {
 			event.setCancelled(true);
 	}
 
-	/*
+	/**
+	 * @param event
+	 * 
 	 * Allow only friends of the plot to ignite blocks.
 	 */
 	public static void igniteBlockInPlot(BlockIgniteEvent event) {
@@ -106,7 +127,9 @@ public class PlotHandler {
 		}
 	}
 
-	/*
+	/**
+	 * @param event
+	 * 
 	 * Prevent water to flow into plots, and wither block destruction.
 	 */
 	public static void fromBlockToBlock(BlockFromToEvent event) {
@@ -124,10 +147,12 @@ public class PlotHandler {
 		event.setCancelled(true);
 	}
 
-	/*
-	 * Allow only friends to click buttons inside a plot.
+	/**
+	 * @param event
+	 * 
+	 * Allow only friends to click buttons and leavers inside a plot.
 	 */
-	public static void buttonPush(PlayerInteractEvent event) {
+	public static void onButtonPush(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
 		if (!block.getType().equals(Material.STONE_BUTTON)
 				&& !block.getType().equals(Material.LEVER))
@@ -143,11 +168,42 @@ public class PlotHandler {
 				+ "\" is protected.");
 	}
 
+	/**
+	 * @param id
+	 * @return plot
+	 * 
+	 * Get plot from id.
+	 */
 	public static Plot getPlotById(int id) {
 		for (Plot plot : Lostshard.getPlots())
 			if (plot.getId() == id)
 				return plot;
 		return null;
+	}
+	
+	/**
+	 * @param event
+	 * 
+	 * Display plot enter message.
+	 */
+	public static void onPlotEnter(PlayerMoveEvent event) {
+		if(event.getTo().getBlock() == event.getFrom().getBlock())
+			return;
+		Player player = event.getPlayer();
+    	Plot fromPlot = PlotHandler.findPlotAt(event.getFrom().getBlock().getLocation());
+    	Plot toPlot = PlotHandler.findPlotAt(event.getTo().getBlock().getLocation());            	
+    	if(fromPlot == null && toPlot != null) {
+    		// must be entering a plot
+    		player.sendMessage(ChatColor.GRAY+"You have entered "+toPlot.getName());
+    	}
+    	else if(toPlot == null && fromPlot != null) {
+    		// must be leaving a plot
+    		player.sendMessage(ChatColor.GRAY+"You have left "+fromPlot.getName());
+    	}
+    	else if(fromPlot != null && toPlot != null && fromPlot != toPlot){
+    		// must be moving from one plot to another
+    		player.sendMessage(ChatColor.GRAY+"You have left "+fromPlot.getName()+" and entered "+toPlot.getName());
+    	}
 	}
 
 }

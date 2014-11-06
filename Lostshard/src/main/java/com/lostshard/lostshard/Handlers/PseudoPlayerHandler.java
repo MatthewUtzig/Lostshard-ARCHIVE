@@ -5,7 +5,6 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;
 
-import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 

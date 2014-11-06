@@ -122,9 +122,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		return false;
 	}
-
-	/*
-	 * Toggle Magic for plot at player.
+	
+	/**
+	 * @param player
+	 * 
+	 * Toggles magic for plot at player
 	 */
 	private void plotMagicToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -145,8 +147,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plot.setAllowMagic(true);
 		}
 	}
-
-	/*
+	
+	/**
+	 * @param player
+	 * 
 	 * Toggle pvp for plot at player.
 	 */
 	private void plotPvpToggle(Player player) {
@@ -168,8 +172,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plot.setAllowPvp(true);
 		}
 	}
-
-	/*
+	
+	/**
+	 * @param player
+	 * 
 	 * Toggle explosions for plot at player.
 	 */
 	private void plotExplosionToggle(Player player) {
@@ -193,9 +199,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"You have enabled explosions on your plot.");
 		}
 	}
-
-	/*
-	 * Make the plot no longer for sale at player.
+	
+	/**
+	 * @param player
+	 * 
+	 * Take plot of the market.
 	 */
 	private void plotUnSell(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -305,13 +313,19 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/*
 	 * Conrtole npcs for plot at player.
 	 */
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Manage npc's for plot at player.
+	 */
 	private void plotNPC(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (args.length >= 4) {
+		if (args.length < 4) {
 			Output.simpleError(player, "/plot npc hire (Banker|Vendor) (name)");
 			return;
 		}
@@ -422,12 +436,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				Output.positiveMessage(player, "You have hired a vendor named "
 						+ name + ".");
-			} else if (args[2].equalsIgnoreCase("guard")) {
-
-				if (!player.isOp()) {
-					Output.simpleError(player, "Only op's may hire guards.");
-					return;
-				}
+			} else if (args[2].equalsIgnoreCase("guard") && player.isOp()) {
 				name = args[3];
 				name.trim();
 				if (name.length() > 7) {
@@ -517,7 +526,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		HelpHandler.plotNpcHelp(player);
 	}
 
-	/*
+	
+	/**
+	 * @param player
+	 * 
 	 * Toggle friendbuild for plot at player.
 	 */
 	private void plotFriendBuildToggle(Player player) {
@@ -539,8 +551,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 	}
-
-	/*
+	
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Rename plot at player.
 	 */
 	private void plotRename(Player player, String[] args) {
@@ -598,8 +613,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				+ plotName + ".");
 	}
 
-	/*
-	 * Shrink plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Shrink plot at player
 	 */
 	private void plotShrink(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -638,8 +656,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				+ " blocks.");
 	}
 
-	/*
-	 * Transfer plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Transfer plot at player to target player.
 	 */
 	private void plotTransfer(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -672,8 +693,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		Output.positiveMessage(targetPlayer, player.getName()
 				+ " transferred plot \"" + plot.getName() + "\" to you.");
 	}
-
-	/*
+	
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Downgrade plot at player.
 	 */
 	private void plotDowngrade(Player player, String[] args) {
@@ -798,7 +822,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Upgrade plot at player.
 	 */
 	private void plotUpgrade(Player player, String[] args) {
@@ -932,8 +959,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
-	 * Show list of plots for player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * List plots for player.
 	 */
 	@SuppressWarnings("deprecation")
 	private void plotList(Player player, String[] args) {
@@ -969,7 +999,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Withdraw money from plot founds at player.
 	 */
 	private void plotWithdraw(Player player, String[] args) {
@@ -1009,8 +1042,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "Invalid amount.");
 	}
 
-	/*
-	 * Toggle test mode for plot and player at player.
+	/**
+	 * @param player
+	 * 
+	 * Toggle test for player and plot.
 	 */
 	private void plotTestToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1103,7 +1138,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							plot.getSize()+amount);
 	}
 
-	/*
+	/**
+	 * @param player
+	 * 
 	 * Make plot public at player.
 	 */
 	private void plotPublic(Player player) {
@@ -1125,8 +1162,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
-	 * Make plot private at player.
+	/**
+	 * @param player
+	 * 
+	 *  Make plot private at player.
 	 */
 	private void plotPrivate(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1147,7 +1186,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
+	/**
+	 * @param player
+	 * 
 	 * Toggle protection for plot at player.
 	 */
 	private void plotProtect(Player player) {
@@ -1172,8 +1213,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
-	 * Unfriend player from plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Unfriend player of plot at player.
 	 */
 	private void plotUnFriend(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1226,8 +1270,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
-	 * Coowner player for plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Co-owner player of plot at player.
 	 */
 	private void plotCoOwn(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1272,7 +1319,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				+ plot.getName() + ".");
 	}
 
-	/*
+	/**
+	 * @param player
+	 * @param args
+	 * 
 	 * Friend player of plot at player.
 	 */
 	private void plotFriend(Player player, String[] args) {
@@ -1324,8 +1374,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				"You are now a friend of " + plot.getName() + ".");
 	}
 
-	/*
-	 * Show plot info at player.
+	/**
+	 * @param player
+	 * 
+	 * Display info for plot at player.
 	 */
 	private void plotInfo(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1336,8 +1388,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		Output.plotInfo(player, plot);
 	}
 
-	/*
-	 * Survey nerby plots at player.
+	/**
+	 * @param player
+	 * 
+	 * Survey nearby plots of player.
 	 */
 	private void plotSurvey(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1427,8 +1481,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
-	 * Createplot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Create plot at player.
 	 */
 	private void createPlot(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
@@ -1452,10 +1509,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plotDiamondCost.setAmount(plotDiamondCost.getAmount() * 2);
 		}
 		// make sure the player has enough money and diamonds
-		if (player.isOp()
-				|| ((curMoney >= plotMoneyCost) && player.getInventory()
-						.containsAtLeast(plotDiamondCost,
-								plotDiamondCost.getAmount()))) {
+		if (!player.isOp() && !(curMoney >= plotMoneyCost && player.getInventory().containsAtLeast(plotDiamondCost, plotDiamondCost.getAmount()))) {
 			Output.simpleError(player, "Cannot afford to create a plot, cost: "
 					+ plotMoneyCost + " gold & " + plotDiamondCost.getAmount()
 					+ " diamonds.");
@@ -1481,9 +1535,14 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		int nameLength = plotName.length();
+		if(nameLength < 1) {
+			Output.simpleError(player,
+					"/plot create (name)");
+			return;
+		}
 		if (nameLength > Variables.plotMaxNameLength) {
 			Output.simpleError(player,
-					"Error: Name is invalid or too long, limit is 20 characters.");
+					"Plot name is invalid or too long, limit is 20 characters.");
 			return;
 		}
 		// find intersecting regions and check names to make sure there isn't a
@@ -1495,29 +1554,30 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"A plot with that name already exists, please choose another.");
 				return;
 			}
-			if (curLoc.getWorld().equals(plot.getLocation().getWorld())) {
-				int sphereOfInfluence;
-				if (plot.isCoownerOrAbove(player))
-					sphereOfInfluence = plot.getSize();
-				else {
-					if (plot.isTown())
-						sphereOfInfluence = plot.getSize() * 2;
-					else
-						sphereOfInfluence = (int) Math
-								.ceil(plot.getSize() * 1.5);
-				}
-
-				if (Utils.isWithin(curLoc, plot.getLocation(),
-						sphereOfInfluence + Variables.plotStartingSize))
-					intersectingRegions.add(plot);
+			if (!curLoc.getWorld().equals(plot.getLocation().getWorld()))
+				continue;
+			int sphereOfInfluence;
+			if (plot.isCoownerOrAbove(player))
+				sphereOfInfluence = plot.getSize();
+			else {
+				if (plot.isTown())
+					sphereOfInfluence = plot.getSize() * 2;
+				else
+					sphereOfInfluence = (int) Math
+							.ceil(plot.getSize() * 1.5);
 			}
+
+			if (Utils.isWithin(curLoc, plot.getLocation(),
+					sphereOfInfluence + Variables.plotStartingSize))
+				intersectingRegions.add(plot);
 		}
 
 		if (intersectingRegions.size() == 0) {
 			// money/diamonds verified, placement verified, name verified: good
 			// to go
 			// first, remove the money/diamonds
-			curMoney -= plotMoneyCost;
+			if(!player.isOp())
+				curMoney -= plotMoneyCost;
 			pseudoPlayer.setMoney(curMoney);
 			pseudoPlayer
 					.setPlotCreatePoints(pseudoPlayer.getPlotCreatePoints() + 7);
@@ -1528,6 +1588,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 			Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
 			Lostshard.getPlots().add(plot);
+			Output.positiveMessage(player, "You have created the plot \""+plot.getName()+"\", it cost "+plotMoneyCost+" gc and "+plotDiamondCost.getAmount()+" diamonds.");
 		} else {
 			player.sendMessage(ChatColor.DARK_RED
 					+ "Cannot create a plot there, too close to the following plots:");
@@ -1540,10 +1601,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	/*
+	/**
+	 * @param player
+	 * 
 	 * Disband plot at player.
 	 */
-	public void plotDisband(Player player) {
+	private void plotDisband(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
@@ -1563,10 +1626,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		PlotHandler.removePlot(plot);
 	}
 
-	/*
-	 * Deposit money into plot at player.
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 * Deposit money into plot found at player.
 	 */
-	public void plotDeposit(Player player, String[] args) {
+	private void plotDeposit(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);

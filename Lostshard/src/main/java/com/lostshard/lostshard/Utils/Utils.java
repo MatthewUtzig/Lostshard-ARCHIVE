@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,6 +20,22 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class Utils {
 
+	@SuppressWarnings("deprecation")
+	public static OfflinePlayer getOfflinePlayer(Player player, String[] args, int argsnr) {
+		if(args.length < argsnr+1)
+			return null;
+		String targetName = args[argsnr];
+		return Bukkit.getOfflinePlayer(targetName);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static Player getPlayer(Player player, String[] args, int argsnr) {
+		if(args.length < argsnr+1)
+			return null;
+		String targetName = args[argsnr];
+		return Bukkit.getPlayer(targetName);
+	}
+	
 	public static String booleanToString(boolean bol, String ifTrue,
 			String ifFalse) {
 		return bol ? ifTrue : ifFalse;
@@ -29,10 +46,19 @@ public class Utils {
 	}
 
 	public static boolean isWithin(Location loc1, Location loc2, double radius) {
-		return loc1.distance(loc2) < Math.pow(radius, 2)
+		return fastDistance(loc1, loc2) < Math.pow(radius, 2)
 				&& loc1.getWorld().equals(loc2.getWorld());
 	}
 
+	public static double fastDistance(Location loc1, Location loc2) {
+		double fastDist = Math.pow((loc2.getX()-loc1.getX()),2)+Math.pow((loc2.getY()-loc1.getY()), 2)+Math.pow((loc2.getZ()-loc1.getZ()), 2);
+		return fastDist;
+	}
+	
+	public static double distance(Location loc1, Location loc2) {
+		return Math.sqrt(fastDistance(loc1, loc2));
+	}
+	
 	public static int adjustDamageForArmor(Player player, int damage) {
 		int defensePoints = 0;
 
@@ -124,6 +150,14 @@ public class Utils {
 			else
 				result += Bukkit.getOfflinePlayer(uuid) + ",";
 		return result;
+	}
+	
+	public static String getStringFromList(String[] args) {
+		String rs = "";
+		for(String s : args) {
+			rs += s + " ";
+		}
+		return rs;
 	}
 
 }

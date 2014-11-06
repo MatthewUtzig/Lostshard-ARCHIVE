@@ -2,9 +2,6 @@ name: Lostshard
 main: com.lostshard.lostshard.Main.Lostshard
 version: 0.01
 commands:
-   plot:
-      description: Plot commands.
-      usage: /<command> (subCommand)
    bank:
       description: Access your bank inventory at the local bank.
       usage: /<command>
@@ -14,10 +11,37 @@ commands:
    pay:
       description: pay player money.
       usage: /<command> (player) (amount)
+   plot:
+      description: Plot commands.
+      usage: /<command> (subCommand)
    claim:
       description: claim capturepoint.
       usage: /<command>
    capturepoints:
       description: get a list of all capturepoints.
+      usage: /<command>
+   global:
+      description: Toggle global chat.
+      usage: /<command>
+   shout:
+      description: Toggle shout chat.
+      usage: /<command>
+   local:
+      description: Toggle local chat.
+      usage: /<command>
+   whisper:
+      description: Toggle whisper chat.
+      usage: /<command>
+   msg:
+      description: Message a private message to player.
+      usage: /<command> (Player)
+   stats:
+      description: Output player stats.
+      usage: /<command>
+   who:
+      description: Output player list.
+      usage: /<command>
+   whois:
+      description: Output whois.
       usage: /<command>
       
