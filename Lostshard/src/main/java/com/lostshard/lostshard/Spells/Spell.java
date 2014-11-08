@@ -1,7 +1,10 @@
 package com.lostshard.lostshard.Spells;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class Spell {
 
@@ -79,4 +82,15 @@ public class Spell {
 		this.description = description;
 	}
 
+	public boolean verifyCastable(Player player, PseudoPlayer pPlayer) {
+		return true;
+	}
+	
+	public void preAction(Player player) {
+		System.out.println("Attempting to preAction Spell");
+	}
+	
+	public void doAction(Player player) {
+		System.out.println("Attempting to doAction Spell");
+	}
 }

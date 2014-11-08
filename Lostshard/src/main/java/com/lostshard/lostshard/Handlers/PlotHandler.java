@@ -7,9 +7,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -62,6 +66,8 @@ public class PlotHandler {
 	 * Allow only friends of the plot to break blocks.
 	 */
 	public static void breakeBlockInPlot(BlockBreakEvent event) {
+		if(event.isCancelled())
+			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if (!plot.isAllowedToBuild(player)) {
@@ -78,6 +84,8 @@ public class PlotHandler {
 	 * Allow only friends of the plot to place blocks.
 	 */
 	public static void placeBlockInPlot(BlockPlaceEvent event) {
+		if(event.isCancelled())
+			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if (!plot.isAllowedToBuild(player)) {
@@ -98,6 +106,8 @@ public class PlotHandler {
 	 * Prevent blocks from burning inside a plot.
 	 */
 	public static void burnBlockInPlot(BlockBurnEvent event) {
+		if(event.isCancelled())
+			return;
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if (plot == null || !plot.isProtected())
 			return;
@@ -111,6 +121,8 @@ public class PlotHandler {
 	 * Allow only friends of the plot to ignite blocks.
 	 */
 	public static void igniteBlockInPlot(BlockIgniteEvent event) {
+		if(event.isCancelled())
+			return;
 		Plot plot = findPlotAt(event.getBlock().getLocation());
 		if (plot == null)
 			return;
@@ -133,6 +145,8 @@ public class PlotHandler {
 	 * Prevent water to flow into plots, and wither block destruction.
 	 */
 	public static void fromBlockToBlock(BlockFromToEvent event) {
+		if(event.isCancelled())
+			return;
 		Plot toPlot = findPlotAt(event.getBlock().getLocation());
 		// Check if there are a plot.
 		if (toPlot == null)
@@ -153,6 +167,8 @@ public class PlotHandler {
 	 * Allow only friends to click buttons and leavers inside a plot.
 	 */
 	public static void onButtonPush(PlayerInteractEvent event) {
+		if(event.isCancelled())
+			return;
 		Block block = event.getClickedBlock();
 		if (!block.getType().equals(Material.STONE_BUTTON)
 				&& !block.getType().equals(Material.LEVER))
@@ -187,6 +203,8 @@ public class PlotHandler {
 	 * Display plot enter message.
 	 */
 	public static void onPlotEnter(PlayerMoveEvent event) {
+		if(event.isCancelled())
+			return;
 		if(event.getTo().getBlock() == event.getFrom().getBlock())
 			return;
 		Player player = event.getPlayer();
@@ -205,5 +223,75 @@ public class PlotHandler {
     		player.sendMessage(ChatColor.GRAY+"You have left "+fromPlot.getName()+" and entered "+toPlot.getName());
     	}
 	}
+
+	/**
+	 * @param event
+	 * 
+	 * On bucket empty in plot.
+	 */
+	public static void onBuckitEmpty(PlayerBucketEmptyEvent event) {
+		if(event.isCancelled())
+			return;
+		Player player = event.getPlayer();
+		Plot plot = findPlotAt(event.getBlockClicked().getLocation());
+		if (!plot.isAllowedToBuild(player)) {
+			event.setCancelled(true);
+			Output.simpleError(player,
+					"Cannot spill water or lava here, " + plot.getName()
+							+ " is protected.");
+		}
+	}
+
+	/**
+	 * @param event
+	 * 
+	 * On bucket fill in plot.
+	 */
+	public static void onBuckitFill(PlayerBucketFillEvent event) {
+		if(event.isCancelled())
+			return;
+		Player player = event.getPlayer();
+		Plot plot = findPlotAt(event.getBlockClicked().getLocation());
+		if (!plot.isAllowedToBuild(player)) {
+			event.setCancelled(true);
+			Output.simpleError(player,
+					"Cannot fill water or lava here, " + plot.getName()
+							+ " is protected.");
+		}
+	}
+	
+    /**
+     * @param event
+     * 
+     * Prevent snow ice and other things from fading.
+     */
+    public static void onBlockFade(BlockFadeEvent event) {
+    	if(event.isCancelled())
+    		return;
+    	Block block = event.getBlock();
+    	Plot plot = PlotHandler.findPlotAt(block.getLocation());
+    	if(plot != null) {
+    		if(plot.isProtected()) {
+    			event.setCancelled(true);
+    		}
+    	}
+    }
+	
+    /**
+     * @param event
+     * 
+     * Prevent flying machines to destroy plots.
+     */
+    public static void onPistonExtend(BlockPistonExtendEvent event) {
+    	if(event.isCancelled())
+    		return;
+    	for(Block block : event.getBlocks()){
+    		if(PlotHandler.findPlotAt(block.getRelative(event.getDirection()).getLocation()) != PlotHandler.findPlotAt(block.getLocation())){
+    			event.setCancelled(true);
+    			return;
+    		}
+    	}
+    }
+ 
 
 }

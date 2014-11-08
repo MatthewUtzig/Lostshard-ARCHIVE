@@ -44,6 +44,8 @@ public class ChatHandler {
 	}
 
 	public static void onPlayerChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		event.getRecipients().clear();
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
 		if(pPlayer.getChatChannel().equals(ChatChannel.LOCAL))
@@ -57,6 +59,8 @@ public class ChatHandler {
 	}
 
 	public static void whisperChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(), getWhisperChatRange()))
 			event.getRecipients().add(p);
 		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE
@@ -64,6 +68,8 @@ public class ChatHandler {
 	}
 
 	public static void localChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(), getLocalChatRange()))
 			event.getRecipients().add(p);
 		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE + ": "
@@ -71,6 +77,8 @@ public class ChatHandler {
 	}
 
 	public static void shoutChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(), getShoutChatRange()))
 			event.getRecipients().add(p);
 		event.setFormat(Utils.getColoredName(event.getPlayer()) + ChatColor.WHITE
@@ -78,6 +86,8 @@ public class ChatHandler {
 	}
 
 	public static void globalChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		String prefix;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
 		if (pPlayer.isSubscriber())
@@ -97,12 +107,16 @@ public class ChatHandler {
 	}
 
 	public static void clanChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
 		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
 
 	}
 
 	public static void partyChat(AsyncPlayerChatEvent event) {
+		if(event.isCancelled())
+			return;
 		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
 		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
 

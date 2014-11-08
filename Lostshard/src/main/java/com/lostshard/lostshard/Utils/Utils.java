@@ -13,6 +13,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
@@ -159,5 +161,21 @@ public class Utils {
 		}
 		return rs;
 	}
+	
+    public static void addPotion(Player player, int amplifier, int duration, PotionEffectType type, boolean force) {
+		if(player.hasPotionEffect(type))
+    		player.removePotionEffect(type);
+    	player.addPotionEffect(new PotionEffect(type, duration, amplifier), force );
+    }
+    
+    public static void addPotion(Player player, int amplifier, int duration, PotionEffectType type, boolean force, int increase) {
+		for(PotionEffect pe : player.getActivePotionEffects())
+			if(pe.getType().equals(type))
+				duration += pe.getDuration();
+		duration = Math.min(duration, increase);
+    	if(player.hasPotionEffect(type))
+    		player.removePotionEffect(type);
+		player.addPotionEffect(new PotionEffect(type, duration, amplifier), force );
+    }
 
 }
