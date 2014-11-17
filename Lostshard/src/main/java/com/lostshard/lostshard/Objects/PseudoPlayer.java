@@ -19,7 +19,7 @@ public class PseudoPlayer {
 	private int money = 0;
 	private int murderCounts = 0;
 	private UUID playerUUID;
-	private Bank bank;
+	private Bank bank = new Bank("", wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
 	private int subscribeDays = 0;
@@ -31,7 +31,7 @@ public class PseudoPlayer {
 	private int stamina = 100;
 	private int rank = 800;
 	private Clan clan = null;
-	private Location customSpawn;
+	private Location customSpawn = null;
 	private int spawnTick = 0;
 
 	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,

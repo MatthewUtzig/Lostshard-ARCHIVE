@@ -24,6 +24,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("whois").setExecutor(this);
 		plugin.getCommand("spawn").setExecutor(this);
 		plugin.getCommand("resetspawn").setExecutor(this);
+		plugin.getCommand("rules").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {

@@ -14,6 +14,7 @@ import org.bukkit.Location;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
+import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Serializer;
@@ -248,9 +249,10 @@ public class Database {
 					int subscriberDays = rs.getInt("subscriberDays");
 					boolean wasSubscribed = rs.getBoolean("wasSubscribed");
 					int plotCreationPoints = rs.getInt("plotCreationPoints");
+					String bankData = rs.getString("bank");
 
 					PseudoPlayer pPlayer = new PseudoPlayer(id, money,
-							murderCounts, uuid, null, criminalTick, globalChat,
+							murderCounts, uuid, new Bank(bankData,wasSubscribed), criminalTick, globalChat,
 							subscriberDays, wasSubscribed, plotCreationPoints);
 					Lostshard.getPlayers().add(pPlayer);
 				} catch (Exception e) {

@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Database.Database;
+//TODO import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
@@ -310,9 +310,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				+ amount + "gc.");
 	}
 
-	/*
-	 * Conrtole npcs for plot at player.
-	 */
 	/**
 	 * @param player
 	 * @param args
@@ -381,7 +378,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(),
 						plot.getId());
-				Database.insertNPC(npc);
+//TODO				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
@@ -430,7 +427,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation(),
 						plot.getId());
-				Database.insertNPC(npc);
+//TODO				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -468,7 +465,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.GUARD, name, player.getLocation(),
 						plot.getId());
-				Database.insertNPC(npc);
+//TODO				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -865,7 +862,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 		}
 		if (plot.isCoownerOrAbove(player)) {
-			if (args.length >= 1) {// someone only typed /plot upgrade
+			if (args.length < 2) {// someone only typed /plot upgrade
 				Output.positiveMessage(player, "-Plot Upgrades Available-)");
 				numAvail = 0;
 				if (!plot.isTown()) {
@@ -1665,13 +1662,16 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("plot"))
-			if (args.length == 1)
+			if(args.length == 1)
 				return TabUtils.StringTab(args, new String[] { "info",
 						"create", "deposit", "expand", "rename", "coowner",
 						"unfriend", "shrink", "withdraw", "friendbuild",
 						"sell", "unsell", "buy", "list", "preotect",
 						"unprotect", "private", "public", "explosions",
-						"upgrade", "downgrade" });
+						"upgrade", "downgrade", "friend"});
+			if(args.length == 2 && args[1].equalsIgnoreCase("upgrade") || args[1].equalsIgnoreCase("upgrades"))
+				return TabUtils.StringTab(args, new String[] {"town","dungeon","autokick","neutral"});
+			
 		return null;
 	}
 

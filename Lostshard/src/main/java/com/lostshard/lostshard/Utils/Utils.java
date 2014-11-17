@@ -10,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -130,9 +129,9 @@ public class Utils {
 
 	public static List<Player> getPlayersNear(Player player, int radius) {
 		List<Player> result = new ArrayList<Player>();
-		for (Entity e : player.getNearbyEntities(radius, radius, radius))
-			if (e instanceof Player)
-				result.add((Player) e);
+		for(Player p : Bukkit.getOnlinePlayers())
+			if(isWithin(p.getLocation(), player.getLocation(), radius))
+				result.add(p);
 		return result;
 	}
 

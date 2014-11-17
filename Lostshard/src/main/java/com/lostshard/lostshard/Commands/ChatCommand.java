@@ -53,7 +53,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter{
 		}else if (cmd.getName().equalsIgnoreCase("replay")) {
 //			replayChat(player, args);
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter{
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		if(args.length < 1){
 			pPlayer.setChatChannel(ChatChannel.SHOUT);
-			Output.positiveMessage(player, "You have shout global chat.");
+			Output.positiveMessage(player, "You have toggled shout chat.");
 			return;
 		}
 		

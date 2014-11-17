@@ -44,4 +44,12 @@ commands:
    whois:
       description: Output whois.
       usage: /<command>
-      
+   spawn:
+      description: Output whois.
+      usage: /<command>
+   resetspawn:
+      description: Output whois.
+      usage: /<command>
+   rules:
+      description: Output whois.
+      usage: /<command>

@@ -70,6 +70,8 @@ public class PlotHandler {
 			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlock().getLocation());
+		if(plot == null)
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
@@ -88,6 +90,8 @@ public class PlotHandler {
 			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlock().getLocation());
+		if(plot == null)
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
@@ -174,6 +178,8 @@ public class PlotHandler {
 				&& !block.getType().equals(Material.LEVER))
 			return;
 		Plot plot = findPlotAt(block.getLocation());
+		if(plot == null)
+			return;
 		if (!plot.isPrivatePlot())
 			return;
 		if (plot.isFriendOrAbove(event.getPlayer()))
@@ -234,6 +240,8 @@ public class PlotHandler {
 			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlockClicked().getLocation());
+		if(plot == null)
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
@@ -252,6 +260,8 @@ public class PlotHandler {
 			return;
 		Player player = event.getPlayer();
 		Plot plot = findPlotAt(event.getBlockClicked().getLocation());
+		if(plot == null)
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,

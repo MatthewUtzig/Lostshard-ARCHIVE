@@ -47,6 +47,17 @@ public class Output {
     	
     	sender.sendMessage(message);
 	}
+	
+	public static void displayLoginMessages(Player player) {
+		player.sendMessage(ChatColor.GOLD+"Welcome to Lost Shard, www.lostshard.com for more info.");
+        player.sendMessage(ChatColor.GOLD+"Lostshard is curently in beta!");
+        player.sendMessage(ChatColor.GOLD+"Visit wiki.lostshard.com for more info");
+        player.sendMessage(ChatColor.GOLD+"The guide has valuable information for getting started.");
+        player.sendMessage(ChatColor.GOLD+"Use /rules for rules and /help for help");
+        player.sendMessage(ChatColor.GOLD+"Please communicate in English when using Global Chat.");
+        player.sendMessage(ChatColor.RED+"-Combat logging drops your items on logout.");
+
+	}
 
 	public static void plotInfo(Player player, Plot plot) {
 		player.sendMessage(ChatColor.GOLD+"-"+plot.getName()+"'s Plot Info-");
@@ -75,7 +86,6 @@ public class Output {
 			infoText+=ChatColor.YELLOW+"Allow Explosions: "+ChatColor.WHITE+"Yes";
 		else
 			infoText+=ChatColor.YELLOW+"Allow Explosions: "+ChatColor.WHITE+"No";
-		//infoText+=ChatColor.YELLOW+", ";
 		
 		player.sendMessage(infoText);
 		
@@ -99,9 +109,9 @@ public class Output {
 		
 		// Show this stuff to everyone
 		if(plot.getSalePrice() > 0)
-			player.sendMessage(ChatColor.YELLOW+"Owner: " +ChatColor.WHITE+ plot.getOwner()+", "+ChatColor.YELLOW+"Sale Price: "+ChatColor.WHITE+plot.getSalePrice());
+			player.sendMessage(ChatColor.YELLOW+"Owner: " +ChatColor.WHITE+ Bukkit.getOfflinePlayer(plot.getOwner()).getName()+", "+ChatColor.YELLOW+"Sale Price: "+ChatColor.WHITE+plot.getSalePrice());
 		else
-			player.sendMessage(ChatColor.YELLOW+"Owner: " +ChatColor.WHITE+ plot.getOwner()+", "+ChatColor.YELLOW+"Sale Price: "+ChatColor.RED+"Not for sale");
+			player.sendMessage(ChatColor.YELLOW+"Owner: " +ChatColor.WHITE+ Bukkit.getOfflinePlayer(plot.getOwner()).getName()+", "+ChatColor.YELLOW+"Sale Price: "+ChatColor.RED+"Not for sale");
 		// Only show the owner/co-owner the amount of money in the region bank
 		if(plot.isCoownerOrAbove(player)) {
 			int moneyPerDay = 10*plot.getSize();

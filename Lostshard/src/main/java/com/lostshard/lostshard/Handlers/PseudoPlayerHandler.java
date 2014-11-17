@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;
 
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PseudoPlayerHandler {
@@ -25,7 +26,7 @@ public class PseudoPlayerHandler {
 		Player player = event.getPlayer();
 		if (getPlayer(event.getPlayer()) == null) {
 			PseudoPlayer pPlayer = new PseudoPlayer(-1, 0, 0,
-					player.getUniqueId(), null, 0, true, 0, false, 0);
+					player.getUniqueId(), new Bank("asdasdad",true), 0, true, 0, false, 0);
 //			Database.insertPlayer(pPlayer);
 			Lostshard.getPlayers().add(pPlayer);
 		}
