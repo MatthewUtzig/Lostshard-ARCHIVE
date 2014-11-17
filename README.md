@@ -1,15 +1,15 @@
 #Plots
 - [x] Commands
 - [x] Mysql
-- [ ] Plot enter and leave
+- [x] Plot enter and leave
 - [ ] Vendors buy and sell stuff
-- [ ] Lisenter
+- [x] Lisenter
 
 #Bank
 - [x] Tradegold
 - [x] Bank box
 - [x] Bank npc
-- [ ] Serialze bank box and save
+- [x] Serialze bank box and save
 
 #Player
 - [x] Mysql
