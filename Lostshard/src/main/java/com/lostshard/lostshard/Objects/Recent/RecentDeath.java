@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Objects;
+package com.lostshard.lostshard.Objects.Recent;
 
 import org.bukkit.entity.Entity;
 

@@ -8,6 +8,8 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Data.Variables;
+import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Objects.Groups.Party;
 
 /**
  * @author Jacob Rosborg

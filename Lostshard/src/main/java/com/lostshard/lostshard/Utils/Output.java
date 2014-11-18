@@ -9,9 +9,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
-import com.lostshard.lostshard.Objects.Clan;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Groups.Clan;
 
 public class Output {
 

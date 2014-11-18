@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.Objects.Groups.Clan;
 
 /**
  * @author Jacob Rosborg
