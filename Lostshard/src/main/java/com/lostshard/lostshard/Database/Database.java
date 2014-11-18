@@ -252,7 +252,8 @@ public class Database {
 					String bankData = rs.getString("bank");
 
 					PseudoPlayer pPlayer = new PseudoPlayer(id, money,
-							murderCounts, uuid, new Bank(bankData,wasSubscribed), criminalTick, globalChat,
+							murderCounts, uuid, new Bank(bankData,
+									wasSubscribed), criminalTick, globalChat,
 							subscriberDays, wasSubscribed, plotCreationPoints);
 					Lostshard.getPlayers().add(pPlayer);
 				} catch (Exception e) {
@@ -324,6 +325,6 @@ public class Database {
 	}
 
 	public static void saveAll() {
-		
+
 	}
 }

@@ -7,8 +7,9 @@ import com.lostshard.lostshard.Utils.Serializer;
 
 public class Bank {
 
-	private Inventory inventory = Bukkit.createInventory(null, 27, "Small bank");
-	
+	private Inventory inventory = Bukkit
+			.createInventory(null, 27, "Small bank");
+
 	public Bank(String bankData, boolean large) {
 		super();
 		if (large)
@@ -17,7 +18,7 @@ public class Bank {
 			inventory = Bukkit.createInventory(null, 27, "Small bank");
 		setInventory(bankData);
 	}
-	
+
 	public Inventory getInventory() {
 		return inventory;
 	}
@@ -25,13 +26,13 @@ public class Bank {
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
-	
+
 	public String Serialize() {
 		return Serializer.serializeInventory(inventory);
 	}
-	
+
 	public void setInventory(String string) {
-		if(string != null && string != "")
+		if (string != null && string != "")
 			this.inventory.setContents(Serializer.deserializeItems(string));
 	}
 

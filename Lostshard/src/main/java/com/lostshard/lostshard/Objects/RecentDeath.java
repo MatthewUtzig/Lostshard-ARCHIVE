@@ -6,17 +6,17 @@ public class RecentDeath {
 	private Entity entity;
 	private int ticksRemaining;
 	private int originalTicks;
-	
+
 	public RecentDeath(Entity entity, int ticksRemaining) {
 		this.entity = entity;
 		this.ticksRemaining = ticksRemaining;
 		this.setOriginalTicks(ticksRemaining);
 	}
-	
+
 	public Entity getEntity() {
 		return entity;
 	}
-	
+
 	public int getTicksRemaining() {
 		return ticksRemaining;
 	}

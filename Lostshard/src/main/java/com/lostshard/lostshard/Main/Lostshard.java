@@ -41,31 +41,31 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		logger.log(Level.FINEST, ChatColor.GREEN+"Lostshard has invoke.");
-		System.out.println(ChatColor.GREEN+"Lostshard has invoke.");
-		//Lisenters
+		logger.log(Level.FINEST, ChatColor.GREEN + "Lostshard has invoke.");
+		System.out.println(ChatColor.GREEN + "Lostshard has invoke.");
+		// Lisenters
 		new BlockListener(this);
 		new EntityListener(this);
 		new PlayerListener(this);
 		new ServerListener(this);
 		new VehicleListener(this);
-		if(getServer().getPluginManager().isPluginEnabled("votifier"))
+		if (getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
-		//Commands
+		// Commands
 		new PlotCommand(this);
 		new ChatCommand(this);
 		new BankCommand(this);
 		new ControlPointsCommand(this);
 		new UtilsCommand(this);
 		// GameLoop should run last.
-//		gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
+		// gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
 	}
 
 	@Override
 	public void onDisable() {
-		for(Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED+"Server restarting.");
+		for (Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server restarting.");
 		Database.saveAll();
 	}
 
@@ -98,8 +98,8 @@ public class Lostshard extends JavaPlugin {
 	}
 
 	public static void shutdown() {
-		for(Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED+"Server rebooting.");
+		for (Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server rebooting.");
 	}
 
 }

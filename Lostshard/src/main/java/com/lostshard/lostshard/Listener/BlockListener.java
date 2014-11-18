@@ -46,22 +46,22 @@ public class BlockListener implements Listener {
 	public void onBlockFromTo(BlockFromToEvent event) {
 		PlotHandler.fromBlockToBlock(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPistonExtend(BlockPistonExtendEvent event) {
 		PlotHandler.onPistonExtend(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockFade(BlockFadeEvent event) {
 		PlotHandler.onBlockFade(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
-    public void onBlockPhysics(BlockPhysicsEvent event) {
-		if(event.isCancelled())
+	public void onBlockPhysics(BlockPhysicsEvent event) {
+		if (event.isCancelled())
 			return;
-		if(event.getBlock().getType().equals(Material.PORTAL)) {
+		if (event.getBlock().getType().equals(Material.PORTAL)) {
 			event.setCancelled(true);
 		}
 	}

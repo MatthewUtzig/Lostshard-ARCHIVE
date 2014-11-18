@@ -16,55 +16,59 @@ import com.lostshard.lostshard.Utils.Utils;
 public class AdminCommand implements CommandExecutor, TabCompleter {
 
 	/**
-	 * @param Lostshard as plugin
+	 * @param Lostshard
+	 *            as plugin
 	 */
 	public AdminCommand(Lostshard plugin) {
 		plugin.getCommand("admin").setExecutor(this);
 	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("admin")) {
-			if(!(sender instanceof Player)) {
-				sender.sendMessage(ChatColor.DARK_RED+"You must be a player to perform this command.");
+
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("admin")) {
+			if (!(sender instanceof Player)) {
+				sender.sendMessage(ChatColor.DARK_RED
+						+ "You must be a player to perform this command.");
 				return true;
 			}
 			Player player = (Player) sender;
-			if(!player.isOp()) {
+			if (!player.isOp()) {
 				Output.simpleError(player, "Ops may perform this command.");
 				return true;
 			}
-			if(args.length < 1) {
+			if (args.length < 1) {
 				Output.simpleError(player, "/admin (subCommand)");
 				return true;
 			}
 			String subCommand = args[0];
-			if(subCommand.equalsIgnoreCase("inv")) {
+			if (subCommand.equalsIgnoreCase("inv")) {
 				adminInv(player, args);
-			}else if(subCommand.equalsIgnoreCase("tpplot")) {
+			} else if (subCommand.equalsIgnoreCase("tpplot")) {
 				adminTpPlot(player, args);
 			}
 		}
 		return true;
 	}
-	
+
 	private void adminTpPlot(Player player, String[] args) {
-		
+
 	}
 
 	private void adminInv(Player player, String[] args) {
-		if(args.length < 2) {
+		if (args.length < 2) {
 			Output.simpleError(player, "/admin inv (Player)");
 			return;
 		}
 		Player tPlayer = Utils.getPlayer(player, args, 1);
-		if(tPlayer == null) {
+		if (tPlayer == null) {
 			Output.simpleError(player, "Player is not online");
 			return;
 		}
 		player.openInventory(tPlayer.getInventory());
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
 		return null;
 	}
 

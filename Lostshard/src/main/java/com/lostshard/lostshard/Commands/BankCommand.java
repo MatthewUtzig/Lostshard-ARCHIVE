@@ -29,7 +29,8 @@ import com.lostshard.lostshard.Utils.Utils;
 public class BankCommand implements CommandExecutor, TabCompleter {
 
 	/**
-	 * @param Lostshard as plugin
+	 * @param Lostshard
+	 *            as plugin
 	 */
 	public BankCommand(Lostshard plugin) {
 		plugin.getCommand("bank").setExecutor(this);
@@ -53,7 +54,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 	 * @param sender
 	 * @param args
 	 * 
-	 * Let player pay money to another player.
+	 *            Let player pay money to another player.
 	 */
 	private void pay(CommandSender sender, String[] args) {
 		if (args.length < 2) {
@@ -97,15 +98,15 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		tpPlayer.addMoney(amount);
 		sender.sendMessage(ChatColor.GOLD + "You have paied "
 				+ targetPlayer.getName() + " " + amount + "gc.");
-		Output.positiveMessage(targetPlayer, sender.getName() + " has paied you "
-				+ amount + "gc.");
+		Output.positiveMessage(targetPlayer, sender.getName()
+				+ " has paied you " + amount + "gc.");
 	}
 
 	/**
 	 * @param sender
 	 * @param args
 	 * 
-	 * Let players tradegold into goldcoins.
+	 *            Let players tradegold into goldcoins.
 	 */
 	private void tradegold(CommandSender sender, String[] args) {
 		if (!(sender instanceof Player)) {
@@ -115,7 +116,8 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
+					Variables.bankRadius)) {
 				int amount;
 				try {
 					amount = Integer.parseInt(args[0]);
@@ -135,15 +137,14 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(player, "You dont have " + amount
 							+ " gold ingots in your inventory.");
 			}
-		Output.simpleError(player,
-				"You are not close enough to a bank.");
+		Output.simpleError(player, "You are not close enough to a bank.");
 		return;
 	}
 
 	/**
 	 * @param sender
 	 * 
-	 * Let player access bank.
+	 *            Let player access bank.
 	 */
 	private void bank(CommandSender sender) {
 		if (!(sender instanceof Player)) {
@@ -153,7 +154,8 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
+					Variables.bankRadius)) {
 				player.openInventory(pPlayer.getBank().getInventory());
 				return;
 			}

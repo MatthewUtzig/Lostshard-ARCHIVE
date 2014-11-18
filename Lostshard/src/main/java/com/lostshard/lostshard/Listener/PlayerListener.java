@@ -47,15 +47,15 @@ public class PlayerListener implements Listener {
 	public void onPlayerMoveEvent(PlayerMoveEvent event) {
 		PlotHandler.onPlotEnter(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerBuckitFill(PlayerBucketFillEvent event) {
 		PlotHandler.onBuckitFill(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerBuckitEmpty(PlayerBucketEmptyEvent event) {
 		PlotHandler.onBuckitEmpty(event);
 	}
-	
+
 }

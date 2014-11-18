@@ -325,7 +325,8 @@ public class Plot {
 	}
 
 	public int getValue() {
-		int plotValue = Variables.plotExpandPrice * (((size - 1) ^ 2 + (size - 1)) / 2)
+		int plotValue = Variables.plotExpandPrice
+				* (((size - 1) ^ 2 + (size - 1)) / 2)
 				- (((Variables.plotStartingSize - 1) ^ 2 + (Variables.plotStartingSize - 1)) / 2);
 		if (this.town)
 			plotValue += Variables.plotTownPrice;
@@ -369,7 +370,8 @@ public class Plot {
 	 * @return Expand price from current size to size.
 	 */
 	public int getExpandPrice(int toSize) {
-		return Variables.plotExpandPrice * (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
+		return Variables.plotExpandPrice
+				* (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
 				- (((size - 1) ^ 2 + (size - 1)) / 2);
 	}
 

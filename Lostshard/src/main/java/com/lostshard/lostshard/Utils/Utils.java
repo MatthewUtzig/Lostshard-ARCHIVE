@@ -22,21 +22,22 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public class Utils {
 
 	@SuppressWarnings("deprecation")
-	public static OfflinePlayer getOfflinePlayer(Player player, String[] args, int argsnr) {
-		if(args.length < argsnr+1)
+	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,
+			int argsnr) {
+		if (args.length < argsnr + 1)
 			return null;
 		String targetName = args[argsnr];
 		return Bukkit.getOfflinePlayer(targetName);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static Player getPlayer(Player player, String[] args, int argsnr) {
-		if(args.length < argsnr+1)
+		if (args.length < argsnr + 1)
 			return null;
 		String targetName = args[argsnr];
 		return Bukkit.getPlayer(targetName);
 	}
-	
+
 	public static String booleanToString(boolean bol, String ifTrue,
 			String ifFalse) {
 		return bol ? ifTrue : ifFalse;
@@ -52,14 +53,16 @@ public class Utils {
 	}
 
 	public static double fastDistance(Location loc1, Location loc2) {
-		double fastDist = Math.pow((loc2.getX()-loc1.getX()),2)+Math.pow((loc2.getY()-loc1.getY()), 2)+Math.pow((loc2.getZ()-loc1.getZ()), 2);
+		double fastDist = Math.pow((loc2.getX() - loc1.getX()), 2)
+				+ Math.pow((loc2.getY() - loc1.getY()), 2)
+				+ Math.pow((loc2.getZ() - loc1.getZ()), 2);
 		return fastDist;
 	}
-	
+
 	public static double distance(Location loc1, Location loc2) {
 		return Math.sqrt(fastDistance(loc1, loc2));
 	}
-	
+
 	public static int adjustDamageForArmor(Player player, int damage) {
 		int defensePoints = 0;
 
@@ -129,8 +132,8 @@ public class Utils {
 
 	public static List<Player> getPlayersNear(Player player, int radius) {
 		List<Player> result = new ArrayList<Player>();
-		for(Player p : Bukkit.getOnlinePlayers())
-			if(isWithin(p.getLocation(), player.getLocation(), radius))
+		for (Player p : Bukkit.getOnlinePlayers())
+			if (isWithin(p.getLocation(), player.getLocation(), radius))
 				result.add(p);
 		return result;
 	}
@@ -152,29 +155,33 @@ public class Utils {
 				result += Bukkit.getOfflinePlayer(uuid) + ",";
 		return result;
 	}
-	
+
 	public static String getStringFromList(String[] args) {
 		String rs = "";
-		for(String s : args) {
+		for (String s : args) {
 			rs += s + " ";
 		}
 		return rs;
 	}
-	
-    public static void addPotion(Player player, int amplifier, int duration, PotionEffectType type, boolean force) {
-		if(player.hasPotionEffect(type))
-    		player.removePotionEffect(type);
-    	player.addPotionEffect(new PotionEffect(type, duration, amplifier), force );
-    }
-    
-    public static void addPotion(Player player, int amplifier, int duration, PotionEffectType type, boolean force, int increase) {
-		for(PotionEffect pe : player.getActivePotionEffects())
-			if(pe.getType().equals(type))
+
+	public static void addPotion(Player player, int amplifier, int duration,
+			PotionEffectType type, boolean force) {
+		if (player.hasPotionEffect(type))
+			player.removePotionEffect(type);
+		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
+				force);
+	}
+
+	public static void addPotion(Player player, int amplifier, int duration,
+			PotionEffectType type, boolean force, int increase) {
+		for (PotionEffect pe : player.getActivePotionEffects())
+			if (pe.getType().equals(type))
 				duration += pe.getDuration();
 		duration = Math.min(duration, increase);
-    	if(player.hasPotionEffect(type))
-    		player.removePotionEffect(type);
-		player.addPotionEffect(new PotionEffect(type, duration, amplifier), force );
-    }
+		if (player.hasPotionEffect(type))
+			player.removePotionEffect(type);
+		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
+				force);
+	}
 
 }

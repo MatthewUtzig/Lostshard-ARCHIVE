@@ -31,6 +31,7 @@ public class PseudoPlayer {
 	private int stamina = 100;
 	private int rank = 800;
 	private Clan clan = null;
+	private Party party = null;
 	private Location customSpawn = null;
 	private int spawnTick = 0;
 
@@ -197,9 +198,8 @@ public class PseudoPlayer {
 	public String getColoredName() {
 		OfflinePlayer player = Bukkit.getOfflinePlayer(this.playerUUID);
 		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
-				+ player.getName()
-				: this.isCriminal() ? ChatColor.GRAY + player.getName()
-						: ChatColor.BLUE + player.getName();
+				+ player.getName() : this.isCriminal() ? ChatColor.GRAY
+				+ player.getName() : ChatColor.BLUE + player.getName();
 	}
 
 	public int getRank() {
@@ -233,5 +233,13 @@ public class PseudoPlayer {
 	public void setSpawnTick(int spawnTick) {
 		this.spawnTick = spawnTick;
 	}
-	
+
+	public Party getParty() {
+		return party;
+	}
+
+	public void setParty(Party party) {
+		this.party = party;
+	}
+
 }

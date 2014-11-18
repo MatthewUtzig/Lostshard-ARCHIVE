@@ -57,7 +57,8 @@ public class NPC {
 	}
 
 	/**
-	 * @param set npc id
+	 * @param set
+	 *            npc id
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -71,7 +72,8 @@ public class NPC {
 	}
 
 	/**
-	 * @param set NPCType
+	 * @param set
+	 *            NPCType
 	 */
 	public void setType(NPCType type) {
 		this.type = type;
@@ -85,7 +87,8 @@ public class NPC {
 	}
 
 	/**
-	 * @param set name of npc
+	 * @param set
+	 *            name of npc
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -123,22 +126,22 @@ public class NPC {
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-//		NPCManager.spawnNPC(this);
+		// NPCManager.spawnNPC(this);
 	}
 
 	/**
-	 * @param move npc to a location
+	 * @param move
+	 *            npc to a location
 	 */
 	public void move(Location location) {
-//		NPCManager.moveNPC(id, location);
+		// NPCManager.moveNPC(id, location);
 	}
-	
-	
+
 	/**
 	 * Delete this npc
 	 */
 	public void fire() {
-//		NPCManager.getNPC(id).destroy();
+		// NPCManager.getNPC(id).destroy();
 		Plot plot = PlotHandler.getPlotById(plotId);
 		plot.getNpcs().remove(this);
 	}

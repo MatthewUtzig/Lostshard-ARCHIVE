@@ -5,8 +5,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 public class MiningSkill extends Skill {
 
 	public void onBlockBreak(BlockBreakEvent event) {
-		if(event.isCancelled())
+		if (event.isCancelled())
 			return;
 	}
-	
+
 }

@@ -85,11 +85,11 @@ public class Spell {
 	public boolean verifyCastable(Player player, PseudoPlayer pPlayer) {
 		return true;
 	}
-	
+
 	public void preAction(Player player) {
 		System.out.println("Attempting to preAction Spell");
 	}
-	
+
 	public void doAction(Player player) {
 		System.out.println("Attempting to doAction Spell");
 	}

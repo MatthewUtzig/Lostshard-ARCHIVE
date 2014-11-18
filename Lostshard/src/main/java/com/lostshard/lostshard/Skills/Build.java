@@ -1,7 +1,7 @@
 package com.lostshard.lostshard.Skills;
 
 public class Build {
-	
+
 	private Skill mining;
 	private Skill blade;
 

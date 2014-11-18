@@ -122,11 +122,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @param player
 	 * 
-	 * Toggles magic for plot at player
+	 *            Toggles magic for plot at player
 	 */
 	private void plotMagicToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -147,11 +147,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plot.setAllowMagic(true);
 		}
 	}
-	
+
 	/**
 	 * @param player
 	 * 
-	 * Toggle pvp for plot at player.
+	 *            Toggle pvp for plot at player.
 	 */
 	private void plotPvpToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -172,11 +172,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plot.setAllowPvp(true);
 		}
 	}
-	
+
 	/**
 	 * @param player
 	 * 
-	 * Toggle explosions for plot at player.
+	 *            Toggle explosions for plot at player.
 	 */
 	private void plotExplosionToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -199,11 +199,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"You have enabled explosions on your plot.");
 		}
 	}
-	
+
 	/**
 	 * @param player
 	 * 
-	 * Take plot of the market.
+	 *            Take plot of the market.
 	 */
 	private void plotUnSell(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -222,7 +222,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Buy plot at player.
+	 *            Buy plot at player.
 	 */
 	private void plotBuy(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -271,7 +271,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Sell plot at player.
+	 *            Sell plot at player.
 	 */
 	private void plotSell(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -314,7 +314,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Manage npc's for plot at player.
+	 *            Manage npc's for plot at player.
 	 */
 	private void plotNPC(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -378,7 +378,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(),
 						plot.getId());
-//TODO				Database.insertNPC(npc);
+				// TODO Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
@@ -427,7 +427,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation(),
 						plot.getId());
-//TODO				Database.insertNPC(npc);
+				// TODO Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -465,7 +465,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.GUARD, name, player.getLocation(),
 						plot.getId());
-//TODO				Database.insertNPC(npc);
+				// TODO Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -523,11 +523,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		HelpHandler.plotNpcHelp(player);
 	}
 
-	
 	/**
 	 * @param player
 	 * 
-	 * Toggle friendbuild for plot at player.
+	 *            Toggle friendbuild for plot at player.
 	 */
 	private void plotFriendBuildToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -548,12 +547,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 	}
-	
+
 	/**
 	 * @param player
 	 * @param args
 	 * 
-	 * Rename plot at player.
+	 *            Rename plot at player.
 	 */
 	private void plotRename(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -614,7 +613,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Shrink plot at player
+	 *            Shrink plot at player
 	 */
 	private void plotShrink(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -657,7 +656,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Transfer plot at player to target player.
+	 *            Transfer plot at player to target player.
 	 */
 	private void plotTransfer(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -690,12 +689,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		Output.positiveMessage(targetPlayer, player.getName()
 				+ " transferred plot \"" + plot.getName() + "\" to you.");
 	}
-	
+
 	/**
 	 * @param player
 	 * @param args
 	 * 
-	 * Downgrade plot at player.
+	 *            Downgrade plot at player.
 	 */
 	private void plotDowngrade(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -823,7 +822,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Upgrade plot at player.
+	 *            Upgrade plot at player.
 	 */
 	private void plotUpgrade(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -960,7 +959,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * List plots for player.
+	 *            List plots for player.
 	 */
 	@SuppressWarnings("deprecation")
 	private void plotList(Player player, String[] args) {
@@ -1000,7 +999,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Withdraw money from plot founds at player.
+	 *            Withdraw money from plot founds at player.
 	 */
 	private void plotWithdraw(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1042,7 +1041,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Toggle test for player and plot.
+	 *            Toggle test for player and plot.
 	 */
 	private void plotTestToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1060,7 +1059,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Expand plot to given size.
+	 *            Expand plot to given size.
 	 */
 	private void plotExpand(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1074,15 +1073,16 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		int amount = 1;
-		if(args.length >= 2) {
+		if (args.length >= 2) {
 			try {
 				amount = Integer.parseInt(args[1]);
-			} catch(Exception e) {
-				Output.simpleError(player, "Invalid amount. /plot expand (amount)");
+			} catch (Exception e) {
+				Output.simpleError(player,
+						"Invalid amount. /plot expand (amount)");
 				return;
 			}
 		}
-		if(amount < 1) {
+		if (amount < 1) {
 			Output.simpleError(player, "Expand size must be greater than 0.");
 			return;
 		}
@@ -1092,7 +1092,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				continue;
 			if (p == plot)
 				continue;
-			
+
 			int sphereOfInfluence;
 			if (p.isCoownerOrAbove(player)) {
 				sphereOfInfluence = p.getSize();
@@ -1100,20 +1100,22 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (p.isTown())
 					sphereOfInfluence = p.getSize() * 2;
 				else
-					sphereOfInfluence = (int) Math
-							.ceil(p.getSize() * 1.5);
+					sphereOfInfluence = (int) Math.ceil(p.getSize() * 1.5);
 			}
 
 			if (Utils.isWithin(p.getLocation(), plot.getLocation(),
 					sphereOfInfluence + plot.getSize() + 1 + amount)) {
-				if(amount == 1)
-				Output.simpleError(player,
-						"Cannot expand, " + p.getName()
-								+ " is too close.");
+				if (amount == 1)
+					Output.simpleError(player, "Cannot expand, " + p.getName()
+							+ " is too close.");
 				else
-					Output.simpleError(player, "You may only expand "+
-						plot.getName()+" "+
-						p.getLocation().distanceSquared(player.getLocation())+".");
+					Output.simpleError(
+							player,
+							"You may only expand "
+									+ plot.getName()
+									+ " "
+									+ p.getLocation().distanceSquared(
+											player.getLocation()) + ".");
 				return;
 			}
 		}
@@ -1131,14 +1133,14 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		} else
 			Output.simpleError(player,
 					"Not enough money in the plot treasury to expand. "
-					+ "It will cost "+expansionCost+" to expand to "+
-							plot.getSize()+amount);
+							+ "It will cost " + expansionCost
+							+ " to expand to " + plot.getSize() + amount);
 	}
 
 	/**
 	 * @param player
 	 * 
-	 * Make plot public at player.
+	 *            Make plot public at player.
 	 */
 	private void plotPublic(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1162,7 +1164,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 *  Make plot private at player.
+	 *            Make plot private at player.
 	 */
 	private void plotPrivate(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1186,7 +1188,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Toggle protection for plot at player.
+	 *            Toggle protection for plot at player.
 	 */
 	private void plotProtect(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1214,7 +1216,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Unfriend player of plot at player.
+	 *            Unfriend player of plot at player.
 	 */
 	private void plotUnFriend(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1271,7 +1273,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Co-owner player of plot at player.
+	 *            Co-owner player of plot at player.
 	 */
 	private void plotCoOwn(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1320,7 +1322,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Friend player of plot at player.
+	 *            Friend player of plot at player.
 	 */
 	private void plotFriend(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1374,7 +1376,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Display info for plot at player.
+	 *            Display info for plot at player.
 	 */
 	private void plotInfo(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1388,7 +1390,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Survey nearby plots of player.
+	 *            Survey nearby plots of player.
 	 */
 	private void plotSurvey(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1482,7 +1484,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Create plot at player.
+	 *            Create plot at player.
 	 */
 	private void createPlot(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
@@ -1506,7 +1508,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			plotDiamondCost.setAmount(plotDiamondCost.getAmount() * 2);
 		}
 		// make sure the player has enough money and diamonds
-		if (!player.isOp() && !(curMoney >= plotMoneyCost && player.getInventory().containsAtLeast(plotDiamondCost, plotDiamondCost.getAmount()))) {
+		if (!player.isOp()
+				&& !(curMoney >= plotMoneyCost && player.getInventory()
+						.containsAtLeast(plotDiamondCost,
+								plotDiamondCost.getAmount()))) {
 			Output.simpleError(player, "Cannot afford to create a plot, cost: "
 					+ plotMoneyCost + " gold & " + plotDiamondCost.getAmount()
 					+ " diamonds.");
@@ -1532,9 +1537,8 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		int nameLength = plotName.length();
-		if(nameLength < 1) {
-			Output.simpleError(player,
-					"/plot create (name)");
+		if (nameLength < 1) {
+			Output.simpleError(player, "/plot create (name)");
 			return;
 		}
 		if (nameLength > Variables.plotMaxNameLength) {
@@ -1560,12 +1564,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (plot.isTown())
 					sphereOfInfluence = plot.getSize() * 2;
 				else
-					sphereOfInfluence = (int) Math
-							.ceil(plot.getSize() * 1.5);
+					sphereOfInfluence = (int) Math.ceil(plot.getSize() * 1.5);
 			}
 
-			if (Utils.isWithin(curLoc, plot.getLocation(),
-					sphereOfInfluence + Variables.plotStartingSize))
+			if (Utils.isWithin(curLoc, plot.getLocation(), sphereOfInfluence
+					+ Variables.plotStartingSize))
 				intersectingRegions.add(plot);
 		}
 
@@ -1573,7 +1576,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			// money/diamonds verified, placement verified, name verified: good
 			// to go
 			// first, remove the money/diamonds
-			if(!player.isOp())
+			if (!player.isOp())
 				curMoney -= plotMoneyCost;
 			pseudoPlayer.setMoney(curMoney);
 			pseudoPlayer
@@ -1585,7 +1588,9 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 			Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
 			Lostshard.getPlots().add(plot);
-			Output.positiveMessage(player, "You have created the plot \""+plot.getName()+"\", it cost "+plotMoneyCost+" gc and "+plotDiamondCost.getAmount()+" diamonds.");
+			Output.positiveMessage(player, "You have created the plot \""
+					+ plot.getName() + "\", it cost " + plotMoneyCost
+					+ " gc and " + plotDiamondCost.getAmount() + " diamonds.");
 		} else {
 			player.sendMessage(ChatColor.DARK_RED
 					+ "Cannot create a plot there, too close to the following plots:");
@@ -1601,7 +1606,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * 
-	 * Disband plot at player.
+	 *            Disband plot at player.
 	 */
 	private void plotDisband(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1627,7 +1632,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 * Deposit money into plot found at player.
+	 *            Deposit money into plot found at player.
 	 */
 	private void plotDeposit(Player player, String[] args) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -1662,16 +1667,18 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("plot"))
-			if(args.length == 1)
+			if (args.length == 1)
 				return TabUtils.StringTab(args, new String[] { "info",
 						"create", "deposit", "expand", "rename", "coowner",
 						"unfriend", "shrink", "withdraw", "friendbuild",
 						"sell", "unsell", "buy", "list", "preotect",
 						"unprotect", "private", "public", "explosions",
-						"upgrade", "downgrade", "friend"});
-			if(args.length == 2 && args[1].equalsIgnoreCase("upgrade") || args[1].equalsIgnoreCase("upgrades"))
-				return TabUtils.StringTab(args, new String[] {"town","dungeon","autokick","neutral"});
-			
+						"upgrade", "downgrade", "friend" });
+		if (args.length == 2 && args[1].equalsIgnoreCase("upgrade")
+				|| args[1].equalsIgnoreCase("upgrades"))
+			return TabUtils.StringTab(args, new String[] { "town", "dungeon",
+					"autokick", "neutral" });
+
 		return null;
 	}
 
