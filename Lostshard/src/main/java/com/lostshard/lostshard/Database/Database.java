@@ -69,16 +69,16 @@ public class Database {
 							neutralAlignment, location, capturepoint, null,
 							magic, pvp);
 
-					Lostshard.getPlots().add(plot);
+					Lostshard.getRegistry().getPlots().add(plot);
 
 				} catch (Exception e) {
-					Lostshard.logger.log(Level.WARNING,
+					Lostshard.log.log(Level.WARNING,
 							"[PLOT] Exception when generating \"" + name
 									+ "\" plot: " + e.toString());
 				}
 			}
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLOT] getPlots mysql error >> " + e.toString());
 		}
 	}
@@ -114,7 +114,7 @@ public class Database {
 
 			prep.executeUpdate();
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLOT] updatePlot mysql error >> " + e.toString());
 		}
 	}
@@ -150,7 +150,7 @@ public class Database {
 				id = rs.getInt(1);
 			plot.setId(id);
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLOT] insertPlot mysql error >> " + e.toString());
 		}
 	}
@@ -175,13 +175,13 @@ public class Database {
 					NPC npc = new NPC(id, type, name, location, plotId);
 					npcs.add(npc);
 				} catch (Exception e) {
-					Lostshard.logger.log(Level.WARNING,
+					Lostshard.log.log(Level.WARNING,
 							"[NPC] Exception when generating \"" + name
 									+ "\" NPC >> " + e.toString());
 				}
 			}
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING, "[NPC] getNPCS mysql error >> "
+			Lostshard.log.log(Level.WARNING, "[NPC] getNPCS mysql error >> "
 					+ e.toString());
 		}
 	}
@@ -202,7 +202,7 @@ public class Database {
 
 			prep.executeUpdate();
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[NPC] updateNPC mysql error >> " + e.toString());
 		}
 	}
@@ -223,7 +223,7 @@ public class Database {
 				id = rs.getInt(1);
 			npc.setId(id);
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[NPC] updateNPC mysql error >> " + e.toString());
 		}
 	}
@@ -255,9 +255,9 @@ public class Database {
 							murderCounts, uuid, new Bank(bankData,
 									wasSubscribed), criminalTick, globalChat,
 							subscriberDays, wasSubscribed, plotCreationPoints);
-					Lostshard.getPlayers().add(pPlayer);
+					Lostshard.getRegistry().getPlayers().add(pPlayer);
 				} catch (Exception e) {
-					Lostshard.logger.log(Level.WARNING,
+					Lostshard.log.log(Level.WARNING,
 							"[PLAYER] Exception when generating \""
 									+ Bukkit.getOfflinePlayer(uuid).getName()
 									+ "\" player: " + e.toString());
@@ -265,7 +265,7 @@ public class Database {
 				return players;
 			}
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLAYER] getPlayers mysql error >> " + e.toString());
 		}
 		return null;
@@ -293,7 +293,7 @@ public class Database {
 
 			prep.executeUpdate();
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLAYER] updatePlayer mysql error >> " + e.toString());
 		}
 	}
@@ -319,7 +319,7 @@ public class Database {
 				id = rs.getInt(1);
 			pPlayer.setId(id);
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[PLAYER] updatePlayer mysql error >> " + e.toString());
 		}
 	}

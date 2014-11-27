@@ -19,7 +19,7 @@ public class VoteListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onVote(VotifierEvent event) {
 		Vote vote = event.getVote();
-		for (PseudoPlayer player : Lostshard.getPlayers())
+		for (PseudoPlayer player : Lostshard.getRegistry().getPlayers())
 			if (player.getPlayer().getName()
 					.equalsIgnoreCase(vote.getUsername())) {
 				// Set player money

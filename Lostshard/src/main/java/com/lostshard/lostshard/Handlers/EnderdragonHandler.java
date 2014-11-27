@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public class EnderdragonHandler {
 
-	private static boolean spawnDrake = true;
+	private static boolean spawnDrake = false;
 	private static int lastSpawnHoure = 0;
 
 	public static void respawnDragonCheck(PlayerChangedWorldEvent event) {
@@ -26,9 +26,12 @@ public class EnderdragonHandler {
 				.spawnEntity(event.getPlayer().getLocation().add(0, 40, 0),
 						EntityType.ENDER_DRAGON);
 		spawnDrake = false;
-		// TODO update add fancy message
 		Bukkit.broadcastMessage(ChatColor.GREEN
 				+ "The Enderdragon has returned to The End");
+	}
+	
+	public static void resetWorld() {
+		
 	}
 
 	public static void tick() {

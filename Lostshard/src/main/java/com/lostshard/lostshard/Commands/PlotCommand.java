@@ -307,7 +307,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		plot.setSalePrice(amount);
 		Output.positiveMessage(player, "You have set this plot for sale at "
-				+ amount + "gc.");
+				+ amount + " gc.");
 	}
 
 	/**
@@ -363,7 +363,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				Plot npcPlot = null;
 
-				for (NPC npc : Lostshard.getNpcs()) {
+				for (NPC npc : Lostshard.getRegistry().getNpcs()) {
 					if (npc.getName().equalsIgnoreCase(name)) {
 						Output.simpleError(player,
 								"An NPC with that name already exists.");
@@ -569,7 +569,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (plotMoney >= 1000) {
 			Output.simpleError(player,
 					"Not enough in the plot treasury to rename. "
-							+ Variables.plotRenamePrice + "gc.");
+							+ Variables.plotRenamePrice + " gc.");
 			return;
 		}
 		// Figure out the name that the player input
@@ -596,7 +596,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		for (Plot p : Lostshard.getPlots()) {
+		for (Plot p : Lostshard.getRegistry().getPlots()) {
 			if (p.getName().equalsIgnoreCase(plotName)) {
 				Output.simpleError(player, "Cannot use that name, it is taken.");
 				return;
@@ -966,7 +966,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (args.length >= 2 && player.isOp()) {
 			String name = args[1];
 			Output.positiveMessage(player, "-" + name + "'s Plots-");
-			for (Plot plot : Lostshard.getPlots()) {
+			for (Plot plot : Lostshard.getRegistry().getPlots()) {
 				if (plot.getOwner().equals(
 						Bukkit.getOfflinePlayer(name).getUniqueId())) {
 					player.sendMessage(" - " + plot.getName() + " ("
@@ -979,7 +979,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		} else {
 			Output.positiveMessage(player, "-" + player.getName() + "'s Plots-");
 			boolean foundOne = false;
-			for (Plot plot : Lostshard.getPlots()) {
+			for (Plot plot : Lostshard.getRegistry().getPlots()) {
 				if (plot.isOwner(player)) {
 					foundOne = true;
 					player.sendMessage(" - " + plot.getName() + " ("
@@ -1045,14 +1045,19 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 */
 	private void plotTestToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		if(pseudoPlayer.getTestPlot() != null) {
+			Output.positiveMessage(player, "You are no longer testing " + pseudoPlayer.getTestPlot().getName() + ".");
+			pseudoPlayer.setTestPlot(null);
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
 		pseudoPlayer.setTestPlot(plot);
 		Output.positiveMessage(player,
-				"You are currently testing " + plot.getName() + ".");
+				"You are now testing " + plot.getName() + ".");
 	}
 
 	/**
@@ -1087,7 +1092,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		// see if we would expand into an existing region
-		for (Plot p : Lostshard.getPlots()) {
+		for (Plot p : Lostshard.getRegistry().getPlots()) {
 			if (!p.getLocation().getWorld().equals(player.getWorld()))
 				continue;
 			if (p == plot)
@@ -1394,7 +1399,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 */
 	private void plotSurvey(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
-		ArrayList<Plot> plots = Lostshard.getPlots();
+		ArrayList<Plot> plots = Lostshard.getRegistry().getPlots();
 		int numPlots = plots.size();
 
 		// First, determine if we are currently in a plot
@@ -1549,7 +1554,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		// find intersecting regions and check names to make sure there isn't a
 		// region with that name already
 		Location curLoc = player.getLocation().getBlock().getLocation();
-		for (Plot plot : Lostshard.getPlots()) {
+		for (Plot plot : Lostshard.getRegistry().getPlots()) {
 			if (plot.getName().equalsIgnoreCase(plotName)) {
 				Output.simpleError(player,
 						"A plot with that name already exists, please choose another.");
@@ -1587,7 +1592,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			// costs paid, create the plot
 
 			Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
-			Lostshard.getPlots().add(plot);
+			Lostshard.getRegistry().getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost
 					+ " gc and " + plotDiamondCost.getAmount() + " diamonds.");
@@ -1624,7 +1629,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName()
-				+ ", and got " + plot.getValue() + "gc.");
+				+ ", and got " + plot.getValue() + " gc.");
 		PlotHandler.removePlot(plot);
 	}
 
@@ -1673,12 +1678,19 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"unfriend", "shrink", "withdraw", "friendbuild",
 						"sell", "unsell", "buy", "list", "preotect",
 						"unprotect", "private", "public", "explosions",
-						"upgrade", "downgrade", "friend" });
+						"upgrade", "downgrade", "friend", "npc"});
 		if (args.length == 2 && args[1].equalsIgnoreCase("upgrade")
-				|| args[1].equalsIgnoreCase("upgrades"))
+				|| args[1].equalsIgnoreCase("upgrades") || 
+				args[1].equalsIgnoreCase("downgrade") || 
+				args[1].equalsIgnoreCase("downgrades"))
 			return TabUtils.StringTab(args, new String[] { "town", "dungeon",
 					"autokick", "neutral" });
-
+		if(args.length >= 2 && args[1].equalsIgnoreCase("npc"))
+			if(args.length >= 3 && args[2].equalsIgnoreCase("hire"))
+				return TabUtils.StringTab(args, new String[] { "banker", "vendor"});
+			else
+				return TabUtils.StringTab(args, new String[] { "hire", "fire",
+					"move" });
 		return null;
 	}
 

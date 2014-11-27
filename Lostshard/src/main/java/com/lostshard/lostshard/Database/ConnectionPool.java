@@ -30,7 +30,7 @@ public class ConnectionPool {
 				connections.add((Connection) DriverManager.getConnection(
 						mysqlHost, mysqlUsername, mysqlPassword));
 			} catch (Exception e) {
-				Lostshard.logger.log(Level.WARNING,
+				Lostshard.log.log(Level.WARNING,
 						"[MYSQL] Failed to open connection >> " + e.toString());
 			}
 		}
@@ -40,10 +40,10 @@ public class ConnectionPool {
 		Connection conn = connections.get(currentConnection);
 		try {
 			if (conn.isClosed())
-				Lostshard.logger.log(Level.INFO,
+				Lostshard.log.log(Level.INFO,
 						"[MYSQL] A connection was closed.");
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING,
+			Lostshard.log.log(Level.WARNING,
 					"[MYSQL] Failed to check if connection was close / open new connection >> "
 							+ e.toString());
 		}

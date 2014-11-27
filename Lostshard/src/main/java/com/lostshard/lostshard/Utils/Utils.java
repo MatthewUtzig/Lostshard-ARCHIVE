@@ -1,10 +1,13 @@
 package com.lostshard.lostshard.Utils;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -30,6 +33,10 @@ public class Utils {
 		return Bukkit.getOfflinePlayer(targetName);
 	}
 
+	public static String scaledIntToString(int x) {
+	    return new BigDecimal(BigInteger.valueOf(x), 1).toString();
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static Player getPlayer(Player player, String[] args, int argsnr) {
 		if (args.length < argsnr + 1)
@@ -108,26 +115,34 @@ public class Utils {
 		return adjustDamage;
 	}
 
-	public static int getNumberFromString(String string) {
-		return 0;
-	}
-
 	public static List<String> UUIDArrayToUsernameArray(List<UUID> list) {
 		List<String> result = new ArrayList<String>();
-		// for(UUID uuid : list)
-		// result.add(Bukkit.getOfflinePlayer(uuid));
+		for(UUID uuid : list)
+			result.add(Bukkit.getOfflinePlayer(uuid).getName());
 		return result;
 	}
 
+	public static List<OfflinePlayer> UUIDArrayToOfflinePlayerArray(List<UUID> list) {
+		List<OfflinePlayer> result = new ArrayList<OfflinePlayer>();
+		for(UUID uuid : list)
+			result.add(Bukkit.getOfflinePlayer(uuid));
+		return result;
+	}
+	
+	public static List<Player> UUIDArrayToOnlinePlayerArray(List<UUID> list) {
+		List<Player> result = new ArrayList<Player>();
+		for(OfflinePlayer p : UUIDArrayToOfflinePlayerArray(list))
+			if(p.isOnline())
+				result.add(p.getPlayer());
+		return result;
+	}
+	
 	public static <T> Iterable<T> nullGuard(Iterable<T> list) {
 		return list == null ? Collections.<T> emptyList() : list;
 	}
 
 	public static String listToString(List<String> list) {
-		String result = "";
-		for (String s : list)
-			result += list.get(list.size() - 1) == s ? s : s + ", ";
-		return result;
+		return StringUtils.join(list, ", ");
 	}
 
 	public static List<Player> getPlayersNear(Player player, int radius) {
@@ -146,22 +161,8 @@ public class Utils {
 						: ChatColor.BLUE + player.getName();
 	}
 
-	public static String getUsernamesFromUUIDs(List<UUID> uuids) {
-		String result = "";
-		for (UUID uuid : uuids)
-			if (uuid == uuids.get(uuids.size() - 1))
-				result += Bukkit.getOfflinePlayer(uuid);
-			else
-				result += Bukkit.getOfflinePlayer(uuid) + ",";
-		return result;
-	}
-
 	public static String getStringFromList(String[] args) {
-		String rs = "";
-		for (String s : args) {
-			rs += s + " ";
-		}
-		return rs;
+		return StringUtils.join(args, ", ");
 	}
 
 	public static void addPotion(Player player, int amplifier, int duration,

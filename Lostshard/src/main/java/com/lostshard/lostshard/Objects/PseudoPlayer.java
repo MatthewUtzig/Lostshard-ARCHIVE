@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Objects;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -10,6 +12,7 @@ import org.bukkit.OfflinePlayer;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Skills.Build;
 
 /**
  * @author Jacob Rosborg
@@ -24,6 +27,7 @@ public class PseudoPlayer {
 	private Bank bank = new Bank("", wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
+	private boolean privateChat = true;
 	private int subscribeDays = 0;
 	private boolean wasSubscribed = false;
 	private int plotCreatePoints = 0;
@@ -36,6 +40,8 @@ public class PseudoPlayer {
 	private Party party = null;
 	private Location customSpawn = null;
 	private int spawnTick = 0;
+	private List<Build> builds = new ArrayList<Build>();
+	private int currentBuild = 0;
 
 	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
 			Bank bank, int criminal, boolean globalChat, int subscribeDays,
@@ -51,8 +57,9 @@ public class PseudoPlayer {
 		this.subscribeDays = subscribeDays;
 		this.wasSubscribed = wasSubscribed;
 		this.plotCreatePoints = plotCreatePoints;
+		this.builds.add(new Build());
 	}
-
+	
 	public OfflinePlayer getPlayer() {
 		return Bukkit.getOfflinePlayer(this.playerUUID);
 	}
@@ -242,6 +249,38 @@ public class PseudoPlayer {
 
 	public void setParty(Party party) {
 		this.party = party;
+	}
+
+	public List<Build> getBuilds() {
+		return builds;
+	}
+
+	public void setBuilds(List<Build> builds) {
+		this.builds = builds;
+	}
+
+	public boolean isPrivateChat() {
+		return privateChat;
+	}
+
+	public void setPrivateChat(boolean privateChat) {
+		this.privateChat = privateChat;
+	}
+
+	public int getCurrentBuildId() {
+		return currentBuild;
+	}
+
+	public void setCurrentBuildId(int currentBuild) {
+		this.currentBuild = currentBuild;
+	}
+	
+	public Build getCurrentBuild() {
+		return getBuilds().get(currentBuild);
+	}
+	
+	public void setCurrentBuild(Build build) {
+		getBuilds().set(currentBuild, build);
 	}
 
 }

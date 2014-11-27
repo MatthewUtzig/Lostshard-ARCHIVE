@@ -23,8 +23,8 @@ import com.lostshard.lostshard.Main.Lostshard;
 
 public class Serializer {
 
-	static JSONParser parser = new JSONParser();
-	static Gson gson = new Gson();
+	public static JSONParser parser = new JSONParser();
+	public static Gson gson = new Gson();
 
 	public static Location deserializeLocation(String locationString) {
 		try {
@@ -70,6 +70,10 @@ public class Serializer {
 			array.add(uuid.toString());
 		return gson.toJson(array);
 	}
+	
+	public static String toJsonList(List<String> list) {
+		return gson.toJson(list);
+	}
 
 	public static String serializeInventory(Inventory inv) {
 		List<String> array = new ArrayList<String>();
@@ -79,9 +83,32 @@ public class Serializer {
 				is = new ItemStack(Material.AIR);
 			array.add(gson.toJson(is.serialize()));
 		}
-		return gson.toJson(array);
+		return toJsonList(array);
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public static ItemStack fromJsonToItemStack(String s) {
+		Map<String, Object> map = (Map<String, Object>) gson.fromJson(
+				s, Map.class);
+		for (Entry<String, Object> k 
+				: map.entrySet())
+			if (k.getValue() instanceof Number)
+				k.setValue(((Number) k.getValue()).intValue());
+		ItemStack is;
+		try {
+			is = ItemStack.deserialize(map);
+		} catch (Exception e) {
+			is = new ItemStack(Material.AIR);
+			e.printStackTrace();
+		}
+		return is;
 	}
 
+	public static String toJsonItemStack(ItemStack item) {
+		return gson.toJson(item.serialize());
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static ItemStack[] deserializeItems(String string) {
 		ItemStack[] rs;
@@ -91,24 +118,11 @@ public class Serializer {
 			rs = new ItemStack[stacks.size()];
 			for (int i = 0; i < stacks.size(); i++) {
 				String s = (String) stacks.get(i);
-
-				Map<String, Object> map = (Map<String, Object>) gson.fromJson(
-						s, Map.class);
-				for (Entry<String, Object> k : map.entrySet())
-					if (k.getValue() instanceof Number)
-						k.setValue(((Number) k.getValue()).intValue());
-				ItemStack is;
-				try {
-					is = ItemStack.deserialize(map);
-				} catch (Exception e) {
-					is = new ItemStack(Material.AIR);
-					e.printStackTrace();
-				}
-				rs[i] = is;
+				rs[i] = fromJsonToItemStack(s);
 			}
 			return rs;
 		} catch (Exception e) {
-			Lostshard.logger.log(Level.WARNING, "[Inventory-Serialization] "
+			Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] "
 					+ string);
 		}
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };

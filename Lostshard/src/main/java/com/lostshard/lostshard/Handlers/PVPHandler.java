@@ -6,7 +6,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.ThrownPotion;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -18,16 +17,12 @@ import com.lostshard.lostshard.Objects.Plot;
 public class PVPHandler {
 
 	/**
-	 * @param event
-	 * @return Entity can damage Entity. Checking if they are in clan or other
+	 * @param attacker
+	 * @param defender
+	 * @returnEntity can damage Entity. Checking if they are in clan or other
 	 *         reasons if they should not be able to damage each other.
 	 */
-	public static boolean canEntityAttackEntity(EntityDamageByEntityEvent event) {
-		/**
-		 * Define attacker and defender.
-		 */
-		Entity attacker = event.getDamager();
-		Entity defender = event.getEntity();
+	public static boolean canEntityAttackEntity(Entity attacker, Entity defender) {
 		
 		/**
 		 * Checking if its an NPC.
@@ -56,8 +51,8 @@ public class PVPHandler {
 		/**
 		 * Allowing potion to be thrown on all if positive.
 		 */
-		if (event.getDamager() instanceof ThrownPotion)
-			for (PotionEffect pe : ((ThrownPotion) event.getDamager())
+		if (attacker instanceof ThrownPotion)
+			for (PotionEffect pe : ((ThrownPotion) attacker)
 					.getEffects())
 				if (pe.getType().equals(PotionEffectType.HEAL)
 						|| pe.getType().equals(PotionEffectType.REGENERATION)
@@ -122,5 +117,4 @@ public class PVPHandler {
 
 		return true;
 	}
-
 }

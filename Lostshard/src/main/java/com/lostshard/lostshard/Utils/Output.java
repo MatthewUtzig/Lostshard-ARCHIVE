@@ -19,11 +19,17 @@ public class Output {
 		sender.sendMessage(ChatColor.RED + "You must be a player!");
 	}
 
+	public static void gainSkill(Player player, String skillName, int gainAmount, int totalSkill) {
+		if(gainAmount <= 0)
+			return;
+		player.sendMessage(ChatColor.GOLD+"You have gained "+Utils.scaledIntToString(gainAmount)+" "+skillName+", it is now "+Utils.scaledIntToString(totalSkill)+".");
+	}
+	
 	public static void plotHelp(Player player) {
 		player.sendMessage(ChatColor.GOLD + "-Plot Help-");
 		player.sendMessage(ChatColor.YELLOW + "/plot create");
-
-		// etc
+		player.sendMessage(ChatColor.YELLOW + "/plot deposit (amount)");
+		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
 	}
 
 	public static void outputPlayerlist(CommandSender sender) {
@@ -33,7 +39,7 @@ public class Output {
 		for (Player p : players) {
 			if (p.isOp())
 				continue;
-			filteredPlayers.add(p.getDisplayName());
+			filteredPlayers.add(Utils.getColoredName(p));
 		}
 
 		Collections.sort(filteredPlayers, String.CASE_INSENSITIVE_ORDER);
@@ -152,13 +158,6 @@ public class Output {
 					+ ", Tax: " + ChatColor.WHITE + moneyPerDay
 					+ ChatColor.YELLOW + ", Plot Value: " + ChatColor.WHITE
 					+ plot.getValue());
-			// player.sendMessage(ChatColor.YELLOW+"Tax: "
-			// +ChatColor.WHITE+moneyPerDay);
-			player.sendMessage(ChatColor.GRAY + "("
-					+ (plot.getMoney() / moneyPerDay)
-					+ " days worth of funds remaining.)");
-			// player.sendMessage(ChatColor.YELLOW+"Plot Value: "
-			// +ChatColor.WHITE+ plot.getValue());
 			int distanceFromCenter = (int) Math.round(Utils.distance(
 					player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE
@@ -174,9 +173,9 @@ public class Output {
 		// Show member lists to everyone who is at least a friend
 		if (plot.isFriendOrAbove(player)) {
 			player.sendMessage(ChatColor.YELLOW + "Co-Owners: "
-					+ Utils.getUsernamesFromUUIDs(plot.getCoowners()));
+					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getCoowners())));
 			player.sendMessage(ChatColor.YELLOW + "Friends: "
-					+ Utils.getUsernamesFromUUIDs(plot.getFriends()));
+					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getFriends())));
 		}
 	}
 
@@ -201,8 +200,6 @@ public class Output {
 			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE
 					+ "none");
 	}
-
-	// TODO Frank can u add some default response
 
 	public static void simpleError(CommandSender sender, String message) {
 		sender.sendMessage(ChatColor.DARK_RED + message);
@@ -235,7 +232,6 @@ public class Output {
 	public static void capturePointsInfo(Player player) {
 		player.sendMessage(ChatColor.GOLD + "-Control Points-");
 		player.sendMessage(ChatColor.YELLOW + "Hostility: 0, 0, 0");
-		// TODO do it perfect, Frank help me with layout plz.
 	}
 
 	public static void playerStats(Player player) {
@@ -248,12 +244,12 @@ public class Output {
 				+ pseudoPlayer.getMana() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE
 				+ pseudoPlayer.getStamina() + "/" + 100);
-		// player.sendMessage(ChatColor.YELLOW+"Build: "+ChatColor.WHITE+
-		// pseudoPlayer.getBuildNumber());
+		player.sendMessage(ChatColor.YELLOW+"Build: "+ChatColor.WHITE+
+		pseudoPlayer.getCurrentBuild());
 		player.sendMessage(ChatColor.YELLOW + "Murder Counts: "
 				+ ChatColor.WHITE + pseudoPlayer.getMurderCounts());
-		// player.sendMessage(ChatColor.YELLOW+"Rank: " +
-		// ChatColor.WHITE+pseudoPlayer.getRank());
+		player.sendMessage(ChatColor.YELLOW+"Rank: " +
+		ChatColor.WHITE+pseudoPlayer.getRank());
 	}
 
 	public static void displayStats(CommandSender sender) {

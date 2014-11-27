@@ -1,7 +1,5 @@
 package com.lostshard.lostshard.Main;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -23,9 +21,7 @@ import com.lostshard.lostshard.Listener.ServerListener;
 import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
-import com.lostshard.lostshard.NPC.NPC;
-import com.lostshard.lostshard.Objects.Plot;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Registry;
 
 /**
  * @author Jacob Rosborg
@@ -33,16 +29,16 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
  */
 public class Lostshard extends JavaPlugin {
 
-	public static final Logger logger = Logger.getLogger("Lostshard");
-
-	private static ArrayList<Plot> plots = new ArrayList<Plot>();
-	private static ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+	public static Logger log;
+	
+	private static Registry registry = new Registry();
+	
 	private static BukkitTask gameLoop;
-
+	
 	@Override
 	public void onEnable() {
-		logger.log(Level.FINEST, ChatColor.GREEN + "Lostshard has invoke.");
-		System.out.println(ChatColor.GREEN + "Lostshard has invoke.");
+		log = this.getLogger();
+		log.info(ChatColor.GREEN + "Lostshard has invoke.");
 		// Lisenters
 		new BlockListener(this);
 		new EntityListener(this);
@@ -59,38 +55,14 @@ public class Lostshard extends JavaPlugin {
 		new ControlPointsCommand(this);
 		new UtilsCommand(this);
 		// GameLoop should run last.
-		// gameLoop = new MainGameLoop(this).runTaskTimer(this, 0L, 20L);
+		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 20L);
 	}
 
 	@Override
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
-		Database.saveAll();
-	}
-
-	public static ArrayList<Plot> getPlots() {
-		return plots;
-	}
-
-	public static void setPlots(ArrayList<Plot> plots) {
-		Lostshard.plots = plots;
-	}
-
-	public static ArrayList<PseudoPlayer> getPlayers() {
-		return players;
-	}
-
-	public static void setPlayers(ArrayList<PseudoPlayer> players) {
-		Lostshard.players = players;
-	}
-
-	public static ArrayList<NPC> getNpcs() {
-		ArrayList<NPC> rs = new ArrayList<NPC>();
-		for (Plot plot : plots)
-			for (NPC npc : plot.getNpcs())
-				rs.add(npc);
-		return rs;
+		 Database.saveAll(); 
 	}
 
 	public static BukkitTask getGameLoop() {
@@ -100,6 +72,14 @@ public class Lostshard extends JavaPlugin {
 	public static void shutdown() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server rebooting.");
+	}
+
+	public static Registry getRegistry() {
+		return registry;
+	}
+
+	public static void setRegistry(Registry registry) {
+		Lostshard.registry = registry;
 	}
 
 }

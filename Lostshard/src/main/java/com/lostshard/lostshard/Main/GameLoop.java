@@ -5,14 +5,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 
-public class MainGameLoop extends BukkitRunnable {
+public class GameLoop extends BukkitRunnable {
 
 	public static long tick = 0;
 
 	@SuppressWarnings("unused")
 	private final JavaPlugin plugin;
 
-	public MainGameLoop(JavaPlugin plugin) {
+	public GameLoop(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 

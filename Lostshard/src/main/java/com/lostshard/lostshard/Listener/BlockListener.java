@@ -15,6 +15,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Skills.LumberjackingSkill;
+import com.lostshard.lostshard.Skills.MiningSkill;
 
 public class BlockListener implements Listener {
 
@@ -23,10 +25,16 @@ public class BlockListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onBlockBreak(BlockBreakEvent event) {
+	public void onBlockBreakHigh(BlockBreakEvent event) {
 		PlotHandler.breakeBlockInPlot(event);
 	}
 
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockBreakLowest(BlockBreakEvent event) {
+		MiningSkill.onBlockBreak(event);
+		LumberjackingSkill.blockBrokeWithAxe(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockPlace(BlockPlaceEvent event) {
 		PlotHandler.placeBlockInPlot(event);

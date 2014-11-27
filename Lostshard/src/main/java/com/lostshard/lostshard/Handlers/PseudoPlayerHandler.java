@@ -12,7 +12,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public class PseudoPlayerHandler {
 
 	public static PseudoPlayer getPlayer(UUID uuid) {
-		for (PseudoPlayer pPlayer : Lostshard.getPlayers())
+		for (PseudoPlayer pPlayer : Lostshard.getRegistry().getPlayers())
 			if (pPlayer.getPlayerUUID().equals(uuid))
 				return pPlayer;
 		return null;
@@ -29,7 +29,7 @@ public class PseudoPlayerHandler {
 					player.getUniqueId(), new Bank("asdasdad", true), 0, true,
 					0, false, 0);
 			// Database.insertPlayer(pPlayer);
-			Lostshard.getPlayers().add(pPlayer);
+			Lostshard.getRegistry().getPlayers().add(pPlayer);
 		}
 	}
 

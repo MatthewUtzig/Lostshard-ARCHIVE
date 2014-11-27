@@ -281,7 +281,7 @@ public class Plot {
 	// Getting next id
 	public int nextId() {
 		int nextId = 0;
-		for (Plot p : Lostshard.getPlots())
+		for (Plot p : Lostshard.getRegistry().getPlots())
 			if (p.getId() > nextId)
 				nextId = p.getId() + 1;
 		return nextId;

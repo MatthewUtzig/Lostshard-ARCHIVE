@@ -35,7 +35,7 @@ public class PlotHandler {
 	 *         Find plot at location.
 	 */
 	public static Plot findPlotAt(Location location) {
-		for (Plot plot : Lostshard.getPlots())
+		for (Plot plot : Lostshard.getRegistry().getPlots())
 			if (Utils.isWithin(plot.getLocation(), location, plot.getSize()))
 				return plot;
 			else
@@ -51,7 +51,7 @@ public class PlotHandler {
 	 *         Find plot at location
 	 */
 	public static Plot findPlotAt(Location location, int buffer) {
-		for (Plot plot : Lostshard.getPlots())
+		for (Plot plot : Lostshard.getRegistry().getPlots())
 			if (Utils.isWithin(plot.getLocation(), location, plot.getSize()
 					+ buffer))
 				return plot;
@@ -101,7 +101,7 @@ public class PlotHandler {
 	}
 
 	public static void removePlot(Plot plot) {
-		Lostshard.getPlots().remove(plot);
+		Lostshard.getRegistry().getPlots().remove(plot);
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class PlotHandler {
 	 *         Get plot from id.
 	 */
 	public static Plot getPlotById(int id) {
-		for (Plot plot : Lostshard.getPlots())
+		for (Plot plot : Lostshard.getRegistry().getPlots())
 			if (plot.getId() == id)
 				return plot;
 		return null;
