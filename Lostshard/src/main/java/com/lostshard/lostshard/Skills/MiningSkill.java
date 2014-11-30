@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
 public class MiningSkill extends Skill {
@@ -43,20 +44,16 @@ public class MiningSkill extends Skill {
 		Block block = event.getBlock();
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		if (block.getType().equals(Material.STONE)
-				&& (player.getItemInHand().getType().equals(Material.DIAMOND_PICKAXE) ||
-						player.getItemInHand().getType().equals(Material.GOLD_PICKAXE) ||
-						player.getItemInHand().getType().equals(Material.IRON_PICKAXE) ||
-						player.getItemInHand().getType().equals(Material.STONE_PICKAXE) || 
-						player.getItemInHand().getType().equals(Material.WOOD_PICKAXE))) {
+				&& ItemUtils.isPickAxe(player.getItemInHand()) && !block.hasMetadata("placed")) {
 
 			int gain = pPlayer.getCurrentBuild().getMining().skillGain();
 
 			int curSkill = pPlayer.getCurrentBuild().getMining().getLvl();
 
 			double percent = (double) curSkill / 1000.0;
-
+			
 			Output.gainSkill(player, "Mining", gain, curSkill);
-
+			
 			// If we are not capped, see if we gained skill
 
 			double chanceOfDrop = miningdropprob * percent;

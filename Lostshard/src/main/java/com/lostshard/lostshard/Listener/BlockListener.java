@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Listener;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,6 +13,7 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Main.Lostshard;
@@ -38,6 +40,14 @@ public class BlockListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockPlace(BlockPlaceEvent event) {
 		PlotHandler.placeBlockInPlot(event);
+	}
+	
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockPlaceLow(BlockPlaceEvent event) {
+		if(event.isCancelled())
+			return;
+		Block block = event.getBlock();
+		block.setMetadata("placed", new FixedMetadataValue(Lostshard.getPlugin(), true));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

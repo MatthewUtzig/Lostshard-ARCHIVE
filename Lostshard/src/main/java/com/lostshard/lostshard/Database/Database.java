@@ -35,6 +35,7 @@ public class Database {
 			while (rs.next()) {
 				String name = rs.getString("name");
 				try {
+					String owner = rs.getString("owner");
 					int id = rs.getInt("id");
 					// Location
 					Location location = Serializer.deserializeLocation(rs
@@ -63,11 +64,23 @@ public class Database {
 					ArrayList<UUID> coowners = (ArrayList<UUID>) Serializer
 							.deserializeUUIDList(rs.getString("coowners"));
 
-					Plot plot = new Plot(name, id, size, money, salePrice,
-							friends, coowners, protection, allowExplosions,
-							privatePlot, friendBuild, town, dungeon, autoKick,
-							neutralAlignment, location, capturepoint, null,
-							magic, pvp);
+					Plot plot = new Plot(id, name, UUID.fromString(owner), location);
+					plot.setSize(size);
+					plot.setMoney(money);
+					plot.setSalePrice(salePrice);
+					plot.setProtected(protection);
+					plot.setAllowExplosions(allowExplosions);
+					plot.setPrivatePlot(privatePlot);
+					plot.setFriendBuild(friendBuild);
+					plot.setTown(town);
+					plot.setDungeon(dungeon);
+					plot.setNeutralAlignment(neutralAlignment);
+					plot.setAutoKick(autoKick);
+					plot.setCapturePoint(capturepoint);
+					plot.setAllowMagic(magic);
+					plot.setAllowPvp(pvp);
+					plot.setFriends(friends);
+					plot.setCoowners(coowners);
 
 					Lostshard.getRegistry().getPlots().add(plot);
 
@@ -251,10 +264,15 @@ public class Database {
 					int plotCreationPoints = rs.getInt("plotCreationPoints");
 					String bankData = rs.getString("bank");
 
-					PseudoPlayer pPlayer = new PseudoPlayer(id, money,
-							murderCounts, uuid, new Bank(bankData,
-									wasSubscribed), criminalTick, globalChat,
-							subscriberDays, wasSubscribed, plotCreationPoints);
+					PseudoPlayer pPlayer = new PseudoPlayer(uuid, id);
+					pPlayer.setMoney(money);
+					pPlayer.setMurderCounts(murderCounts);
+					pPlayer.setCriminal(criminalTick);
+					pPlayer.setGlobalChat(globalChat);
+					pPlayer.setSubscribeDays(subscriberDays);
+					pPlayer.setWasSubscribed(wasSubscribed);
+					pPlayer.setPlotCreatePoints(plotCreationPoints);
+					pPlayer.setBank(new Bank(bankData, wasSubscribed));
 					Lostshard.getRegistry().getPlayers().add(pPlayer);
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,

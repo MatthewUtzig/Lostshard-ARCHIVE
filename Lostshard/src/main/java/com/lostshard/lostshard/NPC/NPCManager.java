@@ -27,7 +27,7 @@ public class NPCManager {
 			return null;
 		return registry;
 	}
-
+	
 	public static void setRegistry(NPCRegistry registry) {
 		if (Bukkit.getPluginManager().getPlugin("Citizens") == null
 				|| Bukkit.getPluginManager().getPlugin("Citizens").isEnabled() == false)

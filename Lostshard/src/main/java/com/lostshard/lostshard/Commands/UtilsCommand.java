@@ -53,7 +53,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		}
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer((Player) sender);
 		pPlayer.setCustomSpawn(null);
-		if (pPlayer.isMurder())
+		if (pPlayer.isMurderer())
 			Output.positiveMessage(sender,
 					"You have reset your spawn to Chaos.");
 		else

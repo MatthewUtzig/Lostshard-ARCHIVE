@@ -88,6 +88,7 @@ public class ChatHandler {
 				+ ChatColor.WHITE + " shouts: " + event.getMessage());
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void globalChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;

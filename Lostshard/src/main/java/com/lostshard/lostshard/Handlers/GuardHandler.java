@@ -14,6 +14,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class GuardHandler {
 
+	@SuppressWarnings("deprecation")
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
@@ -21,7 +22,7 @@ public class GuardHandler {
 			return;
 		// Checking to see if the player himself are criminal
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
-		if (pPlayer.isCriminal() || pPlayer.isMurder())
+		if (pPlayer.isCriminal() || pPlayer.isMurderer())
 			return;
 		// Finding the nearest guard, on the same plot.
 		NPC guard = null;
@@ -41,15 +42,15 @@ public class GuardHandler {
 		// criminal
 		for (Player pCP : Bukkit.getOnlinePlayers()) {
 			PseudoPlayer pPCP = PseudoPlayerHandler.getPlayer(pCP);
-			if (pPCP.isCriminal() || pPCP.isMurder())
+			if (pPCP.isCriminal() || pPCP.isMurderer())
 				criminals.add(pCP);
 		}
 		// Slaying all criminals that are in range
 		for (Player c : criminals) {
 			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(),
 					TeleportCause.PLUGIN);
-			c.damage(0);
-			c.setHealth(0);
+			c.damage(0d);
+			c.setHealth(0d);
 		}
 		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(),
 				TeleportCause.PLUGIN);

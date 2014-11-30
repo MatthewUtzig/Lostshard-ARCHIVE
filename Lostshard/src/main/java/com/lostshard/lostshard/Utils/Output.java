@@ -32,6 +32,7 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void outputPlayerlist(CommandSender sender) {
 		Player[] players = Bukkit.getOnlinePlayers();
 
@@ -184,7 +185,7 @@ public class Output {
 		sender.sendMessage(ChatColor.GOLD + "-Player Information-");
 		sender.sendMessage(ChatColor.YELLOW + "Name: "
 				+ whoPseudoPlayer.getColoredName());
-		if (whoPseudoPlayer.isMurder())
+		if (whoPseudoPlayer.isMurderer())
 			sender.sendMessage(ChatColor.RED + "This player is a murderer.");
 		else if (whoPseudoPlayer.isCriminal())
 			sender.sendMessage(ChatColor.RED + "This player is a criminal.");

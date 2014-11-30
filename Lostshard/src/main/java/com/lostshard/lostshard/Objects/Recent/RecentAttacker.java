@@ -1,13 +1,15 @@
 package com.lostshard.lostshard.Objects.Recent;
 
+import java.util.UUID;
+
 public class RecentAttacker {
-	private String murdererUUID;
+	private UUID murdererUUID;
 	private int ticksRemaining;
 	private final int originalTicks;
 	private boolean isDead = false;
-	public boolean notCrim = false;
+	private boolean notCrim = false;
 
-	public RecentAttacker(String murdererName, int ticksRemaining) {
+	public RecentAttacker(UUID murdererName, int ticksRemaining) {
 		this.murdererUUID = murdererName;
 		this.originalTicks = ticksRemaining;
 		this.ticksRemaining = ticksRemaining;
@@ -21,7 +23,7 @@ public class RecentAttacker {
 		}
 	}
 
-	public String getName() {
+	public UUID getUUID() {
 		return murdererUUID;
 	}
 
@@ -31,5 +33,17 @@ public class RecentAttacker {
 
 	public void resetTicks() {
 		ticksRemaining = originalTicks;
+	}
+
+	public boolean isNotCrim() {
+		return notCrim;
+	}
+
+	public void setNotCrim(boolean notCrim) {
+		this.notCrim = notCrim;
+	}
+	
+	public boolean isNotCrime()	{
+		return this.notCrim;
 	}
 }

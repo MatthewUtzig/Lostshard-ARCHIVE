@@ -5,6 +5,5 @@
 	<artifactId>Lostshard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Lostshard</name>
-	<description>Lostshard a minecraft server.
-</description>
+	<description>Lostshard a minecraft server.</description>
 </project>

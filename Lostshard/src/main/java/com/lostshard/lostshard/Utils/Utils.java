@@ -70,7 +70,7 @@ public class Utils {
 		return Math.sqrt(fastDistance(loc1, loc2));
 	}
 
-	public static int adjustDamageForArmor(Player player, int damage) {
+	public static double adjustDamageForArmor(Player player, double newDamage) {
 		int defensePoints = 0;
 
 		ItemStack helmet = player.getInventory().getHelmet();
@@ -109,7 +109,7 @@ public class Utils {
 
 		float defensePercent = ((float) defensePoints * 4 / 100);
 
-		int adjustDamage = (int) Math.floor((float) damage
+		double adjustDamage = (int) Math.floor((float) newDamage
 				* (1 - defensePercent));
 
 		return adjustDamage;
@@ -145,6 +145,7 @@ public class Utils {
 		return StringUtils.join(list, ", ");
 	}
 
+	@SuppressWarnings("deprecation")
 	public static List<Player> getPlayersNear(Player player, int radius) {
 		List<Player> result = new ArrayList<Player>();
 		for (Player p : Bukkit.getOnlinePlayers())

@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Skills;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -49,18 +50,16 @@ public class BrawlingSkill extends Skill {
 		else if(brawlingSkill >= 250)
 				additionalDamage = 1;
 		
-		/*double chanceOfEffect = (double)brawlingSkill / 1000;
+		double chanceOfEffect = (double)brawlingSkill / 1000;
 		double stunChance = chanceOfEffect * .25;
 		
 		double rand = Math.random();
-		//System.out.println(rand);
 		if(stunChance > rand) {
-			//stun
 			if(damagedEntity instanceof Player) {
 				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(defenderPlayer.getName());
-				if(defenderPseudoPlayer._stunTicks <= 0) {
-					defenderPseudoPlayer._stunTicks = 30;
+				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+				if(defenderPseudoPlayer.getStunTick() <= 0) {
+					defenderPseudoPlayer.setStunTick(30);
 					defenderPlayer.sendMessage(ChatColor.GREEN+"You have been stunned!");
 					player.sendMessage(ChatColor.GREEN+"You stunned "+defenderPlayer.getName()+"!");
 				}
@@ -70,11 +69,11 @@ public class BrawlingSkill extends Skill {
 		if(damagedEntity instanceof Player) {
 			if(brawlingSkill >= 1000) {
 				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(defenderPlayer.getName());
-				if(defenderPseudoPlayer._stunTicks <= 0)
-					defenderPseudoPlayer._stunTicks = 17;
+				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+				if(defenderPseudoPlayer.getStunTick() <= 0)
+					defenderPseudoPlayer.setStunTick(17);
 			}
-		}*/
+		}
 		
 		damage += additionalDamage;
 		event.setDamage(damage);

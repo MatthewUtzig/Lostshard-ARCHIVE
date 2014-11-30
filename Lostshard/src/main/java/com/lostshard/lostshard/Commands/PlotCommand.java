@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
-//TODO import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
@@ -1591,7 +1591,8 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			player.getInventory().remove(plotDiamondCost);
 			// costs paid, create the plot
 
-			Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
+			Plot plot = new Plot(-1, plotName, player.getUniqueId(), curLoc);
+//			Database.insertPlot(plot);
 			Lostshard.getRegistry().getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost

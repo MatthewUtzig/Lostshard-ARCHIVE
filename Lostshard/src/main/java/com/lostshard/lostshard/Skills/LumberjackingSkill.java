@@ -63,20 +63,18 @@ public class LumberjackingSkill extends Skill {
 		damage += additionalDamage;
 		
 		List<Entity> nearbyEntities = damagedEntity.getNearbyEntities(3, 3, 3);
-		
+		double newDamage = (int)Math.ceil((damage * damagePercent));
 		for(Entity entity : nearbyEntities) {
 			if(entity == damagedEntity)
 				continue;
-			
 			if(entity instanceof LivingEntity) {
 				LivingEntity cleavedEntity = (LivingEntity)entity;
 				if(cleavedEntity != null) {
-					int newDamage = (int)Math.ceil((damage * damagePercent));
 					if(cleavedEntity instanceof Player) {
 						Player p = (Player)cleavedEntity;
 						if(p != player && PVPHandler.canEntityAttackEntity(player, damagedEntity)) {
 							//RPGEntityListener.criminalAction(p, player);
-							int adjustedDamage = Utils.adjustDamageForArmor(p, newDamage);
+							double adjustedDamage = Utils.adjustDamageForArmor(p, newDamage);
 							cleavedEntity.damage(adjustedDamage);
 						}
 					}
@@ -96,6 +94,7 @@ public class LumberjackingSkill extends Skill {
 		Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void blockBrokeWithAxe(BlockBreakEvent event) {
 		if(event.isCancelled())
 			return;
@@ -108,49 +107,47 @@ public class LumberjackingSkill extends Skill {
 		int lumberSkill = skill.getLvl();
 		double chanceToDropPlank = (double)lumberSkill/1000;
 		byte data;
-		if(block.getType().equals(Material.LOG)) {
-//			if(!RPG._placedLogStrings.contains(block.toString())) {
-				if(block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
-					data = 1;
-				else if(block.getData() == 2 || block.getData() == 6 || block.getData() == 10 || block.getData() == 14)
-					data = 2;
-				else if(block.getData() == 3 || block.getData() == 7 || block.getData() == 11 || block.getData() == 15)
-					data = 3;
-				else
-					data = 0;
-				
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-//			}
-				skill.setBaseProb(.3);
-				skill.setScaleConstant(80);
-				int gain = skill.skillGain();
-				Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
-		}else if(block.getType().equals(Material.LOG_2)) {
-//			if(!RPG._placedLogStrings.contains(block.toString())) {
-				if(block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
-					data = 5;
-				else
-					data = 4;
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-				if(Math.random() < chanceToDropPlank)
-					block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
-//			}
-				skill.setBaseProb(.3);
-				skill.setScaleConstant(80);
-				int gain = skill.skillGain();
-				Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
+		if(block.getType().equals(Material.LOG) && !block.hasMetadata("placed")) {
+			if(block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
+				data = 1;
+			else if(block.getData() == 2 || block.getData() == 6 || block.getData() == 10 || block.getData() == 14)
+				data = 2;
+			else if(block.getData() == 3 || block.getData() == 7 || block.getData() == 11 || block.getData() == 15)
+				data = 3;
+			else
+				data = 0;
+			
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			
+			skill.setBaseProb(.3);
+			skill.setScaleConstant(80);
+			int gain = skill.skillGain();
+			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
+		}else if(block.getType().equals(Material.LOG_2) && !block.hasMetadata("placed")) {
+			if(block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
+				data = 5;
+			else
+				data = 4;
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			if(Math.random() < chanceToDropPlank)
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
+			
+			skill.setBaseProb(.3);
+			skill.setScaleConstant(80);
+			int gain = skill.skillGain();
+			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 		}
 	}
 	

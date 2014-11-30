@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Objects;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import org.bukkit.OfflinePlayer;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
 
 /**
@@ -20,7 +22,7 @@ import com.lostshard.lostshard.Skills.Build;
  */
 public class PseudoPlayer {
 
-	private int id = 0;
+	private int id;
 	private int money = 0;
 	private int murderCounts = 0;
 	private UUID playerUUID;
@@ -42,22 +44,37 @@ public class PseudoPlayer {
 	private int spawnTick = 0;
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
+	private int pvpTicks = 0;
+	private int engageInCombatTicks = 0;
+	private ArrayList<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
+	
+	// Effects
+	private int bleedTick = 0;
+	private int stunTick = 0;
+	
+	private long lastDeath = 0;
 
-	public PseudoPlayer(int id, int money, int murderCounts, UUID playerUUID,
-			Bank bank, int criminal, boolean globalChat, int subscribeDays,
-			boolean wasSubscribed, int plotCreatePoints) {
+	public PseudoPlayer(UUID playerUUID, int id) {
 		super();
-		this.id = id;
-		this.money = money;
-		this.murderCounts = murderCounts;
 		this.playerUUID = playerUUID;
-		this.bank = bank;
-		this.criminal = criminal;
-		this.globalChat = globalChat;
-		this.subscribeDays = subscribeDays;
-		this.wasSubscribed = wasSubscribed;
-		this.plotCreatePoints = plotCreatePoints;
-		this.builds.add(new Build());
+		this.id = id;
+		builds.add(new Build());
+	}
+	
+	public int getBleedTick() {
+		return bleedTick;
+	}
+
+	public void setBleedTick(int bleedTick) {
+		this.bleedTick = bleedTick;
+	}
+
+	public int getStunTick() {
+		return stunTick;
+	}
+
+	public void setStunTick(int stunTick) {
+		this.stunTick = stunTick;
 	}
 	
 	public OfflinePlayer getPlayer() {
@@ -88,7 +105,7 @@ public class PseudoPlayer {
 		this.murderCounts = murderCounts;
 	}
 
-	public boolean isMurder() {
+	public boolean isMurderer() {
 		return this.murderCounts >= Variables.murderPoint;
 	}
 
@@ -281,6 +298,59 @@ public class PseudoPlayer {
 	
 	public void setCurrentBuild(Build build) {
 		getBuilds().set(currentBuild, build);
+	}
+
+	public int getPvpTicks() {
+		return pvpTicks;
+	}
+
+	public void setPvpTicks(int pvpTicks) {
+		this.pvpTicks = pvpTicks;
+	}
+
+	public int getEngageInCombatTicks() {
+		return engageInCombatTicks;
+	}
+
+	public void setEngageInCombatTicks(int engageInCombatTicks) {
+		this.engageInCombatTicks = engageInCombatTicks;
+	}
+
+	public ArrayList<RecentAttacker> getRecentAttackers() {
+		return recentAttackers;
+	}
+
+	public void setRecentAttackers(ArrayList<RecentAttacker> recentAttackers) {
+		this.recentAttackers = recentAttackers;
+	}
+	
+	public void addRecentAttacker(RecentAttacker recentAttacker) {
+		boolean found = false;
+		for(RecentAttacker rA : recentAttackers) {
+			if(rA.getUUID().equals(recentAttacker.getUUID())) {
+				rA.resetTicks();
+				found = true;
+				break;
+			}
+		}
+		if(!found)
+			recentAttackers.add(recentAttacker);
+	}
+	
+	public void clearRecentAttackers() {
+		recentAttackers.clear();
+	}
+	
+	public boolean isLastDeathOlder(long ms) {
+		return new Date().getTime() > lastDeath+ms;
+	}
+
+	public long getLastDeath() {
+		return lastDeath;
+	}
+
+	public void setLastDeath(long lastDeath) {
+		this.lastDeath = lastDeath;
 	}
 
 }

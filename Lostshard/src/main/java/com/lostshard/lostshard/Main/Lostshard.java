@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -35,6 +36,8 @@ public class Lostshard extends JavaPlugin {
 	
 	private static BukkitTask gameLoop;
 	
+	private static Plugin plugin;
+	
 	@Override
 	public void onEnable() {
 		log = this.getLogger();
@@ -56,19 +59,23 @@ public class Lostshard extends JavaPlugin {
 		new UtilsCommand(this);
 		// GameLoop should run last.
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 20L);
+		
+		Lostshard.setPlugin(this);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
-		 Database.saveAll(); 
+//		 Database.saveAll(); 
 	}
 
 	public static BukkitTask getGameLoop() {
 		return gameLoop;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void shutdown() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server rebooting.");
@@ -80,6 +87,14 @@ public class Lostshard extends JavaPlugin {
 
 	public static void setRegistry(Registry registry) {
 		Lostshard.registry = registry;
+	}
+
+	public static Plugin getPlugin() {
+		return plugin;
+	}
+
+	public static void setPlugin(Plugin plugin) {
+		Lostshard.plugin = plugin;
 	}
 
 }

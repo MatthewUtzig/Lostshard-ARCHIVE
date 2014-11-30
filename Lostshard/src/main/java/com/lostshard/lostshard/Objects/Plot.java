@@ -58,42 +58,12 @@ public class Plot {
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
 
-	public Plot(String name, UUID owner, Location location) {
+	public Plot(int id, String name, UUID owner, Location location) {
 		super();
 		this.name = name;
 		this.id = nextId();
 		this.owner = owner;
 		this.location = location;
-	}
-
-	public Plot(String name, int id, int size, int money, int salePrice,
-			ArrayList<UUID> friends, ArrayList<UUID> coowners,
-			boolean protection, boolean allowExplosions, boolean publicPlot,
-			boolean friendBuild, boolean town, boolean dungeon,
-			boolean autoKick, boolean neutralAlignment, Location location,
-			boolean capturePoint, Clan owningClan, boolean allowMagic,
-			boolean allowPvp) {
-		super();
-		this.name = name;
-		this.id = id;
-		this.size = size;
-		this.money = money;
-		this.salePrice = salePrice;
-		this.friends = friends;
-		this.coowners = coowners;
-		this.protection = protection;
-		this.allowExplosions = allowExplosions;
-		this.privatePlot = publicPlot;
-		this.friendBuild = friendBuild;
-		this.town = town;
-		this.dungeon = dungeon;
-		this.autoKick = autoKick;
-		this.neutralAlignment = neutralAlignment;
-		this.location = location;
-		this.capturePoint = capturePoint;
-		this.owningClan = owningClan;
-		this.allowMagic = allowMagic;
-		this.allowPvp = allowPvp;
 	}
 
 	// Getters and Setters
@@ -283,8 +253,8 @@ public class Plot {
 		int nextId = 0;
 		for (Plot p : Lostshard.getRegistry().getPlots())
 			if (p.getId() > nextId)
-				nextId = p.getId() + 1;
-		return nextId;
+				nextId = p.getId();
+		return nextId + 1;
 	}
 
 	public boolean isOwner(Player player) {

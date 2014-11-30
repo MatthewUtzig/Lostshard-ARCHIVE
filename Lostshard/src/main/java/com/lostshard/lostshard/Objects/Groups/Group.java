@@ -75,4 +75,12 @@ public class Group {
 		}
 	}
 	
+	public boolean isDead() {
+		for(UUID member : members)
+			if(Bukkit.getPlayer(member) == null)
+				members.remove(member);
+		if(members.size() <= 0)
+			return true;
+		return false;
+	}
 }

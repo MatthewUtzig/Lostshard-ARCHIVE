@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Skills;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
@@ -60,21 +61,22 @@ public class BladesSkill extends Skill {
 		else if(swordsSkill >= 250)
 			additionalDamage = 1;
 		
-		/*double chanceOfEffect = (double)swordsSkill / 1000;
-		double bleedChance = chanceOfEffect * .2;
-		
-		if(bleedChance > Math.random()) {
-			if(damagedEntity instanceof Player) {
-				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(defenderPlayer.getName());
-				if(defenderPseudoPlayer._bleedTicks <= 0) {
-					defenderPseudoPlayer._bleedTicks = 10;
-					defenderPlayer.sendMessage(ChatColor.GREEN+"You are bleeding!");
-					player.sendMessage(ChatColor.GREEN+defenderPlayer.getName()+" is bleeding!");
+		if(swordsSkill >= 250) {
+			double chanceOfEffect = (double)swordsSkill / 1000;
+			double bleedChance = chanceOfEffect * .2;
+			
+			if(bleedChance > Math.random()) {
+				if(damagedEntity instanceof Player) {
+					Player defenderPlayer = (Player)damagedEntity;
+					PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+					if(defenderPseudoPlayer.getBleedTick() <= 0) {
+						defenderPseudoPlayer.setBleedTick(10);
+						defenderPlayer.sendMessage(ChatColor.GREEN+"You are bleeding!");
+						player.sendMessage(ChatColor.GREEN+defenderPlayer.getName()+" is bleeding!");
+					}
 				}
 			}
 		}
-		*/
 		
 		if(damagedEntity instanceof Player) {
 			Player damagedPlayer = (Player)damagedEntity;
