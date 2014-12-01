@@ -36,6 +36,18 @@
 - [ ] Clan
 - [ ] Party
 - [ ] Global disable and ignore players and disable msg's
+- [x] Death messeges
+
+#Skills
+- [x] Mining
+- [x] Lumberjacking
+- [ ] Magery
+- [x] Blades
+- [x] Brawling
+- [ ] Survivalism
+- [ ] Taming
+- [ ] Blacksmithy
+- [ ] Fhising
 
 #Utils
 - [x] Who
