@@ -27,8 +27,8 @@
 - [ ] Pvp
 
 #Chat
-- [ ] Msg
-- [ ] Replay
+- [x] Msg
+- [x] Replay
 - [x] Global
 - [x] Shout
 - [x] Local
