@@ -33,9 +33,9 @@
 - [x] Shout
 - [x] Local
 - [x] Whisper
-- [ ] Clan
-- [ ] Party
-- [ ] Global disable and ignore players and disable msg's
+- [x] Clan
+- [x] Party
+- [x] Global disable and ignore players and disable msg's
 - [x] Death messeges
 
 #Skills
