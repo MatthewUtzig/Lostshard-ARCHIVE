@@ -18,7 +18,6 @@ public class TabUtils {
 		return completions;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static List<String> OnlinePlayersTab(String[] args) {
 		List<String> completions = new ArrayList<String>();
 		for (Player option : Bukkit.getOnlinePlayers()) {
@@ -28,7 +27,6 @@ public class TabUtils {
 		return completions;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static List<String> OnlinePlayersTab(String[] args, Player[] exclude) {
 		List<String> completions = new ArrayList<String>();
 		List<Player> players = new ArrayList<Player>();

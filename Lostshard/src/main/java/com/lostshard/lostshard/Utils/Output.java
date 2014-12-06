@@ -32,15 +32,13 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void outputPlayerlist(CommandSender sender) {
-		Player[] players = Bukkit.getOnlinePlayers();
 
 		ArrayList<String> filteredPlayers = new ArrayList<String>();
-		for (Player p : players) {
+		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.isOp())
 				continue;
-			filteredPlayers.add(Utils.getColoredName(p));
+			filteredPlayers.add(Utils.getDisplayName(p));
 		}
 
 		Collections.sort(filteredPlayers, String.CASE_INSENSITIVE_ORDER);

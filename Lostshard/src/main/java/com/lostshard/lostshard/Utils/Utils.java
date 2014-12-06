@@ -145,7 +145,6 @@ public class Utils {
 		return StringUtils.join(list, ", ");
 	}
 
-	@SuppressWarnings("deprecation")
 	public static List<Player> getPlayersNear(Player player, int radius) {
 		List<Player> result = new ArrayList<Player>();
 		for (Player p : Bukkit.getOnlinePlayers())
@@ -154,7 +153,7 @@ public class Utils {
 		return result;
 	}
 
-	public static String getColoredName(Player player) {
+	public static String getDisplayName(OfflinePlayer player) {
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		return pPlayer.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
 				+ player.getName()

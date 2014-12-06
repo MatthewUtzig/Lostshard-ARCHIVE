@@ -7,6 +7,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Utils.Utils;
 
 /**
@@ -64,7 +66,7 @@ public class ChatHandler {
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getWhisperChatRange()))
 			event.getRecipients().add(p);
-		event.setFormat(Utils.getColoredName(event.getPlayer())
+		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + " whisper: " + event.getMessage());
 	}
 
@@ -74,7 +76,7 @@ public class ChatHandler {
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getLocalChatRange()))
 			event.getRecipients().add(p);
-		event.setFormat(Utils.getColoredName(event.getPlayer())
+		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + ": " + event.getMessage());
 	}
 
@@ -84,46 +86,50 @@ public class ChatHandler {
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getShoutChatRange()))
 			event.getRecipients().add(p);
-		event.setFormat(Utils.getColoredName(event.getPlayer())
+		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + " shouts: " + event.getMessage());
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void globalChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;
 		String prefix;
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
+		String star = "";
 		if (pPlayer.isSubscriber())
-			prefix = ChatColor.GOLD + "[" + ChatColor.YELLOW + "Global"
-					+ ChatColor.GOLD + "]* ";
-		else
-			prefix = ChatColor.WHITE + "[" + ChatColor.YELLOW + "Global"
-					+ ChatColor.WHITE + "] ";
-		// TODO Check for title here
+			star="*";
+		String title = pPlayer.getCurrentTitle();
+		if(title != "")
+			title+=" ";
+		prefix = ChatColor.GOLD + "[" + ChatColor.YELLOW + "Global"
+					+ ChatColor.GOLD + "]"+star;
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			pPlayer = PseudoPlayerHandler.getPlayer(p);
-			if (pPlayer.isGlobalChat())
+			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL))
 				event.getRecipients().add(p);
 		}
-		event.setFormat(prefix + Utils.getColoredName(event.getPlayer())
+		event.setFormat(prefix + title + Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + ": " + event.getMessage());
 	}
 
 	public static void clanChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;
-		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
-		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
-
+		Player player = event.getPlayer();
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		Clan clan = pPlayer.getClan();
+		clan.sendMessage(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
+				 Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
 	}
 
 	public static void partyChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;
-		// ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
-		// Utils.getColoredName(player)+ChatColor.WHITE+": ";
-
+		Player player = event.getPlayer();
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		Party party = pPlayer.getParty();
+		party.sendMessage(ChatColor.WHITE+"["+ChatColor.DARK_PURPLE+"Party"+ChatColor.WHITE+"]"+
+		 Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
 	}
 
 }

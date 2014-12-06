@@ -2,6 +2,8 @@ package com.lostshard.lostshard.Commands;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +27,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 
 	/**
 	 * @param Lostshard
-	 *            as plugin
+	 *            as JavaPlugin
 	 */
 	public ChatCommand(Lostshard plugin) {
 		plugin.getCommand("global").setExecutor(this);
@@ -33,6 +35,8 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("local").setExecutor(this);
 		plugin.getCommand("whisper").setExecutor(this);
 		plugin.getCommand("msg").setExecutor(this);
+		plugin.getCommand("toggleglobal").setExecutor(this);
+		plugin.getCommand("togglemsg").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -52,11 +56,69 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		} else if (cmd.getName().equalsIgnoreCase("whisper")) {
 			whisperChat(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("msg")) {
-			// msgChat(player, args);
+			msgChat(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("replay")) {
-			// replayChat(player, args);
+			replayChat(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("toggleglobal")) {
+			toggleGlobalChat(player);
+		} else if (cmd.getName().equalsIgnoreCase("togglemsg")) {
+			toggleMsgChat(player);
 		}
 		return true;
+	}
+
+	private void toggleMsgChat(Player player) {
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		if(pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
+			pPlayer.enableChatChannel(ChatChannel.PRIVATE);
+			Output.positiveMessage(player, "You have enabled Private Chat.");
+		}else{
+			pPlayer.disableChatChannel(ChatChannel.PRIVATE);
+			Output.positiveMessage(player, "You have disabled Private Chat.");			
+		}
+	}
+
+	private void toggleGlobalChat(Player player) {
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		if(pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
+			pPlayer.enableChatChannel(ChatChannel.GLOBAL);
+			Output.positiveMessage(player, "You have enabled Global Chat.");
+		}else{
+			pPlayer.disableChatChannel(ChatChannel.GLOBAL);
+			Output.positiveMessage(player, "You have disabled Global Chat.");			
+		}
+	}
+
+	private void replayChat(Player player, String[] args) {
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
+		if(to == null) {
+			Output.simpleError(player, "ERROR player not online.");
+			return;
+		}
+		String message = StringUtils.join(args, " ");
+		
+		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+to.getName()+ChatColor.WHITE+"] " +  message);
+		to.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
+	}
+
+	@SuppressWarnings("deprecation")
+	private void msgChat(Player player, String[] args) {
+		if(args.length < 2) {
+			Output.simpleError(player, "/msg (Player) message");
+			return;
+		}
+		String targetName = args[0];
+		Player targetPlayer = Bukkit.getPlayer(targetName);
+		if(player == null) {
+			Output.simpleError(player, "player not online");
+			return;
+		}
+		String message = StringUtils.join(args, " ", 1, args.length-1);
+		
+		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+targetPlayer.getName()+ChatColor.WHITE+"] " +  message);
+		targetPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
+		
 	}
 
 	/**
@@ -105,7 +167,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 *            Outpit shout chat for player.
+	 *            Output shout chat for player.
 	 */
 	private void shoutChat(Player player, String[] args) {
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);

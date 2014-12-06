@@ -9,31 +9,48 @@ commands:
       description: trade 1 gold ingot to 100gc at a bank.
       usage: /<command> (amount)
    pay:
-      description: pay player money.
+      description: pay a player money.
       usage: /<command> (player) (amount)
    plot:
       description: Plot commands.
       usage: /<command> (subCommand)
    claim:
-      description: claim capturepoint.
+      description: Claim a capturepoint.
       usage: /<command>
    capturepoints:
-      description: get a list of all capturepoints.
+      description: Get a list of all capturepoints and position.
       usage: /<command>
    global:
-      description: Toggle global chat.
+      description: Selects the global chat.
+      aliases: [g]
       usage: /<command>
    shout:
-      description: Toggle shout chat.
+      description: Selects the shout chat.
+      aliases: [s]
       usage: /<command>
    local:
-      description: Toggle local chat.
+      description: Selects the local chat.
+      aliases: [l]
       usage: /<command>
    whisper:
-      description: Toggle whisper chat.
+      description: Selects the whisper chat.
+      aliases: [w]
       usage: /<command>
    msg:
-      description: Message a private message to player.
+      description: Send a private message to a player.
+      aliases: [m]
+      usage: /<command> (Player)
+   toggleglobalchat:
+      description: Toggle global chat.
+      aliases: [toggleglobal]
+      usage: /<command>
+   toggleprivatechat:
+      description: Toggle private chat.
+      aliases: [togglemsg,togglemsgchat]
+      usage: /<command>
+   replay:
+      description: Replay on a private message.
+      aliases: [r]
       usage: /<command> (Player)
    stats:
       description: Output player stats.
@@ -45,11 +62,12 @@ commands:
       description: Output whois.
       usage: /<command>
    spawn:
-      description: Output whois.
+      description: Teleports to town after 10sec have a 3 houre .
       usage: /<command>
    resetspawn:
       description: Output whois.
       usage: /<command>
    rules:
       description: Output whois.
+      aliases: [modt]
       usage: /<command>

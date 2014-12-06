@@ -15,6 +15,7 @@ import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
+import com.lostshard.lostshard.Utils.Utils;
 
 /**
  * @author Jacob Rosborg
@@ -46,7 +47,12 @@ public class PseudoPlayer {
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
 	private int engageInCombatTicks = 0;
-	private ArrayList<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
+	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
+	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();	
+	private UUID lastResiver = null;
+	private List<String> titels = new ArrayList<String>();
+	private int currenttitle = -1;
+	
 	
 	// Effects
 	private int bleedTick = 0;
@@ -123,6 +129,14 @@ public class PseudoPlayer {
 
 	public void setPlayerUUID(UUID playerUUID) {
 		this.playerUUID = playerUUID;
+	}
+	
+	public String getPlayerName() {
+		return this.getPlayer().getName();
+	}
+	
+	public String getDisplayName() {
+		return Utils.getDisplayName(this.getPlayer());
 	}
 
 	public Bank getBank() {
@@ -316,7 +330,7 @@ public class PseudoPlayer {
 		this.engageInCombatTicks = engageInCombatTicks;
 	}
 
-	public ArrayList<RecentAttacker> getRecentAttackers() {
+	public List<RecentAttacker> getRecentAttackers() {
 		return recentAttackers;
 	}
 
@@ -353,4 +367,54 @@ public class PseudoPlayer {
 		this.lastDeath = lastDeath;
 	}
 
+	public List<ChatChannel> getDisabledChatChannels() {
+		return disabledChatChannels;
+	}
+
+	public void setDisabledChatChannels(ArrayList<ChatChannel> disabledChatChannels) {
+		this.disabledChatChannels = disabledChatChannels;
+	}
+	
+	public boolean isChatChannelDisabled(ChatChannel channel) {
+		return disabledChatChannels.contains(channel);
+	}
+	
+	public void disableChatChannel(ChatChannel channel) {
+		disabledChatChannels.add(channel);
+	}
+	
+	public void enableChatChannel(ChatChannel channel) {
+		disabledChatChannels.remove(channel);
+	}
+
+	public UUID getLastResiver() {
+		return lastResiver;
+	}
+
+	public void setLastResiver(UUID lastResiver) {
+		this.lastResiver = lastResiver;
+	}
+
+	public List<String> getTitels() {
+		return titels;
+	}
+
+	public void setTitels(List<String> titels) {
+		this.titels = titels;
+	}
+
+	public int getCurrentTitleId() {
+		return currenttitle;
+	}
+
+	public void setCurrentTitleId(int currenttitle) {
+		this.currenttitle = currenttitle;
+	}
+	
+	public String getCurrentTitle() {
+		if(currenttitle < 0)
+			return "";
+		else
+			return titels.get(currenttitle);
+	}
 }

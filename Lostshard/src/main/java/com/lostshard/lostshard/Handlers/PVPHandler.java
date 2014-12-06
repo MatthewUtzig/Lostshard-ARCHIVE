@@ -27,7 +27,6 @@ public class PVPHandler {
 	 * @returnEntity can damage Entity. Checking if they are in clan or other
 	 *         reasons if they should not be able to damage each other.
 	 */
-	@SuppressWarnings("deprecation")
 	public static boolean canEntityAttackEntity(Entity attacker, Entity defender) {
 		
 		/**

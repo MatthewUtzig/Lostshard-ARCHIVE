@@ -2,6 +2,7 @@ package com.lostshard.lostshard.Handlers;
 
 import java.util.UUID;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;
 
@@ -19,6 +20,10 @@ public class PseudoPlayerHandler {
 	}
 
 	public static PseudoPlayer getPlayer(Player player) {
+		return getPlayer(player.getUniqueId());
+	}
+	
+	public static PseudoPlayer getPlayer(OfflinePlayer player) {
 		return getPlayer(player.getUniqueId());
 	}
 
