@@ -27,15 +27,27 @@
 - [ ] Pvp
 
 #Chat
-- [ ] Msg
-- [ ] Replay
+- [x] Msg
+- [x] Replay
 - [x] Global
 - [x] Shout
 - [x] Local
 - [x] Whisper
-- [ ] Clan
-- [ ] Party
-- [ ] Global disable and ignore players and disable msg's
+- [x] Clan
+- [x] Party
+- [x] Global disable and ignore players and disable msg's
+- [x] Death messeges
+
+#Skills
+- [x] Mining
+- [x] Lumberjacking
+- [ ] Magery
+- [x] Blades
+- [x] Brawling
+- [ ] Survivalism
+- [ ] Taming
+- [ ] Blacksmithy
+- [ ] Fhising
 
 #Utils
 - [x] Who
