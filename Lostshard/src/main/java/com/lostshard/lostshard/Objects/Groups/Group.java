@@ -1,9 +1,11 @@
 package com.lostshard.lostshard.Objects.Groups;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class Group {
@@ -66,6 +68,14 @@ public class Group {
 		return false;
 	}
 	
+	public boolean isMember(Player player) {
+		return isMember(player.getUniqueId());
+	}
+	
+	public boolean isMember(OfflinePlayer player) {
+		return isMember(player.getUniqueId());
+	}
+	
 	
 	public void sendMessage(String message) {
 		for(UUID member : members) {
@@ -82,5 +92,15 @@ public class Group {
 		if(members.size() <= 0)
 			return true;
 		return false;
+	}
+	
+	public List<Player> getOnlineMembers() {
+		List<Player> rs = new ArrayList<Player>();
+		for(UUID pUUID : members) {
+			Player p = Bukkit.getPlayer(pUUID);
+			if(p != null)
+				rs.add(p);
+		}
+		return rs;	
 	}
 }

@@ -40,5 +40,8 @@ public class Variables {
 	public static final int murderPoint = 5;
 	// NPC
 	public static final int guardRange = 15;
+	
+	public static final int clanMaxNameLeangh = 20;
+	public static final int clanCreateCost = 2000;
 
 }

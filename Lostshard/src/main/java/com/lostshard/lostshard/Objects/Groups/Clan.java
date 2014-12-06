@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Objects.Bank;
@@ -40,7 +41,19 @@ public class Clan extends Group{
 	public void setOwner(UUID owner) {
 		this.owner = owner;
 	}
+	
+	public boolean isOwner(UUID owner) {
+		return this.owner == owner;
+	}
 
+	public boolean isOwner(Player player) {
+		return isOwner(player.getUniqueId());
+	}
+	
+	public boolean isOwner(OfflinePlayer player) {
+		return isOwner(player.getUniqueId());
+	}
+	
 	public ArrayList<UUID> getLeaders() {
 		return leaders;
 	}
