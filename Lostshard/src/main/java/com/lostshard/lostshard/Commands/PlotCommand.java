@@ -1592,7 +1592,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			// costs paid, create the plot
 
 			Plot plot = new Plot(-1, plotName, player.getUniqueId(), curLoc);
-//			Database.insertPlot(plot);
+			Database.insertPlot(plot);
 			Lostshard.getRegistry().getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost

@@ -25,9 +25,9 @@ public class Variables {
 	public static final int goldIngotValue = 100;
 	// Database
 	public static final String mysqlDriver = "com.mysql.jdbc.Driver";
-	public static final String mysqlHost = "jdbc:mysql://";
-	public static final String mysqlUsername = "username";
-	public static final String mysqlPassword = "password";
+	public static final String mysqlUrl = "jdbc:mysql://localhost/lostshard";
+	public static final String mysqlUsername = "root";
+	public static final String mysqlPassword = "";
 	// Server
 	public static final String motd = "MOTD, forgot to insert!";
 	public static final int maxPlayers = 30;

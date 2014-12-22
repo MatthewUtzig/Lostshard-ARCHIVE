@@ -38,6 +38,7 @@ public class Plot {
 	private boolean allowExplosions = false;
 	private boolean privatePlot = true;
 	private boolean friendBuild = false;
+	private boolean update = false;
 	// Upgrade's
 	private boolean town = false;
 	private boolean dungeon = false;
@@ -74,6 +75,7 @@ public class Plot {
 
 	public void setName(String name) {
 		this.name = name;
+		update();
 	}
 
 	public int getId() {
@@ -82,6 +84,7 @@ public class Plot {
 
 	public void setId(int id) {
 		this.id = id;
+		update();
 	}
 
 	public int getSize() {
@@ -90,14 +93,17 @@ public class Plot {
 
 	public void setSize(int size) {
 		this.size = size;
+		update();
 	}
 
 	public void expandSize(int size) {
 		this.size += size;
+		update();
 	}
 
 	public void shrinkSize(int size) {
 		this.size -= size;
+		update();
 	}
 
 	public int getMoney() {
@@ -106,14 +112,17 @@ public class Plot {
 
 	public void setMoney(int money) {
 		this.money = money;
+		update();
 	}
 
 	public void addMoney(int money) {
 		this.money += money;
+		update();
 	}
 
 	public void subtractMoney(int money) {
 		this.money -= money;
+		update();
 	}
 
 	public int getSalePrice() {
@@ -122,6 +131,7 @@ public class Plot {
 
 	public void setSalePrice(int salePrice) {
 		this.salePrice = salePrice;
+		update();
 	}
 
 	public boolean isForSale() {
@@ -150,6 +160,7 @@ public class Plot {
 
 	public void setProtected(boolean protection) {
 		this.protection = protection;
+		update();
 	}
 
 	public boolean isAllowExplosions() {
@@ -158,6 +169,7 @@ public class Plot {
 
 	public void setAllowExplosions(boolean allowExplosions) {
 		this.allowExplosions = allowExplosions;
+		update();
 	}
 
 	public boolean isPrivatePlot() {
@@ -166,6 +178,7 @@ public class Plot {
 
 	public void setPrivatePlot(boolean privatePlot) {
 		this.privatePlot = privatePlot;
+		update();
 	}
 
 	public boolean isFriendBuild() {
@@ -174,6 +187,7 @@ public class Plot {
 
 	public void setFriendBuild(boolean friendBuild) {
 		this.friendBuild = friendBuild;
+		update();
 	}
 
 	public boolean isTown() {
@@ -182,6 +196,7 @@ public class Plot {
 
 	public void setTown(boolean town) {
 		this.town = town;
+		update();
 	}
 
 	public boolean isDungeon() {
@@ -190,6 +205,7 @@ public class Plot {
 
 	public void setDungeon(boolean dungeon) {
 		this.dungeon = dungeon;
+		update();
 	}
 
 	public boolean isAutoKick() {
@@ -198,6 +214,7 @@ public class Plot {
 
 	public void setAutoKick(boolean autoKick) {
 		this.autoKick = autoKick;
+		update();
 	}
 
 	public boolean isNeutralAlignment() {
@@ -206,6 +223,7 @@ public class Plot {
 
 	public void setNeutralAlignment(boolean neutralAlignment) {
 		this.neutralAlignment = neutralAlignment;
+		update();
 	}
 
 	public Location getLocation() {
@@ -214,6 +232,7 @@ public class Plot {
 
 	public void setLocation(Location location) {
 		this.location = location;
+		update();
 	}
 
 	public boolean isCapturePoint() {
@@ -222,6 +241,7 @@ public class Plot {
 
 	public void setCapturePoint(boolean capturePoint) {
 		this.capturePoint = capturePoint;
+		update();
 	}
 
 	public Clan getOwningClan() {
@@ -230,6 +250,7 @@ public class Plot {
 
 	public void setOwningClan(Clan owningClan) {
 		this.owningClan = owningClan;
+		update();
 	}
 
 	public boolean isAllowMagic() {
@@ -238,6 +259,7 @@ public class Plot {
 
 	public void setAllowMagic(boolean allowMagic) {
 		this.allowMagic = allowMagic;
+		update();
 	}
 
 	public boolean isAllowPvp() {
@@ -246,6 +268,7 @@ public class Plot {
 
 	public void setAllowPvp(boolean allowPvp) {
 		this.allowPvp = allowPvp;
+		update();
 	}
 
 	// Getting next id
@@ -268,10 +291,12 @@ public class Plot {
 	// Friends
 	public void addFriend(Player player) {
 		friends.add(player.getUniqueId());
+		update();
 	}
 
 	public void removeFriend(Player player) {
 		friends.remove(player.getUniqueId());
+		update();
 	}
 
 	// Coowners
@@ -281,10 +306,12 @@ public class Plot {
 
 	public void addCoowner(Player player) {
 		coowners.add(player.getUniqueId());
+		update();
 	}
 
 	public void removeCoowner(Player player) {
 		coowners.remove(player.getUniqueId());
+		update();
 	}
 
 	public UUID getOwner() {
@@ -293,6 +320,7 @@ public class Plot {
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
+		update();
 	}
 
 	public int getValue() {
@@ -356,6 +384,18 @@ public class Plot {
 
 	public int getMaxVendors() {
 		return size / 15;
+	}
+
+	public void update() {
+		this.update = true;
+	}
+	
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
 	}
 
 	// Capturepoint stuff

@@ -11,7 +11,7 @@ import com.lostshard.lostshard.Main.Lostshard;
 public class ConnectionPool {
 
 	String driver = Variables.mysqlDriver;
-	String mysqlHost = Variables.mysqlHost;
+	String mysqlHost = Variables.mysqlUrl;
 
 	String mysqlUsername = Variables.mysqlUsername;
 	String mysqlPassword = Variables.mysqlPassword;

@@ -27,7 +27,7 @@ public class Output {
 	
 	public static void plotHelp(Player player) {
 		player.sendMessage(ChatColor.GOLD + "-Plot Help-");
-		player.sendMessage(ChatColor.YELLOW + "/plot create");
+		player.sendMessage(ChatColor.YELLOW + "/plot create (name)");
 		player.sendMessage(ChatColor.YELLOW + "/plot deposit (amount)");
 		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
 	}
@@ -244,7 +244,7 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE
 				+ pseudoPlayer.getStamina() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW+"Build: "+ChatColor.WHITE+
-		pseudoPlayer.getCurrentBuild());
+		pseudoPlayer.getCurrentBuildId());
 		player.sendMessage(ChatColor.YELLOW + "Murder Counts: "
 				+ ChatColor.WHITE + pseudoPlayer.getMurderCounts());
 		player.sendMessage(ChatColor.YELLOW+"Rank: " +
@@ -265,6 +265,7 @@ public class Output {
 					"Invalid syntax, use /whois (player name)");
 			return;
 		}
+		
 		String targetName = args[0];
 		@SuppressWarnings("deprecation")
 		Player p = Bukkit.getPlayer(targetName);

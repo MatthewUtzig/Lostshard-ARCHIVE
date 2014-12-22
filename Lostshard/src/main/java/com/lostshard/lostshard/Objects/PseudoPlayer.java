@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Data.Variables;
+import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -41,7 +43,7 @@ public class PseudoPlayer {
 	private int rank = 800;
 	private Clan clan = null;
 	private Party party = null;
-	private Location customSpawn = null;
+	private Location customSpawn = new Location(Bukkit.getWorlds().get(0),0,0,0);
 	private int spawnTick = 0;
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
@@ -52,6 +54,7 @@ public class PseudoPlayer {
 	private UUID lastResiver = null;
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
+	private boolean update = false;
 	
 	
 	// Effects
@@ -93,14 +96,17 @@ public class PseudoPlayer {
 
 	public void setMoney(int money) {
 		this.money = money;
+		update();
 	}
 
 	public void addMoney(int money) {
 		this.money += money;
+		update();
 	}
 
 	public void subtractMoney(int money) {
 		this.money -= money;
+		update();
 	}
 
 	public int getMurderCounts() {
@@ -109,6 +115,7 @@ public class PseudoPlayer {
 
 	public void setMurderCounts(int murderCounts) {
 		this.murderCounts = murderCounts;
+		update();
 	}
 
 	public boolean isMurderer() {
@@ -117,10 +124,12 @@ public class PseudoPlayer {
 
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
+		update();
 	}
 
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
+		update();
 	}
 
 	public UUID getPlayerUUID() {
@@ -129,6 +138,7 @@ public class PseudoPlayer {
 
 	public void setPlayerUUID(UUID playerUUID) {
 		this.playerUUID = playerUUID;
+		update();
 	}
 	
 	public String getPlayerName() {
@@ -153,6 +163,7 @@ public class PseudoPlayer {
 
 	public void setCriminal(int criminal) {
 		this.criminal = criminal;
+		update();
 	}
 
 	public boolean isCriminal() {
@@ -165,6 +176,7 @@ public class PseudoPlayer {
 
 	public void setGlobalChat(boolean global) {
 		this.globalChat = global;
+		update();
 	}
 
 	public int getSubscribeDays() {
@@ -173,6 +185,7 @@ public class PseudoPlayer {
 
 	public void setSubscribeDays(int subscribe) {
 		this.subscribeDays = subscribe;
+		update();
 	}
 
 	public boolean isSubscriber() {
@@ -185,6 +198,7 @@ public class PseudoPlayer {
 
 	public void setWasSubscribed(boolean wasSubscribed) {
 		this.wasSubscribed = wasSubscribed;
+		update();
 	}
 
 	public int getPlotCreatePoints() {
@@ -193,6 +207,7 @@ public class PseudoPlayer {
 
 	public void setPlotCreatePoints(int plotCreatePoints) {
 		this.plotCreatePoints = plotCreatePoints;
+		update();
 	}
 
 	public int getId() {
@@ -201,6 +216,7 @@ public class PseudoPlayer {
 
 	public void setId(int id) {
 		this.id = id;
+		update();
 	}
 
 	public Plot getTestPlot() {
@@ -248,6 +264,7 @@ public class PseudoPlayer {
 
 	public void setRank(int rank) {
 		this.rank = rank;
+		update();
 	}
 
 	public Clan getClan() {
@@ -256,6 +273,7 @@ public class PseudoPlayer {
 
 	public void setClan(Clan clan) {
 		this.clan = clan;
+		update();
 	}
 
 	public Location getCustomSpawn() {
@@ -264,6 +282,7 @@ public class PseudoPlayer {
 
 	public void setCustomSpawn(Location customSpawn) {
 		this.customSpawn = customSpawn;
+		update();
 	}
 
 	public int getSpawnTick() {
@@ -296,6 +315,7 @@ public class PseudoPlayer {
 
 	public void setPrivateChat(boolean privateChat) {
 		this.privateChat = privateChat;
+		update();
 	}
 
 	public int getCurrentBuildId() {
@@ -304,6 +324,7 @@ public class PseudoPlayer {
 
 	public void setCurrentBuildId(int currentBuild) {
 		this.currentBuild = currentBuild;
+		update();
 	}
 	
 	public Build getCurrentBuild() {
@@ -401,6 +422,7 @@ public class PseudoPlayer {
 
 	public void setTitels(List<String> titels) {
 		this.titels = titels;
+		update();
 	}
 
 	public int getCurrentTitleId() {
@@ -409,6 +431,7 @@ public class PseudoPlayer {
 
 	public void setCurrentTitleId(int currenttitle) {
 		this.currenttitle = currenttitle;
+		update();
 	}
 	
 	public String getCurrentTitle() {
@@ -416,5 +439,22 @@ public class PseudoPlayer {
 			return "";
 		else
 			return titels.get(currenttitle);
+	}
+	
+	public void update() {
+		this.update = true;
+	}
+	
+	public boolean isUpdate() {
+		return update;
+	}
+	
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public void reload() {
+		Lostshard.getRegistry().getPlayers().remove(this);
+		Lostshard.getRegistry().getPlayers().add(Database.getPlayer(id));
 	}
 }

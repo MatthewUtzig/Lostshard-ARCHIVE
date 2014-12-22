@@ -31,8 +31,7 @@ public class PseudoPlayerHandler {
 		Player player = event.getPlayer();
 		if (getPlayer(event.getPlayer()) == null) {
 			PseudoPlayer pPlayer = new PseudoPlayer(player.getUniqueId(), 1);
-//			Database.insertPlayer(pPlayer);
-			Lostshard.getRegistry().getPlayers().add(pPlayer);
+			Database.insertPlayer(pPlayer);
 		}
 	}
 

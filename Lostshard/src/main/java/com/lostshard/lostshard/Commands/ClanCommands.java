@@ -37,8 +37,8 @@ public class ClanCommands implements CommandExecutor, TabCompleter {
 				clanHelp(player);
 			else if(clanCommand.equalsIgnoreCase("invite"))
 				clanInvite(player, args);
-			else if(clanCommand.equalsIgnoreCase("uninvite"))
-				clanUnInvite(player, args);
+//			else if(clanCommand.equalsIgnoreCase("uninvite"))
+//				clanUnInvite(player, args);
 			else if(clanCommand.equalsIgnoreCase("promote"))
 				clanPromote(player, args);
 			else if(clanCommand.equalsIgnoreCase("demote"))
@@ -109,395 +109,395 @@ public class ClanCommands implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanInfo(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
-		Clan clan = pseudoPlayer.getClan();
-		if(clan != null) {
-			Output.outputClanInfo(player, clan);
-		}
-		else Output.simpleError(player, "You are not currently in a clan.");
+//		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+//		Clan clan = pseudoPlayer.getClan();
+//		if(clan != null) {
+//			Output.outputClanInfo(player, clan);
+//		}
+//		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
 	private static void clanInvite(Player player, String[] split) {
-		if(split.length == 3) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
-					String targetName = split[2];
-					Player targetPlayer = player.getServer().getPlayer(targetName);
-					if(targetPlayer != null) {
-						PseudoPlayer invitedPseudoPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
-//						if(invitedPseudoPlayer._secret) {
-//							Output.simpleError(player, "That player is not online.");
-//							return;
+//		if(split.length == 3) {
+//			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+//			Clan clan = pseudoPlayer.getClan();
+//			if(clan != null) {
+//				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
+//					String targetName = split[2];
+//					Player targetPlayer = player.getServer().getPlayer(targetName);
+//					if(targetPlayer != null) {
+//						PseudoPlayer invitedPseudoPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
+////						if(invitedPseudoPlayer._secret) {
+////							Output.simpleError(player, "That player is not online.");
+////							return;
+////						}
+//						else if(!targetPlayer.getName().equalsIgnoreCase(player.getName())) {
+//							PseudoPlayer targetPseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
+//							if(targetPseudoPlayer.getClan() == null) {
+//								if(!clan.isOwner(targetPlayer) && !clan.isLeader(targetPlayer) && !clan.isMember(targetPlayer.getName())) {
+//									if(!clan.isInvitedStrict(targetPlayer.getName())) {
+//										clan.addInvited(targetPlayer.getName());
+//										Output.positiveMessage(player, "You have invited "+targetPlayer.getName()+" to your clan.");
+//										Output.positiveMessage(targetPlayer, "You have been invited to the "+clan.getName()+" clan.");
+//										Output.positiveMessage(targetPlayer, "\"/clan join "+clan.getName()+"\" to join.");
+//									}
+//									else Output.simpleError(player, targetPlayer.getName()+" has already been invited to this clan.");
+//								}
+//								else Output.simpleError(player, "That player is already a member of this clan.");
+//							}
+//							else Output.simpleError(player, "That player is already in a clan.");
 //						}
-						else if(!targetPlayer.getName().equalsIgnoreCase(player.getName())) {
-							PseudoPlayer targetPseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
-							if(targetPseudoPlayer.getClan() == null) {
-								if(!clan.isOwner(targetPlayer.getName()) && !clan.isLeader(targetPlayer.getName()) && !clan.isMember(targetPlayer.getName())) {
-									if(!clan.isInvitedStrict(targetPlayer.getName())) {
-										clan.addInvited(targetPlayer.getName());
-										Output.positiveMessage(player, "You have invited "+targetPlayer.getName()+" to your clan.");
-										Output.positiveMessage(targetPlayer, "You have been invited to the "+clan.getName()+" clan.");
-										Output.positiveMessage(targetPlayer, "\"/clan join "+clan.getName()+"\" to join.");
-									}
-									else Output.simpleError(player, targetPlayer.getName()+" has already been invited to this clan.");
-								}
-								else Output.simpleError(player, "That player is already a member of this clan.");
-							}
-							else Output.simpleError(player, "That player is already in a clan.");
-						}
-						else Output.simpleError(player, "You cannot invite yourself to the clan.");
-					}
-					else Output.simpleError(player, "That player is not currently online.");
-				}
-				else Output.simpleError(player, "Only a clan owner or leader may invite players."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-			
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
-	}
-	
-	private static void clanUnInvite(Player player, String[] split) {
-		if(split.length == 3) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getName()) || clan.isLeader(player.getName())) {
-					String targetName = split[2];
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						if(clan.isInvited(targetName)) {
-							clan.removeInvited(targetName);
-							Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
-							if(targetPlayer != null) {
-								Output.simpleError(targetPlayer, "Your invitation to join "+clan.getName()+" has been revoked.");
-								targetName = targetPlayer.getName();
-							}
-							Output.positiveMessage(player, "You have uninvited "+targetName+" from your clan.");
-						}
-						else Output.simpleError(player, "That player has not been invited to the clan.");
-					}
-					else Output.simpleError(player, "You cannot uninvite yourself from the clan.");
-				}
-				else Output.simpleError(player, "Only a clan owner or leader may uninvite players."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
+//						else Output.simpleError(player, "You cannot invite yourself to the clan.");
+//					}
+//					else Output.simpleError(player, "That player is not currently online.");
+//				}
+//				else Output.simpleError(player, "Only a clan owner or leader may invite players."); 
+//			}
+//			else Output.simpleError(player, "You are not currently in a clan.");
+//			
+//		}
+//		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
+//	}
+//	
+//	private static void clanUnInvite(Player player, String[] split) {
+//		if(split.length == 3) {
+//			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//			Clan clan = pseudoPlayer.getClan();
+//			if(clan != null) {
+//				if(clan.isOwner(player.getName()) || clan.isLeader(player.getName())) {
+//					String targetName = split[2];
+//					if(!targetName.equalsIgnoreCase(player.getName())) {
+//						if(clan.isInvited(targetName)) {
+//							clan.removeInvited(targetName);
+//							Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
+//							if(targetPlayer != null) {
+//								Output.simpleError(targetPlayer, "Your invitation to join "+clan.getName()+" has been revoked.");
+//								targetName = targetPlayer.getName();
+//							}
+//							Output.positiveMessage(player, "You have uninvited "+targetName+" from your clan.");
+//						}
+//						else Output.simpleError(player, "That player has not been invited to the clan.");
+//					}
+//					else Output.simpleError(player, "You cannot uninvite yourself from the clan.");
+//				}
+//				else Output.simpleError(player, "Only a clan owner or leader may uninvite players."); 
+//			}
+//			else Output.simpleError(player, "You are not currently in a clan.");
+//		}
+//		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
 	private static void clanPromote(Player player, String[] split) {
-		if(split.length == 3) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getName())) {
-					String targetName = split[2];
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						if(!clan.isLeader(targetName)) {
-							if(clan.isMember(targetName)) {
-								Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
-								if(targetPlayer != null) {
-									Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
-									targetName = targetPlayer.getName();
-									clan.removeMember(targetName);
-									clan.addLeader(targetName);
-									Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
-									Database.updateClan(clan);
-								}
-								else {
-									PseudoPlayer targetPseudo;
-									try {
-										targetPseudo = Database.createPseudoPlayer(targetName);
-									}
-									catch(Exception e) {
-										targetPseudo = null;
-									}
-									if(targetPseudo != null) {
-										targetName = targetPseudo.getName();
-										clan.removeMember(targetName);
-										clan.addLeader(targetName);
-										Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
-										Database.updateClan(clan);
-									}
-									else Output.simpleError(player, "That player was not found.");
-								}
-							}
-							else Output.simpleError(player, "That player is not currently a member of your clan.");
-						}
-						else Output.simpleError(player, "That player is already a leader of the clan.");
-					}
-					else Output.simpleError(player, "You cannot promote yourself.");
-				}
-				else Output.simpleError(player, "Only a clan owner may promote clan members."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
+//		if(split.length == 3) {
+//			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//			Clan clan = pseudoPlayer.getClan();
+//			if(clan != null) {
+//				if(clan.isOwner(player.getName())) {
+//					String targetName = split[2];
+//					if(!targetName.equalsIgnoreCase(player.getName())) {
+//						if(!clan.isLeader(targetName)) {
+//							if(clan.isMember(targetName)) {
+//								Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
+//								if(targetPlayer != null) {
+//									Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
+//									targetName = targetPlayer.getName();
+//									clan.removeMember(targetName);
+//									clan.addLeader(targetName);
+//									Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
+//									Database.updateClan(clan);
+//								}
+//								else {
+//									PseudoPlayer targetPseudo;
+//									try {
+//										targetPseudo = Database.createPseudoPlayer(targetName);
+//									}
+//									catch(Exception e) {
+//										targetPseudo = null;
+//									}
+//									if(targetPseudo != null) {
+//										targetName = targetPseudo.getName();
+//										clan.removeMember(targetName);
+//										clan.addLeader(targetName);
+//										Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
+//										Database.updateClan(clan);
+//									}
+//									else Output.simpleError(player, "That player was not found.");
+//								}
+//							}
+//							else Output.simpleError(player, "That player is not currently a member of your clan.");
+//						}
+//						else Output.simpleError(player, "That player is already a leader of the clan.");
+//					}
+//					else Output.simpleError(player, "You cannot promote yourself.");
+//				}
+//				else Output.simpleError(player, "Only a clan owner may promote clan members."); 
+//			}
+//			else Output.simpleError(player, "You are not currently in a clan.");
+//		}
+//		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 
 	private static void clanDemote(Player player, String[] split) {
-		if(split.length == 3) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getName())) {
-					String targetName = split[2];
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						if(clan.isLeader(targetName)) {
-							Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
-							if(targetPlayer != null) {
-								targetName = targetPlayer.getName();
-								clan.removeLeader(targetName);
-								clan.addMember(targetName);
-								Output.positiveMessage(targetPlayer, "You have been demoted to a normal member in your clan.");
-								Output.positiveMessage(player, "You have demoted "+targetName+" to member in your clan.");
-								Database.updateClan(clan);
-							}
-							else {
-								PseudoPlayer targetPseudo;
-								try {
-									targetPseudo = Database.createPseudoPlayer(targetName);
-								}
-								catch(Exception e) {
-									targetPseudo = null;
-								}
-								if(targetPseudo != null) {
-									targetName = targetPseudo.getName();
-									clan.removeLeader(targetName);
-									clan.addMember(targetName);
-									Output.positiveMessage(player, "You have demoted "+targetName+" to member in your clan.");
-									Database.updateClan(clan);
-								}
-								else Output.simpleError(player, "That player was not found.");
-							}
-						}
-						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
-					}
-					else Output.simpleError(player, "You cannot demote yourself.");
-				}
-				else Output.simpleError(player, "Only a clan owner may demote clan members."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
+//		if(split.length == 3) {
+//			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//			Clan clan = pseudoPlayer.getClan();
+//			if(clan != null) {
+//				if(clan.isOwner(player.getName())) {
+//					String targetName = split[2];
+//					if(!targetName.equalsIgnoreCase(player.getName())) {
+//						if(clan.isLeader(targetName)) {
+//							Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
+//							if(targetPlayer != null) {
+//								targetName = targetPlayer.getName();
+//								clan.removeLeader(targetName);
+//								clan.addMember(targetName);
+//								Output.positiveMessage(targetPlayer, "You have been demoted to a normal member in your clan.");
+//								Output.positiveMessage(player, "You have demoted "+targetName+" to member in your clan.");
+//								Database.updateClan(clan);
+//							}
+//							else {
+//								PseudoPlayer targetPseudo;
+//								try {
+//									targetPseudo = Database.createPseudoPlayer(targetName);
+//								}
+//								catch(Exception e) {
+//									targetPseudo = null;
+//								}
+//								if(targetPseudo != null) {
+//									targetName = targetPseudo.getName();
+//									clan.removeLeader(targetName);
+//									clan.addMember(targetName);
+//									Output.positiveMessage(player, "You have demoted "+targetName+" to member in your clan.");
+//									Database.updateClan(clan);
+//								}
+//								else Output.simpleError(player, "That player was not found.");
+//							}
+//						}
+//						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
+//					}
+//					else Output.simpleError(player, "You cannot demote yourself.");
+//				}
+//				else Output.simpleError(player, "Only a clan owner may demote clan members."); 
+//			}
+//			else Output.simpleError(player, "You are not currently in a clan.");
+//		}
+//		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
 	private static void clanJoin(Player player, String[] split) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-		if(pseudoPlayer.getClan() != null) {
-			if(pseudoPlayer.getClan().isOwner(player.getName())) {
-				Output.simpleError(player, "Cannot join another clan, already a clan owner.");
-				return;
-			}
-		}
-		if(split.length >= 3) {
-			int splitNameLength = split.length;
-			String clanName = "";
-			for(int i=2; i<splitNameLength; i++) {
-				clanName += split[i];
-				if(i < splitNameLength-1)
-					clanName+= " ";
-			}
-			
-			clanName = clanName.trim();
-			
-			Clan clanFound = null;
-			for(Clan clan : _clans) {
-				if(clan.getName().equalsIgnoreCase(clanName)) {
-					clanFound = clan;
-				}
-			}
-			
-			if(clanFound != null) {
-				if(clanFound.isInvited(player.getName())) {
-					if(!clanFound.isOwner(player.getName()) && !clanFound.isLeader(player.getName()) && !clanFound.isMember(player.getName())) {
-						Output.clanMessage(clanFound, player.getName()+" has joined the clan.");
-						clanFound.addMember(player.getName());
-						clanFound.removeInvited(player.getName());
-						Clan currentClan = pseudoPlayer.getClan();
-						pseudoPlayer.setClan(clanFound);
-						if(currentClan != null) {
-							currentClan.removeInvited(player.getName());
-							currentClan.removeLeader(player.getName());
-							currentClan.removeMember(player.getName());
-						}
-						Output.positiveMessage(player, "You have joined the "+clanFound.getName()+" clan.");
-						Database.updateClan(clanFound);
-						if(currentClan != null)
-							Database.updateClan(currentClan);
-						Database.updatePlayer(player.getName());
-						Utils.setPlayerTitle(player);
-					}
-					else {
-						Output.simpleError(player, "You are already a member of this clan.");
-						clanFound.removeInvited(player.getName());
-					}
-				}
-				else Output.simpleError(player, "You have not been invited to that clan.");
-			}
-			else Output.simpleError(player, "No clan named "+clanName+" found.");
-		}
-		else Output.simpleError(player, "Use \"/clan join (clan name)\"");
+//		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//		if(pseudoPlayer.getClan() != null) {
+//			if(pseudoPlayer.getClan().isOwner(player.getName())) {
+//				Output.simpleError(player, "Cannot join another clan, already a clan owner.");
+//				return;
+//			}
+//		}
+//		if(split.length >= 3) {
+//			int splitNameLength = split.length;
+//			String clanName = "";
+//			for(int i=2; i<splitNameLength; i++) {
+//				clanName += split[i];
+//				if(i < splitNameLength-1)
+//					clanName+= " ";
+//			}
+//			
+//			clanName = clanName.trim();
+//			
+//			Clan clanFound = null;
+//			for(Clan clan : _clans) {
+//				if(clan.getName().equalsIgnoreCase(clanName)) {
+//					clanFound = clan;
+//				}
+//			}
+//			
+//			if(clanFound != null) {
+//				if(clanFound.isInvited(player.getName())) {
+//					if(!clanFound.isOwner(player.getName()) && !clanFound.isLeader(player.getName()) && !clanFound.isMember(player.getName())) {
+//						Output.clanMessage(clanFound, player.getName()+" has joined the clan.");
+//						clanFound.addMember(player.getName());
+//						clanFound.removeInvited(player.getName());
+//						Clan currentClan = pseudoPlayer.getClan();
+//						pseudoPlayer.setClan(clanFound);
+//						if(currentClan != null) {
+//							currentClan.removeInvited(player.getName());
+//							currentClan.removeLeader(player.getName());
+//							currentClan.removeMember(player.getName());
+//						}
+//						Output.positiveMessage(player, "You have joined the "+clanFound.getName()+" clan.");
+//						Database.updateClan(clanFound);
+//						if(currentClan != null)
+//							Database.updateClan(currentClan);
+//						Database.updatePlayer(player.getName());
+//						Utils.setPlayerTitle(player);
+//					}
+//					else {
+//						Output.simpleError(player, "You are already a member of this clan.");
+//						clanFound.removeInvited(player.getName());
+//					}
+//				}
+//				else Output.simpleError(player, "You have not been invited to that clan.");
+//			}
+//			else Output.simpleError(player, "No clan named "+clanName+" found.");
+//		}
+//		else Output.simpleError(player, "Use \"/clan join (clan name)\"");
 	}
 	
 	private static void clanKick(Player player, String[] split) {
-		if(split.length == 3) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getName()) || clan.isLeader(player.getName())) {
-					String targetName = split[2];
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
-						if(targetPlayer != null) {
-							if(clan.isInClan(targetPlayer.getName())) {
-								if(clan.isOwner(player.getName())) {
-									clan.removeLeader(targetPlayer.getName());
-									clan.removeMember(targetPlayer.getName());
-									PseudoPlayer targetPseudo = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
-									targetPseudo.setClan(null);
-									Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
-									Output.positiveMessage(player, "You have kicked "+targetPlayer.getName()+ " from your clan.");
-									Database.updateClan(clan);
-									Database.updatePlayer(targetPlayer.getName());
-									Utils.setPlayerTitle(targetPlayer);
-								}
-								else if(clan.isLeader(player.getName())) {
-									if(!clan.isLeader(targetPlayer.getName())) {
-										if(!clan.isOwner(targetPlayer.getName())) {
-											clan.removeMember(targetPlayer.getName());
-											PseudoPlayer targetPseudo = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
-											targetPseudo.setClan(null);
-											Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
-											Output.positiveMessage(player, "You have kicked "+targetPlayer.getName()+ " from your clan.");
-											Database.updateClan(clan);
-											Database.updatePlayer(targetPlayer.getName());
-											Utils.setPlayerTitle(targetPlayer);
-										}
-										else Output.simpleError(player, "You may not kick the leader from the clan.");
-									}
-									else Output.simpleError(player, "Only the clan owner may kick a clan leader.");
-								}
-							}
-							else Output.simpleError(player, "That player is not in your clan.");
-						}
-						else {
-							if(clan.isInClan(targetName)) {
-								// player not online
-								if(clan.isOwner(player.getName())) {
-									clan.removeLeader(targetName);
-									clan.removeMember(targetName);
-									Output.positiveMessage(player, "You have kicked "+targetName+ " from your clan.");
-									Database.updateClan(clan);
-								}
-								else if(clan.isLeader(player.getName())) {
-									if(!clan.isLeader(targetName)) {
-										if(!clan.isOwner(targetName)) {
-											clan.removeMember(targetName);
-											Output.positiveMessage(player, "You have kicked "+targetName+ " from your clan.");
-											Database.updateClan(clan);
-										}
-										else Output.simpleError(player, "You may not kick the leader from the clan.");
-									}
-									else Output.simpleError(player, "Only the clan owner may kick a clan leader.");
-								}
-							}
-							else Output.simpleError(player, "That player is not in your clan.");
-						}
-					}
-					else Output.simpleError(player, "You cannot kick yourself from the clan.");
-				}
-				else Output.simpleError(player, "Only a clan owner or leader may kick players."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-			
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
+//		if(split.length == 3) {
+//			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//			Clan clan = pseudoPlayer.getClan();
+//			if(clan != null) {
+//				if(clan.isOwner(player.getName()) || clan.isLeader(player.getName())) {
+//					String targetName = split[2];
+//					if(!targetName.equalsIgnoreCase(player.getName())) {
+//						Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
+//						if(targetPlayer != null) {
+//							if(clan.isInClan(targetPlayer.getName())) {
+//								if(clan.isOwner(player.getName())) {
+//									clan.removeLeader(targetPlayer.getName());
+//									clan.removeMember(targetPlayer.getName());
+//									PseudoPlayer targetPseudo = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
+//									targetPseudo.setClan(null);
+//									Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
+//									Output.positiveMessage(player, "You have kicked "+targetPlayer.getName()+ " from your clan.");
+//									Database.updateClan(clan);
+//									Database.updatePlayer(targetPlayer.getName());
+//									Utils.setPlayerTitle(targetPlayer);
+//								}
+//								else if(clan.isLeader(player.getName())) {
+//									if(!clan.isLeader(targetPlayer.getName())) {
+//										if(!clan.isOwner(targetPlayer.getName())) {
+//											clan.removeMember(targetPlayer.getName());
+//											PseudoPlayer targetPseudo = PseudoPlayerHandler.getPseudoPlayer(targetPlayer.getName());
+//											targetPseudo.setClan(null);
+//											Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
+//											Output.positiveMessage(player, "You have kicked "+targetPlayer.getName()+ " from your clan.");
+//											Database.updateClan(clan);
+//											Database.updatePlayer(targetPlayer.getName());
+//											Utils.setPlayerTitle(targetPlayer);
+//										}
+//										else Output.simpleError(player, "You may not kick the leader from the clan.");
+//									}
+//									else Output.simpleError(player, "Only the clan owner may kick a clan leader.");
+//								}
+//							}
+//							else Output.simpleError(player, "That player is not in your clan.");
+//						}
+//						else {
+//							if(clan.isInClan(targetName)) {
+//								// player not online
+//								if(clan.isOwner(player.getName())) {
+//									clan.removeLeader(targetName);
+//									clan.removeMember(targetName);
+//									Output.positiveMessage(player, "You have kicked "+targetName+ " from your clan.");
+//									Database.updateClan(clan);
+//								}
+//								else if(clan.isLeader(player.getName())) {
+//									if(!clan.isLeader(targetName)) {
+//										if(!clan.isOwner(targetName)) {
+//											clan.removeMember(targetName);
+//											Output.positiveMessage(player, "You have kicked "+targetName+ " from your clan.");
+//											Database.updateClan(clan);
+//										}
+//										else Output.simpleError(player, "You may not kick the leader from the clan.");
+//									}
+//									else Output.simpleError(player, "Only the clan owner may kick a clan leader.");
+//								}
+//							}
+//							else Output.simpleError(player, "That player is not in your clan.");
+//						}
+//					}
+//					else Output.simpleError(player, "You cannot kick yourself from the clan.");
+//				}
+//				else Output.simpleError(player, "Only a clan owner or leader may kick players."); 
+//			}
+//			else Output.simpleError(player, "You are not currently in a clan.");
+//			
+//		}
+//		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
 	private static void clanLeave(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
-		Clan clan = pseudoPlayer.getClan();
-		if(clan != null) {
-			if(!clan.isOwner(player.getName())) {
-				clan.removeMember(player.getName());
-				clan.removeLeader(player.getName());
-				pseudoPlayer.setClan(null);
-				Database.updateClan(clan);
-				Database.updatePlayer(player.getName());
-				Output.clanMessage(clan, player.getName()+" has left the clan.");
-				Output.positiveMessage(player, "You have left the "+clan.getName()+" clan.");
-				Utils.setPlayerTitle(player);
-			}
-			else {
-				Output.simpleError(player, "The clan owner may not leave the clan.");
-				Output.simpleError(player, "You may transfer ownership or disband the clan however.");
-			}
-		}
-		else Output.simpleError(player, "You are not currently in a clan.");
+//		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPseudoPlayer(player.getName());
+//		Clan clan = pseudoPlayer.getClan();
+//		if(clan != null) {
+//			if(!clan.isOwner(player.getName())) {
+//				clan.removeMember(player.getName());
+//				clan.removeLeader(player.getName());
+//				pseudoPlayer.setClan(null);
+//				Database.updateClan(clan);
+//				Database.updatePlayer(player.getName());
+//				Output.clanMessage(clan, player.getName()+" has left the clan.");
+//				Output.positiveMessage(player, "You have left the "+clan.getName()+" clan.");
+//				Utils.setPlayerTitle(player);
+//			}
+//			else {
+//				Output.simpleError(player, "The clan owner may not leave the clan.");
+//				Output.simpleError(player, "You may transfer ownership or disband the clan however.");
+//			}
+//		}
+//		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
 	public static Clan findClanByPlayer(Player player) {
-		for(Clan clan : Lostshard.getRegistry().getClans()) {
-			if(clan.isMember(player.getName()))
-				return clan;
-		}
+//		for(Clan clan : Lostshard.getRegistry().getClans()) {
+//			if(clan.isMember(player.getName()))
+//				return clan;
+//		}
 		return null;
 	}
 	
 	private static void clanTransfer(Player player, String[] split) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
-		Clan clan = pseudoPlayer.getClan();
-		if(clan != null) {
-			if(clan.isOwner(player)) {
-				String targetName = split[2];
-				if(!targetName.equalsIgnoreCase(player.getName())) {
-					if(clan.isLeader(targetName) || clan.isMember(targetName)) {
-						Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
-						if(targetPlayer != null) {
-							// player transferring to is online
-							clan.removeMember(targetPlayer.getName());
-							clan.removeLeader(targetPlayer.getName());
-							clan.setOwner(targetPlayer.getName());
-							clan.addLeader(player.getName());
-							Output.positiveMessage(player, "You have transferred ownership of "+clan.getName());
-							Output.positiveMessage(player, "to "+targetPlayer.getName()+", you are now a clan leader.");
-							Output.positiveMessage(targetPlayer, "The clan "+clan.getName()+" has been transferred to you,");
-							Output.positiveMessage(targetPlayer, "you are now the owner.");
-							Database.updateClan(clan);
-						}
-						else {
-							PseudoPlayer targetPseudo;
-							try {
-								targetPseudo = Database.createPseudoPlayer(targetName);
-							}
-							catch(Exception e) {
-								targetPseudo = null;
-							}
-							if(targetPseudo != null) {
-								targetName = targetPseudo.getName();
-								clan.removeMember(targetName);
-								clan.removeLeader(targetName);
-								clan.setOwner(targetName);
-								clan.addLeader(player.getName()); 
-								targetPseudo.setClan(clan);
-								Output.positiveMessage(player, "You have transferred ownership of "+clan.getName());
-								Output.positiveMessage(player, "to "+targetPseudo.getName()+", you are now a clan leader.");
-								Database.updateClan(clan);
-								Database.updatePlayerByPseudoPlayer(targetPseudo);
-							}
-							else Output.simpleError(player, "That player was not found.");
-						}
-					}
-					else Output.simpleError(player, "You may only transfer ownership of the clan to a clan member.");
-				}
-				else Output.simpleError(player, "You may not transfer clan ownership to yourself.");
-			}
-			else Output.simpleError(player, "Only the clan owner my transfer ownership.");
-		}
-		else Output.simpleError(player, "You are not currently in a clan.");
+//		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+//		Clan clan = pseudoPlayer.getClan();
+//		if(clan != null) {
+//			if(clan.isOwner(player)) {
+//				String targetName = split[2];
+//				if(!targetName.equalsIgnoreCase(player.getName())) {
+//					if(clan.isLeader(targetName) || clan.isMember(targetName)) {
+//						Player targetPlayer = Utils.getPlugin().getServer().getPlayer(targetName);
+//						if(targetPlayer != null) {
+//							// player transferring to is online
+//							clan.removeMember(targetPlayer.getName());
+//							clan.removeLeader(targetPlayer.getName());
+//							clan.setOwner(targetPlayer.getName());
+//							clan.addLeader(player.getName());
+//							Output.positiveMessage(player, "You have transferred ownership of "+clan.getName());
+//							Output.positiveMessage(player, "to "+targetPlayer.getName()+", you are now a clan leader.");
+//							Output.positiveMessage(targetPlayer, "The clan "+clan.getName()+" has been transferred to you,");
+//							Output.positiveMessage(targetPlayer, "you are now the owner.");
+//							Database.updateClan(clan);
+//						}
+//						else {
+//							PseudoPlayer targetPseudo;
+//							try {
+//								targetPseudo = Database.createPseudoPlayer(targetName);
+//							}
+//							catch(Exception e) {
+//								targetPseudo = null;
+//							}
+//							if(targetPseudo != null) {
+//								targetName = targetPseudo.getName();
+//								clan.removeMember(targetName);
+//								clan.removeLeader(targetName);
+//								clan.setOwner(targetName);
+//								clan.addLeader(player.getName()); 
+//								targetPseudo.setClan(clan);
+//								Output.positiveMessage(player, "You have transferred ownership of "+clan.getName());
+//								Output.positiveMessage(player, "to "+targetPseudo.getName()+", you are now a clan leader.");
+//								Database.updateClan(clan);
+//								Database.updatePlayerByPseudoPlayer(targetPseudo);
+//							}
+//							else Output.simpleError(player, "That player was not found.");
+//						}
+//					}
+//					else Output.simpleError(player, "You may only transfer ownership of the clan to a clan member.");
+//				}
+//				else Output.simpleError(player, "You may not transfer clan ownership to yourself.");
+//			}
+//			else Output.simpleError(player, "Only the clan owner my transfer ownership.");
+//		}
+//		else Output.simpleError(player, "You are not currently in a clan.");
 		
 	}
 

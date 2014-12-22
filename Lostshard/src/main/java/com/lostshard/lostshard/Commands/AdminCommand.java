@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
@@ -21,6 +22,8 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 	 */
 	public AdminCommand(Lostshard plugin) {
 		plugin.getCommand("admin").setExecutor(this);
+		plugin.getCommand("test").setExecutor(this);
+		
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -33,7 +36,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			}
 			Player player = (Player) sender;
 			if (!player.isOp()) {
-				Output.simpleError(player, "Ops may perform this command.");
+				Output.simpleError(player, "OP's may only perform this command.");
 				return true;
 			}
 			if (args.length < 1) {
@@ -46,6 +49,9 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			} else if (subCommand.equalsIgnoreCase("tpplot")) {
 				adminTpPlot(player, args);
 			}
+		}else if(cmd.getName().equalsIgnoreCase("test")) {
+			Database.test();
+			return true;
 		}
 		return true;
 	}

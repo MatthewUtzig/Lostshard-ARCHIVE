@@ -26,6 +26,15 @@ public class Serializer {
 	public static JSONParser parser = new JSONParser();
 	public static Gson gson = new Gson();
 
+	@SuppressWarnings("unchecked")
+	public static List<String> deserializeStringArray(String stringArray) {
+		return gson.fromJson(stringArray, List.class);
+	}
+	
+	public static String serializeStringArray(List<String> stringArray) {
+		return gson.toJson(stringArray);
+	}
+	
 	public static Location deserializeLocation(String locationString) {
 		try {
 			Object jo = parser.parse(locationString);

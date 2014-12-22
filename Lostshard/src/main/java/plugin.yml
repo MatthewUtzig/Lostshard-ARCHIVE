@@ -39,7 +39,7 @@ commands:
    msg:
       description: Send a private message to a player.
       aliases: [m]
-      usage: /<command> (Player)
+      usage: /<command> (Player) (Message)
    toggleglobalchat:
       description: Toggle global chat.
       aliases: [toggleglobal]
@@ -51,7 +51,7 @@ commands:
    replay:
       description: Replay on a private message.
       aliases: [r]
-      usage: /<command> (Player)
+      usage: /<command> (Message)
    stats:
       description: Output player stats.
       usage: /<command>
@@ -65,9 +65,15 @@ commands:
       description: Teleports to town after 10sec have a 3 houre .
       usage: /<command>
    resetspawn:
-      description: Output whois.
+      description: Resets your spawn.
       usage: /<command>
    rules:
-      description: Output whois.
+      description: Output rules.
       aliases: [modt]
+      usage: /<command>
+   test:
+      description: Output whois.
+      usage: /<command>
+   admin:
+      description: Output whois.
       usage: /<command>
