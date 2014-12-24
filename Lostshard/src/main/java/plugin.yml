@@ -77,3 +77,10 @@ commands:
    admin:
       description: Output whois.
       usage: /<command>
+   build:
+      description: Change build.
+      usage: /<command>
+   skills:
+      description: Change build.
+      usage: /<command>
+      

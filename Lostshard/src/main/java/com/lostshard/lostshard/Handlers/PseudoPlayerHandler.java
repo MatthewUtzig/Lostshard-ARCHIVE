@@ -34,5 +34,10 @@ public class PseudoPlayerHandler {
 			Database.insertPlayer(pPlayer);
 		}
 	}
+	
+	public static void tick(double delta, long tick) {
+		for(PseudoPlayer pPlayer : Lostshard.getRegistry().getPlayers())
+			pPlayer.tick(delta, tick);
+	}
 
 }

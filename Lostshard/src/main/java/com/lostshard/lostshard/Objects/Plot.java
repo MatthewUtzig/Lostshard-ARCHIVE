@@ -288,6 +288,14 @@ public class Plot {
 		return player.isOp() || friends.contains(player.getUniqueId());
 	}
 
+	public boolean isOwner(UUID uuid) {
+		return uuid == owner;
+	}
+
+	public boolean isFriend(UUID uuid) {
+		return friends.contains(uuid);
+	}
+	
 	// Friends
 	public void addFriend(Player player) {
 		friends.add(player.getUniqueId());
@@ -302,6 +310,10 @@ public class Plot {
 	// Coowners
 	public boolean isCoowner(Player player) {
 		return player.isOp() || coowners.contains(player.getUniqueId());
+	}
+	
+	public boolean isCoowner(UUID uuid) {
+		return coowners.contains(uuid);
 	}
 
 	public void addCoowner(Player player) {
@@ -363,6 +375,20 @@ public class Plot {
 		return isOwner(player) ? true : isCoowner(player) ? true : false;
 	}
 
+	public boolean isAllowedToBuild(UUID uuid) {
+		return isCoownerOrAbove(uuid) ? true : isFriend(uuid)
+				&& isFriendBuild() ? true : !isProtected() ? true : false;
+	}
+
+	public boolean isFriendOrAbove(UUID uuid) {
+		return isOwner(uuid) ? true : isCoowner(uuid) ? true
+				: isFriend(uuid) ? true : false;
+	}
+
+	public boolean isCoownerOrAbove(UUID uuid) {
+		return isOwner(uuid) ? true : isCoowner(uuid) ? true : false;
+	}
+	
 	/**
 	 * @author Frank Oliver
 	 * @param toSize

@@ -8,9 +8,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Output;
 
 public class UtilsCommand implements CommandExecutor, TabCompleter {
@@ -26,6 +28,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("spawn").setExecutor(this);
 		plugin.getCommand("resetspawn").setExecutor(this);
 		plugin.getCommand("rules").setExecutor(this);
+		plugin.getCommand("build").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -42,8 +45,58 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			playerResetspawn(sender);
 		} else if (cmd.getName().equalsIgnoreCase("rules")) {
 			Output.displayRules(sender);
+		} else if (cmd.getName().equalsIgnoreCase("build")) {
+			buildChange(sender, args);
 		}
 		return true;
+	}
+
+	private void buildChange(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer((Player) sender);
+		if(args.length < 1) {
+			if(pPlayer.wasSubscribed())
+				Output.simpleError(sender, "/build 0-2");
+			else
+				Output.simpleError(sender, "/build 0-1");
+			return;
+		}
+		try {
+			int id = Integer.parseInt(args[0]);
+    		if(id < 0) {
+    			Output.simpleError(sender, "Invalid build number.");
+    			return;
+    		}
+    		
+    		if(pPlayer.wasSubscribed()) {
+    			if(id > 2) {
+    				Output.simpleError(sender, "You may only use builds 0, 1, and 2.");
+    				return;
+    			}
+    		}
+    		else if(id > 1) {
+    			Output.simpleError(sender, "You may only use builds 0 and 1");
+    			return;
+    		}
+			if(pPlayer.getBuilds().size() < id+1) {
+				Build build = new Build();
+				pPlayer.getBuilds().add(build);
+				Database.insertBuild(build);
+			}
+			pPlayer.setCurrentBuildId(id);
+			Output.positiveMessage(sender, "You have changed build to "+id+".");
+			Player player = (Player) sender;
+			player.getLocation().getWorld().strikeLightning(player.getLocation());
+		} catch (Exception e) {
+			if(pPlayer.wasSubscribed())
+				Output.simpleError(sender, "/build (0|1|2)");
+			else
+				Output.simpleError(sender, "/build (0|1)");
+			e.printStackTrace();
+		}
 	}
 
 	private void playerResetspawn(CommandSender sender) {

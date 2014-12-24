@@ -20,6 +20,7 @@ import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Database.DataSource;
 
@@ -64,6 +65,7 @@ public class Database {
 	
 	public static void getPlots() {
 		System.out.print("GETTING PLOTS!");
+		List<NPC> npcs = getNPCS();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
@@ -119,6 +121,10 @@ public class Database {
 					plot.setAllowPvp(pvp);
 					plot.setFriends(friends);
 					plot.setCoowners(coowners);
+					
+					for(NPC npc : npcs)
+						if(npc.getPlotId() == plot.getId())
+							plot.getNpcs().add(npc);
 
 					Lostshard.getRegistry().getPlots().add(plot);
 				} catch (Exception e) {
@@ -181,6 +187,7 @@ public class Database {
 	public static void updatePlots(List<Plot> plots) {
 		if(Lostshard.isDebug())
 			System.out.print("UPDATING PLOTS!");
+		List<NPC> npcs = new ArrayList<NPC>();
 		try {
 			Connection conn = connPool.getConnection();
 			
@@ -211,10 +218,12 @@ public class Database {
 				prep.setString(19, Serializer.serializeUUIDList(plot.getCoowners()));
 				prep.setInt(20, plot.getId());
 				prep.addBatch();
+				npcs.addAll(plot.getNpcs());
 			}
 			prep.executeBatch();
 			prep.close();
 			conn.close();
+			updateNPCS(npcs);
 		} catch (Exception e) {
 			Lostshard.log.warning("[Plot] updatePlots mysql error");
 			Lostshard.mysqlError();
@@ -264,41 +273,6 @@ public class Database {
 		}
 	}
 
-	// NPC
-	public static void getNPCS() {
-		try {
-			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM plots");
-			prep.execute();
-			ResultSet rs = prep.getResultSet();
-			ArrayList<NPC> npcs = new ArrayList<NPC>();
-			prep.close();
-			conn.close();
-			while (rs.next()) {
-				String name = rs.getString("name");
-				try {
-					int id = rs.getInt("id");
-					Location location = Serializer.deserializeLocation(rs
-							.getString("location"));
-					NPCType type = NPCType.valueOf(rs.getString("type"));
-					int plotId = rs.getInt("plotId");
-					NPC npc = new NPC(id, type, name, location, plotId);
-					npcs.add(npc);
-				} catch (Exception e) {
-					Lostshard.log.log(Level.WARNING,
-							"[NPC] Exception when generating \"" + name
-									+ "\" NPC >> " + e.toString());
-				}
-			}
-		} catch (Exception e) {
-			Lostshard.log.warning("[NPC] getNPCS mysql error");
-			Lostshard.mysqlError();
-			if(Lostshard.isDebug())
-				e.printStackTrace();
-		}
-	}
-
 	public static void updateNPC(NPC npc) {
 		if (npc == null)
 			return;
@@ -323,36 +297,164 @@ public class Database {
 				e.printStackTrace();
 		}
 	}
-
-	public static void insertNPC(NPC npc) {
+	
+	public static Map<Integer, Build> getBuilds() {
+		Map<Integer, Build> builds = new HashMap<Integer, Build>();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("INSERT IGNORE INTO npcs (name,location,type,plotId) VALUES (?,?,?,?)");
-			prep.setString(1, npc.getName());
-			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
-			prep.setString(3, npc.getType().toString());
-			prep.setInt(4, npc.getPlotId());
+					.prepareStatement("SELECT * FROM builds");
 			prep.execute();
-			ResultSet rs = prep.getGeneratedKeys();
-			int id = 0;
-			while (rs.next())
-				id = rs.getInt(1);
-			npc.setId(id);
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					int mining = rs.getInt("mining");
+					boolean miningLock = rs.getBoolean("miningLock");
+					int magery = rs.getInt("magery");
+					boolean mageryLock = rs.getBoolean("mageryLock");
+					int blades = rs.getInt("blades");
+					boolean bladesLock = rs.getBoolean("bladesLock");
+					int brawling = rs.getInt("brawling");
+					boolean brawlingLock = rs.getBoolean("brawlingLock");
+					int blacksmithy = rs.getInt("blacksmithy");
+					boolean blacksmithyLock = rs.getBoolean("blacksmithyLock");
+					int lumberjacking = rs.getInt("lumberjacking");
+					boolean lumberjackingLock = rs.getBoolean("lumberjackingLock");
+					int fishing = rs.getInt("fishing");
+					boolean fishingLock = rs.getBoolean("fishingLock");
+					int survivalism = rs.getInt("survivalism");
+					boolean survivalismLock = rs.getBoolean("survivalismLock");
+					int taming = rs.getInt("taming");
+					boolean tamingLock = rs.getBoolean("tamingLock");
+					int archery = rs.getInt("archery");
+					boolean archeryLock = rs.getBoolean("archeryLock");
+					
+					
+					Build build = new Build();
+					build.setId(id);
+					build.getMining().setLvl(mining);
+					build.getMining().setLocked(miningLock);
+					build.getMagery().setLvl(magery);
+					build.getMagery().setLocked(mageryLock);
+					build.getBlades().setLvl(blades);
+					build.getBlades().setLocked(bladesLock);
+					build.getBrawling().setLvl(brawling);
+					build.getBrawling().setLocked(brawlingLock);
+					build.getBlackSmithy().setLvl(blacksmithy);
+					build.getBlackSmithy().setLocked(blacksmithyLock);
+					build.getLumberjacking().setLvl(lumberjacking);
+					build.getLumberjacking().setLocked(lumberjackingLock);
+					build.getFishing().setLvl(fishing);
+					build.getFishing().setLocked(fishingLock);
+					build.getSurvivalism().setLvl(survivalism);
+					build.getSurvivalism().setLocked(survivalismLock);
+					build.getTaming().setLvl(taming);
+					build.getTaming().setLocked(tamingLock);
+					build.getArchery().setLvl(archery);
+					build.getArchery().setLocked(archeryLock);
+					
+					builds.put(id, build);
+					
+				} catch (Exception e) {
+					Lostshard.log.warning("[BUILD] Exception when generating \""+ id + "\" BUILD:");
+					e.printStackTrace();
+				}
+			}
 			prep.close();
 			conn.close();
 		} catch (Exception e) {
-			Lostshard.log.warning("[NPC] updateNPC mysql error");
+			Lostshard.log.warning("[BUILD] getBuilds mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		System.out.print("[BUILD] got "+builds.size()+" build from DB.");
+		return builds;
+	}
+	
+	public static void updateBuilds(List<Build> builds) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE builds SET mining=?, miningLock=?, magery=?, mageryLock=?, blades=?, bladesLock=?, brawling=?, brawlingLock=?, blacksmithy=?, blacksmithyLock=?, lumberjacking=?, lumberjackingLock=?, fishing=?, fishingLock=?, survivalism=?, survivalismLock=?, taming=?, tamingLock=?, archery=?, archeryLock=? WHERE id=?;");
+			for(Build build : builds) {
+				prep.setInt(1, build.getMining().getLvl());
+				prep.setBoolean(2, build.getMining().isLocked());
+				prep.setInt(3, build.getMagery().getLvl());
+				prep.setBoolean(4, build.getMagery().isLocked());
+				prep.setInt(5, build.getBlades().getLvl());
+				prep.setBoolean(6, build.getBlades().isLocked());
+				prep.setInt(7, build.getBrawling().getLvl());
+				prep.setBoolean(8, build.getBrawling().isLocked());
+				prep.setInt(9, build.getBlackSmithy().getLvl());
+				prep.setBoolean(10, build.getBlackSmithy().isLocked());
+				prep.setInt(11, build.getLumberjacking().getLvl());
+				prep.setBoolean(12, build.getLumberjacking().isLocked());
+				prep.setInt(13, build.getFishing().getLvl());
+				prep.setBoolean(14, build.getFishing().isLocked());
+				prep.setInt(15, build.getSurvivalism().getLvl());
+				prep.setBoolean(16, build.getSurvivalism().isLocked());
+				prep.setInt(17, build.getTaming().getLvl());
+				prep.setBoolean(18, build.getTaming().isLocked());
+				prep.setInt(19, build.getArchery().getLvl());
+				prep.setBoolean(20, build.getArchery().isLocked());
+				prep.setInt(21, build.getId());
+				prep.addBatch();
+			}
+			prep.executeBatch();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[BUILD] updateBuilds mysql error");
 			Lostshard.mysqlError();
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
 	}
+	
+	public static void insertBuild(Build build) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO builds (mining, miningLock, magery, mageryLock, blades, bladesLock, brawling, brawlingLock, blacksmithy, blacksmithyLock, lumberjacking, lumberjackingLock, fishing, fishingLock, survivalism, survivalismLock, taming, tamingLock, archery, archeryLock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+				prep.setInt(1, build.getMining().getLvl());
+				prep.setBoolean(2, build.getMining().isLocked());
+				prep.setInt(3, build.getMagery().getLvl());
+				prep.setBoolean(4, build.getMagery().isLocked());
+				prep.setInt(5, build.getBlades().getLvl());
+				prep.setBoolean(6, build.getBlades().isLocked());
+				prep.setInt(7, build.getBrawling().getLvl());
+				prep.setBoolean(8, build.getBrawling().isLocked());
+				prep.setInt(9, build.getBlackSmithy().getLvl());
+				prep.setBoolean(10, build.getBlackSmithy().isLocked());
+				prep.setInt(11, build.getLumberjacking().getLvl());
+				prep.setBoolean(12, build.getLumberjacking().isLocked());
+				prep.setInt(13, build.getFishing().getLvl());
+				prep.setBoolean(14, build.getFishing().isLocked());
+				prep.setInt(15, build.getSurvivalism().getLvl());
+				prep.setBoolean(16, build.getSurvivalism().isLocked());
+				prep.setInt(17, build.getTaming().getLvl());
+				prep.setBoolean(18, build.getTaming().isLocked());
+				prep.setInt(19, build.getArchery().getLvl());
+				prep.setBoolean(20, build.getArchery().isLocked());
+				prep.addBatch();
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while (rs.next())
+				id = rs.getInt(1);
+			build.setId(id);
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[BUILD] insertBuild mysql error");
+			e.printStackTrace();
+		}
+	}
+
 
 	// Player
 	public static List<PseudoPlayer> getPlayers() {
 		System.out.print("[PLAYER] Getting Players from DB!");
 		ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+		Map<Integer, Build> builds = Database.getBuilds();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
@@ -379,10 +481,11 @@ public class Database {
 					int rank = rs.getInt("rank");
 					Location customSpawn = Serializer.deserializeLocation(rs.getString("customSpawn"));
 					int spawnTick = rs.getInt("spawnTick");
+					int[] buildsIds = Serializer.deserializeIntegerArray(rs.getString("builds"));
 					int currentBuild = rs.getInt("currentBuild");
 					List<String> titles = Serializer.deserializeStringArray(rs.getString("titles"));
 					int currentTitle = rs.getInt("currentTitle");
-
+					
 					PseudoPlayer pPlayer = new PseudoPlayer(uuid, id);
 					pPlayer.setMoney(money);
 					pPlayer.setMurderCounts(murderCounts);
@@ -402,12 +505,19 @@ public class Database {
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
+					if(builds.containsKey(buildsIds[0])) {
+						pPlayer.getBuilds().clear();
+						for(int i : buildsIds) {
+							pPlayer.getBuilds().add(builds.get(i));
+						}
+					}
 					players.add(pPlayer);
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
 							"[PLAYER] Exception when generating \""
 									+ id
-									+ "\" player: " + e.toString());
+									+ "\" player: ");
+					e.printStackTrace();
 				}
 			}
 			prep.close();
@@ -432,7 +542,7 @@ public class Database {
 					.prepareStatement("UPDATE players SET "
 							+ "money=?, bank=?, murderCounts=?, criminalTicks=?, "
 							+ "globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?,"
-							+ " plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=? WHERE id=?");
+							+ " plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, builds=?, currentBuild=?, titles=?, currentTitle=? WHERE id=?");
 			prep.setInt(1, pPlayer.getMoney());
 			prep.setString(2, pPlayer.getBank().Serialize());
 			prep.setInt(3, pPlayer.getMurderCounts());
@@ -447,11 +557,13 @@ public class Database {
 			prep.setInt(12, pPlayer.getStamina());
 			prep.setInt(13, pPlayer.getRank());
 			prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
+			System.out.print(Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 			prep.setInt(15, pPlayer.getSpawnTick());
-			prep.setInt(16, pPlayer.getCurrentBuildId());
-			prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setInt(18, pPlayer.getCurrentTitleId());
-			prep.setInt(19, pPlayer.getId());
+			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
+			prep.setInt(17, pPlayer.getCurrentBuildId());
+			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
+			prep.setInt(19, pPlayer.getCurrentTitleId());
+			prep.setInt(20, pPlayer.getId());
 
 			prep.executeUpdate();
 			prep.close();
@@ -470,7 +582,7 @@ public class Database {
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO players "
 							+ "(uuid,money,bank,murderCounts,criminalTicks,globalChat,privateChat,subscribeDays,wasSubscribed,"
-							+ "plotCreationPoints,chatChannel,mana,stamina,rank,customSpawn,spawnTick,currentBuild,titles,currentTitle) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "plotCreationPoints,chatChannel,mana,stamina,rank,customSpawn,spawnTick,builds,currentBuild,titles,currentTitle) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, pPlayer.getPlayerUUID().toString());
 			prep.setInt(2, pPlayer.getMoney());
 			prep.setString(3, pPlayer.getBank().Serialize());
@@ -486,10 +598,13 @@ public class Database {
 			prep.setInt(13, pPlayer.getStamina());
 			prep.setInt(14, pPlayer.getRank());
 			prep.setString(15, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-			prep.setInt(16, pPlayer.getSpawnTick());
+			insertBuild(pPlayer.getCurrentBuild());
+			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 			prep.setInt(17, pPlayer.getCurrentBuildId());
 			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
 			prep.setInt(19, pPlayer.getCurrentTitleId());
+			prep.setInt(20, pPlayer.getId());
+			
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
@@ -575,10 +690,11 @@ public class Database {
 	public static void updatePlayers(List<PseudoPlayer> pPlayers) {
 		if(Lostshard.isDebug())
 			System.out.print("UPDATING PLAYERS!");
+		List<Build> builds = new ArrayList<Build>();
 		try {
 			Connection conn = connPool.getConnection();
 			
-			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=? WHERE id=?; ");
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, builds=?, currentBuild=?, titles=?, currentTitle=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
@@ -596,15 +712,18 @@ public class Database {
 				prep.setInt(13, pPlayer.getRank());
 				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
 				prep.setInt(15, pPlayer.getSpawnTick());
-				prep.setInt(16, pPlayer.getCurrentBuildId());
-				prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
-				prep.setInt(18, pPlayer.getCurrentTitleId());
-				prep.setInt(19, pPlayer.getId());
+				prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
+				prep.setInt(17, pPlayer.getCurrentBuildId());
+				prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
+				prep.setInt(19, pPlayer.getCurrentTitleId());
+				prep.setInt(20, pPlayer.getId());
 				prep.addBatch();
+				builds.addAll(pPlayer.getBuilds());
 			}
 			prep.executeBatch();
 			prep.close();
 			conn.close();
+			updateBuilds(builds);
 		} catch (Exception e) {
 			Lostshard.log.warning("[PLAYER] updatePlayers mysql error");
 			Lostshard.mysqlError();
@@ -613,6 +732,104 @@ public class Database {
 		}
 	}
 
+	public static List<NPC> getNPCS() {
+		List<NPC> npcs = new ArrayList<NPC>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM npcs");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					String name = rs.getString("name");
+					NPCType type = NPCType.valueOf(rs.getString("type"));
+					Location location = Serializer.deserializeLocation(rs.getString("location"));
+					int plotId = rs.getInt("plotId");
+					
+					NPC npc = new NPC(id, type, name, location, plotId);
+					npcs.add(npc);
+				} catch (Exception e) {
+					Lostshard.log.warning("[NPC] Exception when generating \""+ id + "\" npc:");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[NPC] getNPCS mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		System.out.print("[NPC] got "+npcs.size()+" npcs from DB.");
+		return npcs;
+	}
+	
+	public static void updateNPCS(List<NPC> npcs) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE npcs SET name=?, type=?, location=?, plotId=? WHERE id=?;");
+			for(NPC npc : npcs) {
+				prep.setString(1, npc.getName());
+				prep.setString(2, npc.getType().toString());
+				prep.setString(3, Serializer.serializeLocation(npc.getLocation()));
+				prep.setInt(4, npc.getPlotId());
+				prep.setInt(5, npc.getId());
+				prep.addBatch();
+			}
+			prep.executeBatch();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[NPC] updateNPC mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void insertNPC(NPC npc) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO npcs (name,location,type,plotId) VALUES (?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			prep.setString(1, npc.getName());
+			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
+			prep.setString(3, npc.getType().toString());
+			prep.setInt(4, npc.getPlotId());
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while (rs.next())
+				id = rs.getInt(1);
+			npc.setId(id);
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[NPC] updateNPC mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void deleteNPC(NPC npc) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM npcs WHERE id=?;");
+			prep.setInt(1, npc.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[NPC] deleteNPC mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
 	
 	public static void saveAll() {
 

@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Skills;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -29,6 +30,8 @@ public class BrawlingSkill extends Skill {
 		if(!(event.getDamager() instanceof Player))
 			return;
 		if(!(event.getEntity() instanceof LivingEntity))
+			return;
+		if(event.getEntity().getType().equals(EntityType.ARMOR_STAND))
 			return;
 		Player player = (Player) event.getDamager();
 		Material item = player.getItemInHand().getType();
@@ -84,6 +87,7 @@ public class BrawlingSkill extends Skill {
 			skill.setBaseProb(.2);
 		int gain = skill.skillGain();
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
+		pseudoPlayer.update();
 	}
 	
 }

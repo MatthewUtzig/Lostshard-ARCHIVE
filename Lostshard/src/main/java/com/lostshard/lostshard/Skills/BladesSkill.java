@@ -20,7 +20,7 @@ public class BladesSkill extends Skill {
 
 	public BladesSkill() {
 		super();
-		setName("Blades");
+		setName("bladess");
 		setBaseProb(.2);
 		setScaleConstant(60);
 	}
@@ -38,7 +38,7 @@ public class BladesSkill extends Skill {
 			return;
 		Entity damagedEntity = event.getEntity();
 		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
-		Skill skill = pseudoPlayer.getCurrentBuild().getBlade();
+		Skill skill = pseudoPlayer.getCurrentBuild().getBlades();
 		int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
@@ -88,13 +88,12 @@ public class BladesSkill extends Skill {
 		damage += additionalDamage;
 		event.setDamage(damage);
 		
-		int gain = pseudoPlayer.getCurrentBuild().getBlade().skillGain();
-		
 		if(damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		Output.gainSkill(player, "Blades", gain, skill.getLvl());
-		
+		int gain = pseudoPlayer.getCurrentBuild().getBlades().skillGain();
+		Output.gainSkill(player, "bladess", gain, skill.getLvl());
+		pseudoPlayer.update();
 	}
 }

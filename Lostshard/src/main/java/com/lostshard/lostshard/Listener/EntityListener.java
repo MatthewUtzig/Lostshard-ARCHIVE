@@ -25,7 +25,7 @@ public class EntityListener implements Listener {
 	public void onEntityDamagedByEntityLow(EntityDamageByEntityEvent event) {
 		Entity attacker = event.getDamager();
 		Entity defender = event.getEntity();
-		event.setCancelled(PVPHandler.canEntityAttackEntity(attacker, defender));
+		event.setCancelled(!PVPHandler.canEntityAttackEntity(attacker, defender));
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);

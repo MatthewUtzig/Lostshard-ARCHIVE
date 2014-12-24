@@ -35,6 +35,14 @@ public class Serializer {
 		return gson.toJson(stringArray);
 	}
 	
+	public static int[] deserializeIntegerArray(String integerArray) {
+		return gson.fromJson(integerArray, int[].class);
+	}
+	
+	public static String serializeIntegerArray(int[] integerArray) {
+		return gson.toJson(integerArray);
+	}
+	
 	public static Location deserializeLocation(String locationString) {
 		try {
 			Object jo = parser.parse(locationString);

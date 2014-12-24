@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -16,9 +17,11 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.lostshard.lostshard.Handlers.ChatHandler;
+import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
@@ -72,7 +75,17 @@ public class PlayerListener implements Listener {
 	public void onInventoryClose(InventoryCloseEvent event) {
 		Player player = (Player) event.getPlayer();
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
-		if(event.getInventory().equals(pPlayer.getBank()))
+		if(event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
 			pPlayer.update();
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		foodHealHandler.foodHeal(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		DeathHandler.handleDeath(event);
 	}
 }

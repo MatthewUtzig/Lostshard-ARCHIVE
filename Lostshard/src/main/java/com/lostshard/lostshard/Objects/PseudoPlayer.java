@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
@@ -17,6 +18,8 @@ import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
+import com.lostshard.lostshard.Skills.Skill;
+import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
 /**
@@ -55,7 +58,10 @@ public class PseudoPlayer {
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
 	private boolean update = false;
-	
+	private int maxMana = 100;
+	private int maxStamina = 100;
+	private boolean meditating = false;
+	private boolean resting = false;
 	
 	// Effects
 	private int bleedTick = 0;
@@ -73,7 +79,76 @@ public class PseudoPlayer {
 	public int getBleedTick() {
 		return bleedTick;
 	}
+	
+	public Player getOnlinePlayer() {
+		return Bukkit.getPlayer(this.getPlayerUUID());
+	}
 
+	public void tick(double delta, long tick) {
+		if(getOnlinePlayer() == null)
+			return;
+		if(tick % 10 == 0) { // one second passed 
+			updateMana(delta);
+			updateStamina(delta);
+		}
+		if(bleedTick > 0) {
+			if(tick % 10 == 0) {
+				Player p = getOnlinePlayer();
+				bleedTick--;
+				
+				if(bleedTick <= 0) {
+					p.sendMessage("Your bleeding has stopped.");
+					bleedTick = 0;
+				}
+				else
+				{
+					double newHealth = p.getHealth() - 1;
+					if(newHealth > 20)
+						newHealth = 20;
+					if(newHealth < 0)
+						newHealth = 0;
+					p.setHealth(newHealth);
+				}
+			}
+		}
+	}
+	
+	private void updateMana(double delta) {
+		if(mana < maxMana) {
+			double manaRegenMultiplier = 2; //Meditation.getManaRegenMultiplier(this);
+			if(isMeditating())
+				mana+=(2*manaRegenMultiplier*delta);
+			else
+				mana+=(1*manaRegenMultiplier*delta);
+			if(mana >= maxMana) {
+				mana = maxMana;
+				// just reached max...
+				Player p = Bukkit.getPlayer(playerUUID);
+				if(p != null) {
+					Output.positiveMessage(p, "Your mana has fully regenerated.");
+				}
+			}
+		}
+	}
+	
+	private void updateStamina(double delta) {
+		if(stamina < maxStamina) {
+			double staminaRegenMultiplier = 1;
+			if(isResting())
+				stamina+=(2*staminaRegenMultiplier*delta);
+			else
+				stamina+=(1*staminaRegenMultiplier*delta);
+			if(stamina >= maxStamina) {
+				stamina = maxStamina;
+				// just reached max...
+				Player p = Bukkit.getPlayer(playerUUID);
+				if(p != null) {
+					Output.positiveMessage(p, "Your stamina has fully regenerated.");
+				}
+			}
+		}
+	}
+	
 	public void setBleedTick(int bleedTick) {
 		this.bleedTick = bleedTick;
 	}
@@ -441,6 +516,30 @@ public class PseudoPlayer {
 			return titels.get(currenttitle);
 	}
 	
+	public int getMaxMana() {
+		return maxMana;
+	}
+
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
+	}
+
+	public int getMaxStamina() {
+		return maxStamina;
+	}
+
+	public void setMaxStamina(int maxStamina) {
+		this.maxStamina = maxStamina;
+	}
+
+	public boolean isMeditating() {
+		return meditating;
+	}
+
+	public void setMeditating(boolean meditating) {
+		this.meditating = meditating;
+	}
+
 	public void update() {
 		this.update = true;
 	}
@@ -456,5 +555,53 @@ public class PseudoPlayer {
 	public void reload() {
 		Lostshard.getRegistry().getPlayers().remove(this);
 		Lostshard.getRegistry().getPlayers().add(Database.getPlayer(id));
+	}
+
+	public boolean isResting() {
+		return resting;
+	}
+
+	public void setResting(boolean resting) {
+		this.resting = resting;
+	}
+
+	public int[] getBuildIds() {
+		int[] ints = new int[getBuilds().size()];
+		for(int i=0; i<getBuilds().size(); i++) {
+			Build build = getBuilds().get(i);
+			ints[i] = build.getId();
+		}
+		return ints;
+	}
+	
+	public Skill getSkillByName(String name) {
+		Skill skill = null;
+		if(name.equalsIgnoreCase("mining"))
+			return getCurrentBuild().getMining();
+		else if(name.equalsIgnoreCase("lumberjacking"))
+			return getCurrentBuild().getLumberjacking();
+		else if(name.equalsIgnoreCase("blacksmithy"))
+			return getCurrentBuild().getBlackSmithy();
+		else if(name.equalsIgnoreCase("blades"))
+			return getCurrentBuild().getBlades();
+		else if(name.equalsIgnoreCase("brawling"))
+			return getCurrentBuild().getBrawling();
+		else if(name.equalsIgnoreCase("fishing"))
+			return getCurrentBuild().getFishing();
+		else if(name.equalsIgnoreCase("lumberjacking"))
+			return getCurrentBuild().getLumberjacking();
+		else if(name.equalsIgnoreCase("magery"))
+			return getCurrentBuild().getMagery();
+		else if(name.equalsIgnoreCase("mining"))
+			return getCurrentBuild().getMining();
+		else if(name.equalsIgnoreCase("survivalism"))
+			return getCurrentBuild().getSurvivalism();
+		else if(name.equalsIgnoreCase("taming"))
+			return getCurrentBuild().getTaming();
+		return skill;
+	}
+
+	public int getMaxSkillValTotal() {
+		return 4000;
 	}
 }

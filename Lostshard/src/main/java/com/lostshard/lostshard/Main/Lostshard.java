@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Main;
 
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -13,6 +15,7 @@ import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
+import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.Database;
@@ -23,7 +26,9 @@ import com.lostshard.lostshard.Listener.ServerListener;
 import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
+import com.lostshard.lostshard.Skills.Build;
 
 /**
  * @author Jacob Rosborg
@@ -63,6 +68,7 @@ public class Lostshard extends JavaPlugin {
 		new ControlPointsCommand(this);
 		new UtilsCommand(this);
 		new AdminCommand(this);
+		new MageryCommand(this);
 		
 		Lostshard.setPlugin(this);
 		
@@ -72,7 +78,7 @@ public class Lostshard extends JavaPlugin {
 		Database.getPlots();
 		
 		// GameLoop should run last.
-		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 10L);
+		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
 	}
 
 	@Override

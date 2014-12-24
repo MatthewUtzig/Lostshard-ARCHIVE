@@ -47,15 +47,15 @@ public class MiningSkill extends Skill {
 				&& ItemUtils.isPickAxe(player.getItemInHand()) && !block.hasMetadata("placed")) {
 
 			int gain = pPlayer.getCurrentBuild().getMining().skillGain();
-
+			
 			int curSkill = pPlayer.getCurrentBuild().getMining().getLvl();
 
 			double percent = (double) curSkill / 1000.0;
 			
 			Output.gainSkill(player, "Mining", gain, curSkill);
 			
-			// If we are not capped, see if we gained skill
-
+			pPlayer.update();
+			
 			double chanceOfDrop = miningdropprob * percent;
 
 			if (Math.random() < chanceOfDrop) {
