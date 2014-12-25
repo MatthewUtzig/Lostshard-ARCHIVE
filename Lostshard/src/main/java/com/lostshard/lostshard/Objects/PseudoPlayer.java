@@ -62,6 +62,7 @@ public class PseudoPlayer {
 	private int maxStamina = 100;
 	private boolean meditating = false;
 	private boolean resting = false;
+	private int freeSkillPoints = 0;
 	
 	// Effects
 	private int bleedTick = 0;
@@ -603,5 +604,14 @@ public class PseudoPlayer {
 
 	public int getMaxSkillValTotal() {
 		return 4000;
+	}
+
+	public int getFreeSkillPoints() {
+		return freeSkillPoints;
+	}
+
+	public void setFreeSkillPoints(int freeSkillPoints) {
+		this.freeSkillPoints = freeSkillPoints;
+		update();
 	}
 }
