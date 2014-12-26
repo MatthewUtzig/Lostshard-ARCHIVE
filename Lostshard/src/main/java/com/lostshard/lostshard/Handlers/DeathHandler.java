@@ -32,6 +32,7 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Sheep;
 import org.bukkit.entity.Silverfish;
 import org.bukkit.entity.Skeleton;
@@ -43,6 +44,7 @@ import org.bukkit.entity.Wither;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
@@ -52,26 +54,17 @@ import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Utils.ItemUtils;
+import com.lostshard.lostshard.Utils.Utils;
 
 public class DeathHandler {
 	
 	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
 	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
-
-	public static void handleDeath(EntityDeathEvent event) {
 	
-		Random random = new Random();
-		Entity entity = event.getEntity();
+	public static void handleDeath(PlayerDeathEvent event) {
+		Player player = event.getEntity();
 		
-		//event.setDroppedExp(0);
-		
-		//event.setDroppedExp(event.getDroppedExp() * 2);
-		
-		//Start of skull drop
-		
-		if(entity instanceof Player && ((Player) entity).getKiller() instanceof Player) {
-			
-			Player player = (Player) entity;
+		if(player.getKiller() instanceof Player) {
 			Player killer = (Player) player.getKiller();
 			
 			PseudoPlayer pKiller = PseudoPlayerHandler.getPlayer(killer);
@@ -79,7 +72,7 @@ public class DeathHandler {
 			Material wep = killer.getItemInHand().getType();
 			
 			if(pKiller != null && ItemUtils.isAxe(wep) || ItemUtils.isSword(wep)) {
-				int swordsSkill = pKiller.getCurrentBuild().getBlade().getLvl();
+				int swordsSkill = pKiller.getCurrentBuild().getBlades().getLvl();
 				int lumberjackingSkill = pKiller.getCurrentBuild().getLumberjacking().getLvl();
 				
 				if(swordsSkill >= 1000 || lumberjackingSkill >= 1000) {
@@ -93,8 +86,80 @@ public class DeathHandler {
 			}
 		}
 		
-		//End of skull drop
+		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
 		
+//		NPCHandler.playerDied(player);
+		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		if(pseudoPlayer == null) {
+			return;
+		}
+		
+//		if(pseudoPlayer._claiming) {
+//        	ArrayList<Plot> controlPoints = PlotHandler.getControlPoints();
+//        	for(Plot cP : controlPoints) {
+//        		if(cP.isUnderAttack() && cP._capturingPlayerName.equals(player.getName())) {
+//        			cP.failCaptureDied(player);
+//        		}
+//        	}
+//        }
+		
+		pseudoPlayer.setBleedTick(0);
+//		pseudoPlayer._goToSpawnTicks = 0;
+		pseudoPlayer.setPvpTicks(0);
+//		pseudoPlayer._respawnTicks = 200;
+//		pseudoPlayer._dieLog = 0;
+//		pseudoPlayer._lastChanceTicks = 0;
+		
+		if(player.getVehicle() instanceof Horse)
+			((Horse) player.getVehicle()).setHealth(0d);
+		
+		//pseudoPlayer._clearTicks = 5;
+		List<RecentAttacker> recentAttackers = pseudoPlayer.getRecentAttackers();
+		
+		//Rank stuff
+		
+		RankHandler.rank(pseudoPlayer);
+		
+		pseudoPlayer.setLastDeath(new Date().getTime());
+		
+		for(RecentAttacker recentAttacker : recentAttackers) {	
+			if(recentAttacker.isNotCrime())
+				continue;
+			
+			UUID attackerUUID = recentAttacker.getUUID();
+			Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
+
+			if(attackerPlayer != null) {
+				PseudoPlayer attackerPseudo = PseudoPlayerHandler.getPlayer(attackerPlayer);
+				if(!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
+				continue;
+				
+				attackerPlayer.sendMessage("You have murdered "+player.getName());
+				if(attackerPseudo != null) {
+					
+					attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts()+1);
+				if(attackerPseudo.isMurderer()) {
+						attackerPlayer.setDisplayName(ChatColor.RED+attackerPlayer.getName());
+					}
+				}
+			}
+			//Output.sendToAdminIRC(player, " "+targetPlayer.getName(), msg);
+		}
+		//Start of death messages
+		
+		DeathHandler.deathMessage(player, recentAttackers, event);
+		pseudoPlayer.clearRecentAttackers();
+	}
+	
+	public static void handleDeath(EntityDeathEvent event) {
+	
+		Random random = new Random();
+		Entity entity = event.getEntity();
+		
+		//event.setDroppedExp(0);
+		
+		//event.setDroppedExp(event.getDroppedExp() * 2);
+				
 		//Start of Horse
 		
 		if(entity instanceof Horse){
@@ -325,7 +390,6 @@ public class DeathHandler {
 				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(), new ItemStack(Material.WOOL, 1));
 			else if(entity instanceof Squid)
 				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(), new ItemStack(Material.INK_SACK, 1));
-		
 		//Survivalism
 		
 		if(entity instanceof Animals) {
@@ -366,93 +430,11 @@ public class DeathHandler {
 		}
 		
 		//End of survivalism
-		
-		if(entity instanceof Player) {
-			Player player = (Player)entity;
-			System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
-			
-	//		NPCHandler.playerDied(player);
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
-			if(pseudoPlayer == null) {
-				return;
-			}
-			
-	//		if(pseudoPlayer._claiming) {
-	//        	ArrayList<Plot> controlPoints = PlotHandler.getControlPoints();
-	//        	for(Plot cP : controlPoints) {
-	//        		if(cP.isUnderAttack() && cP._capturingPlayerName.equals(player.getName())) {
-	//        			cP.failCaptureDied(player);
-	//        		}
-	//        	}
-	//        }
-			
-			pseudoPlayer.setBleedTick(0);
-	//		pseudoPlayer._goToSpawnTicks = 0;
-			pseudoPlayer.setPvpTicks(0);
-	//		pseudoPlayer._respawnTicks = 200;
-	//		pseudoPlayer._dieLog = 0;
-	//		pseudoPlayer._lastChanceTicks = 0;
-			
-			if(player.getVehicle() instanceof Horse)
-				((Horse) player.getVehicle()).setHealth(0d);
-			
-			//pseudoPlayer._clearTicks = 5;
-			List<RecentAttacker> recentAttackers = pseudoPlayer.getRecentAttackers();
-			
-			//Rank stuff
-			
-			RankHandler.rank(pseudoPlayer);
-			
-			pseudoPlayer.setLastDeath(new Date().getTime());
-			
-			for(RecentAttacker recentAttacker : recentAttackers) {	
-				if(recentAttacker.isNotCrime())
-					continue;
-				
-				UUID attackerUUID = recentAttacker.getUUID();
-				Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
-	
-				if(attackerPlayer != null) {
-					PseudoPlayer attackerPseudo = PseudoPlayerHandler.getPlayer(attackerPlayer);
-	//				Survivalism.possibleSkillGain(attackerPlayer, attackerPseudo);
-					if(!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
-					continue;
-					
-					attackerPlayer.sendMessage("You have murdered "+player.getName());
-					if(attackerPseudo != null) {
-						
-						attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts()+1);
-	//					Database.updatePlayer(attackerPlayer.getName());
-						if(attackerPseudo.isMurderer()) {
-							attackerPlayer.setDisplayName(ChatColor.RED+attackerPlayer.getName());
-	//						SimpleScoreBoard.updatePlayers();
-						}
-					}
-				}
-				else {
-					try {
-	//					PseudoPlayer attackerPseudo = Database.createPseudoPlayer(attackerName);
-	//					attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts()+1);
-	//					Database.updatePlayerByPseudoPlayer(attackerPseudo);
-					}
-					catch(Exception e) {
-						System.out.println("ERROR: failed to make the offline murderer pseudoplayer >>"+e.toString());
-					}
-				}
-				//Output.sendToAdminIRC(player, " "+targetPlayer.getName(), msg);
-			}
-			
-			//Start of death messages
-			
-			DeathHandler.deathMessage(player, recentAttackers);
-			
-			pseudoPlayer.clearRecentAttackers();
-		}
 		lastAttackers.remove(entity);
 	}
 
 	
-	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers) {
+	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
 		int numAttackers = recentAttackers.size();
 		Random random = new Random();
 		if(((LivingEntity) player).getLastDamage() >= 200d)
@@ -479,10 +461,9 @@ public class DeathHandler {
 					break;
 			}
 
-			player.getServer().broadcastMessage(message);
+			event.setDeathMessage(message);
 		}
 		else if(numAttackers > 0) {
-			//System.out.println(player.getName() + " killed by attacker");
 			String deathMessage = player.getDisplayName()+ChatColor.WHITE+" was killed by";
 			String attackers = "";
 			for(int i=0; i<numAttackers; i++) {
@@ -499,11 +480,11 @@ public class DeathHandler {
 				}
 			}
 			deathMessage += attackers;
-			for(Player p : Bukkit.getOnlinePlayers())
-				p.sendMessage(deathMessage);
+			event.setDeathMessage(deathMessage);
 		} else {
 			EntityDamageEvent e = player.getLastDamageCause();
-			String message = player.getDisplayName()+ChatColor.WHITE;
+			EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;
+			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
 			Plot plot = PlotHandler.findPlotAt(player.getLocation());
 			if(e == null) {
 				message += " died.";
@@ -568,10 +549,12 @@ public class DeathHandler {
 			else if(e.getCause().equals(DamageCause.VOID)) {
 				message += " fell into the abyss.";
 			}
-			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK)) {
-				if(e instanceof EntityDamageByEntityEvent) {
-					EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;
+			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK) || eDBEE.getDamager() instanceof Projectile) {	
 					Entity damager = eDBEE.getDamager();
+					if(damager instanceof Projectile)
+						damager = ((Entity) ((Projectile)damager).getShooter());
+					if(damager instanceof Projectile)
+						damager = ((Entity) ((Projectile) damager).getShooter());
 					if(damager instanceof Creeper)
 						message+= " was killed by a Creeper.";
 					if(damager instanceof PigZombie)
@@ -612,15 +595,12 @@ public class DeathHandler {
 						message+= " was killed by the Enderdragon";
 					else
 						message+= "'s life was tragically cut short.";
-				}
 			}
 			else if(e.getCause().equals(DamageCause.ENTITY_EXPLOSION)) {
 				message += " exploded.";
 			}
 			else message += " died.";
-			
-			for(Player p : Bukkit.getOnlinePlayers())
-				p.sendMessage(message);
+			event.setDeathMessage(message);
 		}
 	}
 	

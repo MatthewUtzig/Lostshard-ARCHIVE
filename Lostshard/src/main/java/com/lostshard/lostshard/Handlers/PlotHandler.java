@@ -1,9 +1,15 @@
 package com.lostshard.lostshard.Handlers;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
@@ -12,10 +18,15 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.util.Vector;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Plot;
@@ -306,5 +317,86 @@ public class PlotHandler {
 			}
 		}
 	}
+	
+	/**
+	 * @param event
+	 * 
+	 *            Prevent explosions for destroy plots.
+	 */
+	public static void onBlockExplode(EntityExplodeEvent event) {
+        List<Block> destroyed = event.blockList();
+        Iterator<Block> it = destroyed.iterator();
+        while (it.hasNext()) {
+            Block block = it.next();
+            Plot plot = findPlotAt(block.getLocation());
+            if (plot != null && !plot.isAllowExplosions())
+                it.remove();
+        }
+	}
+	/**
+	 * @param event
+	 * 
+	 *            Prevent players from destroying Armor stands and ItemFrames in plots.
+	 */
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        Entity entity = event.getEntity();
+
+        Entity damager = event.getDamager();
+        
+        Player player = null;
+        
+        if(damager instanceof Player)
+        	player = (Player) damager;
+
+        Plot plot = findPlotAt(entity.getLocation());
+        
+        if(player != null && plot != null && plot.isAllowedToBuild(player))
+        	return;
+        
+        if (entity instanceof ItemFrame) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot destroy item frame here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        } else if (entity instanceof ArmorStand) {
+        	if (plot != null) {
+                event.setCancelled(true); // Set velocity downwards to minimize armor stand movement
+                entity.setVelocity(new Vector(0, -100, 0));
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot destroy armor stands here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        }
+    }
+    
+    public void onHangingDestory(HangingBreakEvent event) {
+    	Plot plot = findPlotAt(event.getEntity().getLocation());
+    	
+    	Player player = null;
+    	if(event instanceof HangingBreakByEntityEvent) {
+    		HangingBreakByEntityEvent entityEvent = (HangingBreakByEntityEvent) event;
+			if(entityEvent.getRemover() instanceof Player)
+				player = (Player) entityEvent.getRemover();
+    	}
+    	
+        if(player != null && plot != null && plot.isAllowedToBuild(player))
+        	return;
+    	
+        if (plot != null) {
+            event.setCancelled(true);
+            
+            if(player != null)
+            	Output.simpleError(player, "Cannot destroy painting here "+plot.getName()+" is protected.");
+            
+            return;
+        }
+        
+    }
 
 }

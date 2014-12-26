@@ -1,19 +1,22 @@
 package com.lostshard.lostshard.Objects;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Objects.Store.Store;
 
 public class Registry {
 
-	private ArrayList<Plot> plots = new ArrayList<Plot>();
-	private ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-	private ArrayList<Clan> clans = new ArrayList<Clan>();
-	private ArrayList<Party> parties = new ArrayList<Party>();
+	private List<Plot> plots = new ArrayList<Plot>();
+	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+	private List<Clan> clans = new ArrayList<Clan>();
+	private List<Party> parties = new ArrayList<Party>();
+	private List<Store> stores = new ArrayList<Store>();
 	
-	public ArrayList<Plot> getPlots() {
+	public List<Plot> getPlots() {
 		return plots;
 	}
 
@@ -21,7 +24,7 @@ public class Registry {
 		this.plots = plots;
 	}
 
-	public ArrayList<PseudoPlayer> getPlayers() {
+	public List<PseudoPlayer> getPlayers() {
 		return players;
 	}
 
@@ -37,7 +40,7 @@ public class Registry {
 		return rs;
 	}
 
-	public ArrayList<Clan> getClans() {
+	public List<Clan> getClans() {
 		return clans;
 	}
 
@@ -45,12 +48,20 @@ public class Registry {
 		this.clans = clans;
 	}
 
-	public ArrayList<Party> getParties() {
+	public List<Party> getParties() {
 		return parties;
 	}
 
 	public void setParties(ArrayList<Party> parties) {
 		this.parties = parties;
+	}
+
+	public List<Store> getStores() {
+		return stores;
+	}
+
+	public void setStores(List<Store> stores) {
+		this.stores = stores;
 	}
 	
 }

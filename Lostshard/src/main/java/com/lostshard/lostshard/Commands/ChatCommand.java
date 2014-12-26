@@ -35,6 +35,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("local").setExecutor(this);
 		plugin.getCommand("whisper").setExecutor(this);
 		plugin.getCommand("msg").setExecutor(this);
+		plugin.getCommand("replay").setExecutor(this);
 		plugin.getCommand("toggleglobal").setExecutor(this);
 		plugin.getCommand("togglemsg").setExecutor(this);
 	}
@@ -114,7 +115,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "player not online");
 			return;
 		}
-		String message = StringUtils.join(args, " ", 1, args.length-1);
+		String message = StringUtils.join(args, " ", 1, args.length);
 		
 		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+targetPlayer.getName()+ChatColor.WHITE+"] " +  message);
 		targetPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);

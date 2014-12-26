@@ -31,9 +31,13 @@ public class PseudoPlayerHandler {
 		Player player = event.getPlayer();
 		if (getPlayer(event.getPlayer()) == null) {
 			PseudoPlayer pPlayer = new PseudoPlayer(player.getUniqueId(), 1);
-//			Database.insertPlayer(pPlayer);
-			Lostshard.getRegistry().getPlayers().add(pPlayer);
+			Database.insertPlayer(pPlayer);
 		}
+	}
+	
+	public static void tick(double delta, long tick) {
+		for(PseudoPlayer pPlayer : Lostshard.getRegistry().getPlayers())
+			pPlayer.tick(delta, tick);
 	}
 
 }

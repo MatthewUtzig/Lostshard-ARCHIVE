@@ -14,7 +14,6 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class GuardHandler {
 
-	@SuppressWarnings("deprecation")
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());

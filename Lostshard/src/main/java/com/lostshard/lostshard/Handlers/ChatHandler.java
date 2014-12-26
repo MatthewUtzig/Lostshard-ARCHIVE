@@ -97,18 +97,18 @@ public class ChatHandler {
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
 		String star = "";
 		if (pPlayer.isSubscriber())
-			star="*";
+			star=ChatColor.GOLD+"*";
 		String title = pPlayer.getCurrentTitle();
 		if(title != "")
 			title+=" ";
-		prefix = ChatColor.GOLD + "[" + ChatColor.YELLOW + "Global"
-					+ ChatColor.GOLD + "]"+star;
+		prefix = ChatColor.WHITE + "[" + ChatColor.YELLOW + "Global"
+					+ ChatColor.WHITE + "]"+star;
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			pPlayer = PseudoPlayerHandler.getPlayer(p);
 			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL))
 				event.getRecipients().add(p);
 		}
-		event.setFormat(prefix + title + Utils.getDisplayName(event.getPlayer())
+		event.setFormat(prefix + " " + title + Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + ": " + event.getMessage());
 	}
 

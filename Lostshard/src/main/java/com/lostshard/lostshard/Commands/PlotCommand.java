@@ -322,7 +322,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (args.length < 4) {
+		if (args.length < 2) {
 			Output.simpleError(player, "/plot npc hire (Banker|Vendor) (name)");
 			return;
 		}
@@ -333,6 +333,10 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		if (args[1].equalsIgnoreCase("hire")) {
+			if (args.length < 4) {
+				Output.simpleError(player, "/plot npc hire (Banker|Vendor) (name)");
+				return;
+			}
 			String name;
 			if (args[2].equalsIgnoreCase("banker")) {
 				if (!plot.isTown()) {
@@ -378,7 +382,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(),
 						plot.getId());
-				// TODO Database.insertNPC(npc);
+				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
@@ -427,7 +431,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation(),
 						plot.getId());
-				// TODO Database.insertNPC(npc);
+				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -465,14 +469,14 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				NPC npc = new NPC(NPCType.GUARD, name, player.getLocation(),
 						plot.getId());
-				// TODO Database.insertNPC(npc);
+				Database.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
 				Output.positiveMessage(player, "You have hired a guard named "
 						+ name + ".");
 			}
-		} else if (args[2].equalsIgnoreCase("move")) {
+		} else if (args[1].equalsIgnoreCase("move")) {
 			if (args.length < 3) {
 				Output.simpleError(player, "Use /plot npc move (npc name)");
 				return;
@@ -1243,8 +1247,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		if (!plot.getFriends().contains(targetPlayer.getUniqueId())
-				|| !plot.getCoowners().contains(targetPlayer.getUniqueId())) {
+		if (!plot.isFriendOrAbove(targetPlayer.getUniqueId())) {
 			Output.simpleError(player, targetPlayer.getName()
 					+ " is not a friend or co-owner of this plot.");
 			return;
@@ -1340,14 +1343,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "/plot friend (player)");
 			return;
 		}
-
-		String targetName = args[1];
-
-		if (!plot.isOwner(player)) {
-			Output.simpleError(player,
-					"Only the owner and co-owner may friend players.");
+		
+		if (!plot.isCoownerOrAbove(player)) {
+			Output.simpleError(player, "Only the owner and co-owner may friend players.");
 			return;
 		}
+
+		String targetName = args[1];
 
 		@SuppressWarnings("deprecation")
 		Player targetPlayer = Bukkit.getPlayer(targetName);
@@ -1363,7 +1365,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		if (plot.isCoowner(targetPlayer) && plot.isCoowner(player)) {
+		if (plot.isCoowner(targetPlayer) && !plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may friend co-owners.");
 			return;
 		}
@@ -1371,7 +1373,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (plot.isCoowner(targetPlayer)) {
 			plot.getCoowners().remove(targetPlayer.getUniqueId());
 		}
-		plot.addCoowner(targetPlayer);
+		plot.addFriend(targetPlayer);
 		Output.positiveMessage(player, targetPlayer.getName()
 				+ " is now a friend of this plot.");
 		Output.positiveMessage(targetPlayer,
@@ -1399,7 +1401,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 */
 	private void plotSurvey(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
-		ArrayList<Plot> plots = Lostshard.getRegistry().getPlots();
+		List<Plot> plots = Lostshard.getRegistry().getPlots();
 		int numPlots = plots.size();
 
 		// First, determine if we are currently in a plot
@@ -1592,7 +1594,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			// costs paid, create the plot
 
 			Plot plot = new Plot(-1, plotName, player.getUniqueId(), curLoc);
-//			Database.insertPlot(plot);
+			Database.insertPlot(plot);
 			Lostshard.getRegistry().getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost
@@ -1678,7 +1680,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"create", "deposit", "expand", "rename", "coowner",
 						"unfriend", "shrink", "withdraw", "friendbuild",
 						"sell", "unsell", "buy", "list", "preotect",
-						"unprotect", "private", "public", "explosions",
+						"unprotect", "private", "public", "explosion",
 						"upgrade", "downgrade", "friend", "npc"});
 		if (args.length == 2 && args[1].equalsIgnoreCase("upgrade")
 				|| args[1].equalsIgnoreCase("upgrades") || 

@@ -8,16 +8,17 @@ public class StoreItem {
 
 	//Item
 	private ItemStack item;
-	private int price;
-	private int stock;
+	private int salePrice = 0;
+	private int buyPrice = 0;
+	private int stock = 0;
 	
 	//Buyer
-	private int maxBuyAmount;
+	private int maxBuyAmount = 0;
 	
 	//Restock
-	private boolean autoResotck;
-	private int restockTime;
-	private int restockAmount;
+	private boolean autoResotck = false;
+	private int restockTime = 0;
+	private int restockAmount = 0;
 
 	public String getAsJson() {
 		return Serializer.gson.toJson(this);
@@ -25,5 +26,69 @@ public class StoreItem {
 	
 	public static StoreItem fromJson(String string) {
 		return Serializer.gson.fromJson(string, StoreItem.class);
+	}
+
+	public ItemStack getItem() {
+		return item;
+	}
+
+	public void setItem(ItemStack item) {
+		this.item = item;
+	}
+
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(int price) {
+		this.salePrice = price;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public int getMaxBuyAmount() {
+		return maxBuyAmount;
+	}
+
+	public void setMaxBuyAmount(int maxBuyAmount) {
+		this.maxBuyAmount = maxBuyAmount;
+	}
+
+	public boolean isAutoResotck() {
+		return autoResotck;
+	}
+
+	public void setAutoResotck(boolean autoResotck) {
+		this.autoResotck = autoResotck;
+	}
+
+	public int getRestockTime() {
+		return restockTime;
+	}
+
+	public void setRestockTime(int restockTime) {
+		this.restockTime = restockTime;
+	}
+
+	public int getRestockAmount() {
+		return restockAmount;
+	}
+
+	public void setRestockAmount(int restockAmount) {
+		this.restockAmount = restockAmount;
+	}
+
+	public int getBuyPrice() {
+		return buyPrice;
+	}
+
+	public void setBuyPrice(int buyPrice) {
+		this.buyPrice = buyPrice;
 	}
 }

@@ -32,9 +32,12 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/Jacob/Google Drev/workspace/api/bukkit-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/Jacob/Google Drev/workspace/api/citizens-2.0.13-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/Jacob/Google Drev/workspace/api/craftbukkit-1.8-R0.1-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="/Users/Jacob/Google Drev/workspace/api/Votifier.jar"/>
+	<classpathentry kind="lib" path="lib/bukkit-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/citizens-2.0.13-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/commons-dbcp2-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool2-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/craftbukkit-1.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/Votifier.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

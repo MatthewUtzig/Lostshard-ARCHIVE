@@ -27,7 +27,7 @@ public class Output {
 	
 	public static void plotHelp(Player player) {
 		player.sendMessage(ChatColor.GOLD + "-Plot Help-");
-		player.sendMessage(ChatColor.YELLOW + "/plot create");
+		player.sendMessage(ChatColor.YELLOW + "/plot create (name)");
 		player.sendMessage(ChatColor.YELLOW + "/plot deposit (amount)");
 		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
 	}
@@ -55,6 +55,60 @@ public class Output {
 		sender.sendMessage(message);
 	}
 
+	public static void outputSkills(Player player) {
+		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Skills-");
+		player.sendMessage(ChatColor.YELLOW+"You currently have "+Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTotalSkillVal())+"/"+Utils.scaledIntToString(pseudoPlayer.getMaxSkillValTotal()) + " skill points.");
+		if(pseudoPlayer.getCurrentBuild().getArchery().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Archery(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getArchery().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Archery: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getArchery().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getBlackSmithy().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Blacksmithy(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlackSmithy().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Blacksmithy: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlackSmithy().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getBrawling().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Brawling(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBrawling().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Brawling: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBrawling().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getMagery().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Magery(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMagery().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Magery: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMagery().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getBlades().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"bladess(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"bladess: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getSurvivalism().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Survivalism(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getSurvivalism().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Survivalism: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getSurvivalism().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getMining().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Mining(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMining().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Mining: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMining().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getLumberjacking().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Lumberjacking(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getLumberjacking().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Lumberjacking: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getLumberjacking().getLvl()));
+		
+		if(pseudoPlayer.getCurrentBuild().getTaming().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Taming(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTaming().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Taming: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTaming().getLvl()));
+		if(pseudoPlayer.getCurrentBuild().getFishing().isLocked())
+			player.sendMessage(ChatColor.YELLOW+"Fishing(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getFishing().getLvl()));
+		else
+			player.sendMessage(ChatColor.YELLOW+"Fishing: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getFishing().getLvl()));
+	}
+	
 	public static void displayLoginMessages(Player player) {
 		player.sendMessage(ChatColor.GOLD
 				+ "Welcome to Lost Shard, www.lostshard.com for more info.");
@@ -162,8 +216,8 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE
 					+ "(" + plot.getLocation().getBlockX() + ","
 					+ plot.getLocation().getBlockY() + ","
-					+ plot.getLocation().getBlockZ() + "), " + ChatColor.YELLOW
-					+ "Distance From Center: " + ChatColor.WHITE
+					+ plot.getLocation().getBlockZ() + ")" + ChatColor.YELLOW
+					+ ", Distance From Center: " + ChatColor.WHITE
 					+ distanceFromCenter);
 		} else {
 			player.sendMessage(ChatColor.YELLOW + "Size: " + ChatColor.WHITE
@@ -171,9 +225,9 @@ public class Output {
 		}
 		// Show member lists to everyone who is at least a friend
 		if (plot.isFriendOrAbove(player)) {
-			player.sendMessage(ChatColor.YELLOW + "Co-Owners: "
+			player.sendMessage(ChatColor.YELLOW + "Co-Owners: "+ChatColor.WHITE
 					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getCoowners())));
-			player.sendMessage(ChatColor.YELLOW + "Friends: "
+			player.sendMessage(ChatColor.YELLOW + "Friends: "+ChatColor.WHITE
 					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getFriends())));
 		}
 	}
@@ -244,7 +298,7 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE
 				+ pseudoPlayer.getStamina() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW+"Build: "+ChatColor.WHITE+
-		pseudoPlayer.getCurrentBuild());
+		pseudoPlayer.getCurrentBuildId());
 		player.sendMessage(ChatColor.YELLOW + "Murder Counts: "
 				+ ChatColor.WHITE + pseudoPlayer.getMurderCounts());
 		player.sendMessage(ChatColor.YELLOW+"Rank: " +
@@ -265,6 +319,7 @@ public class Output {
 					"Invalid syntax, use /whois (player name)");
 			return;
 		}
+		
 		String targetName = args[0];
 		@SuppressWarnings("deprecation")
 		Player p = Bukkit.getPlayer(targetName);

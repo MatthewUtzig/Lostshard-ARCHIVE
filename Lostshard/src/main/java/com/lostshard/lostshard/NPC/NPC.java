@@ -2,6 +2,7 @@ package com.lostshard.lostshard.NPC;
 
 import org.bukkit.Location;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.NPCHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Objects.Plot;
@@ -77,6 +78,7 @@ public class NPC {
 	 */
 	public void setType(NPCType type) {
 		this.type = type;
+		getPlot().update();
 	}
 
 	/**
@@ -92,6 +94,7 @@ public class NPC {
 	 */
 	public void setName(String name) {
 		this.name = name;
+		getPlot().update();
 	}
 
 	/**
@@ -106,6 +109,7 @@ public class NPC {
 	 */
 	public void setLocation(Location location) {
 		this.location = location;
+		getPlot().update();
 	}
 
 	/**
@@ -126,7 +130,7 @@ public class NPC {
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-		// NPCManager.spawnNPC(this);
+		 NPCManager.spawnNPC(this);
 	}
 
 	/**
@@ -134,15 +138,21 @@ public class NPC {
 	 *            npc to a location
 	 */
 	public void move(Location location) {
-		// NPCManager.moveNPC(id, location);
+		 NPCManager.moveNPC(id, location);
 	}
 
 	/**
 	 * Delete this npc
 	 */
 	public void fire() {
-		// NPCManager.getNPC(id).destroy();
-		Plot plot = PlotHandler.getPlotById(plotId);
+		 NPCManager.getNPC(id).destroy();
+		Plot plot = getPlot();
 		plot.getNpcs().remove(this);
+		Database.deleteNPC(this);
 	}
+	
+	public Plot getPlot() {
+		return PlotHandler.getPlotById(plotId);
+	}
+	
 }

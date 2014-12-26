@@ -1,21 +1,29 @@
 package com.lostshard.lostshard.Listener;
 
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.lostshard.lostshard.Handlers.ChatHandler;
+import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlayerListener implements Listener {
 
@@ -40,6 +48,11 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
+		if(Lostshard.isMysqlError()) {
+			event.setKickMessage(ChatColor.RED+"Something is wrong. We are working on it.");
+			event.setResult(Result.KICK_OTHER);
+			return;
+		}
 		PseudoPlayerHandler.onPlayerLogin(event);
 	}
 
@@ -57,5 +70,22 @@ public class PlayerListener implements Listener {
 	public void onPlayerBuckitEmpty(PlayerBucketEmptyEvent event) {
 		PlotHandler.onBuckitEmpty(event);
 	}
-
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onInventoryClose(InventoryCloseEvent event) {
+		Player player = (Player) event.getPlayer();
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		if(event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
+			pPlayer.update();
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		foodHealHandler.foodHeal(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		DeathHandler.handleDeath(event);
+	}
 }
