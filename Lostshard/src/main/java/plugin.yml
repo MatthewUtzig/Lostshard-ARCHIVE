@@ -1,6 +1,7 @@
 name: Lostshard
 main: com.lostshard.lostshard.Main.Lostshard
 version: 0.01
+softdepend: [Citizens]
 commands:
    bank:
       description: Access your bank inventory at the local bank.

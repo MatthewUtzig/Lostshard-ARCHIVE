@@ -1680,7 +1680,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"create", "deposit", "expand", "rename", "coowner",
 						"unfriend", "shrink", "withdraw", "friendbuild",
 						"sell", "unsell", "buy", "list", "preotect",
-						"unprotect", "private", "public", "explosions",
+						"unprotect", "private", "public", "explosion",
 						"upgrade", "downgrade", "friend", "npc"});
 		if (args.length == 2 && args[1].equalsIgnoreCase("upgrade")
 				|| args[1].equalsIgnoreCase("upgrades") || 

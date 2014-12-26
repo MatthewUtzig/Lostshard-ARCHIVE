@@ -1,7 +1,5 @@
 package com.lostshard.lostshard.Main;
 
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -20,15 +18,15 @@ import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Listener.BlockListener;
+import com.lostshard.lostshard.Listener.CitizensLisenter;
 import com.lostshard.lostshard.Listener.EntityListener;
 import com.lostshard.lostshard.Listener.PlayerListener;
 import com.lostshard.lostshard.Listener.ServerListener;
 import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Registry;
-import com.lostshard.lostshard.Skills.Build;
 
 /**
  * @author Jacob Rosborg
@@ -61,6 +59,7 @@ public class Lostshard extends JavaPlugin {
 		if (getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
+		new CitizensLisenter(this);
 		// Commands
 		new PlotCommand(this);
 		new ChatCommand(this);

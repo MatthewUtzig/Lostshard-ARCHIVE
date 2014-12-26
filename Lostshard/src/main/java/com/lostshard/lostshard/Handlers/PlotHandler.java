@@ -1,5 +1,8 @@
 package com.lostshard.lostshard.Handlers;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,6 +15,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -305,6 +309,22 @@ public class PlotHandler {
 				return;
 			}
 		}
+	}
+	
+	/**
+	 * @param event
+	 * 
+	 *            Prevent explosions for destroy plots.
+	 */
+	public static void onBlockExplode(EntityExplodeEvent event) {
+        List<Block> destroyed = event.blockList();
+        Iterator<Block> it = destroyed.iterator();
+        while (it.hasNext()) {
+            Block block = it.next();
+            Plot plot = findPlotAt(block.getLocation());
+            if (plot != null && !plot.isAllowExplosions())
+                it.remove();
+        }
 	}
 
 }

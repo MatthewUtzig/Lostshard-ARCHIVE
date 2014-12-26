@@ -130,7 +130,7 @@ public class NPC {
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-		// NPCManager.spawnNPC(this);
+		 NPCManager.spawnNPC(this);
 	}
 
 	/**
@@ -138,14 +138,14 @@ public class NPC {
 	 *            npc to a location
 	 */
 	public void move(Location location) {
-		// NPCManager.moveNPC(id, location);
+		 NPCManager.moveNPC(id, location);
 	}
 
 	/**
 	 * Delete this npc
 	 */
 	public void fire() {
-		// NPCManager.getNPC(id).destroy();
+		 NPCManager.getNPC(id).destroy();
 		Plot plot = getPlot();
 		plot.getNpcs().remove(this);
 		Database.deleteNPC(this);

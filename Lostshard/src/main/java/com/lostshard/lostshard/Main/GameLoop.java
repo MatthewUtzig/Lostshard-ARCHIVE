@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
@@ -67,7 +68,7 @@ public class GameLoop extends BukkitRunnable {
 	 				for(Player p : Bukkit.getOnlinePlayers()) {
 	 					PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(p);
 	 					if(!pseudoPlayer.isSubscriber())
-	 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit http://www.lostshard.com/donate for information on subscription benefits.");
+	 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
 	 			}
 	    	}
 		}

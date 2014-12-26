@@ -127,6 +127,8 @@ public class PVPHandler {
 	}
 	
 	public static void criminalAction(Player player, Player playerDamager) {
+		if (player.hasMetadata("NPC"))
+			return;
 		if(player == null || playerDamager == null)
 			return;
 		
