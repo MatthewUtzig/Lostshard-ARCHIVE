@@ -9,6 +9,7 @@ import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
 /**
@@ -56,6 +57,10 @@ public class ChatHandler {
 			shoutChat(event);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.WHISPER))
 			whisperChat(event);
+		else if (pPlayer.getChatChannel().equals(ChatChannel.CLAN))
+			clanChat(event);
+		else if (pPlayer.getChatChannel().equals(ChatChannel.PARTY))
+			partyChat(event);
 		else
 			globalChat(event);
 	}
@@ -118,8 +123,11 @@ public class ChatHandler {
 		Player player = event.getPlayer();
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		Clan clan = pPlayer.getClan();
-		clan.sendMessage(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"]"+
-				 Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
+		if(clan == null) {
+			Output.simpleError(player, "You are currently not in a clan.");
+			return;
+		}
+		clan.sendMessage(Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
 	}
 
 	public static void partyChat(AsyncPlayerChatEvent event) {
@@ -128,8 +136,11 @@ public class ChatHandler {
 		Player player = event.getPlayer();
 		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
 		Party party = pPlayer.getParty();
-		party.sendMessage(ChatColor.WHITE+"["+ChatColor.DARK_PURPLE+"Party"+ChatColor.WHITE+"]"+
-		 Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
+		if(party == null) {
+			Output.simpleError(player, "You are currently not in a party.");
+			return;
+		}
+		party.sendMessage(Utils.getDisplayName(player)+ChatColor.WHITE+": "+event.getMessage());
 	}
 
 }

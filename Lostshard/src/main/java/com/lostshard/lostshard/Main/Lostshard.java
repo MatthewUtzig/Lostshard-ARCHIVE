@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Main;
 
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -12,11 +13,14 @@ import org.bukkit.scheduler.BukkitTask;
 import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
+import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
+import com.lostshard.lostshard.Database.DataSource;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Listener.BlockListener;
 import com.lostshard.lostshard.Listener.CitizensLisenter;
 import com.lostshard.lostshard.Listener.EntityListener;
@@ -26,7 +30,9 @@ import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
+import com.lostshard.lostshard.Objects.Groups.Clan;
 
 /**
  * @author Jacob Rosborg
@@ -50,6 +56,7 @@ public class Lostshard extends JavaPlugin {
 	public void onEnable() {
 		log = this.getLogger();
 		log.info(ChatColor.GREEN + "Lostshard has invoke.");
+		
 		// Lisenters
 		new BlockListener(this);
 		new EntityListener(this);
@@ -68,15 +75,23 @@ public class Lostshard extends JavaPlugin {
 		new UtilsCommand(this);
 		new AdminCommand(this);
 		new MageryCommand(this);
+		new ClanCommand(this);
 		
 		Lostshard.setPlugin(this);
 		
 		setMysqlError(!Database.testDatabaseConnection());
 		
+		Database.getClans();
 		Database.getPlayers();
 		Database.getPlots();
 		
+		for(Clan c : getRegistry().getClans())
+			for(UUID uuid : c.getMembersAndLeders()) {
+				PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(uuid);
+				pPlayer.setClan(c);
+			}
 		// GameLoop should run last.
+		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
 	}
 

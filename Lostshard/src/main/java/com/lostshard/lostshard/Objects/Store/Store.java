@@ -10,6 +10,7 @@ public class Store {
 	private int id;
 	private int npcId;
 	private List<StoreItem> items = new ArrayList<StoreItem>();
+	private boolean update = false;
 	
 	public Store(int npcID) {
 		this.npcId = npcID;
@@ -70,5 +71,17 @@ public class Store {
 				return si;
 		}
 		return null;
+	}
+
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public void update() {
+		setUpdate(true);
 	}
 }

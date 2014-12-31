@@ -3,11 +3,13 @@ package com.lostshard.lostshard.Objects;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
+import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -281,15 +283,15 @@ public class Plot {
 	}
 
 	public boolean isOwner(Player player) {
-		return player.isOp() || player.getUniqueId() == owner;
+		return isOwner(player.getUniqueId());
 	}
 
 	public boolean isFriend(Player player) {
-		return player.isOp() || friends.contains(player.getUniqueId());
+		return friends.contains(player.getUniqueId());
 	}
 
 	public boolean isOwner(UUID uuid) {
-		return uuid == owner;
+		return uuid.equals(owner);
 	}
 
 	public boolean isFriend(UUID uuid) {
@@ -309,7 +311,7 @@ public class Plot {
 
 	// Coowners
 	public boolean isCoowner(Player player) {
-		return player.isOp() || coowners.contains(player.getUniqueId());
+		return coowners.contains(player.getUniqueId());
 	}
 	
 	public boolean isCoowner(UUID uuid) {
@@ -362,21 +364,22 @@ public class Plot {
 	}
 
 	public boolean isAllowedToBuild(Player player) {
-		return isCoownerOrAbove(player) ? true : isFriend(player)
-				&& isFriendBuild() ? true : !isProtected() ? true : false;
+		return isAllowedToBuild(player.getUniqueId());
 	}
 
 	public boolean isFriendOrAbove(Player player) {
-		return isOwner(player) ? true : isCoowner(player) ? true
-				: isFriend(player) ? true : false;
+		return isFriendOrAbove(player.getUniqueId());
 	}
 
 	public boolean isCoownerOrAbove(Player player) {
-		return isOwner(player) ? true : isCoowner(player) ? true : false;
+		return isCoownerOrAbove(player.getUniqueId());
 	}
 
 	public boolean isAllowedToBuild(UUID uuid) {
-		return isCoownerOrAbove(uuid) ? true : isFriend(uuid)
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(uuid);
+		if(pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
+			return false;
+		return  isCoownerOrAbove(uuid) ? true : isFriend(uuid)
 				&& isFriendBuild() ? true : !isProtected() ? true : false;
 	}
 

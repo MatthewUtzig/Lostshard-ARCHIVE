@@ -174,7 +174,7 @@ public class PVPHandler {
 			}
 			Clan clan = pseudoPlayerDefender.getClan();
 			if(clan != null) {
-				if(clan.isMember(playerDamager.getUniqueId())) {
+				if(clan.isInClan(playerDamager.getUniqueId())) {
 					return;
 				}
 			}

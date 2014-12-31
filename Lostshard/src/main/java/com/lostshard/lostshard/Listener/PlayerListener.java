@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +12,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
@@ -39,6 +41,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		PlotHandler.onButtonPush(event);
+		PlotHandler.onPlayerInteract(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -79,7 +82,7 @@ public class PlayerListener implements Listener {
 			pPlayer.update();
 	}
 	
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		foodHealHandler.foodHeal(event);
 	}
@@ -87,5 +90,10 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		DeathHandler.handleDeath(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
+		PlotHandler.onPlayerInteractEntity(event);
 	}
 }

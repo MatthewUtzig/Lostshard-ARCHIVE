@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Handlers;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,7 +11,9 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Painting;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
@@ -18,13 +21,18 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
+import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
+import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
@@ -165,9 +173,11 @@ public class PlotHandler {
 		if (event.isCancelled())
 			return;
 		Plot toPlot = findPlotAt(event.getBlock().getLocation());
+		
 		// Check if there are a plot.
 		if (toPlot == null)
 			return;
+		
 		// Check if the plot is protected
 		if (!toPlot.isProtected())
 			return;
@@ -326,13 +336,19 @@ public class PlotHandler {
 	 */
 	public static void onBlockExplode(EntityExplodeEvent event) {
         List<Block> destroyed = event.blockList();
-        Iterator<Block> it = destroyed.iterator();
-        while (it.hasNext()) {
-            Block block = it.next();
-            Plot plot = findPlotAt(block.getLocation());
-            if (plot != null && !plot.isAllowExplosions())
-                it.remove();
+        boolean pro = false;
+        for(Block b : destroyed) {
+        	Plot plot = findPlotAt(b.getLocation());
+        	if(plot == null)
+        		continue;
+        	if(!plot.isAllowExplosions()) {
+        		event.setCancelled(true);
+        		pro = true;
+        		break;
+        	}
         }
+        if(pro)
+        	event.blockList().clear();
 	}
 	
 	/**
@@ -340,7 +356,7 @@ public class PlotHandler {
 	 * 
 	 *            Prevent players from destroying Armor stands and ItemFrames in plots.
 	 */
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+    public static void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity entity = event.getEntity();
 
         Entity damager = event.getDamager();
@@ -377,8 +393,10 @@ public class PlotHandler {
         }
     }
     
-    public void onHangingDestory(HangingBreakEvent event) {
+    public static void onHangingDestory(HangingBreakEvent event) {
     	Plot plot = findPlotAt(event.getEntity().getLocation());
+    	
+    	Entity entity = event.getEntity();
     	
     	Player player = null;
     	if(event instanceof HangingBreakByEntityEvent) {
@@ -389,16 +407,124 @@ public class PlotHandler {
     	
         if(player != null && plot != null && plot.isAllowedToBuild(player))
         	return;
-    	
-        if (plot != null) {
-            event.setCancelled(true);
-            
-            if(player != null)
-            	Output.simpleError(player, "Cannot destroy painting here "+plot.getName()+" is protected.");
-            
-            return;
-        }
         
+    	if(!(event.getCause().equals(RemoveCause.EXPLOSION) || event.getCause().equals(RemoveCause.ENTITY)))
+    		return;
+        if (entity instanceof ItemFrame) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot destroy item frame here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        } else if (entity instanceof Painting) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot destroy paintings here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        }
     }
-
+    
+    public static void onHangingPlace(HangingPlaceEvent event) {
+    	Plot plot = findPlotAt(event.getEntity().getLocation());
+    	
+    	Entity entity = event.getEntity();
+    	
+    	Player player = event.getPlayer();
+    	
+        if(player != null && plot != null && plot.isAllowedToBuild(player))
+        	return;
+        
+        if (entity instanceof ItemFrame) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot place item frame here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        } else if (entity instanceof Painting) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+                if(player != null)
+                	Output.simpleError(player, "Cannot place paintings here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        }
+    }
+    
+    public static void onPlayerInteract(PlayerInteractEvent event) {
+    	if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+	    	Block block = event.getClickedBlock().getRelative(event.getBlockFace());
+	    	
+	    	Plot plot = findPlotAt(block.getLocation());
+	    	
+	    	Player player = event.getPlayer();
+	    	
+	        if(player != null && plot != null && plot.isAllowedToBuild(player))
+	        	return;
+        
+        	 if (player.getItemInHand().getType().equals(Material.ARMOR_STAND)) {
+             	if (plot != null) {
+                     event.setCancelled(true);
+                     
+                     if(player != null)
+                     	Output.simpleError(player, "Cannot place armor stand here "+plot.getName()+" is protected.");
+                     return;
+                 }
+        	 }
+        }
+    	
+    }
+    
+    public static void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+    	Plot plot = findPlotAt(event.getPlayer().getLocation());
+    	
+    	Player player = event.getPlayer();
+    	
+    	Entity entity = event.getRightClicked();
+    	
+        if(player != null && plot != null && plot.isAllowedToBuild(player))
+        	return;
+        
+        if (entity instanceof ItemFrame) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+//                if(player != null)
+//                	Output.simpleError(player, "Cannot interact with item frame here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        } else if (entity instanceof ArmorStand) {
+        	if (plot != null) {
+                event.setCancelled(true);
+                
+//                if(player != null)
+//                	Output.simpleError(player, "Cannot interact with armor stand here "+plot.getName()+" is protected.");
+                
+                return;
+            }
+        }
+    }
+    
+    public static void onEntityChangeBlock(EntityChangeBlockEvent event) {
+    	Plot plot = findPlotAt(event.getBlock().getLocation());
+    	
+    	if(plot == null)
+    		return;
+    	if(plot.isAllowExplosions())
+    		return;
+    	event.setCancelled(true);	
+    }
+    
 }

@@ -20,6 +20,8 @@ import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Database.DataSource;
@@ -272,6 +274,23 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void deletePlot(Plot plot) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM plots WHERE id=?;");
+			prep.setInt(1, plot.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[PLOT] deletePlot mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
 
 	public static void updateNPC(NPC npc) {
 		if (npc == null)
@@ -453,7 +472,7 @@ public class Database {
 	// Player
 	public static List<PseudoPlayer> getPlayers() {
 		System.out.print("[PLAYER] Getting Players from DB!");
-		ArrayList<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+		List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
 		Map<Integer, Build> builds = Database.getBuilds();
 		try {
 			Connection conn = connPool.getConnection();
@@ -502,7 +521,7 @@ public class Database {
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
 					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.setSpawnTick(spawnTick);
+					pPlayer.setSpawnTicks(spawnTick);
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
@@ -560,7 +579,7 @@ public class Database {
 			prep.setInt(13, pPlayer.getRank());
 			prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
 			System.out.print(Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-			prep.setInt(15, pPlayer.getSpawnTick());
+			prep.setInt(15, pPlayer.getSpawnTicks());
 			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 			prep.setInt(17, pPlayer.getCurrentBuildId());
 			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
@@ -675,7 +694,7 @@ public class Database {
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
 					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.setSpawnTick(spawnTick);
+					pPlayer.setSpawnTicks(spawnTick);
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
@@ -717,7 +736,7 @@ public class Database {
 				prep.setInt(12, pPlayer.getStamina());
 				prep.setInt(13, pPlayer.getRank());
 				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-				prep.setInt(15, pPlayer.getSpawnTick());
+				prep.setInt(15, pPlayer.getSpawnTicks());
 				prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 				prep.setInt(17, pPlayer.getCurrentBuildId());
 				prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
@@ -814,7 +833,7 @@ public class Database {
 			prep.close();
 			conn.close();
 		} catch (Exception e) {
-			Lostshard.log.warning("[NPC] updateNPC mysql error");
+			Lostshard.log.warning("[NPC] insertNPC mysql error");
 			Lostshard.mysqlError();
 			if(Lostshard.isDebug())
 				e.printStackTrace();
@@ -832,6 +851,216 @@ public class Database {
 			conn.close();
 		} catch (Exception e) {
 			Lostshard.log.warning("[NPC] deleteNPC mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static List<Clan> getClans() {
+		List<Clan> clans = new ArrayList<Clan>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM clans");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					String name = rs.getString("name");
+					UUID owner = UUID.fromString(rs.getString("owner"));
+					List<UUID> leaders = Serializer.deserializeUUIDList(rs.getString("leaders"));
+					List<UUID> members = Serializer.deserializeUUIDList(rs.getString("members"));
+					List<UUID> invited = Serializer.deserializeUUIDList(rs.getString("invited"));
+					
+					Clan clan = new Clan(name, owner);
+					clan.setId(id);
+					clan.setLeaders(leaders);
+					clan.setMembers(members);
+					clan.setInvited(invited);
+					
+					clans.add(clan);
+				} catch (Exception e) {
+					Lostshard.log.warning("[CLAN] Exception when generating \""+ id + "\" clan:");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CLAN] getClans mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		System.out.print("[CLAN] got "+clans.size()+" clans from DB.");
+		Lostshard.getRegistry().setClans(clans);
+		return clans;
+	}
+	
+	public static void updateClans(List<Clan> clans) {
+		if(Lostshard.isDebug())
+			System.out.print("UPDATING CLANS!");
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE clans SET name=?, owner=?, leaders=?, members=?, invited=? WHERE id=?;");
+			for(Clan clan : clans) {
+				clan.setUpdate(false);
+				prep.setString(1, clan.getName());
+				prep.setString(2, clan.getOwner().toString());
+				prep.setString(3, Serializer.serializeUUIDList(clan.getLeaders()));
+				prep.setString(4, Serializer.serializeUUIDList(clan.getMembers()));
+				prep.setString(5, Serializer.serializeUUIDList(clan.getInvited()));
+				prep.setInt(6, clan.getId());
+				prep.addBatch();
+			}
+			prep.executeBatch();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[Clan] updateClans mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void insertClan(Clan clan) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO clans (name,owner,leaders,members,invited) VALUES (?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			prep.setString(1, clan.getName());
+			prep.setString(2, clan.getOwner().toString());
+			prep.setString(3, Serializer.serializeUUIDList(clan.getLeaders()));
+			prep.setString(4, Serializer.serializeUUIDList(clan.getMembers()));
+			prep.setString(5, Serializer.serializeUUIDList(clan.getInvited()));
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while (rs.next())
+				id = rs.getInt(1);
+			clan.setId(id);
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CLAN] inserClan mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void deleteClan(Clan clan) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM clans WHERE id=?;");
+			prep.setInt(1, clan.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CLAN] deleteClan mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static List<Store> getStores() {
+		List<Store> stores = new ArrayList<Store>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM stores");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					int npcID = rs.getInt("npcId");
+					String content = rs.getString("content");
+					
+					Store store = new Store(npcID);
+					store.setId(id);
+					
+					stores.add(store);
+				} catch (Exception e) {
+					Lostshard.log.warning("[STORE] Exception when generating \""+ id + "\" store:");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[STORE] getStores mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		System.out.print("[STORE] got "+stores.size()+" stores from DB.");
+//		Lostshard.getRegistry().setClans(clans);
+		return stores;
+	}
+	
+	public static void updateStores(List<Store> stores) {
+		if(Lostshard.isDebug())
+			System.out.print("UPDATING STORES!");
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn.prepareStatement("UPDATE stores SET npcId=?, content=? WHERE id=?;");
+			for(Store store : stores) {
+				store.setUpdate(false);
+				prep.setInt(1, store.getNpcId());
+				prep.setString(2, "");
+				prep.setInt(3, store.getId());
+				prep.addBatch();
+			}
+			prep.executeBatch();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[STORE] updateStores mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void insertStore(Store store) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO stores (npcId,content) VALUES (?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			prep.setInt(1, store.getNpcId());
+			prep.setString(2, "");
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			int id = 0;
+			while (rs.next())
+				id = rs.getInt(1);
+			store.setId(id);
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[STORE] inserStore mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void deleteStore(Store store) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM stores WHERE id=?;");
+			prep.setInt(1, store.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[STORE] deleteStore mysql error");
 			Lostshard.mysqlError();
 			if(Lostshard.isDebug())
 				e.printStackTrace();

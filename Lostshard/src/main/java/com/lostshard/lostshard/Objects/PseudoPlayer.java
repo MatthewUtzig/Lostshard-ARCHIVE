@@ -47,7 +47,7 @@ public class PseudoPlayer {
 	private Clan clan = null;
 	private Party party = null;
 	private Location customSpawn = new Location(Bukkit.getWorlds().get(0),0,0,0);
-	private int spawnTick = 0;
+	private int spawnTicks = 0;
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -69,6 +69,7 @@ public class PseudoPlayer {
 	private int stunTick = 0;
 	
 	private long lastDeath = 0;
+	public int goToSpawnTicks = 0;
 
 	public PseudoPlayer(UUID playerUUID, int id) {
 		super();
@@ -92,6 +93,10 @@ public class PseudoPlayer {
 			updateMana(delta);
 			updateStamina(delta);
 		}
+		if(spawnTicks > 0)
+			setSpawnTicks(getSpawnTicks()-1);
+		if(criminal > 0)
+			setCriminal(getCriminal()-1);
 		if(bleedTick > 0) {
 			if(tick % 10 == 0) {
 				Player p = getOnlinePlayer();
@@ -110,6 +115,26 @@ public class PseudoPlayer {
 						newHealth = 0;
 					p.setHealth(newHealth);
 				}
+			}
+		}
+		if(goToSpawnTicks > 0) {
+			goToSpawnTicks--;
+			if(goToSpawnTicks == 0) {
+				Player player = getOnlinePlayer();
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				if(isCriminal())
+					player.teleport(Variables.criminalSpawn);
+				else 
+					player.teleport(Variables.lawfullSpawn);
+	        	setSpawnTicks(36000);
+	        	setMana(0);
+				setStamina(0);
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
+			}
+			else if(goToSpawnTicks % 10 == 0) {
+				Player player = getOnlinePlayer();
+				Output.simpleError(player, "Returning to spawn in "+(goToSpawnTicks/10)+" seconds.");
 			}
 		}
 	}
@@ -309,6 +334,7 @@ public class PseudoPlayer {
 
 	public void setChatChannel(ChatChannel chatChannel) {
 		this.chatChannel = chatChannel;
+		update();
 	}
 
 	public int getMana() {
@@ -361,12 +387,12 @@ public class PseudoPlayer {
 		update();
 	}
 
-	public int getSpawnTick() {
-		return spawnTick;
+	public int getSpawnTicks() {
+		return spawnTicks;
 	}
 
-	public void setSpawnTick(int spawnTick) {
-		this.spawnTick = spawnTick;
+	public void setSpawnTicks(int spawnTicks) {
+		this.spawnTicks = spawnTicks;
 	}
 
 	public Party getParty() {

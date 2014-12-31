@@ -42,7 +42,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		} else if (cmd.getName().equalsIgnoreCase("spawn")) {
 			playerSpawn(sender);
 		} else if (cmd.getName().equalsIgnoreCase("resetspawn")) {
-			playerResetspawn(sender);
+			playerResetSpawn(sender);
 		} else if (cmd.getName().equalsIgnoreCase("rules")) {
 			Output.displayRules(sender);
 		} else if (cmd.getName().equalsIgnoreCase("build")) {
@@ -99,7 +99,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	private void playerResetspawn(CommandSender sender) {
+	private void playerResetSpawn(CommandSender sender) {
 		if (!(sender instanceof Player)) {
 			Output.simpleError(sender, "Only players may perform this command.");
 			return;
@@ -116,18 +116,21 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void playerSpawn(CommandSender sender) {
-		if (!(sender instanceof Player)) {
-			Output.simpleError(sender, "Only players may perform this command.");
-			return;
+		if(sender instanceof Player) {
+			Player player = (Player) sender;
+			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+        	if(pPlayer.getSpawnTicks() <= 0) {
+        		pPlayer.goToSpawnTicks = 100;
+        		Output.positiveMessage(player, "Returning to spawn in 10 seconds.");
+        	}
+        	else {
+        		int ticks = pPlayer.getSpawnTicks();
+        		int seconds = ticks / 10;
+        		player.sendMessage("Cannot go to spawn, "+(seconds/60)+" minutes, "+(seconds%60)+" seconds remaining.");
+        	}
+		}else{
+			Output.mustBePlayer(sender);
 		}
-		Player player = (Player) sender;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
-		if (pPlayer.getSpawnTick() <= 0) {
-			pPlayer.setSpawnTick(72000);
-			Output.positiveMessage(player, "Returning to spawn in 10 seconds.");
-			// player.sendMessage("Cannot go to spawn, "+(seconds/60)+" minutes, "+(seconds%60)+" seconds remaining.");
-		}
-		return;
 	}
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd,

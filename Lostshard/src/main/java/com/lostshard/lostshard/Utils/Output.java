@@ -342,4 +342,13 @@ public class Output {
 		sender.sendMessage(ChatColor.YELLOW
 				+ "Long Version: http://wiki.lostshard.com/index.php?title=Rules");
 	}
+
+	public static void outputClanInfo(Player player, Clan clan) {
+		player.sendMessage(ChatColor.GOLD+"-"+clan.getName()+"'s Info-");
+		player.sendMessage(ChatColor.YELLOW+"Clan Owner: " +ChatColor.WHITE+ Bukkit.getOfflinePlayer(clan.getOwner()).getName());
+		
+		player.sendMessage(ChatColor.YELLOW+"Clan Leaders: " +ChatColor.WHITE+Utils.listToString(Utils.UUIDArrayToUsernameArray(clan.getLeaders())));
+		
+		player.sendMessage(ChatColor.YELLOW+"Clan Members: " +ChatColor.WHITE+Utils.listToString(Utils.UUIDArrayToUsernameArray(clan.getMembers())));
+	}
 }

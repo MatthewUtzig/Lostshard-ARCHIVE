@@ -1,9 +1,11 @@
 package com.lostshard.lostshard.Objects.Groups;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -11,6 +13,8 @@ import com.lostshard.lostshard.Objects.Bank;
 
 public class Clan extends Group{
 
+	private int id = 0;
+	
 	// String's
 	private String name;
 
@@ -18,12 +22,16 @@ public class Clan extends Group{
 	private UUID owner;
 
 	// Array's
-	private ArrayList<UUID> leaders = new ArrayList<UUID>();
+	private List<UUID> leaders = new ArrayList<UUID>();
 	
 	private Bank bank = new Bank(null, false);
 
+	private boolean update = false;
+	
 	public Clan(String name, UUID owner) {
 		super();
+		this.name = name;
+		this.owner = owner;
 	}
 
 	public String getName() {
@@ -40,10 +48,11 @@ public class Clan extends Group{
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
+		update();
 	}
 	
 	public boolean isOwner(UUID owner) {
-		return this.owner == owner;
+		return this.owner.equals(owner);
 	}
 
 	public boolean isOwner(Player player) {
@@ -54,20 +63,22 @@ public class Clan extends Group{
 		return isOwner(player.getUniqueId());
 	}
 	
-	public ArrayList<UUID> getLeaders() {
+	public List<UUID> getLeaders() {
 		return leaders;
 	}
 
-	public void setLeaders(ArrayList<UUID> leaders) {
+	public void setLeaders(List<UUID> leaders) {
 		this.leaders = leaders;
 	}
 	
 	public void promoteMember(UUID uuid) {
 		this.leaders.add(uuid);
+		update();
 	}
 	
-	public void demoteMember(UUID uuid) {
+	public void demoteLeader(UUID uuid) {
 		this.leaders.remove(uuid);
+		update();
 	}
 	
 	public boolean isLeader(UUID uuid) {
@@ -79,6 +90,7 @@ public class Clan extends Group{
 		ArrayList<UUID> result = new ArrayList<UUID>();
 		result.addAll(getMembers());
 		result.addAll(leaders);
+		result.add(owner);
 		return result;
 	}
 	
@@ -86,7 +98,7 @@ public class Clan extends Group{
 		for(UUID member : getMembersAndLeders()) {
 			Player memberPlayer = Bukkit.getPlayer(member);
 			if(memberPlayer != null) {
-				memberPlayer.sendMessage(message);
+				memberPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"] "+message);
 			}
 		}
 	}
@@ -99,6 +111,74 @@ public class Clan extends Group{
 		this.bank = bank;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public void update() {
+		setUpdate(true);
+	}
+	
+	public void addMember(UUID member) {
+		if(!getMembers().contains(member)) {
+			getMembers().add(member);
+		}
+		update();
+	}
+	
+	public void removeMember(UUID member) {
+		int numPartyMemberNames = getMembers().size();
+		for(int i=numPartyMemberNames-1; i>=0; i--) {
+			if(getMembers().get(i).equals(member))
+				getMembers().remove(i);
+		}
+		update();
+	}
+	
+	public void addInvited(UUID invite) {
+		if(!this.getInvited().contains(invite))
+			this.getInvited().add(invite);
+		update();
+	}
+	
+	public void removeInvited(UUID invite) {
+		int numInvitedNames = getInvited().size();
+		for(int i=numInvitedNames-1; i>=0; i--) {
+			if(getInvited().get(i).equals(invite))
+				getInvited().remove(i);
+		}
+		update();
+	}
+
+	public boolean isInClan(UUID uuid) {
+		if(getMembers().contains(uuid) || isLeader(uuid) || isOwner(uuid))
+			return true;
+		return false;
+	}
+	
+	
+	public List<Player> getOnlineMembers() {
+		List<Player> rs = new ArrayList<Player>();
+		for(UUID pUUID : getMembersAndLeders()) {
+			Player p = Bukkit.getPlayer(pUUID);
+			if(p != null)
+				rs.add(p);
+		}
+		return rs;	
+	}
+	
 	// TODO make clan commands and database
 
 }

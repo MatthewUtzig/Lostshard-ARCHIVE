@@ -10,22 +10,22 @@ import org.bukkit.entity.Player;
 
 public class Group {
 
-	private ArrayList<UUID> members = new ArrayList<UUID>();
-	private ArrayList<UUID> invited = new ArrayList<UUID>();
+	private List<UUID> members = new ArrayList<UUID>();
+	private List<UUID> invited = new ArrayList<UUID>();
 
-	public ArrayList<UUID> getMembers() {
+	public List<UUID> getMembers() {
 		return members;
 	}
 
-	public void setMembers(ArrayList<UUID> members) {
+	public void setMembers(List<UUID> members) {
 		this.members = members;
 	}
 
-	public ArrayList<UUID> getInvited() {
+	public List<UUID> getInvited() {
 		return invited;
 	}
 
-	public void setInvited(ArrayList<UUID> invited) {
+	public void setInvited(List<UUID> invited) {
 		this.invited = invited;
 	}
 	

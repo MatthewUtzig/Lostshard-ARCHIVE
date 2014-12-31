@@ -1,7 +1,5 @@
 package com.lostshard.lostshard.Handlers;
 
-import java.util.Calendar;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World.Environment;
@@ -11,7 +9,6 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 public class EnderdragonHandler {
 
 	private static boolean spawnDrake = false;
-	private static int lastSpawnHoure = 0;
 
 	public static void respawnDragonCheck(PlayerChangedWorldEvent event) {
 		// Check if its The End
@@ -26,21 +23,11 @@ public class EnderdragonHandler {
 				.spawnEntity(event.getPlayer().getLocation().add(0, 40, 0),
 						EntityType.ENDER_DRAGON);
 		spawnDrake = false;
+	}
+	
+	public static void resetDrake() {
+		spawnDrake = true;
 		Bukkit.broadcastMessage(ChatColor.GREEN
 				+ "The Enderdragon has returned to The End");
 	}
-	
-	public static void resetWorld() {
-		
-	}
-
-	public static void tick() {
-		Calendar time = Calendar.getInstance();
-		if (time.get(Calendar.HOUR_OF_DAY) % 4 == 0
-				&& time.get(Calendar.HOUR_OF_DAY) != lastSpawnHoure) {
-			spawnDrake = true;
-			lastSpawnHoure = time.get(Calendar.HOUR_OF_DAY);
-		}
-	}
-
 }

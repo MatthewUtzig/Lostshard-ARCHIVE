@@ -37,6 +37,12 @@ commands:
       description: Selects the whisper chat.
       aliases: [w]
       usage: /<command>
+   p:
+      description: Selects the whisper chat.
+      usage: /<command>
+   c:
+      description: Selects the whisper chat.
+      usage: /<command>
    msg:
       description: Send a private message to a player.
       aliases: [m]
@@ -82,6 +88,9 @@ commands:
       description: Change build.
       usage: /<command>
    skills:
-      description: Change build.
+      description: Skills.
+      usage: /<command>
+   clan:
+      description: Clan.
       usage: /<command>
       

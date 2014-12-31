@@ -21,7 +21,6 @@ import org.bukkit.potion.PotionEffectType;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Skills.Build;
 
 public class Utils {
 
@@ -185,18 +184,4 @@ public class Utils {
 		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
 				force);
 	}
-	
-	public static String getBuildIdsAsList(PseudoPlayer pPlayer) {
-		String rs = "[";
-		for(int i=0;i<pPlayer.getBuilds().size();i++) {
-			Build b = pPlayer.getBuilds().get(i);
-			if(i>=pPlayer.getBuilds().size())
-				rs+=b.getId();
-			else
-				rs+=b.getId()+",";
-		}
-		rs+="]";
-		return rs;
-	}
-
-}
+ }

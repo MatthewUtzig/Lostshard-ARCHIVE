@@ -34,6 +34,8 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("shout").setExecutor(this);
 		plugin.getCommand("local").setExecutor(this);
 		plugin.getCommand("whisper").setExecutor(this);
+		plugin.getCommand("c").setExecutor(this);
+		plugin.getCommand("p").setExecutor(this);
 		plugin.getCommand("msg").setExecutor(this);
 		plugin.getCommand("replay").setExecutor(this);
 		plugin.getCommand("toggleglobal").setExecutor(this);
@@ -56,6 +58,10 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			localChat(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("whisper")) {
 			whisperChat(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("c")) {
+			clanChat(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("p")) {
+			partyChat(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("msg")) {
 			msgChat(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("replay")) {
@@ -205,7 +211,49 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
 	}
+	
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 *            Output clan chat for player.
+	 */
+	private void clanChat(Player player, String[] args) {
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		if (args.length < 1) {
+			pPlayer.setChatChannel(ChatChannel.CLAN);
+			Output.positiveMessage(player, "You have togglet clan chat.");
+			return;
+		}
 
+		String msg = Utils.getStringFromList(args);
+		ChatChannel curChannel = pPlayer.getChatChannel();
+		pPlayer.setChatChannel(ChatChannel.CLAN);
+		player.chat(msg);
+		pPlayer.setChatChannel(curChannel);
+	}
+	
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 *            Output party chat for player.
+	 */
+	private void partyChat(Player player, String[] args) {
+		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		if (args.length < 1) {
+			pPlayer.setChatChannel(ChatChannel.PARTY);
+			Output.positiveMessage(player, "You have togglet party chat.");
+			return;
+		}
+
+		String msg = Utils.getStringFromList(args);
+		ChatChannel curChannel = pPlayer.getChatChannel();
+		pPlayer.setChatChannel(ChatChannel.PARTY);
+		player.chat(msg);
+		pPlayer.setChatChannel(curChannel);
+	}
+	
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("msg")) {

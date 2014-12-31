@@ -11,11 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
-import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Groups.Clan;
 
 public class GameLoop extends BukkitRunnable {
 
@@ -31,7 +30,7 @@ public class GameLoop extends BukkitRunnable {
 
 	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
 	public static List<Plot> plotUpdates = new ArrayList<Plot>();
-	
+	public static List<Clan> clanUpdates = new ArrayList<Clan>();
 	
 	public void run() {
 		Date date = new Date();
@@ -47,7 +46,6 @@ public class GameLoop extends BukkitRunnable {
 		if(Lostshard.isMysqlError())
 			Lostshard.setMysqlError(!Database.testDatabaseConnection());
 		else {
-			EnderdragonHandler.tick();
 			PseudoPlayerHandler.tick(delta, tick);
 			//5 sec loop
 				if(tick % 50 == 0) {
@@ -63,6 +61,12 @@ public class GameLoop extends BukkitRunnable {
 					if(!plotUpdates.isEmpty())
 						Database.updatePlots(plotUpdates);
 					plotUpdates.clear();
+					for(Clan c : Lostshard.getRegistry().getClans())
+						if(c.isUpdate())
+							clanUpdates.add(c);
+					if(!clanUpdates.isEmpty())
+						Database.updateClans(clanUpdates);
+					clanUpdates.clear();
 				}
 				if(tick % 18000 == 0){
 	 				for(Player p : Bukkit.getOnlinePlayers()) {

@@ -28,7 +28,7 @@ public class Registry {
 		return players;
 	}
 
-	public void setPlayers(ArrayList<PseudoPlayer> players) {
+	public void setPlayers(List<PseudoPlayer> players) {
 		this.players = players;
 	}
 
@@ -44,7 +44,7 @@ public class Registry {
 		return clans;
 	}
 
-	public void setClans(ArrayList<Clan> clans) {
+	public void setClans(List<Clan> clans) {
 		this.clans = clans;
 	}
 
@@ -52,7 +52,7 @@ public class Registry {
 		return parties;
 	}
 
-	public void setParties(ArrayList<Party> parties) {
+	public void setParties(List<Party> parties) {
 		this.parties = parties;
 	}
 

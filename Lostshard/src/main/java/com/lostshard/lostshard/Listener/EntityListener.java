@@ -1,10 +1,13 @@
 package com.lostshard.lostshard.Listener;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
@@ -22,6 +25,12 @@ public class EntityListener implements Listener {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityDamaged(EntityDamageEvent event) {
+		if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
+			event.setCancelled(true);
+	}
+	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onEntityDamagedByEntityLow(EntityDamageByEntityEvent event) {
 		Entity attacker = event.getDamager();
@@ -35,6 +44,15 @@ public class EntityListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityDamagedByEntityHighest(EntityDamageByEntityEvent event) {
+//		Entity attacker = event.getDamager();
+		Entity defender = event.getEntity();
+		if (defender.hasMetadata("NPC"))
+			return;
+		PlotHandler.onEntityDamageByEntity(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityExplodeEvent(EntityExplodeEvent event) {
 		PlotHandler.onBlockExplode(event);
 	}
@@ -45,4 +63,10 @@ public class EntityListener implements Listener {
 			return;
 		DeathHandler.handleDeath(event);
 	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityChangeBlock(EntityChangeBlockEvent event) {
+		PlotHandler.onEntityChangeBlock(event);
+	}
+	
 }

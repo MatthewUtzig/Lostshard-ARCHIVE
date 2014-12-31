@@ -13,6 +13,8 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
+import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import com.lostshard.lostshard.Handlers.PlotHandler;
@@ -82,5 +84,15 @@ public class BlockListener implements Listener {
 		if (event.getBlock().getType().equals(Material.PORTAL)) {
 			event.setCancelled(true);
 		}
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onHangingBreak(HangingBreakEvent event) {
+		PlotHandler.onHangingDestory(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onHangingPlace(HangingPlaceEvent event) {
+		PlotHandler.onHangingPlace(event);
 	}
 }

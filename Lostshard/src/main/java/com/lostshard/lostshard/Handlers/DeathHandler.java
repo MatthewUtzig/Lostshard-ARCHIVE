@@ -483,7 +483,6 @@ public class DeathHandler {
 			event.setDeathMessage(deathMessage);
 		} else {
 			EntityDamageEvent e = player.getLastDamageCause();
-			EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;
 			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
 			Plot plot = PlotHandler.findPlotAt(player.getLocation());
 			if(e == null) {
@@ -549,7 +548,8 @@ public class DeathHandler {
 			else if(e.getCause().equals(DamageCause.VOID)) {
 				message += " fell into the abyss.";
 			}
-			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK) || eDBEE.getDamager() instanceof Projectile) {	
+			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK) || (e instanceof EntityDamageByEntityEvent && ((EntityDamageByEntityEvent)e).getDamager() instanceof Projectile)) {	
+				EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;	
 					Entity damager = eDBEE.getDamager();
 					if(damager instanceof Projectile)
 						damager = ((Entity) ((Projectile)damager).getShooter());
