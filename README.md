@@ -15,12 +15,12 @@
 - [x] Mysql
 
 #Clan
-- [ ] Clan found
-- [ ] Clan invite
-- [ ] Clan kick
-- [ ] Clan promote
-- [ ] Clan demote
-- [ ] Mysql
+- [X] Clan found
+- [X] Clan invite
+- [X] Clan kick
+- [X] Clan promote
+- [X] Clan demote
+- [X] Mysql
 
 #Party
 - [ ] Commands
