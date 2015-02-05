@@ -192,8 +192,8 @@ public class Spell {
 		return _firstNeutralFound;
 	}
 
+	@SuppressWarnings("deprecation")
 	protected static Block blockInLOS(Player player, int range) {
-		
 		Block targetBlock = player.getTargetBlock(invisibleBlocks, range);
 		return targetBlock;
 	}

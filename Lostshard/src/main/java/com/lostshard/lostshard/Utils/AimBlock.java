@@ -225,7 +225,8 @@ public class AimBlock {
 *
 * @return Block
 */
-    public Block getTargetBlock()
+    @SuppressWarnings("deprecation")
+	public Block getTargetBlock()
     {
         while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
         return getCurrentBlock();
@@ -236,7 +237,8 @@ public class AimBlock {
 *
 * @param type Id of type to set the block to
 */
-    public void setTargetBlock(int type)
+    @SuppressWarnings("deprecation")
+	public void setTargetBlock(int type)
     {
      while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
         if (getCurrentBlock() != null)
@@ -252,7 +254,8 @@ public class AimBlock {
 *
 * @return Block
 */
-    public Block getFaceBlock()
+    @SuppressWarnings("deprecation")
+	public Block getFaceBlock()
     {
      while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
         if (getCurrentBlock() != null)
@@ -270,7 +273,8 @@ public class AimBlock {
 *
 * @param type
 */
-    public void setFaceBlock(int type)
+    @SuppressWarnings("deprecation")
+	public void setFaceBlock(int type)
     {
         if (getCurrentBlock() != null)
         {
@@ -332,7 +336,8 @@ public class AimBlock {
 *
 * @param type
 */
-    public void setCurrentBlock(int type)
+    @SuppressWarnings("deprecation")
+	public void setCurrentBlock(int type)
     {
      Block blk = getCurrentBlock();
         if (blk != null)
@@ -356,7 +361,8 @@ public class AimBlock {
 *
 * @param type
 */
-    public void setPreviousBlock(int type)
+    @SuppressWarnings("deprecation")
+	public void setPreviousBlock(int type)
     {
      Block blk = getPreviousBlock();
         if (blk != null)

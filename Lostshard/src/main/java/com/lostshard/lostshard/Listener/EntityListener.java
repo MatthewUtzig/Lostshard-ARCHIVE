@@ -45,7 +45,6 @@ public class EntityListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamagedByEntityHighest(EntityDamageByEntityEvent event) {
-//		Entity attacker = event.getDamager();
 		Entity defender = event.getEntity();
 		if (defender.hasMetadata("NPC"))
 			return;

@@ -14,7 +14,6 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Utils.Output;
-import com.lostshard.lostshard.Utils.Utils;
 
 public class SPL_PermanentGateTravel extends Spell {
 	private static final String 	_name = "Permanent Gate Travel";
