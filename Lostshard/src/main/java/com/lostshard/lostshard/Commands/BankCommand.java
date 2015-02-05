@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.NPCHandler;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
@@ -28,6 +28,8 @@ import com.lostshard.lostshard.Utils.Utils;
  */
 public class BankCommand implements CommandExecutor, TabCompleter {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	/**
 	 * @param Lostshard
 	 *            as plugin
@@ -69,7 +71,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 					+ " is not online.");
 			return;
 		}
-		PseudoPlayer tpPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
+		PseudoPlayer tpPlayer = pm.getPlayer(targetPlayer);
 		int amount;
 		try {
 			amount = Integer.parseInt(args[1]);
@@ -87,7 +89,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 				Output.simpleError(player, "You may not pay yourself.");
 				return;
 			}
-			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pPlayer = pm.getPlayer(player);
 			if (pPlayer.getMoney() < amount) {
 				Output.simpleError(player, "You cannot affort to pay "
 						+ targetPlayer.getName() + " " + amount + "gc.");
@@ -114,7 +116,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		Player player = (Player) sender;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
 			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
 					Variables.bankRadius)) {
@@ -152,7 +154,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		Player player = (Player) sender;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		for (NPC npc : NPCHandler.getBankers())
 			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
 					Variables.bankRadius)) {

@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -18,6 +19,8 @@ import com.lostshard.lostshard.Utils.Utils;
  */
 public class ChatHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	private static int whisperChatRange = 5;
 	private static int localChatRange = 10;
 	private static int shoutChatRange = 50;
@@ -50,7 +53,7 @@ public class ChatHandler {
 		if (event.isCancelled())
 			return;
 		event.getRecipients().clear();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
+		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		if (pPlayer.getChatChannel().equals(ChatChannel.LOCAL))
 			localChat(event);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.SHOUT))
@@ -99,7 +102,7 @@ public class ChatHandler {
 		if (event.isCancelled())
 			return;
 		String prefix;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(event.getPlayer());
+		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		String star = "";
 		if (pPlayer.isSubscriber())
 			star=ChatColor.GOLD+"*";
@@ -109,7 +112,7 @@ public class ChatHandler {
 		prefix = ChatColor.WHITE + "[" + ChatColor.YELLOW + "Global"
 					+ ChatColor.WHITE + "]"+star;
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			pPlayer = PseudoPlayerHandler.getPlayer(p);
+			pPlayer = pm.getPlayer(p);
 			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL))
 				event.getRecipients().add(p);
 		}
@@ -121,7 +124,7 @@ public class ChatHandler {
 		if (event.isCancelled())
 			return;
 		Player player = event.getPlayer();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Clan clan = pPlayer.getClan();
 		if(clan == null) {
 			Output.simpleError(player, "You are currently not in a clan.");
@@ -134,7 +137,7 @@ public class ChatHandler {
 		if (event.isCancelled())
 			return;
 		Player player = event.getPlayer();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Party party = pPlayer.getParty();
 		if(party == null) {
 			Output.simpleError(player, "You are currently not in a party.");

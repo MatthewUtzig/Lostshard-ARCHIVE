@@ -13,6 +13,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
@@ -22,6 +23,8 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class Spell {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	private String name;
 	private String spellWords;
 	private int manaCost;

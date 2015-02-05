@@ -8,13 +8,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 
 public class Output {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public static void mustBePlayer(CommandSender sender) {
 		sender.sendMessage(ChatColor.RED + "You must be a player!");
 	}
@@ -56,7 +58,7 @@ public class Output {
 	}
 
 	public static void outputSkills(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Skills-");
 		player.sendMessage(ChatColor.YELLOW+"You currently have "+Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTotalSkillVal())+"/"+Utils.scaledIntToString(pseudoPlayer.getMaxSkillValTotal()) + " skill points.");
 		if(pseudoPlayer.getCurrentBuild().getArchery().isLocked())
@@ -147,7 +149,7 @@ public class Output {
 		if (plot.isNeutralAlignment())
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.WHITE
 					+ "Neutral";
-		else if (PseudoPlayerHandler.getPlayer(plot.getOwner())
+		else if (pm.getPlayer(plot.getOwner())
 				.getMurderCounts() < 5)
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.BLUE
 					+ "Lawful";
@@ -288,7 +290,7 @@ public class Output {
 	}
 
 	public static void playerStats(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Statistics-");
 		player.sendMessage(ChatColor.YELLOW + "Gold Coins: " + ChatColor.WHITE
@@ -324,7 +326,7 @@ public class Output {
 		@SuppressWarnings("deprecation")
 		Player p = Bukkit.getPlayer(targetName);
 		if (p != null) {
-			PseudoPlayer targetPseudoPlayer = PseudoPlayerHandler.getPlayer(p);
+			PseudoPlayer targetPseudoPlayer = pm.getPlayer(p);
 			if (p.isOp()) {
 				Output.simpleError(sender, "That player is not online.");
 			} else {

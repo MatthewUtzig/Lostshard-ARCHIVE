@@ -11,13 +11,12 @@ import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
 public class BladesSkill extends Skill {
-
+	
 	public BladesSkill() {
 		super();
 		setName("bladess");
@@ -37,7 +36,7 @@ public class BladesSkill extends Skill {
 		if(!ItemUtils.isSword(item))
 			return;
 		Entity damagedEntity = event.getEntity();
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Skill skill = pseudoPlayer.getCurrentBuild().getBlades();
 		int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
@@ -68,7 +67,7 @@ public class BladesSkill extends Skill {
 			if(bleedChance > Math.random()) {
 				if(damagedEntity instanceof Player) {
 					Player defenderPlayer = (Player)damagedEntity;
-					PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+					PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 					if(defenderPseudoPlayer.getBleedTick() <= 0) {
 						defenderPseudoPlayer.setBleedTick(10);
 						defenderPlayer.sendMessage(ChatColor.GREEN+"You are bleeding!");

@@ -11,7 +11,6 @@ import com.lostshard.lostshard.Objects.Store.Store;
 public class Registry {
 
 	private List<Plot> plots = new ArrayList<Plot>();
-	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
 	private List<Clan> clans = new ArrayList<Clan>();
 	private List<Party> parties = new ArrayList<Party>();
 	private List<Store> stores = new ArrayList<Store>();
@@ -22,14 +21,6 @@ public class Registry {
 
 	public void setPlots(ArrayList<Plot> plots) {
 		this.plots = plots;
-	}
-
-	public List<PseudoPlayer> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<PseudoPlayer> players) {
-		this.players = players;
 	}
 
 	public ArrayList<NPC> getNpcs() {

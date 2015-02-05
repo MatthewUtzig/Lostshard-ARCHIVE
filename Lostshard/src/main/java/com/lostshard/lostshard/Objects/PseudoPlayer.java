@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -582,8 +582,8 @@ public class PseudoPlayer {
 	}
 	
 	public void reload() {
-		Lostshard.getRegistry().getPlayers().remove(this);
-		Lostshard.getRegistry().getPlayers().add(Database.getPlayer(id));
+		PlayerManager.getManager().getPlayers().remove(this);
+		PlayerManager.getManager().getPlayers().add(Database.getPlayer(id));
 	}
 
 	public boolean isResting() {

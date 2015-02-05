@@ -14,7 +14,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Handlers.PVPHandler;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
@@ -40,7 +39,7 @@ public class LumberjackingSkill extends Skill {
 		if(!ItemUtils.isAxe(player.getItemInHand()))
 			return;
 		Entity damagedEntity = event.getEntity();
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Skill skill = pseudoPlayer.getCurrentBuild().getLumberjacking();
 		int lumberjackingSkill = skill.getLvl();
 		double damage = event.getDamage();
@@ -103,7 +102,7 @@ public class LumberjackingSkill extends Skill {
 		if(!ItemUtils.isAxe(player.getItemInHand()))
 			return;
 		Block block = event.getBlock();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Skill skill = pPlayer.getCurrentBuild().getLumberjacking();
 		int lumberSkill = skill.getLvl();
 		double chanceToDropPlank = (double)lumberSkill/1000;

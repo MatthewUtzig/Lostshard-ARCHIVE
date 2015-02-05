@@ -19,11 +19,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class Utils {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	@SuppressWarnings("deprecation")
 	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,
 			int argsnr) {
@@ -154,7 +156,7 @@ public class Utils {
 	}
 
 	public static String getDisplayName(OfflinePlayer player) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		return pPlayer.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
 				+ player.getName()
 				: pPlayer.isCriminal() ? ChatColor.GRAY + player.getName()

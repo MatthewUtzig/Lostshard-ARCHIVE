@@ -10,12 +10,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.FoodType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 
 public class foodHealHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public static void foodHeal(PlayerInteractEvent event) {
 		if(!(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)))
 			return;
@@ -25,7 +28,7 @@ public class foodHealHandler {
 			return;
 		ItemStack itemInHand = player.getItemInHand();
 		FoodType foodType = FoodType.getFoodTypeByMaterial(player.getItemInHand().getType());
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
     	if(foodType == null)
     		return;
 		int stamCost = foodType.getStaminaCost();

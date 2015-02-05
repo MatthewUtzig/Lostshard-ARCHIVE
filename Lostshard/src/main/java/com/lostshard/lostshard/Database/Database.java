@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Bank;
@@ -30,6 +31,8 @@ public class Database {
 	
 	protected static DataSource connPool = DataSource.getInstance();
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	// TODO finish up
 	// Plot
 	
@@ -549,7 +552,7 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		Lostshard.getRegistry().setPlayers(players);
+		pm.setPlayers(players);
 		System.out.print("[PLAYER] got "+players.size()+" players from DB.");
 		return players;
 	}
@@ -634,7 +637,7 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			pPlayer.setId(id);
-			Lostshard.getRegistry().getPlayers().add(pPlayer);
+			pm.getPlayers().add(pPlayer);
 			prep.close();
 			conn.close();
 		} catch (Exception e) {

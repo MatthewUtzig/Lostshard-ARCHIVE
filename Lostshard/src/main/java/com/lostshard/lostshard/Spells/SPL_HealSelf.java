@@ -3,7 +3,6 @@ package com.lostshard.lostshard.Spells;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class SPL_HealSelf extends Spell {
@@ -45,7 +44,7 @@ public class SPL_HealSelf extends Spell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		pseudoPlayer.setCantCastTicks(_cooldownTicks);
 		Damageable damag = player;
 		double health = damag.getHealth();

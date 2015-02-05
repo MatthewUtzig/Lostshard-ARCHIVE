@@ -10,6 +10,7 @@ import org.bukkit.entity.ThrownPotion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -21,6 +22,8 @@ import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
  */
 public class PVPHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	/**
 	 * @param attacker
 	 * @param defender
@@ -106,8 +109,8 @@ public class PVPHandler {
 		if (attacker == defender)
 			return true;
 		
-		PseudoPlayer pAttacker = PseudoPlayerHandler.getPlayer((Player) attacker);
-		PseudoPlayer pDefender = PseudoPlayerHandler.getPlayer((Player) defender);
+		PseudoPlayer pAttacker = pm.getPlayer((Player) attacker);
+		PseudoPlayer pDefender = pm.getPlayer((Player) defender);
 		
 		/**
 		 * Checking if they are in same clan or not.
@@ -135,8 +138,8 @@ public class PVPHandler {
 		if(player.getName().equals(playerDamager.getName()))
 			return;
 		
-		PseudoPlayer pseudoPlayerDefender = PseudoPlayerHandler.getPlayer(player);
-		PseudoPlayer pseudoPlayerAttacker = PseudoPlayerHandler.getPlayer(playerDamager);
+		PseudoPlayer pseudoPlayerDefender = pm.getPlayer(player);
+		PseudoPlayer pseudoPlayerAttacker = pm.getPlayer(playerDamager);
 		
 		//add pvp ticks
 		pseudoPlayerDefender.setPvpTicks(150); // 10 seconds

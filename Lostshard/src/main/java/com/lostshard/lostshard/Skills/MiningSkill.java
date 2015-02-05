@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
@@ -42,7 +41,7 @@ public class MiningSkill extends Skill {
 		if (player.getGameMode().equals(GameMode.CREATIVE))
 			return;
 		Block block = event.getBlock();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (block.getType().equals(Material.STONE)
 				&& ItemUtils.isPickAxe(player.getItemInHand()) && !block.hasMetadata("placed")) {
 

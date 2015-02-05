@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -59,7 +58,7 @@ public class SPL_Heal extends Spell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		pseudoPlayer.setCantCastTicks(_cooldownTicks);
 		
 		if(_playerFound != null) {

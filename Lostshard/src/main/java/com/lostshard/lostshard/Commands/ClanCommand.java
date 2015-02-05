@@ -14,14 +14,16 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Output;
 
 public class ClanCommand implements CommandExecutor, TabCompleter {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public ClanCommand(Lostshard plugin) {
 		plugin.getCommand("clan").setExecutor(this);
 	}
@@ -68,7 +70,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	
 	private static void createClan(Player player, String[] split) {
 		if(split.length >= 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			if(pseudoPlayer.getClan() == null) {
 				int splitNameLength = split.length;
 				String clanName = "";
@@ -114,7 +116,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanInfo(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
 			Output.outputClanInfo(player, clan);
@@ -125,7 +127,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	@SuppressWarnings("deprecation")
 	private static void clanInvite(Player player, String[] split) {
 		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
 			if(clan != null) {
 				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
@@ -138,7 +140,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 //							return;
 //						}
 						if(!targetPlayer.getName().equalsIgnoreCase(player.getName())) {
-							PseudoPlayer targetPseudoPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
+							PseudoPlayer targetPseudoPlayer = pm.getPlayer(targetPlayer);
 							if(targetPseudoPlayer.getClan() == null) {
 								if(!clan.isOwner(targetPlayer) && !clan.isLeader(targetPlayer.getUniqueId()) && !clan.isMember(targetPlayer.getUniqueId())) {
 									if(!clan.isInvited(targetPlayer.getUniqueId())) {
@@ -168,7 +170,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	@SuppressWarnings("deprecation")
 	private static void clanUnInvite(Player player, String[] split) {
 		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
 			if(clan != null) {
 				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
@@ -192,7 +194,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	@SuppressWarnings("deprecation")
 	private static void clanPromote(Player player, String[] split) {
 		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
 			if(clan != null) {
 				if(clan.isOwner(player.getUniqueId())) {
@@ -226,7 +228,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	@SuppressWarnings("deprecation")
 	private static void clanDemote(Player player, String[] split) {
 		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player.getUniqueId());
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 			Clan clan = pseudoPlayer.getClan();
 			if(clan != null) {
 				if(clan.isOwner(player.getUniqueId())) {
@@ -254,7 +256,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanJoin(Player player, String[] split) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player.getUniqueId());
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		if(pseudoPlayer.getClan() != null) {
 			if(pseudoPlayer.getClan().isOwner(player)) {
 				Output.simpleError(player, "Cannot join another clan, already a clan owner.");
@@ -308,7 +310,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	
 	private static void clanKick(Player player, String[] split) {
 		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player.getUniqueId());
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 			Clan clan = pseudoPlayer.getClan();
 			if(clan != null) {
 				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
@@ -322,7 +324,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 							if(!clan.isLeader(player.getUniqueId()) && clan.isOwner(player.getUniqueId())) {
 								clan.demoteLeader(targetOfflinePlayer.getUniqueId());
 								clan.removeMember(targetOfflinePlayer.getUniqueId());
-								PseudoPlayer targetPseudo = PseudoPlayerHandler.getPlayer(targetOfflinePlayer.getUniqueId());
+								PseudoPlayer targetPseudo = pm.getPlayer(targetOfflinePlayer.getUniqueId());
 								targetPseudo.setClan(null);
 								if(targetPlayer != null)
 									Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
@@ -342,7 +344,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanLeave(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player.getUniqueId());
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
 			if(!clan.isOwner(player.getUniqueId())) {
@@ -369,7 +371,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanTransfer(Player player, String[] split) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
 			if(clan.isOwner(player)) {
@@ -403,7 +405,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private static void clanDisband(Player player) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
 			if(clan.isOwner(player)) {
@@ -413,7 +415,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(p, "Your clan has been disbanded.");
 				}
 				for(UUID uuid : clan.getMembersAndLeders()) {
-					PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(uuid);
+					PseudoPlayer pPlayer = pm.getPlayer(uuid);
 					pPlayer.setClan(null);
 				}
 				Database.deleteClan(clan);

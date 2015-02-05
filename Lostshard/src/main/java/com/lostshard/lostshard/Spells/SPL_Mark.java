@@ -6,7 +6,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Handlers.PlotHandler;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
@@ -71,7 +70,7 @@ public class SPL_Mark extends Spell {
 	 */
 	public void doAction(Player player) {
 		//System.out.println("RSPNS: "+_response);
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(_response.length() > 20 || _response.contains("\"") || _response.contains("'")) {
 			Output.simpleError(player, "Invalid characters or too long, 20 char max.");
 		}

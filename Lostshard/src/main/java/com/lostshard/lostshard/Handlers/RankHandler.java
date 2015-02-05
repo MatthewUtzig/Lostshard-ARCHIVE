@@ -2,11 +2,14 @@ package com.lostshard.lostshard.Handlers;
 
 import java.util.List;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
 public class RankHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public static void rank(PseudoPlayer pPlayer) {
 		List<RecentAttacker> recentAttackers = pPlayer.getRecentAttackers();
 		if(recentAttackers.size() >= 1 && pPlayer.isLastDeathOlder(300000)) {
@@ -18,12 +21,12 @@ public class RankHandler {
 			int rangeFACTOR = 1600;
 			
 			for(RecentAttacker recentAttacker : recentAttackers) {
-				PseudoPlayer recentAttackerPseudoPlayer = PseudoPlayerHandler.getPlayer(recentAttacker.getUUID());
+				PseudoPlayer recentAttackerPseudoPlayer = pm.getPlayer(recentAttacker.getUUID());
 				attackerSUM += recentAttackerPseudoPlayer.getRank();
 			}
 					
 			for(RecentAttacker recentAttacker : recentAttackers) {
-				PseudoPlayer recentAttackerPseudoPlayer = PseudoPlayerHandler.getPlayer(recentAttacker.getUUID());
+				PseudoPlayer recentAttackerPseudoPlayer = pm.getPlayer(recentAttacker.getUUID());
 				int rank = recentAttackerPseudoPlayer.getRank();
 				float ATTACKERNEWRANK = rank + (kFACTOR * (1 + (recentAttackers.size() * pPlayer.getRank() - attackerSUM) / (recentAttackers.size() * rangeFACTOR)))/recentAttackers.size();
 				

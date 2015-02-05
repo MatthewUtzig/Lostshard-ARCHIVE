@@ -50,6 +50,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -57,6 +58,8 @@ import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class DeathHandler {
+	
+	static PlayerManager pm = PlayerManager.getManager();
 	
 	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
 	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
@@ -67,7 +70,7 @@ public class DeathHandler {
 		if(player.getKiller() instanceof Player) {
 			Player killer = (Player) player.getKiller();
 			
-			PseudoPlayer pKiller = PseudoPlayerHandler.getPlayer(killer);
+			PseudoPlayer pKiller = pm.getPlayer(killer);
 			
 			Material wep = killer.getItemInHand().getType();
 			
@@ -89,7 +92,7 @@ public class DeathHandler {
 		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
 		
 //		NPCHandler.playerDied(player);
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer == null) {
 			return;
 		}
@@ -130,7 +133,7 @@ public class DeathHandler {
 			Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
 
 			if(attackerPlayer != null) {
-				PseudoPlayer attackerPseudo = PseudoPlayerHandler.getPlayer(attackerPlayer);
+				PseudoPlayer attackerPseudo = pm.getPlayer(attackerPlayer);
 				if(!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
 				continue;
 				
@@ -397,7 +400,7 @@ public class DeathHandler {
 				Entity lastAttackerEntity = lastAttackers.get(entity);
 				if(lastAttackerEntity instanceof Player) {
 					Player attackerPlayer = (Player)lastAttackerEntity;
-					PseudoPlayer pseudoPlayerAttacker = PseudoPlayerHandler.getPlayer(attackerPlayer);
+					PseudoPlayer pseudoPlayerAttacker = pm.getPlayer(attackerPlayer);
 					
 					int survSkill = pseudoPlayerAttacker.getCurrentBuild().getSurvivalism().getLvl();
 					double chanceToDropApple = (double)survSkill/2000;

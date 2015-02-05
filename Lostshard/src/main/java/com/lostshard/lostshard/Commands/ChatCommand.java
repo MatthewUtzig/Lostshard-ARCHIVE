@@ -11,8 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
@@ -25,6 +25,8 @@ import com.lostshard.lostshard.Utils.Utils;
  */
 public class ChatCommand implements CommandExecutor, TabCompleter {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	/**
 	 * @param Lostshard
 	 *            as JavaPlugin
@@ -75,7 +77,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void toggleMsgChat(Player player) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
 			pPlayer.enableChatChannel(ChatChannel.PRIVATE);
 			Output.positiveMessage(player, "You have enabled Private Chat.");
@@ -86,7 +88,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void toggleGlobalChat(Player player) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
 			pPlayer.enableChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have enabled Global Chat.");
@@ -97,7 +99,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void replayChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
 		if(to == null) {
 			Output.simpleError(player, "ERROR player not online.");
@@ -135,7 +137,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output whisper chat for player.
 	 */
 	private void whisperChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.WHISPER);
 			Output.positiveMessage(player, "You have togglet whisper chat.");
@@ -156,7 +158,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output local chat for player.
 	 */
 	private void localChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.LOCAL);
 			Output.positiveMessage(player, "You have togglet local chat.");
@@ -177,7 +179,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output shout chat for player.
 	 */
 	private void shoutChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.SHOUT);
 			Output.positiveMessage(player, "You have toggled shout chat.");
@@ -198,7 +200,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output global chat for player.
 	 */
 	private void globalChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have togglet global chat.");
@@ -219,7 +221,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output clan chat for player.
 	 */
 	private void clanChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.CLAN);
 			Output.positiveMessage(player, "You have togglet clan chat.");
@@ -240,7 +242,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	 *            Output party chat for player.
 	 */
 	private void partyChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.PARTY);
 			Output.positiveMessage(player, "You have togglet party chat.");

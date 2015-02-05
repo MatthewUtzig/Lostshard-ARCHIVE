@@ -10,13 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
 public class BrawlingSkill extends Skill {
-
+	
 	public BrawlingSkill() {
 		super();
 		setName("Brawling");
@@ -37,7 +36,7 @@ public class BrawlingSkill extends Skill {
 		Material item = player.getItemInHand().getType();
 		if(ItemUtils.isSword(item) || ItemUtils.isAxe(item))
 			return;
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Skill skill = pseudoPlayer.getCurrentBuild().getBrawling();
 		Entity damagedEntity = event.getEntity();
 		int brawlingSkill = skill.getLvl();
@@ -60,7 +59,7 @@ public class BrawlingSkill extends Skill {
 		if(stunChance > rand) {
 			if(damagedEntity instanceof Player) {
 				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 				if(defenderPseudoPlayer.getStunTick() <= 0) {
 					defenderPseudoPlayer.setStunTick(30);
 					defenderPlayer.sendMessage(ChatColor.GREEN+"You have been stunned!");
@@ -72,7 +71,7 @@ public class BrawlingSkill extends Skill {
 		if(damagedEntity instanceof Player) {
 			if(brawlingSkill >= 1000) {
 				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = PseudoPlayerHandler.getPlayer(defenderPlayer);
+				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 				if(defenderPseudoPlayer.getStunTick() <= 0)
 					defenderPseudoPlayer.setStunTick(17);
 			}

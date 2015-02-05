@@ -9,14 +9,16 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Output;
 
 public class UtilsCommand implements CommandExecutor, TabCompleter {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	/**
 	 * @param Lostshard
 	 *            as plugin
@@ -56,7 +58,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			Output.mustBePlayer(sender);
 			return;
 		}
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer((Player) sender);
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
 		if(args.length < 1) {
 			if(pPlayer.wasSubscribed())
 				Output.simpleError(sender, "/build 0-2");
@@ -104,7 +106,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(sender, "Only players may perform this command.");
 			return;
 		}
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer((Player) sender);
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
 		pPlayer.setCustomSpawn(null);
 		if (pPlayer.isMurderer())
 			Output.positiveMessage(sender,
@@ -118,7 +120,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 	private void playerSpawn(CommandSender sender) {
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
-			PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pPlayer = pm.getPlayer(player);
         	if(pPlayer.getSpawnTicks() <= 0) {
         		pPlayer.goToSpawnTicks = 100;
         		Output.positiveMessage(player, "Returning to spawn in 10 seconds.");

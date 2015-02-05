@@ -19,8 +19,8 @@ import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
@@ -35,6 +35,8 @@ import com.lostshard.lostshard.Utils.Utils;
  *
  */
 public class PlotCommand implements CommandExecutor, TabCompleter {
+
+	PlayerManager pm = PlayerManager.getManager();
 
 	public PlotCommand(Lostshard plugin) {
 		plugin.getCommand("plot").setExecutor(this);
@@ -237,7 +239,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 
 		if (pseudoPlayer.getMoney() < salePrice) {
 			Output.simpleError(player, "Cannot afford to buy plot, cost: "
@@ -257,7 +259,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						+ Bukkit.getOfflinePlayer(lastOwner).getName()
 						+ " for " + salePrice + ".");
 		Player sellerPlayer = Bukkit.getPlayer(lastOwner);
-		PseudoPlayer sellerPseudoPlayer = PseudoPlayerHandler
+		PseudoPlayer sellerPseudoPlayer = pm
 				.getPlayer(sellerPlayer);
 		sellerPseudoPlayer.setMoney(sellerPseudoPlayer.getMoney() + salePrice);
 		if (sellerPlayer.isOnline())
@@ -1029,7 +1031,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		if (amount > 0) {
-			PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			if (plot.getMoney() >= amount) {
 				plot.setMoney(plot.getMoney() - amount);
 				pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
@@ -1049,7 +1051,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 */
 	private void plotTestToggle(Player player) {
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.getTestPlot() != null) {
 			Output.positiveMessage(player, "You are no longer testing " + pseudoPlayer.getTestPlot().getName() + ".");
 			pseudoPlayer.setTestPlot(null);
@@ -1419,7 +1421,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		// Determine the max range
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		int miningSkill = 0; // pseudoPlayer.getSkill("mining");
 		double percent = (double) miningSkill / 1000;
 		int range = (int) Math.ceil(200 * percent) + 100;
@@ -1494,7 +1496,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Create plot at player.
 	 */
 	private void createPlot(Player player, String[] args) {
-		PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		int curMoney = pseudoPlayer.getMoney();
 
 		// get recently purchased plots
@@ -1627,7 +1629,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setMoney(pPlayer.getMoney() + plot.getValue());
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
@@ -1660,7 +1662,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.notNumber(player);
 			return;
 		}
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (pPlayer.getMoney() >= amount) {
 			plot.setMoney(plot.getMoney() + amount);
 			pPlayer.setMoney(pPlayer.getMoney() - amount);

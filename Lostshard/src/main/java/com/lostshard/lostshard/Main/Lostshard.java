@@ -19,7 +19,6 @@ import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Listener.BlockListener;
 import com.lostshard.lostshard.Listener.CitizensLisenter;
 import com.lostshard.lostshard.Listener.EntityListener;
@@ -28,6 +27,7 @@ import com.lostshard.lostshard.Listener.ServerListener;
 import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -38,6 +38,8 @@ import com.lostshard.lostshard.Objects.Groups.Clan;
  */
 public class Lostshard extends JavaPlugin {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	public static Logger log;
 	
 	private static Registry registry = new Registry();
@@ -85,7 +87,7 @@ public class Lostshard extends JavaPlugin {
 		
 		for(Clan c : getRegistry().getClans())
 			for(UUID uuid : c.getMembersAndLeders()) {
-				PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(uuid);
+				PseudoPlayer pPlayer = pm.getPlayer(uuid);
 				pPlayer.setClan(c);
 			}
 		// GameLoop should run last.

@@ -11,13 +11,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 
 public class GameLoop extends BukkitRunnable {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	public static long tick = 0;
 	public static long lastTickTime = 0;
 	
@@ -46,10 +48,10 @@ public class GameLoop extends BukkitRunnable {
 		if(Lostshard.isMysqlError())
 			Lostshard.setMysqlError(!Database.testDatabaseConnection());
 		else {
-			PseudoPlayerHandler.tick(delta, tick);
+			pm.tick(delta, tick);
 			//5 sec loop
 				if(tick % 50 == 0) {
-					for(PseudoPlayer p : Lostshard.getRegistry().getPlayers())
+					for(PseudoPlayer p : pm.getPlayers())
 						if(p.isUpdate())
 							playerUpdates.add(p);
 					if(!playerUpdates.isEmpty())
@@ -70,7 +72,7 @@ public class GameLoop extends BukkitRunnable {
 				}
 				if(tick % 18000 == 0){
 	 				for(Player p : Bukkit.getOnlinePlayers()) {
-	 					PseudoPlayer pseudoPlayer = PseudoPlayerHandler.getPlayer(p);
+	 					PseudoPlayer pseudoPlayer = pm.getPlayer(p);
 	 					if(!pseudoPlayer.isSubscriber())
 	 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
 	 			}

@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.Objects.Plot;
@@ -14,13 +15,15 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class GuardHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
 		Plot plot = PlotHandler.findPlotAt(player.getLocation());
 		if (plot == null)
 			return;
 		// Checking to see if the player himself are criminal
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (pPlayer.isCriminal() || pPlayer.isMurderer())
 			return;
 		// Finding the nearest guard, on the same plot.
@@ -40,7 +43,7 @@ public class GuardHandler {
 		// Going trough all players and checking for who's in range and who's
 		// criminal
 		for (Player pCP : Bukkit.getOnlinePlayers()) {
-			PseudoPlayer pPCP = PseudoPlayerHandler.getPlayer(pCP);
+			PseudoPlayer pPCP = pm.getPlayer(pCP);
 			if (pPCP.isCriminal() || pPCP.isMurderer())
 				criminals.add(pCP);
 		}

@@ -21,13 +21,15 @@ import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PlotHandler;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlayerListener implements Listener {
 
+	PlayerManager pm = PlayerManager.getManager();
+	
 	public PlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
@@ -55,7 +57,7 @@ public class PlayerListener implements Listener {
 			event.setResult(Result.KICK_OTHER);
 			return;
 		}
-		PseudoPlayerHandler.onPlayerLogin(event);
+		pm.onPlayerLogin(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -76,7 +78,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClose(InventoryCloseEvent event) {
 		Player player = (Player) event.getPlayer();
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
 			pPlayer.update();
 	}

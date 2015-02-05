@@ -8,8 +8,8 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 
@@ -375,7 +375,7 @@ public class Plot {
 	}
 
 	public boolean isAllowedToBuild(UUID uuid) {
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(uuid);
+		PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if(pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
 		return  isCoownerOrAbove(uuid) ? true : isFriend(uuid)

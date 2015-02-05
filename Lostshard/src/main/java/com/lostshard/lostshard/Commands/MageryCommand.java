@@ -9,14 +9,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Handlers.PseudoPlayerHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.Skill;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class MageryCommand implements CommandExecutor, TabCompleter {
+	
+	static PlayerManager pm = PlayerManager.getManager();
 	
 	/**
 	 * @param Lostshard
@@ -41,7 +43,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		Player player = (Player) sender;
-		PseudoPlayer pPlayer = PseudoPlayerHandler.getPlayer(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(args.length == 0) {
 	    	Output.outputSkills(player);
 	    	return;
@@ -149,7 +151,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				if(args.length >= 2 && args[1].equalsIgnoreCase("points")){
 					try {
 					Player targetPlayer = Bukkit.getPlayer(args[2]);
-					pPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
+					pPlayer = pm.getPlayer(targetPlayer);
 					double amount = Double.parseDouble(args[3]);
 					int amountInt = (int)(amount*10);
 					
@@ -163,7 +165,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				}else{
 				try {
 					Player targetPlayer = Bukkit.getPlayer(args[1]);
-					pPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
+					pPlayer = pm.getPlayer(targetPlayer);
 					double amount = Double.parseDouble(args[3]);
 					int amountInt = (int)(amount*10);
 					if(amountInt + pPlayer.getCurrentBuild().getTotalSkillVal() > pPlayer.getMaxSkillValTotal()) {
