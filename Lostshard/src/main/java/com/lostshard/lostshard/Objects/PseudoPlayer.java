@@ -63,6 +63,8 @@ public class PseudoPlayer {
 	private boolean meditating = false;
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
+	private float cantCastTicks = 0;
+	private Runebook runebook = new Runebook();
 	
 	// Effects
 	private int bleedTick = 0;
@@ -639,5 +641,21 @@ public class PseudoPlayer {
 	public void setFreeSkillPoints(int freeSkillPoints) {
 		this.freeSkillPoints = freeSkillPoints;
 		update();
+	}
+
+	public float getCantCastTicks() {
+		return cantCastTicks;
+	}
+
+	public void setCantCastTicks(float cantCastTicks) {
+		this.cantCastTicks = cantCastTicks;
+	}
+
+	public Runebook getRunebook() {
+		return runebook;
+	}
+
+	public void setRunebook(Runebook runebook) {
+		this.runebook = runebook;
 	}
 }
