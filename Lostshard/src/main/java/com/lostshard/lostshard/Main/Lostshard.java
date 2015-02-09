@@ -15,7 +15,7 @@ import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
 import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
-import com.lostshard.lostshard.Commands.MageryCommand;
+import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.Database;
@@ -52,8 +52,13 @@ public class Lostshard extends JavaPlugin {
 	
 	private static boolean debug = true;
 	
+	private static Lostshard lostshard;
+	
 	@Override
 	public void onEnable() {
+		
+		setLostshard(this);
+		
 		log = this.getLogger();
 		log.info(ChatColor.GREEN + "Lostshard has invoke.");
 		
@@ -74,7 +79,7 @@ public class Lostshard extends JavaPlugin {
 		new ControlPointsCommand(this);
 		new UtilsCommand(this);
 		new AdminCommand(this);
-		new MageryCommand(this);
+		new SkillCommand(this);
 		new ClanCommand(this);
 		
 		Lostshard.setPlugin(this);
@@ -148,6 +153,14 @@ public class Lostshard extends JavaPlugin {
 
 	public static void setDebug(boolean debug) {
 		Lostshard.debug = debug;
+	}
+
+	public static Lostshard getLostshard() {
+		return lostshard;
+	}
+
+	public static void setLostshard(Lostshard lostshard) {
+		Lostshard.lostshard = lostshard;
 	}
 
 }

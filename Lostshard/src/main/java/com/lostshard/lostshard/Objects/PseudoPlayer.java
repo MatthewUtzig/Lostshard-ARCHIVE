@@ -94,31 +94,24 @@ public class PseudoPlayer {
 		if(tick % 10 == 0) { // one second passed 
 			updateMana(delta);
 			updateStamina(delta);
+			bleed();
 		}
+		recentAttackersTick();
 		if(spawnTicks > 0)
 			setSpawnTicks(getSpawnTicks()-1);
 		if(criminal > 0)
 			setCriminal(getCriminal()-1);
-		if(bleedTick > 0) {
-			if(tick % 10 == 0) {
-				Player p = getOnlinePlayer();
-				bleedTick--;
-				
-				if(bleedTick <= 0) {
-					p.sendMessage("Your bleeding has stopped.");
-					bleedTick = 0;
-				}
-				else
-				{
-					double newHealth = p.getHealth() - 1;
-					if(newHealth > 20)
-						newHealth = 20;
-					if(newHealth < 0)
-						newHealth = 0;
-					p.setHealth(newHealth);
-				}
-			}
+		spawn();
+	}
+	
+	private void recentAttackersTick() {
+		for(RecentAttacker ra : recentAttackers) {
+			ra.tick();
 		}
+		recentAttackers.removeIf(ra ->  ra.isDead());
+	}
+
+	private void spawn() {
 		if(goToSpawnTicks > 0) {
 			goToSpawnTicks--;
 			if(goToSpawnTicks == 0) {
@@ -140,7 +133,28 @@ public class PseudoPlayer {
 			}
 		}
 	}
-	
+
+	private void bleed() {
+		if(bleedTick > 0) {
+			Player p = getOnlinePlayer();
+			bleedTick--;
+			
+			if(bleedTick <= 0) {
+				p.sendMessage("Your bleeding has stopped.");
+				bleedTick = 0;
+			}
+			else
+			{
+				double newHealth = p.getHealth() - 1;
+				if(newHealth > 20)
+					newHealth = 20;
+				if(newHealth < 0)
+					newHealth = 0;
+				p.setHealth(newHealth);
+			}
+		}
+	}
+
 	private void updateMana(double delta) {
 		if(mana < maxMana) {
 			double manaRegenMultiplier = 2; //Meditation.getManaRegenMultiplier(this);

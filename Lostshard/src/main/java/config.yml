@@ -1,0 +1,5 @@
+MYSQL:
+  username: "root"
+  password: ""
+  url: "jdbc:mysql://localhost/lostshard"
+  driver: "com.mysql.jdbc.Driver"
