@@ -32,6 +32,7 @@ public class Spell {
 	private int circle;
 	private int castingDelay;
 	private boolean wand;
+	private int cooldownTicks;
 
 	@SuppressWarnings("deprecation")
 	public static HashSet<Byte> invisibleBlocks = new HashSet<Byte>(Arrays.asList(
@@ -199,5 +200,18 @@ public class Spell {
 	protected static Block blockInLOS(Player player, int range) {
 		Block targetBlock = player.getTargetBlock(invisibleBlocks, range);
 		return targetBlock;
+	}
+
+	public int getCooldownTicks() {
+		return cooldownTicks;
+	}
+
+	public void setCooldownTicks(int cooldownTicks) {
+		this.cooldownTicks = cooldownTicks;
+	}
+
+	public float getCooldownticks() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

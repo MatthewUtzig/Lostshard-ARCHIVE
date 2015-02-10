@@ -93,4 +93,6 @@ commands:
    clan:
       description: Clan.
       usage: /<command>
-      
+   cast:
+      description: cast.
+      usage: /<command>   

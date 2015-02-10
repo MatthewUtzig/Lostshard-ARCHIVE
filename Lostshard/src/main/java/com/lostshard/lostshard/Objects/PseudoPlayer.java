@@ -63,7 +63,7 @@ public class PseudoPlayer {
 	private boolean meditating = false;
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
-	private float cantCastTicks = 0;
+	private int cantCastTicks = 0;
 	private Runebook runebook = new Runebook();
 	
 	// Effects
@@ -657,11 +657,11 @@ public class PseudoPlayer {
 		update();
 	}
 
-	public float getCantCastTicks() {
+	public int getCantCastTicks() {
 		return cantCastTicks;
 	}
 
-	public void setCantCastTicks(float cantCastTicks) {
+	public void setCantCastTicks(int cantCastTicks) {
 		this.cantCastTicks = cantCastTicks;
 	}
 

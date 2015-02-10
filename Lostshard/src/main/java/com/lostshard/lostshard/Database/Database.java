@@ -971,41 +971,41 @@ public class Database {
 		}
 	}
 	
-	public static List<Store> getStores() {
-		List<Store> stores = new ArrayList<Store>();
-		try {
-			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM stores");
-			prep.execute();
-			ResultSet rs = prep.getResultSet();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				try {
-					int npcID = rs.getInt("npcId");
-					String content = rs.getString("content");
-					
-					Store store = new Store(npcID);
-					store.setId(id);
-					
-					stores.add(store);
-				} catch (Exception e) {
-					Lostshard.log.warning("[STORE] Exception when generating \""+ id + "\" store:");
-					e.printStackTrace();
-				}
-			}
-			prep.close();
-			conn.close();
-		} catch (Exception e) {
-			Lostshard.log.warning("[STORE] getStores mysql error");
-			Lostshard.mysqlError();
-			if(Lostshard.isDebug())
-				e.printStackTrace();
-		}
-		System.out.print("[STORE] got "+stores.size()+" stores from DB.");
-//		Lostshard.getRegistry().setClans(clans);
-		return stores;
-	}
+//	public static List<Store> getStores() {
+//		List<Store> stores = new ArrayList<Store>();
+//		try {
+//			Connection conn = connPool.getConnection();
+//			PreparedStatement prep = conn
+//					.prepareStatement("SELECT * FROM stores");
+//			prep.execute();
+//			ResultSet rs = prep.getResultSet();
+//			while (rs.next()) {
+//				int id = rs.getInt("id");
+//				try {
+//					int npcID = rs.getInt("npcId");
+//					String content = rs.getString("content");
+//					
+//					Store store = new Store(npcID);
+//					store.setId(id);
+//					
+//					stores.add(store);
+//				} catch (Exception e) {
+//					Lostshard.log.warning("[STORE] Exception when generating \""+ id + "\" store:");
+//					e.printStackTrace();
+//				}
+//			}
+//			prep.close();
+//			conn.close();
+//		} catch (Exception e) {
+//			Lostshard.log.warning("[STORE] getStores mysql error");
+//			Lostshard.mysqlError();
+//			if(Lostshard.isDebug())
+//				e.printStackTrace();
+//		}
+//		System.out.print("[STORE] got "+stores.size()+" stores from DB.");
+////		Lostshard.getRegistry().setClans(clans);
+//		return stores;
+//	}
 	
 	public static void updateStores(List<Store> stores) {
 		if(Lostshard.isDebug())

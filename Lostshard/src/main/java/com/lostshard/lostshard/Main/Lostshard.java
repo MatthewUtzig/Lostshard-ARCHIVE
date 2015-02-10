@@ -15,6 +15,7 @@ import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
 import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
+import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
@@ -81,6 +82,7 @@ public class Lostshard extends JavaPlugin {
 		new AdminCommand(this);
 		new SkillCommand(this);
 		new ClanCommand(this);
+		new MageryCommand(this);
 		
 		Lostshard.setPlugin(this);
 		
