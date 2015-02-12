@@ -46,5 +46,15 @@ public class DataSource {
     		Lostshard.mysqlError();
     	return conn;
     }
+    
+    public void closeConnection() {
+    	try {
+			ds.close();
+			Lostshard.log.info("[DS] Connection close.");
+		} catch (SQLException e) {
+			Lostshard.log.info("[DS] Connection close. Error");
+			e.printStackTrace();
+		}
+    }
 
 }

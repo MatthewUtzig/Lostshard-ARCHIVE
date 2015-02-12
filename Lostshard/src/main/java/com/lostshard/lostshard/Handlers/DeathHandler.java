@@ -51,6 +51,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -60,6 +61,7 @@ import com.lostshard.lostshard.Utils.Utils;
 public class DeathHandler {
 	
 	static PlayerManager pm = PlayerManager.getManager();
+	static PlotManager ptm = PlotManager.getManager();
 	
 	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
 	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
@@ -487,7 +489,7 @@ public class DeathHandler {
 		} else {
 			EntityDamageEvent e = player.getLastDamageCause();
 			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
-			Plot plot = PlotHandler.findPlotAt(player.getLocation());
+			Plot plot = ptm.findPlotAt(player.getLocation());
 			if(e == null) {
 				message += " died.";
 			}

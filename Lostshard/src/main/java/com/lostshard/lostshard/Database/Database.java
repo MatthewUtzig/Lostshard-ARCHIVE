@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -15,12 +16,14 @@ import org.bukkit.Location;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Scroll;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
@@ -32,7 +35,7 @@ public class Database {
 	protected static DataSource connPool = DataSource.getInstance();
 
 	static PlayerManager pm = PlayerManager.getManager();
-	
+	static PlotManager ptm = PlotManager.getManager();
 	// TODO finish up
 	// Plot
 	
@@ -65,6 +68,86 @@ public class Database {
 			}
 		} catch (Exception e) {
 			Lostshard.log.warning("[Test] Test mysql error >> " + e.toString());
+		}
+	}
+	
+	public static void getScrolls() {
+		System.out.print("GETTING SCROLLS!");
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM scrolls");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					String scroll = rs.getString("scroll");
+					int playerId = rs.getInt("playerId");
+					
+					PseudoPlayer pPlayer = pm.getPlayer(playerId);
+					
+					pPlayer.getScrools().add(new Scroll(id, scroll, playerId));
+					
+				} catch (Exception e) {
+					Lostshard.log.log(Level.WARNING,
+							"[SCROLL] Exception when generating \"" + id
+									+ "\" scroll: ");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.log(Level.WARNING,
+					"[SCROLL] getScrolls mysql error");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void insertScrolls(List<Scroll> scrolls) {
+		if(Lostshard.isDebug())
+			System.out.print("INSERT SCROLL!");
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO scrolls "
+							+ "(scroll,playerId) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			for(Scroll scroll : scrolls) {
+				prep.setString(1, scroll.getSpellName());
+				prep.setInt(2, scroll.getPlayerId());
+				prep.addBatch();
+			}
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			Iterator<Scroll> sc = scrolls.iterator();
+			while (rs.next() && sc.hasNext())
+				sc.next().setId(rs.getInt(1));
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[SCROLL] deleteScroll mysql error");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void deleteScrolls(List<Scroll> scrolls) {
+		if(Lostshard.isDebug())
+			System.out.print("INSERT SCROLL!");
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM scrolls WHERE id=?;", PreparedStatement.RETURN_GENERATED_KEYS);
+			for(Scroll scroll : scrolls) {
+				prep.setInt(1, scroll.getId());
+				prep.addBatch();
+			}
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[SCROLL] deleteScroll mysql error");
+			e.printStackTrace();
 		}
 	}
 	
@@ -131,7 +214,7 @@ public class Database {
 						if(npc.getPlotId() == plot.getId())
 							plot.getNpcs().add(npc);
 
-					Lostshard.getRegistry().getPlots().add(plot);
+					ptm.getPlots().add(plot);
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
 							"[PLOT] Exception when generating \"" + name

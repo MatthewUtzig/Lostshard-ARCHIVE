@@ -19,7 +19,6 @@ public class SPL_Lightning extends Spell {
 	private static final int 		_castingDelay = 0;
 	private static final int 		_cooldownTicks = 20;
 	private static final int		_manaCost = 15;
-	private static final int[]		_reagentCost = {287,331};
 	private static final int 		_minMagery = 720;
 	private static final int 		_range = 20;
 	
@@ -28,7 +27,6 @@ public class SPL_Lightning extends Spell {
 	public int getCastingDelay() 	{ return _castingDelay; }
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
-	public int[] getReagentCost() 	{ return _reagentCost; }
 	public int getMinMagery() 		{ return _minMagery; }
 	
 	public int getPageNumber()		{ return 7; }

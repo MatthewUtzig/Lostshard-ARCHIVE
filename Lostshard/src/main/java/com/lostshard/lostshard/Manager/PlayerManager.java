@@ -56,5 +56,12 @@ public class PlayerManager {
 		for(PseudoPlayer pPlayer : players)
 			pPlayer.tick(delta, tick);
 	}
+
+	public PseudoPlayer getPlayer(int id) {
+		for(PseudoPlayer pPlayer : players)
+			if(pPlayer.getId() == id)
+				return pPlayer;
+		return null;
+	}
 	
 }

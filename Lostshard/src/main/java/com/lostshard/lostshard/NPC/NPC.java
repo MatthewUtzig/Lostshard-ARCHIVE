@@ -4,7 +4,7 @@ import org.bukkit.Location;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.NPCHandler;
-import com.lostshard.lostshard.Handlers.PlotHandler;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
 
 /**
@@ -13,6 +13,8 @@ import com.lostshard.lostshard.Objects.Plot;
  */
 public class NPC {
 
+	PlotManager ptm = PlotManager.getManager();
+	
 	private int id;
 	private NPCType type;
 	private String name;
@@ -152,7 +154,7 @@ public class NPC {
 	}
 	
 	public Plot getPlot() {
-		return PlotHandler.getPlotById(plotId);
+		return ptm.getPlotById(plotId);
 	}
 	
 }

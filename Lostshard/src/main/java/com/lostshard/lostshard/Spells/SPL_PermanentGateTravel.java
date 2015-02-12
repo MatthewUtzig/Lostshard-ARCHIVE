@@ -6,8 +6,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
@@ -20,7 +20,7 @@ public class SPL_PermanentGateTravel extends Spell {
 	private static final int 		_castingDelay = 20;
 	private static final int 		_cooldownTicks = 20;
 	private static final int		_manaCost = 100;
-	private static final int[]		_reagentCost = {287,331,49};
+	private static final ItemStack[] _reagentCost = {new ItemStack(Material.STRING, 1), new ItemStack(Material.OBSIDIAN, 1), new ItemStack(Material.REDSTONE, 1)};
 	private static final int 		_minMagery = 840;
 	
 	public String getName() 		{ return _name; }
@@ -28,7 +28,7 @@ public class SPL_PermanentGateTravel extends Spell {
 	public int getCastingDelay() 	{ return _castingDelay; }
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
-	public int[] getReagentCost() 	{ return _reagentCost; }
+	public ItemStack[] getReagentCost() { return _reagentCost; }
 	public int getMinMagery() 		{ return _minMagery; }
 	
 	public int getPageNumber()		{ return 8; }
@@ -82,9 +82,9 @@ public class SPL_PermanentGateTravel extends Spell {
 		}
 		
 		Location runeLoc = runeFound.getLocation();
-		Plot plot = PlotHandler.findPlotAt(runeLoc);
+		Plot plot = ptm.findPlotAt(runeLoc);
 		if((plot == null) || !plot.isProtected() || plot.isOwner(player) || plot.isCoowner(player)) {
-			plot = PlotHandler.findPlotAt(player.getLocation());
+			plot = ptm.findPlotAt(player.getLocation());
 			if((plot == null) || !plot.isProtected() || plot.isOwner(player) || plot.isCoowner(player)) {
 				// allowed to make perm gate
 			}

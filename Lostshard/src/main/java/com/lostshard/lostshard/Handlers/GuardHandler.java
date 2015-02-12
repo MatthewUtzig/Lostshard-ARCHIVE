@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.Objects.Plot;
@@ -16,10 +17,11 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public class GuardHandler {
 
 	static PlayerManager pm = PlayerManager.getManager();
+	static PlotManager ptm = PlotManager.getManager();
 	
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null)
 			return;
 		// Checking to see if the player himself are criminal
@@ -29,7 +31,7 @@ public class GuardHandler {
 		// Finding the nearest guard, on the same plot.
 		NPC guard = null;
 		for (NPC g : plot.getNpcs()) {
-			Plot gP = PlotHandler.findPlotAt(g.getLocation());
+			Plot gP = ptm.findPlotAt(g.getLocation());
 			if (guard == null
 					|| gP.getLocation().distance(player.getLocation()) < guard
 							.getLocation().distance(player.getLocation()))

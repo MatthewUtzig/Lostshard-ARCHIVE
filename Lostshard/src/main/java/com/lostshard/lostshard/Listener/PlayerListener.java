@@ -20,7 +20,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
-import com.lostshard.lostshard.Handlers.PlotHandler;
+import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -41,8 +41,8 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
-		PlotHandler.onButtonPush(event);
-		PlotHandler.onPlayerInteract(event);
+		PlotProtectionHandler.onButtonPush(event);
+		PlotProtectionHandler.onPlayerInteract(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -62,17 +62,17 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMoveEvent(PlayerMoveEvent event) {
-		PlotHandler.onPlotEnter(event);
+		PlotProtectionHandler.onPlotEnter(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerBuckitFill(PlayerBucketFillEvent event) {
-		PlotHandler.onBuckitFill(event);
+		PlotProtectionHandler.onBuckitFill(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerBuckitEmpty(PlayerBucketEmptyEvent event) {
-		PlotHandler.onBuckitEmpty(event);
+		PlotProtectionHandler.onBuckitEmpty(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -95,6 +95,6 @@ public class PlayerListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
-		PlotHandler.onPlayerInteractEntity(event);
+		PlotProtectionHandler.onPlayerInteractEntity(event);
 	}
 }

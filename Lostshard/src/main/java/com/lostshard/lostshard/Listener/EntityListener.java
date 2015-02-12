@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.PVPHandler;
-import com.lostshard.lostshard.Handlers.PlotHandler;
+import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
@@ -48,12 +48,12 @@ public class EntityListener implements Listener {
 		Entity defender = event.getEntity();
 		if (defender.hasMetadata("NPC"))
 			return;
-		PlotHandler.onEntityDamageByEntity(event);
+		PlotProtectionHandler.onEntityDamageByEntity(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityExplodeEvent(EntityExplodeEvent event) {
-		PlotHandler.onBlockExplode(event);
+		PlotProtectionHandler.onBlockExplode(event);
 	}
 
 	@EventHandler
@@ -65,7 +65,7 @@ public class EntityListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityChangeBlock(EntityChangeBlockEvent event) {
-		PlotHandler.onEntityChangeBlock(event);
+		PlotProtectionHandler.onEntityChangeBlock(event);
 	}
 	
 }

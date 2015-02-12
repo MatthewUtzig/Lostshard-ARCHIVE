@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -23,6 +24,7 @@ import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 public class PVPHandler {
 
 	static PlayerManager pm = PlayerManager.getManager();
+	static PlotManager ptm = PlotManager.getManager();
 	
 	/**
 	 * @param attacker
@@ -92,14 +94,14 @@ public class PVPHandler {
 		/**
 		 * Checking if the defender is standing in a none PVP plot.
 		 */
-		Plot plotAtDefender = PlotHandler.findPlotAt(defender.getLocation());
+		Plot plotAtDefender = ptm.findPlotAt(defender.getLocation());
 		if (plotAtDefender != null && plotAtDefender.isAllowPvp())
 			return false;
 
 		/**
 		 * Checking if the attacker is standing a none PVP plot.
 		 */
-		Plot plotAtAttacker = PlotHandler.findPlotAt(attacker.getLocation());
+		Plot plotAtAttacker = ptm.findPlotAt(attacker.getLocation());
 		if (plotAtAttacker != null && plotAtAttacker.isAllowPvp())
 			return false;
 
@@ -154,7 +156,7 @@ public class PVPHandler {
 			if(!player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
 				notCrim = true;
 			}
-			Plot plot = PlotHandler.findPlotAt(player.getLocation());
+			Plot plot = ptm.findPlotAt(player.getLocation());
 			// devender is on a plot
 			if(plot != null) {
 				if(plot.isCapturePoint())

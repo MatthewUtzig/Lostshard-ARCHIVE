@@ -8,8 +8,8 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 
@@ -19,6 +19,8 @@ import com.lostshard.lostshard.Objects.Groups.Clan;
  */
 public class Plot {
 
+	PlotManager ptm = PlotManager.getManager();
+	
 	// String's
 	private String name;
 
@@ -275,7 +277,7 @@ public class Plot {
 	// Getting next id
 	public int nextId() {
 		int nextId = 0;
-		for (Plot p : Lostshard.getRegistry().getPlots())
+		for (Plot p : ptm.getPlots())
 			if (p.getId() > nextId)
 				nextId = p.getId();
 		return nextId + 1;

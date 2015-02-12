@@ -19,6 +19,7 @@ import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
+import com.lostshard.lostshard.Database.DataSource;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Listener.BlockListener;
 import com.lostshard.lostshard.Listener.CitizensLisenter;
@@ -28,6 +29,7 @@ import com.lostshard.lostshard.Listener.ServerListener;
 import com.lostshard.lostshard.Listener.VehicleListener;
 import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
+import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
@@ -57,6 +59,10 @@ public class Lostshard extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		
+		saveDefaultConfig();
+		
+		ConfigManager.getManager().setConfig(getConfig());
 		
 		setLostshard(this);
 		
@@ -107,6 +113,7 @@ public class Lostshard extends JavaPlugin {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
 //		 Database.saveAll(); 
+		DataSource.getInstance().closeConnection();
 	}
 
 	public static BukkitTask getGameLoop() {

@@ -8,7 +8,7 @@ public class CustomSchedule {
 
 	public static void Schedule() {
 		Scheduler s = new Scheduler();
-		s.schedule("* */4 * * *", new Runnable() {
+		s.schedule("0 */4 * * *", new Runnable() {
 			public void run() {
 				EnderdragonHandler.resetDrake();
 			}

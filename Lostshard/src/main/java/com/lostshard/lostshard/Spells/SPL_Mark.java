@@ -3,9 +3,10 @@ package com.lostshard.lostshard.Spells;
 import java.util.ArrayList;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
@@ -18,7 +19,7 @@ public class SPL_Mark extends Spell {
 	private static final int 		_castingDelay = 10;
 	private static final int 		_cooldownTicks = 10;
 	private static final int		_manaCost = 20;
-	private static final int[]		_reagentCost = {288,331};
+	private static final ItemStack[] _reagentCost = {new ItemStack(Material.FEATHER, 1),new ItemStack(Material.REDSTONE, 1)};
 	private static final int 		_minMagery = 360;
 	
 	public String getName() 		{ return _name; }
@@ -26,7 +27,7 @@ public class SPL_Mark extends Spell {
 	public int getCastingDelay() 	{ return _castingDelay; }
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
-	public int[] getReagentCost() 	{ return _reagentCost; }
+	public ItemStack[] getReagentCost() { return _reagentCost; }
 	public int getMinMagery() 		{ return _minMagery; }
 	
 	public int getPageNumber()		{ return 4; }
@@ -42,7 +43,7 @@ public class SPL_Mark extends Spell {
 	 * that out here and cancel the spell.
 	 */
 	public boolean verifyCastable(Player player, PseudoPlayer pseudoPlayer) {	
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
 			_markLocation = player.getLocation();
 		}

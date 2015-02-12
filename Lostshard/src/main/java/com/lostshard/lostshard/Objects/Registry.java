@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
@@ -10,22 +11,15 @@ import com.lostshard.lostshard.Objects.Store.Store;
 
 public class Registry {
 
-	private List<Plot> plots = new ArrayList<Plot>();
 	private List<Clan> clans = new ArrayList<Clan>();
 	private List<Party> parties = new ArrayList<Party>();
 	private List<Store> stores = new ArrayList<Store>();
+
+	PlotManager ptm = PlotManager.getManager();
 	
-	public List<Plot> getPlots() {
-		return plots;
-	}
-
-	public void setPlots(ArrayList<Plot> plots) {
-		this.plots = plots;
-	}
-
 	public ArrayList<NPC> getNpcs() {
 		ArrayList<NPC> rs = new ArrayList<NPC>();
-		for (Plot plot : plots)
+		for (Plot plot : ptm.getPlots())
 			for (NPC npc : plot.getNpcs())
 				rs.add(npc);
 		return rs;

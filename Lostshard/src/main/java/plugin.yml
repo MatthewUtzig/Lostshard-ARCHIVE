@@ -95,4 +95,7 @@ commands:
       usage: /<command>
    cast:
       description: cast.
-      usage: /<command>   
+      usage: /<command>
+   scrolls:
+      description: cast.
+      usage: /<command>

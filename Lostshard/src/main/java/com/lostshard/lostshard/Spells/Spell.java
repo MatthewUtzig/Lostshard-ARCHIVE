@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
@@ -24,16 +25,8 @@ import com.lostshard.lostshard.Utils.Utils;
 public class Spell {
 
 	PlayerManager pm = PlayerManager.getManager();
+	PlotManager ptm = PlotManager.getManager();
 	
-	private String name;
-	private String spellWords;
-	private int manaCost;
-	private ItemStack[] itemCost;
-	private int circle;
-	private int castingDelay;
-	private boolean wand;
-	private int cooldownTicks;
-
 	@SuppressWarnings("deprecation")
 	public static HashSet<Byte> invisibleBlocks = new HashSet<Byte>(Arrays.asList(
 			(byte)Material.AIR.getId(),
@@ -80,59 +73,27 @@ public class Spell {
 	private String[] description = { ChatColor.LIGHT_PURPLE + "No description" };
 
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return "";
 	}
 
 	public String getSpellWords() {
-		return spellWords;
-	}
-
-	public void setSpellWords(String spellWords) {
-		this.spellWords = spellWords;
+		return "";
 	}
 
 	public int getManaCost() {
-		return manaCost;
-	}
-
-	public void setManaCost(int manaCost) {
-		this.manaCost = manaCost;
-	}
-
-	public ItemStack[] getItemCost() {
-		return itemCost;
-	}
-
-	public void setItemCost(ItemStack[] itemCost) {
-		this.itemCost = itemCost;
+		return 0;
 	}
 
 	public int getCircle() {
-		return circle;
-	}
-
-	public void setCircle(int circle) {
-		this.circle = circle;
+		return 0;
 	}
 
 	public int getCastingDelay() {
-		return castingDelay;
-	}
-
-	public void setCastingDelay(int castingDelay) {
-		this.castingDelay = castingDelay;
+		return 0;
 	}
 
 	public boolean isWand() {
-		return wand;
-	}
-
-	public void setWand(boolean wand) {
-		this.wand = wand;
+		return false;
 	}
 
 	public String[] getDescription() {
@@ -203,15 +164,18 @@ public class Spell {
 	}
 
 	public int getCooldownTicks() {
-		return cooldownTicks;
-	}
-
-	public void setCooldownTicks(int cooldownTicks) {
-		this.cooldownTicks = cooldownTicks;
-	}
-
-	public float getCooldownticks() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int getMinMagery() {
+		return 0;
+	}
+	
+	public String getPrompt() {
+		return null;
+	}
+
+	public ItemStack[] getReagentCost() {
+		return null;
 	}
 }

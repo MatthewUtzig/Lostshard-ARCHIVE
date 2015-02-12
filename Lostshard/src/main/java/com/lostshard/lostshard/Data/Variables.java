@@ -4,9 +4,11 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ConfigManager;
 
 public class Variables {
+	
+	static ConfigManager cm = ConfigManager.getManager();
 	
 	// Plot
 	public static final ItemStack plotCreateItemPrice = new ItemStack(
@@ -26,10 +28,10 @@ public class Variables {
 	public static final int bankRadius = 10;
 	public static final int goldIngotValue = 100;
 	// Database
-	public static final String mysqlDriver = Lostshard.getLostshard().getConfig().getString("MYSQL.driver");
-	public static final String mysqlUrl = Lostshard.getLostshard().getConfig().getString("MYSQL.url");
-	public static final String mysqlUsername = Lostshard.getLostshard().getConfig().getString("MYSQL.username");;
-	public static final String mysqlPassword = Lostshard.getLostshard().getConfig().getString("MYSQL.password");;
+	public static final String mysqlDriver = cm.getMYSQLDriver();
+	public static final String mysqlUrl = cm.getMYSQLUrl();
+	public static final String mysqlUsername = cm.getMYSQLUsername();
+	public static final String mysqlPassword = cm.getMYSQLPassword();
 	// Server
 	public static final String motd = "MOTD, forgot to insert!";
 	public static final int maxPlayers = 30;

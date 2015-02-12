@@ -18,9 +18,9 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
-import com.lostshard.lostshard.Handlers.PlotHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
@@ -37,6 +37,7 @@ import com.lostshard.lostshard.Utils.Utils;
 public class PlotCommand implements CommandExecutor, TabCompleter {
 
 	PlayerManager pm = PlayerManager.getManager();
+	PlotManager ptm = PlotManager.getManager();
 
 	public PlotCommand(Lostshard plugin) {
 		plugin.getCommand("plot").setExecutor(this);
@@ -131,7 +132,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggles magic for plot at player
 	 */
 	private void plotMagicToggle(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -156,7 +157,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggle pvp for plot at player.
 	 */
 	private void plotPvpToggle(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -181,7 +182,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggle explosions for plot at player.
 	 */
 	private void plotExplosionToggle(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -208,7 +209,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Take plot of the market.
 	 */
 	private void plotUnSell(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -227,7 +228,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Buy plot at player.
 	 */
 	private void plotBuy(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -276,7 +277,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Sell plot at player.
 	 */
 	private void plotSell(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -319,7 +320,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Manage npc's for plot at player.
 	 */
 	private void plotNPC(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -375,7 +376,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 								"An NPC with that name already exists.");
 						return;
 					}
-					npcPlot = PlotHandler.findPlotAt(npc.getLocation());
+					npcPlot = ptm.findPlotAt(npc.getLocation());
 					if (npcPlot == plot && !player.isOp())
 						Output.simpleError(player,
 								"You may only have 1 banker per plot.");
@@ -535,7 +536,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggle friendbuild for plot at player.
 	 */
 	private void plotFriendBuildToggle(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -561,7 +562,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Rename plot at player.
 	 */
 	private void plotRename(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -602,7 +603,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		for (Plot p : Lostshard.getRegistry().getPlots()) {
+		for (Plot p : ptm.getPlots()) {
 			if (p.getName().equalsIgnoreCase(plotName)) {
 				Output.simpleError(player, "Cannot use that name, it is taken.");
 				return;
@@ -622,7 +623,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Shrink plot at player
 	 */
 	private void plotShrink(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -665,7 +666,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Transfer plot at player to target player.
 	 */
 	private void plotTransfer(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -703,7 +704,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Downgrade plot at player.
 	 */
 	private void plotDowngrade(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -831,7 +832,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Upgrade plot at player.
 	 */
 	private void plotUpgrade(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -972,7 +973,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (args.length >= 2 && player.isOp()) {
 			String name = args[1];
 			Output.positiveMessage(player, "-" + name + "'s Plots-");
-			for (Plot plot : Lostshard.getRegistry().getPlots()) {
+			for (Plot plot : ptm.getPlots()) {
 				if (plot.getOwner().equals(
 						Bukkit.getOfflinePlayer(name).getUniqueId())) {
 					player.sendMessage(" - " + plot.getName() + " ("
@@ -985,7 +986,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		} else {
 			Output.positiveMessage(player, "-" + player.getName() + "'s Plots-");
 			boolean foundOne = false;
-			for (Plot plot : Lostshard.getRegistry().getPlots()) {
+			for (Plot plot : ptm.getPlots()) {
 				if (plot.isOwner(player)) {
 					foundOne = true;
 					player.sendMessage(" - " + plot.getName() + " ("
@@ -1008,7 +1009,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Withdraw money from plot founds at player.
 	 */
 	private void plotWithdraw(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1050,7 +1051,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggle test for player and plot.
 	 */
 	private void plotTestToggle(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.getTestPlot() != null) {
 			Output.positiveMessage(player, "You are no longer testing " + pseudoPlayer.getTestPlot().getName() + ".");
@@ -1073,7 +1074,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Expand plot to given size.
 	 */
 	private void plotExpand(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1098,7 +1099,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		// see if we would expand into an existing region
-		for (Plot p : Lostshard.getRegistry().getPlots()) {
+		for (Plot p : ptm.getPlots()) {
 			if (!p.getLocation().getWorld().equals(player.getWorld()))
 				continue;
 			if (p == plot)
@@ -1154,7 +1155,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Make plot public at player.
 	 */
 	private void plotPublic(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1178,7 +1179,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Make plot private at player.
 	 */
 	private void plotPrivate(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1202,7 +1203,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Toggle protection for plot at player.
 	 */
 	private void plotProtect(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1230,7 +1231,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Unfriend player of plot at player.
 	 */
 	private void plotUnFriend(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1286,7 +1287,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Co-owner player of plot at player.
 	 */
 	private void plotCoOwn(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1335,7 +1336,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Friend player of plot at player.
 	 */
 	private void plotFriend(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1388,7 +1389,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Display info for plot at player.
 	 */
 	private void plotInfo(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1402,8 +1403,8 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Survey nearby plots of player.
 	 */
 	private void plotSurvey(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
-		List<Plot> plots = Lostshard.getRegistry().getPlots();
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		List<Plot> plots = ptm.getPlots();
 		int numPlots = plots.size();
 
 		// First, determine if we are currently in a plot
@@ -1558,7 +1559,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		// find intersecting regions and check names to make sure there isn't a
 		// region with that name already
 		Location curLoc = player.getLocation().getBlock().getLocation();
-		for (Plot plot : Lostshard.getRegistry().getPlots()) {
+		for (Plot plot : ptm.getPlots()) {
 			if (plot.getName().equalsIgnoreCase(plotName)) {
 				Output.simpleError(player,
 						"A plot with that name already exists, please choose another.");
@@ -1597,7 +1598,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 			Plot plot = new Plot(-1, plotName, player.getUniqueId(), curLoc);
 			Database.insertPlot(plot);
-			Lostshard.getRegistry().getPlots().add(plot);
+			ptm.getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost
 					+ " gc and " + plotDiamondCost.getAmount() + " diamonds.");
@@ -1619,7 +1620,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Disband plot at player.
 	 */
 	private void plotDisband(Player player) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -1635,7 +1636,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName()
 				+ ", and got " + plot.getValue() + " gc.");
-		PlotHandler.removePlot(plot);
+		ptm.removePlot(plot);
 	}
 
 	/**
@@ -1645,7 +1646,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 *            Deposit money into plot found at player.
 	 */
 	private void plotDeposit(Player player, String[] args) {
-		Plot plot = PlotHandler.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;

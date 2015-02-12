@@ -1,19 +1,21 @@
 package com.lostshard.lostshard.Spells;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 
-public class SPL_Heal extends Spell {
+public class SPL_HealOther extends Spell {
 	private static final String 	_name = "Heal Other";
 	private static final String 	_spellWords = "Buddius Healicus";
 	private static final int 		_castingDelay = 0;
 	private static final int 		_cooldownTicks = 20;
 	private static final int		_manaCost = 20;
-	private static final int[]		_reagentCost = {295,287};
+	private static final ItemStack[] _reagentCost = {new ItemStack(Material.STRING, 1), new ItemStack(Material.REDSTONE, 1)};
 	private static final int 		_minMagery = 600;
 	private static final int 		_range = 10;
 	
@@ -22,7 +24,7 @@ public class SPL_Heal extends Spell {
 	public int getCastingDelay() 	{ return _castingDelay; }
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
-	public int[] getReagentCost() 	{ return _reagentCost; }
+	public ItemStack[] getReagentCost() { return _reagentCost; }
 	public int getMinMagery() 		{ return _minMagery; }
 	
 	public int getPageNumber()		{ return 6; }

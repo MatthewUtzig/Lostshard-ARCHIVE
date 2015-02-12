@@ -1,7 +1,9 @@
 package com.lostshard.lostshard.Spells;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
@@ -11,7 +13,7 @@ public class SPL_HealSelf extends Spell {
 	private static final int 		_castingDelay = 0;
 	private static final int 		_cooldownTicks = 20;
 	private static final int		_manaCost = 35;
-	private static final int[]		_reagentCost = {295,287};
+	private static final ItemStack[] _reagentCost = {new ItemStack(Material.SEEDS, 1), new ItemStack(Material.STRING, 1)};
 	private static final int 		_minMagery = 600;
 	//private static final int 		_range = 10;
 	
@@ -20,7 +22,7 @@ public class SPL_HealSelf extends Spell {
 	public int getCastingDelay() 	{ return _castingDelay; }
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
-	public int[] getReagentCost() 	{ return _reagentCost; }
+	public ItemStack[] getReagentCost() { return _reagentCost; }
 	public int getMinMagery() 		{ return _minMagery; }
 	
 	public int getPageNumber()		{ return 6; }

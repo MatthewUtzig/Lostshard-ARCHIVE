@@ -19,6 +19,7 @@ import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Skills.Skill;
+import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -65,6 +66,12 @@ public class PseudoPlayer {
 	private int freeSkillPoints = 0;
 	private int cantCastTicks = 0;
 	private Runebook runebook = new Runebook();
+	private SpellBook spellbook = new SpellBook();
+	private int dieLog = 0;
+	
+	private List<Scroll> scrools = new ArrayList<Scroll>();
+	
+	private Spell promptedSpell = null;
 	
 	// Effects
 	private int bleedTick = 0;
@@ -96,6 +103,8 @@ public class PseudoPlayer {
 			updateStamina(delta);
 			bleed();
 		}
+		if(cantCastTicks > 0)
+			cantCastTicks--;
 		recentAttackersTick();
 		if(spawnTicks > 0)
 			setSpawnTicks(getSpawnTicks()-1);
@@ -671,5 +680,37 @@ public class PseudoPlayer {
 
 	public void setRunebook(Runebook runebook) {
 		this.runebook = runebook;
+	}
+
+	public SpellBook getSpellbook() {
+		return spellbook;
+	}
+
+	public void setSpellbook(SpellBook spellbook) {
+		this.spellbook = spellbook;
+	}
+	
+	public void setPromptedSpell(Spell promptedSpell) {
+		this.promptedSpell = promptedSpell;
+	}
+	
+	public Spell getPromptedSpell() {
+		return promptedSpell;
+	}
+
+	public int getDieLog() {
+		return dieLog;
+	}
+
+	public void setDieLog(int dieLog) {
+		this.dieLog = dieLog;
+	}
+
+	public List<Scroll> getScrools() {
+		return scrools;
+	}
+
+	public void setScrools(List<Scroll> scrools) {
+		this.scrools = scrools;
 	}
 }
