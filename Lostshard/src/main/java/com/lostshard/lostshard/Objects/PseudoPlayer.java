@@ -1,7 +1,6 @@
 package com.lostshard.lostshard.Objects;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +19,6 @@ import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Skills.Skill;
 import com.lostshard.lostshard.Spells.Spell;
-import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
 /**
@@ -48,7 +46,6 @@ public class PseudoPlayer {
 	private Clan clan = null;
 	private Party party = null;
 	private Location customSpawn = new Location(Bukkit.getWorlds().get(0),0,0,0);
-	private int spawnTicks = 0;
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -64,7 +61,6 @@ public class PseudoPlayer {
 	private boolean meditating = false;
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
-	private int cantCastTicks = 0;
 	private Runebook runebook = new Runebook();
 	private SpellBook spellbook = new SpellBook();
 	private int dieLog = 0;
@@ -73,12 +69,7 @@ public class PseudoPlayer {
 	
 	private Spell promptedSpell = null;
 	
-	// Effects
-	private int bleedTick = 0;
-	private int stunTick = 0;
-	
-	private long lastDeath = 0;
-	public int goToSpawnTicks = 0;
+	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
 
 	public PseudoPlayer(UUID playerUUID, int id) {
 		super();
@@ -87,129 +78,12 @@ public class PseudoPlayer {
 		builds.add(new Build());
 	}
 	
-	public int getBleedTick() {
-		return bleedTick;
+	public void tick(double delta, long tick) {
+		timer.tick(delta, tick);
 	}
 	
 	public Player getOnlinePlayer() {
 		return Bukkit.getPlayer(this.getPlayerUUID());
-	}
-
-	public void tick(double delta, long tick) {
-		if(getOnlinePlayer() == null)
-			return;
-		if(tick % 10 == 0) { // one second passed 
-			updateMana(delta);
-			updateStamina(delta);
-			bleed();
-		}
-		if(cantCastTicks > 0)
-			cantCastTicks--;
-		recentAttackersTick();
-		if(spawnTicks > 0)
-			setSpawnTicks(getSpawnTicks()-1);
-		if(criminal > 0)
-			setCriminal(getCriminal()-1);
-		spawn();
-	}
-	
-	private void recentAttackersTick() {
-		for(RecentAttacker ra : recentAttackers) {
-			ra.tick();
-		}
-		recentAttackers.removeIf(ra ->  ra.isDead());
-	}
-
-	private void spawn() {
-		if(goToSpawnTicks > 0) {
-			goToSpawnTicks--;
-			if(goToSpawnTicks == 0) {
-				Player player = getOnlinePlayer();
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				if(isCriminal())
-					player.teleport(Variables.criminalSpawn);
-				else 
-					player.teleport(Variables.lawfullSpawn);
-	        	setSpawnTicks(36000);
-	        	setMana(0);
-				setStamina(0);
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
-			}
-			else if(goToSpawnTicks % 10 == 0) {
-				Player player = getOnlinePlayer();
-				Output.simpleError(player, "Returning to spawn in "+(goToSpawnTicks/10)+" seconds.");
-			}
-		}
-	}
-
-	private void bleed() {
-		if(bleedTick > 0) {
-			Player p = getOnlinePlayer();
-			bleedTick--;
-			
-			if(bleedTick <= 0) {
-				p.sendMessage("Your bleeding has stopped.");
-				bleedTick = 0;
-			}
-			else
-			{
-				double newHealth = p.getHealth() - 1;
-				if(newHealth > 20)
-					newHealth = 20;
-				if(newHealth < 0)
-					newHealth = 0;
-				p.setHealth(newHealth);
-			}
-		}
-	}
-
-	private void updateMana(double delta) {
-		if(mana < maxMana) {
-			double manaRegenMultiplier = 2; //Meditation.getManaRegenMultiplier(this);
-			if(isMeditating())
-				mana+=(2*manaRegenMultiplier*delta);
-			else
-				mana+=(1*manaRegenMultiplier*delta);
-			if(mana >= maxMana) {
-				mana = maxMana;
-				// just reached max...
-				Player p = Bukkit.getPlayer(playerUUID);
-				if(p != null) {
-					Output.positiveMessage(p, "Your mana has fully regenerated.");
-				}
-			}
-		}
-	}
-	
-	private void updateStamina(double delta) {
-		if(stamina < maxStamina) {
-			double staminaRegenMultiplier = 1;
-			if(isResting())
-				stamina+=(2*staminaRegenMultiplier*delta);
-			else
-				stamina+=(1*staminaRegenMultiplier*delta);
-			if(stamina >= maxStamina) {
-				stamina = maxStamina;
-				// just reached max...
-				Player p = Bukkit.getPlayer(playerUUID);
-				if(p != null) {
-					Output.positiveMessage(p, "Your stamina has fully regenerated.");
-				}
-			}
-		}
-	}
-	
-	public void setBleedTick(int bleedTick) {
-		this.bleedTick = bleedTick;
-	}
-
-	public int getStunTick() {
-		return stunTick;
-	}
-
-	public void setStunTick(int stunTick) {
-		this.stunTick = stunTick;
 	}
 	
 	public OfflinePlayer getPlayer() {
@@ -412,14 +286,6 @@ public class PseudoPlayer {
 		update();
 	}
 
-	public int getSpawnTicks() {
-		return spawnTicks;
-	}
-
-	public void setSpawnTicks(int spawnTicks) {
-		this.spawnTicks = spawnTicks;
-	}
-
 	public Party getParty() {
 		return party;
 	}
@@ -501,18 +367,6 @@ public class PseudoPlayer {
 	
 	public void clearRecentAttackers() {
 		recentAttackers.clear();
-	}
-	
-	public boolean isLastDeathOlder(long ms) {
-		return new Date().getTime() > lastDeath+ms;
-	}
-
-	public long getLastDeath() {
-		return lastDeath;
-	}
-
-	public void setLastDeath(long lastDeath) {
-		this.lastDeath = lastDeath;
 	}
 
 	public List<ChatChannel> getDisabledChatChannels() {
@@ -666,14 +520,6 @@ public class PseudoPlayer {
 		update();
 	}
 
-	public int getCantCastTicks() {
-		return cantCastTicks;
-	}
-
-	public void setCantCastTicks(int cantCastTicks) {
-		this.cantCastTicks = cantCastTicks;
-	}
-
 	public Runebook getRunebook() {
 		return runebook;
 	}
@@ -712,5 +558,18 @@ public class PseudoPlayer {
 
 	public void setScrools(List<Scroll> scrools) {
 		this.scrools = scrools;
+	}
+
+	public void giveScroll(Spell spell) {
+		Scroll scroll = new Scroll(0, spell, getId());
+		scrools.add(scroll);
+	}
+
+	public PseudoPlayerTimer getTimer() {
+		return timer;
+	}
+
+	public void setTimer(PseudoPlayerTimer timer) {
+		this.timer = timer;
 	}
 }

@@ -56,12 +56,12 @@ public class SpellManager {
 	public boolean castSpell(Player player, Spell spell, String message) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 			
-		if(pPlayer.getCantCastTicks() > 0) {
+		if(pPlayer.getTimer().getCantCastTicks() > 0) {
 			Output.simpleError(player, "You cannot cast another spell again so soon.");
 			return false;
 		}
 		
-		if(pPlayer.getStunTick() > 0) {
+		if(pPlayer.getTimer().getStunTick() > 0) {
 			Output.simpleError(player, "You cannot use magic while stunned.");
 			return false;
 		}
@@ -91,7 +91,7 @@ public class SpellManager {
 					int blockTypeId = player.getWorld().getBlockTypeIdAt(loc.getBlockX()+x,loc.getBlockY()+y,loc.getBlockZ()+z);
 					if(blockTypeId == Material.LAPIS_BLOCK.getId()) {
 						Output.simpleError(player, "You cannot seem to cast a spell here...");
-						pPlayer.setCantCastTicks(spell.getCooldownTicks());
+						pPlayer.getTimer().setCantCastTicks(spell.getCooldownTicks());
 						return false;
 					}
 				}
@@ -133,7 +133,7 @@ public class SpellManager {
 								// spell fizzled, so we want to tell the player if fizzled
 								spellFizzled(player, spell);
 								// and start the spell cooldown
-								pPlayer.setCantCastTicks(spell.getCooldownTicks());
+								pPlayer.getTimer().setCantCastTicks(spell.getCooldownTicks());
 							}
 							// Whether we succeeded or failed, we have a chance to gain
 							possibleSkillGain(player, pPlayer, spell);
@@ -154,7 +154,7 @@ public class SpellManager {
 							notSkilledEnough(player, spell); 
 							return false;
 						}
-						pPlayer.setCantCastTicks(spell.getCooldownTicks());
+						pPlayer.getTimer().setCantCastTicks(spell.getCooldownTicks());
 					} else {
 						notEnoughReagents(player, spell.getReagentCost());
 						return false;
@@ -168,7 +168,7 @@ public class SpellManager {
 				return false;
 			}
 		} else {
-			pPlayer.setCantCastTicks(spell.getCooldownTicks());
+			pPlayer.getTimer().setCantCastTicks(spell.getCooldownTicks());
 			return false;
 		}
 		return true;

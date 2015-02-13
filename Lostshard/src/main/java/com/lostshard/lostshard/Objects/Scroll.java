@@ -11,10 +11,17 @@ public class Scroll {
 	private String spellName;
 	private int playerId;
 
-	public Scroll(int id, String spellName, int playerId) {
+	public Scroll(int id, Spell spell, int playerId) {
 		super();
 		this.setId(id);
-		this.spellName = spellName;
+		this.spellName = spell.getName();
+		this.setPlayerId(playerId);
+	}
+	
+	public Scroll(int id, String scroll, int playerId) {
+		super();
+		this.setId(id);
+		this.spellName = scroll;
 		this.setPlayerId(playerId);
 	}
 	

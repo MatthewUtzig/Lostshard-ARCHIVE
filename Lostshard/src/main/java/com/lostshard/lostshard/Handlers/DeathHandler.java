@@ -108,11 +108,10 @@ public class DeathHandler {
 //        	}
 //        }
 		
-		pseudoPlayer.setBleedTick(0);
-//		pseudoPlayer._goToSpawnTicks = 0;
+		pseudoPlayer.getTimer().setBleedTick(0);
+		pseudoPlayer.getTimer().setSpawnTicks(0);
 		pseudoPlayer.setPvpTicks(0);
-//		pseudoPlayer._respawnTicks = 200;
-//		pseudoPlayer._dieLog = 0;
+		pseudoPlayer.setDieLog(0);
 //		pseudoPlayer._lastChanceTicks = 0;
 		
 		if(player.getVehicle() instanceof Horse)
@@ -125,7 +124,7 @@ public class DeathHandler {
 		
 		RankHandler.rank(pseudoPlayer);
 		
-		pseudoPlayer.setLastDeath(new Date().getTime());
+		pseudoPlayer.getTimer().setLastDeath(new Date().getTime());
 		
 		for(RecentAttacker recentAttacker : recentAttackers) {	
 			if(recentAttacker.isNotCrime())
@@ -148,7 +147,6 @@ public class DeathHandler {
 					}
 				}
 			}
-			//Output.sendToAdminIRC(player, " "+targetPlayer.getName(), msg);
 		}
 		//Start of death messages
 		

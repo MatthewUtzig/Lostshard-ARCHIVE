@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.ThrownPotion;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -83,6 +84,7 @@ public class PVPHandler {
 		 * the shooter.
 		 */
 		if (attacker instanceof Projectile)
+			if(((Projectile) attacker).getShooter() instanceof Entity)
 			attacker = (Entity) ((Projectile) attacker).getShooter();
 
 		/**
@@ -157,7 +159,7 @@ public class PVPHandler {
 				notCrim = true;
 			}
 			Plot plot = ptm.findPlotAt(player.getLocation());
-			// devender is on a plot
+			// defender is on a plot
 			if(plot != null) {
 				if(plot.isCapturePoint())
 					notCrim = true;
@@ -202,5 +204,24 @@ public class PVPHandler {
 			recentAttacker.setNotCrim(notCrim);
 			pseudoPlayerDefender.addRecentAttacker(recentAttacker);
 		}
+	}
+	
+	public static void Attack(EntityDamageByEntityEvent event) {
+		if(!(event.getEntity() instanceof Player))
+			return;
+		Player player = (Player) event.getEntity();
+		Entity attackerEntity = event.getDamager();
+		
+		if(event.getDamager() instanceof Projectile)
+			if(((Projectile) attackerEntity).getShooter() instanceof Entity)
+			attackerEntity = (Entity) ((Projectile) attackerEntity).getShooter();
+		
+		if(!(attackerEntity instanceof Player))
+			return;
+		Player attacker = (Player) attackerEntity;
+		
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		pPlayer.addRecentAttacker(new RecentAttacker(
+				attacker.getUniqueId(), 300));
 	}
 }

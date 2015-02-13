@@ -47,7 +47,7 @@ public class SPL_HealSelf extends Spell {
 	 */
 	public void doAction(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.setCantCastTicks(_cooldownTicks);
+		pseudoPlayer.getTimer().setCantCastTicks(_cooldownTicks);
 		Damageable damag = player;
 		double health = damag.getHealth();
 		health+=10;

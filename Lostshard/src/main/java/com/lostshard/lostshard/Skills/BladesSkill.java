@@ -68,8 +68,8 @@ public class BladesSkill extends Skill {
 				if(damagedEntity instanceof Player) {
 					Player defenderPlayer = (Player)damagedEntity;
 					PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
-					if(defenderPseudoPlayer.getBleedTick() <= 0) {
-						defenderPseudoPlayer.setBleedTick(10);
+					if(defenderPseudoPlayer.getTimer().getBleedTick() <= 0) {
+						defenderPseudoPlayer.getTimer().setBleedTick(10);
 						defenderPlayer.sendMessage(ChatColor.GREEN+"You are bleeding!");
 						player.sendMessage(ChatColor.GREEN+defenderPlayer.getName()+" is bleeding!");
 					}

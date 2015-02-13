@@ -12,7 +12,7 @@ public class RankHandler {
 	
 	public static void rank(PseudoPlayer pPlayer) {
 		List<RecentAttacker> recentAttackers = pPlayer.getRecentAttackers();
-		if(recentAttackers.size() >= 1 && pPlayer.isLastDeathOlder(300000)) {
+		if(recentAttackers.size() >= 1 && pPlayer.getTimer().isLastDeathOlder(300000)) {
 		
 			float attackerSUM = 0;
 			int rankFLOOR = 200;

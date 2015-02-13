@@ -16,6 +16,7 @@ import com.lostshard.lostshard.Commands.ChatCommand;
 import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.MageryCommand;
+import com.lostshard.lostshard.Commands.PartyCommands;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
@@ -89,6 +90,7 @@ public class Lostshard extends JavaPlugin {
 		new SkillCommand(this);
 		new ClanCommand(this);
 		new MageryCommand(this);
+		new PartyCommands(this);
 		
 		Lostshard.setPlugin(this);
 		
@@ -112,7 +114,8 @@ public class Lostshard extends JavaPlugin {
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
-//		 Database.saveAll(); 
+//		 Database.saveAll();
+		CustomSchedule.stopSchedule();
 		DataSource.getInstance().closeConnection();
 	}
 

@@ -19,6 +19,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.TabUtils;
 
 public class ClanCommand implements CommandExecutor, TabCompleter {
 
@@ -134,11 +135,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					String targetName = split[1];
 					Player targetPlayer = player.getServer().getPlayer(targetName);
 					if(targetPlayer != null) {
-//						PseudoPlayer invitedPseudoPlayer = PseudoPlayerHandler.getPlayer(targetPlayer);
-//						if(invitedPseudoPlayer._secret) {
-//							Output.simpleError(player, "That player is not online.");
-//							return;
-//						}
 						if(!targetPlayer.getName().equalsIgnoreCase(player.getName())) {
 							PseudoPlayer targetPseudoPlayer = pm.getPlayer(targetPlayer);
 							if(targetPseudoPlayer.getClan() == null) {
@@ -437,12 +433,12 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		player.sendMessage(ChatColor.YELLOW+"/clan leave");
 		player.sendMessage(ChatColor.YELLOW+"/clan disband");
 	}
-
 	
-	
-	public List<String> onTabComplete(CommandSender arg0, Command arg1,
-			String arg2, String[] arg3) {
-		// TODO Auto-generated method stub
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("clan") && args.length == 1) {
+			return TabUtils.StringTab(args, new String[] {"create","info","help","invite","uninvite","promote","demote","kick","leave","transfer","disband","join"});
+		}
 		return null;
 	}
 	

@@ -61,7 +61,7 @@ public class SPL_HealOther extends Spell {
 	 */
 	public void doAction(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.setCantCastTicks(_cooldownTicks);
+		pseudoPlayer.getTimer().setCantCastTicks(_cooldownTicks);
 		
 		if(_playerFound != null) {
 			Output.positiveMessage(player, "You have healed "+_playerFound.getName()+".");

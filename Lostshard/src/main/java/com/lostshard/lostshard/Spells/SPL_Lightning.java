@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -21,6 +22,7 @@ public class SPL_Lightning extends Spell {
 	private static final int		_manaCost = 15;
 	private static final int 		_minMagery = 720;
 	private static final int 		_range = 20;
+	private static final ItemStack[] _reagentCost = {new ItemStack(Material.STRING, 1), new ItemStack(Material.REDSTONE, 1)};
 	
 	public String getName() 		{ return _name; }
 	public String getSpellWords() 	{ return _spellWords; }
@@ -28,6 +30,7 @@ public class SPL_Lightning extends Spell {
 	public int getCooldownTicks()	{ return _cooldownTicks; }
 	public int getManaCost() 		{ return _manaCost; }
 	public int getMinMagery() 		{ return _minMagery; }
+	public ItemStack[] getReagentCost() { return _reagentCost; }
 	
 	public int getPageNumber()		{ return 7; }
 	/* Used to confirm that the spell can be cast, so, for example, if you were
@@ -62,7 +65,7 @@ public class SPL_Lightning extends Spell {
 	 */
 	public void doAction(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.setCantCastTicks(_cooldownTicks);
+		pseudoPlayer.getTimer().setCantCastTicks(_cooldownTicks);
 		
 		Location strikeLoc = _blockFound.getLocation();
 		strikeLoc.setX(strikeLoc.getX()+.5);

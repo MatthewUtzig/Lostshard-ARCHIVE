@@ -607,7 +607,7 @@ public class Database {
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
 					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.setSpawnTicks(spawnTick);
+					pPlayer.getTimer().setSpawnTicks(spawnTick);
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
@@ -665,7 +665,7 @@ public class Database {
 			prep.setInt(13, pPlayer.getRank());
 			prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
 			System.out.print(Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-			prep.setInt(15, pPlayer.getSpawnTicks());
+			prep.setInt(15, pPlayer.getTimer().getSpawnTicks());
 			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 			prep.setInt(17, pPlayer.getCurrentBuildId());
 			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
@@ -780,7 +780,7 @@ public class Database {
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
 					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.setSpawnTicks(spawnTick);
+					pPlayer.getTimer().setSpawnTicks(spawnTick);
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
@@ -822,7 +822,7 @@ public class Database {
 				prep.setInt(12, pPlayer.getStamina());
 				prep.setInt(13, pPlayer.getRank());
 				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-				prep.setInt(15, pPlayer.getSpawnTicks());
+				prep.setInt(15, pPlayer.getTimer().getSpawnTicks());
 				prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 				prep.setInt(17, pPlayer.getCurrentBuildId());
 				prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));

@@ -99,3 +99,6 @@ commands:
    scrolls:
       description: cast.
       usage: /<command>
+   party:
+      description: cast.
+      usage: /<command>

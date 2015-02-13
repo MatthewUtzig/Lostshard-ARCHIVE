@@ -15,5 +15,4 @@ public class Party extends Group{
 				memberPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.DARK_PURPLE+"Party"+ChatColor.WHITE+"] "+message);
 		}
 	}
-
 }
