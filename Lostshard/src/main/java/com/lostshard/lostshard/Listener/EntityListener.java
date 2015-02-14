@@ -1,7 +1,5 @@
 package com.lostshard.lostshard.Listener;
 
-import java.util.Iterator;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -15,6 +13,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
@@ -40,10 +40,26 @@ public class EntityListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPotion(PotionSplashEvent event) {
+		for(PotionEffect pe : event.getPotion().getEffects())
+		if (pe.getType().equals(PotionEffectType.HEAL)
+				|| pe.getType().equals(PotionEffectType.REGENERATION)
+				|| pe.getType().equals(PotionEffectType.ABSORPTION)
+				|| pe.getType().equals(PotionEffectType.DAMAGE_RESISTANCE)
+				|| pe.getType().equals(PotionEffectType.FAST_DIGGING)
+				|| pe.getType().equals(PotionEffectType.FIRE_RESISTANCE)
+				|| pe.getType().equals(PotionEffectType.HEALTH_BOOST)
+				|| pe.getType().equals(PotionEffectType.INCREASE_DAMAGE)
+				|| pe.getType().equals(PotionEffectType.INVISIBILITY)
+				|| pe.getType().equals(PotionEffectType.SPEED)
+				|| pe.getType().equals(PotionEffectType.WATER_BREATHING)
+				|| pe.getType().equals(PotionEffectType.NIGHT_VISION))
+			return;
 		if(event.getEntity().getShooter() instanceof Player) {
+			Player attacker = (Player) event.getEntity().getShooter();
 			for(LivingEntity e : event.getAffectedEntities()) {
-				if(!PVPHandler.canEntityAttackEntity(event.getEntity(), e));
-					event.setIntensity(e, 0d);
+				if(e instanceof Player)
+					if(!PVPHandler.canEntityAttackEntity(attacker, (Player) e))
+						event.setIntensity(e, 0d);
 			}
 		}
 	}
@@ -58,16 +74,12 @@ public class EntityListener implements Listener {
 		PVPHandler.Attack(event);
 	}
 	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onEntityDamageByEntityHigh(EntityDamageByEntityEvent event) {
-		DamageHandler.damage(event);
-	}
-	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);
+		DamageHandler.damage(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

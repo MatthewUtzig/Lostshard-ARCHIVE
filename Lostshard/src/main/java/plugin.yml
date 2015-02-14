@@ -102,3 +102,6 @@ commands:
    party:
       description: cast.
       usage: /<command>
+   lostshardreload:
+      description: reload lostshard config.
+      usage: /<command>

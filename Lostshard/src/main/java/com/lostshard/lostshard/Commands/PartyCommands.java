@@ -15,6 +15,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class PartyCommands implements CommandExecutor, TabCompleter {
@@ -149,6 +150,8 @@ public class PartyCommands implements CommandExecutor, TabCompleter {
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("party") && args.length == 1)
+			return TabUtils.StringTab(args, new String[]{"invite", "leave", "join", "info", "help"});
 		return null;
 	}
 	

@@ -28,12 +28,12 @@ public class Variables {
 	public static final int bankRadius = 10;
 	public static final int goldIngotValue = 100;
 	// Database
-	public static final String mysqlDriver = cm.getMYSQLDriver();
-	public static final String mysqlUrl = cm.getMYSQLUrl();
-	public static final String mysqlUsername = cm.getMYSQLUsername();
-	public static final String mysqlPassword = cm.getMYSQLPassword();
+	public static String mysqlDriver;
+	public static String mysqlUrl;
+	public static String mysqlUsername;
+	public static String mysqlPassword;
 	// Server
-	public static final String motd = "MOTD, forgot to insert!";
+	public static String motd = "MOTD, forgot to insert!";
 	public static final int maxPlayers = 30;
 	// Map
 	public static final Location criminalSpawn = new Location(null, 0, 0, 0, 0,

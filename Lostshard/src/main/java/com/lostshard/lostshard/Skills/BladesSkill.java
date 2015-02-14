@@ -9,7 +9,7 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
@@ -41,12 +41,6 @@ public class BladesSkill extends Skill {
 		int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
-		
-		ItemStack itemInHand = player.getItemInHand();
-		if(itemInHand.getType().equals(Material.GOLD_SWORD)) {
-			damagedEntity.getWorld().strikeLightningEffect(damagedEntity.getLocation());
-			damage += 4;
-		}
 		
 		int pierceAmount = 0;
 		
@@ -85,7 +79,8 @@ public class BladesSkill extends Skill {
 		}
 		
 		damage += additionalDamage;
-		event.setDamage(damage);
+		if(event.isApplicable(DamageModifier.BASE))
+		event.setDamage(DamageModifier.BASE, damage);
 		
 		if(damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);

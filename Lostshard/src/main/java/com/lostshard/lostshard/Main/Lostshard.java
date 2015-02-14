@@ -17,6 +17,7 @@ import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.PartyCommands;
+import com.lostshard.lostshard.Commands.ReloadCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
@@ -63,7 +64,7 @@ public class Lostshard extends JavaPlugin {
 		
 		saveDefaultConfig();
 		
-		ConfigManager.getManager().setConfig(getConfig());
+		ConfigManager.getManager().setConfig(this);
 		
 		setLostshard(this);
 		
@@ -91,6 +92,7 @@ public class Lostshard extends JavaPlugin {
 		new ClanCommand(this);
 		new MageryCommand(this);
 		new PartyCommands(this);
+		new ReloadCommand(this);
 		
 		Lostshard.setPlugin(this);
 		

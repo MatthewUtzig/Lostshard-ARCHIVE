@@ -116,6 +116,13 @@ public class PVPHandler {
 		PseudoPlayer pAttacker = pm.getPlayer((Player) attacker);
 		PseudoPlayer pDefender = pm.getPlayer((Player) defender);
 		
+		
+		/**
+		 * Handling ff
+		 */
+		if(pDefender.isFriendlyFire())
+			return true;
+		
 		/**
 		 * Checking if they are in same clan or not.
 		 */

@@ -3,3 +3,19 @@ MYSQL:
   password: ""
   url: "jdbc:mysql://localhost/lostshard"
   driver: "com.mysql.jdbc.Driver"
+DAMAGE:
+  base: .9
+  armor: .7
+  magic: 1
+  resistance: 1
+  hardhat: 1
+  arrow: 1
+  hand: 1
+  swords: 1
+  diamondSword: 1
+  ironSword: 1
+  goldSword: 2
+  stoneSword: 1
+  woodSword: 1
+GENERAL:
+  motd: ""

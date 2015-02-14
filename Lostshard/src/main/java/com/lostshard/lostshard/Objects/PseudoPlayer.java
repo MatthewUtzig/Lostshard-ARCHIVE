@@ -28,9 +28,9 @@ import com.lostshard.lostshard.Utils.Utils;
 public class PseudoPlayer {
 
 	private int id;
+	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
-	private UUID playerUUID;
 	private Bank bank = new Bank("", wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -64,6 +64,7 @@ public class PseudoPlayer {
 	private Runebook runebook = new Runebook();
 	private SpellBook spellbook = new SpellBook();
 	private int dieLog = 0;
+	private boolean friendlyFire = false;
 	
 	private List<Scroll> scrools = new ArrayList<Scroll>();
 	
@@ -571,5 +572,13 @@ public class PseudoPlayer {
 
 	public void setTimer(PseudoPlayerTimer timer) {
 		this.timer = timer;
+	}
+
+	public boolean isFriendlyFire() {
+		return friendlyFire;
+	}
+
+	public void setFriendlyFire(boolean friendlyFire) {
+		this.friendlyFire = friendlyFire;
 	}
 }
