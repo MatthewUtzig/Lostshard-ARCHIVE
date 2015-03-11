@@ -65,6 +65,7 @@ public class PseudoPlayer {
 	private SpellBook spellbook = new SpellBook();
 	private int dieLog = 0;
 	private boolean friendlyFire = false;
+	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	
 	private List<Scroll> scrools = new ArrayList<Scroll>();
 	
@@ -580,5 +581,13 @@ public class PseudoPlayer {
 
 	public void setFriendlyFire(boolean friendlyFire) {
 		this.friendlyFire = friendlyFire;
+	}
+
+	public Reputation getReputation() {
+		return reputation;
+	}
+
+	public void setReputation(Reputation reputation) {
+		this.reputation = reputation;
 	}
 }

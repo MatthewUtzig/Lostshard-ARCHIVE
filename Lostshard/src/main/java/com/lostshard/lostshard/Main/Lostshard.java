@@ -62,6 +62,8 @@ public class Lostshard extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		
+		Bukkit.getWorld("world_the_end").setAutoSave(false);
+		
 		saveDefaultConfig();
 		
 		ConfigManager.getManager().setConfig(this);

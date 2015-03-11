@@ -215,7 +215,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		if (!plot.isOwner(player)) {
-			Output.plotNotCoowner(player);
+			Output.simpleError(player, "Only the owner may remove the plot from the market.");
 			return;
 		}
 		plot.setSalePrice(0);

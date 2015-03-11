@@ -154,7 +154,7 @@ public class NPC {
 	}
 	
 	public Plot getPlot() {
-		return ptm.getPlotById(plotId);
+		return ptm.getPlot(plotId);
 	}
 	
 }

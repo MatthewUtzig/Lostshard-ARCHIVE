@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
 
 import com.lostshard.lostshard.Objects.Plot;
@@ -66,11 +67,17 @@ public class PlotManager {
 	 * 
 	 *         Get plot from id.
 	 */
-	public Plot getPlotById(int id) {
+	public Plot getPlot(int id) {
 		for (Plot plot : plots)
 			if (plot.getId() == id)
 				return plot;
 		return null;
 	}
 	
+	public Plot getPlot(String name) {
+		for(Plot p : plots)
+			if(StringUtils.contains(p.getName(), name))
+				return p;
+		return null;
+	}
 }

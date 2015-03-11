@@ -21,8 +21,7 @@ import net.citizensnpcs.api.trait.trait.Equipment.EquipmentSlot;
  */
 public class NPCManager {
 
-	public static NPCRegistry registry = CitizensAPI
-			.getNPCRegistry();
+	public static NPCRegistry registry = CitizensAPI.getNPCRegistry();
 
 	public static NPCRegistry getRegistry() {
 		return registry;
@@ -37,8 +36,6 @@ public class NPCManager {
 				"[" + npc.getType().toString() + "] " + npc.getName());
 		cNPC.spawn(npc.getLocation());
 		cNPC.setProtected(true);
-		cNPC.setFlyable(true);
-		
 		Equipment et = cNPC.getTrait(Equipment.class);
 		
 		if (npc.getType() == NPCType.BANKER) {

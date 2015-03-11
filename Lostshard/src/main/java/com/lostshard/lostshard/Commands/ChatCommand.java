@@ -47,8 +47,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.DARK_RED
-					+ "Players may only perform this command.");
+			Output.mustBePlayer(sender);
 			return true;
 		}
 		Player player = (Player) sender;
@@ -114,7 +113,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	@SuppressWarnings("deprecation")
 	private void msgChat(Player player, String[] args) {
 		if(args.length < 2) {
-			Output.simpleError(player, "/msg (Player) message");
+			Output.simpleError(player, "/msg (Player) (message)");
 			return;
 		}
 		String targetName = args[0];
@@ -258,7 +257,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("msg")) {
+		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1) {
 			if (sender instanceof Player)
 				return TabUtils.OnlinePlayersTab(args,
 						new Player[] { (Player) sender });

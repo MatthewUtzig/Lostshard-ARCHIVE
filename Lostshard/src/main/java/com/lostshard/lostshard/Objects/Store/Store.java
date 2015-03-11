@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Utils.Serializer;
+
 public class Store {
 
-	private int id;
-	private int npcId;
+	private int id = 1;
+	private int npcId = 0;
 	private List<StoreItem> items = new ArrayList<StoreItem>();
 	private boolean update = false;
 	
@@ -83,5 +85,9 @@ public class Store {
 	
 	public void update() {
 		setUpdate(true);
+	}
+	
+	public String getAsJson() {
+		return Serializer.gson.toJson(items).toString();
 	}
 }

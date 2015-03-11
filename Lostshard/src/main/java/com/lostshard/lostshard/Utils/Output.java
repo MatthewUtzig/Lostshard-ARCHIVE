@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Utils;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +19,7 @@ public class Output {
 	static PlayerManager pm = PlayerManager.getManager();
 	
 	public static void mustBePlayer(CommandSender sender) {
-		sender.sendMessage(ChatColor.RED + "You must be a player!");
+		sender.sendMessage(ChatColor.RED + "Only players may perform this command!");
 	}
 
 	public static void gainSkill(Player player, String skillName, int gainAmount, int totalSkill) {
@@ -35,7 +36,6 @@ public class Output {
 	}
 
 	public static void outputPlayerlist(CommandSender sender) {
-
 		ArrayList<String> filteredPlayers = new ArrayList<String>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.isOp())
@@ -48,12 +48,7 @@ public class Output {
 		String message = ChatColor.YELLOW + "Online Players ("
 				+ filteredPlayers.size() + "/" + Bukkit.getMaxPlayers() + "):"
 				+ ChatColor.WHITE + " ";
-		for (int i = 0; i < filteredPlayers.size(); i++) {
-			message += filteredPlayers.get(i);
-			if (i < filteredPlayers.size() - 1)
-				message += ", ";
-		}
-
+		message+=StringUtils.join(filteredPlayers, ", ");
 		sender.sendMessage(message);
 	}
 
@@ -272,18 +267,6 @@ public class Output {
 		simpleError(player, "You are not currently in a plot.");
 	}
 
-	public static void plotNotFriend(Player player) {
-		simpleError(player, "You need to be friend.");
-	}
-
-	public static void plotNotOwner(Player player) {
-		simpleError(player, "You need to be owner.");
-	}
-
-	public static void plotNotCoowner(Player player) {
-		simpleError(player, "You need to be co-owner.");
-	}
-
 	public static void capturePointsInfo(Player player) {
 		player.sendMessage(ChatColor.GOLD + "-Control Points-");
 		player.sendMessage(ChatColor.YELLOW + "Hostility: 0, 0, 0");
@@ -301,8 +284,8 @@ public class Output {
 				+ pseudoPlayer.getStamina() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW+"Build: "+ChatColor.WHITE+
 		pseudoPlayer.getCurrentBuildId());
-		player.sendMessage(ChatColor.YELLOW + "Murder Counts: "
-				+ ChatColor.WHITE + pseudoPlayer.getMurderCounts());
+		player.sendMessage(ChatColor.YELLOW + "Reputation: "
+				+ ChatColor.WHITE + pseudoPlayer.getReputation().getReputation());
 		player.sendMessage(ChatColor.YELLOW+"Rank: " +
 		ChatColor.WHITE+pseudoPlayer.getRank());
 	}

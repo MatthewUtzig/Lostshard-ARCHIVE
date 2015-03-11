@@ -81,12 +81,14 @@ public class DeathHandler {
 				int lumberjackingSkill = pKiller.getCurrentBuild().getLumberjacking().getLvl();
 				
 				if(swordsSkill >= 1000 || lumberjackingSkill >= 1000) {
-					ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1 , (short) SkullType.PLAYER.ordinal());
-					SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-					skullMeta.setOwner(player.getName());
-			        skullMeta.setDisplayName(ChatColor.RESET + player.getName() + "'s Head");
-					skull.setItemMeta(skullMeta);
-					event.getDrops().add(skull);
+					if(Math.random() <= .2) {
+						ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1 , (short) SkullType.PLAYER.ordinal());
+						SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
+						skullMeta.setOwner(player.getName());
+				        skullMeta.setDisplayName(ChatColor.RESET + player.getName() + "'s Head");
+						skull.setItemMeta(skullMeta);
+						event.getDrops().add(skull);
+					}
 				}
 			}
 		}
@@ -178,7 +180,7 @@ public class DeathHandler {
 	//			entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(), new ItemStack(Material.DRAGON_EGG));
 	//			try{
 	//				Player closestPlayer = null;
-	//				double closestDistance = Float.MAX_VALUE;
+	//				double closestDistance = Double.MAX_VALUE;
 	//				Player[] players = Bukkit.getOnlinePlayers();
 	//				for(Player player : players) {
 	//					if(player.getWorld().equals(entity.getWorld())) {
@@ -556,16 +558,14 @@ public class DeathHandler {
 					Entity damager = eDBEE.getDamager();
 					if(damager instanceof Projectile)
 						damager = ((Entity) ((Projectile)damager).getShooter());
-					if(damager instanceof Projectile)
-						damager = ((Entity) ((Projectile) damager).getShooter());
 					if(damager instanceof Creeper)
 						message+= " was killed by a Creeper.";
-					if(damager instanceof PigZombie)
+					else if(damager instanceof PigZombie)
 						message+= " was killed by a Zombie Pigman.";
 					else if(damager instanceof Zombie)
 						message+= " was killed by a Zombie.";
 					else if(damager instanceof Skeleton)
-						message+= " was killed by a Skeleton.";
+						message+= " was shot by a Skeleton.";
 					else if(damager instanceof Ghast)
 						message+= " was killed by a Ghast.";
 					else if(damager instanceof Giant)

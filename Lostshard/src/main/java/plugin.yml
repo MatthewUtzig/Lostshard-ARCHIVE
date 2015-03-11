@@ -105,3 +105,9 @@ commands:
    lostshardreload:
       description: reload lostshard config.
       usage: /<command>
+   tpplot:
+      description: tp to a plot.
+      usage: /<command>
+   tpworld:
+      description: tp to a world.
+      usage: /<command>
