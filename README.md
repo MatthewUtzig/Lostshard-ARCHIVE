@@ -23,8 +23,8 @@
 - [X] Mysql
 
 #Party
-- [ ] Commands
-- [ ] Pvp
+- [x] Commands
+- [x] Pvp
 
 #Chat
 - [x] Msg
