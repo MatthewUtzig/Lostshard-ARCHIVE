@@ -13,7 +13,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -92,10 +91,10 @@ public class Serializer {
 		return gson.toJson(list);
 	}
 
-	public static String serializeInventory(Inventory inv) {
+	public static String serializeItems(ItemStack[] items) {
 		List<String> array = new ArrayList<String>();
-		for (int i = 0; i < inv.getContents().length; i++) {
-			ItemStack is = inv.getContents()[i];
+		for (int i = 0; i < items.length; i++) {
+			ItemStack is = items[i];
 			if (is == null)
 				is = new ItemStack(Material.AIR);
 			array.add(gson.toJson(is.serialize()));

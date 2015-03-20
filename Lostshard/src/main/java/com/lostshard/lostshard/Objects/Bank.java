@@ -28,9 +28,9 @@ public class Bank {
 	}
 
 	public String Serialize() {
-		return Serializer.serializeInventory(inventory);
+		return Serializer.serializeItems(inventory.getContents());
 	}
-
+	
 	public void setInventory(String string) {
 		if (string != null && string != "") {
 			ItemStack[] content = Serializer.deserializeItems(string);

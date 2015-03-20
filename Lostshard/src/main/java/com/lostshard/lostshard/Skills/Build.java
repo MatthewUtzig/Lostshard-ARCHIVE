@@ -12,7 +12,7 @@ public class Build {
 	private Skill survivalism = new SurvivalismSkill();
 	private Skill taming = new TamingSkill();
 	private Skill magery = new MagerySkill();
-	private Skill archery = new Archery();
+	private Skill archery = new ArcherySkill();
 	
 	public Skill getMining() {
 		return mining;

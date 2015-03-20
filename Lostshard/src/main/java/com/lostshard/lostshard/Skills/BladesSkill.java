@@ -19,7 +19,7 @@ public class BladesSkill extends Skill {
 	
 	public BladesSkill() {
 		super();
-		setName("bladess");
+		setName("Bladess");
 		setBaseProb(.2);
 		setScaleConstant(60);
 	}

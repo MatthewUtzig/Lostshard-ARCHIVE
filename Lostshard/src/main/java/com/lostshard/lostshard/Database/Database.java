@@ -572,7 +572,6 @@ public class Database {
 					UUID uuid = UUID.fromString(rs.getString("uuid"));
 					int money = rs.getInt("money");
 					int murderCounts = rs.getInt("murderCounts");
-					// Bank
 					int criminalTick = rs.getInt("criminalTicks");
 					boolean globalChat = rs.getBoolean("globalChat");
 					boolean privateChat = rs.getBoolean("privateChat");
@@ -640,50 +639,6 @@ public class Database {
 		return players;
 	}
 
-	public static void updatePlayer(PseudoPlayer pPlayer) {
-		if (pPlayer == null)
-			return;
-		try {
-			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn
-					.prepareStatement("UPDATE players SET "
-							+ "money=?, bank=?, murderCounts=?, criminalTicks=?, "
-							+ "globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?,"
-							+ " plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, builds=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=? WHERE id=?");
-			prep.setInt(1, pPlayer.getMoney());
-			prep.setString(2, pPlayer.getBank().Serialize());
-			prep.setInt(3, pPlayer.getMurderCounts());
-			prep.setInt(4, pPlayer.getCriminal());
-			prep.setBoolean(5, pPlayer.isGlobalChat());
-			prep.setBoolean(6, pPlayer.isPrivateChat());
-			prep.setInt(7, pPlayer.getSubscribeDays());
-			prep.setBoolean(8, pPlayer.wasSubscribed());
-			prep.setInt(9, pPlayer.getPlotCreatePoints());
-			prep.setString(10, pPlayer.getChatChannel().toString());
-			prep.setInt(11, pPlayer.getMana());
-			prep.setInt(12, pPlayer.getStamina());
-			prep.setInt(13, pPlayer.getRank());
-			prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-			System.out.print(Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-			prep.setInt(15, pPlayer.getTimer().getSpawnTicks());
-			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-			prep.setInt(17, pPlayer.getCurrentBuildId());
-			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setInt(19, pPlayer.getCurrentTitleId());
-			prep.setInt(20, pPlayer.getFreeSkillPoints());
-			prep.setInt(21, pPlayer.getId());
-
-			prep.executeUpdate();
-			prep.close();
-			conn.close();
-		} catch (Exception e) {
-			Lostshard.log.warning("[PLAYER] updatePlayer mysql error");
-			Lostshard.mysqlError();
-			if(Lostshard.isDebug())
-				e.printStackTrace();
-		}
-	}
-
 	public static void insertPlayer(PseudoPlayer pPlayer) {
 		try {
 			Connection conn = connPool.getConnection();
@@ -730,72 +685,6 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-	}
-
-	public static PseudoPlayer getPlayer(int id) {
-		System.out.print("[PLAYER] Getting Player from DB!");
-		PseudoPlayer pPlayer = null;
-		try {
-			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM players WHERE id=?");
-			prep.setInt(1, id);
-			prep.execute();
-			ResultSet rs = prep.getResultSet();
-			while (rs.next()) {
-					UUID uuid = UUID.fromString(rs.getString("uuid"));
-					int money = rs.getInt("money");
-					int murderCounts = rs.getInt("murderCounts");
-					// Bank
-					int criminalTick = rs.getInt("criminalTicks");
-					boolean globalChat = rs.getBoolean("globalChat");
-					boolean privateChat = rs.getBoolean("privateChat");
-					int subscriberDays = rs.getInt("subscribeDays");
-					boolean wasSubscribed = rs.getBoolean("wasSubscribed");
-					Bank bank = new Bank(rs.getString("bank"), wasSubscribed);
-					int plotCreationPoints = rs.getInt("plotCreationPoints");
-					String chatChannel = rs.getString("chatChannel");
-					int mana = rs.getInt("mana");
-					int stamina = rs.getInt("stamina");
-					int rank = rs.getInt("rank");
-					Location customSpawn = Serializer.deserializeLocation(rs.getString("customSpawn"));
-					int spawnTick = rs.getInt("spawnTick");
-					int currentBuild = rs.getInt("currentBuild");
-					List<String> titles = Serializer.deserializeStringArray(rs.getString("titles"));
-					int currentTitle = rs.getInt("currentTitle");
-					int freeSkillPoints = rs.getInt("freeSkillPoints");
-					
-					pPlayer = new PseudoPlayer(uuid, id);
-					pPlayer.setMoney(money);
-					pPlayer.setMurderCounts(murderCounts);
-					pPlayer.setCriminal(criminalTick);
-					pPlayer.setGlobalChat(globalChat);
-					pPlayer.setPrivateChat(privateChat);
-					pPlayer.setSubscribeDays(subscriberDays);
-					pPlayer.setWasSubscribed(wasSubscribed);
-					pPlayer.setPlotCreatePoints(plotCreationPoints);
-					pPlayer.setBank(bank);
-					pPlayer.setChatChannel(ChatChannel.valueOf(chatChannel));
-					pPlayer.setMana(mana);
-					pPlayer.setStamina(stamina);
-					pPlayer.setRank(rank);
-					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.getTimer().setSpawnTicks(spawnTick);
-					pPlayer.setCurrentBuildId(currentBuild);
-					pPlayer.setTitels(titles);
-					pPlayer.setCurrentTitleId(currentTitle);
-					pPlayer.setFreeSkillPoints(freeSkillPoints);
-					return pPlayer;
-			}
-			prep.close();
-			conn.close();
-		} catch (Exception e) {
-			Lostshard.log.warning("[PLAYER] getPlayers mysql error");
-			Lostshard.mysqlError();
-			if(Lostshard.isDebug())
-				e.printStackTrace();
-		}
-		return pPlayer;
 	}
 	
 	public static void updatePlayers(List<PseudoPlayer> pPlayers) {
