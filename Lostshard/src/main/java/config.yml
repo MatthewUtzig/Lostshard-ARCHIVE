@@ -9,7 +9,7 @@ DAMAGE:
   magic: 1
   resistance: 1
   hardhat: 1
-  arrow: 1
+  arrow: .8
   hand: 1
   swords: 1
   diamondSword: 1

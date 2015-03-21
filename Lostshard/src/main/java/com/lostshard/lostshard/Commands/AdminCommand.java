@@ -13,12 +13,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
-import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Utils.Utils;
@@ -76,8 +74,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			}
 			Player player = (Player) sender;
 			tpWorld(player, args);
-		}
-		else if(cmd.getName().equalsIgnoreCase("test")) {
+		}else if(cmd.getName().equalsIgnoreCase("test")) {
 			Player player = (Player) sender;
 			sender.sendMessage(Serializer.gson.toJson(player.getInventory().getContents(), ItemStack[].class));
 			return true;

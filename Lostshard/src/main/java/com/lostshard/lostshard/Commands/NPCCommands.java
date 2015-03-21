@@ -131,7 +131,7 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 		}
 		//For sell
 		if(args[3].equalsIgnoreCase("sell")) {
-			if(!player.getInventory().containsAtLeast(item, amount)) {
+			if(!player.getInventory().contains(item.getType(), amount)) {
 				Output.simpleError(player, "Error");
 				return;
 			}

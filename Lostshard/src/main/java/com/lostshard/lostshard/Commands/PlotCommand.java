@@ -25,6 +25,7 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
@@ -1593,7 +1594,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					.setPlotCreatePoints(pseudoPlayer.getPlotCreatePoints() + 7);
 			// debited money successfully, now remove the proper amount of
 			// diamonds
-			player.getInventory().remove(plotDiamondCost);
+			ItemUtils.removeItem(player.getInventory(), plotDiamondCost.getType(), plotDiamondCost.getAmount());
 			// costs paid, create the plot
 
 			Plot plot = new Plot(-1, plotName, player.getUniqueId(), curLoc);

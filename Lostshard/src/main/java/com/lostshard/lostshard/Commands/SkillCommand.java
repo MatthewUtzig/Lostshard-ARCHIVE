@@ -188,6 +188,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 	        				newSkill = 1000;
 	        			}
 	        			amountInt -= dif;
+	        			skill.setLvl(newSkill);
         				Output.positiveMessage(player, "You have increased "+targetPlayer.getName()+" "+skill.getName()+" with "+args[3]+ ".");
         				pPlayer.update();
 					}

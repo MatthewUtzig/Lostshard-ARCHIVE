@@ -17,6 +17,7 @@ import com.lostshard.lostshard.Spells.SPL_Lightning;
 import com.lostshard.lostshard.Spells.SPL_Mark;
 import com.lostshard.lostshard.Spells.SPL_PermanentGateTravel;
 import com.lostshard.lostshard.Spells.Spell;
+import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -189,9 +190,8 @@ public class SpellManager {
 	private void takeRegs(Player player, ItemStack[] itemCost) {
 		if(itemCost == null)
 			return;
-		for(ItemStack reagent : itemCost) {
-			player.getInventory().remove(reagent);
-		}
+		for(ItemStack reagent : itemCost)
+			ItemUtils.removeItem(player.getInventory(), reagent.getType(), reagent.getAmount());
 	}
 
 	private void castInstant(Player player, PseudoPlayer pPlayer, Spell spell) {
@@ -283,7 +283,7 @@ public class SpellManager {
 		if(itemCost == null)
 			return true;
 		for(ItemStack reagent : itemCost) {
-			if(!player.getInventory().contains(reagent.getType()))
+			if(!player.getInventory().contains(reagent.getType(), reagent.getAmount()))
 				return false;
 		}
 		return true;

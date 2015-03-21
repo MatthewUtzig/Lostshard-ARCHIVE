@@ -10,7 +10,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.NPCHandler;
@@ -18,6 +17,7 @@ import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
@@ -127,19 +127,17 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(player, "/tradegold (amount)");
 					return;
 				}
-				if (player.getInventory().containsAtLeast(
-						new ItemStack(Material.GOLD_INGOT), amount)) {
+				if (player.getInventory().contains(Material.GOLD_INGOT, amount)) {
 					pPlayer.addMoney(amount * Variables.goldIngotValue);
-					player.getInventory().remove(
-							new ItemStack(Material.GOLD_INGOT, amount));
+					ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT, amount);
 					Output.positiveMessage(player, "You have traded " + amount
 							+ " gold ingots into " + amount
 							* Variables.goldIngotValue + " gc.");
 				} else
 					Output.simpleError(player, "You dont have " + amount
 							+ " gold ingots in your inventory.");
-			}
-		Output.simpleError(player, "You are not close enough to a bank.");
+			}else
+				Output.simpleError(player, "You are not close enough to a bank.");
 		return;
 	}
 

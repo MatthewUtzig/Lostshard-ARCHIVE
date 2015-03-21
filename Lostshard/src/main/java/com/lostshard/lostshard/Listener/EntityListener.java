@@ -21,6 +21,7 @@ import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
@@ -74,12 +75,13 @@ public class EntityListener implements Listener {
 		PVPHandler.Attack(event);
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.LOW)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);
 		DamageHandler.damage(event);
+		ArcherySkill.EntityDamageByEntityEvent(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

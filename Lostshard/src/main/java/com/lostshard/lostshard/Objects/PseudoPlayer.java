@@ -485,6 +485,8 @@ public class PseudoPlayer {
 			return getCurrentBuild().getBlackSmithy();
 		else if(name.equalsIgnoreCase("blades"))
 			return getCurrentBuild().getBlades();
+		else if(name.equalsIgnoreCase("archery"))
+			return getCurrentBuild().getArchery();
 		else if(name.equalsIgnoreCase("brawling"))
 			return getCurrentBuild().getBrawling();
 		else if(name.equalsIgnoreCase("fishing"))
