@@ -74,7 +74,7 @@ public class SpellManager {
 		
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if(plot != null) {
-			if(plot.isAllowMagic()) {
+			if(!plot.isAllowMagic()) {
 				Output.simpleError(player, "You cannot use magic in "+plot.getName()+".");
 				return false;
 			}

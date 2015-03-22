@@ -39,8 +39,8 @@ public class LumberjackingSkill extends Skill {
 		if(!ItemUtils.isAxe(player.getItemInHand()))
 			return;
 		Entity damagedEntity = event.getEntity();
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		Skill skill = pseudoPlayer.getCurrentBuild().getLumberjacking();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		Skill skill = pPlayer.getCurrentBuild().getLumberjacking();
 		int lumberjackingSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
@@ -91,7 +91,7 @@ public class LumberjackingSkill extends Skill {
 			skill.setBaseProb(.2);
 		int gain = skill.skillGain();
 		Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
-		pseudoPlayer.update();
+		pPlayer.update();
 	}
 	
 	@SuppressWarnings("deprecation")

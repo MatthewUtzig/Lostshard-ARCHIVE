@@ -36,8 +36,8 @@ public class BladesSkill extends Skill {
 		if(!ItemUtils.isSword(item))
 			return;
 		Entity damagedEntity = event.getEntity();
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		Skill skill = pseudoPlayer.getCurrentBuild().getBlades();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		Skill skill = pPlayer.getCurrentBuild().getBlades();
 		int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
@@ -86,8 +86,8 @@ public class BladesSkill extends Skill {
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		int gain = pseudoPlayer.getCurrentBuild().getBlades().skillGain();
-		Output.gainSkill(player, "bladess", gain, skill.getLvl());
-		pseudoPlayer.update();
+		int gain = pPlayer.getCurrentBuild().getBlades().skillGain();
+		Output.gainSkill(player, "Bladess", gain, skill.getLvl());
+		pPlayer.update();
 	}
 }

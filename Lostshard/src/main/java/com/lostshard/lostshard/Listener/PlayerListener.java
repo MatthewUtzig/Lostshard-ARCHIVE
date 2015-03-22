@@ -11,6 +11,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -25,6 +26,7 @@ import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Skills.FishingSkill;
 
 public class PlayerListener implements Listener {
 
@@ -34,6 +36,11 @@ public class PlayerListener implements Listener {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onPlayerFishEvent(PlayerFishEvent event) {
+		FishingSkill.onFish(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
 		EnderdragonHandler.respawnDragonCheck(event);

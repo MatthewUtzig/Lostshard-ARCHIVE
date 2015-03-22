@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -41,13 +40,12 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("admin")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(ChatColor.DARK_RED
-						+ "You must be a player to perform this command.");
+				Output.mustBePlayer(sender);
 				return true;
 			}
 			Player player = (Player) sender;
 			if (!player.isOp()) {
-				Output.simpleError(player, "OP's may only perform this command.");
+				Output.simpleError(player, "Only operator may perform this command.");
 				return true;
 			}
 			if (args.length < 1) {

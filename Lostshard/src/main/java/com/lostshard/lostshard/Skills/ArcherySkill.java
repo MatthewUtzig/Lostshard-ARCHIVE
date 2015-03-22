@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Skills;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -59,7 +58,7 @@ public class ArcherySkill extends Skill {
 			skill.setBaseProb(.2);
 		
 		int gain = skill.skillGain();
-		Output.gainSkill(attacker, "archery", gain, skill.getLvl());
+		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
 		pPlayer.update();
 	}
 	

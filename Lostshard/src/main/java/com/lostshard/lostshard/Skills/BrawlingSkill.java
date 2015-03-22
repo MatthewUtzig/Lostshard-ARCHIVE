@@ -36,8 +36,8 @@ public class BrawlingSkill extends Skill {
 		Material item = player.getItemInHand().getType();
 		if(ItemUtils.isSword(item) || ItemUtils.isAxe(item))
 			return;
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		Skill skill = pseudoPlayer.getCurrentBuild().getBrawling();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		Skill skill = pPlayer.getCurrentBuild().getBrawling();
 		Entity damagedEntity = event.getEntity();
 		int brawlingSkill = skill.getLvl();
 		double damage = event.getDamage();
@@ -86,7 +86,7 @@ public class BrawlingSkill extends Skill {
 			skill.setBaseProb(.2);
 		int gain = skill.skillGain();
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
-		pseudoPlayer.update();
+		pPlayer.update();
 	}
 	
 }
