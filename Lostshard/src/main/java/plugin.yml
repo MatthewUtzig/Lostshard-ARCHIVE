@@ -111,3 +111,6 @@ commands:
    tpworld:
       description: tp to a world.
       usage: /<command>
+   boat:
+      description: spawns a boat if lvl 50 in fishing or above.
+      usage: /<command>

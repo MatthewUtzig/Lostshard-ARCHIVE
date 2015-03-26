@@ -130,7 +130,7 @@ public class FishingSkill extends Skill {
 	
 	public static ItemStack getRandomHigh() {
 		Random ran = new Random();
-		if(Math.random() < .66) {
+		if(Math.random() < .75) {
 			switch(ran.nextInt(3)) {
 				case 0:
 					return new ItemStack(Material.IRON_INGOT);
@@ -143,25 +143,22 @@ public class FishingSkill extends Skill {
 					return new ItemStack(Material.IRON_INGOT);
 			}
 		}else{
-			switch(ran.nextInt(7)) {
+			switch(ran.nextInt(9)) {
 				case 0:
-					return new ItemStack(Material.WOOD_AXE);
 				case 1:
-					return new ItemStack(Material.WOOD_HOE);
 				case 2:
-					return new ItemStack(Material.WOOD_PICKAXE);
+					return new ItemStack(Material.GOLD_INGOT);
 				case 3:
-					return new ItemStack(Material.WOOD_SPADE);
 				case 4:
-					return new ItemStack(Material.WOOD_SWORD);
 				case 5:
-					return new ItemStack(Material.BOWL);
 				case 6:
-					return new ItemStack(Material.STRING);
+					return new ItemStack(Material.IRON_BLOCK);
 				case 7:
-					return new ItemStack(Material.STICK);
+					return new ItemStack(Material.DIAMOND_BLOCK);
+				case 8:
+					return new ItemStack(Material.GOLD_BLOCK);
 				default:
-					return new ItemStack(Material.STICK);
+					return new ItemStack(Material.IRON_INGOT);	
 			}
 		}
 	}
@@ -194,7 +191,7 @@ public class FishingSkill extends Skill {
 					return new ItemStack(Material.RECORD_10);
 			}
 		}else{
-			switch(ran.nextInt(9)) {
+			switch(ran.nextInt(8)) {
 				case 0:
 				case 1:
 				case 2:
@@ -203,14 +200,11 @@ public class FishingSkill extends Skill {
 				case 4:
 				case 5:
 				case 6:
-				case 7:
 					return new ItemStack(Material.IRON_BLOCK);
-				case 8:
-					return new ItemStack(Material.DIAMOND);
-				case 9:
-					return new ItemStack(Material.GOLD_BLOCK);
+				case 7:
+					return new ItemStack(Material.DIAMOND_BLOCK);
 				default:
-					return new ItemStack(Material.IRON_INGOT);	
+					return new ItemStack(Material.GOLD_BLOCK);
 			}
 		}
 	}
@@ -219,45 +213,47 @@ public class FishingSkill extends Skill {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Skill skill = pPlayer.getCurrentBuild().getFishing();
 		int lvl = skill.getLvl();
-		if(lvl >= 500) {
-			int curStam = pPlayer.getStamina();
-			if(curStam >= 50) {
-				pPlayer.setStamina(curStam-50);
-				if(Math.random()*1000 < lvl) {
-					boolean placedBoat = false;
-					for(int x=player.getLocation().getBlockX()-3; x<player.getLocation().getBlockX()+3; x++) {
-						for(int y=player.getLocation().getBlockY()-3; y<player.getLocation().getBlockY()+3; y++) {
-							for(int z=player.getLocation().getBlockZ()-3; z<player.getLocation().getBlockZ()+3; z++) {
-								Block b = player.getWorld().getBlockAt(x, y, z);
-								Block blockAbove = player.getWorld().getBlockAt(x,y+1,z);
-								if(b != null && b.getType().equals(Material.STATIONARY_WATER) && blockAbove.getType().equals(Material.AIR)) {
-									Output.positiveMessage(player, "You summoned a boat.");
-									placedBoat = true;
-									int gain = skill.skillGain();
-									Output.gainSkill(player, "Fishing", gain, skill.getLvl());
-									pPlayer.update();
-									player.getWorld().spawn(new Location(b.getWorld(), b.getX()+.5, b.getY()+.5, b.getZ()+.5), Boat.class);
-									break;
-								}
-								if(placedBoat)
-									break;
-							}
-							if(placedBoat)
-								break;
-						}
-						if(placedBoat)
-							break;
-					}
-					
-					if(!placedBoat) {
-						Output.simpleError(player, "Could not find a valid location to place a boat.");
-					}
-				}
-				else Output.simpleError(player, "You failed to create the boat.");
-			}
-			else Output.simpleError(player, "You do not have enough stamina to create a boat.");
+		if(lvl < 500) {
+			Output.simpleError(player, "You need 50 skill in fishing to create a boat out of thin air.");
+			return;
 		}
-		else Output.simpleError(player, "You need 50 skill in fishing to create a boat out of thin air.");
-
+		int curStam = pPlayer.getStamina();
+		if(curStam < 50) {
+			Output.simpleError(player, "You do not have enough stamina to create a boat.");
+			return;
+		}
+		pPlayer.setStamina(curStam-50);
+		if(!(Math.random()*1000 < lvl)) {
+			Output.simpleError(player, "You failed to create the boat.");
+			return;
+		}
+		boolean placedBoat = false;
+		for(int x=player.getLocation().getBlockX()-3; x<player.getLocation().getBlockX()+3; x++) {
+			for(int y=player.getLocation().getBlockY()-3; y<player.getLocation().getBlockY()+3; y++) {
+				for(int z=player.getLocation().getBlockZ()-3; z<player.getLocation().getBlockZ()+3; z++) {
+					Block b = player.getWorld().getBlockAt(x, y, z);
+					Block blockAbove = player.getWorld().getBlockAt(x,y+1,z);
+					if(b != null && b.getType().equals(Material.STATIONARY_WATER) && blockAbove.getType().equals(Material.AIR)) {
+						Output.positiveMessage(player, "You summoned a boat.");
+						placedBoat = true;
+						int gain = skill.skillGain();
+						Output.gainSkill(player, "Fishing", gain, skill.getLvl());
+						pPlayer.update();
+						player.getWorld().spawn(new Location(b.getWorld(), b.getX()+.5, b.getY()+.5, b.getZ()+.5), Boat.class);
+						break;
+					}
+					if(placedBoat)
+						break;
+				}
+				if(placedBoat)
+					break;
+			}
+			if(placedBoat)
+				break;
+		}
+		
+		if(!placedBoat) {
+			Output.simpleError(player, "Could not find a valid location to place a boat.");
+		}
 	}
 }
