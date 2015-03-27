@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -59,6 +60,7 @@ public class PlotManager {
 	
 	public void removePlot(Plot plot) {
 		plots.remove(plot);
+		Database.deletePlot(plot);
 	}
 	
 	/**

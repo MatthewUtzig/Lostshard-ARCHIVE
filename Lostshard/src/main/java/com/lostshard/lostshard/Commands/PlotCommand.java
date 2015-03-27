@@ -1135,7 +1135,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		// verify that we can afford the expansion
 		int plotMoney = plot.getMoney();
-		int expansionCost = plot.getExpandPrice(amount);
+		int expansionCost = plot.getExpandPrice(plot.getSize()+amount);
 		if (plotMoney >= expansionCost) {
 			// we are good to go
 			plot.setMoney(plot.getMoney() - expansionCost);
@@ -1147,7 +1147,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player,
 					"Not enough money in the plot treasury to expand. "
 							+ "It will cost " + expansionCost
-							+ " to expand to " + plot.getSize() + amount);
+							+ " to expand to " + (plot.getSize() + amount));
 	}
 
 	/**

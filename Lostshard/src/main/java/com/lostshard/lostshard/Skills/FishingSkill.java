@@ -133,8 +133,8 @@ public class FishingSkill extends Skill {
 		if(Math.random() < .75) {
 			switch(ran.nextInt(3)) {
 				case 0:
-					return new ItemStack(Material.IRON_INGOT);
 				case 1:
+					return new ItemStack(Material.IRON_INGOT);
 				case 2:
 					return new ItemStack(Material.GOLD_INGOT);
 				case 3:

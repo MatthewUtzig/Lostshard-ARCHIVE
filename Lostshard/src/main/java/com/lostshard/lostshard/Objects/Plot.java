@@ -65,7 +65,7 @@ public class Plot {
 	public Plot(int id, String name, UUID owner, Location location) {
 		super();
 		this.name = name;
-		this.id = nextId();
+		this.id = id;
 		this.owner = owner;
 		this.location = location;
 	}
@@ -339,9 +339,7 @@ public class Plot {
 	}
 
 	public int getValue() {
-		int plotValue = Variables.plotExpandPrice
-				* (((size - 1) ^ 2 + (size - 1)) / 2)
-				- (((Variables.plotStartingSize - 1) ^ 2 + (Variables.plotStartingSize - 1)) / 2);
+		int plotValue = (int) (((Math.pow(size, 2)+size)/2-55)*Variables.plotExpandPrice);
 		if (this.town)
 			plotValue += Variables.plotTownPrice;
 		if (this.isDungeon())
@@ -399,9 +397,7 @@ public class Plot {
 	 * @return Expand price from current size to size.
 	 */
 	public int getExpandPrice(int toSize) {
-		return Variables.plotExpandPrice
-				* (((toSize - 1) ^ 2 + (toSize - 1)) / 2)
-				- (((size - 1) ^ 2 + (size - 1)) / 2);
+		return (int) Math.abs(((Math.pow(toSize,2)+toSize)-(Math.pow(size, 2)+size))/2*Variables.plotExpandPrice);
 	}
 
 	public ArrayList<NPC> getNpcs() {
