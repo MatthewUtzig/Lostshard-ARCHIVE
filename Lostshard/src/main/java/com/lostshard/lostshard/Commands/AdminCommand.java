@@ -82,6 +82,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			pPlayer.getSpellbook().addSpell(SpellType.GATETRAVEL);
 			pPlayer.getSpellbook().addSpell(SpellType.PERMANENTGATETRAVEL);
 			pPlayer.getSpellbook().addSpell(SpellType.SLOWFIELD);
+			pPlayer.getSpellbook().addSpell(SpellType.GRASS);
 			return true;
 		}
 		return true;

@@ -19,7 +19,8 @@ public class Spell {
 		PERMANENTGATETRAVEL(new SPL_PermanentGateTravel()),
 		GATETRAVEL(new SPL_GateTravel()),
 		FLARE(new SPL_Flare()),
-		SLOWFIELD(new SPL_Slowfield());
+		SLOWFIELD(new SPL_Slowfield()),
+		GRASS(new SPL_Grass());
 		
 		private Spell spell;
 		
