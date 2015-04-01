@@ -870,7 +870,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		if (plot.isCoownerOrAbove(player)) {
 			if (args.length < 2) {// someone only typed /plot upgrade
-				Output.positiveMessage(player, "-Plot Upgrades Available-)");
+				Output.positiveMessage(player, "-Plot Upgrades Availabel-)");
 				numAvail = 0;
 				if (!plot.isTown()) {
 					numAvail++;
@@ -958,7 +958,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 								+ " must be a town to purchase this upgrade.");
 				} else
 					Output.simpleError(player, args[1]
-							+ " upgrade is not available.");
+							+ " upgrade is not availabel.");
 			}
 		}
 	}

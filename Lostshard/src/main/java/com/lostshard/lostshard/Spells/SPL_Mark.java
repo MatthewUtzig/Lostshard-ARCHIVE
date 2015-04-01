@@ -7,72 +7,64 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_Mark extends Spell {
-	private static final String 	_name = "Mark";
-	private static final String 	_spellWords = "Runus Markius";
-	private static final int 		_castingDelay = 10;
-	private static final int 		_cooldownTicks = 10;
-	private static final int		_manaCost = 20;
-	private static final ItemStack[] _reagentCost = {new ItemStack(Material.FEATHER, 1),new ItemStack(Material.REDSTONE, 1)};
-	private static final int 		_minMagery = 360;
 	
-	public String getName() 		{ return _name; }
-	public String getSpellWords() 	{ return _spellWords; }
-	public int getCastingDelay() 	{ return _castingDelay; }
-	public int getCooldownTicks()	{ return _cooldownTicks; }
-	public int getManaCost() 		{ return _manaCost; }
-	public ItemStack[] getReagentCost() { return _reagentCost; }
-	public int getMinMagery() 		{ return _minMagery; }
+	private Location markLoc = null;
 	
-	public int getPageNumber()		{ return 4; }
-	//public boolean isWandable()					 	{ return false; }
+	public Location getMarkLoc() {
+		return markLoc;
+	}
+
+	public void setMarkLoc(Location markLoc) {
+		this.markLoc = markLoc;
+	}
+
+	public SPL_Mark() {
+		super();
+		setName("Mark");
+		setSpellWords("Runus Markius");
+		setCastingDelay(10);
+		setCooldown(10);
+		setManaCost(10);
+		setPrompt("What would you like to label the marked rune?");
+		setPage(4);
+		setMinMagery(360);
+		addReagentCost(new ItemStack(Material.FEATHER));
+		addReagentCost(new ItemStack(Material.REDSTONE));
+	}
 	
-	String _response;
-	public String getPrompt() 						{ return "What would you like to label the marked rune?"; }
-	public void setResponse(String response)		{ _response = response; }
-	
-	private Location _markLocation;
-	/* Used to confirm that the spell can be cast, so, for example, if you were
-	 * attempting to teleport to some location that was blocked, we would figure
-	 * that out here and cancel the spell.
-	 */
-	public boolean verifyCastable(Player player, PseudoPlayer pseudoPlayer) {	
+	public boolean verifyCastable(Player player) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
-			_markLocation = player.getLocation();
+			setMarkLoc(player.getLocation().getBlock().getLocation());
 		}
 		else {
 			Output.simpleError(player, "You cannot mark a rune here, the plot is private.");
 			return false;
 		}
 		
-		if(!isValidRuneLocation(player, player.getLocation())) {
+		if(!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
 			return false;
 		}
 		
 		return true;
 	}
 	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
 	public void preAction(Player player) {
 		Output.positiveMessage(player, "You begin casting Mark...");
 	}
 	
-	/* The meat of the spell code, this is what happens when the spell is
-	 * actually activated and should be doing something.
-	 */
 	public void doAction(Player player) {
-		//System.out.println("RSPNS: "+_response);
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		if(_response.length() > 20 || _response.contains("\"") || _response.contains("'")) {
+		if(getResponse().length() > 20 || getResponse().contains("\"") || getResponse().contains("'")) {
 			Output.simpleError(player, "Invalid characters or too long, 20 char max.");
 		}
 		else {
@@ -82,21 +74,21 @@ public class SPL_Mark extends Spell {
 				ArrayList<Rune> runes = runebook.getRunes();
 				boolean foundMatching = false;
 				for(Rune rune : runes) {
-					if(rune.getName().equalsIgnoreCase(_response)) {
+					if(rune.getLabel().equalsIgnoreCase(getResponse())) {
 						foundMatching = true;
 						break;
 					}
 				}
 				if(!foundMatching) {
-//					int runeId = Database.addRune(pseudoPlayer.getId(), player.getName(), _response, _markLocation);
-					Rune newRune = new Rune(_markLocation, _response, 0);
+					int runeId = Database.insertRune(pseudoPlayer.getId(), getResponse(), markLoc);
+					Rune newRune = new Rune(markLoc, getResponse(), runeId);
 					runebook.addRune(newRune);
-					Output.positiveMessage(player, "You have marked a rune for "+_response+".");
+					Output.positiveMessage(player, "You have marked a rune for "+getResponse()+".");
 				}
 				else Output.simpleError(player, "You already have a rune with that name, re-cast the spell.");
 			}
 			else Output.simpleError(player, "Too many runes, remove one to mark a new rune.");
 		}
-		pseudoPlayer.getTimer().setCantCastTicks(_cooldownTicks);
+		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 	}
 }

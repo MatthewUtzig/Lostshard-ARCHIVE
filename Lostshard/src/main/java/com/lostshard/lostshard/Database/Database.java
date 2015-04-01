@@ -13,6 +13,7 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -23,10 +24,14 @@ import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Rune;
+import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.Scroll;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
+import com.lostshard.lostshard.Spells.PermanentGate;
+import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Database.DataSource;
 
@@ -87,7 +92,7 @@ public class Database {
 					
 					PseudoPlayer pPlayer = pm.getPlayer(playerId);
 					
-					pPlayer.getScrools().add(new Scroll(id, scroll, playerId));
+					pPlayer.getScrolls().add(new Scroll(id, scroll, playerId));
 					
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
@@ -560,6 +565,7 @@ public class Database {
 		System.out.print("[PLAYER] Getting Players from DB!");
 		List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
 		Map<Integer, Build> builds = Database.getBuilds();
+		Map<Integer, Runebook> runebooks = Database.getBooks();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
@@ -606,7 +612,7 @@ public class Database {
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
 					pPlayer.setCustomSpawn(customSpawn);
-					pPlayer.getTimer().setSpawnTicks(spawnTick);
+					pPlayer.getTimer().spawnTicks = spawnTick;
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
@@ -616,6 +622,9 @@ public class Database {
 						for(int i : buildsIds) {
 							pPlayer.getBuilds().add(builds.get(i));
 						}
+					}
+					if(runebooks.containsKey(id)) {
+						pPlayer.setRunebook(runebooks.get(id));
 					}
 					players.add(pPlayer);
 				} catch (Exception e) {
@@ -711,7 +720,7 @@ public class Database {
 				prep.setInt(12, pPlayer.getStamina());
 				prep.setInt(13, pPlayer.getRank());
 				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-				prep.setInt(15, pPlayer.getTimer().getSpawnTicks());
+				prep.setInt(15, pPlayer.getTimer().spawnTicks);
 				prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
 				prep.setInt(17, pPlayer.getCurrentBuildId());
 				prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
@@ -1044,5 +1053,184 @@ public class Database {
 	
 	public static void saveAll() {
 
+	}
+
+	public static int insertRune(int playerID, String response, Location markLoc) {
+		int id = 0;
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO runes (location, label, playerid) VALUES (?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			prep.setString(1, Serializer.serializeLocation(markLoc));
+			prep.setString(2, response);
+			prep.setInt(3, playerID);
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			while (rs.next())
+				id = rs.getInt(1);
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[RUNES] inserRune mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public static void deleteRune(Rune rune) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM runes WHERE id=?;");
+			prep.setInt(1, rune.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[RUNES] deleteRune mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static Map<Integer, Runebook> getBooks() {
+		Map<Integer, Runebook> runes = new HashMap<Integer, Runebook>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM runes ORDER BY playerid ASC");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					int playerID = rs.getInt("playerid");
+					String label = rs.getString("label");
+					Location loc = Serializer.deserializeLocation(rs.getString("location"));
+					Rune rune = new Rune(loc, label, id);
+					Runebook runebook = runes.get(playerID);
+					if(runebook == null) {
+						runebook = new Runebook();
+						runes.put(playerID, runebook);
+					}
+					runebook.addRune(rune);
+				} catch (Exception e) {
+					Lostshard.log.warning("[RUNES] Exception when generating \""+ id + "\" BUILD:");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[RUNES] getRunes mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		System.out.print("[RUNES] got "+runes.size()+" build from DB.");
+		return runes;
+	}
+
+	public static void updateRune(PseudoPlayer targetPlayer, Rune foundRune) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("UPDATE runes SET playerid=? WHERE id=?;");
+			prep.setInt(1, targetPlayer.getId());
+			prep.setInt(2, foundRune.getId());
+			prep.executeUpdate();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[RUNES] updateRune mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		
+	}
+
+	public static void removeScroll(Spell useSpell, int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static int insertPermanentGate(PermanentGate gate) {
+		int id = 0;
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT IGNORE INTO permanentgates (fromLocation, toLocation, creator) VALUES (?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			prep.setString(1, Serializer.serializeLocation(gate.getFromBlock().getLocation()));
+			prep.setString(2, Serializer.serializeLocation(gate.getToBlock().getLocation()));
+			prep.setString(3, gate.getCreatorUUID().toString());
+			prep.execute();
+			ResultSet rs = prep.getGeneratedKeys();
+			while (rs.next())
+				id = rs.getInt(1);
+			gate.setId(id);
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[PERMANENTGATE] inserPermanent mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public static void deletePermanentGate(PermanentGate gate) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM permanentgates WHERE id=?;");
+			prep.setInt(1, gate.getId());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[PERMANENTGATE] deletePermanentGate mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void getPermanentGates() {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM permanentgates");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					Location fromLocation = Serializer.deserializeLocation(rs.getString("fromLocation"));
+					Location toLocation = Serializer.deserializeLocation(rs.getString("toLocation"));
+					UUID uuid = UUID.fromString(rs.getString("creator"));
+					ArrayList<Block> blocks = new ArrayList<Block>();
+					blocks.add(fromLocation.getBlock());
+					blocks.add(toLocation.getBlock());
+					blocks.add(fromLocation.getBlock().getRelative(0, 1, 0));
+					blocks.add(toLocation.getBlock().getRelative(0, 1, 0));
+					new PermanentGate(blocks, uuid, id);
+				} catch (Exception e) {
+					Lostshard.log.warning("[PERMANENTGATE] Exception when generating \""+ id + "\" gate:");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[PERMANENTGATE] getPermanentGates mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
 	}
 }

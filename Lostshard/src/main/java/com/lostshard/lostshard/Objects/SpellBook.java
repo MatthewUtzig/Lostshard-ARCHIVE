@@ -5,30 +5,38 @@ import java.util.List;
 
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Spells.Spell;
+import com.lostshard.lostshard.Spells.Spell.SpellType;
 
 public class SpellBook {
 
 	SpellManager sm = SpellManager.getManager();
 	
-	private List<String> spells = new ArrayList<String>();
+	private List<SpellType> spells = new ArrayList<SpellType>();
 
-	public List<String> getSpells() {
+	public List<SpellType> getSpells() {
 		return spells;
 	}
 
-	public void setSpells(List<String> spells) {
+	public void setSpells(List<SpellType> spells) {
 		this.spells = spells;
 	}
 	
-	public boolean containSpell(String name) {
-		for(String s : spells)
-			if(s.trim().replace(" ", "").equalsIgnoreCase(name))
-				return true;
-		return false;
+	public boolean containSpell(SpellType spellType) {
+		return spells.contains(spellType);
 	}
 	
-	public void addSpell(Spell spell) {
-		spells.add(spell.getName());
+	public void addSpell(SpellType spell) {
+		spells.add(spell);
+	}
+	
+	public ArrayList<Spell> getSpellsOnPage(int pageNumber) {
+		ArrayList<Spell> spellsOnPage = new ArrayList<Spell>();
+		for(SpellType spell : spells) {
+			Spell s = spell.getSpell();
+			if(s.getPage() == pageNumber)
+				spellsOnPage.add(s);
+		}
+		return spellsOnPage;
 	}
 	
 }

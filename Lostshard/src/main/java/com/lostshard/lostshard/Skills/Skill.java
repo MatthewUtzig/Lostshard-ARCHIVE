@@ -1,10 +1,12 @@
 package com.lostshard.lostshard.Skills;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.PlotManager;
 
 public class Skill {
 
 	static PlayerManager pm = PlayerManager.getManager();
+	static PlotManager ptm = PlotManager.getManager();
 	
 	private double baseProb = 0.2;
 	private double scaleConstant = 25;

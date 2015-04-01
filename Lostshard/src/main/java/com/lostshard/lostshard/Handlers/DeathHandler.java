@@ -110,8 +110,8 @@ public class DeathHandler {
 //        	}
 //        }
 		
-		pseudoPlayer.getTimer().setBleedTick(0);
-		pseudoPlayer.getTimer().setSpawnTicks(0);
+		pseudoPlayer.getTimer().bleedTick = 0;
+		pseudoPlayer.getTimer().spawnTicks = 0;
 		pseudoPlayer.setPvpTicks(0);
 		pseudoPlayer.setDieLog(0);
 //		pseudoPlayer._lastChanceTicks = 0;
@@ -126,7 +126,7 @@ public class DeathHandler {
 		
 		RankHandler.rank(pseudoPlayer);
 		
-		pseudoPlayer.getTimer().setLastDeath(new Date().getTime());
+		pseudoPlayer.getTimer().lastDeath = new Date().getTime();
 		
 		for(RecentAttacker recentAttacker : recentAttackers) {	
 			if(recentAttacker.isNotCrime())

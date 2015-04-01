@@ -13,36 +13,25 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_PermanentGateTravel extends Spell {
-	private static final String 	_name = "Permanent Gate Travel";
-	private static final String 	_spellWords = "Gatius Permenatus";
-	private static final int 		_castingDelay = 20;
-	private static final int 		_cooldownTicks = 20;
-	private static final int		_manaCost = 100;
-	private static final ItemStack[] _reagentCost = {new ItemStack(Material.STRING, 1), new ItemStack(Material.OBSIDIAN, 1), new ItemStack(Material.REDSTONE, 1)};
-	private static final int 		_minMagery = 840;
+	public SPL_PermanentGateTravel() {
+		super();
+		setName("Permanent Gate Travel");
+		setSpellWords("Gatius Permenatus");
+		setCastingDelay(20);
+		setCooldown(20);
+		setManaCost(100);
+		addReagentCost(new ItemStack(Material.STRING));
+		addReagentCost(new ItemStack(Material.REDSTONE));
+		addReagentCost(new ItemStack(Material.OBSIDIAN));
+		setMinMagery(840);
+		setPage(8);
+		setPrompt("What rune would you like to open a permanent gate to?");
+	}
 	
-	public String getName() 		{ return _name; }
-	public String getSpellWords() 	{ return _spellWords; }
-	public int getCastingDelay() 	{ return _castingDelay; }
-	public int getCooldownTicks()	{ return _cooldownTicks; }
-	public int getManaCost() 		{ return _manaCost; }
-	public ItemStack[] getReagentCost() { return _reagentCost; }
-	public int getMinMagery() 		{ return _minMagery; }
-	
-	public int getPageNumber()		{ return 8; }
-	//public boolean isWandable()					 	{ return false; }
-	
-	String _response;
-	public String getPrompt() 						{ return "What rune would you like to open a permanent gate to?"; }
-	public void setResponse(String response)		{ _response = response; }
-	
-	/* Used to confirm that the spell can be cast, so, for example, if you were
-	 * attempting to teleport to some location that was blocked, we would figure
-	 * that out here and cancel the spell.
-	 */
-	public boolean verifyCastable(Player player, PseudoPlayer pseudoPlayer) {
+	public boolean verifyCastable(Player player) {
 		return true;
 	}
 	
@@ -68,7 +57,7 @@ public class SPL_PermanentGateTravel extends Spell {
 		for(Rune rune : runes) {
 			if(!player.isOp() && !pseudoPlayer.wasSubscribed() && (count >= 8))
 				break;
-			if(rune.getName().equalsIgnoreCase(_response)) {
+			if(rune.getLabel().equalsIgnoreCase(getResponse())) {
 				runeFound = rune;
 				break;
 			}
@@ -77,34 +66,26 @@ public class SPL_PermanentGateTravel extends Spell {
 		
 		if(runeFound == null) {
 			Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
-			pseudoPlayer.getTimer().setCantCastTicks(_cooldownTicks);
+			pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 			return;
 		}
 		
 		Location runeLoc = runeFound.getLocation();
 		Plot plot = ptm.findPlotAt(runeLoc);
-		if((plot == null) || !plot.isProtected() || plot.isOwner(player) || plot.isCoowner(player)) {
-			plot = ptm.findPlotAt(player.getLocation());
-			if((plot == null) || !plot.isProtected() || plot.isOwner(player) || plot.isCoowner(player)) {
-				// allowed to make perm gate
-			}
-			else {
-				Output.simpleError(player, "Cannot permanent gate from there, not a co-owner of the plot.");
-				return;
-			}
+		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
 			
-			if(!isValidRuneLocation(player, player.getLocation())) {
+			if(!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
 				//Output.simpleError(player, "Your current location is blocked.");
 				return;
 			}
 			
-			if(!isValidRuneLocation(player, runeLoc)) {
+			if(!SpellUtils.isValidRuneLocation(player, runeLoc)) {
 				//Output.simpleError(player, "That location is blocked.");
 				return;
 			}
 			
 			Location loc = player.getLocation();
-			
+				
 			Block destBlock = runeLoc.getWorld().getBlockAt(runeLoc.getBlockX(), runeLoc.getBlockY(), runeLoc.getBlockZ());
 			Block srcBlock = player.getWorld().getBlockAt(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
 			Block extraDestBlock = runeLoc.getWorld().getBlockAt(runeLoc.getBlockX(), runeLoc.getBlockY()+1, runeLoc.getBlockZ());
@@ -115,16 +96,16 @@ public class SPL_PermanentGateTravel extends Spell {
 			blocks.add(extraSrcBlock);
 			blocks.add(extraDestBlock);
 			
-			for(int i=0; i<blocks.size(); i++) {
-				Block b = blocks.get(i);
-				b.getWorld().getBlockAt(b.getLocation()).setType(Material.PORTAL);
+			//check for lapis below your target location
+			if(destBlock.getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
+			   destBlock.getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
+				Output.simpleError(player, "Cannot gate to a Lapis Lazuli block.");
+				return;
 			}
 			
-//			PermanentGate gate = new PermanentGate(blocks, player.getName());
-//			int id = Database.addPermanentGate(gate);
-//			gate.setId(id);
-//			Magery.addMagicStructure(gate);
+			new PermanentGate(blocks, player.getUniqueId());
 		}
-		else Output.simpleError(player, "Cannot permanent gate to there, not a friend of the plot.");
+		else Output.simpleError(player, "Cannot gate to there, not a friend of the plot.");
 	}
+
 }

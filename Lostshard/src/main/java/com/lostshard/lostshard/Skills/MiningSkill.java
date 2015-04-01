@@ -53,7 +53,8 @@ public class MiningSkill extends Skill {
 			
 			Output.gainSkill(player, "Mining", gain, curSkill);
 			
-			pPlayer.update();
+			if(gain > 0)
+				pPlayer.update();
 			
 			double chanceOfDrop = miningdropprob * percent;
 

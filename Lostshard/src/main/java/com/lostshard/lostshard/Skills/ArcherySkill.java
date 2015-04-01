@@ -39,7 +39,7 @@ public class ArcherySkill extends Skill {
 		
 		double damage = 0.004*lvl;
 		
-		if(entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4) {
+		if(entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4 && event.getDamage(DamageModifier.ARMOR)+event.getDamage(DamageModifier.MAGIC) <= -3) {
 			Player player = (Player) event.getEntity();
 			double health = event.getDamage(DamageModifier.BASE)*.45+damage*.7;
 			health = Math.max(health, 4);
@@ -59,7 +59,8 @@ public class ArcherySkill extends Skill {
 		
 		int gain = skill.skillGain();
 		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
-		pPlayer.update();
+		if(gain > 0)
+			pPlayer.update();
 	}
 	
 }

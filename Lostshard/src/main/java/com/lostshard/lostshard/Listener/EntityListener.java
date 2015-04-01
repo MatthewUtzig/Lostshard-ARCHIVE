@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -37,6 +38,11 @@ public class EntityListener implements Listener {
 		if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
 			event.setCancelled(true);
 		
+	}
+	
+	@EventHandler
+	public void onPortalCreate(PortalCreateEvent event) {
+		event.setCancelled(true);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -54,6 +55,10 @@ public class ChatHandler {
 			return;
 		event.getRecipients().clear();
 		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
+		if(pPlayer.getPromptedSpell() != null) {
+			SpellManager.onPlayerPromt(event);
+			return;
+		}
 		if (pPlayer.getChatChannel().equals(ChatChannel.LOCAL))
 			localChat(event);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.SHOUT))

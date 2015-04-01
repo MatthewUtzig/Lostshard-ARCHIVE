@@ -9,7 +9,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Spells.SPL_Lightning;
 
 public class ScrollHandler {
 
@@ -26,7 +25,7 @@ public class ScrollHandler {
 		Entity entity = event.getEntity();
 		EntityType type = entity.getType();
 		if(type.equals(EntityType.ZOMBIE)) {
-			pPlayer.giveScroll(new SPL_Lightning());
+//			pPlayer.giveScroll(new SPL_Lightning());
 		} else if(type.equals(EntityType.ZOMBIE)) {
 			
 		} else if(type.equals(EntityType.SKELETON)) {

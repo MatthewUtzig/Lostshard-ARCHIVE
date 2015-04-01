@@ -5,13 +5,13 @@ import org.bukkit.Location;
 public class Rune {
 
 	private Location location;
-	private String name;
+	private String label;
 	private int id;
 
 	public Rune(Location location, String name, int id) {
 		super();
 		this.location = location;
-		this.name = name;
+		this.label = name;
 		this.id = id;
 	}
 
@@ -23,12 +23,12 @@ public class Rune {
 		this.location = location;
 	}
 
-	public String getName() {
-		return name;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public int getId() {

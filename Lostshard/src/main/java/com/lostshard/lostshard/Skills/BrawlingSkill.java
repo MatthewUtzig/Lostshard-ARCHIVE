@@ -60,8 +60,8 @@ public class BrawlingSkill extends Skill {
 			if(damagedEntity instanceof Player) {
 				Player defenderPlayer = (Player)damagedEntity;
 				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
-				if(defenderPseudoPlayer.getTimer().getStunTick() <= 0) {
-					defenderPseudoPlayer.getTimer().setStunTick(30);
+				if(defenderPseudoPlayer.getTimer().stunTick <= 0) {
+					defenderPseudoPlayer.getTimer().stunTick = 30;
 					defenderPlayer.sendMessage(ChatColor.GREEN+"You have been stunned!");
 					player.sendMessage(ChatColor.GREEN+"You stunned "+defenderPlayer.getName()+"!");
 				}
@@ -72,8 +72,8 @@ public class BrawlingSkill extends Skill {
 			if(brawlingSkill >= 1000) {
 				Player defenderPlayer = (Player)damagedEntity;
 				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
-				if(defenderPseudoPlayer.getTimer().getStunTick() <= 0)
-					defenderPseudoPlayer.getTimer().setStunTick(17);
+				if(defenderPseudoPlayer.getTimer().stunTick <= 0)
+					defenderPseudoPlayer.getTimer().stunTick = 17;
 			}
 		}
 		
@@ -86,7 +86,8 @@ public class BrawlingSkill extends Skill {
 			skill.setBaseProb(.2);
 		int gain = skill.skillGain();
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
-		pPlayer.update();
+		if(gain > 0)
+			pPlayer.update();
 	}
 	
 }

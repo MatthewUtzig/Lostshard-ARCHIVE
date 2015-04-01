@@ -65,7 +65,7 @@ public class PseudoPlayer {
 	private boolean friendlyFire = false;
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	
-	private List<Scroll> scrools = new ArrayList<Scroll>();
+	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
 	private Spell promptedSpell = null;
 	
@@ -549,17 +549,17 @@ public class PseudoPlayer {
 		this.dieLog = dieLog;
 	}
 
-	public List<Scroll> getScrools() {
-		return scrools;
+	public List<Scroll> getScrolls() {
+		return scrolls;
 	}
 
-	public void setScrools(List<Scroll> scrools) {
-		this.scrools = scrools;
+	public void setScrools(List<Scroll> scrolls) {
+		this.scrolls = scrolls;
 	}
 
 	public void giveScroll(Spell spell) {
 		Scroll scroll = new Scroll(0, spell, getId());
-		scrools.add(scroll);
+		scrolls.add(scroll);
 	}
 
 	public PseudoPlayerTimer getTimer() {

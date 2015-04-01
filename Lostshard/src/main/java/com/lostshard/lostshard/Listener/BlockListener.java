@@ -21,6 +21,7 @@ import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
 import com.lostshard.lostshard.Skills.MiningSkill;
+import com.lostshard.lostshard.Spells.Gate;
 
 public class BlockListener implements Listener {
 
@@ -84,6 +85,7 @@ public class BlockListener implements Listener {
 		if (event.getBlock().getType().equals(Material.PORTAL)) {
 			event.setCancelled(true);
 		}
+		Gate.onBlockPhysics(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

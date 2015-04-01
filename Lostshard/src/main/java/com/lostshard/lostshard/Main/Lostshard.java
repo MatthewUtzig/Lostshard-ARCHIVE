@@ -37,6 +37,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Spells.MagicStructure;
 
 /**
  * @author Jacob Rosborg
@@ -102,6 +103,7 @@ public class Lostshard extends JavaPlugin {
 		
 		setMysqlError(!Database.testDatabaseConnection());
 		
+		Database.getPermanentGates();
 		Database.getClans();
 		Database.getPlayers();
 		Database.getPlots();
@@ -120,7 +122,8 @@ public class Lostshard extends JavaPlugin {
 	public void onDisable() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
-//		 Database.saveAll();
+		MagicStructure.removeAll();
+//		Database.saveAll();
 		CustomSchedule.stopSchedule();
 		DataSource.getInstance().closeConnection();
 	}
@@ -179,6 +182,10 @@ public class Lostshard extends JavaPlugin {
 
 	public static void setLostshard(Lostshard lostshard) {
 		Lostshard.lostshard = lostshard;
+	}
+
+	public static String getVersion() {
+		return "1.0";
 	}
 
 }

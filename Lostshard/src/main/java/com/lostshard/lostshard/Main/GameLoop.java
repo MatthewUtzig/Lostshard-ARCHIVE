@@ -16,6 +16,7 @@ import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class GameLoop extends BukkitRunnable {
 
@@ -51,6 +52,7 @@ public class GameLoop extends BukkitRunnable {
 			Lostshard.setMysqlError(!Database.testDatabaseConnection());
 		else {
 			pm.tick(delta, tick);
+			MagicStructure.tickGlobal();
 			//5 sec loop
 				if(tick % 50 == 0) {
 					for(PseudoPlayer p : pm.getPlayers())

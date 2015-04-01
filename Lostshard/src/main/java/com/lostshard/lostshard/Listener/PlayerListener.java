@@ -14,7 +14,9 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -25,8 +27,11 @@ import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.FishingSkill;
+import com.lostshard.lostshard.Spells.Gate;
+import com.lostshard.lostshard.Utils.Output;
 
 public class PlayerListener implements Listener {
 
@@ -34,6 +39,11 @@ public class PlayerListener implements Listener {
 	
 	public PlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+	
+	@EventHandler
+	public void onPlayerPortal(PlayerPortalEvent event) {
+		event.setCancelled(true);
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -50,6 +60,7 @@ public class PlayerListener implements Listener {
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		PlotProtectionHandler.onButtonPush(event);
 		PlotProtectionHandler.onPlayerInteract(event);
+		Gate.onPlayerInteractEvent(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -66,10 +77,17 @@ public class PlayerListener implements Listener {
 		}
 		pm.onPlayerLogin(event);
 	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		Output.displayLoginMessages(event.getPlayer());
+	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerMoveEvent(PlayerMoveEvent event) {
+	public void onPlayerMove(PlayerMoveEvent event) {
 		PlotProtectionHandler.onPlotEnter(event);
+		SpellManager.move(event);
+		Gate.onPlayerMove(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

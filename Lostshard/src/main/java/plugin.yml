@@ -114,3 +114,9 @@ commands:
    boat:
       description: spawns a boat if lvl 50 in fishing or above.
       usage: /<command>
+   runebook:
+      description: Displays your runebook.
+      usage: /<command>
+   spellbook:
+      description: Displays your spellbook.
+      usage: /<command>

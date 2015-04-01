@@ -10,14 +10,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Spells.Spell.SpellType;
 import com.lostshard.lostshard.Utils.Output;
-import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class AdminCommand implements CommandExecutor, TabCompleter {
@@ -74,7 +74,14 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			tpWorld(player, args);
 		}else if(cmd.getName().equalsIgnoreCase("test")) {
 			Player player = (Player) sender;
-			sender.sendMessage(Serializer.gson.toJson(player.getInventory().getContents(), ItemStack[].class));
+			PseudoPlayer pPlayer = pm.getPlayer(player);
+			pPlayer.getSpellbook().addSpell(SpellType.MARK);
+			pPlayer.getSpellbook().addSpell(SpellType.TELEPORT);
+			pPlayer.getSpellbook().addSpell(SpellType.RECALL);
+			pPlayer.getSpellbook().addSpell(SpellType.FLARE);
+			pPlayer.getSpellbook().addSpell(SpellType.GATETRAVEL);
+			pPlayer.getSpellbook().addSpell(SpellType.PERMANENTGATETRAVEL);
+			pPlayer.getSpellbook().addSpell(SpellType.SLOWFIELD);
 			return true;
 		}
 		return true;

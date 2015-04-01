@@ -44,7 +44,8 @@ public class FishingSkill extends Skill {
 			}
 			int gain = skill.skillGain();
 			Output.gainSkill(player, "Fishing", gain, skill.getLvl());
-			pPlayer.update();
+			if(gain > 0)
+				pPlayer.update();
 		}
 	}
 	

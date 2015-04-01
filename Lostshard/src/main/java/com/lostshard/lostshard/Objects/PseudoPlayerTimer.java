@@ -7,22 +7,29 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
+import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 
 public class PseudoPlayerTimer {
 
+	public int recentlyTeleportedTicks;
+
 	private PseudoPlayer player;
 
 	// Effects
-	private int bleedTick = 0;
-	private int stunTick = 0;
+	public int bleedTick = 0;
+	public int stunTick = 0;
 	
-	private long lastDeath = 0;
-	private int goToSpawnTicks = 0;
+	public long lastDeath = 0;
+	public int goToSpawnTicks = 0;
 	
-	private int spawnTicks = 0;
+	public int spawnTicks = 0;
 	
-	private int cantCastTicks = 0;
+	public int cantCastTicks = 0;
+	
+	public int combatTicks = 0;
+	
+	public Spell delayedSpell = null;
 	
 	public PseudoPlayerTimer(PseudoPlayer pPlayer) {
 		super();
@@ -52,6 +59,12 @@ public class PseudoPlayerTimer {
 			spawnTicks--;
 		if(player.getCriminal() > 0)
 			player.setCriminal(player.getCriminal()-1);
+		if(combatTicks > 0)
+			combatTicks--;
+		if(delayedSpell != null && player.getPromptedSpell() == null)
+			delayedSpell.tick(player.getOnlinePlayer());
+		if(recentlyTeleportedTicks > 0)
+			recentlyTeleportedTicks--;
 		spawn();
 	}
 	
@@ -145,53 +158,4 @@ public class PseudoPlayerTimer {
 	public boolean isLastDeathOlder(long ms) {
 		return new Date().getTime() > lastDeath+ms;
 	}
-
-	public int getBleedTick() {
-		return bleedTick;
-	}
-
-	public void setBleedTick(int bleedTick) {
-		this.bleedTick = bleedTick;
-	}
-
-	public int getStunTick() {
-		return stunTick;
-	}
-
-	public void setStunTick(int stunTick) {
-		this.stunTick = stunTick;
-	}
-
-	public long getLastDeath() {
-		return lastDeath;
-	}
-
-	public void setLastDeath(long lastDeath) {
-		this.lastDeath = lastDeath;
-	}
-
-	public int getGoToSpawnTicks() {
-		return goToSpawnTicks;
-	}
-
-	public void setGoToSpawnTicks(int goToSpawnTicks) {
-		this.goToSpawnTicks = goToSpawnTicks;
-	}
-
-	public int getSpawnTicks() {
-		return spawnTicks;
-	}
-
-	public void setSpawnTicks(int spawnTicks) {
-		this.spawnTicks = spawnTicks;
-	}
-
-	public int getCantCastTicks() {
-		return cantCastTicks;
-	}
-
-	public void setCantCastTicks(int cantCastTicks) {
-		this.cantCastTicks = cantCastTicks;
-	}
-	
 }
