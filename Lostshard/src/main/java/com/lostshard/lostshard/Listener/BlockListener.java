@@ -21,7 +21,7 @@ import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
 import com.lostshard.lostshard.Skills.MiningSkill;
-import com.lostshard.lostshard.Spells.Gate;
+import com.lostshard.lostshard.Spells.Structures.Gate;
 
 public class BlockListener implements Listener {
 

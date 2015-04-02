@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Spells.Spell;
-import com.lostshard.lostshard.Spells.Spell.SpellType;
+import com.lostshard.lostshard.Spells.SpellType;
 
 public class SpellBook {
 

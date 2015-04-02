@@ -16,7 +16,7 @@ import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Spell;
-import com.lostshard.lostshard.Spells.Spell.SpellType;
+import com.lostshard.lostshard.Spells.SpellType;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;

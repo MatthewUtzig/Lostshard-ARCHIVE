@@ -10,38 +10,10 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
-public class Spell {
+public abstract class Spell {
 	
-	public enum SpellType {
-		MARK(new SPL_Mark()),
-		TELEPORT(new SPL_Teleport()), 
-		RECALL(new SPL_Recall()), 
-		PERMANENTGATETRAVEL(new SPL_PermanentGateTravel()),
-		GATETRAVEL(new SPL_GateTravel()),
-		FLARE(new SPL_Flare()),
-		SLOWFIELD(new SPL_Slowfield()),
-		GRASS(new SPL_Grass());
-		
-		private Spell spell;
-		
-		private SpellType(Spell spell) {
-			this.spell = spell;
-		}
-		
-		public Spell getSpell() {
-			return spell.getNew();
-		}
-		
-		public static SpellType getByString(String string) {
-			for(SpellType st : values())
-				if(st.name().equalsIgnoreCase(string.trim().replace(" ", "")))
-					return st;
-			return null;
-		}
-	}
-	
-	PlayerManager pm = PlayerManager.getManager();
-	PlotManager ptm = PlotManager.getManager();
+	protected PlayerManager pm = PlayerManager.getManager();
+	protected PlotManager ptm = PlotManager.getManager();
 
 	private String name;
 	private String spellWords;
@@ -69,6 +41,12 @@ public class Spell {
 		}
 		return null;
 	}
+	
+	public abstract boolean verifyCastable(Player player);
+	
+	public abstract void preAction(Player player);
+	
+	public abstract void doAction(Player player);
 	
 	public String getName() {
 		return name;
@@ -153,18 +131,6 @@ public class Spell {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setPromptedSpell(null);
 		pPlayer.getTimer().delayedSpell = null;
-	}
-
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-	
-	public void preAction(Player player) {
-		
-	}
-	
-	public void doAction(Player player) {
-		
 	}
 
 	public String getResponse() {

@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Spells;
+package com.lostshard.lostshard.Spells.Spells;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
+import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 

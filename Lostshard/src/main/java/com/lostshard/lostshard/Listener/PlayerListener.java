@@ -30,7 +30,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.FishingSkill;
-import com.lostshard.lostshard.Spells.Gate;
+import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
 
 public class PlayerListener implements Listener {

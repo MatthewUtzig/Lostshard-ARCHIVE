@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Spells;
+package com.lostshard.lostshard.Spells.Structures;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.Output;
 
 public class Gate extends MagicStructure {

@@ -30,8 +30,8 @@ import com.lostshard.lostshard.Objects.Scroll;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
-import com.lostshard.lostshard.Spells.PermanentGate;
 import com.lostshard.lostshard.Spells.Spell;
+import com.lostshard.lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Database.DataSource;
 

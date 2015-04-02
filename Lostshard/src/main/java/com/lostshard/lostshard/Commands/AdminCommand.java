@@ -16,7 +16,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Spells.Spell.SpellType;
+import com.lostshard.lostshard.Spells.SpellType;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -83,6 +83,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			pPlayer.getSpellbook().addSpell(SpellType.PERMANENTGATETRAVEL);
 			pPlayer.getSpellbook().addSpell(SpellType.SLOWFIELD);
 			pPlayer.getSpellbook().addSpell(SpellType.GRASS);
+			pPlayer.getSpellbook().addSpell(SpellType.ICEBALL);
 			return true;
 		}
 		return true;

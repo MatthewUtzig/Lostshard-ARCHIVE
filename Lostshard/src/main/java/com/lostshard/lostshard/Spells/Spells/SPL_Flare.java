@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Spells;
+package com.lostshard.lostshard.Spells.Spells;
 
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Spells.Spell;
 
 public class SPL_Flare extends Spell {
 

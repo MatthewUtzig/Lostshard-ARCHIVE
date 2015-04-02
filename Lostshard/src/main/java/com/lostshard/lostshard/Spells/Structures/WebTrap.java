@@ -1,9 +1,11 @@
-package com.lostshard.lostshard.Spells;
+package com.lostshard.lostshard.Spells.Structures;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.block.Block;
+
+import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class WebTrap extends MagicStructure {
 

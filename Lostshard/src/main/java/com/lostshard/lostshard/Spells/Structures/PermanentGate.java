@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Spells;
+package com.lostshard.lostshard.Spells.Structures;
 
 import java.util.ArrayList;
 import java.util.UUID;

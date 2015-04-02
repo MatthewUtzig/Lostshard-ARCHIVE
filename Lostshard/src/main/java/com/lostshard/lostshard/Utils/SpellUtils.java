@@ -45,7 +45,6 @@ public class SpellUtils {
 			Material.SIGN_POST,
 			Material.WALL_SIGN));
 	
-	@SuppressWarnings("deprecation")
 	public static boolean isValidRuneLocation(Player player, Location location) {
 
 		Block blockAt = location.getBlock();

@@ -13,8 +13,8 @@ import com.lostshard.lostshard.Manager.PlotManager;
 
 public class MagicStructure {
 	
-	static PlotManager ptm = PlotManager.getManager();
-	static PlayerManager pm = PlayerManager.getManager();
+	protected static PlotManager ptm = PlotManager.getManager();
+	protected static PlayerManager pm = PlayerManager.getManager();
 	
 	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
 	
@@ -82,6 +82,10 @@ public class MagicStructure {
 	
 	public boolean isDead() {
 		return isDead;
+	}
+	
+	public void setDead(boolean dead) {
+		this.isDead = dead;
 	}
 
 	public UUID getCreatorUUID() {
