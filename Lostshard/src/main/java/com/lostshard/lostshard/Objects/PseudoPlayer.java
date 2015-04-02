@@ -16,6 +16,7 @@ import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Skills.Skill;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -64,6 +65,7 @@ public class PseudoPlayer {
 	private int dieLog = 0;
 	private boolean friendlyFire = false;
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
+	private boolean isPrivate = true;
 	
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
@@ -557,8 +559,7 @@ public class PseudoPlayer {
 		this.scrolls = scrolls;
 	}
 
-	public void giveScroll(Spell spell) {
-		Scroll scroll = new Scroll(0, spell, getId());
+	public void addScroll(Scroll scroll) {
 		scrolls.add(scroll);
 	}
 
@@ -584,5 +585,13 @@ public class PseudoPlayer {
 
 	public void setReputation(Reputation reputation) {
 		this.reputation = reputation;
+	}
+
+	public boolean isPrivate() {
+		return isPrivate;
+	}
+
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
 	}
 }

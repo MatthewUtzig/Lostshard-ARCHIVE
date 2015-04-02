@@ -8,7 +8,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.RangedSpell;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
@@ -102,8 +101,6 @@ public class SPL_Teleport extends RangedSpell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 		Location teleportTo = new Location(player.getWorld(), (double)getFoundBlock().getX()+.5, (double)getFoundBlock().getY()+1, (double)getFoundBlock().getZ()+.5);
 		teleportTo.setPitch(player.getLocation().getPitch());
 		teleportTo.setYaw(player.getLocation().getYaw());

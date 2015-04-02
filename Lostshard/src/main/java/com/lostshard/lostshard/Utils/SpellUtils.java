@@ -11,12 +11,15 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 
 public class SpellUtils {
 
+	static PlayerManager pm = PlayerManager.getManager();
+	
 	public static HashSet<Material> invisibleBlocks = new HashSet<Material>(Arrays.asList(
 			Material.AIR,
 			Material.SNOW,
@@ -57,7 +60,7 @@ public class SpellUtils {
 		return true;
 	}
 	
-	protected static Player playerInLOS(Player player, PseudoPlayer pseudoPlayer, int range) {
+	public static Player playerInLOS(Player player, int range) {
 		AimBlock aimHit = new AimBlock(player, range, .5);
 		
 		Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
@@ -73,8 +76,10 @@ public class SpellUtils {
 		if(playersInRange.size() <= 0)
 			return null;
 		
-		Clan clan = pseudoPlayer.getClan();
-		Party party = pseudoPlayer.getParty();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		
+		Clan clan = pPlayer.getClan();
+		Party party = pPlayer.getParty();
 		
 		boolean done = false;
 		Player _firstNeutralFound = null;

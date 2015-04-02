@@ -12,15 +12,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
-import com.lostshard.lostshard.Objects.Scroll;
 import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 
 public class Output {
@@ -564,19 +565,28 @@ public class Output {
 				int numScrolls = 0;
 				// go through all the scrolls, remove them from the scroll list
 				for(int i=numScrollsRemaining-1; i>= 0; i--) {
-					if(scrollClone.get(i).getSpellName().equals(curSpell.getSpellName())) {
+					if(scrollClone.get(i).equals(curSpell)) {
 						scrollClone.remove(i);
 						numScrolls++;
 					}
 				}
 				if(pseudoPlayer.getSpellbook().containSpell(curSpell.getSpell().getType()))
 					scrollString+="+";
-				scrollString += curSpell.getSpellName()+" ("+numScrolls+"), ";
+				scrollString += curSpell.getSpell().getName()+" ("+numScrolls+"), ";
 			}
 			player.sendMessage(scrollString);
 		}
 		else player.sendMessage(ChatColor.RED+"You do not currently have any scrolls.");
 
+	}
+
+	public static void sendEffectTextNearby(Player player, String string) {
+		//Notify nearby players
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			if(Utils.isWithin(player.getLocation(), p.getLocation(), ChatHandler.getLocalChatRange())) {
+				p.sendMessage(ChatColor.GRAY+string);
+			}
+		}
 	}
 
 }

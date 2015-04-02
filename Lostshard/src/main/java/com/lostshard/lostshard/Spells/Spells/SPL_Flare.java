@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Spell;
 
 public class SPL_Flare extends Spell {
@@ -46,8 +45,6 @@ public class SPL_Flare extends Spell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		
 		//Spawn the Firework, get the FireworkMeta.
         Firework fw = (Firework) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
         FireworkMeta fwm = fw.getFireworkMeta(); 
@@ -63,8 +60,6 @@ public class SPL_Flare extends Spell {
        
         //Then apply this to our rocket
         fw.setFireworkMeta(fwm); 
-		
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 	}
 	
 }

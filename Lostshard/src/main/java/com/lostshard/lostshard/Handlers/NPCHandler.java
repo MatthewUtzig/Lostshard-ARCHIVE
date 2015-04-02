@@ -49,6 +49,8 @@ public class NPCHandler {
 		NPC nearestVendor = null;
 		double nearestVendorDistance = 100;
 		for(NPC vendor : getVendors()) {
+			if(!vendor.getLocation().getWorld().equals(player.getLocation().getWorld()))
+				continue;
 			double distance = Utils.fastDistance(player.getLocation(), vendor.getLocation());
 			if(distance < nearestVendorDistance) {
 				nearestVendor = vendor;

@@ -90,6 +90,5 @@ public class SPL_Mark extends Spell {
 			}
 			else Output.simpleError(player, "Too many runes, remove one to mark a new rune.");
 		}
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 	}
 }

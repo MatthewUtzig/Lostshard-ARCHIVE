@@ -7,7 +7,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.RangedSpell;
 import com.lostshard.lostshard.Spells.Structures.WebTrap;
 import com.lostshard.lostshard.Utils.Utils;
@@ -38,9 +37,6 @@ public class SPL_Slowfield extends RangedSpell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
-		
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 3; x <= getFoundBlock().getX()+2; x++) {
 			for(int y = getFoundBlock().getY() - 3; y <= getFoundBlock().getY()+2; y++) {

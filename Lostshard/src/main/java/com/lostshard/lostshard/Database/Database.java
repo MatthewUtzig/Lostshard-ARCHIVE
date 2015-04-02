@@ -26,10 +26,10 @@ import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
-import com.lostshard.lostshard.Objects.Scroll;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.lostshard.Utils.Serializer;
@@ -92,7 +92,7 @@ public class Database {
 					
 					PseudoPlayer pPlayer = pm.getPlayer(playerId);
 					
-					pPlayer.getScrolls().add(new Scroll(id, scroll, playerId));
+					pPlayer.addScroll(Scroll.valueOf(scroll));
 					
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
@@ -110,24 +110,20 @@ public class Database {
 		}
 	}
 	
-	public static void insertScrolls(List<Scroll> scrolls) {
+	public static void insertScrolls(List<Scroll> scrolls, int playerId) {
 		if(Lostshard.isDebug())
 			System.out.print("INSERT SCROLL!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO scrolls "
-							+ "(scroll,playerId) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "(scroll,playerId) VALUES (?,?)");
 			for(Scroll scroll : scrolls) {
-				prep.setString(1, scroll.getSpellName());
-				prep.setInt(2, scroll.getPlayerId());
+				prep.setString(1, scroll.name());
+				prep.setInt(2, playerId);
 				prep.addBatch();
 			}
 			prep.execute();
-			ResultSet rs = prep.getGeneratedKeys();
-			Iterator<Scroll> sc = scrolls.iterator();
-			while (rs.next() && sc.hasNext())
-				sc.next().setId(rs.getInt(1));
 			prep.close();
 			conn.close();
 		} catch (Exception e) {
@@ -136,15 +132,16 @@ public class Database {
 		}
 	}
 	
-	public static void deleteScrolls(List<Scroll> scrolls) {
+	public static void deleteScrolls(List<Scroll> scrolls, int playerID) {
 		if(Lostshard.isDebug())
 			System.out.print("INSERT SCROLL!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("DELETE FROM scrolls WHERE id=?;", PreparedStatement.RETURN_GENERATED_KEYS);
+					.prepareStatement("DELETE FROM scrolls WHERE playerid=? AND scroll=? LIMIT 1;", PreparedStatement.RETURN_GENERATED_KEYS);
 			for(Scroll scroll : scrolls) {
-				prep.setInt(1, scroll.getId());
+				prep.setInt(1, playerID);
+				prep.setString(2, scroll.name());
 				prep.addBatch();
 			}
 			prep.execute();

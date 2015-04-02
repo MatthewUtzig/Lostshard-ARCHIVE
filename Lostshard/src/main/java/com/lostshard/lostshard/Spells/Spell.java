@@ -29,8 +29,8 @@ public abstract class Spell {
 
 	private int tick = 0;
 	
-	public SpellType getType() {
-		return SpellType.getByString(getName());
+	public Scroll getType() {
+		return Scroll.getByString(getName());
 	}
 	
 	public Spell getNew() {

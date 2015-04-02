@@ -63,41 +63,7 @@ public class SPL_Recall extends Spell {
 			count++;
 		}
 		
-		boolean usingSpawn = false;
-//		if(runeFound == null) {
-//				if(getResponse().equalsIgnoreCase("spawn")) {
-//					usingSpawn = true;
-//					if(pseudoPlayer.isCriminal())
-//						runeFound = new Rune("", RPG._murdererSpawn, 0);
-//					else 
-//						runeFound = new Rune("", RPG._blueSpawn, 0);
-//				}
-//				else if(getResponse().equalsIgnoreCase("random")) {
-//					if(player.getWorld().equals(RPG._normalWorld)) {
-//						int randIntX = (int)Math.floor(Math.random()*18000-9000);
-//						if(Math.random()<.5)
-//							randIntX = -randIntX;
-//						int randIntZ = (int)Math.floor(Math.random()*18000-9000);
-//						if(Math.random()<.5)
-//							randIntZ = -randIntZ;
-//						Chunk chunk = player.getWorld().getChunkAt(randIntX, randIntZ);
-//						player.getWorld().loadChunk(chunk);
-//						int i;
-//						for(i=127; i>= 2; i--) {
-//							if(player.getWorld().getBlockAt(randIntX, i, randIntZ).getTypeId() == 0)
-//								continue;
-//							else
-//								break;
-//						}
-//						int highestY = i;
-//						Location randLoc = new Location(player.getWorld(),randIntX, highestY+2, randIntZ);
-//						System.out.println(randLoc.toString());
-//						runeFound = new Rune("", randLoc, 0);
-//					}
-//					else Output.simpleError(player, "You can only recall to a random location in the normal world.");
-//				}
-//		}
-		
+		boolean usingSpawn = false;	
 		if(runeFound != null) {
 			Location runeLoc = runeFound.getLocation();
 			if(!SpellUtils.isValidRuneLocation(player, runeLoc)) {
@@ -108,15 +74,6 @@ public class SPL_Recall extends Spell {
 			if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {				
 				Location destLoc = new Location(runeLoc.getWorld(),runeLoc.getBlockX()+.5, runeLoc.getBlockY(), runeLoc.getBlockZ()+.5);
 				
-//				Utils.loadChunkAtLocation(destLoc);
-				
-				/*//check for lapis below you
-				if(player.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
-				   player.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-					Output.simpleError(player, "Cannot recall from a Lapis Lazuli block.");
-					return;
-				}*/
-				
 				//check for lapis below your target location
 				if(destLoc.getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 				   destLoc.getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
@@ -126,13 +83,11 @@ public class SPL_Recall extends Spell {
 				
 				//Output.sendEffectTextNearbyExcludePlayer(player, "You hear a loud crack and the fizzle of electricity.");
 				player.getWorld().strikeLightningEffect(player.getLocation());
-				
-//				pseudoPlayer._recentlyTeleportedTicks = 40;
+
 				player.teleport(destLoc);
 				
 				player.getWorld().strikeLightningEffect(player.getLocation());
 				
-				//Output.sendEffectTextNearby(player, "You hear a loud crack and the fizzle of electricity.");
 				if(usingSpawn) {
 					pseudoPlayer.setMana(0);
 					pseudoPlayer.setStamina(0);
@@ -142,6 +97,5 @@ public class SPL_Recall extends Spell {
 			else Output.simpleError(player, "Cannot recall to there, the plot is private.");
 		}
 		else Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 	}
 }

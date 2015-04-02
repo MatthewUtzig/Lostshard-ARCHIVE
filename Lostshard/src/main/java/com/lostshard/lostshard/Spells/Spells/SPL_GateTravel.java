@@ -48,7 +48,6 @@ public class SPL_GateTravel extends Spell {
 	 * actually activated and should be doing something.
 	 */
 	public void doAction(Player player) {
-		//System.out.println("RSPNS: "+_response);
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		
 		Runebook runebook = pseudoPlayer.getRunebook();
@@ -68,7 +67,6 @@ public class SPL_GateTravel extends Spell {
 		
 		if(runeFound == null) {
 			Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
-			pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 			return;
 		}
 		

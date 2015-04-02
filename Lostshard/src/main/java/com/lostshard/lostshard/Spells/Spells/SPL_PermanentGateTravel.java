@@ -68,7 +68,6 @@ public class SPL_PermanentGateTravel extends Spell {
 		
 		if(runeFound == null) {
 			Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
-			pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 			return;
 		}
 		

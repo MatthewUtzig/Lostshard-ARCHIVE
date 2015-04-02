@@ -16,7 +16,7 @@ import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Spell;
-import com.lostshard.lostshard.Spells.SpellType;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
@@ -38,7 +38,7 @@ public class SpellManager {
 	}
 
 	public Spell getSpellByName(String name) {
-		SpellType st = SpellType.getByString(name);
+		Scroll st = Scroll.getByString(name);
 		if(st != null)
 			return st.getSpell();
 		return null;
@@ -252,6 +252,7 @@ public class SpellManager {
 	public void castInstant(Player player, PseudoPlayer pPlayer, Spell spell) {
 		if(spell.getPrompt() == null) {
 			spell.preAction(player);
+			pPlayer.getTimer().cantCastTicks = spell.getCooldown();
 			spell.doAction(player);
 		}
 		else {
@@ -362,6 +363,7 @@ public class SpellManager {
 			}
 			else {
 				spell.preAction(player);
+				pPlayer.getTimer().cantCastTicks = spell.getCooldown();
 				spell.doAction(player);
 			}
 		pPlayer.setPromptedSpell(null);

@@ -7,7 +7,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.RangedSpell;
 import com.lostshard.lostshard.Spells.Structures.Iceball;
 import com.lostshard.lostshard.Utils.Utils;
@@ -33,8 +32,6 @@ public class SPL_Iceball extends RangedSpell {
 
 	@Override
 	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		pseudoPlayer.getTimer().cantCastTicks = getCooldown();
 		
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 3; x <= getFoundBlock().getX()+3; x++) {
