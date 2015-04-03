@@ -562,6 +562,10 @@ public class PseudoPlayer {
 	public void addScroll(Scroll scroll) {
 		scrolls.add(scroll);
 	}
+	
+	public void removeScroll(Scroll scroll) {
+		scrolls.remove(scroll);
+	}
 
 	public PseudoPlayerTimer getTimer() {
 		return timer;

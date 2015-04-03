@@ -42,6 +42,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 	public PlotCommand(Lostshard plugin) {
 		plugin.getCommand("plot").setExecutor(this);
+		plugin.getCommand("plot").setTabCompleter(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,

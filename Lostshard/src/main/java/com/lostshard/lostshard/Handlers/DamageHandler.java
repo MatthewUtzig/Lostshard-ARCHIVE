@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Handlers;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -68,11 +67,6 @@ public class DamageHandler {
 			if(event.isApplicable(DamageModifier.HARD_HAT))
 				event.setDamage(DamageModifier.HARD_HAT, event.getDamage(DamageModifier.HARD_HAT)*hardhat);
 			
-			Bukkit.broadcastMessage(Double.toString(event.getDamage(DamageModifier.BASE)));
-			Bukkit.broadcastMessage(Double.toString(event.getDamage(DamageModifier.ARMOR)));
-			Bukkit.broadcastMessage(Double.toString(event.getDamage(DamageModifier.MAGIC)));
-			Bukkit.broadcastMessage(Double.toString(event.getDamage(DamageModifier.RESISTANCE)));
-			Bukkit.broadcastMessage(Double.toString(event.getDamage(DamageModifier.HARD_HAT)));
 		}
 	}
 

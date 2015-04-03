@@ -46,7 +46,6 @@ public class SPL_Lightning extends RangedSpell {
 				}				
 			}
 		}
-
 	}
 
 }

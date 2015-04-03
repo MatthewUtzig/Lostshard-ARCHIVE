@@ -21,6 +21,7 @@ import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
+import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
@@ -108,6 +109,7 @@ public class EntityListener implements Listener {
 		if (event.getEntity().hasMetadata("NPC"))
 			return;
 		DeathHandler.handleDeath(event);
+		ScrollHandler.onEntityDeathEvent(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

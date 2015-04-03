@@ -31,6 +31,8 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("resetspawn").setExecutor(this);
 		plugin.getCommand("rules").setExecutor(this);
 		plugin.getCommand("build").setExecutor(this);
+		plugin.getCommand("private").setExecutor(this);
+		plugin.getCommand("public").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -49,8 +51,40 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			Output.displayRules(sender);
 		} else if (cmd.getName().equalsIgnoreCase("build")) {
 			buildChange(sender, args);
+		} else if (cmd.getName().equalsIgnoreCase("private")) {
+			playerSetPrivate(sender);
+		} else if (cmd.getName().equalsIgnoreCase("public")) {
+			playerSetPublic(sender);
 		}
 		return true;
+	}
+
+	private void playerSetPublic(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(!pPlayer.isPrivate())
+			Output.positiveMessage(sender, "You where already set public.");
+		else {
+			pPlayer.setPrivate(false);
+			Output.positiveMessage(sender, "You have been set to public.");
+		}
+	}
+
+	private void playerSetPrivate(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isPrivate())
+			Output.positiveMessage(sender, "You where already set private.");
+		else {
+			pPlayer.setPrivate(true);
+			Output.positiveMessage(sender, "You have been set to private.");
+		}
 	}
 
 	private void buildChange(CommandSender sender, String[] args) {
@@ -137,6 +171,8 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("private") || cmd.getName().equalsIgnoreCase("public"))
+			return null;
 		return null;
 	}
 }

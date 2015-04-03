@@ -6,8 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Structures.FireField;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class SPL_Firefield extends RangedSpell {
@@ -47,14 +47,9 @@ public class SPL_Firefield extends RangedSpell {
 			}
 		}
 		
-		for(Block block : blocks) {
-			block.setType(Material.FIRE);
-		}
-		
 		if(blocks.size() > 0) {
-			new MagicStructure(blocks, player.getUniqueId(), 200);
+			new FireField(blocks, player.getUniqueId(), 200);
 		}
-
 	}
 
 }

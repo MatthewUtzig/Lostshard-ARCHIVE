@@ -47,8 +47,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 		if(args.length == 0) {
 	    	Output.outputSkills(player);
 	    	return;
-		}
-		else if(args.length > 0) {
+		}else if(args.length > 0) {
 			if(args[0].equalsIgnoreCase("reduce")) {
 				double amount = 0;
 				try {
@@ -75,8 +74,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 					else Output.simpleError(player, "Must reduce by at least 1.");
 	    			
 				return;
-			}
-			else if(args[0].equalsIgnoreCase("increase")) {
+			}else if(args[0].equalsIgnoreCase("increase")) {
 				double amount = 0;
 				try {
 					amount = Double.parseDouble(args[2]);
@@ -118,8 +116,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 				else
 					Output.simpleError(player, "Must increase by at least 1.");
 				return;
-			}
-			else if(args[0].equalsIgnoreCase("lock")) {
+			}else if(args[0].equalsIgnoreCase("lock")) {
 				if(args.length == 2) {
 					String skillName = args[1];
 					Skill skill = pPlayer.getSkillByName(skillName);
@@ -146,8 +143,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 				}
 				else Output.simpleError(player, "Use \"/skills unlock (skill name)\"");
 				return;
-			}
-			else if(args[0].equalsIgnoreCase("give") && player.isOp()) {
+			}else if(args[0].equalsIgnoreCase("give") && player.isOp()) {
 				if(args.length >= 2 && args[1].equalsIgnoreCase("points")){
 					try {
 					Player targetPlayer = Bukkit.getPlayer(args[2]);
@@ -201,6 +197,8 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 				}
 				}
 				return;
+			}else {
+				Output.simpleError(player, "/skills (reduce|lock|increase)");
 			}
 			return;
 		}

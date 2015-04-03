@@ -15,6 +15,7 @@ import com.lostshard.lostshard.Spells.Spells.SPL_Mark;
 import com.lostshard.lostshard.Spells.Spells.SPL_PermanentGateTravel;
 import com.lostshard.lostshard.Spells.Spells.SPL_Recall;
 import com.lostshard.lostshard.Spells.Spells.SPL_Slowfield;
+import com.lostshard.lostshard.Spells.Spells.SPL_SummonAnimal;
 import com.lostshard.lostshard.Spells.Spells.SPL_Teleport;
 
 public enum Scroll {
@@ -33,8 +34,10 @@ public enum Scroll {
 	HEALSELF,
 	HEALOTHER,
 	LIGHTNING,
-	FIREFIELD;
-
+	FIREFIELD,
+	SUMMONANIMAL,
+	SUMMONMONSTER;
+	
 	public Spell getSpell() {
 		switch (this) {
 		case MARK:
@@ -69,6 +72,10 @@ public enum Scroll {
 			return new SPL_Lightning();
 		case FIREFIELD:
 			return new SPL_Firefield();
+		case SUMMONANIMAL:
+			return new SPL_SummonAnimal();
+		case SUMMONMONSTER:
+			return new SPL_SummonAnimal();
 		default:
 			return null;
 		}

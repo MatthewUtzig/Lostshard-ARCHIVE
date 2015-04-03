@@ -32,10 +32,10 @@ public class MagicStructure {
 	}
 	
 	private UUID creatorUUID;
-	protected boolean isDead = false;
-	protected ArrayList<BlockState> blocks  = new ArrayList<BlockState>();
-	protected int numTicksTillCleanup;
-	protected int curTick = 0;
+	private boolean isDead = false;
+	private ArrayList<BlockState> blocks  = new ArrayList<BlockState>();
+	private int numTicksTillCleanup;
+	private int curTick = 0;
 	
 	public MagicStructure(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		for(Block b : blocks)
@@ -80,6 +80,11 @@ public class MagicStructure {
 		return blocks;
 	}
 	
+	public void setBlockStates(ArrayList<Block> blocks) {
+		for(Block block : blocks)
+			this.blocks.add(block.getState());
+	}
+	
 	public boolean isDead() {
 		return isDead;
 	}
@@ -114,5 +119,41 @@ public class MagicStructure {
 	public void setBlocks(List<Block> blocks) {
 		for(Block b : blocks)
 			this.blocks.add(b.getState());
+	}
+
+	public static PlotManager getPtm() {
+		return ptm;
+	}
+
+	public static void setPtm(PlotManager ptm) {
+		MagicStructure.ptm = ptm;
+	}
+
+	public static PlayerManager getPm() {
+		return pm;
+	}
+
+	public static void setPm(PlayerManager pm) {
+		MagicStructure.pm = pm;
+	}
+
+	public int getNumTicksTillCleanup() {
+		return numTicksTillCleanup;
+	}
+
+	public void setNumTicksTillCleanup(int numTicksTillCleanup) {
+		this.numTicksTillCleanup = numTicksTillCleanup;
+	}
+
+	public int getCurTick() {
+		return curTick;
+	}
+
+	public void setCurTick(int curTick) {
+		this.curTick = curTick;
+	}
+
+	public void setBlocks(ArrayList<BlockState> blocks) {
+		this.blocks = blocks;
 	}
 }
