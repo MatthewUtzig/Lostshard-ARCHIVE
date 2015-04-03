@@ -90,9 +90,9 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW+"Magery: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMagery().getLvl()));
 		
 		if(pseudoPlayer.getCurrentBuild().getBlades().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"bladess(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
+			player.sendMessage(ChatColor.YELLOW+"Bladess(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
 		else
-			player.sendMessage(ChatColor.YELLOW+"bladess: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
+			player.sendMessage(ChatColor.YELLOW+"Bladess: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
 		
 		if(pseudoPlayer.getCurrentBuild().getSurvivalism().isLocked())
 			player.sendMessage(ChatColor.YELLOW+"Survivalism(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getSurvivalism().getLvl()));

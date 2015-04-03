@@ -102,7 +102,7 @@ public abstract class Spell {
 		}
 	}
 	
-	private void finish(Player player) {
+	public void finish(Player player) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setPromptedSpell(null);
 		pPlayer.getTimer().delayedSpell = null;

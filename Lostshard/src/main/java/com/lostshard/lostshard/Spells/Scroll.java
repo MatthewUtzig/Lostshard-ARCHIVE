@@ -64,8 +64,7 @@ public enum Scroll {
 	MOONJUMP("Moon Jump","Hypnoticus Astronauticus",8,30,20,0,840,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
 	CHRONOPORT("Chronoport","Rubberus Bandius",5,25,20,0,480,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
 	FORCEPUSH("Force Push","Fus Ro Dah!",6,15,20,0,600,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
-	WALLOFSTONE("Wall of Stone","Blockus Rockius",4,15,20,0,360,new ItemStack[] {new ItemStack(Material.STONE), new ItemStack(Material.REDSTONE)});
-	
+	WALLOFSTONE("Wall of Stone","Blockus Rockius",4,15,20,0,360,new ItemStack[] {new ItemStack(Material.STONE), new ItemStack(Material.REDSTONE)});	
 	
 	private String name;
 	private String spellWords;
@@ -83,6 +82,8 @@ public enum Scroll {
 		this.page = page;
 		this.manaCost = manaCost;
 		this.minMagery = minMagery;
+		this.cooldown = cooldown;
+		this.castingDelay = castingDelay;
 		for(ItemStack item : reagentCost)
 			this.reagentCost.add(item);
 	}

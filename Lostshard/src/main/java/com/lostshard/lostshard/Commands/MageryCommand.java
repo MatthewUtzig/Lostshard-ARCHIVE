@@ -12,7 +12,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -130,6 +132,8 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		String spellName = scroll.getName();
 		ItemStack wand = player.getItemInHand();
 		ItemMeta wandMeta = wand.getItemMeta();
+		wandMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		wandMeta.addEnchant(Enchantment.DURABILITY, 0, false);
 		wandMeta.setDisplayName(ChatColor.GOLD+spellName);
 		List<String> wandLore = new ArrayList<String>();
 		wandLore.add(ChatColor.GREEN+"Wand");
