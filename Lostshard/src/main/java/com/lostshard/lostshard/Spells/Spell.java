@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Spells;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
@@ -14,23 +13,23 @@ public abstract class Spell {
 	
 	protected PlayerManager pm = PlayerManager.getManager();
 	protected PlotManager ptm = PlotManager.getManager();
-
-	private String name;
-	private String spellWords;
-	private int cooldown;
-	private int castingDelay;
-	private int manaCost;
-	private int minMagery;
-	private int page;
-	private List<ItemStack> reagentCost = new ArrayList<ItemStack>();
+	
+	private Scroll scroll;
 	private String response;
-	private boolean wandable;
 	private String prompt;
 
 	private int tick = 0;
 	
-	public Scroll getType() {
-		return Scroll.getByString(getName());
+	public Spell(Scroll scroll) {
+		this.scroll = scroll;
+	}
+	
+	public Scroll getScroll() {
+		return scroll;
+	}
+
+	public void setScroll(Scroll scroll) {
+		this.scroll = scroll;
 	}
 	
 	public Spell getNew() {
@@ -49,57 +48,41 @@ public abstract class Spell {
 	public abstract void doAction(Player player);
 	
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return scroll.getName();
 	}
 
 	public String getSpellWords() {
-		return spellWords;
-	}
-
-	public void setSpellWords(String spellWords) {
-		this.spellWords = spellWords;
+		return scroll.getSpellWords();
 	}
 
 	public int getCooldown() {
-		return cooldown;
-	}
-
-	public void setCooldown(int cooldown) {
-		this.cooldown = cooldown;
+		return scroll.getCooldown();
 	}
 
 	public int getManaCost() {
-		return manaCost;
-	}
-
-	public void setManaCost(int manaCost) {
-		this.manaCost = manaCost;
+		return scroll.getManaCost();
 	}
 
 	public int getMinMagery() {
-		return minMagery;
-	}
-
-	public void setMinMagery(int minMagery) {
-		this.minMagery = minMagery;
+		return scroll.getMinMagery();
 	}
 
 	public List<ItemStack> getReagentCost() {
-		return reagentCost;
-	}
-
-	public void setReagentCost(List<ItemStack> reagentCost) {
-		this.reagentCost = reagentCost;
+		return scroll.getReagentCost();
 	}
 	
 	public void addReagentCost(ItemStack item) {
-		reagentCost.add(item);
+		scroll.getReagentCost().add(item);
 	}
 	
+	public int getPage() {
+		return scroll.getPage();
+	}
+	
+
+	public int getCastingDelay() {
+		return scroll.getCastingDelay();
+	}
 	public int getTick() {
 		return tick;
 	}
@@ -108,19 +91,11 @@ public abstract class Spell {
 		this.tick = tick;
 	}
 
-	public int getCastingDelay() {
-		return castingDelay;
-	}
-
-	public void setCastingDelay(int castingDelay) {
-		this.castingDelay = castingDelay;
-	}
 
 	public void tick(Player player) {
-		if(tick > 0)
-			tick++;
-		if(castingDelay > 0)
-			castingDelay--;
+		tick++;
+		if(scroll.getCastingDelay() > 0)
+			scroll.setCastingDelay(scroll.getCastingDelay()-1);
 		else {
 			doAction(player);
 			finish(player);
@@ -139,22 +114,6 @@ public abstract class Spell {
 
 	public void setResponse(String response) {
 		this.response = response;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
-	}
-
-	public boolean isWandable() {
-		return wandable;
-	}
-
-	public void setWandable(boolean wandable) {
-		this.wandable = wandable;
 	}
 
 	public String getPrompt() {

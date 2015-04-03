@@ -120,7 +120,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			if(pPlayer.getBuilds().size() < id+1) {
 				Build build = new Build();
 				pPlayer.getBuilds().add(build);
-				Database.insertBuild(build);
+				Database.insertBuild(build, pPlayer.getId());
 			}
 			pPlayer.setCurrentBuildId(id);
 			Output.positiveMessage(sender, "You have changed build to "+id+".");

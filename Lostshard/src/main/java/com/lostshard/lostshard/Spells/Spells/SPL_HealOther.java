@@ -1,26 +1,17 @@
 package com.lostshard.lostshard.Spells.Spells;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_HealOther extends Spell {
 
-	public SPL_HealOther() {
-		setName("Heal Other");
-		setSpellWords("Buddius Healicus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(20);
-		addReagentCost(new ItemStack(Material.STRING));
-		addReagentCost(new ItemStack(Material.SEEDS));
-		setMinMagery(600);
-		setPage(6);
+	public SPL_HealOther(Scroll scroll) {
+		super(scroll);
 	}
 
 	private Player foundPlayer;

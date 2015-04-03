@@ -3,27 +3,18 @@ package com.lostshard.lostshard.Spells.Spells;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 
 public class SPL_Flare extends Spell {
 
-	public SPL_Flare() {
-		super();
-		setName("Flare");
-		setSpellWords("Beforius Flarius");
-		setCastingDelay(0);
-		setCooldown(5);
-		setManaCost(0);
-		setPage(1);
-		setMinMagery(0);
-		addReagentCost(new ItemStack(Material.SULPHUR));
+	public SPL_Flare(Scroll scroll) {
+		super(scroll);
 	}
 	
 	/* Used to confirm that the spell can be cast, so, for example, if you were

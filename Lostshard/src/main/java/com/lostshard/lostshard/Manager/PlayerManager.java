@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -46,10 +49,13 @@ public class PlayerManager {
 
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		Player player = event.getPlayer();
-		if (getPlayer(event.getPlayer()) == null) {
-			PseudoPlayer pPlayer = new PseudoPlayer(player.getUniqueId(), 1);
-			Database.insertPlayer(pPlayer);
-		}
+		boolean ableTo = addPlayer(player);
+		if(!ableTo)
+			event.disallow(Result.KICK_OTHER, ChatColor.RED+"Something is wrong. We are working on it.");
+	}
+	
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		players.remove(getPlayer(event.getPlayer()));
 	}
 	
 	public void tick(double delta, long tick) {
@@ -62,6 +68,21 @@ public class PlayerManager {
 			if(pPlayer.getId() == id)
 				return pPlayer;
 		return null;
+	}
+	
+	public boolean addPlayer(Player player) {
+		PseudoPlayer pPlayer;
+		pPlayer = Database.getPlayer(player.getUniqueId());
+		if(pPlayer != null) {
+			players.add(pPlayer);
+			return true;
+		}
+		pPlayer = Database.insertPlayer(new PseudoPlayer(player.getUniqueId(), 1));
+		if(pPlayer != null) {
+			players.add(pPlayer);
+			return true;
+		}
+		return false;
 	}
 	
 }

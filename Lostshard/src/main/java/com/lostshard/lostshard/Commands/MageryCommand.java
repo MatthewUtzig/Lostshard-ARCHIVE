@@ -3,13 +3,18 @@ package com.lostshard.lostshard.Commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.md_5.bungee.api.ChatColor;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Main.Lostshard;
@@ -38,6 +43,8 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("scrolls").setExecutor(this);
 		plugin.getCommand("runebook").setExecutor(this);
 		plugin.getCommand("spellbook").setExecutor(this);
+		plugin.getCommand("bind").setExecutor(this);
+		plugin.getCommand("unbind").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -84,37 +91,91 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 			Player player = (Player) sender;
 			spellbook(player, args);
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("bind")) {
+			if(!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			bind(player, args);
+			return true;
+		}else if(cmd.getName().equalsIgnoreCase("unbind")) {
+			if(!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			unbind(player);
+			return true;
 		}
 		return false;
 	}
+
+	private void bind(Player player, String[] args) {
+		if(!player.getItemInHand().getType().equals(Material.STICK)) {
+			Output.simpleError(player, "You can only bind spells to sticks.");
+			return;
+		}
+		if(args.length < 1) {
+			Output.simpleError(player, "/bind (spell)");
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		String scrollName = StringUtils.join(args, "", 0, args.length);
+		Scroll scroll = Scroll.getByString(scrollName);
+		if(scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
+			Output.simpleError(player, "Your spellbook does not contain "+scrollName+".");
+			return;
+		}
+		String spellName = scroll.getName();
+		ItemStack wand = player.getItemInHand();
+		ItemMeta wandMeta = wand.getItemMeta();
+		wandMeta.setDisplayName(ChatColor.GOLD+spellName);
+		List<String> wandLore = new ArrayList<String>();
+		wandLore.add(ChatColor.GREEN+"Wand");
+		wandMeta.setLore(wandLore);
+		wand.setItemMeta(wandMeta);
+		player.setItemInHand(wand);
+		Output.positiveMessage(player, "You have bound "+spellName+" to the wand.");
+	}
+	
+	private void unbind(Player player) {
+		if(!player.getItemInHand().getType().equals(Material.STICK)) {
+			Output.simpleError(player, "You can only bind spells to sticks.");
+			return;
+		}
+		ItemStack wand = player.getItemInHand();
+		ItemMeta wandMeta = wand.getItemMeta();
+		if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && ChatColor.stripColor(wandMeta.getLore().get(0)).equalsIgnoreCase("Wand")) {
+			if(wandMeta.hasDisplayName()) {
+				wand.setItemMeta(null);
+				String spellName = ChatColor.stripColor(wandMeta.getLore().get(0));
+				player.setItemInHand(wand);
+				Output.positiveMessage(player, "You have unbound "+spellName.toLowerCase()+" from the wand.");
+			}else{
+				Output.simpleError(player, "Thats just a simple stick you fool.");
+			}
+		}else{
+			Output.simpleError(player, "Thats just a simple stick you fool.");
+		}
+	}
+	
 
 	@SuppressWarnings("deprecation")
 	private void scrolls(Player player, String[] args) {
 		if(args.length >= 2) {
 			if(args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
-				PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-				int numSpellWords = args.length;
-				String spellName = "";
-				for(int i=1; i<numSpellWords; i++) {
-					spellName += args[i];
-					spellName += " ";
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				String scrollName = StringUtils.join(args, "", 1, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
 				}
-				spellName = spellName.trim();
-				List<Scroll> scrolls = pseudoPlayer.getScrolls();
-				Spell useSpell = null;
-				for(Scroll scroll : scrolls) {
-					if(scroll.getSpellName().equalsIgnoreCase(spellName)) {
-						useSpell = scroll.getSpell();
-						break;
-					}
+				if(sm.useScroll(player, scroll)) {
+					pPlayer.getScrolls().remove(scroll);
+					Database.deleteScroll(scroll, pPlayer.getId());
 				}
-				if(useSpell != null) {
-					if(sm.useScroll(player, useSpell)) {
-						scrolls.remove(useSpell);
-//						Database.removeScroll(useSpell, pseudoPlayer.getId());
-					}
-				}
-				else Output.simpleError(player, "You do not have a scroll of "+spellName+".");
 			}
 			else if(args[0].equalsIgnoreCase("give")) {
 				if(args.length < 3) {
@@ -122,7 +183,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 					return;
 				}
 				
-				PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+				PseudoPlayer pPlayer = pm.getPlayer(player);
 				Player targetPlayer = player.getServer().getPlayer(args[1]);
 				if(targetPlayer == null) {
 					Output.simpleError(player, args[1]+" is not online.");
@@ -130,89 +191,46 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				}
 				
 				
-				PseudoPlayer targetPseudoPlayer = pm.getPlayer(targetPlayer);
-//				if(!player.isOp()){
-//				if(targetPseudoPlayer._secret) {
-//					Output.simpleError(player, args[1]+" is not online.");
-//					return;
-//				}
-//				}
-					
+				PseudoPlayer tpPlayer = pm.getPlayer(targetPlayer);
+				
 				if(!player.isOp()){
-				if(!Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 10)) {
-					Output.simpleError(player, "You are not close enough to give "+targetPlayer.getName()+" a scroll.");
-					return;
-				}
+					if(!Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 10)) {
+						Output.simpleError(player, "You are not close enough to give "+targetPlayer.getName()+" a scroll.");
+						return;
+					}
 				}
 				
-				int numSpellWords = args.length;
-				String spellName = "";
-				for(int i=2; i<numSpellWords; i++) {
-					spellName += args[i];
-					spellName += " ";
+				String scrollName = StringUtils.join(args, "", 1, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
 				}
-				spellName = spellName.trim();
-				List<Scroll> scrolls = pseudoPlayer.getScrolls();
-				Scroll useScroll = null;
-				if(!player.isOp()){
-				for(Scroll scroll : scrolls) {
-					if(scroll.getSpellName().equalsIgnoreCase(spellName)) {
-						useScroll = scroll;
-						break;
-					}
+				
+				pPlayer.getScrolls().remove(scroll);
+				tpPlayer.getScrolls().add(scroll);
+				Database.updateScrollOwner(scroll, tpPlayer.getId(), pPlayer.getId());
+				Output.positiveMessage(player, "You have given "+targetPlayer.getName()+" a scroll of "+scroll.getName()+".");
+				Output.positiveMessage(targetPlayer, player.getName()+" has given you a scroll of "+scroll.getName()+".");
+			}else if(args[0].equalsIgnoreCase("spellbook")) {
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				String scrollName = StringUtils.join(args, "", 1, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
 				}
-				if(useScroll != null) {
-					scrolls.remove(useScroll);
-					targetPseudoPlayer.getScrolls().add(useScroll);
-//					Database.updateScrollOwner(useScroll, targetPseudoPlayer.getId());
-					Output.positiveMessage(player, "You have given "+targetPlayer.getName()+" a scroll of "+useScroll.getSpellName()+".");
-					Output.positiveMessage(targetPlayer, player.getName()+" has given you a scroll of "+useScroll.getSpellName()+".");
+				SpellBook spellbook = pPlayer.getSpellbook();
+				if(!spellbook.containSpell(scroll)) {
+					spellbook.addSpell(scroll);
+					Database.deleteScroll(scroll, pPlayer.getId());
+					pPlayer.update();
+					Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");
 				}
-				else Output.simpleError(player, "You do not have a scroll of "+spellName+".");
-				}else{
-					if(useScroll != null) {
-						scrolls.remove(useScroll);
-						targetPseudoPlayer.getScrolls().add(useScroll);
-//						Database.updateScrollOwner(useScroll, targetPseudoPlayer.getId());
-						Output.positiveMessage(player, "You have given "+targetPlayer.getName()+" a scroll of "+useScroll.getSpellName()+".");
-						Output.positiveMessage(targetPlayer, player.getName()+" has given you a scroll of "+useScroll.getSpellName()+".");
-					}
-					else Output.simpleError(player, "There dosent exist a scroll of "+spellName+".");
-				}
-				return;
-			}
-			else if(args[0].equalsIgnoreCase("spellbook")) {
-				PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-				int numSpellWords = args.length;
-				String spellName = "";
-				for(int i=1; i<numSpellWords; i++) {
-					spellName += args[i];
-					spellName += " ";
-				}
-				spellName = spellName.trim();
-				List<Scroll> scrolls = pseudoPlayer.getScrolls();
-				Spell useSpell = null;
-				for(Scroll scroll : scrolls) {
-					if(scroll.getSpellName().equalsIgnoreCase(spellName)) {
-						useSpell = scroll.getSpell();
-						break;
-					}
-				}
-				if(useSpell != null) {
-					SpellBook spellbook = pseudoPlayer.getSpellbook();
-					if(!spellbook.containSpell(useSpell.getType())) {
-						spellbook.addSpell(useSpell.getType());
-//						Database.removeScroll(useSpell, pseudoPlayer.getId());
-						pseudoPlayer.update();
-						Output.positiveMessage(player, "You have transferred "+useSpell.getName()+" to your spellbook.");
-					}
-					else Output.simpleError(player, "Your spellbook already contains the "+useSpell.getName()+" spell.");
-				}
-				else Output.simpleError(player, "You do not have a scroll of "+spellName+".");
+				else Output.simpleError(player, "Your spellbook already contains the "+scroll.getName()+" spell.");
 			}
 			return;
-		}
-		else {
+		}else {
 			Output.outputScrolls(player, args);
 			return;
 		}

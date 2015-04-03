@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -30,6 +31,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.FishingSkill;
+import com.lostshard.lostshard.Spells.Structures.FireWalk;
 import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -56,6 +58,11 @@ public class PlayerListener implements Listener {
 		EnderdragonHandler.respawnDragonCheck(event);
 	}
 
+	@EventHandler
+	public void onPlayeQuit(PlayerQuitEvent event) {
+		pm.onPlayerQuit(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		PlotProtectionHandler.onButtonPush(event);
@@ -88,6 +95,7 @@ public class PlayerListener implements Listener {
 		PlotProtectionHandler.onPlotEnter(event);
 		SpellManager.move(event);
 		Gate.onPlayerMove(event);
+		FireWalk.onPlayerMove(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -111,6 +119,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		foodHealHandler.foodHeal(event);
+		SpellManager.onPlayerInteract(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

@@ -10,6 +10,10 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 
 public abstract class RangedSpell extends Spell {
 
+	public RangedSpell(Scroll scroll) {
+		super(scroll);
+	}
+
 	private int range;
 	private Block foundBlock;
 	private boolean carePlot;

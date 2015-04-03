@@ -63,8 +63,12 @@ public class MagicStructure {
 				b.getBlock().setType(Material.AIR);
 		}
 		isDead = true;
+		lastThing();
 	}
 	
+	public void lastThing() {
+	}
+
 	public void addBlock(Block block) {
 		blocks.add(block.getState());
 	}

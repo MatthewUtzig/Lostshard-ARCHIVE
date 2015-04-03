@@ -8,9 +8,12 @@ import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Objects.Plot;
@@ -44,7 +47,7 @@ public class SpellManager {
 		return null;
 	}
 	
-	public boolean useScroll(Player player, Spell spell) {
+	public boolean useScroll(Player player, Scroll scroll) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if(plot != null) {
 			if(!plot.isAllowMagic()) {
@@ -66,7 +69,7 @@ public class SpellManager {
 		}
 		
 		Location loc = player.getLocation();
-		
+		Spell spell = scroll.getSpell();
 		for(int x=-2; x<= 2; x++) {
 			for(int y=-2; y<= 2; y++) {
 				for(int z=-2; z<= 2; z++) {
@@ -79,7 +82,6 @@ public class SpellManager {
 				}
 			}
 		}
-		
 		// make sure we even have that spell still
 		if(spell.verifyCastable(player)) {
 			if(player.isOp() || pseudoPlayer.getMana() >= spell.getManaCost()) {
@@ -148,7 +150,7 @@ public class SpellManager {
 			return false;
 		}
 
-		if(!pPlayer.getSpellbook().containSpell(spell.getType())) {
+		if(!pPlayer.getSpellbook().containSpell(spell.getScroll())) {
 			Output.simpleError(player, "Your spellbook does not contain the "+spell.getName()+" spell.");
 			return false;
 		}
@@ -373,7 +375,7 @@ public class SpellManager {
 	public static void move(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(event.getTo() != null && event.getFrom() != null && event.getTo().getBlock() != event.getFrom().getBlock()) {
+		if(event.getTo() != null && event.getFrom() != null && !event.getTo().getBlock().getState().equals(event.getFrom().getBlock().getState())) {
 			if(pPlayer.getPromptedSpell() != null || pPlayer.getTimer().delayedSpell != null) {
 				pPlayer.setPromptedSpell(null);
 				pPlayer.getTimer().delayedSpell = null;
@@ -381,6 +383,22 @@ public class SpellManager {
 			}else if(pPlayer.getTimer().goToSpawnTicks > 0) {
 				pPlayer.getTimer().goToSpawnTicks = 0;
 				Output.simpleError(player, "Moved while casting, /spawn was disrupted.");
+			}
+		}
+	}
+	
+	public static void onPlayerInteract(PlayerInteractEvent event) {
+		if(!(event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)))
+			return;
+		Player player = event.getPlayer();
+		if(player.getItemInHand().getType().equals(Material.STICK)) {
+			ItemStack wand = player.getItemInHand();
+			ItemMeta wandMeta = wand.getItemMeta();
+			if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && ChatColor.stripColor(wandMeta.getLore().get(0)).equalsIgnoreCase("Wand")) {
+				if(wandMeta.hasDisplayName()) {
+					Scroll scroll = Scroll.getByString(ChatColor.stripColor(wandMeta.getDisplayName()));
+					manager.castSpell(player, scroll.getSpell());
+				}
 			}
 		}
 	}

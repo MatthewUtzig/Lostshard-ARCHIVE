@@ -1,9 +1,13 @@
 package com.lostshard.lostshard.Utils;
 
 public class IntPoint {
-
-	public IntPoint() {
-		// TODO Auto-generated constructor stub
+	public int x;
+	public int y;
+	public int z;
+	
+	public IntPoint(int x, int y, int z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
-
 }

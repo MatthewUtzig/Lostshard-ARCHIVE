@@ -1,8 +1,11 @@
 package com.lostshard.lostshard.Utils;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
@@ -287,8 +290,9 @@ public class Output {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Statistics-");
+		DecimalFormat format = new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
 		player.sendMessage(ChatColor.YELLOW + "Gold Coins: " + ChatColor.WHITE
-				+ pseudoPlayer.getMoney());
+				+ format.format(pseudoPlayer.getMoney()));
 		player.sendMessage(ChatColor.YELLOW + "Mana: " + ChatColor.WHITE
 				+ pseudoPlayer.getMana() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE
@@ -570,7 +574,7 @@ public class Output {
 						numScrolls++;
 					}
 				}
-				if(pseudoPlayer.getSpellbook().containSpell(curSpell.getSpell().getType()))
+				if(pseudoPlayer.getSpellbook().containSpell(curSpell))
 					scrollString+="+";
 				scrollString += curSpell.getSpell().getName()+" ("+numScrolls+"), ";
 			}

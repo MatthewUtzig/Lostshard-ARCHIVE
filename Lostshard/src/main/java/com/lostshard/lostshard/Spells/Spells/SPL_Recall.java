@@ -6,29 +6,21 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_Recall extends Spell {
 
-	public SPL_Recall() {
-		super();
-		setName("Recall");
-		setSpellWords("Runus Teleporticus");
+	public SPL_Recall(Scroll scroll) {
+		super(scroll);
 		setPrompt("What rune would you like to recall from?");
-		setCastingDelay(20);
-		setCooldown(20);
-		setManaCost(30);
-		setMinMagery(360);
-		setPage(4);
-		addReagentCost(new ItemStack(Material.FEATHER));
 	}
 	
 	public boolean verifyCastable(Player player) {

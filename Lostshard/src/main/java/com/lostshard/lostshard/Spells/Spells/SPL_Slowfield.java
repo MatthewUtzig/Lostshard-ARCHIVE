@@ -5,23 +5,16 @@ import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Structures.WebTrap;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class SPL_Slowfield extends RangedSpell {
 
-	public SPL_Slowfield() {
-		setName("Slow Field");
-		setSpellWords("Webicus Fieldicus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(15);
-		addReagentCost(new ItemStack(Material.STRING));
-		setMinMagery(480);
-		setPage(5);
+	public SPL_Slowfield(Scroll scroll) {
+		super(scroll);
 		setRange(20);
 		setCarePlot(false);
 	}

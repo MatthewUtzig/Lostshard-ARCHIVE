@@ -4,25 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Utils.Output;
 
 public class SPL_ClanTeleport extends Spell {
 
-	public SPL_ClanTeleport() {
-		setName("Clan Teleport");
-		setSpellWords("Arg Matius Teleportus");
-		setCastingDelay(20);
-		setCooldown(20);
-		setManaCost(50);
-		addReagentCost(new ItemStack(Material.FEATHER));
-		addReagentCost(new ItemStack(Material.REDSTONE));
-		setMinMagery(720);
-		setPage(7);
+	public SPL_ClanTeleport(Scroll scroll) {
+		super(scroll);
 		setPrompt("Who would you like to toeleport to?");
 	}
 

@@ -7,6 +7,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Scroll;
@@ -36,13 +37,13 @@ public class ScrollHandler {
 					scroll = Scroll.GRASS;
 					break;
 				case 1:
-//					scroll = Scroll.FLOWERS;
+					scroll = Scroll.FLOWERS;
 					break;
 				case 2:
 					scroll = Scroll.LIGHT;
 					break;
 				default:
-//					scroll = Scroll.CREATEFOOD;
+					scroll = Scroll.CREATEFOOD;
 					break;
 				}
 				break;
@@ -61,7 +62,7 @@ public class ScrollHandler {
 					scroll = Scroll.HEALOTHER;
 					break;
 				case 4:
-//					scroll = Scroll.FIREWALK;
+					scroll = Scroll.FIREWALK;
 					break;
 				case 5:
 					scroll = Scroll.SUMMONANIMAL;
@@ -70,13 +71,13 @@ public class ScrollHandler {
 					scroll = Scroll.SLOWFIELD;
 					break;
 				case 7:
-//					scroll = Scroll.FORCEPUSH;
+					scroll = Scroll.FORCEPUSH;
 					break;
 				case 8:
-//					scroll = Scroll.CHRONOPORT;
+					scroll = Scroll.CHRONOPORT;
 					break;
 				default:
-//					scroll = Scroll.DETECTHIDDEN;
+					scroll = Scroll.DETECTHIDDEN;
 					break;
 				}
 				break;
@@ -95,10 +96,10 @@ public class ScrollHandler {
 					scroll = Scroll.MARK;
 					break;
 				case 3:
-//					scroll = Scroll.BRIDGE;
+					scroll = Scroll.BRIDGE;
 					break;
 				default:
-//					scroll = Scroll.WALLOFSTONE;
+					scroll = Scroll.WALLOFSTONE;
 					break;
 				}
 				break;
@@ -120,7 +121,7 @@ public class ScrollHandler {
 				case 10:
 				case 11:
 				case 12:
-//					scroll = Scroll.FIREBALL;
+					scroll = Scroll.FIREBALL;
 					break;
 				case 13:
 				case 14:
@@ -132,7 +133,7 @@ public class ScrollHandler {
 				case 18:
 				case 19:
 				case 20:
-//					scroll = Scroll.STONESKIN;
+					scroll = Scroll.STONESKIN;
 					break;
 				case 21:
 					scroll = Scroll.PERMANENTGATETRAVEL;
@@ -147,7 +148,7 @@ public class ScrollHandler {
 					scroll = Scroll.SUMMONMONSTER;
 					break;
 				case 25:
-//					scroll = Scroll.MOONJUMP;
+					scroll = Scroll.MOONJUMP;
 					break;
 				 default:
 					scroll = Scroll.ARROWBLAST;
@@ -166,7 +167,7 @@ public class ScrollHandler {
 //					scroll = Scroll.CLEARSKY;
 					break;
 				case 3:
-//					scroll = Scroll.MOONJUMP;
+					scroll = Scroll.MOONJUMP;
 					break;
 				case 4:
 					scroll = Scroll.SUMMONMONSTER;
@@ -197,7 +198,8 @@ public class ScrollHandler {
 		}
 		if(scroll != null) {
 			pPlayer.addScroll(scroll);
-			Output.positiveMessage(player, "The "+type.name().toLowerCase()+" dropped a scroll of "+scroll.getSpellName()+".");
+			Output.positiveMessage(player, "The "+type.name().toLowerCase()+" dropped a scroll of "+scroll.getName()+".");
+			Database.insertScroll(scroll, pPlayer.getId());
 		}
 	}
 }

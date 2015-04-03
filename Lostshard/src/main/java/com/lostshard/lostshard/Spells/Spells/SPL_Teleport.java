@@ -6,24 +6,16 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_Teleport extends RangedSpell {
 	
-	public SPL_Teleport() {
-		super();
-		setName("Teleport");
-		setSpellWords("Nearius Porticus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(20);
-		setMinMagery(240);
-		setPage(3);
-		addReagentCost(new ItemStack(Material.FEATHER));
+	public SPL_Teleport(Scroll scroll) {
+		super(scroll);
 		setRange(25);
 	}
 	

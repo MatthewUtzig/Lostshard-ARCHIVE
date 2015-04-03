@@ -160,60 +160,60 @@ public class PVPHandler {
 		pseudoPlayerAttacker.setEngageInCombatTicks(300); // attacker attacked someone, he is engaging in combat
 		
 		// only criminal if it happens in the normal world
-		if(true) {//player.getWorld().equals(RPG._normalWorld) || player.getWorld().equals(RPG._newmap)) {
-			boolean notCrim = false;
-			if(!player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
+		boolean notCrim = false;
+		if(!player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
+			notCrim = true;
+		}
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		// defender is on a plot
+		if(plot != null) {
+			if(plot.isCapturePoint())
+				notCrim = true;
+			// and the attacker is a member of the plot
+			if(plot.isFriendOrAbove(playerDamager)) {
+				// and the defender is NOT a member of the plot
 				notCrim = true;
 			}
-			Plot plot = ptm.findPlotAt(player.getLocation());
-			// defender is on a plot
-			if(plot != null) {
-				if(plot.isCapturePoint())
-					notCrim = true;
-				// and the attacker is a member of the plot
-				if(plot.isFriendOrAbove(playerDamager)) {
-					// and the defender is NOT a member of the plot
-					notCrim = true;
-				}
-			}
-			
-			// If the defender has attacked anyone within 30 seconds they engaged in combat willingly
-			// so attacking them will not be criminal even if they are blue
-			
-			Party party = pseudoPlayerDefender.getParty();
-			if(party != null) {
-				if(party.isMember(playerDamager.getUniqueId())) {
-					return;
-				}
-			}
-			Clan clan = pseudoPlayerDefender.getClan();
-			if(clan != null) {
-				if(clan.isInClan(playerDamager.getUniqueId())) {
-					return;
-				}
-			}
-			
-			// Determine if a criminal action has taken place
-			if(!pseudoPlayerDefender.isCriminal() && !notCrim) {
-				// attacked non criminal, thats a criminal action
-				if(!pseudoPlayerAttacker.isCriminal()) {
-					playerDamager.sendMessage(ChatColor.RED+"You have committed a criminal action");
-				}
-				pseudoPlayerAttacker.setCriminal(3000);
-				
-				if(!pseudoPlayerAttacker.isMurderer()) {
-					playerDamager.setDisplayName(ChatColor.GRAY+playerDamager.getName());
-//					SimpleScoreBoard.updatePlayers();
-				}
-			}
-			
-			RecentAttacker recentAttacker = new RecentAttacker(playerDamager.getUniqueId(), 300);
-			recentAttacker.setNotCrim(notCrim);
-			pseudoPlayerDefender.addRecentAttacker(recentAttacker);
 		}
+		
+		// If the defender has attacked anyone within 30 seconds they engaged in combat willingly
+		// so attacking them will not be criminal even if they are blue
+		
+		Party party = pseudoPlayerDefender.getParty();
+		if(party != null) {
+			if(party.isMember(playerDamager.getUniqueId())) {
+				return;
+			}
+		}
+		Clan clan = pseudoPlayerDefender.getClan();
+		if(clan != null) {
+			if(clan.isInClan(playerDamager.getUniqueId())) {
+				return;
+			}
+		}
+		
+		// Determine if a criminal action has taken place
+		if(!pseudoPlayerDefender.isCriminal() && !notCrim) {
+			// attacked non criminal, thats a criminal action
+			if(!pseudoPlayerAttacker.isCriminal()) {
+				playerDamager.sendMessage(ChatColor.RED+"You have committed a criminal action");
+			}
+			pseudoPlayerAttacker.setCriminal(3000);
+			
+			if(!pseudoPlayerAttacker.isMurderer()) {
+				playerDamager.setDisplayName(ChatColor.GRAY+playerDamager.getName());
+//					SimpleScoreBoard.updatePlayers();
+			}
+		}
+		
+		RecentAttacker recentAttacker = new RecentAttacker(playerDamager.getUniqueId(), 300);
+		recentAttacker.setNotCrim(notCrim);
+		pseudoPlayerDefender.addRecentAttacker(recentAttacker);
 	}
 	
 	public static void Attack(EntityDamageByEntityEvent event) {
+		if(event.isCancelled())
+			return;
 		if(!(event.getEntity() instanceof Player))
 			return;
 		Player player = (Player) event.getEntity();
@@ -230,5 +230,6 @@ public class PVPHandler {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.addRecentAttacker(new RecentAttacker(
 				attacker.getUniqueId(), 300));
+		criminalAction(player, attacker);
 	}
 }

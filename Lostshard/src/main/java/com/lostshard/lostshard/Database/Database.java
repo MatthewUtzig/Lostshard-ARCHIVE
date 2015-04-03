@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
 
@@ -29,7 +27,6 @@ import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Spells.Scroll;
-import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.lostshard.Utils.Serializer;
 import com.lostshard.lostshard.Database.DataSource;
@@ -75,27 +72,43 @@ public class Database {
 		}
 	}
 	
-	public static void getScrolls() {
-		System.out.print("GETTING SCROLLS!");
+	public static void updateScrollOwner(Scroll scroll, int tID, int pID) {
+		Lostshard.log.info("GETTING SCROLLS!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM scrolls");
+					.prepareStatement("UPDATE scrolls SET playerid=? WHERE playerid=?;");
+			prep.setInt(1, tID);
+			prep.setInt(1, pID);
+			prep.executeUpdate();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.log(Level.WARNING,
+					"[SCROLL] getScrolls mysql error");
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<Scroll> getScrolls(int playerID) {
+		Lostshard.log.info("GETTING SCROLLS!");
+		List<Scroll> scrolls = new ArrayList<Scroll>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT scroll FROM scrolls WHERE playerid=?;");
+			prep.setInt(1, playerID);
 			prep.execute();
 			ResultSet rs = prep.getResultSet();
 			while (rs.next()) {
-				int id = rs.getInt("id");
 				try {
 					String scroll = rs.getString("scroll");
-					int playerId = rs.getInt("playerId");
 					
-					PseudoPlayer pPlayer = pm.getPlayer(playerId);
-					
-					pPlayer.addScroll(Scroll.valueOf(scroll));
+					scrolls.add(Scroll.getByString(scroll));
 					
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
-							"[SCROLL] Exception when generating \"" + id
+							"[SCROLL] Exception when generating \"" + playerID
 									+ "\" scroll: ");
 					e.printStackTrace();
 				}
@@ -107,21 +120,19 @@ public class Database {
 					"[SCROLL] getScrolls mysql error");
 			e.printStackTrace();
 		}
+		return scrolls;
 	}
 	
-	public static void insertScrolls(List<Scroll> scrolls, int playerId) {
+	public static void insertScroll(Scroll scroll, int playerID) {
 		if(Lostshard.isDebug())
 			System.out.print("INSERT SCROLL!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO scrolls "
-							+ "(scroll,playerId) VALUES (?,?)");
-			for(Scroll scroll : scrolls) {
-				prep.setString(1, scroll.name());
-				prep.setInt(2, playerId);
-				prep.addBatch();
-			}
+							+ "(scroll,playerid) VALUES (?,?)");
+			prep.setString(1, scroll.name());
+			prep.setInt(2, playerID);
 			prep.execute();
 			prep.close();
 			conn.close();
@@ -131,18 +142,15 @@ public class Database {
 		}
 	}
 	
-	public static void deleteScrolls(List<Scroll> scrolls, int playerID) {
+	public static void deleteScroll(Scroll scroll, int playerID) {
 		if(Lostshard.isDebug())
 			System.out.print("INSERT SCROLL!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("DELETE FROM scrolls WHERE playerid=? AND scroll=? LIMIT 1;", PreparedStatement.RETURN_GENERATED_KEYS);
-			for(Scroll scroll : scrolls) {
-				prep.setInt(1, playerID);
-				prep.setString(2, scroll.name());
-				prep.addBatch();
-			}
+			prep.setInt(1, playerID);
+			prep.setString(2, scroll.name());
 			prep.execute();
 			prep.close();
 			conn.close();
@@ -404,12 +412,13 @@ public class Database {
 		}
 	}
 	
-	public static Map<Integer, Build> getBuilds() {
-		Map<Integer, Build> builds = new HashMap<Integer, Build>();
+	public static List<Build> getBuilds(int playerID) {
+		List<Build> builds = new ArrayList<Build>();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM builds");
+					.prepareStatement("SELECT * FROM builds WHERE playerid=?");
+			prep.setInt(1, playerID);
 			prep.execute();
 			ResultSet rs = prep.getResultSet();
 			while (rs.next()) {
@@ -460,7 +469,7 @@ public class Database {
 					build.getArchery().setLvl(archery);
 					build.getArchery().setLocked(archeryLock);
 					
-					builds.put(id, build);
+					builds.add(build);
 					
 				} catch (Exception e) {
 					Lostshard.log.warning("[BUILD] Exception when generating \""+ id + "\" BUILD:");
@@ -475,7 +484,7 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		System.out.print("[BUILD] got "+builds.size()+" build from DB.");
+		Lostshard.log.info("[BUILD] got "+builds.size()+" build from DB.");
 		return builds;
 	}
 	
@@ -517,31 +526,31 @@ public class Database {
 		}
 	}
 	
-	public static void insertBuild(Build build) {
+	public static void insertBuild(Build build, int playerID) {
 		try {
 			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO builds (mining, miningLock, magery, mageryLock, blades, bladesLock, brawling, brawlingLock, blacksmithy, blacksmithyLock, lumberjacking, lumberjackingLock, fishing, fishingLock, survivalism, survivalismLock, taming, tamingLock, archery, archeryLock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
-				prep.setInt(1, build.getMining().getLvl());
-				prep.setBoolean(2, build.getMining().isLocked());
-				prep.setInt(3, build.getMagery().getLvl());
-				prep.setBoolean(4, build.getMagery().isLocked());
-				prep.setInt(5, build.getBlades().getLvl());
-				prep.setBoolean(6, build.getBlades().isLocked());
-				prep.setInt(7, build.getBrawling().getLvl());
-				prep.setBoolean(8, build.getBrawling().isLocked());
-				prep.setInt(9, build.getBlackSmithy().getLvl());
-				prep.setBoolean(10, build.getBlackSmithy().isLocked());
-				prep.setInt(11, build.getLumberjacking().getLvl());
-				prep.setBoolean(12, build.getLumberjacking().isLocked());
-				prep.setInt(13, build.getFishing().getLvl());
-				prep.setBoolean(14, build.getFishing().isLocked());
-				prep.setInt(15, build.getSurvivalism().getLvl());
-				prep.setBoolean(16, build.getSurvivalism().isLocked());
-				prep.setInt(17, build.getTaming().getLvl());
-				prep.setBoolean(18, build.getTaming().isLocked());
-				prep.setInt(19, build.getArchery().getLvl());
-				prep.setBoolean(20, build.getArchery().isLocked());
-				prep.addBatch();
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO builds (playerid, mining, miningLock, magery, mageryLock, blades, bladesLock, brawling, brawlingLock, blacksmithy, blacksmithyLock, lumberjacking, lumberjackingLock, fishing, fishingLock, survivalism, survivalismLock, taming, tamingLock, archery, archeryLock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+				prep.setInt(1, playerID);
+				prep.setInt(2, build.getMining().getLvl());
+				prep.setBoolean(3, build.getMining().isLocked());
+				prep.setInt(4, build.getMagery().getLvl());
+				prep.setBoolean(5, build.getMagery().isLocked());
+				prep.setInt(6, build.getBlades().getLvl());
+				prep.setBoolean(7, build.getBlades().isLocked());
+				prep.setInt(8, build.getBrawling().getLvl());
+				prep.setBoolean(9, build.getBrawling().isLocked());
+				prep.setInt(10, build.getBlackSmithy().getLvl());
+				prep.setBoolean(11, build.getBlackSmithy().isLocked());
+				prep.setInt(12, build.getLumberjacking().getLvl());
+				prep.setBoolean(13, build.getLumberjacking().isLocked());
+				prep.setInt(14, build.getFishing().getLvl());
+				prep.setBoolean(15, build.getFishing().isLocked());
+				prep.setInt(16, build.getSurvivalism().getLvl());
+				prep.setBoolean(17, build.getSurvivalism().isLocked());
+				prep.setInt(18, build.getTaming().getLvl());
+				prep.setBoolean(19, build.getTaming().isLocked());
+				prep.setInt(20, build.getArchery().getLvl());
+				prep.setBoolean(21, build.getArchery().isLocked());
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
@@ -557,21 +566,19 @@ public class Database {
 
 
 	// Player
-	public static List<PseudoPlayer> getPlayers() {
-		System.out.print("[PLAYER] Getting Players from DB!");
-		List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-		Map<Integer, Build> builds = Database.getBuilds();
-		Map<Integer, Runebook> runebooks = Database.getBooks();
+	public static PseudoPlayer getPlayer(UUID uuid) {
+		Lostshard.log.info("[PLAYER] Getting Player from DB!");
+		PseudoPlayer pPlayer = null;
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM players");
+					.prepareStatement("SELECT * FROM players WHERE uuid=?");
+			prep.setString(1, uuid.toString());
 			prep.execute();
 			ResultSet rs = prep.getResultSet();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				try {
-					UUID uuid = UUID.fromString(rs.getString("uuid"));
 					int money = rs.getInt("money");
 					int murderCounts = rs.getInt("murderCounts");
 					int criminalTick = rs.getInt("criminalTicks");
@@ -587,13 +594,13 @@ public class Database {
 					int rank = rs.getInt("rank");
 					Location customSpawn = Serializer.deserializeLocation(rs.getString("customSpawn"));
 					int spawnTick = rs.getInt("spawnTick");
-					int[] buildsIds = Serializer.deserializeIntegerArray(rs.getString("builds"));
 					int currentBuild = rs.getInt("currentBuild");
 					List<String> titles = Serializer.deserializeStringArray(rs.getString("titles"));
 					int currentTitle = rs.getInt("currentTitle");
 					int freeSkillPoints = rs.getInt("freeSkillPoints");
 					
-					PseudoPlayer pPlayer = new PseudoPlayer(uuid, id);
+					pPlayer = new PseudoPlayer(uuid, id);
+					
 					pPlayer.setMoney(money);
 					pPlayer.setMurderCounts(murderCounts);
 					pPlayer.setCriminal(criminalTick);
@@ -613,16 +620,9 @@ public class Database {
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
 					pPlayer.setFreeSkillPoints(freeSkillPoints);
-					if(builds.containsKey(buildsIds[0])) {
-						pPlayer.getBuilds().clear();
-						for(int i : buildsIds) {
-							pPlayer.getBuilds().add(builds.get(i));
-						}
-					}
-					if(runebooks.containsKey(id)) {
-						pPlayer.setRunebook(runebooks.get(id));
-					}
-					players.add(pPlayer);
+					pPlayer.setBuilds(Database.getBuilds(id));
+					pPlayer.setRunebook(Database.getRunebook(id));
+					pPlayer.setScrools(Database.getScrolls(id));
 				} catch (Exception e) {
 					Lostshard.log.log(Level.WARNING,
 							"[PLAYER] Exception when generating \""
@@ -639,18 +639,18 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		pm.setPlayers(players);
-		System.out.print("[PLAYER] got "+players.size()+" players from DB.");
-		return players;
+		if(pPlayer != null)
+			Lostshard.log.info("[PLAYER] got "+pPlayer.getPlayerName()+" players from DB.");
+		return pPlayer;
 	}
 
-	public static void insertPlayer(PseudoPlayer pPlayer) {
+	public static PseudoPlayer insertPlayer(PseudoPlayer pPlayer) {
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO players "
 							+ "(uuid,money,bank,murderCounts,criminalTicks,globalChat,privateChat,subscribeDays,wasSubscribed,"
-							+ "plotCreationPoints,chatChannel,mana,stamina,rank,customSpawn,spawnTick,builds,currentBuild,titles,currentTitle,freeSkillPoints) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "plotCreationPoints,chatChannel,mana,stamina,rank,customSpawn,spawnTick,currentBuild,titles,currentTitle,freeSkillPoints) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, pPlayer.getPlayerUUID().toString());
 			prep.setInt(2, pPlayer.getMoney());
 			prep.setString(3, pPlayer.getBank().Serialize());
@@ -666,13 +666,11 @@ public class Database {
 			prep.setInt(13, pPlayer.getStamina());
 			prep.setInt(14, pPlayer.getRank());
 			prep.setString(15, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-			insertBuild(pPlayer.getCurrentBuild());
-			prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-			prep.setInt(17, pPlayer.getCurrentBuildId());
-			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setInt(19, pPlayer.getCurrentTitleId());
-			prep.setInt(20, pPlayer.getFreeSkillPoints());
-			prep.setInt(21, pPlayer.getId());
+			prep.setInt(16, pPlayer.getCurrentBuildId());
+			prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
+			prep.setInt(18, pPlayer.getCurrentTitleId());
+			prep.setInt(19, pPlayer.getFreeSkillPoints());
+			prep.setInt(20, pPlayer.getId());
 			
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
@@ -680,9 +678,9 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			pPlayer.setId(id);
-			pm.getPlayers().add(pPlayer);
 			prep.close();
 			conn.close();
+			insertBuild(pPlayer.getCurrentBuild(), pPlayer.getId());
 		} catch (Exception e) {
 			Lostshard.log.log(Level.WARNING,
 					"[PLAYER] insertPlayer mysql error");
@@ -690,6 +688,7 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
+		return pPlayer;
 	}
 	
 	public static void updatePlayers(List<PseudoPlayer> pPlayers) {
@@ -699,7 +698,7 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			
-			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, builds=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=? WHERE id=?; ");
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
@@ -717,12 +716,11 @@ public class Database {
 				prep.setInt(13, pPlayer.getRank());
 				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
 				prep.setInt(15, pPlayer.getTimer().spawnTicks);
-				prep.setString(16, Serializer.serializeIntegerArray(pPlayer.getBuildIds()));
-				prep.setInt(17, pPlayer.getCurrentBuildId());
-				prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
-				prep.setInt(19, pPlayer.getCurrentTitleId());
-				prep.setInt(20, pPlayer.getFreeSkillPoints());
-				prep.setInt(21, pPlayer.getId());
+				prep.setInt(16, pPlayer.getCurrentBuildId());
+				prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
+				prep.setInt(18, pPlayer.getCurrentTitleId());
+				prep.setInt(19, pPlayer.getFreeSkillPoints());
+				prep.setInt(20, pPlayer.getId());
 				prep.addBatch();
 				builds.addAll(pPlayer.getBuilds());
 			}
@@ -1092,26 +1090,21 @@ public class Database {
 		}
 	}
 	
-	public static Map<Integer, Runebook> getBooks() {
-		Map<Integer, Runebook> runes = new HashMap<Integer, Runebook>();
+	public static Runebook getRunebook(int playerID) {
+		Runebook runebook = new Runebook();
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM runes ORDER BY playerid ASC");
+					.prepareStatement("SELECT label, location, id  FROM runes WHERE playerid=?");
+			prep.setInt(1, playerID);
 			prep.execute();
 			ResultSet rs = prep.getResultSet();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				try {
-					int playerID = rs.getInt("playerid");
 					String label = rs.getString("label");
 					Location loc = Serializer.deserializeLocation(rs.getString("location"));
 					Rune rune = new Rune(loc, label, id);
-					Runebook runebook = runes.get(playerID);
-					if(runebook == null) {
-						runebook = new Runebook();
-						runes.put(playerID, runebook);
-					}
 					runebook.addRune(rune);
 				} catch (Exception e) {
 					Lostshard.log.warning("[RUNES] Exception when generating \""+ id + "\" BUILD:");
@@ -1126,8 +1119,8 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		System.out.print("[RUNES] got "+runes.size()+" build from DB.");
-		return runes;
+		Lostshard.log.info("[RUNES] got "+runebook.getRunes().size()+" runes from DB.");
+		return runebook;
 	}
 
 	public static void updateRune(PseudoPlayer targetPlayer, Rune foundRune) {
@@ -1146,11 +1139,6 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		
-	}
-
-	public static void removeScroll(Spell useSpell, int id) {
-		// TODO Auto-generated method stub
 		
 	}
 	

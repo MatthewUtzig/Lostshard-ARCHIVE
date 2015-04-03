@@ -44,7 +44,7 @@ public class TamingSkill extends Skill {
 				return;
 			}
 			
-			if(pseudoPlayer.getTimer().combatTicks > 0) {
+			if(pseudoPlayer.getEngageInCombatTicks() > 0) {
 				Output.simpleError(player,  "You cannot mount while in or shortly after combat.");
 				return;
 			}

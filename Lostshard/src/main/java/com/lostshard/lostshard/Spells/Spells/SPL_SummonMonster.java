@@ -1,25 +1,16 @@
 package com.lostshard.lostshard.Spells.Spells;
 
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Scroll;
 
 public class SPL_SummonMonster extends RangedSpell {
 
-	public SPL_SummonMonster() {
-		setName("Summon Monster");
-		setSpellWords("Magickus Tradjicus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(60);
-		addReagentCost(new ItemStack(Material.BONE));
-		addReagentCost(new ItemStack(Material.REDSTONE));
-		setMinMagery(840);
+	public SPL_SummonMonster(Scroll scroll) {
+		super(scroll);
 		setRange(20);
-		setPage(8);
 		setCarePlot(false);
 	}
 

@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -82,7 +83,7 @@ public class SpellUtils {
 		Party party = pPlayer.getParty();
 		
 		boolean done = false;
-		Player _firstNeutralFound = null;
+		Player firstNeutralFound = null;
 		while (!done) {
 			Block b = aimHit.getNextBlock();
 			if(b != null) {
@@ -92,15 +93,85 @@ public class SpellUtils {
 							return p;
 						}
 						
-						if(_firstNeutralFound == null)
-							_firstNeutralFound = p;
+						if(firstNeutralFound == null)
+							firstNeutralFound = p;
 					}
 				}
 			}
-			else return _firstNeutralFound;
+			else return firstNeutralFound;
 		}
 		
-		return _firstNeutralFound;
+		return firstNeutralFound;
+	}
+	
+	public static ArrayList<LivingEntity> enemiesInLOS(Player player, PseudoPlayer pseudoPlayer, int range) {
+		AimBlock aimHit = new AimBlock(player, range, .5);
+		
+		Clan clan = pseudoPlayer.getClan();
+		Party party = pseudoPlayer.getParty();
+		
+		ArrayList<LivingEntity> livingEntities = new ArrayList<LivingEntity>();
+		
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			livingEntities.add(p);
+		}
+		
+		for(LivingEntity lE : player.getWorld().getLivingEntities()) 
+		{
+			if(lE instanceof Player){
+				if(lE.hasMetadata("NPC"))
+					continue;
+			}
+			livingEntities.add(lE);
+		}
+		
+		ArrayList<LivingEntity> livingEntitiesInRange = new ArrayList<LivingEntity>();
+		for(LivingEntity lE : livingEntities) {
+			if(lE instanceof Player) {
+				Player p = (Player)lE;
+				if(p == player)
+					continue;
+				if(clan != null) {
+					if(clan.isMember(p)) {
+						continue;
+					}
+				}
+				if(party != null) {
+					if(party.isMember(p)) {
+						continue;
+					}
+				}
+				
+				if(Utils.isWithin(player.getLocation(), p.getLocation(), range)) {
+						livingEntitiesInRange.add(p);
+				}
+			}
+			else {
+				if(Utils.isWithin(player.getLocation(), lE.getLocation(), range)) {
+					livingEntitiesInRange.add(lE);
+				}
+			}
+		}
+		
+		
+		ArrayList<LivingEntity> validTargets = new ArrayList<LivingEntity>();
+		if(livingEntitiesInRange.size() <= 0)
+			return validTargets;
+		
+		boolean done = false;
+		while (!done) {
+			Block b = aimHit.getNextBlock();
+			if(b != null) {
+				for(LivingEntity lE : livingEntitiesInRange) {
+					if(Utils.isWithin(b.getLocation(), lE.getLocation(), 3)) {
+						validTargets.add(lE);
+					}
+				}
+			}
+			else return validTargets;
+		}
+		
+		return validTargets;
 	}
 
 	public static Block blockInLOS(Player player, int range) {

@@ -126,4 +126,10 @@ commands:
    public:
       description: Set you to public.
       usage: /<command>
+   bind:
+      description: creates a wand.
+      usage: /<command>
+   unbind:
+      description: removes a wand.
+      usage: /<command>
       

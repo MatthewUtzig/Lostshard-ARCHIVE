@@ -10,36 +10,31 @@ import com.lostshard.lostshard.Spells.RangedSpell;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Utils;
 
-public class SPL_Grass extends RangedSpell {
+public class SPL_Flowers extends RangedSpell {
 
-	public SPL_Grass(Scroll scroll) {
+	public SPL_Flowers(Scroll scroll) {
 		super(scroll);
 		setRange(10);
 		setCarePlot(true);
 	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
+
+	@Override
 	public void preAction(Player player) {
 		
 	}
-	
-	/* The meat of the spell code, this is what happens when the spell is
-	 * actually activated and should be doing something.
-	 */
+
+	@Override
 	public void doAction(Player player) {
-		
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 2; x <= getFoundBlock().getX()+2; x++) {
 			for(int y = getFoundBlock().getY() - 2; y <= getFoundBlock().getY()+2; y++) {
 				for(int z = getFoundBlock().getZ() - 2; z <= getFoundBlock().getZ()+2; z++) {
 					Block blockAt = getFoundBlock().getWorld().getBlockAt(x,y,z);
-					if(blockAt.getType().equals(Material.DIRT) || blockAt.getType().equals(Material.SOIL)) {
-						Block blockAbove = getFoundBlock().getRelative(0,1,0);
+					if(!blockAt.getType().equals(Material.AIR)) {
+						Block blockAbove = getFoundBlock().getWorld().getBlockAt(x,y+1,z);
 						if(blockAbove.getType().equals(Material.AIR)) {
 							if(Utils.isWithin(blockAbove.getLocation(), getFoundBlock().getLocation(), 2))
-								blocks.add(blockAt);
+								blocks.add(blockAbove);
 						}
 					}
 				}
@@ -47,10 +42,13 @@ public class SPL_Grass extends RangedSpell {
 		}
 		
 		for(Block block : blocks) {
-			block.setType(Material.GRASS);
+			double rand = Math.random();
+			if(rand < .2)
+				block.setType(Material.RED_ROSE);
+			else if(rand < .4) 
+				block.setType(Material.YELLOW_FLOWER);
 		}
-		
+
 	}
 
-	
 }

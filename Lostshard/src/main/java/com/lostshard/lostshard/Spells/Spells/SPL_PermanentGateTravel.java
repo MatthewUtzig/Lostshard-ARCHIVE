@@ -6,30 +6,20 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_PermanentGateTravel extends Spell {
-	public SPL_PermanentGateTravel() {
-		super();
-		setName("Permanent Gate Travel");
-		setSpellWords("Gatius Permenatus");
-		setCastingDelay(20);
-		setCooldown(20);
-		setManaCost(100);
-		addReagentCost(new ItemStack(Material.STRING));
-		addReagentCost(new ItemStack(Material.REDSTONE));
-		addReagentCost(new ItemStack(Material.OBSIDIAN));
-		setMinMagery(840);
-		setPage(8);
+	public SPL_PermanentGateTravel(Scroll scroll) {
+		super(scroll);
 		setPrompt("What rune would you like to open a permanent gate to?");
 	}
 	

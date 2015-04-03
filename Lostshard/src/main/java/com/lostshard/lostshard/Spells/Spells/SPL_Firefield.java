@@ -7,21 +7,16 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Structures.FireField;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class SPL_Firefield extends RangedSpell {
 
-	public SPL_Firefield() {
-		setName("Fire Field");
-		setSpellWords("Charmanderous Fieldicus");
+	public SPL_Firefield(Scroll scroll) {
+		super(scroll);
 		setCarePlot(false);
-		setManaCost(15);
-		setCooldown(20);
-		setCastingDelay(0);
-		setPage(5);
 		setRange(20);
-		setMinMagery(480);
 	}
 
 	@Override

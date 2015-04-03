@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Spells.Spell;
+import com.lostshard.lostshard.Spells.Spells.SPL_Chronoport;
 import com.lostshard.lostshard.Utils.Output;
 
 public class PseudoPlayerTimer {
@@ -27,9 +28,9 @@ public class PseudoPlayerTimer {
 	
 	public int cantCastTicks = 0;
 	
-	public int combatTicks = 0;
-	
 	public Spell delayedSpell = null;
+	
+	public SPL_Chronoport chronoport = null;
 	
 	public PseudoPlayerTimer(PseudoPlayer pPlayer) {
 		super();
@@ -59,10 +60,14 @@ public class PseudoPlayerTimer {
 			spawnTicks--;
 		if(player.getCriminal() > 0)
 			player.setCriminal(player.getCriminal()-1);
-		if(combatTicks > 0)
-			combatTicks--;
+		if(player.getPvpTicks() > 0)
+			player.setPvpTicks(player.getPvpTicks()-1);
+		if(player.getEngageInCombatTicks() > 0)
+			player.setPvpTicks(player.getEngageInCombatTicks()-1);
 		if(delayedSpell != null && player.getPromptedSpell() == null)
 			delayedSpell.tick(player.getOnlinePlayer());
+		if(chronoport != null)
+			chronoport.chronoTick();
 		if(recentlyTeleportedTicks > 0)
 			recentlyTeleportedTicks--;
 		spawn();

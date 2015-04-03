@@ -5,24 +5,18 @@ import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Spells.RangedSpell;
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Structures.Iceball;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class SPL_Iceball extends RangedSpell {
 
-	public SPL_Iceball() {
-		setName("Ice Ball");
-		setSpellWords("Freezius Ballicus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(25);
-		addReagentCost(new ItemStack(Material.STRING));
-		setMinMagery(480);
-		setPage(5);
+	public SPL_Iceball(Scroll scroll) {
+		super(scroll);
 		setCarePlot(false);
+		setRange(15);
 	}
 
 	@Override

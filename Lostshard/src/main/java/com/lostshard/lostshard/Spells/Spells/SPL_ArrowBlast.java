@@ -1,25 +1,16 @@
 package com.lostshard.lostshard.Spells.Spells;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
 
 public class SPL_ArrowBlast extends Spell {
 
-	public SPL_ArrowBlast() {
-		setName("Arrow Blast");
-		setSpellWords("Blastius Projectilus");
-		setCastingDelay(0);
-		setCooldown(20);
-		setManaCost(20);
-		addReagentCost(new ItemStack(Material.ARROW));
-		addReagentCost(new ItemStack(Material.SULPHUR));
-		setPage(3);
-		setMinMagery(240);
+	public SPL_ArrowBlast(Scroll scroll) {
+		super(scroll);
 	}
 
 	@Override

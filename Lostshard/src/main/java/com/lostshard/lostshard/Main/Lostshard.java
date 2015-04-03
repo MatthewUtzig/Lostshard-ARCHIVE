@@ -105,7 +105,6 @@ public class Lostshard extends JavaPlugin {
 		
 		Database.getPermanentGates();
 		Database.getClans();
-		Database.getPlayers();
 		Database.getPlots();
 		
 		for(Clan c : getRegistry().getClans())
