@@ -30,6 +30,7 @@ import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.PseudoScoreboard;
 import com.lostshard.lostshard.Skills.FishingSkill;
 import com.lostshard.lostshard.Spells.Structures.FireWalk;
 import com.lostshard.lostshard.Spells.Structures.Gate;
@@ -88,6 +89,8 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Output.displayLoginMessages(event.getPlayer());
+		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
+		pPlayer.setScoreboard(new PseudoScoreboard(event.getPlayer().getUniqueId()));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

@@ -92,14 +92,14 @@ public class Serializer {
 	}
 
 	public static String serializeItems(ItemStack[] items) {
-		List<String> array = new ArrayList<String>();
+		List<Map<String, Object>> array = new ArrayList<Map<String, Object>>();
 		for (int i = 0; i < items.length; i++) {
 			ItemStack is = items[i];
 			if (is == null)
 				is = new ItemStack(Material.AIR);
-			array.add(gson.toJson(is.serialize()));
+			array.add(is.serialize());
 		}
-		return toJsonList(array);
+		return gson.toJson(array);
 	}
 	
 	
@@ -107,10 +107,10 @@ public class Serializer {
 	public static ItemStack fromJsonToItemStack(String s) {
 		Map<String, Object> map = (Map<String, Object>) gson.fromJson(
 				s, Map.class);
-		for (Entry<String, Object> k 
-				: map.entrySet())
-			if (k.getValue() instanceof Number)
-				k.setValue(((Number) k.getValue()).intValue());
+//		for (Entry<String, Object> k 
+//				: map.entrySet())
+//			if (k.getValue() instanceof Number)
+//				k.setValue(((Number) k.getValue()).intValue());
 		ItemStack is;
 		try {
 			is = ItemStack.deserialize(map);

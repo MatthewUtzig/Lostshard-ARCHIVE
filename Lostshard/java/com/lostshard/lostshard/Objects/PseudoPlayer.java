@@ -72,6 +72,7 @@ public class PseudoPlayer {
 	private Spell promptedSpell = null;
 	
 	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
+	private PseudoScoreboard scoreboard;
 
 	public PseudoPlayer(UUID playerUUID, int id) {
 		super();
@@ -98,16 +99,22 @@ public class PseudoPlayer {
 
 	public void setMoney(int money) {
 		this.money = money;
+		if(scoreboard != null)
+			getScoreboard().updateMoney(this.money);
 		update();
 	}
 
 	public void addMoney(int money) {
 		this.money += money;
+		if(scoreboard != null)
+			getScoreboard().updateMoney(this.money);
 		update();
 	}
 
 	public void subtractMoney(int money) {
 		this.money -= money;
+		if(scoreboard != null)
+			getScoreboard().updateMoney(this.money);
 		update();
 	}
 
@@ -117,6 +124,10 @@ public class PseudoPlayer {
 
 	public void setMurderCounts(int murderCounts) {
 		this.murderCounts = murderCounts;
+		if(scoreboard != null) {
+			getScoreboard().updateMurderCounts(this.murderCounts);
+			getScoreboard().updateTeams();
+		}
 		update();
 	}
 
@@ -126,11 +137,15 @@ public class PseudoPlayer {
 
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
+		if(scoreboard != null)
+			getScoreboard().updateMurderCounts(this.murderCounts);
 		update();
 	}
 
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
+		if(scoreboard != null)
+			getScoreboard().updateMurderCounts(murderCounts);
 		update();
 	}
 
@@ -165,6 +180,9 @@ public class PseudoPlayer {
 
 	public void setCriminal(int criminal) {
 		this.criminal = criminal;
+		if(getScoreboard() != null)
+			if(!isMurderer() && isCriminal())
+				getScoreboard().updateTeams();
 		update();
 	}
 
@@ -244,6 +262,8 @@ public class PseudoPlayer {
 
 	public void setMana(int mana) {
 		this.mana = mana;
+		if(scoreboard != null)
+			getScoreboard().updateMana(this.money);
 	}
 
 	public int getStamina() {
@@ -252,6 +272,8 @@ public class PseudoPlayer {
 
 	public void setStamina(int stamina) {
 		this.stamina = stamina;
+		if(scoreboard != null)
+			getScoreboard().updateStamina(this.stamina);
 	}
 
 	public String getColoredName() {
@@ -267,6 +289,8 @@ public class PseudoPlayer {
 
 	public void setRank(int rank) {
 		this.rank = rank;
+		if(scoreboard != null)
+			getScoreboard().updateRank(this.rank);
 		update();
 	}
 
@@ -317,6 +341,8 @@ public class PseudoPlayer {
 
 	public void setCurrentBuildId(int currentBuild) {
 		this.currentBuild = currentBuild;
+		if(scoreboard != null)
+			getScoreboard().updateBuild(this.currentBuild);
 		update();
 	}
 	
@@ -600,5 +626,13 @@ public class PseudoPlayer {
 
 	public void setPrivate(boolean isPrivate) {
 		this.isPrivate = isPrivate;
+	}
+
+	public PseudoScoreboard getScoreboard() {
+		return scoreboard;
+	}
+
+	public void setScoreboard(PseudoScoreboard scoreboard) {
+		this.scoreboard = scoreboard;
 	}
 }

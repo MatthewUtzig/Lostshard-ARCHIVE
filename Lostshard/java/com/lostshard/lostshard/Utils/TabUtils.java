@@ -12,7 +12,7 @@ public class TabUtils {
 	public static List<String> StringTab(String[] args, String[] options) {
 		List<String> completions = new ArrayList<String>();
 		for (String option : options) {
-			if (StringUtil.startsWithIgnoreCase(option, args[0]))
+			if (StringUtil.startsWithIgnoreCase(option, args[args.length-1]))
 				completions.add(option);
 		}
 		return completions;
@@ -21,7 +21,7 @@ public class TabUtils {
 	public static List<String> OnlinePlayersTab(String[] args) {
 		List<String> completions = new ArrayList<String>();
 		for (Player option : Bukkit.getOnlinePlayers()) {
-			if (StringUtil.startsWithIgnoreCase(option.getName(), args[0]))
+			if (StringUtil.startsWithIgnoreCase(option.getName(), args[args.length-1]))
 				completions.add(option.getName());
 		}
 		return completions;
@@ -36,10 +36,14 @@ public class TabUtils {
 			if (players.contains(p))
 				players.remove(p);
 		for (Player option : players) {
-			if (StringUtil.startsWithIgnoreCase(option.getName(), args[0]))
+			if (StringUtil.startsWithIgnoreCase(option.getName(), args[args.length-1]))
 				completions.add(option.getName());
 		}
 		return completions;
+	}
+
+	public static List<String> empty() {
+		return new ArrayList<String>();
 	}
 
 }

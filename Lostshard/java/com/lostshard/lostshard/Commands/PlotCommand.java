@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -1678,7 +1679,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("plot"))
+		if (cmd.getName().equalsIgnoreCase("plot")) {
 			if (args.length == 1)
 				return TabUtils.StringTab(args, new String[] { "info",
 						"create", "deposit", "expand", "rename", "coowner",
@@ -1686,19 +1687,20 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"sell", "unsell", "buy", "list", "preotect",
 						"unprotect", "private", "public", "explosion",
 						"upgrade", "downgrade", "friend", "npc"});
-		if (args.length == 2 && args[1].equalsIgnoreCase("upgrade")
-				|| args[1].equalsIgnoreCase("upgrades") || 
-				args[1].equalsIgnoreCase("downgrade") || 
-				args[1].equalsIgnoreCase("downgrades"))
+			else if (args.length == 2 && args[0].equalsIgnoreCase("upgrade")
+				|| args[0].equalsIgnoreCase("upgrades") || 
+				args[0].equalsIgnoreCase("downgrade") || 
+				args[0].equalsIgnoreCase("downgrades"))
 			return TabUtils.StringTab(args, new String[] { "town", "dungeon",
-					"autokick", "neutral" });
-		if(args.length >= 2 && args[1].equalsIgnoreCase("npc"))
-			if(args.length >= 3 && args[2].equalsIgnoreCase("hire"))
-				return TabUtils.StringTab(args, new String[] { "banker", "vendor"});
-			else
-				return TabUtils.StringTab(args, new String[] { "hire", "fire",
-					"move" });
-		return null;
+					"autokick", "neutral"});
+			else if(args.length >= 2 && args[0].equalsIgnoreCase("npc"))
+				if(args.length == 2)
+					return TabUtils.StringTab(args, new String[] { "hire", "fire",
+						"move" });
+				else if(args.length == 3 && args[1].equalsIgnoreCase("hire"))
+					return TabUtils.StringTab(args, new String[] { "banker", "vendor"});
+		}
+		return TabUtils.empty();
 	}
 
 }
