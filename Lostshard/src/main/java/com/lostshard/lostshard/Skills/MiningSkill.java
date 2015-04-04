@@ -45,7 +45,7 @@ public class MiningSkill extends Skill {
 		if (block.getType().equals(Material.STONE)
 				&& ItemUtils.isPickAxe(player.getItemInHand()) && !block.hasMetadata("placed")) {
 
-			int gain = pPlayer.getCurrentBuild().getMining().skillGain();
+			int gain = pPlayer.getCurrentBuild().getMining().skillGain(pPlayer);
 			
 			int curSkill = pPlayer.getCurrentBuild().getMining().getLvl();
 

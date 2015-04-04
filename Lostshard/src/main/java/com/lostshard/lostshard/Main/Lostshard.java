@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Main;
 
-import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -106,12 +105,7 @@ public class Lostshard extends JavaPlugin {
 		Database.getPermanentGates();
 		Database.getClans();
 		Database.getPlots();
-		
-		for(Clan c : getRegistry().getClans())
-			for(UUID uuid : c.getMembersAndLeders()) {
-				PseudoPlayer pPlayer = pm.getPlayer(uuid);
-				pPlayer.setClan(c);
-			}
+	
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);

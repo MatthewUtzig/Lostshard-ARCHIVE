@@ -2,6 +2,7 @@ package com.lostshard.lostshard.Skills;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public abstract class Skill {
 
@@ -48,8 +49,10 @@ public abstract class Skill {
 		this.name = name;
 	}
 	
-	public int skillGain() {
+	public int skillGain(PseudoPlayer pPlayer) {
 		if(locked)
+			return 0;
+		if(pPlayer.getCurrentBuild().getTotalSkillVal() >= pPlayer.getMaxSkillValTotal())
 			return 0;
 		if(lvl >= 1000)
 			return 0;

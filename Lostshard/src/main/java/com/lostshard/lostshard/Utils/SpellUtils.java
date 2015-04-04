@@ -50,9 +50,10 @@ public class SpellUtils {
 			Material.WALL_SIGN));
 	
 	public static boolean isValidRuneLocation(Player player, Location location) {
-
 		Block blockAt = location.getBlock();
 		Block blockAbove = blockAt.getRelative(0,1,0);
+		if(blockAbove == null || blockAt == null)
+			return true;
 		if(!invisibleBlocks.contains(blockAt.getType()) || !invisibleBlocks.contains(blockAbove.getType())) {
 			Output.simpleError(player, "Invalid location, blocked.");
 			return false;
@@ -132,7 +133,7 @@ public class SpellUtils {
 				if(p == player)
 					continue;
 				if(clan != null) {
-					if(clan.isMember(p)) {
+					if(clan.isInClan(p.getUniqueId())) {
 						continue;
 					}
 				}

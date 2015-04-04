@@ -86,7 +86,7 @@ public class BladesSkill extends Skill {
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		int gain = pPlayer.getCurrentBuild().getBlades().skillGain();
+		int gain = pPlayer.getCurrentBuild().getBlades().skillGain(pPlayer);
 		Output.gainSkill(player, "Bladess", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();

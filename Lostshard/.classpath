@@ -32,7 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/citizens-2.0.13-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/commons-dbcp2-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/commons-pool2-2.2.jar"/>

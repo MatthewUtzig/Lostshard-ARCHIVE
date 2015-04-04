@@ -89,7 +89,7 @@ public class LumberjackingSkill extends Skill {
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		int gain = skill.skillGain();
+		int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();
@@ -129,7 +129,7 @@ public class LumberjackingSkill extends Skill {
 			
 			skill.setBaseProb(.3);
 			skill.setScaleConstant(80);
-			int gain = skill.skillGain();
+			int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 		}else if(block.getType().equals(Material.LOG_2) && !block.hasMetadata("placed")) {
 			if(block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
@@ -147,7 +147,7 @@ public class LumberjackingSkill extends Skill {
 			
 			skill.setBaseProb(.3);
 			skill.setScaleConstant(80);
-			int gain = skill.skillGain();
+			int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 		}
 	}

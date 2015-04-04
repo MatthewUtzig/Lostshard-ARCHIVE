@@ -11,6 +11,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
+import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -42,7 +43,6 @@ public class PseudoPlayer {
 	private int mana = 100;
 	private int stamina = 100;
 	private int rank = 800;
-	private Clan clan = null;
 	private Party party = null;
 	private Location customSpawn = new Location(Bukkit.getWorlds().get(0),0,0,0);
 	private List<Build> builds = new ArrayList<Build>();
@@ -271,12 +271,10 @@ public class PseudoPlayer {
 	}
 
 	public Clan getClan() {
-		return clan;
-	}
-
-	public void setClan(Clan clan) {
-		this.clan = clan;
-		update();
+		for(Clan c : Lostshard.getRegistry().getClans())
+			if(c.isInClan(playerUUID))
+				return c;
+		return null;
 	}
 
 	public Location getCustomSpawn() {
@@ -533,6 +531,11 @@ public class PseudoPlayer {
 
 	public void setSpellbook(SpellBook spellbook) {
 		this.spellbook = spellbook;
+	}
+	
+	public void addSpell(Scroll scroll) {
+		this.spellbook.addSpell(scroll);
+		update();
 	}
 	
 	public void setPromptedSpell(Spell promptedSpell) {

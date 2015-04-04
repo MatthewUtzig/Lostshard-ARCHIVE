@@ -6,6 +6,7 @@ import java.util.List;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Scroll;
+import com.lostshard.lostshard.Utils.Serializer;
 
 public class SpellBook {
 
@@ -38,5 +39,11 @@ public class SpellBook {
 		}
 		return spellsOnPage;
 	}
-	
+
+	public String toJson() {
+		List<String> tjson = new ArrayList<String>();
+		for(Scroll s : spells)
+			tjson.add(s.getName());
+		return Serializer.serializeStringArray(tjson);
+	}
 }

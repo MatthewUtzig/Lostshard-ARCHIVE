@@ -17,7 +17,6 @@ import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
-import com.lostshard.lostshard.Utils.Utils;
 
 /**
  * @author Jacob Rosborg
@@ -143,7 +142,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		String msg = Utils.getStringFromList(args);
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.WHISPER);
 		player.chat(msg);
@@ -164,7 +163,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		String msg = Utils.getStringFromList(args);
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.LOCAL);
 		player.chat(msg);
@@ -185,7 +184,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		String msg = Utils.getStringFromList(args);
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.SHOUT);
 		player.chat(msg);
@@ -206,7 +205,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		String msg = Utils.getStringFromList(args);
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.GLOBAL);
 		player.chat(msg);
@@ -226,8 +225,8 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			Output.positiveMessage(player, "You have togglet clan chat.");
 			return;
 		}
-
-		String msg = Utils.getStringFromList(args);
+		
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.CLAN);
 		player.chat(msg);
@@ -248,7 +247,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		String msg = Utils.getStringFromList(args);
+		String msg = StringUtils.join(args, " ");
 		ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.PARTY);
 		player.chat(msg);

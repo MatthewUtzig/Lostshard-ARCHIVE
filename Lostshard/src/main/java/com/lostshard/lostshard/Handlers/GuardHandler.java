@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
-import com.lostshard.lostshard.NPC.NPCManager;
 import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
@@ -49,15 +47,15 @@ public class GuardHandler {
 			if (pPCP.isCriminal() || pPCP.isMurderer())
 				criminals.add(pCP);
 		}
-		// Slaying all criminals that are in range
-		for (Player c : criminals) {
-			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(),
-					TeleportCause.PLUGIN);
-			c.damage(0d);
-			c.setHealth(0d);
-		}
-		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(),
-				TeleportCause.PLUGIN);
+//		// Slaying all criminals that are in range
+//		for (Player c : criminals) {
+//			NPCManager.getNPC(guard.getId()).teleport(c.getLocation(),
+//					TeleportCause.PLUGIN);
+//			c.damage(0d);
+//			c.setHealth(0d);
+//		}
+//		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(),
+//				TeleportCause.PLUGIN);
 	}
 
 }

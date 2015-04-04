@@ -84,7 +84,7 @@ public class BrawlingSkill extends Skill {
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		int gain = skill.skillGain();
+		int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();

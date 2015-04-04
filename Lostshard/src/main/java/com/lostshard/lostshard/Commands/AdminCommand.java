@@ -34,6 +34,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("test").setExecutor(this);
 		plugin.getCommand("tpplot").setExecutor(this);
 		plugin.getCommand("tpworld").setExecutor(this);
+		plugin.getCommand("setmurders").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -76,10 +77,38 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			Player player = (Player) sender;
 			PseudoPlayer pPlayer = pm.getPlayer(player);
 			for(Scroll scroll : Scroll.values())
-				pPlayer.getSpellbook().addSpell(scroll);
+				pPlayer.addSpell(scroll);
+			return true;
+		}else if(cmd.getName().equalsIgnoreCase("setmurders")) {
+			Player player = (Player) sender;
+			setMurder(player, args);
 			return true;
 		}
 		return true;
+	}
+
+	private void setMurder(Player player, String[] args) {
+		if(args.length < 2) {
+			Output.simpleError(player, "/setmurders (player) (amount)");
+			return;
+		}
+		@SuppressWarnings("deprecation")
+		Player tPlayer = Bukkit.getPlayer(args[0]);
+		if(tPlayer == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		int amount;
+		try {
+			amount = Integer.parseInt(args[1]);
+			PseudoPlayer pPlayer = pm.getPlayer(tPlayer);
+			pPlayer.setMurderCounts(amount);
+			Output.positiveMessage(player, "You have set "+tPlayer.getName()+" murdercounts to "+amount+".");
+			Output.positiveMessage(tPlayer, player.getName()+" have set your murdercounts to "+amount+".");
+		} catch (Exception e) {
+			Output.simpleError(player, "/setmurders (player) (amount)");
+			return;
+		}
 	}
 
 	private void tpPlot(Player player, String[] args) {

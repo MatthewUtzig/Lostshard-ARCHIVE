@@ -42,7 +42,7 @@ public class FishingSkill extends Skill {
 			}else if(lvl >= 500) {
 				player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomFish(lvl));
 			}
-			int gain = skill.skillGain();
+			int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Fishing", gain, skill.getLvl());
 			if(gain > 0)
 				pPlayer.update();
@@ -237,7 +237,7 @@ public class FishingSkill extends Skill {
 					if(b != null && b.getType().equals(Material.STATIONARY_WATER) && blockAbove.getType().equals(Material.AIR)) {
 						Output.positiveMessage(player, "You summoned a boat.");
 						placedBoat = true;
-						int gain = skill.skillGain();
+						int gain = skill.skillGain(pPlayer);
 						Output.gainSkill(player, "Fishing", gain, skill.getLvl());
 						pPlayer.update();
 						player.getWorld().spawn(new Location(b.getWorld(), b.getX()+.5, b.getY()+.5, b.getZ()+.5), Boat.class);

@@ -35,8 +35,8 @@ public class PlayerManager {
 	public PseudoPlayer getPlayer(UUID uuid) {
 		for (PseudoPlayer pPlayer : players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
-				return pPlayer;
-		return null;
+					return pPlayer;
+		return Database.getPlayer(uuid);
 	}
 
 	public PseudoPlayer getPlayer(Player player) {
@@ -63,12 +63,12 @@ public class PlayerManager {
 			pPlayer.tick(delta, tick);
 	}
 
-	public PseudoPlayer getPlayer(int id) {
-		for(PseudoPlayer pPlayer : players)
-			if(pPlayer.getId() == id)
-				return pPlayer;
-		return null;
-	}
+//	public PseudoPlayer getPlayer(int id) {
+//		for(PseudoPlayer pPlayer : players)
+//			if(pPlayer.getId() == id)
+//					return pPlayer;
+//		return null;
+//	}
 	
 	public boolean addPlayer(Player player) {
 		PseudoPlayer pPlayer;

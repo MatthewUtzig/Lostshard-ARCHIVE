@@ -1,7 +1,6 @@
 package com.lostshard.lostshard.Commands;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -98,7 +97,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 							if(curMoney >= Variables.clanCreateCost) {
 								pseudoPlayer.setMoney(pseudoPlayer.getMoney()-Variables.clanCreateCost);
 								Clan clan = new Clan(clanName, player.getUniqueId());
-								pseudoPlayer.setClan(clan);
 								Lostshard.getRegistry().getClans().add(clan);
 								Database.insertClan(clan);
 								Output.positiveMessage(player, "You have created the clan "+clan.getName());
@@ -284,7 +282,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 						clanFound.addMember(player.getUniqueId());
 						clanFound.removeInvited(player.getUniqueId());
 						Clan currentClan = pseudoPlayer.getClan();
-						pseudoPlayer.setClan(clanFound);
 						if(currentClan != null) {
 							currentClan.removeInvited(player.getUniqueId());
 							currentClan.demoteLeader(player.getUniqueId());
@@ -320,8 +317,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 							if(!clan.isLeader(player.getUniqueId()) && clan.isOwner(player.getUniqueId())) {
 								clan.demoteLeader(targetOfflinePlayer.getUniqueId());
 								clan.removeMember(targetOfflinePlayer.getUniqueId());
-								PseudoPlayer targetPseudo = pm.getPlayer(targetOfflinePlayer.getUniqueId());
-								targetPseudo.setClan(null);
 								if(targetPlayer != null)
 									Output.simpleError(targetPlayer, "You have been kicked from "+clan.getName()+".");
 								Output.positiveMessage(player, "You have kicked "+targetOfflinePlayer.getName()+ " from your clan.");
@@ -346,7 +341,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			if(!clan.isOwner(player.getUniqueId())) {
 				clan.removeMember(player.getUniqueId());
 				clan.demoteLeader(player.getUniqueId());
-				pseudoPlayer.setClan(null);
 				clan.sendMessage(player.getName()+" has left the clan.");
 				Output.positiveMessage(player, "You have left the "+clan.getName()+" clan.");
 			}
@@ -409,10 +403,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 				for(Player p : onlineMembers) {
 					// inform them the clan is gone
 					Output.simpleError(p, "Your clan has been disbanded.");
-				}
-				for(UUID uuid : clan.getMembersAndLeders()) {
-					PseudoPlayer pPlayer = pm.getPlayer(uuid);
-					pPlayer.setClan(null);
 				}
 				Database.deleteClan(clan);
 				Lostshard.getRegistry().getClans().remove(clan);

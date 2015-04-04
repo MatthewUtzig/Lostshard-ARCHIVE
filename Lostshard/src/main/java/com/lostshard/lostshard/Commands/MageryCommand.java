@@ -226,7 +226,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				}
 				SpellBook spellbook = pPlayer.getSpellbook();
 				if(!spellbook.containSpell(scroll)) {
-					spellbook.addSpell(scroll);
+					pPlayer.addSpell(scroll);
 					Database.deleteScroll(scroll, pPlayer.getId());
 					pPlayer.update();
 					Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");

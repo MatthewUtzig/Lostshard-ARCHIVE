@@ -132,4 +132,6 @@ commands:
    unbind:
       description: removes a wand.
       usage: /<command>
-      
+   setmurders:
+      description: set a players murder counts.
+      usage: /<command> (player) (amount)
