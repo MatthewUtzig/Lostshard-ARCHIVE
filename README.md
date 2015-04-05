@@ -1,3 +1,8 @@
+#Left over
+ - Taming commands
+ - Blacksmithy commands
+ - 
+
 #Plots
 - [x] Commands
 - [x] Mysql
