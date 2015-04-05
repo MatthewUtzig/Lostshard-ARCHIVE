@@ -47,7 +47,7 @@
 - [ ] Survivalism
 - [ ] Taming
 - [ ] Blacksmithy
-- [x] Fhising
+- [x] Fishing
 
 #Utils
 - [x] Who
