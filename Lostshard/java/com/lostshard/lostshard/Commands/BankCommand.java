@@ -64,7 +64,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		String targetName = args[0];
-		@SuppressWarnings("deprecation")
+		
 		Player targetPlayer = Bukkit.getPlayer(targetName);
 		if (targetPlayer == null) {
 			sender.sendMessage(ChatColor.DARK_RED + targetName

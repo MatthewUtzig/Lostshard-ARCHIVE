@@ -8,6 +8,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemFrame;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Painting;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -21,24 +22,31 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
+import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.util.Vector;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 
 public class PlotProtectionHandler {
 	
 	static PlotManager ptm = PlotManager.getManager();
+	static PlayerManager pm = PlayerManager.getManager();
 	
 	/**
 	 * @param event
@@ -469,5 +477,47 @@ public class PlotProtectionHandler {
     		return;
     	event.setCancelled(true);	
     }
+
+	public static void onMonsterSpawn(EntitySpawnEvent event) {
+		if(event.getEntity() instanceof Monster) {
+			Plot plot = ptm.findPlotAt(event.getLocation());
+			if(plot != null && !plot.isDungeon())
+				event.setCancelled(true);
+		}
+	}
+
+	public static void onPlayerBedEnter(PlayerBedEnterEvent event) {
+		Plot plot = ptm.findPlotAt(event.getBed().getLocation());
+		if(plot == null || !plot.isTown()) {
+			Output.simpleError(event.getPlayer(), "You are only able to set your spawn in a town.");
+			event.getPlayer().setBedSpawnLocation(null);
+		} else {
+			Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
+		}
+	}
+	
+	public static void onPlayerSpawn(PlayerRespawnEvent event) {
+		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
+		if(event.isBedSpawn()) {
+			Plot plot = ptm.findPlotAt(event.getRespawnLocation());
+			PseudoPlayer plotPlayer = pm.getPlayer(event.getPlayer());
+			if(plot == null || !plot.isTown()) {
+				event.getPlayer().setBedSpawnLocation(null);
+				event.setRespawnLocation(pPlayer.getSpawn());
+			}else if(!(plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal() || plot.isNeutralAlignment())) {
+				Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
+				event.setRespawnLocation(pPlayer.getSpawn());
+			}
+		}
+		event.setRespawnLocation(pPlayer.getSpawn());
+	}
+	
+	public static void onPlayerJoin(PlayerJoinEvent event) {
+		Plot plot = ptm.findPlotAt(event.getPlayer().getLocation());
+		if(plot != null && plot.isAutoKick() && !plot.isFriendOrAbove(event.getPlayer())) {
+			event.getPlayer().teleport(event.getPlayer().getLocation().getWorld().getHighestBlockAt(event.getPlayer().getLocation()).getLocation());
+			Output.simpleError(event.getPlayer(), "You have been kicked from "+plot.getName()+".");
+		}
+	}
 	
 }

@@ -44,7 +44,6 @@ public class PseudoPlayer {
 	private int stamina = 100;
 	private int rank = 800;
 	private Party party = null;
-	private Location customSpawn = new Location(Bukkit.getWorlds().get(0),0,0,0);
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -301,13 +300,11 @@ public class PseudoPlayer {
 		return null;
 	}
 
-	public Location getCustomSpawn() {
-		return customSpawn;
-	}
-
-	public void setCustomSpawn(Location customSpawn) {
-		this.customSpawn = customSpawn;
-		update();
+	public Location getSpawn() {
+		if(this.isMurderer() || this.isCriminal())
+			return SpawnLocation.MURDER.getSpawn();
+		else
+			return SpawnLocation.LAWFULL.getSpawn();
 	}
 
 	public Party getParty() {

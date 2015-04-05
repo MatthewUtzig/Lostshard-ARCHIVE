@@ -109,7 +109,6 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		to.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
 	}
 
-	@SuppressWarnings("deprecation")
 	private void msgChat(Player player, String[] args) {
 		if(args.length < 2) {
 			Output.simpleError(player, "/msg (Player) (message)");
@@ -263,7 +262,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			else
 				return TabUtils.OnlinePlayersTab(args);
 		}
-		return null;
+		return TabUtils.empty();
 	}
 
 }

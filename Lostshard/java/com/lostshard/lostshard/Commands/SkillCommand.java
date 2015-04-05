@@ -36,7 +36,6 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static void skills(CommandSender sender, String[] args) {
 		if(!(sender instanceof Player)){
 			Output.mustBePlayer(sender);

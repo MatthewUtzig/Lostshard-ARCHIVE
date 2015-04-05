@@ -66,12 +66,12 @@ public class SPL_PermanentGateTravel extends Spell {
 		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
 			
 			if(!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
-				//Output.simpleError(player, "Your current location is blocked.");
+				Output.simpleError(player, "Your current location is blocked.");
 				return;
 			}
 			
 			if(!SpellUtils.isValidRuneLocation(player, runeLoc)) {
-				//Output.simpleError(player, "That location is blocked.");
+				Output.simpleError(player, "That location is blocked.");
 				return;
 			}
 			
@@ -94,7 +94,19 @@ public class SPL_PermanentGateTravel extends Spell {
 				return;
 			}
 			
-			new PermanentGate(blocks, player.getUniqueId());
+			if(destBlock.getRelative(0,1,0).getType().equals(Material.PORTAL) || destBlock.getType().equals(Material.PORTAL)) {
+				Output.simpleError(player, "Cannot gate to another gate.");
+				return;
+			}
+			
+			int yaw = Math.round(Math.abs(player.getLocation().getYaw()/90));
+			boolean direction;
+			if(yaw == 0 || yaw == 2)
+				direction = true;
+			else
+				direction = false;
+			
+			new PermanentGate(blocks, player.getUniqueId(), direction);
 		}
 		else Output.simpleError(player, "Cannot gate to there, not a friend of the plot.");
 	}

@@ -135,3 +135,6 @@ commands:
    setmurders:
       description: set a players murder counts.
       usage: /<command> (player) (amount)
+   kill:
+      description: Kill.
+      usage: /<command>

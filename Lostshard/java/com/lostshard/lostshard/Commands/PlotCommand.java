@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -371,18 +370,19 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				}
 
 				Plot npcPlot = null;
-
-				for (NPC npc : Lostshard.getRegistry().getNpcs()) {
+				
+				for (NPC npc : plot.getNpcs()) {
 					if (npc.getName().equalsIgnoreCase(name)) {
 						Output.simpleError(player,
 								"An NPC with that name already exists.");
 						return;
 					}
 					npcPlot = ptm.findPlotAt(npc.getLocation());
-					if (npcPlot == plot && !player.isOp())
+					if (npcPlot == plot && !player.isOp()) {
 						Output.simpleError(player,
 								"You may only have 1 banker per plot.");
-					return;
+						return;
+					}
 				}
 
 				NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(),
@@ -575,7 +575,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		// Verify that we can afford the rename.
 		int plotMoney = plot.getMoney();
-		if (plotMoney >= 1000) {
+		if (plotMoney < 1000) {
 			Output.simpleError(player,
 					"Not enough in the plot treasury to rename. "
 							+ Variables.plotRenamePrice + " gc.");
@@ -673,7 +673,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!plot.isOwner(player)) {
+		if (!plot.isOwner(player) && !player.isOp()) {
 			Output.simpleError(player, "Only the owner may transfer the plot.");
 			return;
 		}
@@ -684,7 +684,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		String targetName = args[1];
-		@SuppressWarnings("deprecation")
+		
 		Player targetPlayer = Bukkit.getPlayer(targetName);
 		if (targetPlayer == null) {
 			Output.simpleError(player, targetName + " not found.");
@@ -1307,7 +1307,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
-		@SuppressWarnings("deprecation")
 		Player targetPlayer = Bukkit.getPlayer(targetName);
 
 		if (targetPlayer == null) {
@@ -1356,7 +1355,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		String targetName = args[1];
 
-		@SuppressWarnings("deprecation")
 		Player targetPlayer = Bukkit.getPlayer(targetName);
 
 		if (targetPlayer == null) {
@@ -1632,6 +1630,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
+		plot.disband();
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setMoney(pPlayer.getMoney() + plot.getValue());
 		// Output positive message that plot has bin disbanded and the value of

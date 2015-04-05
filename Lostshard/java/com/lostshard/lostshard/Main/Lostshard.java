@@ -33,9 +33,7 @@ import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Registry;
-import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Spells.MagicStructure;
 
 /**

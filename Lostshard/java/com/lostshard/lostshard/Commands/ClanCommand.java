@@ -123,7 +123,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
-	@SuppressWarnings("deprecation")
 	private static void clanInvite(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player);

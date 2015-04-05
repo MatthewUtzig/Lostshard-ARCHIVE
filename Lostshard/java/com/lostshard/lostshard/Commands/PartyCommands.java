@@ -69,18 +69,12 @@ public class PartyCommands implements CommandExecutor, TabCompleter {
 				party.addMember(player.getUniqueId());
 				pseudoPlayer.setParty(party);
 			}
-			@SuppressWarnings("deprecation")
 			Player invitedPlayer = Bukkit.getPlayer(split[1]);
 			if(invitedPlayer != null) {
 				if(invitedPlayer == player) {
 					Output.simpleError(player, "You cant invite your self.");
 					return;
 				}
-//				PseudoPlayer invitedPseudoPlayer = pm.getPlayer(invitedPlayer);
-//				if(invitedPseudoPlayer._secret) {
-//					Output.simpleError(player, "That player is not online.");
-//					return;
-//				}else
 				if(!party.isMember(invitedPlayer)) {
 					if(!party.isInvited(invitedPlayer.getUniqueId())) {
 						party.addInvited(invitedPlayer.getUniqueId());
@@ -98,7 +92,6 @@ public class PartyCommands implements CommandExecutor, TabCompleter {
 		Party party = pseudoPlayer.getParty();
 		if(party == null) {
 			if(split.length > 1)  {
-				@SuppressWarnings("deprecation")
 				Player inviterPlayer = Bukkit.getPlayer(split[1]);
 				if(inviterPlayer != null) {
 					PseudoPlayer inviterPseudoPlayer = pm.getPlayer(inviterPlayer);

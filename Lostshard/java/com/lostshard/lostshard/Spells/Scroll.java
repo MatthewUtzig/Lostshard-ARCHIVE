@@ -202,32 +202,16 @@ public enum Scroll {
 		return page;
 	}
 
-	public void setPage(int page) {
-		this.page = page;
-	}
-
 	public int getCooldown() {
 		return cooldown;
-	}
-
-	public void setCooldown(int cooldown) {
-		this.cooldown = cooldown;
 	}
 
 	public int getCastingDelay() {
 		return castingDelay;
 	}
 
-	public void setCastingDelay(int castingDelay) {
-		this.castingDelay = castingDelay;
-	}
-
 	public List<ItemStack> getReagentCost() {
 		return reagentCost;
-	}
-
-	public void setReagentCost(List<ItemStack> reagentCost) {
-		this.reagentCost = reagentCost;
 	}
 
 	public static Scroll getByString(String string) {

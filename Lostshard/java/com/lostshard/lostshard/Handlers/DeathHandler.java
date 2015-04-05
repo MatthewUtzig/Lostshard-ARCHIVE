@@ -442,10 +442,8 @@ public class DeathHandler {
 	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
 		int numAttackers = recentAttackers.size();
 		Random random = new Random();
-		if(((LivingEntity) player).getLastDamage() >= 200d)
-			Bukkit.broadcastMessage(player.getDisplayName()+ChatColor.WHITE+" was executed by an Order guard.");
-		else if(player.getLastDamageCause().equals(DamageCause.SUICIDE)) {
-			String message = player.getDisplayName()+ChatColor.WHITE;
+		if(player.getLastDamageCause() == null) {
+			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
 			int randInt = random.nextInt(5);
 			
 			switch(randInt) {
@@ -468,6 +466,8 @@ public class DeathHandler {
 
 			event.setDeathMessage(message);
 		}
+		else if(((LivingEntity) player).getLastDamage() >= 200d)
+			Bukkit.broadcastMessage(player.getDisplayName()+ChatColor.WHITE+" was executed by an Order guard.");
 		else if(numAttackers > 0) {
 			String deathMessage = player.getDisplayName()+ChatColor.WHITE+" was killed by";
 			String attackers = "";

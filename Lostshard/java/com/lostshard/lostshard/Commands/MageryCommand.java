@@ -165,7 +165,6 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 	}
 	
 
-	@SuppressWarnings("deprecation")
 	private void scrolls(Player player, String[] args) {
 		if(args.length >= 2) {
 			if(args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
@@ -244,7 +243,6 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		Output.outputSpellbook(player, args);
 	}
 
-	@SuppressWarnings("deprecation")
 	private void runebook(Player player, String[] args) {
 		if(args.length == 0 || (args.length >= 11 && args[1].equalsIgnoreCase("page"))) {
         	Output.outputRunebook(player, args);

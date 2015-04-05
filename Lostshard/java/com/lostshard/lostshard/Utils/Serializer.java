@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.UUID;
 
@@ -107,10 +106,6 @@ public class Serializer {
 	public static ItemStack fromJsonToItemStack(String s) {
 		Map<String, Object> map = (Map<String, Object>) gson.fromJson(
 				s, Map.class);
-//		for (Entry<String, Object> k 
-//				: map.entrySet())
-//			if (k.getValue() instanceof Number)
-//				k.setValue(((Number) k.getValue()).intValue());
 		ItemStack is;
 		try {
 			is = ItemStack.deserialize(map);
@@ -129,17 +124,19 @@ public class Serializer {
 	public static ItemStack[] deserializeItems(String string) {
 		ItemStack[] rs;
 		try {
-			List<String> stacks = (ArrayList<String>) gson.fromJson(string,
-					List.class);
+			List<Map<String, Object>> stacks = gson.fromJson(string, new ArrayList<Map<String, Object>>().getClass());
 			rs = new ItemStack[stacks.size()];
 			for (int i = 0; i < stacks.size(); i++) {
-				String s = (String) stacks.get(i);
-				rs[i] = fromJsonToItemStack(s);
+				Map<String, Object> map = stacks.get(i);
+//				ConfigurationSerialization.registerClass(ItemMeta.class, "ItemMeta");
+//				map.replace("meta", (ItemMeta) ConfigurationSerialization.deserializeObject((Map<String, Object>) map.get("meta"), ConfigurationSerialization.getClassByAlias("ItemMeta")));
+				rs[i] = ItemStack.deserialize(map);
 			}
 			return rs;
 		} catch (Exception e) {
 			Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] "
 					+ string);
+			e.printStackTrace();
 		}
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };
 		return rs;

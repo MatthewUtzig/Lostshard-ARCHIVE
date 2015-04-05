@@ -8,6 +8,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
@@ -339,7 +340,7 @@ public class Plot {
 	}
 
 	public int getValue() {
-		int plotValue = (int) (((Math.pow(size, 2)+size)/2-55)*Variables.plotExpandPrice);
+		int plotValue = (int) Math.floor(Math.abs((((Math.pow(size-1, 2)+size-1)/2-45)*Variables.plotExpandPrice)));
 		if (this.town)
 			plotValue += Variables.plotTownPrice;
 		if (this.isDungeon())
@@ -397,7 +398,7 @@ public class Plot {
 	 * @return Expand price from current size to size.
 	 */
 	public int getExpandPrice(int toSize) {
-		return (int) Math.abs(((Math.pow(toSize,2)+toSize)-(Math.pow(size, 2)+size))/2*Variables.plotExpandPrice);
+		return (int) Math.abs((((Math.pow((toSize-1), 2)+toSize-1)/2)-((Math.pow(size, 2)+size)/2))*Variables.plotExpandPrice+100);
 	}
 
 	public ArrayList<NPC> getNpcs() {
@@ -422,6 +423,11 @@ public class Plot {
 
 	public void setUpdate(boolean update) {
 		this.update = update;
+	}
+
+	public void disband() {
+		for(NPC npc : npcs)
+			Database.deleteNPC(npc);
 	}
 
 	// Capturepoint stuff

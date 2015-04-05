@@ -28,7 +28,6 @@ public class SPL_ClanTeleport extends Spell {
 		Output.positiveMessage(player, "You begin casting Clan Teleport");
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void doAction(Player player) {
 		//System.out.println("RSPNS: "+_response);

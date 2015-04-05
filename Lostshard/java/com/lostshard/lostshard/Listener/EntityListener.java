@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.potion.PotionEffect;
@@ -23,6 +24,7 @@ import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
@@ -30,6 +32,8 @@ import com.lostshard.lostshard.Skills.LumberjackingSkill;
 
 public class EntityListener implements Listener {
 
+	PlotManager ptm = PlotManager.getManager();
+	
 	public EntityListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
@@ -39,6 +43,11 @@ public class EntityListener implements Listener {
 		if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
 			event.setCancelled(true);
 		
+	}
+	
+	@EventHandler
+	public void onMonsterSpawn(EntitySpawnEvent event) {
+		PlotProtectionHandler.onMonsterSpawn(event);
 	}
 	
 	@EventHandler

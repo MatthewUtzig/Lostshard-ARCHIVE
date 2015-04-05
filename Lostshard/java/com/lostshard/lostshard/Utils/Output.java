@@ -210,8 +210,8 @@ public class Output {
 					+ plot.getSalePrice());
 		else
 			player.sendMessage(ChatColor.YELLOW + "Owner: " + ChatColor.WHITE
-					+ Bukkit.getOfflinePlayer(plot.getOwner()).getName() + ", "
-					+ ChatColor.YELLOW + "Sale Price: " + ChatColor.RED
+					+ Bukkit.getOfflinePlayer(plot.getOwner()).getName() + ChatColor.YELLOW+", "+
+					"Sale Price: " + ChatColor.RED
 					+ "Not for sale");
 		// Only show the owner/co-owner the amount of money in the region bank
 		if (plot.isCoownerOrAbove(player)) {
@@ -321,7 +321,6 @@ public class Output {
 		}
 		
 		String targetName = args[0];
-		@SuppressWarnings("deprecation")
 		Player p = Bukkit.getPlayer(targetName);
 		if (p != null) {
 			PseudoPlayer targetPseudoPlayer = pm.getPlayer(p);

@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -18,6 +19,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -40,6 +42,7 @@ public class PlayerListener implements Listener {
 
 	PlayerManager pm = PlayerManager.getManager();
 	
+	
 	public PlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
@@ -47,6 +50,11 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPlayerPortal(PlayerPortalEvent event) {
 		event.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onPlayerBedEnter(PlayerBedEnterEvent event) {
+		PlotProtectionHandler.onPlayerBedEnter(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)
@@ -62,6 +70,11 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPlayeQuit(PlayerQuitEvent event) {
 		pm.onPlayerQuit(event);
+	}
+	
+	@EventHandler
+	public void onPlayerSpawn(PlayerRespawnEvent event) {
+		PlotProtectionHandler.onPlayerSpawn(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -91,6 +104,7 @@ public class PlayerListener implements Listener {
 		Output.displayLoginMessages(event.getPlayer());
 		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		pPlayer.setScoreboard(new PseudoScoreboard(event.getPlayer().getUniqueId()));
+		PlotProtectionHandler.onPlayerJoin(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

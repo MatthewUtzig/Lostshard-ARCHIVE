@@ -94,9 +94,7 @@ public abstract class Spell {
 
 	public void tick(Player player) {
 		tick++;
-		if(scroll.getCastingDelay() > 0)
-			scroll.setCastingDelay(scroll.getCastingDelay()-1);
-		else {
+		if(tick >= getCastingDelay()){
 			doAction(player);
 			finish(player);
 		}

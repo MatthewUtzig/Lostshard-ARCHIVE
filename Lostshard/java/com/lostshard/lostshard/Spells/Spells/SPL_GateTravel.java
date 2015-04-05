@@ -94,7 +94,19 @@ public class SPL_GateTravel extends Spell {
 				return;
 			}
 			
-			new Gate(blocks, player.getUniqueId(), 150);
+			if(destBlock.getRelative(0,1,0).getType().equals(Material.PORTAL) || destBlock.getType().equals(Material.PORTAL)) {
+				Output.simpleError(player, "Cannot gate to another gate.");
+				return;
+			}
+			
+			int yaw = Math.round(Math.abs(player.getLocation().getYaw()/90));
+			boolean direction;
+			if(yaw == 0 || yaw == 2)
+				direction = true;
+			else
+				direction = false;
+			
+			new Gate(blocks, player.getUniqueId(), 150, direction);
 		}
 		else Output.simpleError(player, "Cannot gate to there, not a friend of the plot.");
 	}

@@ -33,6 +33,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("build").setExecutor(this);
 		plugin.getCommand("private").setExecutor(this);
 		plugin.getCommand("public").setExecutor(this);
+		plugin.getCommand("kill").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -55,8 +56,20 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			playerSetPrivate(sender);
 		} else if (cmd.getName().equalsIgnoreCase("public")) {
 			playerSetPublic(sender);
+		} else if (cmd.getName().equalsIgnoreCase("kill")) {
+			kill(sender);
 		}
 		return true;
+	}
+
+	private void kill(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		player.setHealth(0);
+		Output.positiveMessage(sender, "You have taken your own life.");
 	}
 
 	private void playerSetPublic(CommandSender sender) {
@@ -141,7 +154,6 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
-		pPlayer.setCustomSpawn(null);
 		if (pPlayer.isMurderer())
 			Output.positiveMessage(sender,
 					"You have reset your spawn to Chaos.");

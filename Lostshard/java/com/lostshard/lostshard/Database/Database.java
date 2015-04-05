@@ -592,7 +592,6 @@ public class Database {
 					int mana = rs.getInt("mana");
 					int stamina = rs.getInt("stamina");
 					int rank = rs.getInt("rank");
-					Location customSpawn = Serializer.deserializeLocation(rs.getString("customSpawn"));
 					int spawnTick = rs.getInt("spawnTick");
 					int currentBuild = rs.getInt("currentBuild");
 					List<String> titles = Serializer.deserializeStringArray(rs.getString("titles"));
@@ -615,7 +614,6 @@ public class Database {
 					pPlayer.setMana(mana);
 					pPlayer.setStamina(stamina);
 					pPlayer.setRank(rank);
-					pPlayer.setCustomSpawn(customSpawn);
 					pPlayer.getTimer().spawnTicks = spawnTick;
 					pPlayer.setCurrentBuildId(currentBuild);
 					pPlayer.setTitels(titles);
@@ -653,7 +651,7 @@ public class Database {
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO players "
 							+ "(uuid,money,bank,murderCounts,criminalTicks,globalChat,privateChat,subscribeDays,wasSubscribed,"
-							+ "plotCreationPoints,chatChannel,mana,stamina,rank,customSpawn,spawnTick,currentBuild,titles,currentTitle,freeSkillPoints,private,spellbook) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "plotCreationPoints,chatChannel,mana,stamina,rank,spawnTick,currentBuild,titles,currentTitle,freeSkillPoints,private,spellbook) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, pPlayer.getPlayerUUID().toString());
 			prep.setInt(2, pPlayer.getMoney());
 			prep.setString(3, pPlayer.getBank().Serialize());
@@ -668,14 +666,13 @@ public class Database {
 			prep.setInt(12, pPlayer.getMana());
 			prep.setInt(13, pPlayer.getStamina());
 			prep.setInt(14, pPlayer.getRank());
-			prep.setString(15, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-			prep.setInt(16, pPlayer.getTimer().spawnTicks);
-			prep.setInt(17, pPlayer.getCurrentBuildId());
-			prep.setString(18, Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setInt(19, pPlayer.getCurrentTitleId());
-			prep.setInt(20, pPlayer.getFreeSkillPoints());
-			prep.setBoolean(21, pPlayer.isPrivate());
-			prep.setString(22, pPlayer.getSpellbook().toJson());
+			prep.setInt(15, pPlayer.getTimer().spawnTicks);
+			prep.setInt(16, pPlayer.getCurrentBuildId());
+			prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
+			prep.setInt(18, pPlayer.getCurrentTitleId());
+			prep.setInt(19, pPlayer.getFreeSkillPoints());
+			prep.setBoolean(20, pPlayer.isPrivate());
+			prep.setString(21, pPlayer.getSpellbook().toJson());
 			
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
@@ -703,7 +700,7 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			
-			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, customSpawn=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=? WHERE id=?; ");
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
@@ -719,15 +716,14 @@ public class Database {
 				prep.setInt(11, pPlayer.getMana());
 				prep.setInt(12, pPlayer.getStamina());
 				prep.setInt(13, pPlayer.getRank());
-				prep.setString(14, Serializer.serializeLocation(pPlayer.getCustomSpawn()));
-				prep.setInt(15, pPlayer.getTimer().spawnTicks);
-				prep.setInt(16, pPlayer.getCurrentBuildId());
-				prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
-				prep.setInt(18, pPlayer.getCurrentTitleId());
-				prep.setInt(19, pPlayer.getFreeSkillPoints());
-				prep.setString(20, pPlayer.getSpellbook().toJson());
-				prep.setBoolean(21, pPlayer.isPrivate());
-				prep.setInt(22, pPlayer.getId());
+				prep.setInt(14, pPlayer.getTimer().spawnTicks);
+				prep.setInt(15, pPlayer.getCurrentBuildId());
+				prep.setString(16, Serializer.serializeStringArray(pPlayer.getTitels()));
+				prep.setInt(17, pPlayer.getCurrentTitleId());
+				prep.setInt(18, pPlayer.getFreeSkillPoints());
+				prep.setString(19, pPlayer.getSpellbook().toJson());
+				prep.setBoolean(20, pPlayer.isPrivate());
+				prep.setInt(21, pPlayer.getId());
 				prep.addBatch();
 				builds.addAll(pPlayer.getBuilds());
 			}
@@ -1154,10 +1150,11 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
-					.prepareStatement("INSERT IGNORE INTO permanentgates (fromLocation, toLocation, creator) VALUES (?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+					.prepareStatement("INSERT IGNORE INTO permanentgates (fromLocation, toLocation, creator, direction) VALUES (?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, Serializer.serializeLocation(gate.getFromBlock().getLocation()));
 			prep.setString(2, Serializer.serializeLocation(gate.getToBlock().getLocation()));
 			prep.setString(3, gate.getCreatorUUID().toString());
+			prep.setBoolean(4, gate.isDirection());
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			while (rs.next())
@@ -1203,13 +1200,14 @@ public class Database {
 				try {
 					Location fromLocation = Serializer.deserializeLocation(rs.getString("fromLocation"));
 					Location toLocation = Serializer.deserializeLocation(rs.getString("toLocation"));
+					boolean direction = rs.getBoolean("direction");
 					UUID uuid = UUID.fromString(rs.getString("creator"));
 					ArrayList<Block> blocks = new ArrayList<Block>();
 					blocks.add(fromLocation.getBlock());
 					blocks.add(toLocation.getBlock());
 					blocks.add(fromLocation.getBlock().getRelative(0, 1, 0));
 					blocks.add(toLocation.getBlock().getRelative(0, 1, 0));
-					new PermanentGate(blocks, uuid, id);
+					new PermanentGate(blocks, uuid, id, direction);
 				} catch (Exception e) {
 					Lostshard.log.warning("[PERMANENTGATE] Exception when generating \""+ id + "\" gate:");
 					e.printStackTrace();

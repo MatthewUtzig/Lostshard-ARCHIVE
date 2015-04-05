@@ -59,7 +59,7 @@ public class MagicStructure {
 		// go through each block, 
 		for(int i=0; i<blocks.size(); i++) {
 			BlockState b = blocks.get(i);
-			if(b.getBlock().getType() == b.getType())
+			if(b.getType() == b.getBlock().getType())
 				b.getBlock().setType(Material.AIR);
 		}
 		isDead = true;

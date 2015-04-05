@@ -39,7 +39,6 @@ public class Utils {
 	    return new BigDecimal(BigInteger.valueOf(x), 1).toString();
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static Player getPlayer(Player player, String[] args, int argsnr) {
 		if (args.length < argsnr + 1)
 			return null;

@@ -22,11 +22,21 @@ public class Gate extends MagicStructure {
 
 	private Block fromBlock;
 	private Block toBlock;
+	private boolean direction;
 	
-	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
+	@SuppressWarnings("deprecation")
+	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
 		super(blocks, uuid, numTicksTillCleanup);
-		for(Block b : blocks)
-			b.setType(Material.PORTAL);
+		this.direction = direction;
+		if(!direction) {
+			for(Block b : blocks) {
+				b.setType(Material.PORTAL);
+				b.setData((byte)2);
+			}
+		}else {
+			for(Block b : blocks)
+				b.setType(Material.PORTAL);
+		}
 		setBlocks(blocks);
 		fromBlock = blocks.get(0);
 		toBlock = blocks.get(1);
@@ -111,5 +121,13 @@ public class Gate extends MagicStructure {
 			return targetLoc;
 		}
 		return null;
+	}
+
+	public boolean isDirection() {
+		return direction;
+	}
+	
+	public void setDirection(boolean direction) {
+		this.direction = direction;
 	}   
 }

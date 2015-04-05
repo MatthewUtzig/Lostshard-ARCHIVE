@@ -80,6 +80,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 				pPlayer.addSpell(scroll);
 			return true;
 		}else if(cmd.getName().equalsIgnoreCase("setmurders")) {
+			if(!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
 			Player player = (Player) sender;
 			setMurder(player, args);
 			return true;
@@ -92,7 +96,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "/setmurders (player) (amount)");
 			return;
 		}
-		@SuppressWarnings("deprecation")
 		Player tPlayer = Bukkit.getPlayer(args[0]);
 		if(tPlayer == null) {
 			Output.plotNotIn(player);
@@ -117,7 +120,12 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		String name = StringUtils.join(args, " ");
-		Plot plot = ptm.getPlot(name);
+		Plot plot = null;
+		for(Plot p : ptm.getPlots())
+			if(p.getName().equalsIgnoreCase(name)) {
+				plot = p;
+				break;
+			}
 		if(plot == null) {
 			Output.simpleError(player, "Coulden find plot, \""+name+"\"");
 			return;
@@ -128,7 +136,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 	
 	public void tpWorld(Player player, String[] args) {
 		if(args.length < 1) {
-			Output.simpleError(player, "/tpplot (plot)");
+			Output.simpleError(player, "/tpworld (world)");
 			return;
 		}
 		String name = StringUtils.join(args, " ");
