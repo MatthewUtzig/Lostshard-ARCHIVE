@@ -41,19 +41,19 @@
 #Skills
 - [x] Mining
 - [x] Lumberjacking
-- [ ] Magery
+- [x] Magery
 - [x] Blades
 - [x] Brawling
 - [ ] Survivalism
 - [ ] Taming
 - [ ] Blacksmithy
-- [ ] Fhising
+- [x] Fhising
 
 #Utils
 - [x] Who
 - [x] Whois
 - [x] stats
-- [ ] Spawn
+- [x] Spawn
 - [ ] Reset spawn
 
 #Admin
