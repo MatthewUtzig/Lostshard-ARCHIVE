@@ -1,3 +1,8 @@
+#Left over
+ - Taming commands
+ - Blacksmithy commands
+ - 
+
 #Plots
 - [x] Commands
 - [x] Mysql
@@ -41,20 +46,20 @@
 #Skills
 - [x] Mining
 - [x] Lumberjacking
-- [ ] Magery
+- [x] Magery
 - [x] Blades
 - [x] Brawling
 - [ ] Survivalism
 - [ ] Taming
 - [ ] Blacksmithy
-- [ ] Fhising
+- [x] Fishing
 
 #Utils
 - [x] Who
 - [x] Whois
 - [x] stats
-- [ ] Spawn
-- [ ] Reset spawn
+- [x] Spawn
+- [x] Reset spawn
 
 #Admin
 - [ ] Utils
