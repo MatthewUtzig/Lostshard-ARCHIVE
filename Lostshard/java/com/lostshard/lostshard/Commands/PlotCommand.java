@@ -24,6 +24,7 @@ import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PlotUpgrade;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
@@ -343,7 +344,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 			String name;
 			if (args[2].equalsIgnoreCase("banker")) {
-				if (!plot.isTown()) {
+				if (!plot.isUpgrade(PlotUpgrade.TOWN)) {
 					Output.simpleError(player,
 							"You can only place a banker in a town.");
 					return;
@@ -703,134 +704,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 * @param player
 	 * @param args
 	 * 
-	 *            Downgrade plot at player.
-	 */
-	private void plotDowngrade(Player player, String[] args) {
-		Plot plot = ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-		int numAvail = 0;
-		if (plot.isOwner(player)) {
-
-			if (args.length == 1) {
-				Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
-
-				if (plot.isTown()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW + "- Town");
-				}
-
-				if (plot.isDungeon()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW + "- Dungeon");
-				}
-
-				if (plot.isAutoKick()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW
-							+ "- AutoKick (non-friend login auto eject)");
-				}
-
-				if (plot.isNeutralAlignment()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW + "- Neutral");
-				}
-
-				if (numAvail <= 0) {
-					Output.simpleError(player, plot.getName()
-							+ " has not been upgraded.");
-				}
-			}
-
-			else if (args.length >= 2) { // someone typed /plot upgrade
-											// (something)
-				if (args[1].equalsIgnoreCase("town")) {
-					if (plot.isTown()) {
-						plot.setMoney(plot.getMoney() + 75000);
-						plot.setTown(false);
-						if (plot.isNeutralAlignment()) {
-							plot.setNeutralAlignment(false);
-							plot.setMoney(plot.getMoney() + 7500);
-						}
-						Output.positiveMessage(player, plot.getName()
-								+ " downgrade from a town to a normal plot.");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " is not a town.");
-				} else if (args[1].equalsIgnoreCase("dungeon")) {
-					if (plot.isDungeon()) {
-						plot.setMoney(plot.getMoney() + 15000);
-						plot.setDungeon(false);
-						Output.positiveMessage(player, plot.getName()
-								+ " downgrade from a dungeon to a normal plot.");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " is not a dungeon.");
-				} else if (args[1].equalsIgnoreCase("autokick")) {
-					if (plot.isAutoKick()) {
-						plot.setMoney(plot.getMoney() + 7500);
-						plot.setAutoKick(false);
-						Output.positiveMessage(player, plot.getName()
-								+ " downgrade from autokick to a normal plot.");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " do not have autokick.");
-				} else if (args[1].equalsIgnoreCase("neutral")) {
-					if (plot.isTown()) {
-						if (plot.isNeutralAlignment()) {
-							plot.setMoney(plot.getMoney() + 7500);
-							plot.setNeutralAlignment(false);
-							Output.positiveMessage(
-									player,
-									plot.getName()
-											+ " downgrade from a neutral town to a town.");
-						} else
-							Output.simpleError(player, plot.getName()
-									+ " is not a neutral.");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " must be a town to downgrade this upgrade.");
-				} else {
-					numAvail = 0;
-					Output.positiveMessage(player, plot.getName()
-							+ "'s Upgrades:");
-
-					if (plot.isTown()) {
-						numAvail++;
-						player.sendMessage(ChatColor.YELLOW + "- Town");
-					}
-
-					if (plot.isDungeon()) {
-						numAvail++;
-						player.sendMessage(ChatColor.YELLOW + "- Dungeon");
-					}
-
-					if (plot.isAutoKick()) {
-						numAvail++;
-						player.sendMessage(ChatColor.YELLOW
-								+ "- AutoKick (non-friend login auto eject)");
-					}
-
-					if (plot.isNeutralAlignment()) {
-						numAvail++;
-						player.sendMessage(ChatColor.YELLOW + "- Neutral");
-					}
-
-					if (numAvail <= 0) {
-						Output.simpleError(player, plot.getName()
-								+ " has not been upgraded.");
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * @param player
-	 * @param args
-	 * 
 	 *            Upgrade plot at player.
 	 */
 	private void plotUpgrade(Player player, String[] args) {
@@ -839,128 +712,122 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.plotNotIn(player);
 			return;
 		}
-		int numAvail = 0;
+		
+		if(!plot.isCoownerOrAbove(player)) {
+			Output.simpleError(player, "Only the owner and co-owners may upgrade the plot.");
+			return;
+		}
+		
 		if (args.length < 2) {
 			Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
 
-			if (plot.isTown()) {
-				numAvail++;
-				player.sendMessage(ChatColor.YELLOW + "- Town");
+			if(plot.getUpgrades().size() == 0) {
+				Output.simpleError(player, plot.getName()+ " has not been upgraded.");
+			}else{
+				for(PlotUpgrade upgrade : plot.getUpgrades()) {
+					player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
+				}
 			}
-
-			if (plot.isDungeon()) {
-				numAvail++;
-				player.sendMessage(ChatColor.YELLOW + "- Dungeon");
+			Output.positiveMessage(player, "-Plot Upgrades Available-");
+			for(PlotUpgrade upgrade : PlotUpgrade.values()) {
+				if(plot.isUpgrade(upgrade))
+					continue;
+				player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
 			}
-
-			if (plot.isAutoKick()) {
-				numAvail++;
-				player.sendMessage(ChatColor.YELLOW
-						+ "- AutoKick (non-friend login auto eject)");
+		}else if (args.length >= 2) {
+			
+			PlotUpgrade upgrade = PlotUpgrade.getByName(args[1]);
+			
+			if(upgrade == null) {
+				Output.positiveMessage(player, plot.getName()
+						+ "'s Upgrades:");
+				for(PlotUpgrade u : PlotUpgrade.values()) {
+					if(plot.isUpgrade(u))
+						continue;
+					player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
+				}
 			}
-
-			if (plot.isNeutralAlignment()) {
-				numAvail++;
-				player.sendMessage(ChatColor.YELLOW + "- Neutral");
-			}
-
-			if (numAvail <= 0) {
+			
+			if(!plot.isUpgrade(upgrade)) {
+				if(plot.getMoney() >= upgrade.getPrice()) {
+					if(upgrade.equals(PlotUpgrade.NEUTRALALIGNMENT) && !plot.isUpgrade(PlotUpgrade.TOWN)) {
+						Output.simpleError(player, "must be a town to purchase this upgrade.");
+						return;
+					}
+					plot.addUpgrade(upgrade);
+					plot.setMoney(plot.getMoney()-upgrade.getPrice());
+					Output.positiveMessage(player, plot.getName()+ " upgraded to "+upgrade.getName()+".");
+				}else{
+					Output.simpleError(player, "Not enough money in plot funds. ("+Utils.df.format(upgrade.getPrice())+" gc)");
+				}
+			}else{
 				Output.simpleError(player, plot.getName()
-						+ " has not been upgraded.");
+						+ " already have the upgrade "+upgrade.getName()+".");
 			}
 		}
-		if (plot.isCoownerOrAbove(player)) {
-			if (args.length < 2) {// someone only typed /plot upgrade
-				Output.positiveMessage(player, "-Plot Upgrades Availabel-)");
-				numAvail = 0;
-				if (!plot.isTown()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW + "- Town [100,000 gc]");
-				}
+	}
 
-				if (!plot.isDungeon()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW
-							+ "- Dungeon [20,000 gc]");
-				}
+	
+	/**
+	 * @param player
+	 * @param args
+	 * 
+	 *            Downgrade plot at player.
+	 */
+	private void plotDowngrade(Player player, String[] args) {
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		if (plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if (plot.isOwner(player)) {
 
-				if (!plot.isAutoKick()) {
-					numAvail++;
-					player.sendMessage(ChatColor.YELLOW
-							+ "- AutoKick [10,000 gc]");
-				}
+			if (args.length < 2) {
+				Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
 
-				if (plot.isTown()) {
-					if (!plot.isNeutralAlignment()) {
-						numAvail++;
-						player.sendMessage(ChatColor.YELLOW
-								+ "- Neutral Alignment [4,000 gc]");
+				if(plot.getUpgrades().size() == 0) {
+					Output.simpleError(player, plot.getName()+ " has not been upgraded.");
+				}else{
+					for(PlotUpgrade upgrade : plot.getUpgrades()) {
+						player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
 					}
 				}
-			} else if (args.length >= 2) { // someone typed /plot upgrade
-											// (something)
-				if (args[1].equalsIgnoreCase("town")) {
-					if (!plot.isTown()) {
-						if (plot.getMoney() >= 100000) {
-							plot.setMoney(plot.getMoney() - 100000);
-							plot.setTown(true);
-							Output.positiveMessage(player, plot.getName()
-									+ " upgraded to a town.");
-						} else
-							Output.simpleError(player,
-									"Not enough money in plot funds. (100,000 gc)");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " is already a town.");
-				} else if (args[1].equalsIgnoreCase("dungeon")) {
-					if (!plot.isDungeon()) {
-						if (plot.getMoney() >= 20000) {
-							plot.setMoney(plot.getMoney() - 20000);
-							plot.setDungeon(true);
-							Output.positiveMessage(player, plot.getName()
-									+ " upgraded to a dungeon.");
-						} else
-							Output.simpleError(player,
-									"Not enough money in plot funds. (20,000 gc)");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " is already a dungeon.");
-				} else if (args[1].equalsIgnoreCase("autokick")) {
-					if (!plot.isAutoKick()) {
-						if (plot.getMoney() >= 10000) {
-							plot.setMoney(plot.getMoney() - 10000);
-							plot.setAutoKick(true);
-							Output.positiveMessage(player, plot.getName()
-									+ " upgraded with AutoKick.");
-						} else
-							Output.simpleError(player,
-									"Not enough money in plot funds. (10,000 gc)");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " already has the AutoKick upgrade.");
-				} else if (args[1].equalsIgnoreCase("neutral")) {
-					if (plot.isTown()) {
-						if (!plot.isNeutralAlignment()) {
-							if (plot.getMoney() >= 4000) {
-								plot.setMoney(plot.getMoney() - 4000);
-								plot.setNeutralAlignment(true);
-								Output.positiveMessage(player, plot.getName()
-										+ " upgraded to Neutral Alignment.");
-							} else
-								Output.simpleError(player,
-										"Not enough money in plot funds. (4,000 gc)");
-						} else
-							Output.simpleError(
-									player,
-									plot.getName()
-											+ " already has the Neutral Alignment upgrade.");
-					} else
-						Output.simpleError(player, plot.getName()
-								+ " must be a town to purchase this upgrade.");
-				} else
-					Output.simpleError(player, args[1]
-							+ " upgrade is not availabel.");
+				Output.positiveMessage(player, "-Plot Upgrades Available-");
+				for(PlotUpgrade upgrade : PlotUpgrade.values()) {
+					if(plot.isUpgrade(upgrade))
+						continue;
+					player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
+				}
+			}else if (args.length >= 2) {
+				
+				PlotUpgrade upgrade = PlotUpgrade.getByName(args[1]);
+				
+				if(upgrade == null) {
+					Output.positiveMessage(player, plot.getName()
+							+ "'s Upgrades:");
+					for(PlotUpgrade u : PlotUpgrade.values()) {
+						if(plot.isUpgrade(u))
+							continue;
+						player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
+					}
+				}
+				
+				if(plot.isUpgrade(upgrade)) {
+					plot.removeUpgrade(upgrade);
+					plot.setMoney((int) Math.floor(upgrade.getPrice()*.75));
+					Output.positiveMessage(player, plot.getName()
+							+ " downgrade from a "+upgrade.getName()+" to a normal plot.");
+					if(upgrade.equals(PlotUpgrade.TOWN) && plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
+						plot.removeUpgrade(PlotUpgrade.NEUTRALALIGNMENT);
+						plot.setMoney(plot.getMoney()+(int) Math.floor(PlotUpgrade.NEUTRALALIGNMENT.getPrice()*75));
+					}
+				}else{
+					Output.simpleError(player, plot.getName()
+							+ " is not a town.");
+				}
 			}
+		}else{
+			Output.simpleError(player, "Only the owner may downgrade the plot.");
 		}
 	}
 
@@ -1111,7 +978,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			if (p.isCoownerOrAbove(player)) {
 				sphereOfInfluence = p.getSize();
 			} else {
-				if (p.isTown())
+				if (p.isUpgrade(PlotUpgrade.TOWN))
 					sphereOfInfluence = p.getSize() * 2;
 				else
 					sphereOfInfluence = (int) Math.ceil(p.getSize() * 1.5);
@@ -1444,7 +1311,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			if (p.isCoownerOrAbove(player)) {
 				border = p.getSize();
 			} else {
-				if (p.isTown())
+				if (p.isUpgrade(PlotUpgrade.TOWN))
 					border = p.getSize() * 2;
 				else
 					border = (int) Math.ceil(p.getSize() * 1.5);
@@ -1571,7 +1438,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			if (plot.isCoownerOrAbove(player))
 				sphereOfInfluence = plot.getSize();
 			else {
-				if (plot.isTown())
+				if (plot.isUpgrade(PlotUpgrade.TOWN))
 					sphereOfInfluence = plot.getSize() * 2;
 				else
 					sphereOfInfluence = (int) Math.ceil(plot.getSize() * 1.5);

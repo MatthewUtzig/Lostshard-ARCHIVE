@@ -1,11 +1,8 @@
 package com.lostshard.lostshard.Utils;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
@@ -19,6 +16,7 @@ import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PlotUpgrade;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -155,7 +153,7 @@ public class Output {
 			infoText += ChatColor.YELLOW + "Status: " + ChatColor.WHITE
 					+ "Public";
 		infoText += ChatColor.YELLOW + ", ";
-		if (plot.isNeutralAlignment())
+		if (plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.WHITE
 					+ "Neutral";
 		else if (pm.getPlayer(plot.getOwner())
@@ -290,9 +288,8 @@ public class Output {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Statistics-");
-		DecimalFormat format = new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
 		player.sendMessage(ChatColor.YELLOW + "Gold Coins: " + ChatColor.WHITE
-				+ format.format(pseudoPlayer.getMoney()));
+				+ Utils.df.format(pseudoPlayer.getMoney()));
 		player.sendMessage(ChatColor.YELLOW + "Mana: " + ChatColor.WHITE
 				+ pseudoPlayer.getMana() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE

@@ -20,6 +20,7 @@ import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PlotUpgrade;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -186,11 +187,7 @@ public class Database {
 					boolean privatePlot = rs.getBoolean("private");
 					boolean friendBuild = rs.getBoolean("friendBuild");
 					// Upgrades
-					boolean town = rs.getBoolean("town");
-					boolean dungeon = rs.getBoolean("dungeon");
-					boolean neutralAlignment = rs
-							.getBoolean("neutralAlignment");
-					boolean autoKick = rs.getBoolean("autoKick");
+					List<String> upgrades = Serializer.deserializeStringArray(rs.getString("upgrades"));
 					// Admin stuff
 					boolean capturepoint = rs.getBoolean("capturePoint");
 					boolean magic = rs.getBoolean("allowMagic");
@@ -209,10 +206,9 @@ public class Database {
 					plot.setAllowExplosions(allowExplosions);
 					plot.setPrivatePlot(privatePlot);
 					plot.setFriendBuild(friendBuild);
-					plot.setTown(town);
-					plot.setDungeon(dungeon);
-					plot.setNeutralAlignment(neutralAlignment);
-					plot.setAutoKick(autoKick);
+					if(upgrades != null)
+						for(String s : upgrades)
+							plot.addUpgrade(PlotUpgrade.valueOf(s));
 					plot.setCapturePoint(capturepoint);
 					plot.setAllowMagic(magic);
 					plot.setAllowPvp(pvp);
@@ -248,8 +244,7 @@ public class Database {
 			PreparedStatement prep = conn
 					.prepareStatement("UPDATE plot SET "
 							+ "name=?, location=?, size=?, owner=?, money=?, salePrice=?, protection=?, "
-							+ "allowExplosions=?, private=?, friendBuild=?, town=?, dungeon=?, "
-							+ "neutralAlignment=?, autoKick=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?");
+							+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?");
 
 			prep.setString(1, plot.getName());
 			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
@@ -261,16 +256,13 @@ public class Database {
 			prep.setBoolean(8, plot.isAllowExplosions());
 			prep.setBoolean(9, plot.isPrivatePlot());
 			prep.setBoolean(10, plot.isFriendBuild());
-			prep.setBoolean(11, plot.isTown());
-			prep.setBoolean(12, plot.isDungeon());
-			prep.setBoolean(13, plot.isNeutralAlignment());
-			prep.setBoolean(14, plot.isAutoKick());
-			prep.setBoolean(15, plot.isCapturePoint());
-			prep.setBoolean(16, plot.isAllowMagic());
-			prep.setBoolean(17, plot.isAllowPvp());
-			prep.setString(18, Serializer.serializeUUIDList(plot.getFriends()));
-			prep.setString(19, Serializer.serializeUUIDList(plot.getCoowners()));
-			prep.setInt(20, plot.getId());
+			prep.setString(11, plot.upgradesToJson());
+			prep.setBoolean(12, plot.isCapturePoint());
+			prep.setBoolean(13, plot.isAllowMagic());
+			prep.setBoolean(14, plot.isAllowPvp());
+			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
+			prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
+			prep.setInt(17, plot.getId());
 
 			prep.executeUpdate();
 			prep.close();
@@ -290,8 +282,7 @@ public class Database {
 			
 			PreparedStatement prep = conn.prepareStatement("UPDATE plots SET "
 					+ "name=?, location=?, size=?, owner=?, money=?, salePrice=?, protection=?, "
-					+ "allowExplosions=?, private=?, friendBuild=?, town=?, dungeon=?, "
-					+ "neutralAlignment=?, autoKick=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?; ");
+					+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?; ");
 			for(Plot plot : plots) {
 				plot.setUpdate(false);
 				prep.setString(1, plot.getName());
@@ -304,16 +295,13 @@ public class Database {
 				prep.setBoolean(8, plot.isAllowExplosions());
 				prep.setBoolean(9, plot.isPrivatePlot());
 				prep.setBoolean(10, plot.isFriendBuild());
-				prep.setBoolean(11, plot.isTown());
-				prep.setBoolean(12, plot.isDungeon());
-				prep.setBoolean(13, plot.isNeutralAlignment());
-				prep.setBoolean(14, plot.isAutoKick());
-				prep.setBoolean(15, plot.isCapturePoint());
-				prep.setBoolean(16, plot.isAllowMagic());
-				prep.setBoolean(17, plot.isAllowPvp());
-				prep.setString(18, Serializer.serializeUUIDList(plot.getFriends()));
-				prep.setString(19, Serializer.serializeUUIDList(plot.getCoowners()));
-				prep.setInt(20, plot.getId());
+				prep.setString(11, plot.upgradesToJson());
+				prep.setBoolean(12, plot.isCapturePoint());
+				prep.setBoolean(13, plot.isAllowMagic());
+				prep.setBoolean(14, plot.isAllowPvp());
+				prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
+				prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
+				prep.setInt(17, plot.getId());
 				prep.addBatch();
 				npcs.addAll(plot.getNpcs());
 			}
@@ -335,8 +323,8 @@ public class Database {
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO plots "
 							+ "(name,location,size,owner,money,salePrice,protection,allowExplosions,"
-							+ "private,friendBuild,town,dungeon,neutralAlignment,autoKick,"
-							+ "capturePoint,allowMagic,allowPvp,friends,coowners) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "private,friendBuild,upgrades,"
+							+ "capturePoint,allowMagic,allowPvp,friends,coowners) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, plot.getName());
 			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
 			prep.setInt(3, plot.getSize());
@@ -347,15 +335,12 @@ public class Database {
 			prep.setBoolean(8, plot.isAllowExplosions());
 			prep.setBoolean(9, plot.isPrivatePlot());
 			prep.setBoolean(10, plot.isFriendBuild());
-			prep.setBoolean(11, plot.isTown());
-			prep.setBoolean(12, plot.isDungeon());
-			prep.setBoolean(13, plot.isNeutralAlignment());
-			prep.setBoolean(14, plot.isAutoKick());
-			prep.setBoolean(15, plot.isCapturePoint());
-			prep.setBoolean(16, plot.isAllowMagic());
-			prep.setBoolean(17, plot.isAllowPvp());
-			prep.setString(18, Serializer.serializeUUIDList(plot.getFriends()));
-			prep.setString(19, Serializer.serializeUUIDList(plot.getCoowners()));
+			prep.setString(11, plot.upgradesToJson());
+			prep.setBoolean(12, plot.isCapturePoint());
+			prep.setBoolean(13, plot.isAllowMagic());
+			prep.setBoolean(14, plot.isAllowPvp());
+			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
+			prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;

@@ -2,9 +2,12 @@ package com.lostshard.lostshard.Utils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
@@ -25,6 +28,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public class Utils {
 
 	static PlayerManager pm = PlayerManager.getManager();
+	public static DecimalFormat df = new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
 	
 	@SuppressWarnings("deprecation")
 	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,

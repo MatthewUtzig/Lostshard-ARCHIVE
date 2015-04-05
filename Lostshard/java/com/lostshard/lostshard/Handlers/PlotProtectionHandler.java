@@ -40,6 +40,7 @@ import org.bukkit.util.Vector;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.PlotUpgrade;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -481,14 +482,14 @@ public class PlotProtectionHandler {
 	public static void onMonsterSpawn(EntitySpawnEvent event) {
 		if(event.getEntity() instanceof Monster) {
 			Plot plot = ptm.findPlotAt(event.getLocation());
-			if(plot != null && !plot.isDungeon())
+			if(plot != null && !plot.isUpgrade(PlotUpgrade.DUNGEON))
 				event.setCancelled(true);
 		}
 	}
 
 	public static void onPlayerBedEnter(PlayerBedEnterEvent event) {
 		Plot plot = ptm.findPlotAt(event.getBed().getLocation());
-		if(plot == null || !plot.isTown()) {
+		if(plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 			Output.simpleError(event.getPlayer(), "You are only able to set your spawn in a town.");
 			event.getPlayer().setBedSpawnLocation(null);
 		} else {
@@ -501,10 +502,10 @@ public class PlotProtectionHandler {
 		if(event.isBedSpawn()) {
 			Plot plot = ptm.findPlotAt(event.getRespawnLocation());
 			PseudoPlayer plotPlayer = pm.getPlayer(event.getPlayer());
-			if(plot == null || !plot.isTown()) {
+			if(plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
 				event.setRespawnLocation(pPlayer.getSpawn());
-			}else if(!(plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal() || plot.isNeutralAlignment())) {
+			}else if(!(plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal() || plotPlayer.isCriminal() == plotPlayer.isMurderer() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
 				Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
 				event.setRespawnLocation(pPlayer.getSpawn());
 			}
@@ -514,7 +515,7 @@ public class PlotProtectionHandler {
 	
 	public static void onPlayerJoin(PlayerJoinEvent event) {
 		Plot plot = ptm.findPlotAt(event.getPlayer().getLocation());
-		if(plot != null && plot.isAutoKick() && !plot.isFriendOrAbove(event.getPlayer())) {
+		if(plot != null && plot.isUpgrade(PlotUpgrade.AUTOKICK) && !plot.isFriendOrAbove(event.getPlayer())) {
 			event.getPlayer().teleport(event.getPlayer().getLocation().getWorld().getHighestBlockAt(event.getPlayer().getLocation()).getLocation());
 			Output.simpleError(event.getPlayer(), "You have been kicked from "+plot.getName()+".");
 		}

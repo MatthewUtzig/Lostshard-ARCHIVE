@@ -136,7 +136,6 @@ public class Serializer {
 		} catch (Exception e) {
 			Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] "
 					+ string);
-			e.printStackTrace();
 		}
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };
 		return rs;

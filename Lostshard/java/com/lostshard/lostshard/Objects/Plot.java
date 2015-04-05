@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Objects;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Location;
@@ -13,6 +14,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Utils.Serializer;
 
 /**
  * @author Jacob Rosborg
@@ -32,8 +34,8 @@ public class Plot {
 	private int salePrice = 0;
 
 	// Array's
-	private ArrayList<UUID> friends = new ArrayList<UUID>();
-	private ArrayList<UUID> coowners = new ArrayList<UUID>();
+	private List<UUID> friends = new ArrayList<UUID>();
+	private List<UUID> coowners = new ArrayList<UUID>();
 	// UUID
 	private UUID owner;
 
@@ -44,10 +46,7 @@ public class Plot {
 	private boolean friendBuild = false;
 	private boolean update = false;
 	// Upgrade's
-	private boolean town = false;
-	private boolean dungeon = false;
-	private boolean autoKick = false;
-	private boolean neutralAlignment = false;
+	private List<PlotUpgrade> upgrades = new ArrayList<PlotUpgrade>();
 
 	// Location
 	private Location location;
@@ -142,19 +141,19 @@ public class Plot {
 		return (this.salePrice > 0) ? true : false;
 	}
 
-	public ArrayList<UUID> getFriends() {
+	public List<UUID> getFriends() {
 		return friends;
 	}
 
-	public void setFriends(ArrayList<UUID> friends) {
+	public void setFriends(List<UUID> friends) {
 		this.friends = friends;
 	}
 
-	public ArrayList<UUID> getCoowners() {
+	public List<UUID> getCoowners() {
 		return coowners;
 	}
 
-	public void setCoowners(ArrayList<UUID> coowners) {
+	public void setCoowners(List<UUID> coowners) {
 		this.coowners = coowners;
 	}
 
@@ -191,42 +190,6 @@ public class Plot {
 
 	public void setFriendBuild(boolean friendBuild) {
 		this.friendBuild = friendBuild;
-		update();
-	}
-
-	public boolean isTown() {
-		return town;
-	}
-
-	public void setTown(boolean town) {
-		this.town = town;
-		update();
-	}
-
-	public boolean isDungeon() {
-		return dungeon;
-	}
-
-	public void setDungeon(boolean dungeon) {
-		this.dungeon = dungeon;
-		update();
-	}
-
-	public boolean isAutoKick() {
-		return autoKick;
-	}
-
-	public void setAutoKick(boolean autoKick) {
-		this.autoKick = autoKick;
-		update();
-	}
-
-	public boolean isNeutralAlignment() {
-		return neutralAlignment;
-	}
-
-	public void setNeutralAlignment(boolean neutralAlignment) {
-		this.neutralAlignment = neutralAlignment;
 		update();
 	}
 
@@ -341,13 +304,13 @@ public class Plot {
 
 	public int getValue() {
 		int plotValue = (int) Math.floor(Math.abs((((Math.pow(size-1, 2)+size-1)/2-45)*Variables.plotExpandPrice)));
-		if (this.town)
+		if (isUpgrade(PlotUpgrade.TOWN))
 			plotValue += Variables.plotTownPrice;
-		if (this.isDungeon())
+		if (isUpgrade(PlotUpgrade.DUNGEON))
 			plotValue += Variables.plotDungeonPrice;
-		if (this.isAutoKick())
+		if (isUpgrade(PlotUpgrade.AUTOKICK))
 			plotValue += Variables.plotAutoKickPrice;
-		if (this.isNeutralAlignment())
+		if (isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			plotValue += Variables.plotNeutralAlignmentPrice;
 
 		if (this.getLocation().getWorld().getEnvironment()
@@ -428,6 +391,35 @@ public class Plot {
 	public void disband() {
 		for(NPC npc : npcs)
 			Database.deleteNPC(npc);
+	}
+
+	public List<PlotUpgrade> getUpgrades() {
+		return upgrades;
+	}
+
+	public void setUpgrades(List<PlotUpgrade> upgrades) {
+		this.upgrades = upgrades;
+	}
+	
+	public void addUpgrade(PlotUpgrade upgrade) {
+		this.upgrades.add(upgrade);
+		update();
+	}
+	
+	public boolean isUpgrade(PlotUpgrade upgrade) {
+		return this.upgrades.contains(upgrade);
+	}
+
+	public void removeUpgrade(PlotUpgrade upgrade) {
+		this.upgrades.remove(upgrade);
+		update();
+	}
+	
+	public String upgradesToJson() {
+		List<String> tjson = new ArrayList<String>();
+		for(PlotUpgrade upgrade : upgrades)
+			tjson.add(upgrade.name());
+		return Serializer.serializeStringArray(tjson);
 	}
 
 	// Capturepoint stuff
