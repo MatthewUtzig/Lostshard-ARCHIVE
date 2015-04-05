@@ -59,7 +59,7 @@
 - [x] Whois
 - [x] stats
 - [x] Spawn
-- [ ] Reset spawn
+- [x] Reset spawn
 
 #Admin
 - [ ] Utils
