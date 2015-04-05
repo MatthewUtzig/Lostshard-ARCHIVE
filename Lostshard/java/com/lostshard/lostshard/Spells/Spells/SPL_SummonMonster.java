@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Spells.Spells;
 
+import java.util.Random;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -21,12 +23,14 @@ public class SPL_SummonMonster extends RangedSpell {
 
 	@Override
 	public void doAction(Player player) {
+		setFoundBlock(getFoundBlock().getRelative(0, 1, 0));
 		EntityType e;
+		
+		Random rand = new Random();
 		
 		//Random chance to do a big monster
 		if(Math.random() <.03) {
-			int randInt = (int)Math.floor(Math.random()*3);
-			switch(randInt){
+			switch(rand.nextInt(3)){
 			case 0:
 			e = EntityType.GIANT;
 			break;
@@ -39,9 +43,7 @@ public class SPL_SummonMonster extends RangedSpell {
 			}
 		}
 		else {
-			int randInt = (int)Math.floor(Math.random()*5);
-
-			switch(randInt){
+			switch(rand.nextInt(6)){
 			case 0:
 			e = EntityType.PIG_ZOMBIE;
 			break;

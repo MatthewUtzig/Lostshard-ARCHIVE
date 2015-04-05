@@ -32,6 +32,7 @@ import com.lostshard.lostshard.Spells.Spells.SPL_Recall;
 import com.lostshard.lostshard.Spells.Spells.SPL_Slowfield;
 import com.lostshard.lostshard.Spells.Spells.SPL_StoneSkin;
 import com.lostshard.lostshard.Spells.Spells.SPL_SummonAnimal;
+import com.lostshard.lostshard.Spells.Spells.SPL_SummonMonster;
 import com.lostshard.lostshard.Spells.Spells.SPL_Teleport;
 import com.lostshard.lostshard.Spells.Spells.SPL_WallOfStone;
 
@@ -123,7 +124,7 @@ public enum Scroll {
 			case SUMMONANIMAL:
 				return new SPL_SummonAnimal(this);
 			case SUMMONMONSTER:
-				return new SPL_SummonAnimal(this);
+				return new SPL_SummonMonster(this);
 			case BRIDGE:
 				return new SPL_Bridge(this);
 			case FLOWERS:

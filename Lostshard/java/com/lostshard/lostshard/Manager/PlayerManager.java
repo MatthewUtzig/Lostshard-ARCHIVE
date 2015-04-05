@@ -33,10 +33,15 @@ public class PlayerManager {
 	}
 	
 	public PseudoPlayer getPlayer(UUID uuid) {
+		if(uuid == null)
+			return null;
 		for (PseudoPlayer pPlayer : players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
 					return pPlayer;
-		return Database.getPlayer(uuid);
+		PseudoPlayer pPlayer = Database.getPlayer(uuid);
+		if(pPlayer == null)
+			pPlayer = Database.insertPlayer(new PseudoPlayer(uuid, 1));
+		return pPlayer;
 	}
 
 	public PseudoPlayer getPlayer(Player player) {

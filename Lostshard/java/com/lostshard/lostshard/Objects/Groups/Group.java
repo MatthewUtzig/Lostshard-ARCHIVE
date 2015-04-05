@@ -8,8 +8,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Manager.PlayerManager;
+
 public class Group {
 
+	public PlayerManager pm = PlayerManager.getManager();
+	
 	private List<UUID> members = new ArrayList<UUID>();
 	private List<UUID> invited = new ArrayList<UUID>();
 
@@ -30,17 +34,11 @@ public class Group {
 	}
 	
 	public void addMember(UUID member) {
-		if(!members.contains(member)) {
-			members.add(member);
-		}
+		members.add(member);
 	}
 	
 	public void removeMember(UUID member) {
-		int numPartyMemberNames = members.size();
-		for(int i=numPartyMemberNames-1; i>=0; i--) {
-			if(members.get(i).equals(member))
-				members.remove(i);
-		}
+		members.remove(member);
 	}
 	
 	public void addInvited(UUID invite) {

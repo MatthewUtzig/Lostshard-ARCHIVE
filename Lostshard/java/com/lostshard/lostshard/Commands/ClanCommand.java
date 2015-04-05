@@ -61,6 +61,8 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					clanDisband(player);
 				else if(clanCommand.equalsIgnoreCase("join"))
 					clanJoin(player, args);
+				else
+					Output.simpleError(player, "Use \"/clan help\" for commands.");
 			}else
 				Output.simpleError(player, "Use \"/clan help\" for commands.");
 			return true;
@@ -177,9 +179,15 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 								Output.simpleError(targetPlayer, "Your invitation to join "+clan.getName()+" has been revoked.");
 							}
 							Output.positiveMessage(player, "You have uninvited "+targetOfflinePlayer.getName()+" from your clan.");
+						}else{
+							Output.simpleError(player, "He is currently not invited to your clan.");
 						}
 					}
+				}else{
+					Output.simpleError(player, "Only the owner and leaders may perform this command.");
 				}
+			}else{
+				Output.simpleError(player, "You are currently not in a clan.");
 			}
 		}
 	}
@@ -198,12 +206,13 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 						if(!clan.isLeader(targetOfflinePlayer.getUniqueId())) {
 							if(clan.isMember(targetOfflinePlayer.getUniqueId())) {
 								Player targetPlayer = targetOfflinePlayer.getPlayer();
-								Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
-								targetName = targetPlayer.getName();
+								if(targetPlayer != null) {
+									Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
+									targetName = targetPlayer.getName();
+								}
 								clan.removeMember(targetOfflinePlayer.getUniqueId());
 								clan.promoteMember(targetOfflinePlayer.getUniqueId());
-								if(targetPlayer != null)
-									Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
+								Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
 							}
 							else Output.simpleError(player, "That player is not currently a member of your clan.");
 						}
@@ -231,11 +240,15 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					if(!targetName.equalsIgnoreCase(player.getName())) {
 						if(clan.isLeader(targetOfflinePlayer.getUniqueId())) {
 							Player targetPlayer = targetOfflinePlayer.getPlayer();
-							targetName = targetPlayer.getName();
+							if(targetPlayer != null)
+								targetName = targetPlayer.getName();
+							else
+								targetName = targetOfflinePlayer.getName();
 							clan.demoteLeader(targetOfflinePlayer.getUniqueId());
 							clan.addMember(targetOfflinePlayer.getUniqueId());
 							if(targetPlayer != null)
 								Output.positiveMessage(targetPlayer, "You have been demoted to a normal member in your clan.");
+							Output.positiveMessage(player, "You have demoted "+targetName+" to a normal member in your clan.");
 						}
 						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
 					}
@@ -277,15 +290,15 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			if(clanFound != null) {
 				if(clanFound.isInvited(player.getUniqueId())) {
 					if(!clanFound.isOwner(player.getUniqueId()) && !clanFound.isLeader(player.getUniqueId()) && !clanFound.isMember(player.getUniqueId())) {
-						clanFound.sendMessage(player.getName()+" has joined the clan.");
-						clanFound.addMember(player.getUniqueId());
-						clanFound.removeInvited(player.getUniqueId());
 						Clan currentClan = pseudoPlayer.getClan();
 						if(currentClan != null) {
 							currentClan.removeInvited(player.getUniqueId());
 							currentClan.demoteLeader(player.getUniqueId());
 							currentClan.removeMember(player.getUniqueId());
 						}
+						clanFound.sendMessage(player.getName()+" has joined the clan.");
+						clanFound.addMember(player.getUniqueId());
+						clanFound.removeInvited(player.getUniqueId());
 						Output.positiveMessage(player, "You have joined the "+clanFound.getName()+" clan.");
 					}
 					else {
@@ -360,6 +373,10 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	private static void clanTransfer(Player player, String[] split) {
+		if(split.length < 2) {
+			Output.simpleError(player, "/clan transfer (player)");
+			return;
+		}
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
@@ -372,16 +389,15 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					if(clan.isLeader(targetOfflinePlayer.getUniqueId()) || clan.isMember(targetOfflinePlayer.getUniqueId())) {
 						Player targetPlayer = targetOfflinePlayer.getPlayer();
 						// player transferring to is online
-						clan.removeMember(targetPlayer.getUniqueId());
-						clan.demoteLeader(targetPlayer.getUniqueId());
-						clan.setOwner(targetPlayer.getUniqueId());
+						clan.removeMember(targetOfflinePlayer.getUniqueId());
+						clan.demoteLeader(targetOfflinePlayer.getUniqueId());
+						clan.setOwner(targetOfflinePlayer.getUniqueId());
 						clan.addMember(player.getUniqueId());
 						clan.promoteMember(player.getUniqueId());
 						Output.positiveMessage(player, "You have transferred ownership of "+clan.getName());
-						Output.positiveMessage(player, "to "+targetPlayer.getName()+", you are now a clan leader.");
+						Output.positiveMessage(player, "to "+targetOfflinePlayer.getName()+", you are now a clan leader.");
 						if(player != null) {
 							Output.positiveMessage(targetPlayer, "The clan "+clan.getName()+" has been transferred to you,");
-							Output.positiveMessage(targetPlayer, "you are now the owner.");
 						}
 					}
 					else Output.simpleError(player, "You may only transfer ownership of the clan to a clan member.");

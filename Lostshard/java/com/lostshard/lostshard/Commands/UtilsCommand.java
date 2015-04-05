@@ -160,6 +160,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		else
 			Output.positiveMessage(sender,
 					"You have reset your spawn to Order.");
+		((Player)sender).setBedSpawnLocation(null);
 		return;
 	}
 

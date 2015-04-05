@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Objects;
 
+import org.apache.commons.lang.StringUtils;
+
 public enum PlotUpgrade {
 
 	TOWN("Town", 100000),
@@ -33,7 +35,7 @@ public enum PlotUpgrade {
 	
 	public static PlotUpgrade getByName(String name) {
 		for(PlotUpgrade upgrade : values())
-			if(upgrade.getName().trim().replace(" ", "").equalsIgnoreCase(name.trim().replace(" ", "")))
+			if(StringUtils.startsWithIgnoreCase(upgrade.getName(), name))
 				return upgrade;
 		return null;
 	}

@@ -493,7 +493,13 @@ public class PlotProtectionHandler {
 			Output.simpleError(event.getPlayer(), "You are only able to set your spawn in a town.");
 			event.getPlayer().setBedSpawnLocation(null);
 		} else {
-			Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
+			PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
+			PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
+			if((plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal() || plotPlayer.isCriminal() == plotPlayer.isMurderer() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
+				Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
+				event.getPlayer().setBedSpawnLocation(event.getBed().getLocation());
+			}else
+				Output.simpleError(event.getPlayer(), "You are not in the same alignment at the town owner.");
 		}
 	}
 	
@@ -501,7 +507,7 @@ public class PlotProtectionHandler {
 		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		if(event.isBedSpawn()) {
 			Plot plot = ptm.findPlotAt(event.getRespawnLocation());
-			PseudoPlayer plotPlayer = pm.getPlayer(event.getPlayer());
+			PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
 			if(plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
 				event.setRespawnLocation(pPlayer.getSpawn());
@@ -509,7 +515,7 @@ public class PlotProtectionHandler {
 				Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
 				event.setRespawnLocation(pPlayer.getSpawn());
 			}
-		}
+		}else
 		event.setRespawnLocation(pPlayer.getSpawn());
 	}
 	

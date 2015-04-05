@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Objects.Bank;
 
-public class Clan extends Group{
+public class Clan extends Group {
 
 	private int id = 0;
 	
@@ -132,12 +132,10 @@ public class Clan extends Group{
 	}
 	
 	public void addMember(UUID member) {
-		if(!getMembers().contains(member)) {
-			getMembers().add(member);
-		}
+		this.getMembers().add(member);
 		update();
 	}
-	
+
 	public void removeMember(UUID member) {
 		int numPartyMemberNames = getMembers().size();
 		for(int i=numPartyMemberNames-1; i>=0; i--) {
@@ -148,8 +146,7 @@ public class Clan extends Group{
 	}
 	
 	public void addInvited(UUID invite) {
-		if(!this.getInvited().contains(invite))
-			this.getInvited().add(invite);
+		this.getInvited().add(invite);
 		update();
 	}
 	

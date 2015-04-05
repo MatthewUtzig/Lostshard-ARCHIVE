@@ -97,7 +97,7 @@ public class PseudoPlayer {
 	}
 
 	public void setMoney(int money) {
-		this.money = money;
+		this.money = Math.max(0,money);
 		if(scoreboard != null)
 			getScoreboard().updateMoney(this.money);
 		update();
@@ -122,7 +122,7 @@ public class PseudoPlayer {
 	}
 
 	public void setMurderCounts(int murderCounts) {
-		this.murderCounts = murderCounts;
+		this.murderCounts = Math.max(0,murderCounts);
 		if(scoreboard != null) {
 			getScoreboard().updateMurderCounts(this.murderCounts);
 			getScoreboard().updateTeams();
@@ -260,9 +260,9 @@ public class PseudoPlayer {
 	}
 
 	public void setMana(int mana) {
-		this.mana = mana;
+		this.mana = Math.max(mana,0);
 		if(scoreboard != null)
-			getScoreboard().updateMana(this.money);
+			getScoreboard().updateMana(this.mana);
 	}
 
 	public int getStamina() {
@@ -270,7 +270,7 @@ public class PseudoPlayer {
 	}
 
 	public void setStamina(int stamina) {
-		this.stamina = stamina;
+		this.stamina = Math.max(stamina,0);
 		if(scoreboard != null)
 			getScoreboard().updateStamina(this.stamina);
 	}
@@ -287,7 +287,7 @@ public class PseudoPlayer {
 	}
 
 	public void setRank(int rank) {
-		this.rank = rank;
+		this.rank = Math.max(0,rank);
 		if(scoreboard != null)
 			getScoreboard().updateRank(this.rank);
 		update();
@@ -337,7 +337,7 @@ public class PseudoPlayer {
 	}
 
 	public void setCurrentBuildId(int currentBuild) {
-		this.currentBuild = currentBuild;
+		this.currentBuild = Math.max(0,currentBuild);
 		if(scoreboard != null)
 			getScoreboard().updateBuild(this.currentBuild);
 		update();

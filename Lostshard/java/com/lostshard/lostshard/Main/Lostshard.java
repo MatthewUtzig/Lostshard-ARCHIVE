@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
+import com.lostshard.lostshard.Commands.BlackSmithyCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
 import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
@@ -95,6 +96,7 @@ public class Lostshard extends JavaPlugin {
 		new PartyCommands(this);
 		new ReloadCommand(this);
 		new FishingCommand(this);
+		new BlackSmithyCommand(this);
 		
 		Lostshard.setPlugin(this);
 		

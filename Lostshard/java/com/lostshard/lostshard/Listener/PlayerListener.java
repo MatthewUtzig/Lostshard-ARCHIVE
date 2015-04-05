@@ -1,5 +1,8 @@
 package com.lostshard.lostshard.Listener;
 
+import java.util.List;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +26,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
@@ -96,15 +100,28 @@ public class PlayerListener implements Listener {
 			event.setResult(Result.KICK_OTHER);
 			return;
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerLoginMonitor(PlayerLoginEvent event) {
 		pm.onPlayerLogin(event);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		Output.displayLoginMessages(event.getPlayer());
-		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
-		pPlayer.setScoreboard(new PseudoScoreboard(event.getPlayer().getUniqueId()));
+		Player player = event.getPlayer();
+		Output.displayLoginMessages(player);
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
+		List<String> msgs = Database.getOfflineMessages(player.getUniqueId());
+		for(String msg : msgs)
+			player.sendMessage(ChatColor.BLUE+msg);
+		event.setJoinMessage(null);
+		for(Player p : Bukkit.getOnlinePlayers())
+			if(p != player)
+				p.sendMessage(ChatColor.YELLOW+player.getName()+" joined the game");
+		Database.deleteMessages(player.getUniqueId());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

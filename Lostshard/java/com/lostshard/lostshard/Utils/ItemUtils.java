@@ -196,4 +196,8 @@ public class ItemUtils {
 	public static boolean isWood(ItemStack item) {
 		return isWood(item.getType());
 	}
+
+	public static boolean isArmor(Material cost) {
+		return isDiamond(cost) || isGoldArmor(cost) || isIron(cost);
+	}
 }

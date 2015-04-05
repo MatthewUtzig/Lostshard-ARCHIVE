@@ -1207,4 +1207,68 @@ public class Database {
 				e.printStackTrace();
 		}
 	}
+	
+	public static List<String> getOfflineMessages(UUID uuid) {
+		List<String> list = new ArrayList<String>();
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM offlineMessages WHERE player=?;");
+			prep.setString(1, uuid.toString());
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				try {
+					String msg = rs.getString("message");
+					list.add(msg);
+				} catch (Exception e) {
+					Lostshard.log.warning("[MESSAGES] Exception when generating message for \""+uuid.toString()+ "\":");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[MESSAGES] getMessages mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static void insertMessages(UUID uuid, String msg) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT INTO offlinemessages (player,message) VALUES (?,?);");
+			prep.setString(1, uuid.toString());
+			prep.setString(2, msg);
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[MESSAGES] insertMessages mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void deleteMessages(UUID uuid) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM offlineMessages WHERE player=?;");
+			prep.setString(1, uuid.toString());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[MESSAGES] deleteMessages mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
 }

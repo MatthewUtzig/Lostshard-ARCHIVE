@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Spells.Spells;
 
+import java.util.Random;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -21,10 +23,11 @@ public class SPL_SummonAnimal extends RangedSpell {
 
 	@Override
 	public void doAction(Player player) {
+		setFoundBlock(getFoundBlock().getRelative(0, 1, 0));
 		EntityType e;
+		Random rand = new Random();
 		if(Math.random() <.1) {
-			int randInt = (int)Math.floor(Math.random()*2);
-			switch(randInt){
+			switch(rand.nextInt(3)){
 			case 0:
 				e = EntityType.HORSE;
 				break;
@@ -36,9 +39,7 @@ public class SPL_SummonAnimal extends RangedSpell {
 			}
 		}
 		else {
-			int randInt = (int)Math.floor(Math.random()*4);
-			
-			switch(randInt){
+			switch(rand.nextInt(5)){
 			case 0:
 				e = EntityType.PIG;
 				break;

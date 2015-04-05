@@ -40,13 +40,13 @@ public class PVPHandler {
 		 */
 		if (defender.hasMetadata("NPC"))
 			return false;
-
+		
 		/**
 		 * Ensuring that the defender and is a Player.
 		 */
 		if (!(defender instanceof Player))
 			return true;
-
+		
 		/**
 		 * Handling player hitting with feather.
 		 */
@@ -58,7 +58,7 @@ public class PVPHandler {
 					+ ((Player)attacker).getName()+" tickled you with a feather.");
 			return false;
 		}
-
+		
 		/**
 		 * Allowing potion to be thrown on all if positive.
 		 */
@@ -92,19 +92,19 @@ public class PVPHandler {
 		 */
 		if (!(attacker instanceof Player))
 			return true;
-
+		
 		/**
 		 * Checking if the defender is standing in a none PVP plot.
 		 */
 		Plot plotAtDefender = ptm.findPlotAt(defender.getLocation());
-		if (plotAtDefender != null && plotAtDefender.isAllowPvp())
+		if (plotAtDefender != null && !plotAtDefender.isAllowPvp())
 			return false;
 
 		/**
 		 * Checking if the attacker is standing a none PVP plot.
 		 */
 		Plot plotAtAttacker = ptm.findPlotAt(attacker.getLocation());
-		if (plotAtAttacker != null && plotAtAttacker.isAllowPvp())
+		if (plotAtAttacker != null && !plotAtAttacker.isAllowPvp())
 			return false;
 
 		/**
@@ -129,7 +129,7 @@ public class PVPHandler {
 		 if(pAttacker.getClan() != null && pDefender.getClan() != null && pAttacker.getClan() ==
 		 pDefender.getClan())
 			 return false;
-
+		 
 		/**
 		 * Checking if they are in same party or not.
 		 */

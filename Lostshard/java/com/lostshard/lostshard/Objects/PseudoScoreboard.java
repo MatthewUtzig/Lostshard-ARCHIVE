@@ -16,7 +16,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 
 public class PseudoScoreboard {
 	
-	PlayerManager pm = PlayerManager.getManager();
+	static PlayerManager pm = PlayerManager.getManager();
 	
 	protected static ScoreboardManager manager = Bukkit.getScoreboardManager();
 	
@@ -39,11 +39,11 @@ public class PseudoScoreboard {
 	
 	public PseudoScoreboard(UUID uuid) {
 		
+		this.playerUUID = uuid;
+		
 		Player player = Bukkit.getPlayer(uuid);
 		if(player == null)
 			return;
-		
-		this.setPlayerUUID(player.getUniqueId());
 		
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		
@@ -84,22 +84,39 @@ public class PseudoScoreboard {
 				criminal.addPlayer(p);
 			else
 				lawfull.addPlayer(p);
+			if(tpPlayer.getScoreboard() != null) {
+				if(pPlayer.isMurderer())
+					tpPlayer.getScoreboard().murder.addPlayer(player);
+				if(pPlayer.isCriminal())
+					tpPlayer.getScoreboard().criminal.addPlayer(player);
+				else
+					tpPlayer.getScoreboard().lawfull.addPlayer(player);
+			}
 		}
 	}
 	
 	public void updateTeams() {
 		PseudoPlayer pPlayer = pm.getPlayer(playerUUID);
 		Player player = Bukkit.getPlayer(playerUUID);
-		if(pPlayer.isMurderer())
-			for(PseudoPlayer pP : pm.getPlayers())
-				pP.getScoreboard().murder.addPlayer(player);
-		else if(pPlayer.isCriminal())
-			for(PseudoPlayer pP : pm.getPlayers())
-				pP.getScoreboard().criminal.addPlayer(player);
-		else
-			for(PseudoPlayer pP : pm.getPlayers())
-				pP.getScoreboard().lawfull.addPlayer(player);
-			
+		if(pPlayer.isMurderer()) {
+			for(PseudoPlayer pP : pm.getPlayers()) {
+				if(pP.getScoreboard() != null) {
+					pP.getScoreboard().murder.addPlayer(player);
+				}
+			}
+		}else if(pPlayer.isCriminal()){
+			for(PseudoPlayer pP : pm.getPlayers()) {
+				if(pP.getScoreboard() != null) {
+					pP.getScoreboard().criminal.addPlayer(player);
+				}
+			}
+		}else{
+			for(PseudoPlayer pP : pm.getPlayers()) {
+				if(pP.getScoreboard() != null) {
+					pP.getScoreboard().lawfull.addPlayer(player);
+				}
+			}
+		}
 	}
 	
 	public void updateMoney(int money) {

@@ -391,6 +391,7 @@ public class Plot {
 	public void disband() {
 		for(NPC npc : npcs)
 			Database.deleteNPC(npc);
+		ptm.removePlot(this);
 	}
 
 	public List<PlotUpgrade> getUpgrades() {
@@ -420,6 +421,10 @@ public class Plot {
 		for(PlotUpgrade upgrade : upgrades)
 			tjson.add(upgrade.name());
 		return Serializer.serializeStringArray(tjson);
+	}
+
+	public int getTax() {
+		return size*10;
 	}
 
 	// Capturepoint stuff

@@ -213,13 +213,12 @@ public class Output {
 					+ "Not for sale");
 		// Only show the owner/co-owner the amount of money in the region bank
 		if (plot.isCoownerOrAbove(player)) {
-			int moneyPerDay = 10 * plot.getSize();
 			player.sendMessage(ChatColor.YELLOW + "Size: " + ChatColor.WHITE
 					+ plot.getSize() + ChatColor.YELLOW + ", Funds: "
-					+ ChatColor.WHITE + plot.getMoney() + ChatColor.YELLOW
-					+ ", Tax: " + ChatColor.WHITE + moneyPerDay
+					+ ChatColor.WHITE + Utils.df.format(plot.getMoney()) + ChatColor.YELLOW
+					+ ", Tax: " + ChatColor.WHITE + Utils.df.format(plot.getTax())
 					+ ChatColor.YELLOW + ", Plot Value: " + ChatColor.WHITE
-					+ plot.getValue());
+					+ Utils.df.format(plot.getValue()));
 			int distanceFromCenter = (int) Math.round(Utils.distance(
 					player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE

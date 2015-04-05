@@ -20,7 +20,7 @@ public class StoreItem {
 	private int restockTime = 0;
 	private int restockAmount = 0;
 
-	public StoreItem() {
+	public StoreItem(ItemStack item) {
 		this.item = item;
 	}
 	

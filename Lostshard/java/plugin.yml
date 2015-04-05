@@ -138,3 +138,9 @@ commands:
    kill:
       description: Kill.
       usage: /<command>
+   smelt:
+      description: smelt stuff.
+      usage: /<command>
+   repair:
+      description: repair stuff.
+      usage: /<command>

@@ -120,12 +120,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		String name = StringUtils.join(args, " ");
-		Plot plot = null;
-		for(Plot p : ptm.getPlots())
-			if(p.getName().equalsIgnoreCase(name)) {
-				plot = p;
-				break;
-			}
+		Plot plot = ptm.getPlot(name);
 		if(plot == null) {
 			Output.simpleError(player, "Coulden find plot, \""+name+"\"");
 			return;

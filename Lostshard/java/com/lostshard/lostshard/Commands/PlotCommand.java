@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -54,11 +55,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 			Player player = (Player) sender;
 			if (args.length < 1) {
-				Output.plotHelp(player);
+				Output.simpleError(player, "Use \"/plot help\" for commands.");
 				return true;
 			}
 			String plotCommand = args[0];
-			if (plotCommand.equalsIgnoreCase("create"))
+			if (plotCommand.equalsIgnoreCase("help"))
+				Output.plotHelp(player);
+			else if (plotCommand.equalsIgnoreCase("create"))
 				createPlot(player, args);
 			else if (plotCommand.equalsIgnoreCase("survey"))
 				plotSurvey(player);
@@ -121,7 +124,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			else if (plotCommand.equalsIgnoreCase("magic") && player.isOp())
 				plotMagicToggle(player);
 			else {
-				Output.plotHelp(player);
+				Output.simpleError(player, "Use \"/plot help\" for commands.");
 			}
 			return true;
 		}
@@ -268,8 +271,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (sellerPlayer.isOnline())
 			sellerPlayer.sendMessage("You have sold the plot " + plot.getName()
 					+ " to " + player.getName() + " for " + salePrice + ".");
-		// else
-		// player.addOflinemsg
+		else
+			Database.insertMessages(sellerPlayer.getUniqueId(), "You have sold the plot " + plot.getName()
+					+ " to " + player.getName() + " for " + salePrice + ".");
+		List<PseudoPlayer> plist = new ArrayList<PseudoPlayer>();
+		plist.add(sellerPseudoPlayer);
+		Database.updatePlayers(plist); 
 	}
 
 	/**
@@ -736,16 +743,16 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 		}else if (args.length >= 2) {
 			
-			PlotUpgrade upgrade = PlotUpgrade.getByName(args[1]);
+			PlotUpgrade upgrade = PlotUpgrade.getByName(StringUtils.join(args, " ", 1, args.length));
 			
 			if(upgrade == null) {
-				Output.positiveMessage(player, plot.getName()
-						+ "'s Upgrades:");
+				Output.positiveMessage(player, "-Plot Upgrades Available-");
 				for(PlotUpgrade u : PlotUpgrade.values()) {
 					if(plot.isUpgrade(u))
 						continue;
 					player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
 				}
+				return;
 			}
 			
 			if(!plot.isUpgrade(upgrade)) {
@@ -800,7 +807,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				}
 			}else if (args.length >= 2) {
 				
-				PlotUpgrade upgrade = PlotUpgrade.getByName(args[1]);
+				PlotUpgrade upgrade = PlotUpgrade.getByName(StringUtils.join(args, " ", 1, args.length));
 				
 				if(upgrade == null) {
 					Output.positiveMessage(player, plot.getName()
@@ -810,6 +817,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							continue;
 						player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
 					}
+					return;
 				}
 				
 				if(plot.isUpgrade(upgrade)) {
@@ -1497,14 +1505,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
-		plot.disband();
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setMoney(pPlayer.getMoney() + plot.getValue());
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName()
 				+ ", and got " + plot.getValue() + " gc.");
-		ptm.removePlot(plot);
+		plot.disband();
 	}
 
 	/**

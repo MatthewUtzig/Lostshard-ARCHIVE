@@ -3,11 +3,16 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.md_5.bungee.api.ChatColor;
+
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class PlotManager {
@@ -78,8 +83,34 @@ public class PlotManager {
 	
 	public Plot getPlot(String name) {
 		for(Plot p : plots)
-			if(StringUtils.contains(p.getName(), name))
+			if(StringUtils.startsWithIgnoreCase(p.getName(), name))
 				return p;
 		return null;
+	}
+
+	public void tax() {
+		Bukkit.broadcastMessage(ChatColor.GREEN+"Tax have been collected.");
+		for(Plot plot : plots) {
+			if(plot.getMoney() < plot.getTax()) {
+				plot.setSize(plot.getSize()-1);
+				Player player = Bukkit.getPlayer(plot.getOwner());
+				if(plot.getSize() > 1) {
+					if(player != null) {
+						Output.simpleError(player, plot.getName()+" have failed to pay tax and have shurnk.");
+					}else{
+						Database.insertMessages(plot.getOwner(), plot.getName()+" have failed to pay tax and have shurnk.");
+					}
+				}else{
+					plot.disband();
+					if(player != null) {
+						Output.simpleError(player, plot.getName()+" have failed to pay tax and are now disbaneded.");
+					}else{
+						Database.insertMessages(plot.getOwner(), plot.getName()+" have failed to pay tax and are now disbaneded.");
+					}
+				}
+			}else{
+				plot.setMoney(plot.getMoney()-plot.getTax());
+			}
+		}
 	}
 }

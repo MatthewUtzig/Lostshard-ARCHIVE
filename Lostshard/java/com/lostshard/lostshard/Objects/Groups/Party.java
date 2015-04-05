@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class Party extends Group{
+public class Party extends Group {
 
 	public void sendMessage(String message) {
 		for(UUID member : getMembers()) {

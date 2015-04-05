@@ -469,19 +469,19 @@ public class DeathHandler {
 		else if(((LivingEntity) player).getLastDamage() >= 200d)
 			Bukkit.broadcastMessage(player.getDisplayName()+ChatColor.WHITE+" was executed by an Order guard.");
 		else if(numAttackers > 0) {
-			String deathMessage = player.getDisplayName()+ChatColor.WHITE+" was killed by";
+			String deathMessage = Utils.getDisplayName(player)+ChatColor.WHITE+" was killed by";
 			String attackers = "";
 			for(int i=0; i<numAttackers; i++) {
 				Player p = Bukkit.getPlayer(recentAttackers.get(i).getUUID());
 				if(p != null) {
 					if(i == numAttackers-1) {
 						if(attackers != "")
-							attackers += ChatColor.WHITE+" and " +p.getDisplayName()+ChatColor.WHITE+".";
+							attackers += ChatColor.WHITE+" and " +Utils.getDisplayName(p)+ChatColor.WHITE+".";
 						else
-							attackers += ChatColor.WHITE+" "+p.getDisplayName()+ChatColor.WHITE+".";
+							attackers += ChatColor.WHITE+" "+Utils.getDisplayName(p)+ChatColor.WHITE+".";
 					}
 					else
-						attackers+=ChatColor.WHITE+" "+p.getDisplayName();
+						attackers+=ChatColor.WHITE+" "+Utils.getDisplayName(p);
 				}
 			}
 			deathMessage += attackers;

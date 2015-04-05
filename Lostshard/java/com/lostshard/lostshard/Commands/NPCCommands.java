@@ -125,7 +125,7 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 		ItemStack item = player.getItemInHand().clone();
 		StoreItem storeItem = store.getStoreItem(item);
 		if(storeItem == null) {
-			storeItem = new StoreItem();
+			storeItem = new StoreItem(item);
 			item.setAmount(1);
 			storeItem.setItem(item);
 		}
@@ -142,7 +142,6 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 			storeItem.setMaxBuyAmount(amount);
 			storeItem.setBuyPrice(price);
 		}
- 		store.getItems().add(new StoreItem());
 	}
 
 	public List<String> onTabComplete(CommandSender arg0, Command arg1,
