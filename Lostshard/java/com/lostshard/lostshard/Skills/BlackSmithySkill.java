@@ -22,7 +22,9 @@ public class BlackSmithySkill extends Skill {
 		super();
 		setName("Blacksmithy");
 		setBaseProb(.2);
-		setScaleConstant(60);
+		setScaleConstant(30);
+		setMaxGain(15);
+		setMinGain(5);
 	}
 	
 	public static void repair(Player player) {
@@ -32,35 +34,50 @@ public class BlackSmithySkill extends Skill {
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(pPlayer.getPvpTicks() > 0) {
+			Output.simpleError(player,  "You cannot repair while in or shortly after combat.");
+			return;
+		}
 		if(pPlayer.getStamina() < REPAIR_STAMINA_COST) {
 			Output.simpleError(player, "Not enough stamina - Repair requires "+REPAIR_STAMINA_COST+".");
 			return;
 		}
 		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
+		int lvl = skill.getLvl();
 		if(!canRepair(item)) {
-			Output.simpleError(player, "You cannot repair that item.");
+			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		Material cost = null;
+		boolean cangain = false;
 		int costAmount = 1;
-		if(ItemUtils.isDiamond(item))
+		if(ItemUtils.isDiamond(item)) {
 			cost = Material.DIAMOND;
-		else if(ItemUtils.isGold(item))
+			cangain = true;
+		}else if(ItemUtils.isGold(item)){
 			cost = Material.GOLD_INGOT;
-		else if(ItemUtils.isIron(item))
+			cangain = true;
+		}else if(ItemUtils.isIron(item)){
 			cost = Material.IRON_INGOT;
-		else if(ItemUtils.isStone(item))
+			if(lvl < 750)
+				cangain = true;
+		}else if(ItemUtils.isStone(item)){
 			cost = Material.COBBLESTONE;
-		else if(ItemUtils.isWood(item))
+			if(lvl < 500)
+				cangain = true;
+		}else if(ItemUtils.isWood(item)){
 			cost = Material.WOOD;
+			if(lvl < 250)
+				cangain = true;
+		}
 		
 		if(cost == null) {
-			Output.simpleError(player, "You cannot repair that item.");
+			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		
 		if(!player.getInventory().contains(cost, costAmount)) {
-			Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name())+"s to repair that tool, requires "+costAmount+".");
+			Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name())+" to repair that tool, requires "+costAmount+".");
 			return;
 		}
 		
@@ -70,18 +87,10 @@ public class BlackSmithySkill extends Skill {
 		if(dblSkillVal >= rand) {
 			item.setDurability((short)0);
 			pPlayer.setStamina(pPlayer.getStamina()-REPAIR_STAMINA_COST);
-			int gain = skill.skillGain(pPlayer);
-			Output.gainSkill(player, "Blacksmithy", gain, skill.getLvl());
-			if(gain > 0)
-				pPlayer.update();
 			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
 			Output.positiveMessage(player, "You repair the item.");
 		}
 		else {
-			int gain = skill.skillGain(pPlayer);
-			Output.gainSkill(player, "Blacksmithy", gain, skill.getLvl());
-			if(gain > 0)
-				pPlayer.update();
 			item.setDurability((short)((int)item.getDurability()+(item.getDurability()*.5)+2));
 			if(item.getDurability() < (short)item.getDurability()) {
 				player.sendMessage(ChatColor.GRAY+"You failed to repair the "+item.getType().name().toLowerCase().replace("_", " ")+", it was damaged in the process.");
@@ -92,47 +101,107 @@ public class BlackSmithySkill extends Skill {
 			}
 			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
 		}
+		if(cangain) {
+			int gain = skill.skillGain(pPlayer);
+			Output.gainSkill(player, "Blacksmithy", gain, skill.getLvl());
+			if(gain > 0)
+				pPlayer.update();
+		}
 	}
 	
 	public static void smelt(Player player) {
 		ItemStack item = player.getItemInHand();
 		if(item == null) {
-			Output.simpleError(player, "You cannot repair air.");
+			Output.simpleError(player, "You cannot smelt air.");
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer(player);
+		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
+		int lvl = skill.getLvl();
+		if(pPlayer.getPvpTicks() > 0) {
+			Output.simpleError(player,  "You cannot smelt while in or shortly after combat.");
+			return;
+		}
 		if(!canRepair(item)) {
-			Output.simpleError(player, "You cannot smelt that item.");
+			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		int amount = 1;
 		Material cost = null;
-		if(ItemUtils.isDiamond(item))
+		boolean cansmelt = false;
+		if(ItemUtils.isDiamond(item)) {
 			cost = Material.DIAMOND;
-		else if(ItemUtils.isGold(item))
+			if(lvl >= 750)
+				cansmelt = true;
+		}else if(ItemUtils.isGold(item)){
 			cost = Material.GOLD_INGOT;
-		else if(ItemUtils.isIron(item))
+			if(lvl >= 500)
+				cansmelt = true;
+		}else if(ItemUtils.isIron(item)){
 			cost = Material.IRON_INGOT;
-		else if(ItemUtils.isStone(item))
-			cost = Material.COBBLESTONE;
-		else if(ItemUtils.isWood(item))
-			cost = Material.WOOD;
-		
-		if(cost == null) {
-			Output.simpleError(player, "You cannot smelt that item.");
-			return;
+			if(lvl >= 250)
+				cansmelt = true;
 		}
 		
+		if(cost == null) {
+			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			return;
+		}
 		if(ItemUtils.isArmor(cost))
 			amount = 3;
 		player.getInventory().setItemInHand(null);
 		pPlayer.setStamina(pPlayer.getStamina()-SMELT_STAMINA_COST);
-		player.getWorld().dropItem(player.getLocation(), new ItemStack(cost, amount)); 
-		Output.positiveMessage(player, "You have smeltet your "+item.getType().name().toLowerCase().replace("_", " ")+" into "+cost.name().toLowerCase()+".");
+		if(cansmelt) {
+			player.getWorld().dropItem(player.getLocation(), new ItemStack(cost, amount)); 
+			Output.positiveMessage(player, "You have smeltet your "+item.getType().name().toLowerCase().replace("_", " ")+" into "+cost.name().toLowerCase()+".");
+		}else{
+			Output.simpleError(player, "You have smeltet your "+item.getType().name().toLowerCase().replace("_", " ")+" but failed to recover any use full resources from the smelting.");
+		}
 	}
 	
 	public static void enhance(Player player) {
+		ItemStack item = player.getItemInHand();
+		if(item == null) {
+			Output.simpleError(player, "You cannot enhance air.");
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
+		int lvl = skill.getLvl();
+		if(pPlayer.getPvpTicks() > 0) {
+			Output.simpleError(player,  "You cannot enhance while in or shortly after combat.");
+			return;
+		}
+		if(!canRepair(item)) {
+			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			return;
+		}
 		
+		boolean isTool = false;
+		boolean isSword = false;
+		boolean isBow = false;
+		boolean isArmor = false;
+		if(ItemUtils.isArmor(item))
+			isArmor = true;
+		else if(ItemUtils.isSword(item) || ItemUtils.isAxe(item))
+			isSword = true;
+		else if(ItemUtils.isTool(item))
+			isTool = true;
+		else if(item.getType().equals(Material.BOW))
+			isBow = true;
+		
+		if(isTool) {
+			
+		}else if(isSword) {
+			
+		}else if(isBow) {
+			
+		}else if(isArmor) {
+			
+		}else{
+			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			return;
+		}
 	}
 	
 	public static boolean canRepair(Material item) {

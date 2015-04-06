@@ -23,13 +23,11 @@ public class ItemUtils {
     }
 	
 	public static boolean isSword(Material item) {
-		if (item.equals(Material.DIAMOND_SWORD)
+		return item.equals(Material.DIAMOND_SWORD)
 				|| item.equals(Material.IRON_SWORD)
 				|| item.equals(Material.GOLD_SWORD)
 				|| item.equals(Material.WOOD_SWORD)
-				|| item.equals(Material.STONE_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.STONE_SWORD);
 	}
 
 	public static boolean isSword(ItemStack item) {
@@ -37,13 +35,11 @@ public class ItemUtils {
 	}
 
 	public static boolean isAxe(Material item) {
-		if (item.equals(Material.DIAMOND_AXE) 
+		return item.equals(Material.DIAMOND_AXE) 
 				|| item.equals(Material.IRON_AXE)
 				|| item.equals(Material.GOLD_AXE)
 				|| item.equals(Material.WOOD_AXE)
-				|| item.equals(Material.STONE_AXE))
-			return true;
-		return false;
+				|| item.equals(Material.STONE_AXE);
 	}
 
 	public static boolean isAxe(ItemStack item) {
@@ -51,13 +47,11 @@ public class ItemUtils {
 	}
 
 	public static boolean isPickAxe(Material item) {
-		if (item.equals(Material.DIAMOND_PICKAXE)
+		return item.equals(Material.DIAMOND_PICKAXE)
 				|| item.equals(Material.GOLD_PICKAXE)
 				|| item.equals(Material.IRON_PICKAXE)
 				|| item.equals(Material.STONE_PICKAXE)
-				|| item.equals(Material.WOOD_PICKAXE))
-			return true;
-		return false;
+				|| item.equals(Material.WOOD_PICKAXE);
 	}
 
 	public static boolean isPickAxe(ItemStack item) {
@@ -65,12 +59,10 @@ public class ItemUtils {
 	}
 	
 	public static boolean isDiamondArmor(Material item) {
-		if(item.equals(Material.DIAMOND_HELMET)
+		return item.equals(Material.DIAMOND_HELMET)
 				|| item.equals(Material.DIAMOND_CHESTPLATE)
 				|| item.equals(Material.DIAMOND_LEGGINGS)
-				|| item.equals(Material.DIAMOND_BOOTS))
-			return true;
-		return false;
+				|| item.equals(Material.DIAMOND_BOOTS);
 	}
 	
 	public static boolean isDiamondArmor(ItemStack	item) {
@@ -78,12 +70,10 @@ public class ItemUtils {
 	}
 	
 	public static boolean isIronArmor(Material item) {
-		if(item.equals(Material.IRON_HELMET)
+		return item.equals(Material.IRON_HELMET)
 				|| item.equals(Material.IRON_CHESTPLATE)
 				|| item.equals(Material.IRON_LEGGINGS)
-				|| item.equals(Material.IRON_BOOTS))
-			return true;
-		return false;
+				|| item.equals(Material.IRON_BOOTS);
 	}
 	
 	public static boolean isIronArmor(ItemStack	item) {
@@ -91,12 +81,10 @@ public class ItemUtils {
 	}
 	
 	public static boolean isGoldArmor(Material item) {
-		if(item.equals(Material.GOLD_HELMET)
+		return item.equals(Material.GOLD_HELMET)
 				|| item.equals(Material.GOLD_CHESTPLATE)
 				|| item.equals(Material.GOLD_LEGGINGS)
-				|| item.equals(Material.DIAMOND_BOOTS))
-			return true;
-		return false;
+				|| item.equals(Material.DIAMOND_BOOTS);
 	}
 	
 	public static boolean isGoldArmor(ItemStack	item) {
@@ -104,12 +92,10 @@ public class ItemUtils {
 	}
 	
 	public static boolean isLeatherArmor(Material item) {
-		if(item.equals(Material.LEATHER_HELMET)
+		return item.equals(Material.LEATHER_HELMET)
 				|| item.equals(Material.LEATHER_CHESTPLATE)
 				|| item.equals(Material.LEATHER_LEGGINGS)
-				|| item.equals(Material.LEATHER_BOOTS))
-			return true;
-		return false;
+				|| item.equals(Material.LEATHER_BOOTS);
 	}
 	
 	public static boolean isLeatherArmor(ItemStack	item) {
@@ -117,16 +103,14 @@ public class ItemUtils {
 	}
 	
 	public static boolean isDiamond(Material item) {
-		if(item.equals(Material.DIAMOND_AXE)
+		return item.equals(Material.DIAMOND_AXE)
 				|| item.equals(Material.DIAMOND_BOOTS)
 				|| item.equals(Material.DIAMOND_CHESTPLATE)
 				|| item.equals(Material.DIAMOND_HELMET)
 				|| item.equals(Material.DIAMOND_HOE)
 				|| item.equals(Material.DIAMOND_LEGGINGS)
 				|| item.equals(Material.DIAMOND_SPADE)
-				|| item.equals(Material.DIAMOND_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.DIAMOND_SWORD);
 	}
 	
 	public static boolean isDiamond(ItemStack item) {
@@ -134,7 +118,7 @@ public class ItemUtils {
 	}
 	
 	public static boolean isIron(Material item) {
-		if(item.equals(Material.IRON_AXE)
+		return item.equals(Material.IRON_AXE)
 				|| item.equals(Material.IRON_BOOTS)
 				|| item.equals(Material.IRON_CHESTPLATE)
 				|| item.equals(Material.IRON_HELMET)
@@ -142,9 +126,7 @@ public class ItemUtils {
 				|| item.equals(Material.IRON_LEGGINGS)
 				|| item.equals(Material.IRON_PICKAXE)
 				|| item.equals(Material.IRON_SPADE)
-				|| item.equals(Material.IRON_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.IRON_SWORD);
 	}
 	
 	public static boolean isIron(ItemStack item) {
@@ -152,7 +134,7 @@ public class ItemUtils {
 	}
 	
 	public static boolean isGold(Material item) {
-		if(item.equals(Material.GOLD_AXE)
+		return item.equals(Material.GOLD_AXE)
 				|| item.equals(Material.GOLD_BOOTS)
 				|| item.equals(Material.GOLD_CHESTPLATE)
 				|| item.equals(Material.GOLD_HELMET)
@@ -160,9 +142,7 @@ public class ItemUtils {
 				|| item.equals(Material.GOLD_LEGGINGS)
 				|| item.equals(Material.GOLD_PICKAXE)
 				|| item.equals(Material.GOLD_SPADE)
-				|| item.equals(Material.GOLD_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.GOLD_SWORD);
 	}
 	
 	public static boolean isGold(ItemStack item) {
@@ -170,13 +150,11 @@ public class ItemUtils {
 	}
 	
 	public static boolean isStone(Material item) {
-		if(item.equals(Material.STONE_AXE)
+		return item.equals(Material.STONE_AXE)
 				|| item.equals(Material.STONE_HOE)
 				|| item.equals(Material.STONE_PICKAXE)
 				|| item.equals(Material.STONE_SPADE)
-				|| item.equals(Material.STONE_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.STONE_SWORD);
 	}
 	
 	public static boolean isStone(ItemStack item) {
@@ -184,13 +162,11 @@ public class ItemUtils {
 	}
 	
 	public static boolean isWood(Material item) {
-		if(item.equals(Material.WOOD_AXE)
+		return item.equals(Material.WOOD_AXE)
 				|| item.equals(Material.WOOD_HOE)
 				|| item.equals(Material.WOOD_PICKAXE)
 				|| item.equals(Material.WOOD_SPADE)
-				|| item.equals(Material.WOOD_SWORD))
-			return true;
-		return false;
+				|| item.equals(Material.WOOD_SWORD);
 	}
 	
 	public static boolean isWood(ItemStack item) {
@@ -199,5 +175,67 @@ public class ItemUtils {
 
 	public static boolean isArmor(Material cost) {
 		return isDiamond(cost) || isGoldArmor(cost) || isIron(cost);
+	}
+
+	public static boolean isArmor(ItemStack item) {
+		return isArmor(item.getType());
+	}
+	
+	public static boolean isWoodTool(Material item) {
+		return item.equals(Material.WOOD_HOE)
+				|| item.equals(Material.WOOD_PICKAXE)
+				|| item.equals(Material.WOOD_SPADE);
+	}
+	
+	public static boolean isWoodTool(ItemStack item) {
+		return isWoodTool(item.getType());
+	}
+	
+	public static boolean isStoneTool(Material item) {
+		return item.equals(Material.STONE_HOE)
+				|| item.equals(Material.STONE_PICKAXE)
+				|| item.equals(Material.STONE_SPADE);
+	}
+	
+	public static boolean isStoneTool(ItemStack item) {
+		return isStoneTool(item.getType());
+	}
+	
+	public static boolean isIronTool(Material item) {
+		return item.equals(Material.IRON_PICKAXE)
+				|| item.equals(Material.IRON_SPADE)
+				|| item.equals(Material.IRON_HOE);
+	}
+	
+	public static boolean isIronTool(ItemStack item) {
+		return isIronTool(item.getType());
+	}
+	
+	public static boolean isGoldTool(Material item) {
+		return item.equals(Material.GOLD_PICKAXE)
+				|| item.equals(Material.GOLD_SPADE)
+				|| item.equals(Material.GOLD_HOE);
+	}
+	
+	public static boolean isGoldTool(ItemStack item) {
+		return isGoldTool(item.getType());
+	}
+	
+	public static boolean isDiamondTool(Material item) {
+		return item.equals(Material.DIAMOND_PICKAXE)
+				|| item.equals(Material.DIAMOND_SPADE)
+				|| item.equals(Material.DIAMOND_HOE);
+	}
+	
+	public static boolean isDiamondTool(ItemStack item) {
+		return isDiamondTool(item.getType());
+	}
+	
+	public static boolean isTool(Material item) {
+		return isWoodTool(item) || isStoneTool(item) || isIronTool(item) || isGoldTool(item) || isDiamondTool(item);
+	}
+
+	public static boolean isTool(ItemStack item) {
+		return isTool(item.getType());
 	}
 }

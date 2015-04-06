@@ -11,6 +11,8 @@ public abstract class Skill {
 	
 	private double baseProb = 0.2;
 	private double scaleConstant = 25;
+	private int minGain = 0;
+	private int maxGain = 5;
 	
 	private String name = "none";
 	
@@ -57,7 +59,7 @@ public abstract class Skill {
 		if(lvl >= 1000)
 			return 0;
 		double RND = Math.random();
-		int gain = RND <= baseProb * Math.exp(-lvl/10/scaleConstant) ? ((Double)Math.ceil(Math.random()*5)).intValue() : 0;
+		int gain = RND <= baseProb * Math.exp(-lvl/10/scaleConstant) ? ((Double)Math.ceil(Math.random()*maxGain+minGain)).intValue() : 0;
 		lvl += gain;
 		if(lvl > 1000) {
 			gain -= lvl - 1000;
@@ -72,5 +74,21 @@ public abstract class Skill {
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	public int getMinGain() {
+		return minGain;
+	}
+
+	public void setMinGain(int minGain) {
+		this.minGain = minGain;
+	}
+
+	public int getMaxGain() {
+		return maxGain;
+	}
+
+	public void setMaxGain(int maxGain) {
+		this.maxGain = maxGain;
 	}
 }
