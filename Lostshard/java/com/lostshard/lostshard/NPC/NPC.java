@@ -5,7 +5,7 @@ import org.bukkit.Location;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.NPCHandler;
 import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.Plot.Plot;
 
 /**
  * @author Jacob Rosborg

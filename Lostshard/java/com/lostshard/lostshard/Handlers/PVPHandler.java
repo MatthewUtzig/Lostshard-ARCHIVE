@@ -13,10 +13,11 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
 /**
@@ -168,6 +169,8 @@ public class PVPHandler {
 		// defender is on a plot
 		if(plot != null) {
 			if(plot.isCapturePoint())
+				notCrim = true;
+			if(plot.isUpgrade(PlotUpgrade.ARENA))
 				notCrim = true;
 			// and the attacker is a member of the plot
 			if(plot.isFriendOrAbove(playerDamager)) {

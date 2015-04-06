@@ -14,7 +14,10 @@ import org.bukkit.entity.Horse.Color;
 import org.bukkit.entity.Horse.Style;
 import org.bukkit.entity.Horse.Variant;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.inventory.ItemStack;
+import org.spigotmc.event.entity.EntityDismountEvent;
+import org.spigotmc.event.entity.EntityMountEvent;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Utils.Output;
@@ -137,6 +140,16 @@ public class TamingSkill extends Skill {
 	public void setHorse(Horse horse) {
 		this.horse = horse;
 	}
-
 	
+	public static void onMount(EntityMountEvent event) {
+		
+	}
+	
+	public static void onTame(EntityTameEvent event) {
+		
+	}
+	
+	public static void onDismount(EntityDismountEvent even) {
+		
+	}
 }

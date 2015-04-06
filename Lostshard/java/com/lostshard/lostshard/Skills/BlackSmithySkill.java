@@ -3,10 +3,12 @@ package com.lostshard.lostshard.Skills;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -14,9 +16,7 @@ public class BlackSmithySkill extends Skill {
 
 	private static final int REPAIR_STAMINA_COST = 10;
 	private static final int SMELT_STAMINA_COST = 15;
-//	private static final int SHARPEN_STAMINA_COST = 10;
-//	private static final int HARDEN_STAMINA_COST = 25;
-//	private static final int FORTIFY_STAMINA_COST = 25;
+	private static final int ENHANCE_STAMINA_COST = 25;
 	
 	public BlackSmithySkill() {
 		super();
@@ -45,7 +45,7 @@ public class BlackSmithySkill extends Skill {
 		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
 		int lvl = skill.getLvl();
 		if(!canRepair(item)) {
-			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You cannot repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		Material cost = null;
@@ -77,7 +77,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		
 		if(!player.getInventory().contains(cost, costAmount)) {
-			Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name())+" to repair that tool, requires "+costAmount+".");
+			Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to repair that tool, requires "+costAmount+".");
 			return;
 		}
 		
@@ -176,6 +176,26 @@ public class BlackSmithySkill extends Skill {
 			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
+		if(lvl < 250) {
+			Output.simpleError(player, "You are not skilled enough to enhance this tool.");
+			return;
+		}
+		
+		int costAmount = 2;
+		Material cost = null;
+		if(ItemUtils.isDiamond(item)) {
+			cost = Material.DIAMOND;
+		}else if(ItemUtils.isGold(item)){
+			cost = Material.GOLD_INGOT;
+		}else if(ItemUtils.isIron(item)){
+			cost = Material.IRON_INGOT;
+		}else if(ItemUtils.isStone(item))
+			cost = Material.COBBLESTONE;
+		
+		if(cost == null) {
+			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			return;
+		}
 		
 		boolean isTool = false;
 		boolean isSword = false;
@@ -189,12 +209,39 @@ public class BlackSmithySkill extends Skill {
 			isTool = true;
 		else if(item.getType().equals(Material.BOW))
 			isBow = true;
+		else {
+			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			return;
+		}
 		
 		if(isTool) {
-			
+			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED)+2;
+			if(costAmount > 6) {
+				Output.simpleError(player, "You cannot enhance this tool above lvl 5");
+				return;
+			}
+			Plot plot = ptm.findPlotAt(player.getLocation());
+			if(costAmount > 5 && plot == null) {
+				return;
+			}
+			if(!player.getInventory().contains(cost, costAmount)) {
+				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to repair that tool, requires "+costAmount+".");
+				return;
+			}
+			pPlayer.setStamina(pPlayer.getStamina()-ENHANCE_STAMINA_COST);
+			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
+			if(costAmount > 4) {
+				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
+			}else{
+				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
+				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
+			}
+			Output.positiveMessage(player, "You have enhanced "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else if(isSword) {
+			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL)+2;
 			
 		}else if(isBow) {
+			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.ARROW_DAMAGE)+2;
 			
 		}else if(isArmor) {
 			
@@ -206,8 +253,9 @@ public class BlackSmithySkill extends Skill {
 	
 	public static boolean canRepair(Material item) {
 		if(
-				//Gold
+				//Diamond
 				item.equals(Material.DIAMOND_AXE)
+				|| item.equals(Material.DIAMOND_PICKAXE)
 				|| item.equals(Material.DIAMOND_BOOTS)
 				|| item.equals(Material.DIAMOND_CHESTPLATE)
 				|| item.equals(Material.DIAMOND_HELMET)

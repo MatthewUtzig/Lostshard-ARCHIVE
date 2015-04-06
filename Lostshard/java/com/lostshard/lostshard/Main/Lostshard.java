@@ -36,6 +36,7 @@ import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Registry;
 import com.lostshard.lostshard.Spells.MagicStructure;
+import com.lostshard.lostshard.Utils.ItemUtils;
 
 /**
  * @author Jacob Rosborg
@@ -97,6 +98,7 @@ public class Lostshard extends JavaPlugin {
 		new ReloadCommand(this);
 		new FishingCommand(this);
 		new BlackSmithyCommand(this);
+		ItemUtils.addChainMail();
 		
 		Lostshard.setPlugin(this);
 		

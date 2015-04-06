@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Objects;
+package com.lostshard.lostshard.Objects.Plot;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -7,6 +7,7 @@ public enum PlotUpgrade {
 	TOWN("Town", 100000),
 	DUNGEON("Dungeon", 20000),
 	AUTOKICK("AutoKick", 10000),
+	ARENA("Arena", 10000),
 	NEUTRALALIGNMENT("Neutral Alignment", 4000);
 	
 	private int price;

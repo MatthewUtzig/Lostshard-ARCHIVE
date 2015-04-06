@@ -16,8 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Handlers.ChatHandler;
-import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.ItemUtils;

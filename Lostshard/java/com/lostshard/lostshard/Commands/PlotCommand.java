@@ -24,9 +24,9 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
-import com.lostshard.lostshard.Objects.Plot;
-import com.lostshard.lostshard.Objects.PlotUpgrade;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
@@ -739,7 +739,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			for(PlotUpgrade upgrade : PlotUpgrade.values()) {
 				if(plot.isUpgrade(upgrade))
 					continue;
-				player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
+				player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName()+ " ("+Utils.df.format(upgrade.getPrice())+" gc)");
 			}
 		}else if (args.length >= 2) {
 			
@@ -750,7 +750,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				for(PlotUpgrade u : PlotUpgrade.values()) {
 					if(plot.isUpgrade(u))
 						continue;
-					player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
+					player.sendMessage(ChatColor.YELLOW+"- "+u.getName()+ " ("+Utils.df.format(u.getPrice())+" gc)");
 				}
 				return;
 			}
@@ -796,7 +796,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(player, plot.getName()+ " has not been upgraded.");
 				}else{
 					for(PlotUpgrade upgrade : plot.getUpgrades()) {
-						player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName());
+						player.sendMessage(ChatColor.YELLOW+"- "+upgrade.getName()+ " ("+Utils.df.format(upgrade.getPrice())+" gc)");
 					}
 				}
 				Output.positiveMessage(player, "-Plot Upgrades Available-");
@@ -815,7 +815,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					for(PlotUpgrade u : PlotUpgrade.values()) {
 						if(plot.isUpgrade(u))
 							continue;
-						player.sendMessage(ChatColor.YELLOW+"- "+u.getName());
+						player.sendMessage(ChatColor.YELLOW+"- "+u.getName()+ " ("+Utils.df.format(u.getPrice())+" gc)");
 					}
 					return;
 				}

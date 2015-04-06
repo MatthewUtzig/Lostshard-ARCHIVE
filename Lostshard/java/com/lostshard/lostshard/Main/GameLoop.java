@@ -13,9 +13,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Objects.Plot;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class GameLoop extends BukkitRunnable {

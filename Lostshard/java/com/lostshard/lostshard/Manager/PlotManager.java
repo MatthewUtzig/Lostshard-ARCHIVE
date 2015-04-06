@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Objects.Plot;
+import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 

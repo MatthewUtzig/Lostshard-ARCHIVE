@@ -17,6 +17,7 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 	public BlackSmithyCommand(Lostshard plugin) {
 		plugin.getCommand("repair").setExecutor(this);
 		plugin.getCommand("smelt").setExecutor(this);
+		plugin.getCommand("enhance").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -37,10 +38,22 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 			Player player = (Player) sender;
 			semt(player);
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("enhance")){
+			if(!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			enhance(player);
+			return true;
 		}
 		return false;
 	}
 	
+	private void enhance(Player player) {
+		BlackSmithySkill.enhance(player);
+	}
+
 	private void semt(Player player) {
 		BlackSmithySkill.smelt(player);
 	}

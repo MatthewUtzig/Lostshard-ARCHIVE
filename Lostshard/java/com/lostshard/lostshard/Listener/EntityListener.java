@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -24,7 +26,9 @@ import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
@@ -33,6 +37,7 @@ import com.lostshard.lostshard.Skills.LumberjackingSkill;
 public class EntityListener implements Listener {
 
 	PlotManager ptm = PlotManager.getManager();
+	PlayerManager pm = PlayerManager.getManager();
 	
 	public EntityListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -40,9 +45,17 @@ public class EntityListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamaged(EntityDamageEvent event) {
-		if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
-			event.setCancelled(true);
-		
+		if(event.getCause().equals(DamageCause.FALL)) {
+			if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
+				event.setCancelled(true);
+			else if(event.getEntity() instanceof Player){
+				Player player = (Player) event.getEntity();
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				if(pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500){
+					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)/2);
+				}
+			}
+		}
 	}
 	
 	@EventHandler

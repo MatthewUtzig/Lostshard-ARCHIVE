@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Objects;
+package com.lostshard.lostshard.Objects.Plot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Serializer;
 
@@ -426,6 +427,8 @@ public class Plot {
 	public int getTax() {
 		return size*10;
 	}
+	
+	
 
 	// Capturepoint stuff
 

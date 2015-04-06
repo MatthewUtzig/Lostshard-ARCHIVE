@@ -144,3 +144,6 @@ commands:
    repair:
       description: repair stuff.
       usage: /<command>
+   enhance:
+      description: enhance stuff.
+      usage: /<command>
