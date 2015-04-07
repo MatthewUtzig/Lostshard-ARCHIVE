@@ -1,6 +1,5 @@
 #Left over
  - Taming commands
- - Blacksmithy commands
  - 
 
 #Plots
@@ -49,9 +48,9 @@
 - [x] Magery
 - [x] Blades
 - [x] Brawling
-- [ ] Survivalism
+- [x] Survivalism
 - [ ] Taming
-- [ ] Blacksmithy
+- [x] Blacksmithy
 - [x] Fishing
 
 #Utils
