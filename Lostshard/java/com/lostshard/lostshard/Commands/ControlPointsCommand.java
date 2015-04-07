@@ -72,8 +72,14 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 			
 		}
 		
+		if(clan.equals(plot.getOwningClan())) {
+			Output.simpleError(player, "Your clan already owns "+plot.getName());
+			return;
+			
+		}
+		
 		Capturepoint cp = Capturepoint.getByName(plot.getName());
-		if(cp == null && !Utils.isWithin(player.getLocation(), plot.getLocation(), 10) || cp != null && !Utils.isWithin(player.getLocation(), new Location(plot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 10)) {
+		if(cp == null && !Utils.isWithin(player.getLocation(), plot.getLocation(), 5) || cp != null && !Utils.isWithin(player.getLocation(), new Location(plot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 5)) {
 			Output.simpleError(player, "You may only claim "+plot.getName()+" if you are within the claim range.");
 			return;
 		}

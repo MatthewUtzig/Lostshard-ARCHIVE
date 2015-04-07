@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -77,16 +74,10 @@ public class GameLoop extends BukkitRunnable {
 					Database.updateClans(clanUpdates);
 				clanUpdates.clear();
 			}
-			if(tick % 18000 == 0){
- 				for(Player p : Bukkit.getOnlinePlayers()) {
- 					PseudoPlayer pseudoPlayer = pm.getPlayer(p);
- 					if(!pseudoPlayer.isSubscriber())
- 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
- 				}
-			}
 			for(Camp camp : SurvivalismSkill.getCamps())
 				camp.tick();
-			CapturepointHandler.tick(delta);
+			if(tick % 10 == 0)
+				CapturepointHandler.tick(delta);
 		}
 	}
 }

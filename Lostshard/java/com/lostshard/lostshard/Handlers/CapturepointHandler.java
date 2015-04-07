@@ -25,20 +25,24 @@ public class CapturepointHandler {
 	public static void onPlayerMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		Plot fromPlot = ptm.findPlotAt(event.getFrom());
+		if(fromPlot == null)
+			return;
 		if(!(fromPlot instanceof PlotCapturePoint))
 			return;
 		Plot toPlot = ptm.findPlotAt(event.getTo());
+		if(toPlot == null)
+			return;
 		if(!(toPlot instanceof PlotCapturePoint)) {
 			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
 			return;
 		}
 		Capturepoint cp = Capturepoint.getByName(fromPlot.getName());
 		if(cp != null) {
-			if(!Utils.isWithin(player.getLocation(), new Location(fromPlot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 10)) {
+			if(!Utils.isWithin(player.getLocation(), new Location(fromPlot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 5)) {
     			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
 	    	}
 		}else{
-			if(!Utils.isWithin(player.getLocation(), fromPlot.getLocation(), 10)) {
+			if(!Utils.isWithin(player.getLocation(), fromPlot.getLocation(), 5)) {
     			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
     		}
 	    }

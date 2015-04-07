@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Output;
@@ -43,7 +44,11 @@ public class PlotCapturePoint extends Plot {
 	}
 	
 	public Clan getOwningClan() {
-		return owningClan;
+		for(Clan c : Lostshard.getRegistry().getClans())
+			if(c.equals(capturingClan))
+				return c;
+		this.owningClan = null;
+		return null;
 	}
 
 	public void setOwningClan(Clan owningClan) {
@@ -132,9 +137,8 @@ public class PlotCapturePoint extends Plot {
 			return;
 		else if(pPlayer == null || clan == null) {
 			Output.simpleError(player,  "Something went wrong.");
-		}
-		else {
-			if(recentCaptureFails.contains(player.getName())) {
+		} else {
+			if(recentCaptureFails.contains(player.getUniqueId())) {
 				Output.simpleError(player, "You failed to capture "+getName()+" recently, you must wait until the next time it is vulnerable to attempt to capture it again.");
 				return;
 			}
@@ -145,20 +149,22 @@ public class PlotCapturePoint extends Plot {
 			pPlayer.setClaming(true);
 			
 			if(getOwningClan() != null)
-				owningClan.sendMessage(getName()+" is being claimed by "+player.getName()+", from the clan "+capturingClan.getName()+"!");
+				getOwningClan().sendMessage(getName()+" is being claimed by "+player.getName()+", from the clan "+capturingClan.getName()+"!");
 			capturingClan.sendMessage(player.getName()+" is claiming "+this.getName()+" for your clan!");
     		player.sendMessage(ChatColor.GOLD+"You must stay alive and within "+this.getName()+" for 120 seconds.");
 		}
 	}
 	
 	public void failCaptureDied(Player player) {
+		if(!isUnderAttack())
+			return;
 		if(!capturingPlayer.equals(player.getUniqueId()))
 			return;
 		PseudoPlayer capturingPseudoPlayer = pm.getPlayer(player);
 		capturingPlayer = null;
 		capturingPseudoPlayer.setClaming(false);
 		if(owningClan != null)
-			owningClan.sendMessage(player.getName()+" died and thus failed to claim "+this.getName()+".");
+			getOwningClan().sendMessage(player.getName()+" died and thus failed to claim "+this.getName()+".");
 		capturingClan.sendMessage(player.getName()+" died and thus failed to claim "+this.getName()+".");
 		setClaimSecRemaining(0);
 		recentCaptureFails.add(player.getUniqueId());
@@ -166,13 +172,15 @@ public class PlotCapturePoint extends Plot {
 	}
 	
 	public void failCaptureLeft(Player player) {
+		if(!isUnderAttack())
+			return;
 		if(!capturingPlayer.equals(player.getUniqueId()))
 			return;
 		capturingPlayer = null;
 		PseudoPlayer capturingPseudoPlayer = pm.getPlayer(player);
 		capturingPseudoPlayer.setClaming(false);
 		if(owningClan != null)
-			owningClan.sendMessage(player.getName()+" left "+this.getName()+" and thus failed to claim it.");
+			getOwningClan().sendMessage(player.getName()+" left "+this.getName()+" and thus failed to claim it.");
 		capturingClan.sendMessage(player.getName()+" left "+this.getName()+" and thus failed to claim it.");
 		claimSecRemaining = 0;
 		recentCaptureFails.add(player.getUniqueId());
@@ -213,7 +221,7 @@ public class PlotCapturePoint extends Plot {
 					timeoutSecRemaining = 0;
 					Player ocapturingPlayer = Bukkit.getPlayer(capturingPlayer);
 					capturingPlayer = null;
-					owningClan = capturingClan;
+					setOwningClan(capturingClan);
 					capturingClan = null;
 					
 //					if(this.getName().equalsIgnoreCase(GORP_PLOT_NAME))
@@ -236,15 +244,15 @@ public class PlotCapturePoint extends Plot {
 					if(owningClan != null) {
 						if(recentClaims == 1) {
 							if(timesLeft == 1)
-								owningClan.sendMessage(this.getName()+" has been claimed "+recentClaims+" time. It will be captured if it is claimed "+timesLeft+" more time. If it is not claimed again in the next 8 minutes it will reset.");
+								getOwningClan().sendMessage(this.getName()+" has been claimed "+recentClaims+" time. It will be captured if it is claimed "+timesLeft+" more time. If it is not claimed again in the next 8 minutes it will reset.");
 							else
-								owningClan.sendMessage(this.getName()+" has been claimed "+recentClaims+" time. It will be captured if it is claimed "+timesLeft+" more times. If it is not claimed again in the next 8 minutes it will reset.");
+								getOwningClan().sendMessage(this.getName()+" has been claimed "+recentClaims+" time. It will be captured if it is claimed "+timesLeft+" more times. If it is not claimed again in the next 8 minutes it will reset.");
 						}
 						else {
 							if(timesLeft == 1)
-								owningClan.sendMessage(this.getName()+" has been claimed "+recentClaims+" times. It will be captured if it is claimed "+timesLeft+" more time. If it is not claimed again in the next 8 minutes it will reset.");
+								getOwningClan().sendMessage(this.getName()+" has been claimed "+recentClaims+" times. It will be captured if it is claimed "+timesLeft+" more time. If it is not claimed again in the next 8 minutes it will reset.");
 							else
-							owningClan.sendMessage(this.getName()+" has been claimed "+recentClaims+" times. It will be captured if it is claimed "+timesLeft+" more times. If it is not claimed again in the next 8 minutes it will reset.");
+								getOwningClan().sendMessage(this.getName()+" has been claimed "+recentClaims+" times. It will be captured if it is claimed "+timesLeft+" more times. If it is not claimed again in the next 8 minutes it will reset.");
 						}
 					}
 					

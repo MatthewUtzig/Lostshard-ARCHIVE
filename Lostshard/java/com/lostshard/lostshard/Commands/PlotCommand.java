@@ -1577,7 +1577,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				return TabUtils.StringTab(args, new String[] { "info",
 						"create", "deposit", "expand", "rename", "coowner",
 						"unfriend", "shrink", "withdraw", "friendbuild",
-						"sell", "unsell", "buy", "list", "preotect",
+						"sell", "unsell", "buy", "list", "protect",
 						"unprotect", "private", "public", "explosion",
 						"upgrade", "downgrade", "friend", "npc"});
 			else if (args.length == 2 && (args[0].equalsIgnoreCase("upgrade")

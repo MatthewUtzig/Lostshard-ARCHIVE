@@ -289,6 +289,10 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			
 			if(clanFound != null) {
 				if(clanFound.isInvited(player.getUniqueId())) {
+					if(clanFound.getMembersAndLeders().size() >= 20) {
+						Output.simpleError(player, "The clan is full, max clan size is 20.");
+						return;
+					}
 					if(!clanFound.isOwner(player.getUniqueId()) && !clanFound.isLeader(player.getUniqueId()) && !clanFound.isMember(player.getUniqueId())) {
 						Clan currentClan = pseudoPlayer.getClan();
 						if(currentClan != null) {

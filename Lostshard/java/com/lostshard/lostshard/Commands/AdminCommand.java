@@ -35,6 +35,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("tpplot").setExecutor(this);
 		plugin.getCommand("tpworld").setExecutor(this);
 		plugin.getCommand("setmurders").setExecutor(this);
+		plugin.getCommand("tax").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -87,6 +88,8 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			Player player = (Player) sender;
 			setMurder(player, args);
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("tax"))  {
+			ptm.tax();
 		}
 		return true;
 	}
