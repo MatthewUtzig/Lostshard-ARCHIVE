@@ -14,7 +14,9 @@ import org.bukkit.entity.Horse.Color;
 import org.bukkit.entity.Horse.Style;
 import org.bukkit.entity.Horse.Variant;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTameEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.spigotmc.event.entity.EntityDismountEvent;
 import org.spigotmc.event.entity.EntityMountEvent;
@@ -33,10 +35,8 @@ public class TamingSkill extends Skill {
 	}
 	
 	private int doogs = 0;
-	private boolean mount = false;
-	private Horse horse = null;
+	private boolean mount = true;
 	
-	@SuppressWarnings("deprecation")
 	public static void callMount(Player player, PseudoPlayer pseudoPlayer) {
 		if(pseudoPlayer.getStamina() >= 10) {
 
@@ -52,8 +52,8 @@ public class TamingSkill extends Skill {
 				return;
 			}
 			
-			if(skill.isMount()) {
-				Output.simpleError(player, "You do not have mount you can summon.");
+			if(!skill.isMount()) {
+				Output.simpleError(player, "You do not have a mount you can summon.");
 				return;
 			}
 			if(!(pseudoPlayer.getStamina() >= 10)){
@@ -64,7 +64,7 @@ public class TamingSkill extends Skill {
 			for(int x=blockFound.getX()-1; x<=blockFound.getX()+1; x++) {
 				for(int y=blockFound.getY(); y<=blockFound.getY()+2; y++) {
 					for(int z=blockFound.getZ()-1; z<=blockFound.getZ()+1; z++) {
-						if(!SpellUtils.invisibleBlocks.contains((byte)blockFound.getWorld().getBlockAt(x,y,z).getType().getId())) {
+						if(!SpellUtils.invisibleBlocks.contains(blockFound.getWorld().getBlockAt(x,y,z).getType())) {
 							Output.simpleError(player, "You cannot summon a mount in rough terrain");
 							return;
 						}
@@ -74,12 +74,7 @@ public class TamingSkill extends Skill {
 			
 			pseudoPlayer.setStamina(pseudoPlayer.getStamina()-10);
 			
-
-	    		Horse horse = skill.getHorse();
-	    		if(horse != null) {
-	    			horse.setTamed(false);
-					horse.remove();
-	    		}
+				Horse horse = null;
 	    		
 	    		horse = (Horse) player.getWorld().spawnEntity(player.getLocation(), EntityType.HORSE);
 	    		horse.setTamed(true);
@@ -105,9 +100,6 @@ public class TamingSkill extends Skill {
 		    		horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
 	    		}
 	    		horse.setPassenger(player);
-	    		
-	    		
-	    		skill.setHorse(horse);
 	    	}
 	    	Output.positiveMessage(player, "You have summoned your mount.");
 	    	
@@ -133,14 +125,6 @@ public class TamingSkill extends Skill {
 		this.mount = mount;
 	}
 
-	public Horse getHorse() {
-		return horse;
-	}
-
-	public void setHorse(Horse horse) {
-		this.horse = horse;
-	}
-	
 	public static void onMount(EntityMountEvent event) {
 		
 	}
@@ -149,7 +133,18 @@ public class TamingSkill extends Skill {
 		
 	}
 	
-	public static void onDismount(EntityDismountEvent even) {
-		
+	public static void onDismount(EntityDismountEvent event) {
+		if(event.getDismounted() instanceof Horse)
+			event.getDismounted().remove();
+	}
+	
+	public static void onDamage(EntityDamageByEntityEvent event) {
+		if(event.getEntity() instanceof Horse && ((Horse) event.getEntity()).getPassenger() != null)
+			event.getEntity().remove();
+	}
+	
+	public static void onLave(PlayerQuitEvent event) {
+		if(event.getPlayer().getVehicle() instanceof Horse)
+			event.getPlayer().getVehicle().remove();
 	}
 }

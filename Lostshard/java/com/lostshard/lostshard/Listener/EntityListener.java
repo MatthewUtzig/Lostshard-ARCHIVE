@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Listener;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -19,6 +20,7 @@ import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
@@ -33,6 +35,7 @@ import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
+import com.lostshard.lostshard.Skills.TamingSkill;
 
 public class EntityListener implements Listener {
 
@@ -94,6 +97,12 @@ public class EntityListener implements Listener {
 		}
 	}
 	
+	@EventHandler
+	public void onEntityDismount(EntityDismountEvent event) {
+		Bukkit.broadcastMessage("FUCK");
+		TamingSkill.onDismount(event);
+	}
+	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onEntityDamagedByEntityLow(EntityDamageByEntityEvent event) {
 		Entity attacker = event.getDamager();
@@ -102,6 +111,7 @@ public class EntityListener implements Listener {
 			return;
 		event.setCancelled(!PVPHandler.canEntityAttackEntity(attacker, defender));
 		PVPHandler.Attack(event);
+		TamingSkill.onDamage(event);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)

@@ -147,3 +147,13 @@ commands:
    enhance:
       description: enhance stuff.
       usage: /<command>
+   mount:
+      description: Mount horse.
+      usage: /<command>
+   camp:
+      description: Spawns a camp.
+      usage: /<command>
+   track:
+      description: Tracks an entity.
+      usage: /<command>
+      

@@ -106,6 +106,7 @@ public class ItemUtils {
 	
 	public static boolean isDiamond(Material item) {
 		return item.equals(Material.DIAMOND_AXE)
+				|| item.equals(Material.DIAMOND_PICKAXE)
 				|| item.equals(Material.DIAMOND_BOOTS)
 				|| item.equals(Material.DIAMOND_CHESTPLATE)
 				|| item.equals(Material.DIAMOND_HELMET)
@@ -180,7 +181,7 @@ public class ItemUtils {
 	}
 
 	public static boolean isArmor(Material cost) {
-		return isDiamond(cost) || isGoldArmor(cost) || isIron(cost);
+		return isDiamondArmor(cost) || isGoldArmor(cost) || isIronArmor(cost);
 	}
 
 	public static boolean isArmor(ItemStack item) {

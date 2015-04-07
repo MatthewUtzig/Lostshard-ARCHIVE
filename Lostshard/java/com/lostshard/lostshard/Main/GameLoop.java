@@ -13,9 +13,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Objects.Camp;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class GameLoop extends BukkitRunnable {
@@ -54,33 +56,37 @@ public class GameLoop extends BukkitRunnable {
 			pm.tick(delta, tick);
 			MagicStructure.tickGlobal();
 			//5 sec loop
-				if(tick % 50 == 0) {
-					for(PseudoPlayer p : pm.getPlayers())
-						if(p.isUpdate())
-							playerUpdates.add(p);
-					if(!playerUpdates.isEmpty())
-						Database.updatePlayers(playerUpdates);
-					playerUpdates.clear();
-					for(Plot p : ptm.getPlots())
-						if(p.isUpdate())
-							plotUpdates.add(p);
-					if(!plotUpdates.isEmpty())
-						Database.updatePlots(plotUpdates);
-					plotUpdates.clear();
-					for(Clan c : Lostshard.getRegistry().getClans())
-						if(c.isUpdate())
-							clanUpdates.add(c);
-					if(!clanUpdates.isEmpty())
-						Database.updateClans(clanUpdates);
-					clanUpdates.clear();
-				}
-				if(tick % 18000 == 0){
-	 				for(Player p : Bukkit.getOnlinePlayers()) {
-	 					PseudoPlayer pseudoPlayer = pm.getPlayer(p);
-	 					if(!pseudoPlayer.isSubscriber())
-	 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
-	 			}
-	    	}
+			if(tick % 50 == 0) {
+				for(PseudoPlayer p : pm.getPlayers())
+					if(p.isUpdate())
+						playerUpdates.add(p);
+				if(!playerUpdates.isEmpty())
+					Database.updatePlayers(playerUpdates);
+				playerUpdates.clear();
+				for(Plot p : ptm.getPlots())
+					if(p.isUpdate())
+						plotUpdates.add(p);
+				if(!plotUpdates.isEmpty())
+					Database.updatePlots(plotUpdates);
+				plotUpdates.clear();
+				for(Clan c : Lostshard.getRegistry().getClans())
+					if(c.isUpdate())
+						clanUpdates.add(c);
+				if(!clanUpdates.isEmpty())
+					Database.updateClans(clanUpdates);
+				clanUpdates.clear();
+			}
+			if(tick % 18000 == 0){
+ 				for(Player p : Bukkit.getOnlinePlayers()) {
+ 					PseudoPlayer pseudoPlayer = pm.getPlayer(p);
+ 					if(!pseudoPlayer.isSubscriber())
+ 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
+ 				}
+			}
+			for(Camp camp : SurvivalismSkill.getCamps())
+				camp.tick();
+			for(Plot plot : ptm.getPlots())
+				plot.tick(delta);
 		}
 	}
 }

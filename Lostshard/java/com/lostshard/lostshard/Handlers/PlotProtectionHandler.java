@@ -35,6 +35,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -170,7 +171,7 @@ public class PlotProtectionHandler {
 			return;
 		if (!plot.isPrivatePlot())
 			return;
-		if (plot.isFriendOrAbove(event.getPlayer()))
+		if (plot.isAllowedToInteract(event.getPlayer()))
 			return;
 		event.setCancelled(true);
 		Player player = event.getPlayer();
@@ -416,13 +417,28 @@ public class PlotProtectionHandler {
     
     public static void onPlayerInteract(PlayerInteractEvent event) {
     	if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			ItemStack itemInHand = event.getPlayer().getItemInHand();
+			if((itemInHand.getType().equals(Material.WOOD_HOE) ||
+					itemInHand.getType().equals(Material.STONE_HOE) ||
+					itemInHand.getType().equals(Material.IRON_HOE) ||
+					itemInHand.getType().equals(Material.DIAMOND_HOE) ||
+					itemInHand.getType().equals(Material.GOLD_HOE))) {
+				if(event.getClickedBlock().equals(Material.DIRT)) {
+					Plot plot = ptm.findPlotAt(event.getClickedBlock().getLocation());
+					if(plot != null && !plot.isAllowedToBuild(event.getPlayer())) {
+						Output.simpleError(event.getPlayer(), "You cannot hoe soile in \""+plot.getName()+"\" is protected.");
+						event.setCancelled(true);
+						return;
+					}
+				}
+			}
 	    	Block block = event.getClickedBlock().getRelative(event.getBlockFace());
 	    	
 	    	Plot plot = ptm.findPlotAt(block.getLocation());
 	    	
 	    	Player player = event.getPlayer();
 	    	
-	        if(player != null && plot != null && plot.isAllowedToBuild(player))
+	        if(plot != null && plot.isAllowedToBuild(player))
 	        	return;
         
         	 if (player.getItemInHand().getType().equals(Material.ARMOR_STAND)) {

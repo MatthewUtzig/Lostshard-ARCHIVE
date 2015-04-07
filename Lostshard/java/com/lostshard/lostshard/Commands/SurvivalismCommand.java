@@ -10,28 +10,35 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Skills.TamingSkill;
+import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Utils.Output;
 
-public class TamingCommand implements CommandExecutor, TabCompleter {
+public class SurvivalismCommand implements CommandExecutor, TabCompleter {
 	
 	PlayerManager pm = PlayerManager.getManager();
 	
-	public TamingCommand(Lostshard plugin) {
-		plugin.getCommand("mount").setExecutor(this);
+	public SurvivalismCommand(Lostshard plugin) {
+		plugin.getCommand("track").setExecutor(this);
+		plugin.getCommand("camp").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("mount")) {
+		if(cmd.getName().equalsIgnoreCase("track")) {
 			if(!(sender instanceof Player)){
 				Output.mustBePlayer(sender);
 				return true;
 			}
 			Player player = (Player) sender;
-			PseudoPlayer pPlayer = pm.getPlayer(player);
-			TamingSkill.callMount(player, pPlayer);
+			SurvivalismSkill.track(player, args);
+			return true;
+		} else if(cmd.getName().equalsIgnoreCase("camp")) {
+			if(!(sender instanceof Player)){
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			SurvivalismSkill.camp(player);
 			return true;
 		}
 		return false;
@@ -41,5 +48,4 @@ public class TamingCommand implements CommandExecutor, TabCompleter {
 			String string, String[] args) {
 		return null;
 	}
-
 }

@@ -66,6 +66,7 @@ public class PseudoPlayer {
 	private boolean friendlyFire = false;
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	private boolean isPrivate = true;
+	private boolean isClaming = false;
 	
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
@@ -179,9 +180,12 @@ public class PseudoPlayer {
 	}
 
 	public void setCriminal(int criminal) {
+		boolean yesupdate = true;
+		if(this.criminal > 0)
+			yesupdate = false;
 		this.criminal = criminal;
 		if(getScoreboard() != null)
-			if(!isMurderer() && isCriminal())
+			if(!isMurderer() && isCriminal() && yesupdate)
 				getScoreboard().updateTeams();
 		update();
 	}
@@ -632,5 +636,13 @@ public class PseudoPlayer {
 
 	public void setScoreboard(PseudoScoreboard scoreboard) {
 		this.scoreboard = scoreboard;
+	}
+
+	public boolean isClaming() {
+		return isClaming;
+	}
+
+	public void setClaming(boolean isClaming) {
+		this.isClaming = isClaming;
 	}
 }

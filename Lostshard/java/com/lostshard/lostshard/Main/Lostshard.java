@@ -21,6 +21,8 @@ import com.lostshard.lostshard.Commands.PartyCommands;
 import com.lostshard.lostshard.Commands.ReloadCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
+import com.lostshard.lostshard.Commands.SurvivalismCommand;
+import com.lostshard.lostshard.Commands.TamingCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.DataSource;
 import com.lostshard.lostshard.Database.Database;
@@ -98,6 +100,8 @@ public class Lostshard extends JavaPlugin {
 		new ReloadCommand(this);
 		new FishingCommand(this);
 		new BlackSmithyCommand(this);
+		new TamingCommand(this);
+		new SurvivalismCommand(this);
 		ItemUtils.addChainMail();
 		
 		Lostshard.setPlugin(this);

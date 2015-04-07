@@ -5,10 +5,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.Capturepoint;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -72,7 +77,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		
 		if(cost == null) {
-			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You cannot repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		
@@ -172,7 +177,7 @@ public class BlackSmithySkill extends Skill {
 			Output.simpleError(player,  "You cannot enhance while in or shortly after combat.");
 			return;
 		}
-		if(!canRepair(item)) {
+		if(!canRepair(item) || item.getType().equals(Material.DIAMOND_HOE) || item.getType().equals(Material.IRON_HOE) || item.getType().equals(Material.GOLD_HOE) || item.getType().equals(Material.STONE_HOE)) {
 			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
@@ -189,8 +194,11 @@ public class BlackSmithySkill extends Skill {
 			cost = Material.GOLD_INGOT;
 		}else if(ItemUtils.isIron(item)){
 			cost = Material.IRON_INGOT;
-		}else if(ItemUtils.isStone(item))
+		}else if(ItemUtils.isStone(item)) {
 			cost = Material.COBBLESTONE;
+		}else if(item.getType().equals(Material.BOW)) {
+			cost = Material.DIAMOND;
+		}
 		
 		if(cost == null) {
 			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
@@ -217,42 +225,97 @@ public class BlackSmithySkill extends Skill {
 		if(isTool) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED)+2;
 			if(costAmount > 6) {
-				Output.simpleError(player, "You cannot enhance this tool above lvl 5");
+				Output.simpleError(player, "You cannot enhance this tool above lvl 5.");
 				return;
 			}
 			Plot plot = ptm.findPlotAt(player.getLocation());
-			if(costAmount > 5 && plot == null) {
+			if(costAmount > 5 && plot == null || costAmount > 5 && !plot.getName().equals(Capturepoint.HOST.getPlotName())) {
+				Output.simpleError(player, "Only the blacksmith at "+Capturepoint.HOST.getPlotName()+" can enhance your tool to lvl 5.");
 				return;
 			}
 			if(!player.getInventory().contains(cost, costAmount)) {
-				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to repair that tool, requires "+costAmount+".");
+				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to enhance that tool, requires "+costAmount+".");
 				return;
 			}
 			pPlayer.setStamina(pPlayer.getStamina()-ENHANCE_STAMINA_COST);
 			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
 			if(costAmount > 4) {
-				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
+				ItemMeta meta = item.getItemMeta();
+				meta.addEnchant(Enchantment.DIG_SPEED, costAmount-1, true);
+				item.setItemMeta(meta);
 			}else{
-				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
-				item.addEnchantment(Enchantment.DIG_SPEED, costAmount-1);
+				ItemMeta meta = item.getItemMeta();
+				meta.addEnchant(Enchantment.DIG_SPEED, costAmount-1, true);
+				meta.addEnchant(Enchantment.DURABILITY, costAmount-1, true);
+				item.setItemMeta(meta);
 			}
 			Output.positiveMessage(player, "You have enhanced "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else if(isSword) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL)+2;
-			
+			if(costAmount > 6) {
+				Output.simpleError(player, "You cannot sharpen this weapon above lvl 5.");
+				return;
+			}
+			Plot plot = ptm.findPlotAt(player.getLocation());
+			if(costAmount > 5 && plot == null || costAmount > 5 && !plot.getName().equals(Capturepoint.HOST.getPlotName())) {
+				Output.simpleError(player, "Only the blacksmith at "+Capturepoint.HOST.getPlotName()+" can sharpen your weapon to lvl 5.");
+				return;
+			}
+			if(!player.getInventory().contains(cost, costAmount)) {
+				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to sharpen that weapon, requires "+costAmount+".");
+				return;
+			}
+			pPlayer.setStamina(pPlayer.getStamina()-ENHANCE_STAMINA_COST);
+			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
+			ItemMeta meta = item.getItemMeta();
+			meta.addEnchant(Enchantment.DAMAGE_ALL, costAmount-1, true);
+			item.setItemMeta(meta);
+			Output.positiveMessage(player, "You have sharpend "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else if(isBow) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.ARROW_DAMAGE)+2;
-			
+			if(costAmount > 6) {
+				Output.simpleError(player, "You cannot power this weapon above lvl 5.");
+				return;
+			}
+			Plot plot = ptm.findPlotAt(player.getLocation());
+			if(costAmount > 5 && plot == null || costAmount > 5 && !plot.getName().equals(Capturepoint.HOST.getPlotName())) {
+				Output.simpleError(player, "Only the blacksmith at "+Capturepoint.HOST.getPlotName()+" can power your weapon to lvl 5.");
+				return;
+			}
+			if(!player.getInventory().contains(cost, costAmount)) {
+				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to power that weapon, requires "+costAmount+".");
+				return;
+			}
+			pPlayer.setStamina(pPlayer.getStamina()-ENHANCE_STAMINA_COST);
+			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
+			ItemMeta meta = item.getItemMeta();
+			meta.addEnchant(Enchantment.ARROW_DAMAGE, costAmount-1, true);
+			item.setItemMeta(meta);
+			Output.positiveMessage(player, "You have powerd "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else if(isArmor) {
-			
+			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL)+2;
+			if(costAmount > 3) {
+				Output.simpleError(player, "You cannot reinforce this pice of armor above lvl 2.");
+				return;
+			}
+			if(!player.getInventory().contains(cost, costAmount)) {
+				Output.simpleError(player, "You do not have enough "+StringUtils.lowerCase(cost.name()).replace("_", " ")+" to reinforce that pice of armor, requires "+costAmount+".");
+				return;
+			}
+			pPlayer.setStamina(pPlayer.getStamina()-ENHANCE_STAMINA_COST);
+			ItemUtils.removeItem(player.getInventory(), cost, costAmount);
+			ItemMeta meta = item.getItemMeta();
+			meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, costAmount-1, true);
+			item.setItemMeta(meta);
+			Output.positiveMessage(player, "You have reinforced "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else{
-			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You cannot reinforce "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 	}
 	
 	public static boolean canRepair(Material item) {
-		if(
+		return
 				//Diamond
 				item.equals(Material.DIAMOND_AXE)
 				|| item.equals(Material.DIAMOND_PICKAXE)
@@ -295,12 +358,49 @@ public class BlackSmithySkill extends Skill {
 				|| item.equals(Material.WOOD_PICKAXE)
 				|| item.equals(Material.WOOD_SPADE)
 				|| item.equals(Material.WOOD_SWORD)
-				)
-			return true;
-		return false;
+				//Other stuff, like bow
+				|| item.equals(Material.BOW);
 	}
 	
 	public static boolean canRepair(ItemStack item) {
 		return canRepair(item.getType());
 	}
+	
+	public static void anvilProtect(PlayerInteractEvent event) {
+    	if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType() == Material.ANVIL) {
+    		Plot plot = ptm.findPlotAt(event.getClickedBlock().getLocation());
+			Player player = event.getPlayer();
+    		if(plot != null) {
+    			if(!(plot.isFriendOrAbove(player))) 
+    			{
+    				Output.simpleError(player, "You cannot use this here, the plot is protected.");
+    				event.setCancelled(true);
+    				return;
+    			}
+    		}
+    		PseudoPlayer pPlayer = pm.getPlayer(player);
+    		if(!(pPlayer.getCurrentBuild().getBlackSmithy().getLvl() >= 1000)){
+    			Output.simpleError(player, "You must master the ways of Blacksmithy before using an anvil.");
+    			event.setCancelled(true);
+    		}
+    	}
+	}
+	
+	  public static void Enchanting (PrepareItemEnchantEvent event) {
+	    	int[] levels = event.getExpLevelCostsOffered();
+	    	Player player = (Player) event.getViewers().get(0);
+	    	PseudoPlayer pPlayer = pm.getPlayer(player);
+	    	if(pPlayer.getCurrentBuild().getBlackSmithy().getLvl() >= 1000){
+	    		
+	    	}else if(pPlayer.getCurrentBuild().getBlackSmithy().getLvl() >= 500){
+	    		levels[2] = 0;
+	    	}else if(pPlayer.getCurrentBuild().getBlackSmithy().getLvl() >= 250){
+	    		levels[1] = 0;
+	    		levels[2] = 0;
+	    	}else{
+	    		levels[0] = 0;
+	    		levels[1] = 0;
+	    		levels[2] = 0;
+	    	}
+	    }
 }
