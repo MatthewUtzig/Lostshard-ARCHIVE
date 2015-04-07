@@ -21,6 +21,7 @@ import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Spells.Spell;
@@ -190,8 +191,8 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW
 					+ "You are not a friend of this plot.");
 
-		if (plot.isCapturePoint()) {
-			Clan clan = plot.getOwningClan();
+		if (plot instanceof PlotCapturePoint) {
+			Clan clan = ((PlotCapturePoint)plot).getOwningClan();
 			if (clan != null)
 				player.sendMessage(ChatColor.YELLOW + "Owning Clan: "
 						+ ChatColor.WHITE + clan.getName());

@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Camp;
@@ -85,8 +86,7 @@ public class GameLoop extends BukkitRunnable {
 			}
 			for(Camp camp : SurvivalismSkill.getCamps())
 				camp.tick();
-			for(Plot plot : ptm.getPlots())
-				plot.tick(delta);
+			CapturepointHandler.tick(delta);
 		}
 	}
 }

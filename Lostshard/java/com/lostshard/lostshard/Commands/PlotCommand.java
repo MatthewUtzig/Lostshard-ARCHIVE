@@ -26,6 +26,7 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
@@ -33,8 +34,7 @@ import com.lostshard.lostshard.Utils.TabUtils;
 import com.lostshard.lostshard.Utils.Utils;
 
 /**
- * @author Jacob Rosborg
- * @author Luciddream
+ * @author Jacob Emil Ulvedal Rosborg
  *
  */
 public class PlotCommand implements CommandExecutor, TabCompleter {
@@ -123,12 +123,32 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				plotPvpToggle(player);
 			else if (plotCommand.equalsIgnoreCase("magic") && player.isOp())
 				plotMagicToggle(player);
+			else if (plotCommand.equalsIgnoreCase("capturepoint") && player.isOp())
+				plotCapturePoint(player);
 			else {
 				Output.simpleError(player, "Use \"/plot help\" for commands.");
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private void plotCapturePoint(Player player) {
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		if (plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if (!player.isOp()) {
+			Output.simpleError(player, "Ops may only toggle capturepoint for plots.");
+		}
+		if (plot instanceof PlotCapturePoint) {
+			Output.simpleError(player, "The only way to turn of capturepoint is disbanding the plot.");
+		} else {
+			Output.positiveMessage(player, "You have turend "+plot.getName()+" into a capturepoint.");
+			ptm.getPlots().remove(plot);
+			ptm.getPlots().add((PlotCapturePoint)plot);
+		}
 	}
 
 	/**
@@ -1560,18 +1580,25 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						"sell", "unsell", "buy", "list", "preotect",
 						"unprotect", "private", "public", "explosion",
 						"upgrade", "downgrade", "friend", "npc"});
-			else if (args.length == 2 && args[0].equalsIgnoreCase("upgrade")
+			else if (args.length == 2 && (args[0].equalsIgnoreCase("upgrade")
 				|| args[0].equalsIgnoreCase("upgrades") || 
 				args[0].equalsIgnoreCase("downgrade") || 
-				args[0].equalsIgnoreCase("downgrades"))
+				args[0].equalsIgnoreCase("downgrades")))
 			return TabUtils.StringTab(args, new String[] { "town", "dungeon",
 					"autokick", "neutral"});
-			else if(args.length >= 2 && args[0].equalsIgnoreCase("npc"))
+			else if(args.length >= 2 && args[0].equalsIgnoreCase("npc")) {
 				if(args.length == 2)
 					return TabUtils.StringTab(args, new String[] { "hire", "fire",
 						"move" });
 				else if(args.length == 3 && args[1].equalsIgnoreCase("hire"))
 					return TabUtils.StringTab(args, new String[] { "banker", "vendor"});
+			}else if(args.length == 2 && (args[1].equalsIgnoreCase("coowner") || args[1].equalsIgnoreCase("friend") )) {
+					if(sender instanceof Player)
+						return TabUtils.PlotFriend((Player) sender, args);
+			}else if(args.length == 2 && (args[1].equalsIgnoreCase("unfriend"))) {
+				if(sender instanceof Player)
+					return TabUtils.PlotUnfriend((Player)sender, args);
+			}
 		}
 		return TabUtils.empty();
 	}

@@ -24,6 +24,7 @@ import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Skills.Build;
@@ -197,8 +198,11 @@ public class Database {
 							.deserializeUUIDList(rs.getString("friends"));
 					ArrayList<UUID> coowners = (ArrayList<UUID>) Serializer
 							.deserializeUUIDList(rs.getString("coowners"));
-
-					Plot plot = new Plot(id, name, UUID.fromString(owner), location);
+					Plot plot;
+					if(capturepoint)
+						plot = new PlotCapturePoint(id, name, UUID.fromString(owner), location);
+					else
+						plot = new Plot(id, name, UUID.fromString(owner), location);
 					plot.setSize(size);
 					plot.setMoney(money);
 					plot.setSalePrice(salePrice);
@@ -209,7 +213,6 @@ public class Database {
 					if(upgrades != null)
 						for(String s : upgrades)
 							plot.addUpgrade(PlotUpgrade.valueOf(s));
-					plot.setCapturePoint(capturepoint);
 					plot.setAllowMagic(magic);
 					plot.setAllowPvp(pvp);
 					plot.setFriends(friends);
@@ -257,7 +260,7 @@ public class Database {
 			prep.setBoolean(9, plot.isPrivatePlot());
 			prep.setBoolean(10, plot.isFriendBuild());
 			prep.setString(11, plot.upgradesToJson());
-			prep.setBoolean(12, plot.isCapturePoint());
+			prep.setBoolean(12, plot instanceof PlotCapturePoint);
 			prep.setBoolean(13, plot.isAllowMagic());
 			prep.setBoolean(14, plot.isAllowPvp());
 			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
@@ -296,7 +299,7 @@ public class Database {
 				prep.setBoolean(9, plot.isPrivatePlot());
 				prep.setBoolean(10, plot.isFriendBuild());
 				prep.setString(11, plot.upgradesToJson());
-				prep.setBoolean(12, plot.isCapturePoint());
+				prep.setBoolean(12, plot instanceof PlotCapturePoint);
 				prep.setBoolean(13, plot.isAllowMagic());
 				prep.setBoolean(14, plot.isAllowPvp());
 				prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
@@ -336,7 +339,7 @@ public class Database {
 			prep.setBoolean(9, plot.isPrivatePlot());
 			prep.setBoolean(10, plot.isFriendBuild());
 			prep.setString(11, plot.upgradesToJson());
-			prep.setBoolean(12, plot.isCapturePoint());
+			prep.setBoolean(12, plot instanceof PlotCapturePoint);
 			prep.setBoolean(13, plot.isAllowMagic());
 			prep.setBoolean(14, plot.isAllowPvp());
 			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));

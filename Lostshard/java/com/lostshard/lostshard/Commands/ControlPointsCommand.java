@@ -17,6 +17,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Plot.Capturepoint;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -57,11 +58,12 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void claim(Player player) {
-		Plot plot = ptm.findPlotAt(player.getLocation());
-		if(plot == null || !plot.isCapturePoint()) {
+		Plot checkplot = ptm.findPlotAt(player.getLocation());
+		if(checkplot == null || !(checkplot instanceof PlotCapturePoint)) {
 			Output.simpleError(player, "This is not a capturepoint.");
 			return;
 		}
+		PlotCapturePoint plot = (PlotCapturePoint) checkplot;
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Clan clan = pPlayer.getClan();
 		if(clan == null) {

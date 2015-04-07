@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,6 +30,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
@@ -42,8 +42,8 @@ import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.PseudoScoreboard;
-import com.lostshard.lostshard.Objects.Plot.Capturepoint;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Skills.BlackSmithySkill;
 import com.lostshard.lostshard.Skills.FishingSkill;
 import com.lostshard.lostshard.Skills.SurvivalismSkill;
@@ -51,7 +51,6 @@ import com.lostshard.lostshard.Skills.TamingSkill;
 import com.lostshard.lostshard.Spells.Structures.FireWalk;
 import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
-import com.lostshard.lostshard.Utils.Utils;
 
 public class PlayerListener implements Listener {
 
@@ -112,8 +111,7 @@ public class PlayerListener implements Listener {
 		}
 		pm.onPlayerQuit(event);
 		TamingSkill.onLave(event);
-		for(Plot plot : ptm.getPlots())
-			plot.failCaptureLeft(player);
+		CapturepointHandler.onPlayerQuit(event);
 	}
 	
 	@EventHandler
@@ -172,17 +170,7 @@ public class PlayerListener implements Listener {
 		SpellManager.move(event);
 		Gate.onPlayerMove(event);
 		FireWalk.onPlayerMove(event);
-		
-		Player player = event.getPlayer();
-		Plot plot = ptm.findPlotAt(player.getLocation());
-		if(plot != null) {
-		Capturepoint cp = Capturepoint.getByName(plot.getName());
-		    for(Plot cP : ptm.getPlots()) {
-				if(cp == null && !Utils.isWithin(player.getLocation(), plot.getLocation(), 10) || cp != null && !Utils.isWithin(player.getLocation(), new Location(plot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 10)) {
-	    			cP.failCaptureLeft(player);
-	    		}
-		    }
-		}
+		CapturepointHandler.onPlayerMove(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -213,7 +201,8 @@ public class PlayerListener implements Listener {
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		DeathHandler.handleDeath(event);
 		for(Plot plot : ptm.getPlots())
-			plot.failCaptureDied(event.getEntity());
+			if(plot instanceof PlotCapturePoint)
+				((PlotCapturePoint)plot).failCaptureDied(event.getEntity());
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)

@@ -17,6 +17,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
@@ -168,7 +169,7 @@ public class PVPHandler {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		// defender is on a plot
 		if(plot != null) {
-			if(plot.isCapturePoint())
+			if(plot instanceof PlotCapturePoint)
 				notCrim = true;
 			if(plot.isUpgrade(PlotUpgrade.ARENA))
 				notCrim = true;
