@@ -2,6 +2,7 @@ package com.lostshard.lostshard.Handlers;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -23,31 +24,36 @@ public class CapturepointHandler {
 	
 	public static void onPlayerMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		Plot plot = ptm.findPlotAt(player.getLocation());
-		if(plot instanceof PlotCapturePoint) {
-			Capturepoint cp = Capturepoint.getByName(plot.getName());
-			if(cp != null) {
-			    for(Plot cP : ptm.getPlots()) {
-			    	if(cP instanceof PlotCapturePoint) {
-						if(!Utils.isWithin(player.getLocation(), new Location(plot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 10)) {
-			    			((PlotCapturePoint)cP).failCaptureLeft(player);
-			    		}
-			    	}
-		    	}
-			}else{
-				for(Plot cP : ptm.getPlots()) {
-			    	if(!(cP instanceof PlotCapturePoint))
-					if(!Utils.isWithin(player.getLocation(), plot.getLocation(), 10)) {
-		    			((PlotCapturePoint)cP).failCaptureLeft(player);
-		    		}
-			    }
-		    }
+		Plot fromPlot = ptm.findPlotAt(event.getFrom());
+		if(!(fromPlot instanceof PlotCapturePoint))
+			return;
+		Plot toPlot = ptm.findPlotAt(event.getTo());
+		if(!(toPlot instanceof PlotCapturePoint)) {
+			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
+			return;
 		}
+		Capturepoint cp = Capturepoint.getByName(fromPlot.getName());
+		if(cp != null) {
+			if(!Utils.isWithin(player.getLocation(), new Location(fromPlot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 10)) {
+    			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
+	    	}
+		}else{
+			if(!Utils.isWithin(player.getLocation(), fromPlot.getLocation(), 10)) {
+    			((PlotCapturePoint)fromPlot).failCaptureLeft(player);
+    		}
+	    }
 	}
 
 	public static void onPlayerQuit(PlayerQuitEvent event) {
 		for(Plot plot : ptm.getPlots())
 			if(plot instanceof PlotCapturePoint)
 				((PlotCapturePoint)plot).failCaptureLeft(event.getPlayer());
+	}
+	
+	public static void onPlayerDie(PlayerDeathEvent event) {
+		Player player = event.getEntity();
+		for(Plot plot : ptm.getPlots())
+			if(plot instanceof PlotCapturePoint)
+				((PlotCapturePoint)plot).failCaptureLeft(player);
 	}
 }
