@@ -30,6 +30,7 @@ public class BlackSmithySkill extends Skill {
 		setScaleConstant(30);
 		setMaxGain(15);
 		setMinGain(5);
+		setMat(Material.ANVIL);
 	}
 	
 	public static void repair(Player player) {

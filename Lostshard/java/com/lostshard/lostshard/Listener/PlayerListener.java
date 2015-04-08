@@ -11,7 +11,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -34,6 +36,7 @@ import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
+import com.lostshard.lostshard.Handlers.InventoryGUIHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
@@ -213,5 +216,20 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onPrepareItemEnchant(PrepareItemEnchantEvent event) {
 		BlackSmithySkill.Enchanting(event);
+	}
+	
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent event) {
+		InventoryGUIHandler.onInventoryClick(event);
+	}
+	
+	@EventHandler
+	public void onInventoryClick(InventoryCloseEvent event) {
+		InventoryGUIHandler.onInventoryClose(event);
+	}
+	
+	@EventHandler
+	public void onInventoryClick(InventoryInteractEvent event) {
+		InventoryGUIHandler.onInventoryInteract(event);
 	}
 }

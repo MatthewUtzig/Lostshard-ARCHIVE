@@ -22,9 +22,12 @@ import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
 import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookPageGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
+import com.lostshard.lostshard.Skills.Build;
+import com.lostshard.lostshard.Skills.Skill;
 import com.lostshard.lostshard.Spells.Scroll;
 
 public class Output {
@@ -67,56 +70,20 @@ public class Output {
 
 	public static void outputSkills(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		if(pseudoPlayer.isAllowGui()) {
+			InventoryGUI gui = GUIType.SKILLS.getGUI(pseudoPlayer);
+			gui.openInventory(player);
+			return;
+		}
 		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Skills-");
 		player.sendMessage(ChatColor.YELLOW+"You currently have "+Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTotalSkillVal())+"/"+Utils.scaledIntToString(pseudoPlayer.getMaxSkillValTotal()) + " skill points.");
-		if(pseudoPlayer.getCurrentBuild().getArchery().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Archery(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getArchery().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Archery: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getArchery().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getBlackSmithy().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Blacksmithy(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlackSmithy().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Blacksmithy: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlackSmithy().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getBrawling().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Brawling(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBrawling().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Brawling: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBrawling().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getMagery().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Magery(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMagery().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Magery: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMagery().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getBlades().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Bladess(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Bladess: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getBlades().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getSurvivalism().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Survivalism(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getSurvivalism().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Survivalism: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getSurvivalism().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getMining().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Mining(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMining().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Mining: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getMining().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getLumberjacking().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Lumberjacking(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getLumberjacking().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Lumberjacking: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getLumberjacking().getLvl()));
-		
-		if(pseudoPlayer.getCurrentBuild().getTaming().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Taming(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTaming().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Taming: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getTaming().getLvl()));
-		if(pseudoPlayer.getCurrentBuild().getFishing().isLocked())
-			player.sendMessage(ChatColor.YELLOW+"Fishing(L): " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getFishing().getLvl()));
-		else
-			player.sendMessage(ChatColor.YELLOW+"Fishing: " +ChatColor.WHITE+ Utils.scaledIntToString(pseudoPlayer.getCurrentBuild().getFishing().getLvl()));
+		Build build = pseudoPlayer.getCurrentBuild();
+		for(Skill s : build.getSkills()) {
+			if(s.isLocked())
+				player.sendMessage(ChatColor.YELLOW+s.getName()+"(L):  "+ChatColor.WHITE+ Utils.scaledIntToString(s.getLvl()));
+			else
+				player.sendMessage(ChatColor.YELLOW+s.getName()+": "+ChatColor.WHITE+ Utils.scaledIntToString(s.getLvl()));
+		}
 	}
 	
 	public static void displayLoginMessages(Player player) {
@@ -416,11 +383,6 @@ public class Output {
 	
 	public static void outputSpellbook(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.SPELLBOOK.getGUI(pseudoPlayer);
-			gui.openInventory(player);
-			return;
-		}
 		SpellBook spellbook = pseudoPlayer.getSpellbook();
 		if(args.length == 2) {
 			String secondaryCommand = args[0];
@@ -431,6 +393,11 @@ public class Output {
 				}
 				catch(Exception e) {
 					pageNumber = -1;
+				}
+				if(pseudoPlayer.isAllowGui()) {
+					InventoryGUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
+					gui.openInventory(player);
+					return;
 				}
 				if((pageNumber >= 1) && (pageNumber <= 9)) {
 					player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Spellbook [Page "+pageNumber+"]-");
@@ -459,35 +426,12 @@ public class Output {
 				}
 				else simpleError(player, "That page doesn't exist, use 1-9");
 			}
-		}
-		else {
-//			Inventory gui = Bukkit.createInventory(null, 9, "Spellbook");
-//			
-//			Material cir = Material.FIREWORK_CHARGE;
-//			int i = 1;
-//			while(i <= 9) {
-//				int minMagery = ((i-1)*12);
-//				if(i == 9)
-//					minMagery = 100;
-//				
-//				ItemStack item = new ItemStack(cir);
-//				ItemMeta itemMeta = item.getItemMeta();
-//				
-//				ArrayList<String> pageInfo = new ArrayList<String>();
-//				
-//				pageInfo.add("Minimum magery: " + minMagery);
-//				
-//				itemMeta.setDisplayName("Page: " + i);
-//				itemMeta.setLore(pageInfo);
-//				item.setItemMeta(itemMeta);
-//				
-//				gui.addItem(item);
-//				i++;
-//			}
-//			
-//			player.openInventory(gui);
-//			pseudoPlayer.setGui("spellbookSelect");
-			
+		}else {
+			if(pseudoPlayer.isAllowGui()) {
+				InventoryGUI gui = GUIType.SPELLBOOK.getGUI(pseudoPlayer);
+				gui.openInventory(player);
+				return;
+			}
 			player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Spellbook-");
 			player.sendMessage(ChatColor.YELLOW+"Your spellbook has 9 pages in it. Each page lists the");
 			player.sendMessage(ChatColor.YELLOW+"spells and associated reagent costs for one circle");
@@ -502,6 +446,11 @@ public class Output {
 
 	public static void outputScrolls(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		if(pseudoPlayer.isAllowGui()) {
+			InventoryGUI gui = GUIType.SCROLLS.getGUI(pseudoPlayer);
+			gui.openInventory(player);
+			return;
+		}
 		ArrayList<Scroll> scrolls = (ArrayList<Scroll>) pseudoPlayer.getScrolls();
 		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Scrolls-");
 		player.sendMessage(ChatColor.YELLOW+"(\"+\" means it is already in your spellbook)");

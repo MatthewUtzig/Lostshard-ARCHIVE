@@ -22,6 +22,7 @@ public class BladesSkill extends Skill {
 		setName("Bladess");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.IRON_SWORD);
 	}
 	
 	public static void playerDamagedEntityWithSword(EntityDamageByEntityEvent event) {

@@ -273,6 +273,11 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 
+		if(plot.getOwner().equals(player.getUniqueId())) {
+			Output.simpleError(player, "You cannot buy your own plot. Use /unlist to remove your plot from the market.");
+			return;
+		}
+		
 		pseudoPlayer.setMoney(pseudoPlayer.getMoney() - salePrice);
 		UUID lastOwner = plot.getOwner();
 		plot.setOwner(player.getUniqueId());
@@ -711,6 +716,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			player.sendMessage(ChatColor.GRAY + "to the player named.");
 			return;
 		}
+		
+		if(plot.getOwner().equals(player.getUniqueId())) {
+			Output.simpleError(player, "You cannot transfer your plot to yourself.");
+			return;
+		}
+		
 		String targetName = args[1];
 		
 		Player targetPlayer = Bukkit.getPlayer(targetName);

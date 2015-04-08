@@ -16,17 +16,14 @@ public class SpellBook {
 	public List<Scroll> getSpells() {
 		return spells;
 	}
-
-	public void setSpells(List<Scroll> spells) {
-		this.spells = spells;
-	}
 	
 	public boolean containSpell(Scroll spellType) {
 		return spells.contains(spellType);
 	}
 	
 	public void addSpell(Scroll spell) {
-		spells.add(spell);
+		if(!spells.contains(spell))
+			spells.add(spell);
 	}
 	
 	public ArrayList<Scroll> getSpellsOnPage(int pageNumber) {

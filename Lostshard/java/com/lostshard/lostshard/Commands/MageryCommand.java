@@ -203,7 +203,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 					}
 				}
 				
-				String scrollName = StringUtils.join(args, "", 1, args.length);
+				String scrollName = StringUtils.join(args, "", 2, args.length);
 				Scroll scroll = Scroll.getByString(scrollName);
 				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
 					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");

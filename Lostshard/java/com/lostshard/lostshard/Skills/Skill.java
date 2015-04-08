@@ -1,5 +1,7 @@
 package com.lostshard.lostshard.Skills;
 
+import org.bukkit.Material;
+
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -13,6 +15,7 @@ public abstract class Skill {
 	private double scaleConstant = 25;
 	private int minGain = 0;
 	private int maxGain = 5;
+	private Material mat;
 	
 	private String name = "none";
 	
@@ -90,5 +93,13 @@ public abstract class Skill {
 
 	public void setMaxGain(int maxGain) {
 		this.maxGain = maxGain;
+	}
+
+	public Material getMat() {
+		return mat;
+	}
+
+	public void setMat(Material mat) {
+		this.mat = mat;
 	}
 }

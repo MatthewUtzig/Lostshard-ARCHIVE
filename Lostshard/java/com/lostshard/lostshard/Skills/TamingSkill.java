@@ -32,6 +32,7 @@ public class TamingSkill extends Skill {
 		setName("Taming");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.BONE);
 	}
 	
 	private int doogs = 0;

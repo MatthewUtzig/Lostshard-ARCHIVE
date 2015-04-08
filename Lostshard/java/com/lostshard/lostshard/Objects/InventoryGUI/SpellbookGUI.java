@@ -20,7 +20,7 @@ public class SpellbookGUI extends InventoryGUI {
 	@Override
 	public void optionSelector() {
 		SpellBook spellbook = getPlayer().getSpellbook();
-		for(int i=1; i<9; i++) {
+		for(int i=1; i<10; i++) {
 			ItemStack item = new ItemStack(Material.PAPER);
 			ItemMeta itemMeta = item.getItemMeta();
 			
@@ -43,10 +43,7 @@ public class SpellbookGUI extends InventoryGUI {
 				
 			}
 			InventoryGUI pageGUI = new SpellbookPageGUI(getPlayer(), page);
-			getPlayer().setGui(pageGUI);
 			pageGUI.openInventory((Player)event.getWhoClicked());
-		}else if(event.getCurrentItem() != null){
-			close();
 		}
 	}
 
