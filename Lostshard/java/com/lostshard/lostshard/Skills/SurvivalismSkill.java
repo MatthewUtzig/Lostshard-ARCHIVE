@@ -54,13 +54,13 @@ public class SurvivalismSkill extends Skill {
 	public static void track(Player player, String[] args) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
-		if(args.length == 2) {			
+		if(args.length == 1) {
 			if(pPlayer.getStamina() < TRACK_STAMINA_COST) {
 				Output.simpleError(player, "Not enough stamina - Tracking requires "+TRACK_STAMINA_COST+".");
 				return;
 			}
 			
-			String targetName = args[1];
+			String targetName = args[0];
 			
 			if(targetName.equalsIgnoreCase(player.getName())) {
 				Output.simpleError(player, "You cannot track yourself.");
@@ -68,10 +68,10 @@ public class SurvivalismSkill extends Skill {
 			}
 			
 			Player targetPlayer = Bukkit.getPlayer(targetName);
-			if(targetPlayer != null && targetPlayer.isOp()) {
-				Output.simpleError(player, "Cannot find "+targetName+".");
-				return;
-			}
+//			if(targetPlayer != null && targetPlayer.isOp()) {
+//				Output.simpleError(player, "Cannot find "+targetName+".");
+//				return;
+//			}
 			
 			int modCurSkill = curSkill;
 			
@@ -165,8 +165,7 @@ public class SurvivalismSkill extends Skill {
 						}
 					}
 					foundLivingEntity = closestEntity;
-				}
-				else {
+				}else {
 					Output.simpleError(player, "Cannot find "+targetName+".");
 					return;
 				}
