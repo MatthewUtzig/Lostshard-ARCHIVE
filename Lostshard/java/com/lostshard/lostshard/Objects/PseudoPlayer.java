@@ -654,8 +654,6 @@ public class PseudoPlayer {
 	}
 
 	public void setGui(InventoryGUI gui) {
-		if(this.gui == null)
-			this.gui.close();
 		this.gui = gui;
 	}
 

@@ -1,4 +1,8 @@
 package com.lostshard.lostshard.Skills;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 	
 public class Build {
 	
@@ -100,6 +104,28 @@ public class Build {
 	
 	public void setArcher(Skill archery) {
 		this.archery = archery;
+	}
+	
+	public List<Skill> getSkills() {
+		List<Skill> skills = new ArrayList<Skill>();
+		skills.add(mining);
+		skills.add(blades);
+		skills.add(brawling);
+		skills.add(blackSmithy);
+		skills.add(lumberjacking);
+		skills.add(fishing);
+		skills.add(survivalism);
+		skills.add(taming);
+		skills.add(magery);
+		skills.add(archery);
+		skills.sort(new Comparator<Skill>()
+                {
+            public int compare(Skill skill1, Skill skill2)
+            {
+                return skill1.getName().compareTo(skill2.getName());
+            }        
+        });
+		return skills;
 	}
 
 	public int getTotalSkillVal() {

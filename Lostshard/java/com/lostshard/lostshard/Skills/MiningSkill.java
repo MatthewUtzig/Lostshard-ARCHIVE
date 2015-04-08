@@ -32,6 +32,7 @@ public class MiningSkill extends Skill {
 		setName("Mining");
 		setScaleConstant(37);
 		setBaseProb(.2);
+		setMat(Material.IRON_PICKAXE);
 	}
 
 	public static void onBlockBreak(BlockBreakEvent event) {

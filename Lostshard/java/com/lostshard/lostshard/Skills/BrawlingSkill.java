@@ -21,6 +21,7 @@ public class BrawlingSkill extends Skill {
 		setName("Brawling");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.PORK);
 	}
 	
 	public static void playerDamagedEntityWithMisc(EntityDamageByEntityEvent event) {

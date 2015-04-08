@@ -586,6 +586,7 @@ public class Database {
 					int currentTitle = rs.getInt("currentTitle");
 					int freeSkillPoints = rs.getInt("freeSkillPoints");
 					List<String> spellbook = Serializer.deserializeStringArray(rs.getString("spellbook"));
+					boolean gui = rs.getBoolean("gui");
 					
 					pPlayer = new PseudoPlayer(uuid, id);
 					
@@ -607,6 +608,7 @@ public class Database {
 					pPlayer.setTitels(titles);
 					pPlayer.setCurrentTitleId(currentTitle);
 					pPlayer.setFreeSkillPoints(freeSkillPoints);
+					pPlayer.setAllowGui(gui);
 					for(String s : spellbook)
 						pPlayer.getSpellbook().addSpell(Scroll.getByString(s));
 					pPlayer.setBuilds(Database.getBuilds(id));
@@ -638,29 +640,8 @@ public class Database {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO players "
-							+ "(uuid,money,bank,murderCounts,criminalTicks,globalChat,privateChat,subscribeDays,wasSubscribed,"
-							+ "plotCreationPoints,chatChannel,mana,stamina,rank,spawnTick,currentBuild,titles,currentTitle,freeSkillPoints,private,spellbook) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "(uuid) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, pPlayer.getPlayerUUID().toString());
-			prep.setInt(2, pPlayer.getMoney());
-			prep.setString(3, pPlayer.getBank().Serialize());
-			prep.setInt(4, pPlayer.getMurderCounts());
-			prep.setInt(5, pPlayer.getCriminal());
-			prep.setBoolean(6, pPlayer.isGlobalChat());
-			prep.setBoolean(7, pPlayer.isPrivateChat());
-			prep.setInt(8, pPlayer.getSubscribeDays());
-			prep.setBoolean(9, pPlayer.wasSubscribed());
-			prep.setInt(10, pPlayer.getPlotCreatePoints());
-			prep.setString(11, pPlayer.getChatChannel().toString());
-			prep.setInt(12, pPlayer.getMana());
-			prep.setInt(13, pPlayer.getStamina());
-			prep.setInt(14, pPlayer.getRank());
-			prep.setInt(15, pPlayer.getTimer().spawnTicks);
-			prep.setInt(16, pPlayer.getCurrentBuildId());
-			prep.setString(17, Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setInt(18, pPlayer.getCurrentTitleId());
-			prep.setInt(19, pPlayer.getFreeSkillPoints());
-			prep.setBoolean(20, pPlayer.isPrivate());
-			prep.setString(21, pPlayer.getSpellbook().toJson());
 			
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
@@ -688,7 +669,7 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			
-			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=? WHERE id=?; ");
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
@@ -711,7 +692,8 @@ public class Database {
 				prep.setInt(18, pPlayer.getFreeSkillPoints());
 				prep.setString(19, pPlayer.getSpellbook().toJson());
 				prep.setBoolean(20, pPlayer.isPrivate());
-				prep.setInt(21, pPlayer.getId());
+				prep.setBoolean(21, pPlayer.isAllowGui());
+				prep.setInt(22, pPlayer.getId());
 				prep.addBatch();
 				builds.addAll(pPlayer.getBuilds());
 			}

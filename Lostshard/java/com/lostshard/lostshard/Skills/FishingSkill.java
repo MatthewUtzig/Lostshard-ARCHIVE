@@ -21,6 +21,7 @@ public class FishingSkill extends Skill {
 		setName("Fishing");
 		setBaseProb(.5);
 		setScaleConstant(80);
+		setMat(Material.FISHING_ROD);
 	}
 	
 	public static void onFish(PlayerFishEvent event) {

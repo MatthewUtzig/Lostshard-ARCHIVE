@@ -49,6 +49,7 @@ public class SurvivalismSkill extends Skill {
 		setName("Survivalism");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.COMPASS);
 	}
 	
 	public static void track(Player player, String[] args) {

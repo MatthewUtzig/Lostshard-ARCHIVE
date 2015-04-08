@@ -34,6 +34,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("private").setExecutor(this);
 		plugin.getCommand("public").setExecutor(this);
 		plugin.getCommand("kill").setExecutor(this);
+		plugin.getCommand("gui").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -58,8 +59,25 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			playerSetPublic(sender);
 		} else if (cmd.getName().equalsIgnoreCase("kill")) {
 			kill(sender);
+		} else if(cmd.getName().equalsIgnoreCase("gui")) {
+			gui(sender);
 		}
 		return true;
+	}
+
+	private void gui(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isAllowGui()) {
+			Output.positiveMessage(sender, "You have disabled inventory GUI.");
+			pPlayer.setAllowGui(false);
+		} else {
+			Output.positiveMessage(sender, "You have enabled inventory GUI.");
+			pPlayer.setAllowGui(true);
+		}
 	}
 
 	private void kill(CommandSender sender) {

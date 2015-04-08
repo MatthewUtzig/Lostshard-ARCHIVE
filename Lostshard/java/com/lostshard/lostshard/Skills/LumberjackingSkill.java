@@ -26,6 +26,7 @@ public class LumberjackingSkill extends Skill {
 		setName("Lumberjacking");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.IRON_AXE);
 	}
 	
 	public static void playerDamagedEntityWithAxe(EntityDamageByEntityEvent event) {

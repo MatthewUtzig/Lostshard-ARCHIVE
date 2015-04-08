@@ -40,7 +40,7 @@ public enum Scroll {
 	MARK("Mark","Runus Markius",4,10,20,20,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
 	TELEPORT("Teleport","Nearius Porticus",3,20,20,0,new ItemStack[] {new ItemStack(Material.FEATHER)}), 
 	RECALL("Recall","Runus Teleporticus",4,30,20,20,new ItemStack[] {new ItemStack(Material.FEATHER)}), 
-	PERMANENTGATETRAVEL("Permanent Gate Travel","Gatius Permenatus",8,100,20,20,new ItemStack[] {new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE), new ItemStack(Material.OBSIDIAN)}),
+	PERMANENTGATETRAVEL("Permanent Gate Travel","Gatius Permenatus",8,100,20,20,new ItemStack[] {new ItemStack(Material.OBSIDIAN), new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE)}),
 	GATETRAVEL("Gate Travel","Gatius Teleportus",7,50,20,20,new ItemStack[] {new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE)}),
 	FLARE("Flare","Beforius Flarius",1,0,0,10,new ItemStack[] {new ItemStack(Material.SULPHUR)}),
 	SLOWFIELD("Slow Field","Webicus Fieldicus",5,15,20,0,new ItemStack[] {new ItemStack(Material.STRING)}),

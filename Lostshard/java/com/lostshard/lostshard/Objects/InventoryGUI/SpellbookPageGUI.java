@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
@@ -19,13 +21,18 @@ public class SpellbookPageGUI extends InventoryGUI {
 	private int page;
 	
 	public SpellbookPageGUI(PseudoPlayer pPlayer, int page) {
-		super(9, "Spellbook page: "+page, GUIType.SPELLBOOK, pPlayer);
+		super(9, "Spellbook page: "+page, GUIType.SPELLBOOKPAGE, pPlayer);
 		this.page = page;
+		optionSelectorOveride();
 	}
 
-	@Override
-	public void optionSelector() {
+	public void optionSelectorOveride() {
 		SpellBook spellbook = getPlayer().getSpellbook();
+		ItemStack pageBack = new ItemStack(Material.BOOK);
+		ItemMeta pageBackMeta = pageBack.getItemMeta();
+		pageBackMeta.setDisplayName(ChatColor.GOLD+"Back to Spellbook.");
+		pageBack.setItemMeta(pageBackMeta);
+		addOption(pageBack);
 		for(Scroll s : spellbook.getSpellsOnPage(page)) {
 			ItemStack item = new ItemStack(s.getReagentCost().get(0).getType());
 			ItemMeta itemMeta = item.getItemMeta();
@@ -33,15 +40,14 @@ public class SpellbookPageGUI extends InventoryGUI {
 			itemMeta.setDisplayName(ChatColor.GOLD+s.getName());
 			int magery = getPlayer().getCurrentBuild().getMagery().getLvl();
 			if(magery < s.getMinMagery())
-				lore.add(ChatColor.RED+"Min magery: "+Utils.scaledIntToString(s.getMinMagery()));
+				lore.add(ChatColor.RED+"Minimum magery: "+Utils.scaledIntToString(s.getMinMagery()));
 			else 
-				lore.add(ChatColor.GREEN+"Min magery: "+Utils.scaledIntToString(s.getMinMagery()));
-			lore.add(ChatColor.BLUE+"Mana cost:");
-			lore.add(ChatColor.BLUE+""+s.getManaCost());
-			lore.add("");
+				lore.add(ChatColor.GREEN+"Minimum magery: "+Utils.scaledIntToString(s.getMinMagery()));
+			lore.add(ChatColor.BLUE+"Mana cost: "+s.getManaCost());
 			lore.add(ChatColor.LIGHT_PURPLE+"Reagent Cost");
 			for(ItemStack i : s.getReagentCost())
 				lore.add(i.getAmount()+" "+i.getType().name().toLowerCase().replace("_", " "));
+			itemMeta.setLore(lore);
 			item.setItemMeta(itemMeta);
 			addOption(item);
 		}
@@ -49,7 +55,12 @@ public class SpellbookPageGUI extends InventoryGUI {
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		
+		if(event.getCurrentItem() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+			if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.GOLD+"Back to Spellbook.")) {
+				InventoryGUI spellbookGUI = new SpellbookGUI(getPlayer());
+				spellbookGUI.openInventory((Player)event.getWhoClicked());
+			}
+		}
 	}
 
 	@Override
@@ -63,6 +74,11 @@ public class SpellbookPageGUI extends InventoryGUI {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	@Override
+	public void optionSelector() {
+		
 	}
 
 }

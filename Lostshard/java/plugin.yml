@@ -64,6 +64,7 @@ commands:
       usage: /<command>
    who:
       description: Output player list.
+      aliases: [list,players,playerlist]
       usage: /<command>
    whois:
       description: Output whois.
@@ -158,4 +159,7 @@ commands:
       usage: /<command>
    tax:
       description: Makes plots pay tax.
-      usage: /<command>      
+      usage: /<command>
+   gui:
+      description: toggles gui.
+      usage: /<command>

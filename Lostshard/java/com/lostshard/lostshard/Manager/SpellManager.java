@@ -105,6 +105,7 @@ public class SpellManager {
 				if(spell.getPrompt() != null && spellGood) {
 					String prompt = spell.getPrompt();
 					player.sendMessage(ChatColor.YELLOW+prompt);
+					spell.runebook(player);
 				}
 			}
 			else {
@@ -228,6 +229,7 @@ public class SpellManager {
 		if(spell.getPrompt() != null) {
 			String prompt = spell.getPrompt();
 			player.sendMessage(ChatColor.YELLOW+prompt);
+			spell.runebook(player);
 		}
 		return true;
 	}

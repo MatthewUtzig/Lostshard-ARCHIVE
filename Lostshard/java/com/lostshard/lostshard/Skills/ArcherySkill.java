@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Skills;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Monster;
@@ -19,6 +20,7 @@ public class ArcherySkill extends Skill {
 		setName("Archery");
 		setBaseProb(.2);
 		setScaleConstant(60);
+		setMat(Material.BOW);
 	}
 	
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
