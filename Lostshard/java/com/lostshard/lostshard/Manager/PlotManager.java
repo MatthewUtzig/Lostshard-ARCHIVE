@@ -3,7 +3,7 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;

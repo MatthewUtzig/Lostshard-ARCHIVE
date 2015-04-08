@@ -14,6 +14,7 @@ import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
+import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
@@ -67,6 +68,8 @@ public class PseudoPlayer {
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	private boolean isPrivate = true;
 	private boolean isClaming = false;
+	private InventoryGUI gui = null;
+	private boolean allowGui = true;
 	
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
@@ -644,5 +647,23 @@ public class PseudoPlayer {
 
 	public void setClaming(boolean isClaming) {
 		this.isClaming = isClaming;
+	}
+
+	public InventoryGUI getGui() {
+		return gui;
+	}
+
+	public void setGui(InventoryGUI gui) {
+		if(this.gui == null)
+			this.gui.close();
+		this.gui = gui;
+	}
+
+	public boolean isAllowGui() {
+		return allowGui;
+	}
+
+	public void setAllowGui(boolean allowGui) {
+		this.allowGui = allowGui;
 	}
 }

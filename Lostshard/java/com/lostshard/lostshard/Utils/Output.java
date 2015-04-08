@@ -20,11 +20,12 @@ import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
+import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.lostshard.Spells.Scroll;
-import com.lostshard.lostshard.Spells.Spell;
 
 public class Output {
 
@@ -348,10 +349,14 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW+"Clan Members: " +ChatColor.WHITE+Utils.listToString(Utils.UUIDArrayToUsernameArray(clan.getMembers())));
 	}
 	
-	public static void outputRunebook(Player player, String[] split) {
-		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Runebook-");
-		
+	public static void outputRunebook(Player player, String[] split) {		
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		if(pseudoPlayer.isAllowGui()) {
+			InventoryGUI gui = GUIType.RUNEBOOK.getGUI(pseudoPlayer);
+			gui.openInventory(player);
+			return;
+		}
+		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Runebook-");
 		Runebook runebook = pseudoPlayer.getRunebook();
 		ArrayList<Rune> runes = runebook.getRunes();
 		
@@ -360,43 +365,6 @@ public class Output {
 			if(totalRunes > 8) 
 				totalRunes = 8;
 		int numPages = ((totalRunes-1)/8)+1;
-		
-		
-//		Inventory gui;
-//		
-//		if(player.isOp())
-//			gui = Bukkit.createInventory(null, 54, "Runebook");
-//		else if(pseudoPlayer.isLargerBank())
-//			gui = Bukkit.createInventory(null, 18, "Runebook");
-//		else
-//			gui = Bukkit.createInventory(null, 9, "Runebook");
-//		
-//		for(Rune r : runes) {
-//			ItemStack runeItem = new ItemStack(Material.GRASS);
-//			
-//			if(r.getLocation().getWorld().getEnvironment().equals(Environment.NETHER))
-//				runeItem.setType(Material.NETHERRACK);
-//			else if(r.getLocation().getWorld().getEnvironment().equals(Environment.THE_END))
-//				runeItem.setType(Material.ENDER_STONE);
-//			
-//			ItemMeta runeMeta = runeItem.getItemMeta();
-//			
-//			ArrayList<String> runeInfo = new ArrayList<String>();
-//			runeInfo.add(ChatColor.LIGHT_PURPLE + "x: " + r.getLocation().getBlockX());
-//			runeInfo.add(ChatColor.LIGHT_PURPLE + "y: " + r.getLocation().getBlockY());
-//			runeInfo.add(ChatColor.LIGHT_PURPLE + "z: " + r.getLocation().getBlockZ());
-//			
-//			runeMeta.setDisplayName(ChatColor.DARK_PURPLE+r.getLabel());
-//			runeMeta.setLore(runeInfo);
-//			
-//			runeItem.setItemMeta(runeMeta);
-//			
-//			gui.addItem(runeItem);
-//			
-//		}
-//		
-//		player.openInventory(gui);
-//		pseudoPlayer.setGui("runebook");
 		
 		if(player.isOp())
 			player.sendMessage(ChatColor.YELLOW+"Pg 1 of "+numPages+" ("+totalRunes+" of lots of runes used) [ Use /runebook page (#) ]");
@@ -448,6 +416,11 @@ public class Output {
 	
 	public static void outputSpellbook(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		if(pseudoPlayer.isAllowGui()) {
+			InventoryGUI gui = GUIType.SPELLBOOK.getGUI(pseudoPlayer);
+			gui.openInventory(player);
+			return;
+		}
 		SpellBook spellbook = pseudoPlayer.getSpellbook();
 		if(args.length == 2) {
 			String secondaryCommand = args[0];
@@ -466,10 +439,10 @@ public class Output {
 						minMagery = 100;
 					player.sendMessage(ChatColor.YELLOW+"-Minimum Magery: "+minMagery);
 					player.sendMessage(ChatColor.YELLOW+"Spell Name - (Reagent Cost)");
-					ArrayList<Spell> spellsOnPage = spellbook.getSpellsOnPage(pageNumber);
+					ArrayList<Scroll> spellsOnPage = spellbook.getSpellsOnPage(pageNumber);
 					if(spellsOnPage.size() > 0) {
-						for(Spell spell : spellsOnPage) {
-							List<ItemStack> reagents = spell.getReagentCost();
+						for(Scroll scroll : spellsOnPage) {
+							List<ItemStack> reagents = scroll.getReagentCost();
 							String reagentString = "(";
 							int numReagents = reagents.size();
 							for(int i=0; i<numReagents; i++) {
@@ -478,32 +451,9 @@ public class Output {
 									reagentString+=",";
 							}
 							reagentString += ")";
-							player.sendMessage(ChatColor.YELLOW+spell.getName()+ChatColor.WHITE+" - "+reagentString);
+							player.sendMessage(ChatColor.YELLOW+scroll.getName()+ChatColor.WHITE+" - "+reagentString);
 						}
 						
-//						Inventory spells = Bukkit.createInventory(null, 18, "page: " + pageNumber + " Min magery: "+ minMagery);
-//						
-//						for(Spell s : spellsOnPage) {
-//							ItemStack spellItem = new ItemStack(s.getSpellMaterial());
-//							ItemMeta spellItemMeta = spellItem.getItemMeta();
-//							spellItemMeta.setDisplayName(ChatColor.DARK_PURPLE+s.getName());
-//							List<String> spellInfo = new ArrayList<String>();
-//							spellInfo.add("Mana cost: " + Integer.toString(s.getManaCost()));
-//							String items = "";
-//							int[] itemList = s.getReagentCost();
-//							for(int i=0; i<itemList.length; i++) {
-//								int item = itemList[i];
-//				        		items+=Material.getMaterial(item).toString();
-//				        		if(i < itemList.length-1)
-//				        			items+=", ";
-//							}
-//							spellInfo.add("Item cost: " + items);
-//							spellItemMeta.setLore(spellInfo);
-//							spellItem.setItemMeta(spellItemMeta);
-//							spells.addItem(spellItem);
-//						}
-//						player.openInventory(spells);
-//						pseudoPlayer.setGui("spellbook");
 					}
 					else player.sendMessage(ChatColor.RED+"You don't have any spells on this page.");
 				}

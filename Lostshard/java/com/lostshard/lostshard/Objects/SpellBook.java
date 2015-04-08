@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lostshard.lostshard.Manager.SpellManager;
-import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Serializer;
 
@@ -30,12 +29,11 @@ public class SpellBook {
 		spells.add(spell);
 	}
 	
-	public ArrayList<Spell> getSpellsOnPage(int pageNumber) {
-		ArrayList<Spell> spellsOnPage = new ArrayList<Spell>();
-		for(Scroll spell : spells) {
-			Spell s = spell.getSpell();
-			if(s.getPage() == pageNumber)
-				spellsOnPage.add(s);
+	public ArrayList<Scroll> getSpellsOnPage(int pageNumber) {
+		ArrayList<Scroll> spellsOnPage = new ArrayList<Scroll>();
+		for(Scroll scroll : spells) {
+			if(scroll.getPage() == pageNumber)
+				spellsOnPage.add(scroll);
 		}
 		return spellsOnPage;
 	}
