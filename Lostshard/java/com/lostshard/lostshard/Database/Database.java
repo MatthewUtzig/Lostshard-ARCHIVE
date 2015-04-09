@@ -13,6 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
@@ -39,7 +40,7 @@ public class Database {
 
 	static PlayerManager pm = PlayerManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
-	// TODO finish up
+	static ClanManager cm = ClanManager.getManager();
 	// Plot
 	
 	public static boolean testDatabaseConnection() {
@@ -587,6 +588,7 @@ public class Database {
 					int freeSkillPoints = rs.getInt("freeSkillPoints");
 					List<String> spellbook = Serializer.deserializeStringArray(rs.getString("spellbook"));
 					boolean gui = rs.getBoolean("gui");
+					List<UUID> ignored = Serializer.deserializeUUIDList(rs.getString("ignored"));
 					
 					pPlayer = new PseudoPlayer(uuid, id);
 					
@@ -609,6 +611,7 @@ public class Database {
 					pPlayer.setCurrentTitleId(currentTitle);
 					pPlayer.setFreeSkillPoints(freeSkillPoints);
 					pPlayer.setAllowGui(gui);
+					pPlayer.setIgnored(ignored);
 					for(String s : spellbook)
 						pPlayer.getSpellbook().addSpell(Scroll.getByString(s));
 					pPlayer.setBuilds(Database.getBuilds(id));
@@ -669,7 +672,7 @@ public class Database {
 		try {
 			Connection conn = connPool.getConnection();
 			
-			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=? WHERE id=?; ");
+			PreparedStatement prep = conn.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=?, ignored=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
@@ -694,6 +697,7 @@ public class Database {
 				prep.setBoolean(20, pPlayer.isPrivate());
 				prep.setBoolean(21, pPlayer.isAllowGui());
 				prep.setInt(22, pPlayer.getId());
+				prep.setString(23, Serializer.serializeUUIDList(pPlayer.getIgnored()));
 				prep.addBatch();
 				builds.addAll(pPlayer.getBuilds());
 			}
@@ -846,7 +850,7 @@ public class Database {
 				e.printStackTrace();
 		}
 		System.out.print("[CLAN] got "+clans.size()+" clans from DB.");
-		Lostshard.getRegistry().setClans(clans);
+		cm.setClans(clans);
 		return clans;
 	}
 	

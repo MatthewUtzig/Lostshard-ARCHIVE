@@ -1,0 +1,52 @@
+package com.lostshard.lostshard.Manager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.Location;
+
+import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.Objects.Store.Store;
+
+public class StoreManager {
+
+	private static StoreManager manager = new StoreManager();
+	private List<Store> stores = new ArrayList<Store>();
+	NPCManager npcm = NPCManager.getManager();
+	
+	private StoreManager() {
+		
+	}
+
+	public static StoreManager getManager() {
+		return manager;
+	}
+
+	public static void setManager(StoreManager manager) {
+		StoreManager.manager = manager;
+	}
+
+	public List<Store> getStores() {
+		return stores;
+	}
+
+	public void setStores(List<Store> stores) {
+		this.stores = stores;
+	}
+	
+	public Store getStore(int npcID) {
+		for(Store s : stores)
+			if(s.getNpcId() == npcID)
+				return s;
+		return null;
+	}
+	
+	public Store getStore(NPC npc) {
+		return getStore(npc.getId());
+	}
+	
+	public Store getStore(Location location) {
+		NPC npc = npcm.getVendor(location);
+		return getStore(npc);
+	}
+}

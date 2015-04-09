@@ -20,8 +20,11 @@ import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
-import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
-import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.RunebookGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.ScrollGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SkillsGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookGUI;
 import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookPageGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
@@ -71,7 +74,7 @@ public class Output {
 	public static void outputSkills(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.SKILLS.getGUI(pseudoPlayer);
+			GUI gui = new SkillsGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -319,7 +322,7 @@ public class Output {
 	public static void outputRunebook(Player player, String[] split) {		
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.RUNEBOOK.getGUI(pseudoPlayer);
+			GUI gui = new RunebookGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -395,7 +398,7 @@ public class Output {
 					pageNumber = -1;
 				}
 				if(pseudoPlayer.isAllowGui()) {
-					InventoryGUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
+					GUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
 					gui.openInventory(player);
 					return;
 				}
@@ -428,7 +431,7 @@ public class Output {
 			}
 		}else {
 			if(pseudoPlayer.isAllowGui()) {
-				InventoryGUI gui = GUIType.SPELLBOOK.getGUI(pseudoPlayer);
+				GUI gui = new SpellbookGUI(pseudoPlayer);
 				gui.openInventory(player);
 				return;
 			}
@@ -447,7 +450,7 @@ public class Output {
 	public static void outputScrolls(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.SCROLLS.getGUI(pseudoPlayer);
+			GUI gui = new ScrollGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}

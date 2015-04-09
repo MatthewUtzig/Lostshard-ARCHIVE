@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
-import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookGUI;
 
 public abstract class Spell {
 	
@@ -25,7 +25,7 @@ public abstract class Spell {
 	public void runebook(Player player) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.RUNEBOOK.getGUI(pPlayer);
+			GUI gui = new SpellbookGUI(pPlayer);
 			gui.openInventory(player);
 			return;
 		}

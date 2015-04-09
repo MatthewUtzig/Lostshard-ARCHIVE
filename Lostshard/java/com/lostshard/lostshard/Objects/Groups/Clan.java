@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Bank;
 
 public class Clan extends Group {
@@ -98,6 +99,7 @@ public class Clan extends Group {
 		for(UUID member : getMembersAndLeders()) {
 			Player memberPlayer = Bukkit.getPlayer(member);
 			if(memberPlayer != null) {
+				Lostshard.log.finest(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"] "+message);
 				memberPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"] "+message);
 			}
 		}
@@ -175,7 +177,4 @@ public class Clan extends Group {
 		}
 		return rs;	
 	}
-	
-	// TODO make clan commands and database
-
 }

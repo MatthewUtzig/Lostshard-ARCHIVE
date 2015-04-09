@@ -169,3 +169,20 @@ commands:
    inv:
       description: shows a players inventory.
       usage: /<command> (player)
+   ignore:
+      description: ignores a player.
+      aliases: [mute]
+      usage: /<command> (player)
+   unignore:
+      description: unignores a player.
+      aliases: [unmute]
+      usage: /<command> (player)
+   vendor:
+      description: unignores a player.
+      usage: /<command> (player)
+   buy:
+      description: unignores a player.
+      usage: /<command> (player)
+   sell:
+      description: unignores a player.
+      usage: /<command> (player)

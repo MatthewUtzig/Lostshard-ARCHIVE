@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 
 public class Group {
@@ -78,8 +79,10 @@ public class Group {
 	public void sendMessage(String message) {
 		for(UUID member : members) {
 			Player memberPlayer = Bukkit.getPlayer(member);
-			if(memberPlayer != null)
+			if(memberPlayer != null) {
+				Lostshard.log.finest(message);
 				memberPlayer.sendMessage(message);
+			}
 		}
 	}
 	

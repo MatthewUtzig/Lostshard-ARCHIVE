@@ -10,7 +10,8 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Handlers.NPCHandler;
+import com.lostshard.lostshard.Manager.NPCManager;
+import com.lostshard.lostshard.Manager.StoreManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.Store.Store;
 import com.lostshard.lostshard.Objects.Store.StoreItem;
@@ -18,6 +19,9 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class NPCCommands implements CommandExecutor, TabCompleter  {
 
+	static NPCManager npcm = NPCManager.getManager();
+	static StoreManager sm = StoreManager.getManager();
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("vendor")) {
 			if(!(sender instanceof Player)) {
@@ -47,12 +51,12 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 	}
 
 	private void vendorList(Player player) {
-		NPC npc = NPCHandler.getNearestVendor(player);
+		NPC npc = npcm.getVendor(player.getLocation());
 		if(npc == null) {
 			Output.simpleError(player, "Theres no vendors near you");
 			return;
 		}
-		Store store = NPCHandler.getStore(npc);
+		Store store = sm.getStore(npc);
 		int currentItem = 0;
 		//Display items for sale
 		if(!store.getItemsForSale().isEmpty())
@@ -87,7 +91,7 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 
 	private void vendorAdd(Player player, String[] args) {
 		//Get nearest vendor
-		NPC npc = NPCHandler.getNearestVendor(player);
+		NPC npc = npcm.getVendor(player.getLocation());
 		if(npc == null) {
 			Output.simpleError(player, "Theres no vendors near you");
 			return;
@@ -100,7 +104,7 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 		}
 		
 		//Get store
-		Store store = NPCHandler.getStore(npc);
+		Store store = sm.getStore(npc);
 		if(store == null) {
 			store = new Store(npc.getId());
 		}

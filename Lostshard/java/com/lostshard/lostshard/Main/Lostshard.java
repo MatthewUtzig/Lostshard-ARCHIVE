@@ -21,6 +21,7 @@ import com.lostshard.lostshard.Commands.PartyCommands;
 import com.lostshard.lostshard.Commands.ReloadCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
 import com.lostshard.lostshard.Commands.PlotCommand;
+import com.lostshard.lostshard.Commands.StoreCommand;
 import com.lostshard.lostshard.Commands.SurvivalismCommand;
 import com.lostshard.lostshard.Commands.TamingCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
@@ -36,7 +37,6 @@ import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Objects.Registry;
 import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.ItemUtils;
 
@@ -49,8 +49,6 @@ public class Lostshard extends JavaPlugin {
 	PlayerManager pm = PlayerManager.getManager();
 	
 	public static Logger log;
-	
-	private static Registry registry = new Registry();
 	
 	private static BukkitTask gameLoop;
 	
@@ -102,6 +100,7 @@ public class Lostshard extends JavaPlugin {
 		new BlackSmithyCommand(this);
 		new TamingCommand(this);
 		new SurvivalismCommand(this);
+		new StoreCommand(this);
 		ItemUtils.addChainMail();
 		
 		Lostshard.setPlugin(this);
@@ -134,14 +133,6 @@ public class Lostshard extends JavaPlugin {
 	public static void shutdown() {
 		for (Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server rebooting.");
-	}
-
-	public static Registry getRegistry() {
-		return registry;
-	}
-
-	public static void setRegistry(Registry registry) {
-		Lostshard.registry = registry;
 	}
 
 	public static Plugin getPlugin() {

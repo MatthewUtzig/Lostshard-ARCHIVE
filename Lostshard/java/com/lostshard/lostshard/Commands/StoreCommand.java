@@ -16,10 +16,9 @@ import com.lostshard.lostshard.Utils.Output;
 public class StoreCommand implements CommandExecutor, TabCompleter {
 	
 	public StoreCommand(Lostshard plugin) {
-//		plugin.getCommand("buy").setExecutor(this);
-//		plugin.getCommand("sell").setExecutor(this);
-//		plugin.getCommand("store").setExecutor(this);
-//		plugin.getCommand("vendor").setExecutor(this);		
+		plugin.getCommand("buy").setExecutor(this);
+		plugin.getCommand("sell").setExecutor(this);
+		plugin.getCommand("vendor").setExecutor(this);		
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,

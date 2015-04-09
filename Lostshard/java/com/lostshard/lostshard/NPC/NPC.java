@@ -3,7 +3,6 @@ package com.lostshard.lostshard.NPC;
 import org.bukkit.Location;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Handlers.NPCHandler;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 
@@ -45,7 +44,7 @@ public class NPC {
 	 */
 	public NPC(NPCType type, String name, Location location, int plotId) {
 		super();
-		this.id = NPCHandler.getNextId();
+		this.id = -1;
 		this.type = type;
 		this.name = name;
 		this.location = location;

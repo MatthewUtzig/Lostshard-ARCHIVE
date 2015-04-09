@@ -34,8 +34,10 @@ public class CustomSchedule {
 			public void run() {
 				for(Player p : Bukkit.getOnlinePlayers()) {
 					PseudoPlayer pseudoPlayer = pm.getPlayer(p);
-					if(!pseudoPlayer.isSubscriber())
+					if(!pseudoPlayer.isSubscriber()) {
+						Lostshard.log.finest(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
 						p.sendMessage(ChatColor.GOLD + "Enjoying the server? Consider subscribing for $10 a month. Visit "+ChatColor.UNDERLINE+"http://www.lostshard.com/donate"+ChatColor.RESET+ChatColor.GOLD+" for information on subscription benefits.");
+					}
 				}
 			}
 		});
