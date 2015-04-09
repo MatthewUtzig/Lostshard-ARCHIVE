@@ -36,6 +36,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("tpworld").setExecutor(this);
 		plugin.getCommand("setmurders").setExecutor(this);
 		plugin.getCommand("tax").setExecutor(this);
+		plugin.getCommand("inv").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -90,8 +91,24 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}else if(cmd.getName().equalsIgnoreCase("tax"))  {
 			ptm.tax();
+		}else if(cmd.getName().equalsIgnoreCase("inv")) {
+			inv(sender, args);
 		}
 		return true;
+	}
+
+	private void inv(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		Player tPlayer = Bukkit.getPlayer(args[0]);
+		if(tPlayer == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		player.openInventory(tPlayer.getInventory());
 	}
 
 	private void setMurder(Player player, String[] args) {
