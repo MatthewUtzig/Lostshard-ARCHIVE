@@ -13,6 +13,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Locations;
@@ -76,6 +77,8 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			ignore(sender, args);
 		} else if(cmd.getName().equalsIgnoreCase("unignore")) {
 			unignore(sender, args);
+		} else if(cmd.getName().equalsIgnoreCase("help")) {
+			HelpHandler.handle(sender, args);
 		}
 		return true;
 	}

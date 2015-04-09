@@ -80,10 +80,10 @@ commands:
       aliases: [modt]
       usage: /<command>
    test:
-      description: Output whois.
+      description: test.
       usage: /<command>
    admin:
-      description: Output whois.
+      description: admin.
       usage: /<command>
    build:
       description: Change build.
@@ -185,4 +185,7 @@ commands:
       usage: /<command> (player)
    sell:
       description: unignores a player.
+      usage: /<command> (player)
+   help:
+      description: displays help menu.
       usage: /<command> (player)

@@ -491,4 +491,8 @@ public class Output {
 		}
 	}
 
+	public static void help(CommandSender sender) {
+		
+	}
+
 }

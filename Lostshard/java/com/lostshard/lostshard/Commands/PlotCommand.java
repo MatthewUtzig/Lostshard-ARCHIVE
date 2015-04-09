@@ -562,7 +562,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 						+ npc.getType().toString() + ")");
 			return;
 		}
-		HelpHandler.plotNpcHelp(player);
+		HelpHandler.helpLandOwnership(player, args);
 	}
 
 	/**
