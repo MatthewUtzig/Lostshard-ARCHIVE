@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Data;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -35,11 +34,6 @@ public class Variables {
 	// Server
 	public static String motd = "MOTD, forgot to insert!";
 	public static final int maxPlayers = 30;
-	// Map
-	public static final Location criminalSpawn = new Location(null, 0, 0, 0, 0,
-			0);
-	public static final Location lawfullSpawn = new Location(null, 0, 0, 0, 0,
-			0);
 	// Karma
 	public static final int murderPoint = 5;
 	// NPC
@@ -47,5 +41,4 @@ public class Variables {
 	
 	public static final int clanMaxNameLeangh = 20;
 	public static final int clanCreateCost = 2000;
-
 }

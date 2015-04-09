@@ -11,9 +11,11 @@ import org.bukkit.entity.Player;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Objects.Locations;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.Utils;
 
 public class UtilsCommand implements CommandExecutor, TabCompleter {
 
@@ -35,6 +37,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("public").setExecutor(this);
 		plugin.getCommand("kill").setExecutor(this);
 		plugin.getCommand("gui").setExecutor(this);
+		plugin.getCommand("ff").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -61,8 +64,25 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			kill(sender);
 		} else if(cmd.getName().equalsIgnoreCase("gui")) {
 			gui(sender);
+		} else if(cmd.getName().equalsIgnoreCase("ff")) {
+			ff(sender);
 		}
 		return true;
+	}
+
+	private void ff(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isFriendlyFire()) {
+			Output.positiveMessage(sender, "You have disabled friendly fire.");
+			pPlayer.setFriendlyFire(false);
+		} else {
+			Output.positiveMessage(sender, "You have enabled friendly fire.");
+			pPlayer.setFriendlyFire(true);
+		}
 	}
 
 	private void gui(CommandSender sender) {
@@ -123,12 +143,17 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			Output.mustBePlayer(sender);
 			return;
 		}
-		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(args.length < 1) {
 			if(pPlayer.wasSubscribed())
 				Output.simpleError(sender, "/build 0-2");
 			else
 				Output.simpleError(sender, "/build 0-1");
+			return;
+		}
+		if(!Utils.isWithin(player.getLocation(), Locations.BUILDCHANGLAWFULL.getLocation(), 5)) {
+			Output.simpleError(player, "You need to be at the build change location to change build.");
 			return;
 		}
 		try {
@@ -155,14 +180,13 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			}
 			pPlayer.setCurrentBuildId(id);
 			Output.positiveMessage(sender, "You have changed build to "+id+".");
-			Player player = (Player) sender;
 			player.getLocation().getWorld().strikeLightning(player.getLocation());
+			player.setHealth(0);
 		} catch (Exception e) {
 			if(pPlayer.wasSubscribed())
 				Output.simpleError(sender, "/build (0|1|2)");
 			else
 				Output.simpleError(sender, "/build (0|1)");
-			e.printStackTrace();
 		}
 	}
 

@@ -310,9 +310,9 @@ public class PseudoPlayer {
 
 	public Location getSpawn() {
 		if(this.isMurderer() || this.isCriminal())
-			return SpawnLocation.MURDER.getSpawn();
+			return Locations.CRIMINAL.getLocation();
 		else
-			return SpawnLocation.LAWFULL.getSpawn();
+			return Locations.LAWFULL.getLocation();
 	}
 
 	public Party getParty() {

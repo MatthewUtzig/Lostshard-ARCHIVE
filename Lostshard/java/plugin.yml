@@ -163,3 +163,6 @@ commands:
    gui:
       description: toggles gui.
       usage: /<command>
+   ff:
+      description: toggles friendly fire.
+      usage: /<command>

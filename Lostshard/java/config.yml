@@ -19,3 +19,7 @@ DAMAGE:
   woodSword: 1
 GENERAL:
   motd: ""
+LOCATIONS:
+  lawfull: ""
+  criminal: ""
+  buildchange: ""

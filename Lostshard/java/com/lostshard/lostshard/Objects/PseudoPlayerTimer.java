@@ -5,7 +5,6 @@ import java.util.Date;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Spells.Spell;
 import com.lostshard.lostshard.Spells.Spells.SPL_Chronoport;
@@ -86,10 +85,7 @@ public class PseudoPlayerTimer {
 			if(goToSpawnTicks == 0) {
 				Player player = this.player.getOnlinePlayer();
 				player.getWorld().strikeLightningEffect(player.getLocation());
-				if(this.player.isCriminal())
-					player.teleport(Variables.criminalSpawn);
-				else 
-					player.teleport(Variables.lawfullSpawn);
+				player.teleport(getPlayer().getSpawn());
 				spawnTicks = 36000;
 				this.player.setMana(0);
 				this.player.setStamina(0);

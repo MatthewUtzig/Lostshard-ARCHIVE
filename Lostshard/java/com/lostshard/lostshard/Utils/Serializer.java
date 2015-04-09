@@ -1,20 +1,15 @@
 package com.lostshard.lostshard.Utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.UUID;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.lostshard.lostshard.Main.Lostshard;
@@ -23,7 +18,7 @@ public class Serializer {
 
 	public static JSONParser parser = new JSONParser();
 	public static Gson gson = new Gson();
-
+	
 	@SuppressWarnings("unchecked")
 	public static List<String> deserializeStringArray(String stringArray) {
 		return gson.fromJson(stringArray, List.class);
@@ -42,33 +37,11 @@ public class Serializer {
 	}
 	
 	public static Location deserializeLocation(String locationString) {
-		try {
-			Object jo = parser.parse(locationString);
-			JSONObject map = (JSONObject) jo;
-
-			World world = Bukkit.getWorld(map.get("world").toString());
-			Double x = ((Number) map.get("x")).doubleValue();
-			Double y = ((Number) map.get("y")).doubleValue();
-			Double z = ((Number) map.get("z")).doubleValue();
-			Float yaw = ((Number) map.get("yaw")).floatValue();
-			Float pitch = ((Number) map.get("pitch")).floatValue();
-
-			return new Location(world, x, y, z, yaw, pitch);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
+		return gson.fromJson(locationString, Location.class);
 	}
 
 	public static String serializeLocation(Location location) {
-		Map<String, Object> obj = new HashMap<String, Object>();
-		obj.put("world", location.getWorld().getName());
-		obj.put("x", location.getX());
-		obj.put("y", location.getY());
-		obj.put("z", location.getZ());
-		obj.put("pitch", location.getPitch());
-		obj.put("yaw", location.getYaw());
-		return gson.toJson(obj);
+		return gson.toJson(location.serialize());
 	}
 
 	public static List<UUID> deserializeUUIDList(String uuidString) {
@@ -104,7 +77,7 @@ public class Serializer {
 	
 	@SuppressWarnings("unchecked")
 	public static ItemStack fromJsonToItemStack(String s) {
-		Map<String, Object> map = (Map<String, Object>) gson.fromJson(
+		Map<String, Object> map = gson.fromJson(
 				s, Map.class);
 		ItemStack is;
 		try {

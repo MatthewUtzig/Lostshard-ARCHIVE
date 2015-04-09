@@ -5,6 +5,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Objects.Locations;
+import com.lostshard.lostshard.Utils.Serializer;
 
 public class ConfigManager {
 
@@ -48,5 +50,9 @@ public class ConfigManager {
 		DamageHandler.goldSword = config.getDouble("DAMAGE.goldSword");
 		DamageHandler.stoneSword = config.getDouble("DAMAGE.stoneSword");
 		DamageHandler.woodSword = config.getDouble("DAMAGE.woodSword");
+		
+		Locations.LAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.lawfull")));
+		Locations.CRIMINAL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.criminal")));
+		Locations.BUILDCHANGLAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.buildchange")));
 	}
 }
