@@ -166,3 +166,6 @@ commands:
    ff:
       description: toggles friendly fire.
       usage: /<command>
+   inv:
+      description: shows a players inventory.
+      usage: /<command> (player)
