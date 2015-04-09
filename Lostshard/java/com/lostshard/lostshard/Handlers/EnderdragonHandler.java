@@ -28,6 +28,6 @@ public class EnderdragonHandler {
 	public static void resetDrake() {
 		spawnDrake = true;
 		Bukkit.broadcastMessage(ChatColor.GREEN
-				+ "The Enderdragon has returned to The End");
+				+ "The Enderdragon has returned to The End.");
 	}
 }
