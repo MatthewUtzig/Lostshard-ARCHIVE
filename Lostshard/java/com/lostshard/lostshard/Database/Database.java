@@ -194,6 +194,7 @@ public class Database {
 					boolean capturepoint = rs.getBoolean("capturePoint");
 					boolean magic = rs.getBoolean("allowMagic");
 					boolean pvp = rs.getBoolean("allowPvp");
+					boolean title = rs.getBoolean("title");
 					// Friend and co-owners and owner
 					ArrayList<UUID> friends = (ArrayList<UUID>) Serializer
 							.deserializeUUIDList(rs.getString("friends"));
@@ -211,6 +212,7 @@ public class Database {
 					plot.setAllowExplosions(allowExplosions);
 					plot.setPrivatePlot(privatePlot);
 					plot.setFriendBuild(friendBuild);
+					plot.setTitleEntrence(title);
 					if(upgrades != null)
 						for(String s : upgrades)
 							plot.addUpgrade(PlotUpgrade.valueOf(s));
@@ -248,7 +250,7 @@ public class Database {
 			PreparedStatement prep = conn
 					.prepareStatement("UPDATE plot SET "
 							+ "name=?, location=?, size=?, owner=?, money=?, salePrice=?, protection=?, "
-							+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?");
+							+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=?, title=? WHERE id=?");
 
 			prep.setString(1, plot.getName());
 			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
@@ -266,7 +268,8 @@ public class Database {
 			prep.setBoolean(14, plot.isAllowPvp());
 			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
 			prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
-			prep.setInt(17, plot.getId());
+			prep.setBoolean(17, plot.isTitleEntrence());
+			prep.setInt(18, plot.getId());
 
 			prep.executeUpdate();
 			prep.close();
@@ -286,7 +289,7 @@ public class Database {
 			
 			PreparedStatement prep = conn.prepareStatement("UPDATE plots SET "
 					+ "name=?, location=?, size=?, owner=?, money=?, salePrice=?, protection=?, "
-					+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=? WHERE id=?; ");
+					+ "allowExplosions=?, private=?, friendBuild=?, upgrades=?, capturePoint=?, allowMagic=?, allowPvp=?, friends=?, coowners=?, title=? WHERE id=?; ");
 			for(Plot plot : plots) {
 				plot.setUpdate(false);
 				prep.setString(1, plot.getName());
@@ -305,7 +308,8 @@ public class Database {
 				prep.setBoolean(14, plot.isAllowPvp());
 				prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
 				prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
-				prep.setInt(17, plot.getId());
+				prep.setBoolean(17, plot.isTitleEntrence());
+				prep.setInt(18, plot.getId());
 				prep.addBatch();
 				npcs.addAll(plot.getNpcs());
 			}

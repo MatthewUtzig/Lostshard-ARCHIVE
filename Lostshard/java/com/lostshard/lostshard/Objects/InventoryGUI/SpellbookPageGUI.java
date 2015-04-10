@@ -45,9 +45,12 @@ public class SpellbookPageGUI extends GUI {
 			else 
 				lore.add(ChatColor.GREEN+"Minimum magery: "+Utils.scaledIntToString(s.getMinMagery()));
 			lore.add(ChatColor.BLUE+"Mana cost: "+s.getManaCost());
-			lore.add(ChatColor.LIGHT_PURPLE+"Reagent Cost");
+			lore.add(ChatColor.GOLD+"Reagent Cost");
 			for(ItemStack i : s.getReagentCost())
 				lore.add(i.getAmount()+" "+i.getType().name().toLowerCase().replace("_", " "));
+			lore.add(ChatColor.GOLD+"Commands");
+			lore.add("/cast "+ChatColor.RED+"(spell)");
+			lore.add("/bind "+ChatColor.RED+"(spell)");
 			itemMeta.setLore(lore);
 			item.setItemMeta(itemMeta);
 			addOption(item);

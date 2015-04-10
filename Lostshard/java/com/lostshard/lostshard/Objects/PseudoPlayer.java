@@ -666,6 +666,7 @@ public class PseudoPlayer {
 
 	public void setAllowGui(boolean allowGui) {
 		this.allowGui = allowGui;
+		update();
 	}
 
 	public List<UUID> getIgnored() {

@@ -32,6 +32,11 @@ public class SPL_Mark extends Spell {
 		setPrompt("What would you like to label the marked rune?");
 	}
 	
+	@Override
+	public void runebook(Player player) {
+		
+	}
+	
 	public boolean verifyCastable(Player player) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {

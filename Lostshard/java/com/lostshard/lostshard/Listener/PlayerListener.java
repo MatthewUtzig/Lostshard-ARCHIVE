@@ -29,6 +29,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Database.Database;
@@ -231,5 +232,10 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryInteractEvent event) {
 		InventoryGUIHandler.onInventoryInteract(event);
+	}
+	
+	@EventHandler
+	public void onPlayerTeleport(PlayerTeleportEvent event) {
+		PlotProtectionHandler.onPlayerTeleport(event);
 	}
 }

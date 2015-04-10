@@ -48,9 +48,12 @@ public class ScrollGUI extends GUI {
 			lore.add(ChatColor.GOLD+"Amount: "+amount);
 			
 			lore.add(ChatColor.BLUE+"Mana cost: "+s.getManaCost());
+			lore.add("You can add the scroll to your inventory by clicking it");
 			lore.add("You can use the scroll by shift clicking it");
-			lore.add("/scrolls use"+ChatColor.RED+"(scroll)");
-			lore.add("/scrolls give"+ChatColor.RED+"(scroll)");
+			lore.add(ChatColor.GOLD+"Commands");
+			lore.add("/scrolls use "+ChatColor.RED+"(scroll)");
+			lore.add("/scrolls give "+ChatColor.RED+"(scroll)");
+			lore.add("/scrolls spellbook "+ChatColor.RED+"(scroll)");
 			itemMeta.setLore(lore);
 			
 			item.setItemMeta(itemMeta);
@@ -65,6 +68,8 @@ public class ScrollGUI extends GUI {
 			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
 			if(scroll == null)
 				return;
+			if(getPlayer().getSpellbook().containSpell(scroll))
+				return;
 			getPlayer().addSpell(scroll);
 			Database.deleteScroll(scroll, getPlayer().getId());
 			getPlayer().update();
@@ -75,13 +80,10 @@ public class ScrollGUI extends GUI {
 			Player player = (Player) event.getWhoClicked();
 			if(scroll == null || !getPlayer().getScrolls().contains(scroll))
 				return;
-			if(event.getCurrentItem().getAmount() > 1)
-				event.getCurrentItem().setAmount(event.getCurrentItem().getAmount()-1);
-			else
-				event.getInventory().remove(event.getCurrentItem());
 			if(sm.useScroll(player, scroll)) {
 				getPlayer().getScrolls().remove(scroll);
 				Database.deleteScroll(scroll, getPlayer().getId());
+				forceClose();
 			}
 		}
 	}

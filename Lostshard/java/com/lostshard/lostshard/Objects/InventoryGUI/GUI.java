@@ -42,6 +42,10 @@ public abstract class GUI {
 			return;
 		if(event.getCurrentItem() == null)
 			return;
+		if(event.getAction() == null)
+			return;
+		if(event.getCurrentItem().getItemMeta() == null)
+			return;
 		event.setCancelled(true);
 		onClick(event);
 	}

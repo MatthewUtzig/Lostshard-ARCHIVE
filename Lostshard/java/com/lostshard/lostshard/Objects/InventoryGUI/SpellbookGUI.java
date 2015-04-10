@@ -24,7 +24,6 @@ public class SpellbookGUI extends GUI {
 		for(int i=1; i<10; i++) {
 			ItemStack item = new ItemStack(Material.PAPER);
 			ItemMeta itemMeta = item.getItemMeta();
-			
 			if(spellbook.getSpellsOnPage(i).isEmpty())
 				itemMeta.setDisplayName(ChatColor.RED+"Spellbook page: "+i);
 			else

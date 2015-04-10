@@ -42,10 +42,12 @@ public class Plot {
 
 	// Boolean's
 	private boolean protection = true;
+
 	private boolean allowExplosions = false;
 	private boolean privatePlot = true;
 	private boolean friendBuild = false;
 	private boolean update = false;
+	private boolean titleEntrence = false;
 	// Upgrade's
 	private List<PlotUpgrade> upgrades = new ArrayList<PlotUpgrade>();
 
@@ -415,5 +417,14 @@ public class Plot {
 
 	public boolean isAllowedToInteract(Player player) {
 		return isAllowedToInteract(player.getUniqueId());
+	}
+	
+	public boolean isTitleEntrence() {
+		return titleEntrence;
+	}
+
+	public void setTitleEntrence(boolean titleEntrence) {
+		this.titleEntrence = titleEntrence;
+		update();
 	}
 }

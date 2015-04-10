@@ -12,6 +12,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -39,7 +40,8 @@ public class RunebookGUI extends GUI {
 			lore.add(ChatColor.YELLOW+"y:"+r.getLocation().getX());
 			lore.add(ChatColor.YELLOW+"z:"+r.getLocation().getX());
 			lore.add("You can remove a rune by shift clicking it");
-			lore.add("/runebook give"+ChatColor.RED+"(player) (rune)");
+			lore.add(ChatColor.GOLD+"Commands");
+			lore.add("/runebook give "+ChatColor.RED+"(player) (rune)");
 			
 			itemMeta.setLore(lore);
 			
@@ -75,6 +77,7 @@ public class RunebookGUI extends GUI {
 				return;
 			
 			runebook.removeRune(rune);
+			Database.deleteRune(rune);
 			forceClose();
 			Output.positiveMessage(player, "You have removed the rune \""+ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())+"\" from your runebook.");
 		}

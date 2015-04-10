@@ -1,17 +1,33 @@
 package com.lostshard.lostshard.Handlers;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 public class HelpHandler {
 	
 	public static void handle(CommandSender sender, String[] split) {
 		if(split.length < 1) {
-			sender.sendMessage(ChatColor.GOLD+"-Help-");
-			sender.sendMessage(ChatColor.GOLD+"For more detailed information you can view the guide at");
-			sender.sendMessage(ChatColor.GOLD+"http://www.lostshard.com.");
-			sender.sendMessage(ChatColor.GOLD+"Use \"/help (topic)\" to get more information.");
-			sender.sendMessage(ChatColor.YELLOW+"Topics:"+ChatColor.GRAY+" chat, land, money, scrolls, clan, party, karma, misc");
+			if(sender instanceof Player) {
+				ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
+				BookMeta bookMeta = (BookMeta) book.getItemMeta();
+				bookMeta.setAuthor(ChatColor.GOLD+"Lostshard guide");
+				bookMeta.setDisplayName(ChatColor.GOLD+"Lostahrd guide");
+				bookMeta.setTitle(ChatColor.GOLD+"Lostahrd guide");
+				bookMeta.addPage(ChatColor.GOLD+""+ChatColor.BOLD+"Lostshard guide\n\n\n"+ChatColor.GOLD+"- "+ChatColor.DARK_PURPLE+"Landowner ship\n"+ChatColor.GOLD+"- "+ChatColor.DARK_PURPLE+"Groups\n");
+				book.setItemMeta(bookMeta);
+				Player player = (Player) sender;
+				player.getInventory().addItem(book);
+				return;
+			}
+//			sender.sendMessage(ChatColor.GOLD+"-Help-");
+//			sender.sendMessage(ChatColor.GOLD+"For more detailed information you can view the guide at");
+//			sender.sendMessage(ChatColor.GOLD+"http://www.lostshard.com.");
+//			sender.sendMessage(ChatColor.GOLD+"Use \"/help (topic)\" to get more information.");
+//			sender.sendMessage(ChatColor.YELLOW+"Topics:"+ChatColor.GRAY+" chat, land, money, scrolls, clan, party, karma, misc");
 		} else {
 			String topic = split[0];
 			

@@ -27,6 +27,9 @@ import org.bukkit.entity.Squid;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -440,6 +443,18 @@ public class SurvivalismSkill extends Skill {
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+
+	public static void onPlayerDamage(EntityDamageEvent event) {
+		if(event.getCause().equals(DamageCause.FALL)) {
+			if(event.getEntity() instanceof Player){
+				Player player = (Player) event.getEntity();
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				if(pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500){
+					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)/2);
 				}
 			}
 		}

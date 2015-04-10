@@ -5,7 +5,10 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
+import org.bukkit.inventory.ItemStack;
 
 public class DamageHandler {
 
@@ -67,6 +70,29 @@ public class DamageHandler {
 			if(event.isApplicable(DamageModifier.HARD_HAT))
 				event.setDamage(DamageModifier.HARD_HAT, event.getDamage(DamageModifier.HARD_HAT)*hardhat);
 			
+		}
+	}
+
+	public static void goldArmor(EntityDamageEvent event) {
+		if(event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
+			ItemStack helmet = player.getInventory().getHelmet();
+			ItemStack chest = player.getInventory().getChestplate();
+			ItemStack legs = player.getInventory().getLeggings();
+			ItemStack boots = player.getInventory().getBoots();
+			if(event.getCause().equals(DamageCause.DROWNING)) {
+				if(helmet != null && helmet.getType().equals(Material.GOLD_HELMET))
+					event.setCancelled(true);
+			}else if(event.getCause().equals(DamageCause.ENTITY_EXPLOSION)) {
+				if(chest != null && chest.getType().equals(Material.GOLD_CHESTPLATE))
+					event.setCancelled(true);
+			}else if(event.getCause().equals(DamageCause.LAVA) || event.getCause().equals(DamageCause.FIRE) || event.getCause().equals(DamageCause.FIRE_TICK)) {
+				if(legs != null && legs.getType().equals(Material.GOLD_LEGGINGS))
+					event.setCancelled(true);
+			}else if(event.getCause().equals(DamageCause.FALL)) {
+				if(boots != null && boots.getType().equals(Material.GOLD_BOOTS))
+					event.setCancelled(true);
+			}
 		}
 	}
 

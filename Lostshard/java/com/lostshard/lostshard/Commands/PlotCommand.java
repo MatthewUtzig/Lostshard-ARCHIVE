@@ -125,12 +125,34 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				plotMagicToggle(player);
 			else if (plotCommand.equalsIgnoreCase("capturepoint") && player.isOp())
 				plotCapturePoint(player);
+			else if (plotCommand.equalsIgnoreCase("title") && player.isOp())
+				plotTitle(player);
 			else {
 				Output.simpleError(player, "Use \"/plot help\" for commands.");
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private void plotTitle(Player player) {
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		if (plot == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		if (!player.isOp()) {
+			Output.simpleError(player, "Ops may only toggle magic for plots.");
+		}
+		if (plot.isTitleEntrence()) {
+			Output.positiveMessage(player, "You have turned off title for "
+					+ plot.getName() + ".");
+			plot.setTitleEntrence(false);
+		} else {
+			Output.positiveMessage(player, "You have turned on title for "
+					+ plot.getName() + ".");
+			plot.setTitleEntrence(true);
+		}
 	}
 
 	private void plotCapturePoint(Player player) {
@@ -146,8 +168,8 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "The only way to turn of capturepoint is disbanding the plot.");
 		} else {
 			Output.positiveMessage(player, "You have turend "+plot.getName()+" into a capturepoint.");
-			ptm.getPlots().remove(plot);
-			ptm.getPlots().add((PlotCapturePoint)plot);
+//			ptm.getPlots().remove(plot);
+//			ptm.getPlots().add((PlotCapturePoint)plot);
 		}
 	}
 
@@ -717,16 +739,15 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		
-		if(plot.getOwner().equals(player.getUniqueId())) {
-			Output.simpleError(player, "You cannot transfer your plot to yourself.");
-			return;
-		}
-		
 		String targetName = args[1];
 		
 		Player targetPlayer = Bukkit.getPlayer(targetName);
 		if (targetPlayer == null) {
 			Output.simpleError(player, targetName + " not found.");
+			return;
+		}
+		if(plot.getOwner().equals(targetPlayer.getUniqueId())) {
+			Output.simpleError(player, "You can't transfer your plot to yourself.");
 			return;
 		}
 		plot.removeCoowner(targetPlayer);

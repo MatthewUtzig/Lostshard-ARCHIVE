@@ -116,17 +116,16 @@ public class Output {
 			infoText += ChatColor.YELLOW + "Status: " + ChatColor.WHITE
 					+ "Public";
 		infoText += ChatColor.YELLOW + ", ";
+		PseudoPlayer owner = pm.getPlayer(plot.getOwner());
 		if (plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.WHITE
 					+ "Neutral";
-		else if (pm.getPlayer(plot.getOwner())
-				.getMurderCounts() < 5)
-			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.BLUE
-					+ "Lawful";
-		else
+		else if (owner.isMurderer() || owner.isCriminal())
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.RED
-					+ "Criminal";
-
+			+ "Criminal";
+		else
+			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.BLUE
+				+ "Lawful";
 		player.sendMessage(infoText);
 
 		infoText = "";

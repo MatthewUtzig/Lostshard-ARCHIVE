@@ -12,7 +12,6 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -30,11 +29,11 @@ import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
+import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Skills.TamingSkill;
 
 public class EntityListener implements Listener {
@@ -51,14 +50,9 @@ public class EntityListener implements Listener {
 		if(event.getCause().equals(DamageCause.FALL)) {
 			if(event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
 				event.setCancelled(true);
-			else if(event.getEntity() instanceof Player){
-				Player player = (Player) event.getEntity();
-				PseudoPlayer pPlayer = pm.getPlayer(player);
-				if(pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500){
-					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)/2);
-				}
-			}
 		}
+		SurvivalismSkill.onPlayerDamage(event);
+		DamageHandler.goldArmor(event);
 	}
 	
 	@EventHandler
