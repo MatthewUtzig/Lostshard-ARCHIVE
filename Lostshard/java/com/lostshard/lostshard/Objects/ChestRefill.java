@@ -8,7 +8,7 @@ public class ChestRefill {
 	private ItemStack[] items;
 	private long rangeMin;
 	private long rangeMax;
-	private Location iLocation;
+	private Location location;
 	
 	public ItemStack[] getItems() {
 		return items;
@@ -29,16 +29,16 @@ public class ChestRefill {
 	public long getRangeMax() {
 		return rangeMax;
 	}
-	
+
 	public void setRangeMax(long rangeMax) {
 		this.rangeMax = rangeMax;
 	}
 
-	public Location getiLocation() {
-		return iLocation;
+	public Location getLocation() {
+		return location;
 	}
 
-	public void setiLocation(Location iLocation) {
-		this.iLocation = iLocation;
+	public void setiLocation(Location location) {
+		this.location = location;
 	}
 }

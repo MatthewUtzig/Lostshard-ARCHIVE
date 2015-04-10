@@ -959,20 +959,16 @@ public class Database {
 //		return stores;
 //	}
 	
-	public static void updateStores(List<Store> stores) {
+	public static void updateStore(Store store) {
 		if(Lostshard.isDebug())
 			System.out.print("UPDATING STORES!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn.prepareStatement("UPDATE stores SET npcId=?, content=? WHERE id=?;");
-			for(Store store : stores) {
-				store.setUpdate(false);
-				prep.setInt(1, store.getNpcId());
-				prep.setString(2, "");
-				prep.setInt(3, store.getId());
-				prep.addBatch();
-			}
-			prep.executeBatch();
+			prep.setInt(1, store.getNpcId());
+			prep.setString(2, store.getItemsAsJson());
+			prep.setInt(3, store.getId());
+			prep.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
 			Lostshard.log.warning("[STORE] updateStores mysql error");

@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -23,10 +24,11 @@ public class SpellbookPageGUI extends GUI {
 	public SpellbookPageGUI(PseudoPlayer pPlayer, int page) {
 		super(9, "Spellbook page: "+page, pPlayer);
 		this.page = page;
-		optionSelectorOveride();
+		optionSelector();
 	}
 
-	public void optionSelectorOveride() {
+	@Override
+	public void optionSelector() {
 		SpellBook spellbook = getPlayer().getSpellbook();
 		ItemStack pageBack = new ItemStack(Material.BOOK);
 		ItemMeta pageBackMeta = pageBack.getItemMeta();
@@ -77,9 +79,8 @@ public class SpellbookPageGUI extends GUI {
 	}
 
 	@Override
-	public void optionSelector() {
+	public void onItemMove(InventoryMoveItemEvent event) {
 		
 	}
-
 }
 

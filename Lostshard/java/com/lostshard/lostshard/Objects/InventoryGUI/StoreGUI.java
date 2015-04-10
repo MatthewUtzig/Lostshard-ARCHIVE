@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -51,6 +52,11 @@ public class StoreGUI extends GUI {
 
 	@Override
 	public void onClose(InventoryCloseEvent event) {
+		
+	}
+	
+	@Override
+	public void onItemMove(InventoryMoveItemEvent event) {
 		
 	}
 }

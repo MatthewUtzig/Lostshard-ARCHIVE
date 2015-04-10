@@ -1,6 +1,6 @@
 name: Lostshard
 main: com.lostshard.lostshard.Main.Lostshard
-version: 0.01
+version: 0.2
 softdepend: [Citizens]
 commands:
    bank:
@@ -180,11 +180,9 @@ commands:
    vendor:
       description: unignores a player.
       usage: /<command> (player)
-   buy:
+   shop:
       description: unignores a player.
-      usage: /<command> (player)
-   sell:
-      description: unignores a player.
+      aliases: [buy,sell,store]
       usage: /<command> (player)
    help:
       description: displays help menu.

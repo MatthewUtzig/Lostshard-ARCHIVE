@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Utils.Serializer;
 
 public class Store {
@@ -12,7 +13,6 @@ public class Store {
 	private int id = 1;
 	private int npcId = 0;
 	private List<StoreItem> items = new ArrayList<StoreItem>();
-	private boolean update = false;
 	
 	public Store(int npcID) {
 		this.npcId = npcID;
@@ -74,17 +74,9 @@ public class Store {
 		}
 		return null;
 	}
-
-	public boolean isUpdate() {
-		return update;
-	}
-
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
 	
 	public void update() {
-		setUpdate(true);
+		Database.updateStore(this);
 	}
 	
 	public String getAsJson() {
@@ -97,5 +89,23 @@ public class Store {
 			id = si.getId()+1;
 		item.setId(id);
 		items.add(item);
+	}
+
+	public StoreItem getStoreItem(int id) {
+		for(StoreItem i : items)
+			if(id == i.getId())
+				return i;
+		return null;
+	}
+
+	public void removeStoreItem(StoreItem storeItem) {
+		items.remove(storeItem);
+	}
+
+	public String getItemsAsJson() {
+		List<String> rs = new ArrayList<String>();
+		for(StoreItem si : items)
+			rs.add(si.getAsJson());
+		return Serializer.serializeStringArray(rs);
 	}
 }
