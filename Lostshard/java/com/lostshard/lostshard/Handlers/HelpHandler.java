@@ -13,7 +13,7 @@ public class HelpHandler {
 			sender.sendMessage(ChatColor.GOLD+"Use \"/help (topic)\" to get more information.");
 			sender.sendMessage(ChatColor.YELLOW+"Topics:"+ChatColor.GRAY+" chat, land, money, scrolls, clan, party, karma, misc");
 		} else {
-			String topic = split[00];
+			String topic = split[0];
 			
 			if(topic.equalsIgnoreCase("chat"))
 				helpChat(sender);
@@ -39,6 +39,7 @@ public class HelpHandler {
 	public static void helpChat(CommandSender sender) {
 		sender.sendMessage(ChatColor.GOLD+"-Chat Help-");
 		sender.sendMessage(ChatColor.YELLOW+"Info:"+ChatColor.GRAY+" Default chat is global.");
+		sender.sendMessage(ChatColor.YELLOW+"/l (message)"+ChatColor.GRAY+" - Global chat, talks in global chat.");
 		sender.sendMessage(ChatColor.YELLOW+"/l (message)"+ChatColor.GRAY+" - Local chat, talks to nearby players.");
 		sender.sendMessage(ChatColor.YELLOW+"/s (message)"+ChatColor.GRAY+" - Shouts a message");
 		sender.sendMessage(ChatColor.YELLOW+"/w (message)"+ChatColor.GRAY+" - Whispers to very close players");
@@ -118,7 +119,6 @@ public class HelpHandler {
 		sender.sendMessage(ChatColor.YELLOW+"/tradegold (amount)"+ChatColor.GRAY+" - Trades gold ingots for gold coins.");
 		sender.sendMessage(ChatColor.GRAY+"-Exchange rate of 1 gold ingot for 100 gold coins.");
 		sender.sendMessage(ChatColor.YELLOW+"/pay (player name) (amount)"+ChatColor.GRAY+" - Pays a player some coins.");
-		sender.sendMessage(ChatColor.YELLOW+"/trade offer (player name) (price)"+ChatColor.GRAY+" - Offers the item in your hand for trade.");
 	}
 	
 	public static void helpClan(CommandSender sender, String[] split) {

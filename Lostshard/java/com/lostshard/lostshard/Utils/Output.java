@@ -46,19 +46,10 @@ public class Output {
 			return;
 		player.sendMessage(ChatColor.GOLD+"You have gained "+Utils.scaledIntToString(gainAmount)+" "+skillName+", it is now "+Utils.scaledIntToString(totalSkill)+".");
 	}
-	
-	public static void plotHelp(Player player) {
-		player.sendMessage(ChatColor.GOLD + "-Plot Help-");
-		player.sendMessage(ChatColor.YELLOW + "/plot create (name)");
-		player.sendMessage(ChatColor.YELLOW + "/plot deposit (amount)");
-		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
-	}
 
 	public static void outputPlayerlist(CommandSender sender) {
 		ArrayList<String> filteredPlayers = new ArrayList<String>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (p.isOp())
-				continue;
 			filteredPlayers.add(Utils.getDisplayName(p));
 		}
 

@@ -60,7 +60,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			}
 			String plotCommand = args[0];
 			if (plotCommand.equalsIgnoreCase("help"))
-				Output.plotHelp(player);
+				HelpHandler.helpLandOwnership(sender, new String[0]);
 			else if (plotCommand.equalsIgnoreCase("create"))
 				createPlot(player, args);
 			else if (plotCommand.equalsIgnoreCase("survey"))

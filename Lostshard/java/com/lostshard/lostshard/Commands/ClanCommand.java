@@ -3,7 +3,6 @@ package com.lostshard.lostshard.Commands;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,6 +12,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -44,7 +44,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 				else if(clanCommand.equalsIgnoreCase("info"))
 					clanInfo(player);
 				else if(clanCommand.equalsIgnoreCase("help"))
-					clanHelp(player);
+					HelpHandler.helpClan(player, new String[0]);
 				else if(clanCommand.equalsIgnoreCase("invite"))
 					clanInvite(player, args);
 				else if(clanCommand.equalsIgnoreCase("uninvite"))
@@ -431,18 +431,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			else Output.simpleError(player, "Only the clan owner may disband the clan.");
 		}
 		else Output.simpleError(player, "You are not currently in a clan.");
-	}
-	
-	public static void clanHelp(Player player) {
-		player.sendMessage(ChatColor.GOLD+"-Clan Commands-");
-		player.sendMessage(ChatColor.YELLOW+"/clan create (clan name) [Costs 2000 gc]");
-		player.sendMessage(ChatColor.YELLOW+"/clan info");
-		player.sendMessage(ChatColor.YELLOW+"/clan invite/uninvite (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan promote/demote (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan kick (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan transfer (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan leave");
-		player.sendMessage(ChatColor.YELLOW+"/clan disband");
 	}
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd,

@@ -9,7 +9,7 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
-import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.RunebookGUI;
 
 public abstract class Spell {
 	
@@ -25,7 +25,7 @@ public abstract class Spell {
 	public void runebook(Player player) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.isAllowGui()) {
-			GUI gui = new SpellbookGUI(pPlayer);
+			GUI gui = new RunebookGUI(pPlayer);
 			gui.openInventory(player);
 			return;
 		}

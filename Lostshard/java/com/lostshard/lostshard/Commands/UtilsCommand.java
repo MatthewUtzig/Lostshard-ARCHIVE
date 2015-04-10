@@ -45,6 +45,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("ff").setExecutor(this);
 		plugin.getCommand("ignore").setExecutor(this);
 		plugin.getCommand("unignore").setExecutor(this);
+		plugin.getCommand("help").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,

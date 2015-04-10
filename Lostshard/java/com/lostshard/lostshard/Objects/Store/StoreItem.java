@@ -7,6 +7,7 @@ import com.lostshard.lostshard.Utils.Serializer;
 public class StoreItem {
 
 	//Item
+	private int id = 0;
 	private ItemStack item;
 	private int salePrice = 0;
 	private int buyPrice = 0;
@@ -94,5 +95,13 @@ public class StoreItem {
 
 	public void setBuyPrice(int buyPrice) {
 		this.buyPrice = buyPrice;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
