@@ -1,6 +1,7 @@
 #Left over
  - Taming commands
- - 
+ - ChestRefill
+ - Stores
 
 #Plots
 - [x] Commands
