@@ -75,6 +75,10 @@ public class ScrollGUI extends GUI {
 			Player player = (Player) event.getWhoClicked();
 			if(scroll == null || !getPlayer().getScrolls().contains(scroll))
 				return;
+			if(event.getCurrentItem().getAmount() > 1)
+				event.getCurrentItem().setAmount(event.getCurrentItem().getAmount()-1);
+			else
+				event.getInventory().remove(event.getCurrentItem());
 			if(sm.useScroll(player, scroll)) {
 				getPlayer().getScrolls().remove(scroll);
 				Database.deleteScroll(scroll, getPlayer().getId());
