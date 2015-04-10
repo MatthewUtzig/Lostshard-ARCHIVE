@@ -47,7 +47,8 @@ public class SpellUtils {
 			Material.RAILS,
 			Material.VINE,
 			Material.SIGN_POST,
-			Material.WALL_SIGN));
+			Material.WALL_SIGN,
+			null));
 	
 	public static boolean isValidRuneLocation(Player player, Location location) {
 		Block blockAt = location.getBlock();

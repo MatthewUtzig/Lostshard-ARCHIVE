@@ -187,3 +187,6 @@ commands:
    help:
       description: displays help menu.
       usage: /<command>
+   broadcast:
+      description: broadcast a global title.
+      usage: /<command> (message)

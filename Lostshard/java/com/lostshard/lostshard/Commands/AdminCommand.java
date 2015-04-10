@@ -2,6 +2,8 @@ package com.lostshard.lostshard.Commands;
 
 import java.util.List;
 
+import net.md_5.bungee.api.ChatColor;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -18,6 +20,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.Title;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class AdminCommand implements CommandExecutor, TabCompleter {
@@ -37,6 +40,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("setmurders").setExecutor(this);
 		plugin.getCommand("tax").setExecutor(this);
 		plugin.getCommand("inv").setExecutor(this);
+		plugin.getCommand("broadcast").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -93,8 +97,20 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			ptm.tax();
 		}else if(cmd.getName().equalsIgnoreCase("inv")) {
 			inv(sender, args);
+		}else if(cmd.getName().equalsIgnoreCase("broadcast")) {
+			broadcast(sender, args);
 		}
 		return true;
+	}
+
+	private void broadcast(CommandSender sender, String[] args) {
+		if(args.length < 1) {
+			Output.simpleError(sender, "/broadcast (message)");
+			return;
+		}
+		String[] msgs = StringUtils.join(args, " ").split(";");
+		for(Player p : Bukkit.getOnlinePlayers())
+			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN+msgs[0],ChatColor.AQUA+(msgs.length > 1 ? msgs[1] : ""));
 	}
 
 	private void inv(CommandSender sender, String[] args) {

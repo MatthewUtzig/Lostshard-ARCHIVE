@@ -118,28 +118,27 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		}
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = pm.getPlayer(player);
-		for (NPC npc : npcm.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
-					Variables.bankRadius)) {
-				int amount;
-				try {
-					amount = Integer.parseInt(args[0]);
-				} catch (Exception e) {
-					Output.simpleError(player, "/tradegold (amount)");
-					return;
-				}
-				if (player.getInventory().contains(Material.GOLD_INGOT, amount)) {
-					pPlayer.addMoney(amount * Variables.goldIngotValue);
-					ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT, amount);
-					Output.positiveMessage(player, "You have traded " + amount
-							+ " gold ingots into " + amount
-							* Variables.goldIngotValue + " gc.");
-				} else
-					Output.simpleError(player, "You dont have " + amount
-							+ " gold ingots in your inventory.");
-			}else
-				Output.simpleError(player, "You are not close enough to a bank.");
-		return;
+		NPC npc = npcm.getBanker(player.getLocation());
+		if(npc == null) {
+			Output.simpleError(player, "You are not close enough to a bank.");
+			return;
+		}
+		int amount;
+		try {
+			amount = Integer.parseInt(args[0]);
+		} catch (Exception e) {
+			Output.simpleError(player, "/tradegold (amount)");
+			return;
+		}
+		if (player.getInventory().contains(Material.GOLD_INGOT, amount)) {
+			pPlayer.addMoney(amount * Variables.goldIngotValue);
+			ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT, amount);
+			Output.positiveMessage(player, "You have traded " + amount
+					+ " gold ingots into " + amount
+					* Variables.goldIngotValue + " gc.");
+		} else
+			Output.simpleError(player, "You dont have " + amount
+					+ " gold ingots in your inventory.");
 	}
 
 	/**

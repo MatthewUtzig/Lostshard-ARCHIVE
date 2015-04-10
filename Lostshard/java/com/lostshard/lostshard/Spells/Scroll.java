@@ -38,7 +38,7 @@ import com.lostshard.lostshard.Spells.Spells.SPL_WallOfStone;
 
 public enum Scroll {
 	MARK("Mark","Runus Markius",4,10,20,20,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
-	TELEPORT("Teleport","Nearius Porticus",3,20,20,0,new ItemStack[] {new ItemStack(Material.FEATHER)}), 
+	TELEPORT("Teleport","Nearius Porticus",3,20,5,0,new ItemStack[] {new ItemStack(Material.FEATHER)}), 
 	RECALL("Recall","Runus Teleporticus",4,30,20,20,new ItemStack[] {new ItemStack(Material.FEATHER)}), 
 	PERMANENTGATETRAVEL("Permanent Gate Travel","Gatius Permenatus",8,100,20,20,new ItemStack[] {new ItemStack(Material.OBSIDIAN), new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE)}),
 	GATETRAVEL("Gate Travel","Gatius Teleportus",7,50,20,20,new ItemStack[] {new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE)}),

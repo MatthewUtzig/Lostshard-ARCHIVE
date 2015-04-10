@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Location;
 
+import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Plot.Plot;
@@ -72,5 +73,13 @@ public class NPCManager {
 			if (npc.getType().equals(NPCType.VENDOR))
 				result.add(npc);
 		return result;
+	}
+
+	public NPC getBanker(Location location) {
+		for (NPC npc : getBankers())
+			if (Utils.isWithin(location, npc.getLocation(),
+					Variables.bankRadius))
+				return npc;
+		return null;
 	}
 }

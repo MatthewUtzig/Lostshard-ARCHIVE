@@ -16,7 +16,8 @@ public class ItemUtils {
                     is.setAmount(newamount);
                     break;
                 } else {
-                    inv.remove(is);
+                    int first = inv.first(is);
+                    inv.setItem(first, new ItemStack(Material.AIR));
                     amount = -newamount;
                     if (amount == 0) break;
                 }

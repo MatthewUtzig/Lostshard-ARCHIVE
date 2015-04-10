@@ -616,8 +616,9 @@ public class Database {
 					pPlayer.setFreeSkillPoints(freeSkillPoints);
 					pPlayer.setAllowGui(gui);
 					pPlayer.setIgnored(ignored);
-					for(String s : spellbook)
-						pPlayer.getSpellbook().addSpell(Scroll.getByString(s));
+					if(spellbook != null)
+						for(String s : spellbook)
+							pPlayer.getSpellbook().addSpell(Scroll.getByString(s));
 					pPlayer.setBuilds(Database.getBuilds(id));
 					pPlayer.setRunebook(Database.getRunebook(id));
 					pPlayer.setScrools(Database.getScrolls(id));

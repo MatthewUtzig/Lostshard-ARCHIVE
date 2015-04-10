@@ -48,7 +48,7 @@ public class ScrollGUI extends GUI {
 			lore.add(ChatColor.GOLD+"Amount: "+amount);
 			
 			lore.add(ChatColor.BLUE+"Mana cost: "+s.getManaCost());
-			lore.add("You can add the scroll to your inventory by clicking it");
+			lore.add("You can add the scroll to your spellbook by clicking it");
 			lore.add("You can use the scroll by shift clicking it");
 			lore.add(ChatColor.GOLD+"Commands");
 			lore.add("/scrolls use "+ChatColor.RED+"(scroll)");

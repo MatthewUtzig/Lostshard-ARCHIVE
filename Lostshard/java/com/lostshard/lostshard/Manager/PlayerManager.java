@@ -60,7 +60,11 @@ public class PlayerManager {
 	}
 	
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		players.remove(getPlayer(event.getPlayer()));
+		List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
+		PseudoPlayer pPlayer = getPlayer(event.getPlayer());
+		list.add(pPlayer);
+		Database.updatePlayers(list);
+		players.remove(pPlayer);
 	}
 	
 	public void tick(double delta, long tick) {

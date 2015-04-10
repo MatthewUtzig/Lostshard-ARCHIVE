@@ -24,7 +24,7 @@ public class Variables {
 	// Vote
 	public static final int voteMoney = 1000;
 	// Bank
-	public static final int bankRadius = 10;
+	public static final int bankRadius = 5;
 	public static final int goldIngotValue = 100;
 	// Database
 	public static String mysqlDriver;

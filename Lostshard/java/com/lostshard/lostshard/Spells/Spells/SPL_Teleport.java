@@ -31,7 +31,7 @@ public class SPL_Teleport extends RangedSpell {
 			
 			boolean ceiling = false;
 			Block blockAboveFace = lastTwoBlocks.get(0).getRelative(0,1,0);
-			if(!SpellUtils.invisibleBlocks.contains(blockAboveFace.getType()) && SpellUtils.invisibleBlocks.contains(blockAboveFace.getRelative(0,-1,0))) {
+			if(!SpellUtils.invisibleBlocks.contains(blockAboveFace.getType()) && SpellUtils.invisibleBlocks.contains(blockAboveFace.getRelative(0,-1,0).getType())) {
 				setFoundBlock(blockAboveFace.getRelative(0,-3,0));
 				ceiling = true;
 			}
@@ -67,7 +67,7 @@ public class SPL_Teleport extends RangedSpell {
 						}
 					}
 				}
-			}
+			}	
 			return true;
 		}
 		else Output.simpleError(player, "can't teleport from an iron door.");
@@ -75,8 +75,8 @@ public class SPL_Teleport extends RangedSpell {
 	}
 
 	private boolean isRoom(Block block) {
-		if(!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0)) ||
-				!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2, 0))) {
+		if(!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0).getType()) ||
+				!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2, 0).getType())) {
 			return false;
 		}
 		return true;

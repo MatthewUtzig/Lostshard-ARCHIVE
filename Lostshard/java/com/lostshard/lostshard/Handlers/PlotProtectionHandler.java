@@ -207,10 +207,17 @@ public class PlotProtectionHandler {
 					PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
 					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+toPlot.getName(), "");
 				}
-			}else
+			}else {
+				if(toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+					Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN+toPlot.getName());
+				else {
+					PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
+					Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+toPlot.getName());
+				}
+			}
 			// must be entering a plot
-			player.sendMessage(ChatColor.GRAY + "You have entered "
-					+ toPlot.getName());
+//			player.sendMessage(ChatColor.GRAY + "You have entered "
+//					+ toPlot.getName());
 		} else if (toPlot == null && fromPlot != null) {
 			// must be leaving a plot
 			if(fromPlot.isTitleEntrence()) {
@@ -222,9 +229,16 @@ public class PlotProtectionHandler {
 					PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
 					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+"You have left "+fromPlot.getName(), "");
 				}
-			}else
-			player.sendMessage(ChatColor.GRAY + "You have left "
-					+ fromPlot.getName());
+			}else{
+				if(fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+					Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN+"You have left "+fromPlot.getName());
+				else {
+					PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
+					Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+"You have left "+fromPlot.getName());
+				}
+			}
+//			player.sendMessage(ChatColor.GRAY + "You have left "
+//					+ fromPlot.getName());
 		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot) {
 			// must be moving from one plot to another
 			if(fromPlot.isTitleEntrence()) {
@@ -236,9 +250,16 @@ public class PlotProtectionHandler {
 					PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
 					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+toPlot.getName(), "");
 				}
-			}else
-			player.sendMessage(ChatColor.GRAY + "You have left "
-					+ fromPlot.getName() + " and entered " + toPlot.getName());
+			}else {
+				if(toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+					Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN+toPlot.getName());
+				else {
+					PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
+					Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)+toPlot.getName());
+				}
+			}
+//			player.sendMessage(ChatColor.GRAY + "You have left "
+//					+ fromPlot.getName() + " and entered " + toPlot.getName());
 		}
 	}
 	
