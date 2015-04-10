@@ -108,7 +108,7 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 			int numMinutes = (int)((double)diff/(1000*60));
 			diff -= numMinutes*60*1000;
 			int numSeconds = (int)((double)diff/(1000));
-			Output.simpleError(player, "Cannot claim "+plot.getName()+" yet, "+numHours+" hours, "+numMinutes+" minutes and "+numSeconds+" seconds remaining.");
+			Output.simpleError(player, "can't claim "+plot.getName()+" yet, "+numHours+" hours, "+numMinutes+" minutes and "+numSeconds+" seconds remaining.");
 		}
     	return;
 	}

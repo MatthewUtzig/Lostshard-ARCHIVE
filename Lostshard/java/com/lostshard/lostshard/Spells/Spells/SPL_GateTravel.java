@@ -90,12 +90,12 @@ public class SPL_GateTravel extends Spell {
 			//check for lapis below your target location
 			if(destBlock.getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 			   destBlock.getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-				Output.simpleError(player, "Cannot gate to a Lapis Lazuli block.");
+				Output.simpleError(player, "can't gate to a Lapis Lazuli block.");
 				return;
 			}
 			
 			if(destBlock.getRelative(0,1,0).getType().equals(Material.PORTAL) || destBlock.getType().equals(Material.PORTAL)) {
-				Output.simpleError(player, "Cannot gate to another gate.");
+				Output.simpleError(player, "can't gate to another gate.");
 				return;
 			}
 			
@@ -108,7 +108,7 @@ public class SPL_GateTravel extends Spell {
 			
 			new Gate(blocks, player.getUniqueId(), 150, direction);
 		}
-		else Output.simpleError(player, "Cannot gate to there, not a friend of the plot.");
+		else Output.simpleError(player, "can't gate to there, not a friend of the plot.");
 	}
 
 	

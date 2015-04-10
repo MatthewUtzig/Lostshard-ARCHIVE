@@ -105,13 +105,13 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 								Database.insertClan(clan);
 								Output.positiveMessage(player, "You have created the clan "+clan.getName());
 							}
-							else Output.simpleError(player, "Cannot afford to create clan, cost: " + Variables.clanCreateCost+" gold coins.");
+							else Output.simpleError(player, "can't afford to create clan, cost: " + Variables.clanCreateCost+" gold coins.");
 						}
 						else Output.simpleError(player, "Clan name too long, 20 characters max.");
 					}
 					else Output.simpleError(player, "A clan with that name already exists.");
 				}
-				else Output.simpleError(player, "Cannot use \" in clan name.");
+				else Output.simpleError(player, "can't use \" in clan name.");
 			}
 			else Output.simpleError(player, "You must leave your current clan to create a new one.");
 		}
@@ -152,7 +152,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 							}
 							else Output.simpleError(player, "That player is already in a clan.");
 						}
-						else Output.simpleError(player, "You cannot invite yourself to the clan.");
+						else Output.simpleError(player, "You can't invite yourself to the clan.");
 					}
 					else Output.simpleError(player, "That player is not currently online.");
 				}
@@ -220,7 +220,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 						}
 						else Output.simpleError(player, "That player is already a leader of the clan.");
 					}
-					else Output.simpleError(player, "You cannot promote yourself.");
+					else Output.simpleError(player, "You can't promote yourself.");
 				}
 				else Output.simpleError(player, "Only a clan owner may promote clan members."); 
 			}
@@ -254,7 +254,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 						}
 						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
 					}
-					else Output.simpleError(player, "You cannot demote yourself.");
+					else Output.simpleError(player, "You can't demote yourself.");
 				}
 				else Output.simpleError(player, "Only a clan owner may demote clan members."); 
 			}
@@ -267,7 +267,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		if(pseudoPlayer.getClan() != null) {
 			if(pseudoPlayer.getClan().isOwner(player)) {
-				Output.simpleError(player, "Cannot join another clan, already a clan owner.");
+				Output.simpleError(player, "can't join another clan, already a clan owner.");
 				return;
 			}
 		}
@@ -343,7 +343,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 						}
 						else Output.simpleError(player, "That player is not in your clan.");
 					}
-					else Output.simpleError(player, "You cannot kick yourself from the clan.");
+					else Output.simpleError(player, "You can't kick yourself from the clan.");
 				}
 				else Output.simpleError(player, "Only a clan owner or leader may kick players."); 
 			}

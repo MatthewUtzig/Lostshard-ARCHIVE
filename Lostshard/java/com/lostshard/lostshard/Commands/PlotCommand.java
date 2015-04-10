@@ -290,13 +290,13 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 
 		if (pseudoPlayer.getMoney() < salePrice) {
-			Output.simpleError(player, "Cannot afford to buy plot, cost: "
+			Output.simpleError(player, "can't afford to buy plot, cost: "
 					+ salePrice + ".");
 			return;
 		}
 
 		if(plot.getOwner().equals(player.getUniqueId())) {
-			Output.simpleError(player, "You cannot buy your own plot. Use /unlist to remove your plot from the market.");
+			Output.simpleError(player, "You can't buy your own plot. Use /unlist to remove your plot from the market.");
 			return;
 		}
 		
@@ -420,7 +420,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (name.contains("\"") || name.contains("'")
 						|| name.contains(" ")) {
 					Output.simpleError(player,
-							"Cannot use \" or spaces in NPC names.");
+							"can't use \" or spaces in NPC names.");
 					return;
 				}
 
@@ -465,7 +465,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (name.contains("\"") || name.contains("'")
 						|| name.contains(" ")) {
 					Output.simpleError(player,
-							"Cannot use \" or spaces in NPC names.");
+							"can't use \" or spaces in NPC names.");
 					return;
 				}
 
@@ -515,7 +515,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (name.contains("\"") || name.contains("'")
 						|| name.contains(" ")) {
 					Output.simpleError(player,
-							"Cannot use \" or spaces in NPC names.");
+							"can't use \" or spaces in NPC names.");
 					return;
 				}
 
@@ -553,7 +553,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							+ ".");
 					return;
 				}
-			Output.simpleError(player, "Cannot find an NPC named " + npcName
+			Output.simpleError(player, "can't find an NPC named " + npcName
 					+ " on this plot.");
 		} else if (args[1].equalsIgnoreCase("fire")) {
 			if (args.length < 3) {
@@ -649,7 +649,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		boolean nameValid = true;
 		if (plotName.contains("\"") || plotName.contains("'")) {
-			Output.simpleError(player, "Cannot use \" in plot name.");
+			Output.simpleError(player, "can't use \" in plot name.");
 			nameValid = false;
 		}
 
@@ -662,7 +662,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		for (Plot p : ptm.getPlots()) {
 			if (p.getName().equalsIgnoreCase(plotName)) {
-				Output.simpleError(player, "Cannot use that name, it is taken.");
+				Output.simpleError(player, "can't use that name, it is taken.");
 				return;
 			}
 		}
@@ -702,12 +702,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		if (amount < 1) {
-			Output.simpleError(player, "Cannot shrink less than 1 block.");
+			Output.simpleError(player, "can't shrink less than 1 block.");
 			return;
 		}
 
 		if (plot.getSize() <= amount) {
-			Output.simpleError(player, "Cannot shrink that much.");
+			Output.simpleError(player, "can't shrink that much.");
 			return;
 		}
 
@@ -1047,7 +1047,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			if (Utils.isWithin(p.getLocation(), plot.getLocation(),
 					sphereOfInfluence + plot.getSize() + 1 + amount)) {
 				if (amount == 1)
-					Output.simpleError(player, "Cannot expand, " + p.getName()
+					Output.simpleError(player, "can't expand, " + p.getName()
 							+ " is too close.");
 				else
 					Output.simpleError(
@@ -1238,7 +1238,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		if (targetPlayer == null) {
 			Output.simpleError(player,
-					"Cannot co-own that person, hes not online.");
+					"can't co-own that person, hes not online.");
 			return;
 		}
 
@@ -1286,7 +1286,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		if (targetPlayer == null) {
 			Output.simpleError(player,
-					"Cannot friend that person, hes not online.");
+					"can't friend that person, hes not online.");
 			return;
 		}
 
@@ -1340,7 +1340,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			inPlot = true;
 			Output.positiveMessage(player, "-Plot Survey Results-");
 			player.sendMessage(ChatColor.YELLOW + "You " + ChatColor.RED
-					+ "cannot" + ChatColor.YELLOW + " create a plot here.");
+					+ "can't" + ChatColor.YELLOW + " create a plot here.");
 			player.sendMessage(ChatColor.YELLOW
 					+ "You are currently in the plot \"" + plot.getName()
 					+ "\".");
@@ -1449,7 +1449,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				&& !(curMoney >= plotMoneyCost && player.getInventory()
 						.containsAtLeast(plotDiamondCost,
 								plotDiamondCost.getAmount()))) {
-			Output.simpleError(player, "Cannot afford to create a plot, cost: "
+			Output.simpleError(player, "can't afford to create a plot, cost: "
 					+ plotMoneyCost + " gold & " + plotDiamondCost.getAmount()
 					+ " diamonds.");
 			return;
@@ -1469,7 +1469,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		plotName = plotName.trim();
 
 		if (plotName.contains("\"") || plotName.contains("'")) {
-			Output.simpleError(player, "Cannot use \" in plot name.");
+			Output.simpleError(player, "can't use \" in plot name.");
 			return;
 		}
 
@@ -1531,7 +1531,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					+ " gc and " + plotDiamondCost.getAmount() + " diamonds.");
 		} else {
 			player.sendMessage(ChatColor.DARK_RED
-					+ "Cannot create a plot there, too close to the following plots:");
+					+ "can't create a plot there, too close to the following plots:");
 			int maxDisplay = 6;
 			if (intersectingRegions.size() < maxDisplay)
 				maxDisplay = intersectingRegions.size();

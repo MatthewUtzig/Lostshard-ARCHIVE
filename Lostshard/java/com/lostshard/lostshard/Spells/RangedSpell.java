@@ -57,7 +57,7 @@ public abstract class RangedSpell extends Spell {
 			if(plot != null) {
 				if(plot.isProtected()) {
 					if(!plot.isFriendOrAbove(player)) {
-						Output.simpleError(player, "You cannot cast "+getName()+" there, that plot is protected.");
+						Output.simpleError(player, "You can't cast "+getName()+" there, that plot is protected.");
 						return false;
 					}
 				}

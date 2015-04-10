@@ -1,5 +1,9 @@
 package com.lostshard.lostshard.Handlers;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -54,56 +58,65 @@ public class ChatHandler {
 		if (event.isCancelled())
 			return;
 		event.getRecipients().clear();
+		List<UUID> ignore = new ArrayList<UUID>();
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			PseudoPlayer pP = pm.getPlayer(p);
+			if(pP.getIgnored().contains(event.getPlayer().getUniqueId()))
+				ignore.add(p.getUniqueId());
+		}
 		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		if(pPlayer.getPromptedSpell() != null) {
 			SpellManager.onPlayerPromt(event);
 			return;
 		}
 		if (pPlayer.getChatChannel().equals(ChatChannel.LOCAL))
-			localChat(event);
+			localChat(event, ignore);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.SHOUT))
-			shoutChat(event);
+			shoutChat(event, ignore);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.WHISPER))
-			whisperChat(event);
+			whisperChat(event, ignore);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.CLAN))
 			clanChat(event);
 		else if (pPlayer.getChatChannel().equals(ChatChannel.PARTY))
 			partyChat(event);
 		else
-			globalChat(event);
+			globalChat(event, ignore);
 	}
 
-	public static void whisperChat(AsyncPlayerChatEvent event) {
+	public static void whisperChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getWhisperChatRange()))
-			event.getRecipients().add(p);
+			if(!ignore.contains(p.getUniqueId()))
+				event.getRecipients().add(p);
 		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + " whisper: " + event.getMessage());
 	}
 
-	public static void localChat(AsyncPlayerChatEvent event) {
+	public static void localChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getLocalChatRange()))
-			event.getRecipients().add(p);
+			if(!ignore.contains(p.getUniqueId()))
+				event.getRecipients().add(p);
 		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + ": " + event.getMessage());
 	}
 
-	public static void shoutChat(AsyncPlayerChatEvent event) {
+	public static void shoutChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
 		for (Player p : Utils.getPlayersNear(event.getPlayer(),
 				getShoutChatRange()))
-			event.getRecipients().add(p);
+			if(!ignore.contains(p.getUniqueId()))
+				event.getRecipients().add(p);
 		event.setFormat(Utils.getDisplayName(event.getPlayer())
 				+ ChatColor.WHITE + " shouts: " + event.getMessage());
 	}
 
-	public static void globalChat(AsyncPlayerChatEvent event) {
+	public static void globalChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
 		String prefix;
@@ -118,7 +131,7 @@ public class ChatHandler {
 					+ ChatColor.WHITE + "]"+star;
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			pPlayer = pm.getPlayer(p);
-			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL))
+			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL) && !ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
 		}
 		event.setFormat(prefix + " " + title + Utils.getDisplayName(event.getPlayer())

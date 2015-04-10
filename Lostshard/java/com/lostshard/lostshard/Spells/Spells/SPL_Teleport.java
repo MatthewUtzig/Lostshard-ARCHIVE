@@ -62,7 +62,7 @@ public class SPL_Teleport extends RangedSpell {
 				for(int y=getFoundBlock().getY()-3; y<=getFoundBlock().getY()+3; y++) {
 					for(int z=getFoundBlock().getZ()-3; z<=getFoundBlock().getZ()+3; z++) {
 						if(getFoundBlock().getWorld().getBlockAt(x,y,z).getType().equals(Material.LAPIS_BLOCK)) {
-							Output.simpleError(player, "Cannot teleport to a location near Lapis Lazuli blocks.");
+							Output.simpleError(player, "can't teleport to a location near Lapis Lazuli blocks.");
 							return false;
 						}
 					}
@@ -70,7 +70,7 @@ public class SPL_Teleport extends RangedSpell {
 			}
 			return true;
 		}
-		else Output.simpleError(player, "Cannot teleport from an iron door.");
+		else Output.simpleError(player, "can't teleport from an iron door.");
 		return false;
 	}
 

@@ -177,7 +177,7 @@ public class HelpHandler {
 	
 	public static void helpParty(CommandSender sender) {
 		sender.sendMessage(ChatColor.GOLD+"-Party Help-");
-		sender.sendMessage(ChatColor.YELLOW+"Info:"+ChatColor.GRAY+" A party is a temporary player group. You can only be in one party at a time. While in a party, you cannot damage party members with weapons.");
+		sender.sendMessage(ChatColor.YELLOW+"Info:"+ChatColor.GRAY+" A party is a temporary player group. You can only be in one party at a time. While in a party, you can't damage party members with weapons.");
 		sender.sendMessage(ChatColor.YELLOW+"/party invite (player name)"+ChatColor.GRAY+" - Invites a player to your party.");
 		sender.sendMessage(ChatColor.GRAY+"-Creates a party if you are not already in one.");
 		sender.sendMessage(ChatColor.YELLOW+"/party join (player name)"+ChatColor.GRAY+" - Join a player's party if you            have been invited.");

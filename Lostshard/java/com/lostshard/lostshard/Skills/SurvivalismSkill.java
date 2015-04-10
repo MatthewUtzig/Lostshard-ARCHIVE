@@ -67,13 +67,13 @@ public class SurvivalismSkill extends Skill {
 			String targetName = args[0];
 			
 			if(targetName.equalsIgnoreCase(player.getName())) {
-				Output.simpleError(player, "You cannot track yourself.");
+				Output.simpleError(player, "You can't track yourself.");
 				return;
 			}
 			
 			Player targetPlayer = Bukkit.getPlayer(targetName);
 //			if(targetPlayer != null && targetPlayer.isOp()) {
-//				Output.simpleError(player, "Cannot find "+targetName+".");
+//				Output.simpleError(player, "can't find "+targetName+".");
 //				return;
 //			}
 			
@@ -170,7 +170,7 @@ public class SurvivalismSkill extends Skill {
 					}
 					foundLivingEntity = closestEntity;
 				}else {
-					Output.simpleError(player, "Cannot find "+targetName+".");
+					Output.simpleError(player, "can't find "+targetName+".");
 					return;
 				}
 			}
@@ -184,7 +184,7 @@ public class SurvivalismSkill extends Skill {
 				}
 				foundLivingEntity = (LivingEntity)targetPlayer;
 //				if(false) {
-//					Output.simpleError(player, "That player is too new, cannot track them.");
+//					Output.simpleError(player, "That player is too new, can't track them.");
 //					return;
 //				}
 				modCurSkill -= defSkill;
@@ -411,7 +411,7 @@ public class SurvivalismSkill extends Skill {
 		if(plot != null) {
 			if(plot.isProtected()) {
 				if(!plot.isAllowedToBuild(player)){
-					Output.simpleError(player, "You cannot do that, this plot is protected.");
+					Output.simpleError(player, "You can't do that, this plot is protected.");
 					event.setCancelled(true);
 					return;
 				}

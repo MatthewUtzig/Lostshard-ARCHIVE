@@ -92,7 +92,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 			}
 			PseudoPlayer pPlayer = pm.getPlayer(player);
 			if (pPlayer.getMoney() < amount) {
-				Output.simpleError(player, "You cannot affort to pay "
+				Output.simpleError(player, "You can't affort to pay "
 						+ targetPlayer.getName() + " " + amount + "gc.");
 				return;
 			}

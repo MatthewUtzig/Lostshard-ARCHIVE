@@ -42,6 +42,8 @@ public class StoreManager {
 	}
 	
 	public Store getStore(NPC npc) {
+		if(npc == null)
+			return null;
 		return getStore(npc.getId());
 	}
 	

@@ -51,7 +51,7 @@ public class SpellManager {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if(plot != null) {
 			if(!plot.isAllowMagic()) {
-				Output.simpleError(player, "You cannot use magic in "+plot.getName()+".");
+				Output.simpleError(player, "You can't use magic in "+plot.getName()+".");
 				return false;
 			}
 		}
@@ -59,12 +59,12 @@ public class SpellManager {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		
 		if(pseudoPlayer.getTimer().cantCastTicks > 0) {
-			Output.simpleError(player, "You cannot cast another spell again so soon.");
+			Output.simpleError(player, "You can't cast another spell again so soon.");
 			return false;
 		}
 		
 		if(pseudoPlayer.getTimer().stunTick > 0) {
-			Output.simpleError(player, "You cannot use magic while stunned.");
+			Output.simpleError(player, "You can't use magic while stunned.");
 			return false;
 		}
 		
@@ -75,7 +75,7 @@ public class SpellManager {
 				for(int z=-2; z<= 2; z++) {
 					Material blockMat = player.getWorld().getBlockAt(loc.getBlockX()+x,loc.getBlockY()+y,loc.getBlockZ()+z).getType();
 					if(blockMat == Material.LAPIS_BLOCK) {
-						Output.simpleError(player, "You cannot seem to cast a spell here...");
+						Output.simpleError(player, "You can't seem to cast a spell here...");
 						pseudoPlayer.getTimer().cantCastTicks = spell.getCooldown();
 						return false;
 					}
@@ -124,24 +124,24 @@ public class SpellManager {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		
 		if(pPlayer.getTimer().cantCastTicks > 0) {
-			Output.simpleError(player, "You cannot cast another spell again so soon.");
+			Output.simpleError(player, "You can't cast another spell again so soon.");
 			return false;
 		}
 		
 		if(pPlayer.getTimer().stunTick > 0) {
-			Output.simpleError(player, "You cannot use magic while stunned.");
+			Output.simpleError(player, "You can't use magic while stunned.");
 			return false;
 		}
 
 		if(pPlayer.getDieLog() > 0) {
-			Output.simpleError(player, "You cannot cast a spell right now.");
+			Output.simpleError(player, "You can't cast a spell right now.");
 			return false;
 		}
 
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		if(plot != null) {
 			if(!plot.isAllowMagic()) {
-				Output.simpleError(player, "You cannot use magic in "+plot.getName()+".");
+				Output.simpleError(player, "You can't use magic in "+plot.getName()+".");
 				return false;
 			}
 		}
@@ -165,7 +165,7 @@ public class SpellManager {
 				for(int z=-2; z<= 2; z++) {
 					Material type = player.getWorld().getBlockAt(loc.getBlockX()+x,loc.getBlockY()+y,loc.getBlockZ()+z).getType();
 					if(type == Material.LAPIS_BLOCK) {
-						Output.simpleError(player, "You cannot seem to cast a spell here...");
+						Output.simpleError(player, "You can't seem to cast a spell here...");
 						return false;
 					}
 				}

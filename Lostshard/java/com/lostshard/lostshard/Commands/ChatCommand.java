@@ -100,7 +100,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
 		if(to == null) {
-			Output.simpleError(player, "ERROR player not online.");
+			Output.simpleError(player, Bukkit.getOfflinePlayer(pPlayer.getLastResiver()).getName()+" is no longer online.");
 			return;
 		}
 		String message = StringUtils.join(args, " ");
@@ -120,11 +120,16 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "player not online");
 			return;
 		}
+		if(player == targetPlayer) {
+			Output.simpleError(player, "You can't msg your self.");
+			return;
+		}
 		String message = StringUtils.join(args, " ", 1, args.length);
 		
+		PseudoPlayer pPlayer = pm.getPlayer(targetPlayer);
 		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+targetPlayer.getName()+ChatColor.WHITE+"] " +  message);
-		targetPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
-		
+		if(!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE) && !pPlayer.getIgnored().contains(player.getUniqueId()))
+			targetPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
 	}
 
 	/**

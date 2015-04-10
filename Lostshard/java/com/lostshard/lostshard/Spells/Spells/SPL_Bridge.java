@@ -32,7 +32,7 @@ public class SPL_Bridge extends RangedSpell {
 		//check for lapis below you
 		if(player.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 		   player.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-			Output.simpleError(player, "Cannot bridge from a Lapis Lazuli block.");
+			Output.simpleError(player, "can't bridge from a Lapis Lazuli block.");
 			return false;
 		}
 		
@@ -41,7 +41,7 @@ public class SPL_Bridge extends RangedSpell {
 			for(int y=getFoundBlock().getY()-3; y<=getFoundBlock().getY()+3; y++) {
 				for(int z=getFoundBlock().getZ()-3; z<=getFoundBlock().getZ()+3; z++) {
 					if(getFoundBlock().getWorld().getBlockAt(x, y, z).getType().equals(Material.LAPIS_BLOCK)) {
-						Output.simpleError(player, "Cannot bridge to a location near Lapis Lazuli blocks.");
+						Output.simpleError(player, "can't bridge to a location near Lapis Lazuli blocks.");
 						return false;
 					}
 				}

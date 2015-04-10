@@ -77,7 +77,7 @@ public class Gate extends MagicStructure {
 					}else
 						block.setType(Material.AIR);
 				else
-					Output.simpleError(player, "You cannot do that here, the plot is protected.");
+					Output.simpleError(player, "You can't do that here, the plot is protected.");
 			}
 		}
 	}

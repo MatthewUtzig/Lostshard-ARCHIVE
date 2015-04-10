@@ -104,6 +104,10 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, args[0]+" is not online.");
 			return;
 		}
+		if(player == tPlayer) {
+			Output.simpleError(player, "You can't ignore your self.");
+			return;
+		}
 		if(pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
 			Output.simpleError(player, "You are currently ignoring "+tPlayer.getName()+".");
 			return;
@@ -284,7 +288,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
         	else {
         		int ticks = pPlayer.getTimer().spawnTicks;
         		int seconds = ticks / 10;
-        		player.sendMessage("Cannot go to spawn, "+(seconds/60)+" minutes, "+(seconds%60)+" seconds remaining.");
+        		player.sendMessage("can't go to spawn, "+(seconds/60)+" minutes, "+(seconds%60)+" seconds remaining.");
         	}
 		}else{
 			Output.mustBePlayer(sender);

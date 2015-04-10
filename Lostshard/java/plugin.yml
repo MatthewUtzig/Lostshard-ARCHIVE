@@ -47,13 +47,13 @@ commands:
       description: Send a private message to a player.
       aliases: [m]
       usage: /<command> (Player) (Message)
-   toggleglobalchat:
+   toggleglobal:
       description: Toggle global chat.
-      aliases: [toggleglobal]
+      aliases: [toggleglobalchat]
       usage: /<command>
-   toggleprivatechat:
+   togglemsg:
       description: Toggle private chat.
-      aliases: [togglemsg,togglemsgchat]
+      aliases: [toggleprivatechat,togglemsgchat]
       usage: /<command>
    replay:
       description: Replay on a private message.
@@ -179,11 +179,11 @@ commands:
       usage: /<command> (player)
    vendor:
       description: unignores a player.
-      usage: /<command> (player)
+      usage: /<command>
    shop:
       description: unignores a player.
       aliases: [buy,sell,store]
-      usage: /<command> (player)
+      usage: /<command>
    help:
       description: displays help menu.
-      usage: /<command> (player)
+      usage: /<command>

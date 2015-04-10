@@ -36,12 +36,12 @@ public class BlackSmithySkill extends Skill {
 	public static void repair(Player player) {
 		ItemStack item = player.getItemInHand();
 		if(item == null || item.getType().equals(Material.AIR)) {
-			Output.simpleError(player, "You cannot repair air.");
+			Output.simpleError(player, "You can't repair air.");
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.getPvpTicks() > 0) {
-			Output.simpleError(player,  "You cannot repair while in or shortly after combat.");
+			Output.simpleError(player,  "You can't repair while in or shortly after combat.");
 			return;
 		}
 		if(pPlayer.getStamina() < REPAIR_STAMINA_COST) {
@@ -51,7 +51,7 @@ public class BlackSmithySkill extends Skill {
 		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
 		int lvl = skill.getLvl();
 		if(!canRepair(item)) {
-			Output.simpleError(player, "You cannot repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		Material cost = null;
@@ -78,7 +78,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		
 		if(cost == null) {
-			Output.simpleError(player, "You cannot repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't repair "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		
@@ -118,18 +118,18 @@ public class BlackSmithySkill extends Skill {
 	public static void smelt(Player player) {
 		ItemStack item = player.getItemInHand();
 		if(item == null) {
-			Output.simpleError(player, "You cannot smelt air.");
+			Output.simpleError(player, "You can't smelt air.");
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
 		int lvl = skill.getLvl();
 		if(pPlayer.getPvpTicks() > 0) {
-			Output.simpleError(player,  "You cannot smelt while in or shortly after combat.");
+			Output.simpleError(player,  "You can't smelt while in or shortly after combat.");
 			return;
 		}
 		if(!canRepair(item)) {
-			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		int amount = 1;
@@ -150,7 +150,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		
 		if(cost == null) {
-			Output.simpleError(player, "You cannot smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't smelt "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		if(ItemUtils.isArmor(cost))
@@ -168,18 +168,18 @@ public class BlackSmithySkill extends Skill {
 	public static void enhance(Player player) {
 		ItemStack item = player.getItemInHand();
 		if(item == null) {
-			Output.simpleError(player, "You cannot enhance air.");
+			Output.simpleError(player, "You can't enhance air.");
 			return;
 		}
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		Skill skill = pPlayer.getCurrentBuild().getBlackSmithy();
 		int lvl = skill.getLvl();
 		if(pPlayer.getPvpTicks() > 0) {
-			Output.simpleError(player,  "You cannot enhance while in or shortly after combat.");
+			Output.simpleError(player,  "You can't enhance while in or shortly after combat.");
 			return;
 		}
 		if(!canRepair(item) || item.getType().equals(Material.DIAMOND_HOE) || item.getType().equals(Material.IRON_HOE) || item.getType().equals(Material.GOLD_HOE) || item.getType().equals(Material.STONE_HOE)) {
-			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		if(lvl < 250) {
@@ -202,7 +202,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		
 		if(cost == null) {
-			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		
@@ -219,14 +219,14 @@ public class BlackSmithySkill extends Skill {
 		else if(item.getType().equals(Material.BOW))
 			isBow = true;
 		else {
-			Output.simpleError(player, "You cannot enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't enhance "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 		
 		if(isTool) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DIG_SPEED)+2;
 			if(costAmount > 6) {
-				Output.simpleError(player, "You cannot enhance this tool above lvl 5.");
+				Output.simpleError(player, "You can't enhance this tool above lvl 5.");
 				return;
 			}
 			Plot plot = ptm.findPlotAt(player.getLocation());
@@ -254,7 +254,7 @@ public class BlackSmithySkill extends Skill {
 		}else if(isSword) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.DAMAGE_ALL)+2;
 			if(costAmount > 6) {
-				Output.simpleError(player, "You cannot sharpen this weapon above lvl 5.");
+				Output.simpleError(player, "You can't sharpen this weapon above lvl 5.");
 				return;
 			}
 			Plot plot = ptm.findPlotAt(player.getLocation());
@@ -275,7 +275,7 @@ public class BlackSmithySkill extends Skill {
 		}else if(isBow) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.ARROW_DAMAGE)+2;
 			if(costAmount > 6) {
-				Output.simpleError(player, "You cannot power this weapon above lvl 5.");
+				Output.simpleError(player, "You can't power this weapon above lvl 5.");
 				return;
 			}
 			Plot plot = ptm.findPlotAt(player.getLocation());
@@ -296,7 +296,7 @@ public class BlackSmithySkill extends Skill {
 		}else if(isArmor) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL)+2;
 			if(costAmount > 3) {
-				Output.simpleError(player, "You cannot reinforce this pice of armor above lvl 2.");
+				Output.simpleError(player, "You can't reinforce this pice of armor above lvl 2.");
 				return;
 			}
 			if(!player.getInventory().contains(cost, costAmount)) {
@@ -310,7 +310,7 @@ public class BlackSmithySkill extends Skill {
 			item.setItemMeta(meta);
 			Output.positiveMessage(player, "You have reinforced "+item.getType().name().toLowerCase().replace("_", " ")+" to lvl "+(costAmount-1));
 		}else{
-			Output.simpleError(player, "You cannot reinforce "+item.getType().name().toLowerCase().replace("_", " ")+".");
+			Output.simpleError(player, "You can't reinforce "+item.getType().name().toLowerCase().replace("_", " ")+".");
 			return;
 		}
 	}
@@ -374,7 +374,7 @@ public class BlackSmithySkill extends Skill {
     		if(plot != null) {
     			if(!(plot.isFriendOrAbove(player))) 
     			{
-    				Output.simpleError(player, "You cannot use this here, the plot is protected.");
+    				Output.simpleError(player, "You can't use this here, the plot is protected.");
     				event.setCancelled(true);
     				return;
     			}

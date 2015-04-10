@@ -49,21 +49,21 @@ public class SPL_ClanTeleport extends Spell {
 				}
 				
 				if(targetPlayer.getHealth() <= 0) {
-					Output.positiveMessage(player, "You cannot teleport to that player, as they are dead.");
+					Output.positiveMessage(player, "You can't teleport to that player, as they are dead.");
 					return;
 				}
 				
 				//check for lapis below you
 				if(player.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 				   player.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-					Output.simpleError(player, "Cannot teleport from a Lapis Lazuli block.");
+					Output.simpleError(player, "can't teleport from a Lapis Lazuli block.");
 					return;
 				}
 				
 				//check for lapis below your target location
 				if(targetPlayer.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 						targetPlayer.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-					Output.simpleError(player, "Cannot teleport to a Lapis Lazuli block.");
+					Output.simpleError(player, "can't teleport to a Lapis Lazuli block.");
 					return;
 				}
 				

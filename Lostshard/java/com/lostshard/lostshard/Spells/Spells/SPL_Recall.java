@@ -69,7 +69,7 @@ public class SPL_Recall extends Spell {
 				//check for lapis below your target location
 				if(destLoc.getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
 				   destLoc.getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-					Output.simpleError(player, "Cannot recall to a Lapis Lazuli block.");
+					Output.simpleError(player, "can't recall to a Lapis Lazuli block.");
 					return;
 				}
 				
@@ -86,7 +86,7 @@ public class SPL_Recall extends Spell {
 					player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
 				}
 			}
-			else Output.simpleError(player, "Cannot recall to there, the plot is private.");
+			else Output.simpleError(player, "can't recall to there, the plot is private.");
 		}
 		else Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
 	}

@@ -43,7 +43,7 @@ public class SPL_Mark extends Spell {
 			setMarkLoc(player.getLocation().getBlock().getLocation());
 		}
 		else {
-			Output.simpleError(player, "You cannot mark a rune here, the plot is private.");
+			Output.simpleError(player, "You can't mark a rune here, the plot is private.");
 			return false;
 		}
 		

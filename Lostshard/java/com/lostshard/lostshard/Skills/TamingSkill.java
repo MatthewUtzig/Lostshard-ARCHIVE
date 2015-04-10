@@ -49,7 +49,7 @@ public class TamingSkill extends Skill {
 			}
 			
 			if(pseudoPlayer.getEngageInCombatTicks() > 0) {
-				Output.simpleError(player,  "You cannot mount while in or shortly after combat.");
+				Output.simpleError(player,  "You can't mount while in or shortly after combat.");
 				return;
 			}
 			
@@ -66,7 +66,7 @@ public class TamingSkill extends Skill {
 				for(int y=blockFound.getY(); y<=blockFound.getY()+2; y++) {
 					for(int z=blockFound.getZ()-1; z<=blockFound.getZ()+1; z++) {
 						if(!SpellUtils.invisibleBlocks.contains(blockFound.getWorld().getBlockAt(x,y,z).getType())) {
-							Output.simpleError(player, "You cannot summon a mount in rough terrain");
+							Output.simpleError(player, "You can't summon a mount in rough terrain");
 							return;
 						}
 					}

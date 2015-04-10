@@ -89,7 +89,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 					
 				}
 				if(amountInt + pPlayer.getCurrentBuild().getTotalSkillVal() > pPlayer.getMaxSkillValTotal()) {
-					Output.simpleError(player, "Cannot increase skills beyond the max total of "+Utils.scaledIntToString(pPlayer.getMaxSkillValTotal())+".");
+					Output.simpleError(player, "can't increase skills beyond the max total of "+Utils.scaledIntToString(pPlayer.getMaxSkillValTotal())+".");
 					return;
 					
 				}
@@ -164,7 +164,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 					double amount = Double.parseDouble(args[3]);
 					int amountInt = (int)(amount*10);
 					if(amountInt + pPlayer.getCurrentBuild().getTotalSkillVal() > pPlayer.getMaxSkillValTotal()) {
-						Output.simpleError(player, "Cannot increase skills beyond the max total of "+Utils.scaledIntToString(pPlayer.getMaxSkillValTotal())+".");
+						Output.simpleError(player, "can't increase skills beyond the max total of "+Utils.scaledIntToString(pPlayer.getMaxSkillValTotal())+".");
 						return;
 						
 					}

@@ -47,6 +47,7 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 			}
 			Player player = (Player) sender;
 			shop(player);
+			return true;
 		}
 		return false;
 	}
