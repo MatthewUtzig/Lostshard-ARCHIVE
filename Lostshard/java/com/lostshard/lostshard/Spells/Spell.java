@@ -43,15 +43,6 @@ public abstract class Spell {
 		this.scroll = scroll;
 	}
 	
-	public Spell getNew() {
-		try {
-			return this.getClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	public abstract boolean verifyCastable(Player player);
 	
 	public abstract void preAction(Player player);
