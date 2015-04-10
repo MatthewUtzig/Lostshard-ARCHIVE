@@ -39,7 +39,7 @@ public class RunebookGUI extends GUI {
 			lore.add(ChatColor.YELLOW+"x:"+r.getLocation().getX());
 			lore.add(ChatColor.YELLOW+"y:"+r.getLocation().getX());
 			lore.add(ChatColor.YELLOW+"z:"+r.getLocation().getX());
-			lore.add("You can remove a rune by shift clicking it");
+			lore.add("You can remove the rune by shift clicking it");
 			lore.add(ChatColor.GOLD+"Commands");
 			lore.add("/runebook give "+ChatColor.RED+"(player) (rune)");
 			

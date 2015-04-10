@@ -17,17 +17,21 @@ public class HelpHandler {
 				bookMeta.setAuthor(ChatColor.GOLD+"Lostshard guide");
 				bookMeta.setDisplayName(ChatColor.GOLD+"Lostahrd guide");
 				bookMeta.setTitle(ChatColor.GOLD+"Lostahrd guide");
+				
+				//Add pages
 				bookMeta.addPage(ChatColor.GOLD+""+ChatColor.BOLD+"Lostshard guide\n\n\n"+ChatColor.GOLD+"- "+ChatColor.DARK_PURPLE+"Landowner ship\n"+ChatColor.GOLD+"- "+ChatColor.DARK_PURPLE+"Groups\n");
+				
+				
 				book.setItemMeta(bookMeta);
 				Player player = (Player) sender;
 				player.getInventory().addItem(book);
 				return;
 			}
-//			sender.sendMessage(ChatColor.GOLD+"-Help-");
-//			sender.sendMessage(ChatColor.GOLD+"For more detailed information you can view the guide at");
-//			sender.sendMessage(ChatColor.GOLD+"http://www.lostshard.com.");
-//			sender.sendMessage(ChatColor.GOLD+"Use \"/help (topic)\" to get more information.");
-//			sender.sendMessage(ChatColor.YELLOW+"Topics:"+ChatColor.GRAY+" chat, land, money, scrolls, clan, party, karma, misc");
+			sender.sendMessage(ChatColor.GOLD+"-Help-");
+			sender.sendMessage(ChatColor.GOLD+"For more detailed information you can view the guide at");
+			sender.sendMessage(ChatColor.GOLD+"http://www.lostshard.com.");
+			sender.sendMessage(ChatColor.GOLD+"Use \"/help (topic)\" to get more information.");
+			sender.sendMessage(ChatColor.YELLOW+"Topics:"+ChatColor.GRAY+" chat, land, money, scrolls, clan, party, karma, misc");
 		} else {
 			String topic = split[0];
 			

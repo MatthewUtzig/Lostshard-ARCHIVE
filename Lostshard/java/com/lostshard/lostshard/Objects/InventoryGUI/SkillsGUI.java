@@ -42,7 +42,7 @@ public class SkillsGUI extends GUI {
 			skillLore.add("/skills increase "+ChatColor.RED+"(amount)");
 			skillMeta.setLore(skillLore);
 			skillItem.setItemMeta(skillMeta);
-			skillItem.setDurability((short) (skillItem.getType().getMaxDurability()*(1-s.getLvl()/1000)));
+//			skillItem.setDurability((short) (skillItem.getType().getMaxDurability()*(1-s.getLvl()/1000)));
 			addOption(skillItem);
 		}
 	}
