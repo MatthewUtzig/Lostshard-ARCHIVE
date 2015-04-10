@@ -11,10 +11,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.SpellBook;
 
-public class SpellbookGUI extends InventoryGUI {
+public class SpellbookGUI extends GUI {
 
 	public SpellbookGUI(PseudoPlayer pPlayer) {
-		super(9, "Spellbook", GUIType.SPELLBOOK, pPlayer);
+		super(9, "Spellbook", pPlayer);
+		optionSelector();
 	}
 
 	@Override
@@ -35,14 +36,14 @@ public class SpellbookGUI extends InventoryGUI {
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		if(event.getCurrentItem() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+		if(event.getCurrentItem().getItemMeta().hasDisplayName()) {
 			int page = -1;
 			try {
 				page = Integer.parseInt(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()).replace("Spellbook page: ",""));
 			}catch(Exception e) {
 				
 			}
-			InventoryGUI pageGUI = new SpellbookPageGUI(getPlayer(), page);
+			GUI pageGUI = new SpellbookPageGUI(getPlayer(), page);
 			pageGUI.openInventory((Player)event.getWhoClicked());
 		}
 	}

@@ -9,6 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
+import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Camp;
@@ -22,6 +23,7 @@ public class GameLoop extends BukkitRunnable {
 
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
+	ClanManager cm = ClanManager.getManager();
 	
 	public static long tick = 0;
 	public static long lastTickTime = 0;
@@ -67,7 +69,7 @@ public class GameLoop extends BukkitRunnable {
 				if(!plotUpdates.isEmpty())
 					Database.updatePlots(plotUpdates);
 				plotUpdates.clear();
-				for(Clan c : Lostshard.getRegistry().getClans())
+				for(Clan c : cm.getClans())
 					if(c.isUpdate())
 						clanUpdates.add(c);
 				if(!clanUpdates.isEmpty())

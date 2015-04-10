@@ -2,6 +2,10 @@ package com.lostshard.lostshard.Commands;
 
 import java.util.List;
 
+import net.md_5.bungee.api.ChatColor;
+
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,6 +13,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.Locations;
@@ -38,6 +43,9 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("kill").setExecutor(this);
 		plugin.getCommand("gui").setExecutor(this);
 		plugin.getCommand("ff").setExecutor(this);
+		plugin.getCommand("ignore").setExecutor(this);
+		plugin.getCommand("unignore").setExecutor(this);
+		plugin.getCommand("help").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -66,8 +74,67 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			gui(sender);
 		} else if(cmd.getName().equalsIgnoreCase("ff")) {
 			ff(sender);
+		} else if(cmd.getName().equalsIgnoreCase("ignore")) {
+			ignore(sender, args);
+		} else if(cmd.getName().equalsIgnoreCase("unignore")) {
+			unignore(sender, args);
+		} else if(cmd.getName().equalsIgnoreCase("help")) {
+			HelpHandler.handle(sender, args);
 		}
 		return true;
+	}
+
+	private void ignore(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(args.length < 1) {
+			Output.simpleError(player, "Use \"/ignore (player) \"");
+			if(pPlayer.getIgnored().isEmpty())
+				Output.simpleError(player, "You are currently not ignoring any players.");
+			else
+				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+			return;
+		}
+		Player tPlayer = Bukkit.getPlayer(args[0]);
+		if(tPlayer == null) {
+			Output.simpleError(player, args[0]+" is not online.");
+			return;
+		}
+		if(pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
+			Output.simpleError(player, "You are currently ignoring "+tPlayer.getName()+".");
+			return;
+		}
+		Output.positiveMessage(player, "You are now ignoreing "+tPlayer.getName()+".");
+		pPlayer.getIgnored().add(tPlayer.getUniqueId());
+	}
+
+	private void unignore(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(args.length < 1) {
+			Output.simpleError(player, "Use \"/unignore (player) \"");
+			if(pPlayer.getIgnored().isEmpty())
+				Output.simpleError(player, "You are currently not ignoring any players.");
+			else
+				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+			return;
+		}
+		@SuppressWarnings("deprecation")
+		OfflinePlayer tPlayer = Bukkit.getOfflinePlayer(args[0]);
+		if(!pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
+			Output.simpleError(player, "You are currently not ignoring "+tPlayer.getName()+".");
+			return;
+		}
+		Output.positiveMessage(player, "You are no longer ignoreing "+tPlayer.getName()+".");
+		pPlayer.getIgnored().add(tPlayer.getUniqueId());
 	}
 
 	private void ff(CommandSender sender) {

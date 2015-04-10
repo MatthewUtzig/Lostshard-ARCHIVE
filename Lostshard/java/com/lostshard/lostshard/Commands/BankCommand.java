@@ -12,8 +12,8 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Handlers.NPCHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.NPCManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -29,6 +29,7 @@ import com.lostshard.lostshard.Utils.Utils;
 public class BankCommand implements CommandExecutor, TabCompleter {
 
 	PlayerManager pm = PlayerManager.getManager();
+	NPCManager npcm = NPCManager.getManager();
 	
 	/**
 	 * @param Lostshard
@@ -117,7 +118,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		}
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = pm.getPlayer(player);
-		for (NPC npc : NPCHandler.getBankers())
+		for (NPC npc : npcm.getBankers())
 			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
 					Variables.bankRadius)) {
 				int amount;
@@ -153,7 +154,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		}
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = pm.getPlayer(player);
-		for (NPC npc : NPCHandler.getBankers())
+		for (NPC npc : npcm.getBankers())
 			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
 					Variables.bankRadius)) {
 				player.openInventory(pPlayer.getBank().getInventory());

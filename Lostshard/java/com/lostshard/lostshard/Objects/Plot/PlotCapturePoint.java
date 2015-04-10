@@ -11,13 +11,15 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Output;
 
 public class PlotCapturePoint extends Plot {
 
+	ClanManager cm = ClanManager.getManager();
+	
 	// CapturePoint
 	private boolean capturePoint = false;
 	private Clan owningClan = null;
@@ -44,7 +46,7 @@ public class PlotCapturePoint extends Plot {
 	}
 	
 	public Clan getOwningClan() {
-		for(Clan c : Lostshard.getRegistry().getClans())
+		for(Clan c : cm.getClans())
 			if(c.equals(capturingClan))
 				return c;
 		this.owningClan = null;

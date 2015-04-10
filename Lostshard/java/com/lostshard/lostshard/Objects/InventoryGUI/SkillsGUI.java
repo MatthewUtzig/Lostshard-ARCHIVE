@@ -14,10 +14,11 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.Skill;
 import com.lostshard.lostshard.Utils.Utils;
 
-public class SkillsGUI extends InventoryGUI {
+public class SkillsGUI extends GUI {
 
 	public SkillsGUI(PseudoPlayer pPlayer) {
-		super(18, "Skills", GUIType.SKILLS, pPlayer);
+		super(18, "Skills", pPlayer);
+		optionSelector();
 	}
 
 	@Override

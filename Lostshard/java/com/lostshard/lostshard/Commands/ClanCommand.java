@@ -3,7 +3,6 @@ package com.lostshard.lostshard.Commands;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +12,9 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -22,7 +23,8 @@ import com.lostshard.lostshard.Utils.TabUtils;
 
 public class ClanCommand implements CommandExecutor, TabCompleter {
 
-	static PlayerManager pm = PlayerManager.getManager();
+	PlayerManager pm = PlayerManager.getManager();
+	ClanManager cm = ClanManager.getManager();
 	
 	public ClanCommand(Lostshard plugin) {
 		plugin.getCommand("clan").setExecutor(this);
@@ -42,7 +44,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 				else if(clanCommand.equalsIgnoreCase("info"))
 					clanInfo(player);
 				else if(clanCommand.equalsIgnoreCase("help"))
-					clanHelp(player);
+					HelpHandler.helpClan(player, new String[0]);
 				else if(clanCommand.equalsIgnoreCase("invite"))
 					clanInvite(player, args);
 				else if(clanCommand.equalsIgnoreCase("uninvite"))
@@ -70,7 +72,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
-	private static void createClan(Player player, String[] split) {
+	private void createClan(Player player, String[] split) {
 		if(split.length >= 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			if(pseudoPlayer.getClan() == null) {
@@ -86,7 +88,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 				
 				if(!clanName.contains("\"")) {
 					boolean nameExists = false;
-					for(Clan c : Lostshard.getRegistry().getClans()) {
+					for(Clan c : cm.getClans()) {
 						if(c.getName().equalsIgnoreCase(clanName)) {
 							nameExists = true;
 							break;
@@ -99,7 +101,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 							if(curMoney >= Variables.clanCreateCost) {
 								pseudoPlayer.setMoney(pseudoPlayer.getMoney()-Variables.clanCreateCost);
 								Clan clan = new Clan(clanName, player.getUniqueId());
-								Lostshard.getRegistry().getClans().add(clan);
+								cm.getClans().add(clan);
 								Database.insertClan(clan);
 								Output.positiveMessage(player, "You have created the clan "+clan.getName());
 							}
@@ -116,7 +118,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "Use \"/clan create (clan name)\"");
 	}
 	
-	private static void clanInfo(Player player) {
+	private void clanInfo(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
@@ -125,7 +127,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
-	private static void clanInvite(Player player, String[] split) {
+	private void clanInvite(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
@@ -163,7 +165,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static void clanUnInvite(Player player, String[] split) {
+	private void clanUnInvite(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
@@ -193,7 +195,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static void clanPromote(Player player, String[] split) {
+	private void clanPromote(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 			Clan clan = pseudoPlayer.getClan();
@@ -228,7 +230,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 	}
 
 	@SuppressWarnings("deprecation")
-	private static void clanDemote(Player player, String[] split) {
+	private void clanDemote(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 			Clan clan = pseudoPlayer.getClan();
@@ -261,7 +263,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
-	private static void clanJoin(Player player, String[] split) {
+	private void clanJoin(Player player, String[] split) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		if(pseudoPlayer.getClan() != null) {
 			if(pseudoPlayer.getClan().isOwner(player)) {
@@ -281,7 +283,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			clanName = clanName.trim();
 			
 			Clan clanFound = null;
-			for(Clan clan : Lostshard.getRegistry().getClans()) {
+			for(Clan clan : cm.getClans()) {
 				if(clan.getName().equalsIgnoreCase(clanName)) {
 					clanFound = clan;
 				}
@@ -317,7 +319,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "Use \"/clan join (clan name)\"");
 	}
 	
-	private static void clanKick(Player player, String[] split) {
+	private void clanKick(Player player, String[] split) {
 		if(split.length == 2) {
 			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 			Clan clan = pseudoPlayer.getClan();
@@ -350,7 +352,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
-	private static void clanLeave(Player player) {
+	private void clanLeave(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
@@ -368,15 +370,15 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
-	public static Clan findClanByPlayer(Player player) {
-		for(Clan clan : Lostshard.getRegistry().getClans()) {
+	public Clan findClanByPlayer(Player player) {
+		for(Clan clan : cm.getClans()) {
 			if(clan.isInClan(player.getUniqueId()))
 				return clan;
 		}
 		return null;
 	}
 	
-	private static void clanTransfer(Player player, String[] split) {
+	private void clanTransfer(Player player, String[] split) {
 		if(split.length < 2) {
 			Output.simpleError(player, "/clan transfer (player)");
 			return;
@@ -413,7 +415,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 
-	private static void clanDisband(Player player) {
+	private void clanDisband(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		Clan clan = pseudoPlayer.getClan();
 		if(clan != null) {
@@ -424,23 +426,11 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(p, "Your clan has been disbanded.");
 				}
 				Database.deleteClan(clan);
-				Lostshard.getRegistry().getClans().remove(clan);
+				cm.getClans().remove(clan);
 			}
 			else Output.simpleError(player, "Only the clan owner may disband the clan.");
 		}
 		else Output.simpleError(player, "You are not currently in a clan.");
-	}
-	
-	public static void clanHelp(Player player) {
-		player.sendMessage(ChatColor.GOLD+"-Clan Commands-");
-		player.sendMessage(ChatColor.YELLOW+"/clan create (clan name) [Costs 2000 gc]");
-		player.sendMessage(ChatColor.YELLOW+"/clan info");
-		player.sendMessage(ChatColor.YELLOW+"/clan invite/uninvite (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan promote/demote (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan kick (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan transfer (player name)");
-		player.sendMessage(ChatColor.YELLOW+"/clan leave");
-		player.sendMessage(ChatColor.YELLOW+"/clan disband");
 	}
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd,

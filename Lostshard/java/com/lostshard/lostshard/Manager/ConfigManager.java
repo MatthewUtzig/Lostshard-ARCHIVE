@@ -53,6 +53,7 @@ public class ConfigManager {
 		
 		Locations.LAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.lawfull")));
 		Locations.CRIMINAL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.criminal")));
-		Locations.BUILDCHANGLAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.buildchange")));
+		Locations.BUILDCHANGLAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.build.lawfull")));
+		Locations.BUILDCHANGECRIMINAL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.build.criminal")));
 	}
 }

@@ -90,4 +90,12 @@ public class Store {
 	public String getAsJson() {
 		return Serializer.gson.toJson(items).toString();
 	}
+
+	public void addItem(StoreItem item) {
+		int id = 0;
+		for(StoreItem si : items)
+			id = si.getId()+1;
+		item.setId(id);
+		items.add(item);
+	}
 }

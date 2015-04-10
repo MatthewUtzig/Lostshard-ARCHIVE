@@ -20,8 +20,11 @@ import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Objects.Groups.Clan;
-import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
-import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.RunebookGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.ScrollGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SkillsGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookGUI;
 import com.lostshard.lostshard.Objects.InventoryGUI.SpellbookPageGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
@@ -43,19 +46,10 @@ public class Output {
 			return;
 		player.sendMessage(ChatColor.GOLD+"You have gained "+Utils.scaledIntToString(gainAmount)+" "+skillName+", it is now "+Utils.scaledIntToString(totalSkill)+".");
 	}
-	
-	public static void plotHelp(Player player) {
-		player.sendMessage(ChatColor.GOLD + "-Plot Help-");
-		player.sendMessage(ChatColor.YELLOW + "/plot create (name)");
-		player.sendMessage(ChatColor.YELLOW + "/plot deposit (amount)");
-		player.sendMessage(ChatColor.YELLOW + "/plot expand (amount)");
-	}
 
 	public static void outputPlayerlist(CommandSender sender) {
 		ArrayList<String> filteredPlayers = new ArrayList<String>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (p.isOp())
-				continue;
 			filteredPlayers.add(Utils.getDisplayName(p));
 		}
 
@@ -71,7 +65,7 @@ public class Output {
 	public static void outputSkills(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.SKILLS.getGUI(pseudoPlayer);
+			GUI gui = new SkillsGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -319,7 +313,7 @@ public class Output {
 	public static void outputRunebook(Player player, String[] split) {		
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.RUNEBOOK.getGUI(pseudoPlayer);
+			GUI gui = new RunebookGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -395,7 +389,7 @@ public class Output {
 					pageNumber = -1;
 				}
 				if(pseudoPlayer.isAllowGui()) {
-					InventoryGUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
+					GUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
 					gui.openInventory(player);
 					return;
 				}
@@ -428,7 +422,7 @@ public class Output {
 			}
 		}else {
 			if(pseudoPlayer.isAllowGui()) {
-				InventoryGUI gui = GUIType.SPELLBOOK.getGUI(pseudoPlayer);
+				GUI gui = new SpellbookGUI(pseudoPlayer);
 				gui.openInventory(player);
 				return;
 			}
@@ -447,7 +441,7 @@ public class Output {
 	public static void outputScrolls(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(pseudoPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.SCROLLS.getGUI(pseudoPlayer);
+			GUI gui = new ScrollGUI(pseudoPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -486,6 +480,10 @@ public class Output {
 				p.sendMessage(ChatColor.GRAY+string);
 			}
 		}
+	}
+
+	public static void help(CommandSender sender) {
+		
 	}
 
 }

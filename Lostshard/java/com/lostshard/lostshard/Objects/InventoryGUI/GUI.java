@@ -11,21 +11,18 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
-public abstract class InventoryGUI {
+public abstract class GUI {
 
 	PlayerManager pm = PlayerManager.getManager();
 	
 	private Inventory GUI;
-	private GUIType type;
 	private PseudoPlayer player;
 	
-	public InventoryGUI(int size, String name, GUIType type, PseudoPlayer pPlayer) {
+	public GUI(int size, String name, PseudoPlayer pPlayer) {
 		super();
-		this.GUI = Bukkit.createInventory(null, Math.max(9,size), name);
-		this.type = type;
+		this.GUI = Bukkit.createInventory(null, (int)Math.max(9,Math.ceil(size/9)*9), name);
 		this.player = pPlayer;
 		player.setGui(this);
-		optionSelector();
 	}
 	
 	abstract public void optionSelector();
@@ -74,14 +71,6 @@ public abstract class InventoryGUI {
 
 	public void setGUI(Inventory GUI) {
 		this.GUI = GUI;
-	}
-
-	public GUIType getType() {
-		return type;
-	}
-
-	public void setType(GUIType type) {
-		this.type = type;
 	}
 
 	public PseudoPlayer getPlayer() {

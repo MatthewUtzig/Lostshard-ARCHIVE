@@ -16,10 +16,11 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Output;
 
-public class ScrollGUI extends InventoryGUI {
+public class ScrollGUI extends GUI {
 
 	public ScrollGUI(PseudoPlayer pPlayer) {
-		super(36, "Scrolls", GUIType.SCROLLS, pPlayer);
+		super(36, "Scrolls", pPlayer);
+		optionSelector();
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class ScrollGUI extends InventoryGUI {
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		if(event.getCurrentItem() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+		if(event.getCurrentItem().getItemMeta().hasDisplayName()) {
 			Player player = (Player)event.getWhoClicked();
 			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
 			if(scroll == null)

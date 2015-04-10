@@ -80,10 +80,10 @@ commands:
       aliases: [modt]
       usage: /<command>
    test:
-      description: Output whois.
+      description: test.
       usage: /<command>
    admin:
-      description: Output whois.
+      description: admin.
       usage: /<command>
    build:
       description: Change build.
@@ -168,4 +168,24 @@ commands:
       usage: /<command>
    inv:
       description: shows a players inventory.
+      usage: /<command> (player)
+   ignore:
+      description: ignores a player.
+      aliases: [mute]
+      usage: /<command> (player)
+   unignore:
+      description: unignores a player.
+      aliases: [unmute]
+      usage: /<command> (player)
+   vendor:
+      description: unignores a player.
+      usage: /<command> (player)
+   buy:
+      description: unignores a player.
+      usage: /<command> (player)
+   sell:
+      description: unignores a player.
+      usage: /<command> (player)
+   help:
+      description: displays help menu.
       usage: /<command> (player)

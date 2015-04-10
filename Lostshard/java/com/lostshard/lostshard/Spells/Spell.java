@@ -8,8 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Objects.InventoryGUI.GUIType;
-import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.RunebookGUI;
 
 public abstract class Spell {
 	
@@ -25,7 +25,7 @@ public abstract class Spell {
 	public void runebook(Player player) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(pPlayer.isAllowGui()) {
-			InventoryGUI gui = GUIType.RUNEBOOK.getGUI(pPlayer);
+			GUI gui = new RunebookGUI(pPlayer);
 			gui.openInventory(player);
 			return;
 		}
@@ -41,15 +41,6 @@ public abstract class Spell {
 
 	public void setScroll(Scroll scroll) {
 		this.scroll = scroll;
-	}
-	
-	public Spell getNew() {
-		try {
-			return this.getClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	public abstract boolean verifyCastable(Player player);

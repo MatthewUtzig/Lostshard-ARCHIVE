@@ -16,12 +16,12 @@ import com.lostshard.lostshard.Objects.SpellBook;
 import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Utils;
 
-public class SpellbookPageGUI extends InventoryGUI {
+public class SpellbookPageGUI extends GUI {
 
 	private int page;
 	
 	public SpellbookPageGUI(PseudoPlayer pPlayer, int page) {
-		super(9, "Spellbook page: "+page, GUIType.SPELLBOOKPAGE, pPlayer);
+		super(9, "Spellbook page: "+page, pPlayer);
 		this.page = page;
 		optionSelectorOveride();
 	}
@@ -55,9 +55,9 @@ public class SpellbookPageGUI extends InventoryGUI {
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		if(event.getCurrentItem() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+		if(event.getCurrentItem().getItemMeta().hasDisplayName()) {
 			if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.GOLD+"Back to Spellbook.")) {
-				InventoryGUI spellbookGUI = new SpellbookGUI(getPlayer());
+				GUI spellbookGUI = new SpellbookGUI(getPlayer());
 				spellbookGUI.openInventory((Player)event.getWhoClicked());
 			}
 		}

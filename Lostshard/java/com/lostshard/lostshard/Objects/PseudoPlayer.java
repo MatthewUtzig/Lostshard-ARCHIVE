@@ -11,10 +11,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Objects.Groups.Party;
-import com.lostshard.lostshard.Objects.InventoryGUI.InventoryGUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Skills.Build;
@@ -29,6 +29,8 @@ import com.lostshard.lostshard.Utils.Utils;
  */
 public class PseudoPlayer {
 
+	ClanManager cm = ClanManager.getManager();
+	
 	private int id;
 	private UUID playerUUID;
 	private int money = 0;
@@ -68,8 +70,9 @@ public class PseudoPlayer {
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	private boolean isPrivate = true;
 	private boolean isClaming = false;
-	private InventoryGUI gui = null;
+	private GUI gui = null;
 	private boolean allowGui = true;
+	private List<UUID> ignored = new ArrayList<UUID>();
 	
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
@@ -302,7 +305,7 @@ public class PseudoPlayer {
 	}
 
 	public Clan getClan() {
-		for(Clan c : Lostshard.getRegistry().getClans())
+		for(Clan c : cm.getClans())
 			if(c.isInClan(playerUUID))
 				return c;
 		return null;
@@ -649,11 +652,11 @@ public class PseudoPlayer {
 		this.isClaming = isClaming;
 	}
 
-	public InventoryGUI getGui() {
+	public GUI getGui() {
 		return gui;
 	}
 
-	public void setGui(InventoryGUI gui) {
+	public void setGui(GUI gui) {
 		this.gui = gui;
 	}
 
@@ -663,5 +666,13 @@ public class PseudoPlayer {
 
 	public void setAllowGui(boolean allowGui) {
 		this.allowGui = allowGui;
+	}
+
+	public List<UUID> getIgnored() {
+		return ignored;
+	}
+
+	public void setIgnored(List<UUID> ignored) {
+		this.ignored = ignored;
 	}
 }

@@ -15,10 +15,11 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Spells.Spell;
 
-public class RunebookGUI extends InventoryGUI {
+public class RunebookGUI extends GUI {
 
 	public RunebookGUI(PseudoPlayer pPlayer) {
-		super((int)Math.ceil(pPlayer.getRunebook().getNumRunes()/9)*9, "Runebook", GUIType.RUNEBOOK, pPlayer);
+		super(pPlayer.getRunebook().getNumRunes(), "Runebook", pPlayer);
+		optionSelector();
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class RunebookGUI extends InventoryGUI {
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		if(getPlayer().getPromptedSpell() != null && event.getCurrentItem() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
+		if(getPlayer().getPromptedSpell() != null && event.getCurrentItem().getItemMeta().hasDisplayName()) {
 			Player player = (Player)event.getWhoClicked();
 			Spell spell = getPlayer().getPromptedSpell();
 			spell.setResponse(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
