@@ -6,15 +6,17 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
+import com.lostshard.lostshard.Objects.Runebook;
 import com.lostshard.lostshard.Spells.Spell;
+import com.lostshard.lostshard.Utils.Output;
 
 public class RunebookGUI extends GUI {
 
@@ -36,6 +38,8 @@ public class RunebookGUI extends GUI {
 			lore.add(ChatColor.YELLOW+"x:"+r.getLocation().getX());
 			lore.add(ChatColor.YELLOW+"y:"+r.getLocation().getX());
 			lore.add(ChatColor.YELLOW+"z:"+r.getLocation().getX());
+			lore.add("You can remove a rune by shift clicking it");
+			lore.add("/runebook give"+ChatColor.RED+"(player) (rune)");
 			
 			itemMeta.setLore(lore);
 			
@@ -62,16 +66,22 @@ public class RunebookGUI extends GUI {
 			}
 			getPlayer().setPromptedSpell(null);
 			forceClose();
+		}else if(event.getCurrentItem().getItemMeta().hasDisplayName() && event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) {
+			Player player = (Player) event.getWhoClicked();
+			Runebook runebook = getPlayer().getRunebook();
+			Rune rune = runebook.getRune(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+			
+			if(rune == null)
+				return;
+			
+			runebook.removeRune(rune);
+			forceClose();
+			Output.positiveMessage(player, "You have removed the rune \""+ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())+"\" from your runebook.");
 		}
 	}
 
 	@Override
 	public void onClose(InventoryCloseEvent event) {
-		
-	}
-
-	@Override
-	public void onItemMove(InventoryMoveItemEvent event) {
 		
 	}
 }

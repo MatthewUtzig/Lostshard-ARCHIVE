@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -29,7 +28,6 @@ public abstract class GUI {
 	abstract public void optionSelector();
 	abstract public void onClick(InventoryClickEvent event);
 	abstract public void onClose(InventoryCloseEvent event);
-	abstract public void onItemMove(InventoryMoveItemEvent event);
 	
 	public void inventoryInteract(InventoryInteractEvent event) {
 		if(!event.getInventory().equals(GUI))
@@ -51,10 +49,6 @@ public abstract class GUI {
 	public void inventoryClose(InventoryCloseEvent event) {
 		onClose(event);
 		player.setGui(null);
-	}
-	
-	public void inventoryMove(InventoryMoveItemEvent event) {
-		
 	}
 	
 	public void openInventory(Player player) {

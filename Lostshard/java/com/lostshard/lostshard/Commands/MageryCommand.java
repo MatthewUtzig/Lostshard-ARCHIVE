@@ -318,14 +318,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
     				
     				PseudoPlayer pseudoPlayer = pm.getPlayer(player);
     				Runebook runebook = pseudoPlayer.getRunebook();
-    				ArrayList<Rune> runes = runebook.getRunes();
-    				Rune foundRune = null;
-    				for(Rune rune : runes) {
-    					if(rune.getLabel().equalsIgnoreCase(runeLabel)) {
-    						foundRune = rune;
-    						break;
-    					}
-    				}
+    				Rune foundRune = runebook.getRune(runeLabel);
     				if(foundRune != null) {
     					runebook.removeRune(foundRune);
     					Output.positiveMessage(player, "You have removed the rune "+foundRune.getLabel());
