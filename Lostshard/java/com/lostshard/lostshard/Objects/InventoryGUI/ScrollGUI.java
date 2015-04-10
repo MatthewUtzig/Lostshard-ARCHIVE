@@ -32,7 +32,8 @@ public class ScrollGUI extends GUI {
 				scrolls.add(s);
 		}
 		for(Scroll s : scrolls) {
-			ItemStack item = new ItemStack(s.getReagentCost().get(0).getType());
+			int amount = Collections.frequency(scrolls, s);
+			ItemStack item = new ItemStack(s.getReagentCost().get(0).getType(), amount);
 			ItemMeta itemMeta = item.getItemMeta();
 			List<String> lore = new ArrayList<String>();
 			
@@ -41,7 +42,7 @@ public class ScrollGUI extends GUI {
 			else
 				itemMeta.setDisplayName(ChatColor.RED+s.getName());
 			
-			lore.add(ChatColor.GOLD+"Amount: "+Collections.frequency(scrolls, s));
+			lore.add(ChatColor.GOLD+"Amount: "+amount);
 			
 			lore.add(ChatColor.BLUE+"Mana cost: "+s.getManaCost());
 			
