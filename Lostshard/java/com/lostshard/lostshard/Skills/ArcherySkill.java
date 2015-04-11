@@ -23,6 +23,10 @@ public class ArcherySkill extends Skill {
 		setMat(Material.BOW);
 	}
 	
+	public double getDamageBuff() {
+		return 0.004*getLvl();
+	}
+	
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
 		if(!(event.getDamager() instanceof Arrow))
 			return;
@@ -39,7 +43,7 @@ public class ArcherySkill extends Skill {
 		int lvl = skill.getLvl();
 		
 		
-		double damage = 0.004*lvl;
+		double damage = skill.getLvl();
 		
 		if(entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4 && event.getDamage(DamageModifier.ARMOR)+event.getDamage(DamageModifier.MAGIC) <= -3) {
 			Player player = (Player) event.getEntity();
@@ -63,6 +67,11 @@ public class ArcherySkill extends Skill {
 		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();
+	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain archery by shooting and killing mobs";
 	}
 	
 }

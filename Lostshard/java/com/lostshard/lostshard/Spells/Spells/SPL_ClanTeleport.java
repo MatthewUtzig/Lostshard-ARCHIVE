@@ -84,5 +84,9 @@ public class SPL_ClanTeleport extends Spell {
 			}
 		}
 	}
-
+	
+	@Override
+	public void runebook(Player player) {
+	
+	}
 }

@@ -190,3 +190,6 @@ commands:
    broadcast:
       description: broadcast a global title.
       usage: /<command> (message)
+   dc:
+      description: Dungeon chest.
+      usage: /<command> (minRefill) (maxRefill)

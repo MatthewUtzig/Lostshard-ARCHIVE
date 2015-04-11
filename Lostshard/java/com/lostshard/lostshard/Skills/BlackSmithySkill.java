@@ -404,4 +404,9 @@ public class BlackSmithySkill extends Skill {
 	    		levels[2] = 0;
 	    	}
 	    }
+
+	@Override
+	public String howToGain() {
+		return "You can gain blacksmity by repairing armor and tools";
+	}
 }

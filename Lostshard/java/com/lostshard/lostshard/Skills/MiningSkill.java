@@ -45,13 +45,12 @@ public class MiningSkill extends Skill {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (block.getType().equals(Material.STONE)
 				&& ItemUtils.isPickAxe(player.getItemInHand()) && !block.hasMetadata("placed")) {
-
-			int gain = pPlayer.getCurrentBuild().getMining().skillGain(pPlayer);
 			
 			int curSkill = pPlayer.getCurrentBuild().getMining().getLvl();
 
 			double percent = (double) curSkill / 1000.0;
 			
+			int gain = pPlayer.getCurrentBuild().getMining().skillGain(pPlayer);
 			Output.gainSkill(player, "Mining", gain, curSkill);
 			
 			if(gain > 0)
@@ -105,6 +104,11 @@ public class MiningSkill extends Skill {
 				}
 			}
 		}
+	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain mining by mining stone blocks";
 	}
 
 }

@@ -136,7 +136,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		wandMeta.addEnchant(Enchantment.DURABILITY, 0, false);
 		wandMeta.setDisplayName(ChatColor.GOLD+spellName);
 		List<String> wandLore = new ArrayList<String>();
-		wandLore.add(ChatColor.GREEN+"Wand");
+		wandLore.add("This magical wand can be used to cast a spell with only a touch of a button.");
 		wandMeta.setLore(wandLore);
 		wand.setItemMeta(wandMeta);
 		player.setItemInHand(wand);
@@ -150,7 +150,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		}
 		ItemStack wand = player.getItemInHand();
 		ItemMeta wandMeta = wand.getItemMeta();
-		if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && ChatColor.stripColor(wandMeta.getLore().get(0)).equalsIgnoreCase("Wand")) {
+		if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0).equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button.")) {
 			if(wandMeta.hasDisplayName()) {
 				wand.setItemMeta(null);
 				String spellName = ChatColor.stripColor(wandMeta.getLore().get(0));

@@ -102,4 +102,6 @@ public abstract class Skill {
 	public void setMat(Material mat) {
 		this.mat = mat;
 	}
+
+	abstract public String howToGain();
 }

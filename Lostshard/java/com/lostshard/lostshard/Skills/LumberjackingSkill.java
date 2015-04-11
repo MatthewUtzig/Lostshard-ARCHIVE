@@ -152,5 +152,10 @@ public class LumberjackingSkill extends Skill {
 			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
 		}
 	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain lumberjacking by choping down trees or hitting or killing mobs";
+	}
 	
 }

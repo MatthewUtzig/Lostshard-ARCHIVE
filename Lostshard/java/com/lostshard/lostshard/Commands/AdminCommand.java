@@ -2,10 +2,10 @@ package com.lostshard.lostshard.Commands;
 
 import java.util.List;
 
-import net.md_5.bungee.api.ChatColor;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -109,8 +109,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		String[] msgs = StringUtils.join(args, " ").split(";");
-		for(Player p : Bukkit.getOnlinePlayers())
+		for(Player p : Bukkit.getOnlinePlayers()) {
 			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN+msgs[0],ChatColor.AQUA+(msgs.length > 1 ? msgs[1] : ""));
+			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
+		}
 	}
 
 	private void inv(CommandSender sender, String[] args) {

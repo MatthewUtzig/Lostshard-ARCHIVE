@@ -13,6 +13,7 @@ import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.BlackSmithyCommand;
 import com.lostshard.lostshard.Commands.ChatCommand;
+import com.lostshard.lostshard.Commands.ChestRefillCommand;
 import com.lostshard.lostshard.Commands.ClanCommand;
 import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.FishingCommand;
@@ -62,9 +63,6 @@ public class Lostshard extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		
-		Bukkit.getWorld("world_the_end").setAutoSave(false);
-		
 		saveDefaultConfig();
 		
 		ConfigManager.getManager().setConfig(this);
@@ -101,6 +99,7 @@ public class Lostshard extends JavaPlugin {
 		new TamingCommand(this);
 		new SurvivalismCommand(this);
 		new StoreCommand(this);
+		new ChestRefillCommand(this);
 		ItemUtils.addChainMail();
 		
 		Lostshard.setPlugin(this);

@@ -258,4 +258,9 @@ public class FishingSkill extends Skill {
 			Output.simpleError(player, "Could not find a valid location to place a boat.");
 		}
 	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain fishing by fishing";
+	}
 }

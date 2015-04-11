@@ -30,11 +30,9 @@ public class SpellManager {
 	static PlayerManager pm = PlayerManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
 	
-	private static double _minChanceToCast = .2;
-	private static double _minPercentChanceSkillGain = .2;
-//	private static ArrayList<MagicStructure> _magicStructures = new ArrayList<MagicStructure>();
-//	public static ArrayList<LightningStrike> _lightning = new ArrayList<LightningStrike>();
-	public static int _lastLightningDamageTicks = 0;
+	private static double minChanceToCast = .2;
+	private static double minPercentChanceSkillGain = .2;
+	public static int lastLightningDamageTicks = 0;
 	
 	public static SpellManager getManager() {
 		return manager;
@@ -196,8 +194,8 @@ public class SpellManager {
 			
 		int skillDif = magerySkill - minMagery;
 		double chanceToCast = (double)skillDif / 200;
-		if(chanceToCast < _minChanceToCast)
-			chanceToCast = _minChanceToCast;
+		if(chanceToCast < minChanceToCast)
+			chanceToCast = minChanceToCast;
 		double rand = Math.random();
 		
 		if(!(magerySkill >= 1000 || rand < chanceToCast)) {
@@ -291,36 +289,10 @@ public class SpellManager {
 				// possible to gain (within 20 skill points)
 				percentChance = ((double)(1000-curSkill))/1000;
 				// we don't want it to be TOOOO hard to gain skill
-				if(percentChance < _minPercentChanceSkillGain)
-					percentChance = _minPercentChanceSkillGain;
-			}
-			else {
-				// not normally possible to gain but we will let people gain on anything with a small chance
-				percentChance = .05; // 5 percent chance to gain from any spell
-			}
-			double rand = Math.random();
-			if(rand < percentChance) {
-				int gainAmount;
-				// variable gain depending on skill level
-				double rand2 = Math.random();
-				if(rand2 < .2)
-					gainAmount = 1;
-				else if(rand2 < .4)
-					gainAmount = 2;
-				else if(rand2 < .6)
-					gainAmount = 3;
-				else if(rand2 <= .8)
-					gainAmount = 4;
-				else
-					gainAmount = 5;
-				
-				// Actually set the gain
-				int totalSkill = curSkill + gainAmount;
-				if(totalSkill > 1000)
-					totalSkill = 1000;
-				pseudoPlayer.getCurrentBuild().getMagery().setLvl(totalSkill);
-				Output.gainSkill(player, "Magery", gainAmount, totalSkill);
-//				Database.updatePlayer(player.getName());
+				if(percentChance < minPercentChanceSkillGain) {
+					int gain = pseudoPlayer.getCurrentBuild().getMining().skillGain(pseudoPlayer);
+					Output.gainSkill(player, "Magery", gain, curSkill);
+				}
 			}
 		}
 	}
@@ -396,7 +368,7 @@ public class SpellManager {
 		if(player.getItemInHand().getType().equals(Material.STICK)) {
 			ItemStack wand = player.getItemInHand();
 			ItemMeta wandMeta = wand.getItemMeta();
-			if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && ChatColor.stripColor(wandMeta.getLore().get(0)).equalsIgnoreCase("Wand")) {
+			if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0).equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button.")) {
 				if(wandMeta.hasDisplayName()) {
 					Scroll scroll = Scroll.getByString(ChatColor.stripColor(wandMeta.getDisplayName()));
 					manager.castSpell(player, scroll.getSpell());

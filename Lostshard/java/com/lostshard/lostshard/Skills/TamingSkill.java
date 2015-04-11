@@ -148,4 +148,9 @@ public class TamingSkill extends Skill {
 		if(event.getPlayer().getVehicle() instanceof Horse)
 			event.getPlayer().getVehicle().remove();
 	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain taming by...";
+	}
 }

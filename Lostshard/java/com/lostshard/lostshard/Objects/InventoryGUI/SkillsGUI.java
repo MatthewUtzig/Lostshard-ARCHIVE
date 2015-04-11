@@ -31,6 +31,7 @@ public class SkillsGUI extends GUI {
 				skillMeta.setDisplayName(ChatColor.RED+s.getName()+" "+Utils.scaledIntToString(s.getLvl()));
 			else
 				skillMeta.setDisplayName(ChatColor.GREEN+s.getName()+" "+Utils.scaledIntToString(s.getLvl()));
+			skillLore.add(s.howToGain());
 			skillLore.add(Utils.scaledIntToString(getPlayer().getCurrentBuild().getTotalSkillVal())+"/"+Utils.scaledIntToString(4000)+" skill points");
 			skillLore.add("Locked: "+(s.isLocked() ? ChatColor.RED+"yes" : ChatColor.GREEN+"no"));
 			skillLore.add("You can lock the skill by shift clicking it");
@@ -42,7 +43,6 @@ public class SkillsGUI extends GUI {
 			skillLore.add("/skills increase "+ChatColor.RED+"(amount)");
 			skillMeta.setLore(skillLore);
 			skillItem.setItemMeta(skillMeta);
-//			skillItem.setDurability((short) (skillItem.getType().getMaxDurability()*(1-s.getLvl()/1000)));
 			addOption(skillItem);
 		}
 	}

@@ -92,4 +92,9 @@ public class BladesSkill extends Skill {
 		if(gain > 0)
 			pPlayer.update();
 	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain blades by hitting and killing mobs";
+	}
 }

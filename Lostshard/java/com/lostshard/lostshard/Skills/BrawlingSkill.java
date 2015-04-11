@@ -90,5 +90,10 @@ public class BrawlingSkill extends Skill {
 		if(gain > 0)
 			pPlayer.update();
 	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain brawling by hitting or killing mobs";
+	}
 	
 }

@@ -12,8 +12,13 @@ public class MagerySkill extends Skill {
 	public MagerySkill() {
 		super();
 		setName("Magery");
-		setBaseProb(.2);
-		setScaleConstant(60);
+		setBaseProb(1);
+		setScaleConstant(40);
 		setMat(Material.STICK);
+	}
+
+	@Override
+	public String howToGain() {
+		return "You can gain magery by casting spells";
 	}
 }
