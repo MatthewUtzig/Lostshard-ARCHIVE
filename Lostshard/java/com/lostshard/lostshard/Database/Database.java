@@ -522,28 +522,8 @@ public class Database {
 	public static void insertBuild(Build build, int playerID) {
 		try {
 			Connection conn = connPool.getConnection();
-			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO builds (playerid, mining, miningLock, magery, mageryLock, blades, bladesLock, brawling, brawlingLock, blacksmithy, blacksmithyLock, lumberjacking, lumberjackingLock, fishing, fishingLock, survivalism, survivalismLock, taming, tamingLock, archery, archeryLock) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement prep = conn.prepareStatement("INSERT IGNORE INTO builds (playerid) VALUES (?);", PreparedStatement.RETURN_GENERATED_KEYS);
 				prep.setInt(1, playerID);
-				prep.setInt(2, build.getMining().getLvl());
-				prep.setBoolean(3, build.getMining().isLocked());
-				prep.setInt(4, build.getMagery().getLvl());
-				prep.setBoolean(5, build.getMagery().isLocked());
-				prep.setInt(6, build.getBlades().getLvl());
-				prep.setBoolean(7, build.getBlades().isLocked());
-				prep.setInt(8, build.getBrawling().getLvl());
-				prep.setBoolean(9, build.getBrawling().isLocked());
-				prep.setInt(10, build.getBlackSmithy().getLvl());
-				prep.setBoolean(11, build.getBlackSmithy().isLocked());
-				prep.setInt(12, build.getLumberjacking().getLvl());
-				prep.setBoolean(13, build.getLumberjacking().isLocked());
-				prep.setInt(14, build.getFishing().getLvl());
-				prep.setBoolean(15, build.getFishing().isLocked());
-				prep.setInt(16, build.getSurvivalism().getLvl());
-				prep.setBoolean(17, build.getSurvivalism().isLocked());
-				prep.setInt(18, build.getTaming().getLvl());
-				prep.setBoolean(19, build.getTaming().isLocked());
-				prep.setInt(20, build.getArchery().getLvl());
-				prep.setBoolean(21, build.getArchery().isLocked());
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
@@ -648,9 +628,12 @@ public class Database {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO players "
-							+ "(uuid) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS);
+							+ "(uuid,bank,titles,spellbook,ignored) VALUES (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			prep.setString(1, pPlayer.getPlayerUUID().toString());
-			
+			prep.setString(2, pPlayer.getBank().Serialize());
+			prep.setString(3, Serializer.serializeStringArray(pPlayer.getTitels()));
+			prep.setString(4, pPlayer.getSpellbook().toJson());
+			prep.setString(5, Serializer.serializeUUIDList(pPlayer.getIgnored()));
 			prep.execute();
 			ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
