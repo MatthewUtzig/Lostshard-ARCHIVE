@@ -619,7 +619,7 @@ public class Database {
 				e.printStackTrace();
 		}
 		if(pPlayer != null)
-			Lostshard.log.info("[PLAYER] got "+pPlayer.getPlayerName()+" players from DB.");
+			Lostshard.log.info("[PLAYER] got "+Bukkit.getOfflinePlayer(uuid).getName()+" players from DB.");
 		return pPlayer;
 	}
 
