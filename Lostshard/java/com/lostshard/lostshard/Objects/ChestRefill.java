@@ -18,14 +18,14 @@ public class ChestRefill {
 	private Date refillDate;
 	private Location location;
 	
-	public ChestRefill(Location loc, long rangeMin, long rangeMax) {
+	public ChestRefill(Location loc, long rangeMin, long rangeMax, ItemStack[] items) {
 		this.location = loc;
 		this.rangeMin = rangeMin;
 		this.rangeMax = rangeMax;
-		this.items = ((Chest)loc.getBlock()).getInventory().getContents();
+		this.items = items;
 		refill();
 	}
-	
+
 	public ItemStack[] getItems() {
 		return items;
 	}

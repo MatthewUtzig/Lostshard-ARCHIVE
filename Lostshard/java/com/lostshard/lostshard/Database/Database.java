@@ -11,8 +11,10 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
@@ -20,6 +22,7 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.Bank;
 import com.lostshard.lostshard.Objects.ChatChannel;
+import com.lostshard.lostshard.Objects.ChestRefill;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -41,6 +44,7 @@ public class Database {
 	static PlayerManager pm = PlayerManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
 	static ClanManager cm = ClanManager.getManager();
+	static ChestRefillManager crm = ChestRefillManager.getManager();
 	// Plot
 	
 	public static boolean testDatabaseConnection() {
@@ -1239,6 +1243,73 @@ public class Database {
 			conn.close();
 		} catch (Exception e) {
 			Lostshard.log.warning("[MESSAGES] deleteMessages mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+
+	public static void insertChest(ChestRefill cr) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("INSERT INTO chests (location,items,rangeMin,rangeMax) VALUES (?,?,?,?);");
+			prep.setString(1, Serializer.serializeLocation(cr.getLocation()));
+			prep.setString(2, Serializer.serializeItems(cr.getItems()));
+			prep.setLong(3, cr.getRangeMin());
+			prep.setLong(4, cr.getRangeMax());
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CHESTREFILL] insertChest mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void deleteChest(ChestRefill cr) {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("DELETE FROM chests WHERE location=?;");
+			prep.setString(1, Serializer.serializeLocation(cr.getLocation()));
+			prep.execute();
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CHESTREFILL] deleteChest mysql error");
+			Lostshard.mysqlError();
+			if(Lostshard.isDebug())
+				e.printStackTrace();
+		}
+	}
+	
+	public static void getChests() {
+		try {
+			Connection conn = connPool.getConnection();
+			PreparedStatement prep = conn
+					.prepareStatement("SELECT * FROM chests;");
+			prep.execute();
+			ResultSet rs = prep.getResultSet();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				try {
+					Location location = Serializer.deserializeLocation(rs.getString("location"));
+					long rangeMin = rs.getLong("rangeMin");
+					long rangeMax = rs.getLong("rangeMax");
+					ItemStack[] items = Serializer.deserializeItems(rs.getString("items"));
+					crm.getChests().add(new ChestRefill(location, rangeMin, rangeMax, items));
+				} catch (Exception e) {
+					Lostshard.log.warning("[CHESTREFILL] Exception when generating message for \""+id+ "\":");
+					e.printStackTrace();
+				}
+			}
+			prep.close();
+			conn.close();
+		} catch (Exception e) {
+			Lostshard.log.warning("[CHESTREFILL] getMessages mysql error");
 			Lostshard.mysqlError();
 			if(Lostshard.isDebug())
 				e.printStackTrace();

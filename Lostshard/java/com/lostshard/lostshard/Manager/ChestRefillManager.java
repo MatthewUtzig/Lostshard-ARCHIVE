@@ -3,12 +3,13 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.ChestRefill;
 
 public class ChestRefillManager {
 	
 	private static ChestRefillManager manager = new ChestRefillManager();
-	private List<ChestRefill> clans = new ArrayList<ChestRefill>();
+	private List<ChestRefill> chests = new ArrayList<ChestRefill>();
 	
 	private ChestRefillManager() {
 	
@@ -18,11 +19,16 @@ public class ChestRefillManager {
 		return manager;
 	}
 
-	public List<ChestRefill> getClans() {
-		return clans;
+	public List<ChestRefill> getChests() {
+		return chests;
 	}
 
-	public void setClans(List<ChestRefill> clans) {
-		this.clans = clans;
+	public void setChests(List<ChestRefill> chests) {
+		this.chests = chests;
+	}
+
+	public void add(ChestRefill cr) {
+		chests.add(cr);
+		Database.insertChest(cr);
 	}
 }
