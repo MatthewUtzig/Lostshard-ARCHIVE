@@ -130,14 +130,20 @@ public class Serializer {
 			rs = new ItemStack[stacks.size()];
 			for (int i = 0; i < stacks.size(); i++) {
 				Map<String, Object> map = stacks.get(i);
-//				ConfigurationSerialization.registerClass(ItemMeta.class, "ItemMeta");
-//				map.replace("meta", (ItemMeta) ConfigurationSerialization.deserializeObject((Map<String, Object>) map.get("meta"), ConfigurationSerialization.getClassByAlias("ItemMeta")));
+		        if (map.containsKey("damage")) {
+		            map.replace("damage", ((Number) map.get("damage")).shortValue());
+		        }
+
+		        if (map.containsKey("amount")) {
+		            map.replace("amount", ((Number) map.get("amount")).intValue());
+		        }
 				rs[i] = ItemStack.deserialize(map);
 			}
 			return rs;
 		} catch (Exception e) {
 			Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] "
 					+ string);
+			e.printStackTrace();
 		}
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };
 		return rs;

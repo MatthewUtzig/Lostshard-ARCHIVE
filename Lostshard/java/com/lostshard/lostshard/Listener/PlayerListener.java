@@ -146,16 +146,11 @@ public class PlayerListener implements Listener {
 		}
 	}
 	
-	@EventHandler
-	public void onPlayerLoginMonitor(PlayerLoginEvent event) {
-		pm.onPlayerLogin(event);
-	}
-	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		Output.displayLoginMessages(player);
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		PseudoPlayer pPlayer = pm.onPlayerLogin(event);
 		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
 		List<String> msgs = Database.getOfflineMessages(player.getUniqueId());

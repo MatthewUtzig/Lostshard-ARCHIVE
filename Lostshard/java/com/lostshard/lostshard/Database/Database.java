@@ -80,7 +80,7 @@ public class Database {
 	}
 	
 	public static void updateScrollOwner(Scroll scroll, int tID, int pID) {
-		Lostshard.log.info("GETTING SCROLLS!");
+		Lostshard.log.finest("GETTING SCROLLS!");
 		try {
 			Connection conn = connPool.getConnection();
 			PreparedStatement prep = conn
@@ -98,7 +98,7 @@ public class Database {
 	}
 	
 	public static List<Scroll> getScrolls(int playerID) {
-		Lostshard.log.info("GETTING SCROLLS!");
+		Lostshard.log.finest("GETTING SCROLLS!");
 		List<Scroll> scrolls = new ArrayList<Scroll>();
 		try {
 			Connection conn = connPool.getConnection();
@@ -481,7 +481,7 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		Lostshard.log.info("[BUILD] got "+builds.size()+" build from DB.");
+		Lostshard.log.finest("[BUILD] got "+builds.size()+" build from DB.");
 		return builds;
 	}
 	
@@ -544,7 +544,7 @@ public class Database {
 
 	// Player
 	public static PseudoPlayer getPlayer(UUID uuid) {
-		Lostshard.log.info("[PLAYER] Getting Player from DB!");
+		Lostshard.log.finest("[PLAYER] Getting Player from DB!");
 		PseudoPlayer pPlayer = null;
 		try {
 			Connection conn = connPool.getConnection();
@@ -623,7 +623,7 @@ public class Database {
 				e.printStackTrace();
 		}
 		if(pPlayer != null)
-			Lostshard.log.info("[PLAYER] got "+Bukkit.getOfflinePlayer(uuid).getName()+" players from DB.");
+			Lostshard.log.finest("[PLAYER] got "+Bukkit.getOfflinePlayer(uuid).getName()+" players from DB.");
 		return pPlayer;
 	}
 
@@ -1084,7 +1084,7 @@ public class Database {
 			if(Lostshard.isDebug())
 				e.printStackTrace();
 		}
-		Lostshard.log.info("[RUNES] got "+runebook.getRunes().size()+" runes from DB.");
+		Lostshard.log.finest("[RUNES] got "+runebook.getRunes().size()+" runes from DB.");
 		return runebook;
 	}
 
@@ -1256,8 +1256,8 @@ public class Database {
 					.prepareStatement("INSERT INTO chests (location,items,rangeMin,rangeMax) VALUES (?,?,?,?);");
 			prep.setString(1, Serializer.serializeLocation(cr.getLocation()));
 			prep.setString(2, Serializer.serializeItems(cr.getItems()));
-			prep.setLong(3, cr.getRangeMin());
-			prep.setLong(4, cr.getRangeMax());
+			prep.setLong(3, cr.getRangeMin()/60000);
+			prep.setLong(4, cr.getRangeMax()/60000);
 			prep.execute();
 			prep.close();
 			conn.close();
@@ -1300,7 +1300,7 @@ public class Database {
 					long rangeMin = rs.getLong("rangeMin");
 					long rangeMax = rs.getLong("rangeMax");
 					ItemStack[] items = Serializer.deserializeItems(rs.getString("items"));
-					crm.getChests().add(new ChestRefill(location, rangeMin, rangeMax, items));
+					crm.getChests().add(new ChestRefill(location, rangeMin*60000, rangeMax*60000, items));
 				} catch (Exception e) {
 					Lostshard.log.warning("[CHESTREFILL] Exception when generating message for \""+id+ "\":");
 					e.printStackTrace();

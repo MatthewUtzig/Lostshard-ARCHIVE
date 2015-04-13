@@ -109,6 +109,7 @@ public class Lostshard extends JavaPlugin {
 		Database.getPermanentGates();
 		Database.getClans();
 		Database.getPlots();
+		Database.getChests();
 	
 		// GameLoop should run last.
 		CustomSchedule.Schedule();

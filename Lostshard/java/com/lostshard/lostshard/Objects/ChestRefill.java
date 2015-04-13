@@ -76,24 +76,24 @@ public class ChestRefill {
 	public void refill() {
 		Block block = location.getBlock();
 		block.setType(Material.CHEST);
-		if(block instanceof Chest){
-			Chest chest = (Chest) block;
+		if(block.getState().getType().equals(Material.CHEST)){
+			Chest chest = (Chest) block.getState();
 			chest.getInventory().clear();
 			chest.getInventory().setContents(items);
-			chest.getBlock().getLocation().getWorld().playEffect(location, Effect.SMOKE, 1);
+			chest.getBlock().getLocation().getWorld().playEffect(location.clone().add(0.5, 0.5, 0.5), Effect.EXPLOSION_LARGE, 1);
 			Chest schest = null;
-			if(chest.getBlock().getRelative(BlockFace.EAST) instanceof Chest)
-				schest = (Chest) chest.getBlock().getRelative(BlockFace.EAST);
-			else if(chest.getBlock().getRelative(BlockFace.NORTH) instanceof Chest)
-				schest = (Chest) chest.getBlock().getRelative(BlockFace.NORTH);
-			else if(chest.getBlock().getRelative(BlockFace.SOUTH) instanceof Chest)
-				schest = (Chest) chest.getBlock().getRelative(BlockFace.SOUTH);
-			else if(chest.getBlock().getRelative(BlockFace.WEST) instanceof Chest)
-				schest = (Chest) chest.getBlock().getRelative(BlockFace.WEST);
+			if(chest.getBlock().getRelative(BlockFace.EAST).getState() instanceof Chest)
+				schest = (Chest) chest.getBlock().getRelative(BlockFace.EAST).getState();
+			else if(chest.getBlock().getRelative(BlockFace.NORTH).getState() instanceof Chest)
+				schest = (Chest) chest.getBlock().getRelative(BlockFace.NORTH).getState();
+			else if(chest.getBlock().getRelative(BlockFace.SOUTH).getState() instanceof Chest)
+				schest = (Chest) chest.getBlock().getRelative(BlockFace.SOUTH).getState();
+			else if(chest.getBlock().getRelative(BlockFace.WEST).getState() instanceof Chest)
+				schest = (Chest) chest.getBlock().getRelative(BlockFace.WEST).getState();
 			if(schest != null)
-				schest.getBlock().getLocation().getWorld().playEffect(location, Effect.SMOKE, 1);
+				schest.getBlock().getLocation().getWorld().playEffect(location.clone().add(0.5, 0.5, 0.5), Effect.EXPLOSION_LARGE, 1);
 			long newDate = (long) (rangeMin+Math.random()*(rangeMax-rangeMin));
-			refillDate.setTime(newDate);
+			refillDate = new Date(newDate);
 		}
 	}
 	

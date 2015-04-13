@@ -9,6 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
+import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
@@ -24,6 +25,7 @@ public class GameLoop extends BukkitRunnable {
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
 	ClanManager cm = ClanManager.getManager();
+	ChestRefillManager crm = ChestRefillManager.getManager();
 	
 	public static long tick = 0;
 	public static long lastTickTime = 0;
@@ -76,6 +78,8 @@ public class GameLoop extends BukkitRunnable {
 					Database.updateClans(clanUpdates);
 				clanUpdates.clear();
 			}
+			if(tick % 600 == 0)
+				crm.tick();
 			for(Camp camp : SurvivalismSkill.getCamps())
 				camp.tick();
 			if(tick % 10 == 0)
