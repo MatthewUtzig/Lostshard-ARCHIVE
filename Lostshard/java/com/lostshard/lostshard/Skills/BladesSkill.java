@@ -19,7 +19,7 @@ public class BladesSkill extends Skill {
 	
 	public BladesSkill() {
 		super();
-		setName("Bladess");
+		setName("Blades");
 		setBaseProb(.2);
 		setScaleConstant(60);
 		setMat(Material.IRON_SWORD);
