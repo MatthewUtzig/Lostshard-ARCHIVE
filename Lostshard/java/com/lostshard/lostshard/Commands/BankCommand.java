@@ -39,6 +39,7 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("bank").setExecutor(this);
 		plugin.getCommand("tradegold").setExecutor(this);
 		plugin.getCommand("pay").setExecutor(this);
+		plugin.getCommand("lottery").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
@@ -49,8 +50,14 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 			tradegold(sender, args);
 		} else if (cmd.getName().equalsIgnoreCase("pay")) {
 			pay(sender, args);
+		} else if (cmd.getName().equalsIgnoreCase("lottery")) {
+			lottery(sender, args);
 		}
 		return true;
+	}
+
+	private void lottery(CommandSender sender, String[] args) {
+		
 	}
 
 	/**

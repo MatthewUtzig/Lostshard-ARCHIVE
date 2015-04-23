@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
+import com.lostshard.lostshard.Manager.LotteryManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -12,11 +13,14 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import it.sauronsoftware.cron4j.Scheduler;
 
 public class CustomSchedule {
+	static PlotManager ptm = PlotManager.getManager();
+	static PlayerManager pm = PlayerManager.getManager();
+	static LotteryManager lm = LotteryManager.getManager();
+	
 	static Scheduler s = new Scheduler();
 	static Scheduler tax = new Scheduler();
 	static Scheduler serviceMessage = new Scheduler();
-	static PlotManager ptm = PlotManager.getManager();
-	static PlayerManager pm = PlayerManager.getManager();
+	static Scheduler lottery = new Scheduler();
 	public static void Schedule() {
 		s.schedule("0 */4 * * *", new Runnable() {
 			public void run() {
@@ -30,6 +34,12 @@ public class CustomSchedule {
 			}
 		});
 		tax.start();
+		lottery.schedule("0 */1 * * *", new Runnable() {
+			public void run() {
+				lm.tick();
+			}
+		});
+		lottery.start();
 		serviceMessage.schedule("30 */2 * * *", new Runnable() {
 			public void run() {
 				for(Player p : Bukkit.getOnlinePlayers()) {

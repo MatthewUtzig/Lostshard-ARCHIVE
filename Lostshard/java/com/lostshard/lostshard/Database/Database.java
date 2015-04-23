@@ -1315,4 +1315,10 @@ public class Database {
 				e.printStackTrace();
 		}
 	}
+
+	public static void updatePlayer(PseudoPlayer winnerPseudo) {
+		List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
+		list.add(winnerPseudo);
+		updatePlayers(list);
+	}
 }
