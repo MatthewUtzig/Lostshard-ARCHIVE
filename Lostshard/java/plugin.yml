@@ -193,3 +193,6 @@ commands:
    dc:
       description: Dungeon chest.
       usage: /<command> (minRefill) (maxRefill)
+   lottery:
+      description: Commit to the lottery
+      usage: /<command> (amount)
