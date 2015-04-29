@@ -18,6 +18,8 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Events.EventManager;
+import com.lostshard.lostshard.Events.PlotCreateEvent;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -1425,6 +1427,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	 */
 	private void createPlot(Player player, String[] args) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		
 		int curMoney = pseudoPlayer.getMoney();
 
 		// get recently purchased plots
@@ -1456,17 +1459,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 		// verify that this plot wouldn't intersect with an existing plot
 		ArrayList<Plot> intersectingRegions = new ArrayList<Plot>();
-
-		// figure out the name that the player input
-		int splitNameLength = args.length;
-		String plotName = "";
-		for (int i = 1; i < splitNameLength; i++) {
-			plotName += args[i];
-			if (i < splitNameLength - 1)
-				plotName += " ";
-		}
-
-		plotName = plotName.trim();
+		String plotName = StringUtils.join(args, " ", 1, args.length);
 
 		if (plotName.contains("\"") || plotName.contains("'")) {
 			Output.simpleError(player, "can't use \" in plot name.");
@@ -1510,6 +1503,14 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		}
 
 		if (intersectingRegions.size() == 0) {
+			PlotCreateEvent event = new PlotCreateEvent(player, pseudoPlayer, player.getLocation(), plotName);
+			EventManager.callEvent(event);
+			
+			if(event.isCancelled()) {
+				Output.simpleError(player, "Some thing went wrong");
+				return;
+			}
+			
 			// money/diamonds verified, placement verified, name verified: good
 			// to go
 			// first, remove the money/diamonds

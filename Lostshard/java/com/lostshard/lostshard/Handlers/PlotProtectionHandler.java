@@ -39,6 +39,8 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import com.lostshard.lostshard.Events.EventManager;
+import com.lostshard.lostshard.Events.PlotProtectEvent;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -66,6 +68,10 @@ public class PlotProtectionHandler {
 		if (plot == null)
 			return;
 		if (!plot.isAllowedToBuild(player)) {
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
 			event.setCancelled(true);
 			Output.simpleError(player,
 					"can't break blocks here, " + plot.getName()
@@ -85,6 +91,10 @@ public class PlotProtectionHandler {
 		Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
 		if (plot == null)
 			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
@@ -102,6 +112,12 @@ public class PlotProtectionHandler {
 		if (event.isCancelled())
 			return;
 		Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
+		if(plot == null)
+			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		if (plot == null || !plot.isProtected())
 			return;
 		else
@@ -118,6 +134,10 @@ public class PlotProtectionHandler {
 			return;
 		Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
 		if (plot == null)
+			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
 			return;
 		if (event.getIgnitingEntity() instanceof Player) {
 			Player player = event.getPlayer();
@@ -146,7 +166,10 @@ public class PlotProtectionHandler {
 		// Check if there are a plot.
 		if (toPlot == null)
 			return;
-		
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, toPlot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		// Check if the plot is protected
 		if (!toPlot.isProtected())
 			return;
@@ -171,6 +194,10 @@ public class PlotProtectionHandler {
 			return;
 		Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot == null)
+			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
 			return;
 		if (!plot.isPrivatePlot())
 			return;
@@ -328,6 +355,10 @@ public class PlotProtectionHandler {
 		Plot plot = ptm.findPlotAt(event.getBlockClicked().getLocation());
 		if (plot == null)
 			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player, "can't spill water or lava here, "
@@ -347,6 +378,10 @@ public class PlotProtectionHandler {
 		Plot plot = ptm.findPlotAt(event.getBlockClicked().getLocation());
 		if (plot == null)
 			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player, "can't fill water or lava here, "
@@ -365,6 +400,10 @@ public class PlotProtectionHandler {
 		Block block = event.getBlock();
 		Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot != null) {
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
 			if (plot.isProtected()) {
 				event.setCancelled(true);
 			}
@@ -401,6 +440,10 @@ public class PlotProtectionHandler {
         	Plot plot = ptm.findPlotAt(b.getLocation());
         	if(plot == null)
         		continue;
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
         	if(!plot.isAllowExplosions()) {
         		event.setCancelled(true);
         		pro = true;
@@ -428,6 +471,12 @@ public class PlotProtectionHandler {
 
         Plot plot = ptm.findPlotAt(entity.getLocation());
         
+        if(plot == null)
+        	return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
         if(player != null && plot != null && plot.isAllowedToBuild(player))
         	return;
         
@@ -455,6 +504,13 @@ public class PlotProtectionHandler {
     
     public static void onHangingDestory(HangingBreakEvent event) {
     	Plot plot = ptm.findPlotAt(event.getEntity().getLocation());
+    	
+    	if(plot == null)
+    		return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
     	
     	Entity entity = event.getEntity();
     	
@@ -493,6 +549,13 @@ public class PlotProtectionHandler {
     
     public static void onHangingPlace(HangingPlaceEvent event) {
     	Plot plot = ptm.findPlotAt(event.getEntity().getLocation());
+    	
+    	if(plot == null)
+    		return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
     	
     	Entity entity = event.getEntity();
     	
@@ -543,6 +606,13 @@ public class PlotProtectionHandler {
 	    	
 	    	Plot plot = ptm.findPlotAt(block.getLocation());
 	    	
+	    	if(plot == null)
+	    		return;
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
+	    	
 	    	Player player = event.getPlayer();
 	    	
 	        if(plot != null && plot.isAllowedToBuild(player))
@@ -563,6 +633,13 @@ public class PlotProtectionHandler {
     
     public static void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
     	Plot plot = ptm.findPlotAt(event.getPlayer().getLocation());
+    	
+    	if(plot == null)
+    		return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
     	
     	Player player = event.getPlayer();
     	
@@ -597,6 +674,10 @@ public class PlotProtectionHandler {
     	
     	if(plot == null)
     		return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
     	if(plot.isAllowExplosions())
     		return;
     	event.setCancelled(true);	
@@ -605,7 +686,13 @@ public class PlotProtectionHandler {
 	public static void onMonsterSpawn(EntitySpawnEvent event) {
 		if(event.getEntity() instanceof Monster) {
 			Plot plot = ptm.findPlotAt(event.getLocation());
-			if(plot != null && !plot.isUpgrade(PlotUpgrade.DUNGEON))
+			if(plot == null)
+				return;
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
+			if(!plot.isUpgrade(PlotUpgrade.DUNGEON))
 				event.setCancelled(true);
 		}
 	}
@@ -630,6 +717,12 @@ public class PlotProtectionHandler {
 		PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		if(event.isBedSpawn()) {
 			Plot plot = ptm.findPlotAt(event.getRespawnLocation());
+			if(plot == null)
+				return;
+			PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+			EventManager.callEvent(protectEvent);
+			if(protectEvent.isCancelled())
+				return;
 			PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
 			if(plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
@@ -644,6 +737,12 @@ public class PlotProtectionHandler {
 	
 	public static void onPlayerJoin(PlayerJoinEvent event) {
 		Plot plot = ptm.findPlotAt(event.getPlayer().getLocation());
+		if(plot == null)
+			return;
+		PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if(protectEvent.isCancelled())
+			return;
 		if(plot != null && plot.isUpgrade(PlotUpgrade.AUTOKICK) && !plot.isFriendOrAbove(event.getPlayer())) {
 			event.getPlayer().teleport(event.getPlayer().getLocation().getWorld().getHighestBlockAt(event.getPlayer().getLocation()).getLocation());
 			Output.simpleError(event.getPlayer(), "You have been kicked from "+plot.getName()+".");
