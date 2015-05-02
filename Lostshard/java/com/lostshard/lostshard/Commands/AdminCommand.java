@@ -43,6 +43,46 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("broadcast").setExecutor(this);
 	}
 
+	private void adminInv(Player player, String[] args) {
+		if (args.length < 2) {
+			Output.simpleError(player, "/admin inv (Player)");
+			return;
+		}
+		Player tPlayer = Utils.getPlayer(player, args, 1);
+		if (tPlayer == null) {
+			Output.simpleError(player, "Player is not online");
+			return;
+		}
+		player.openInventory(tPlayer.getInventory());
+	}
+
+	private void broadcast(CommandSender sender, String[] args) {
+		if(args.length < 1) {
+			Output.simpleError(sender, "/broadcast (message)");
+			return;
+		}
+		String[] msgs = StringUtils.join(args, " ").split(";");
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN+msgs[0],ChatColor.AQUA+(msgs.length > 1 ? msgs[1] : ""));
+			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
+		}
+	}
+
+	private void inv(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		Player tPlayer = Bukkit.getPlayer(args[0]);
+		if(tPlayer == null) {
+			Output.plotNotIn(player);
+			return;
+		}
+		player.openInventory(tPlayer.getInventory());
+	}
+
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("admin")) {
@@ -103,32 +143,12 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
-	private void broadcast(CommandSender sender, String[] args) {
-		if(args.length < 1) {
-			Output.simpleError(sender, "/broadcast (message)");
-			return;
-		}
-		String[] msgs = StringUtils.join(args, " ").split(";");
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN+msgs[0],ChatColor.AQUA+(msgs.length > 1 ? msgs[1] : ""));
-			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
-		}
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		return null;
 	}
-
-	private void inv(CommandSender sender, String[] args) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		Player player = (Player) sender;
-		Player tPlayer = Bukkit.getPlayer(args[0]);
-		if(tPlayer == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-		player.openInventory(tPlayer.getInventory());
-	}
-
+	
 	private void setMurder(Player player, String[] args) {
 		if(args.length < 2) {
 			Output.simpleError(player, "/setmurders (player) (amount)");
@@ -166,7 +186,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		player.teleport(plot.getLocation());
 		Output.positiveMessage(player, "Found plot, \""+plot.getName()+"\"");
 	}
-	
+
 	public void tpWorld(Player player, String[] args) {
 		if(args.length < 1) {
 			Output.simpleError(player, "/tpworld (world)");
@@ -183,24 +203,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		}
 		player.teleport(world.getSpawnLocation());
 		Output.positiveMessage(player, "Found world, \""+world.getName()+"\"");
-	}
-
-	private void adminInv(Player player, String[] args) {
-		if (args.length < 2) {
-			Output.simpleError(player, "/admin inv (Player)");
-			return;
-		}
-		Player tPlayer = Utils.getPlayer(player, args, 1);
-		if (tPlayer == null) {
-			Output.simpleError(player, "Player is not online");
-			return;
-		}
-		player.openInventory(tPlayer.getInventory());
-	}
-
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		return null;
 	}
 
 }

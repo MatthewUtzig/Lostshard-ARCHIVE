@@ -10,35 +10,35 @@ public enum PlotUpgrade {
 	ARENA("Arena", 10000),
 	NEUTRALALIGNMENT("Neutral Alignment", 4000);
 	
+	public static PlotUpgrade getByName(String name) {
+		for(PlotUpgrade upgrade : values())
+			if(StringUtils.startsWithIgnoreCase(upgrade.getName(), name))
+				return upgrade;
+		return null;
+	}
 	private int price;
-	private String name;
 	
+	private String name;
+
 	private PlotUpgrade(String name, int price) {
 		this.setName(name);
 		this.setPrice(price);
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 	
-	public static PlotUpgrade getByName(String name) {
-		for(PlotUpgrade upgrade : values())
-			if(StringUtils.startsWithIgnoreCase(upgrade.getName(), name))
-				return upgrade;
-		return null;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 }

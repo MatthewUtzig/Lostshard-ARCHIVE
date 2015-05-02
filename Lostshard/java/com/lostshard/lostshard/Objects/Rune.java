@@ -15,28 +15,28 @@ public class Rune {
 		this.id = id;
 	}
 
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
+	public int getId() {
+		return id;
 	}
 
 	public String getLabel() {
 		return label;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public int getId() {
-		return id;
+	public Location getLocation() {
+		return location;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 }

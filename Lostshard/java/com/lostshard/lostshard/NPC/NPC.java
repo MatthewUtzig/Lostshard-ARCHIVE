@@ -52,10 +52,60 @@ public class NPC {
 	}
 
 	/**
+	 * Delete this npc
+	 */
+	public void fire() {
+//		NPCManager.getNPC(id).destroy();
+		Plot plot = getPlot();
+		plot.getNpcs().remove(this);
+		Database.deleteNPC(this);
+	}
+
+	/**
 	 * @return return npc id
 	 */
 	public int getId() {
 		return id;
+	}
+
+	/**
+	 * @return
+	 */
+	public Location getLocation() {
+		return location;
+	}
+
+	/**
+	 * @return name of npc
+	 */
+	public String getName() {
+		return name;
+	}
+
+	public Plot getPlot() {
+		return ptm.getPlot(plotId);
+	}
+
+	/**
+	 * @return
+	 */
+	public int getPlotId() {
+		return this.plotId;
+	}
+
+	/**
+	 * @return NPCType
+	 */
+	public NPCType getType() {
+		return type;
+	}
+
+	/**
+	 * @param move
+	 *            npc to a location
+	 */
+	public void move(Location location) {
+//		NPCManager.moveNPC(id, location);
 	}
 
 	/**
@@ -67,26 +117,11 @@ public class NPC {
 	}
 
 	/**
-	 * @return NPCType
+	 * @param location
 	 */
-	public NPCType getType() {
-		return type;
-	}
-
-	/**
-	 * @param set
-	 *            NPCType
-	 */
-	public void setType(NPCType type) {
-		this.type = type;
+	public void setLocation(Location location) {
+		this.location = location;
 		getPlot().update();
-	}
-
-	/**
-	 * @return name of npc
-	 */
-	public String getName() {
-		return name;
 	}
 
 	/**
@@ -99,28 +134,6 @@ public class NPC {
 	}
 
 	/**
-	 * @return
-	 */
-	public Location getLocation() {
-		return location;
-	}
-
-	/**
-	 * @param location
-	 */
-	public void setLocation(Location location) {
-		this.location = location;
-		getPlot().update();
-	}
-
-	/**
-	 * @return
-	 */
-	public int getPlotId() {
-		return this.plotId;
-	}
-
-	/**
 	 * @param plotId
 	 */
 	public void setPlotId(int plotId) {
@@ -128,32 +141,19 @@ public class NPC {
 	}
 
 	/**
+	 * @param set
+	 *            NPCType
+	 */
+	public void setType(NPCType type) {
+		this.type = type;
+		getPlot().update();
+	}
+	
+	/**
 	 * Spawns NPC in
 	 */
 	public void spawn() {
 //		 NPCManager.spawnNPC(this);
-	}
-
-	/**
-	 * @param move
-	 *            npc to a location
-	 */
-	public void move(Location location) {
-//		NPCManager.moveNPC(id, location);
-	}
-
-	/**
-	 * Delete this npc
-	 */
-	public void fire() {
-//		NPCManager.getNPC(id).destroy();
-		Plot plot = getPlot();
-		plot.getNpcs().remove(this);
-		Database.deleteNPC(this);
-	}
-	
-	public Plot getPlot() {
-		return ptm.getPlot(plotId);
 	}
 	
 }

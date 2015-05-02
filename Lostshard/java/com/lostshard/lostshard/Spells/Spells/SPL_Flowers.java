@@ -19,11 +19,6 @@ public class SPL_Flowers extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 2; x <= getFoundBlock().getX()+2; x++) {
@@ -49,6 +44,11 @@ public class SPL_Flowers extends RangedSpell {
 				block.setType(Material.YELLOW_FLOWER);
 		}
 
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

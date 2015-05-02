@@ -20,11 +20,6 @@ public class SPL_Iceball extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		
 		ArrayList<Block> blocks = new ArrayList<Block>();
@@ -48,6 +43,11 @@ public class SPL_Iceball extends RangedSpell {
 		if(blocks.size() > 0) {
 			new Iceball(blocks, player.getUniqueId(), 25, false);
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

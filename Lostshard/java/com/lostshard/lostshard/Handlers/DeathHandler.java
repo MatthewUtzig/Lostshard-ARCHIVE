@@ -44,9 +44,9 @@ import org.bukkit.entity.Wither;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -60,102 +60,173 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class DeathHandler {
 	
-	static PlayerManager pm = PlayerManager.getManager();
-	static PlotManager ptm = PlotManager.getManager();
-	
-	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
-	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
-	
-	public static void handleDeath(PlayerDeathEvent event) {
-		Player player = event.getEntity();
-		
-		if(player.getKiller() instanceof Player) {
-			Player killer = (Player) player.getKiller();
+	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
+		int numAttackers = recentAttackers.size();
+		Random random = new Random();
+		if(player.getLastDamageCause() == null) {
+			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
+			int randInt = random.nextInt(5);
 			
-			PseudoPlayer pKiller = pm.getPlayer(killer);
-			
-			Material wep = killer.getItemInHand().getType();
-			
-			if(pKiller != null && ItemUtils.isAxe(wep) || ItemUtils.isSword(wep)) {
-				int swordsSkill = pKiller.getCurrentBuild().getBlades().getLvl();
-				int lumberjackingSkill = pKiller.getCurrentBuild().getLumberjacking().getLvl();
-				
-				if(swordsSkill >= 1000 || lumberjackingSkill >= 1000) {
-					if(Math.random() <= .2) {
-						ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1 , (short) SkullType.PLAYER.ordinal());
-						SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-						skullMeta.setOwner(player.getName());
-				        skullMeta.setDisplayName(ChatColor.RESET + player.getName() + "'s Head");
-						skull.setItemMeta(skullMeta);
-						event.getDrops().add(skull);
-					}
-				}
+			switch(randInt) {
+				case 0:
+					message += " decided to end it all.";
+					break;
+				case 1:
+					message += " Gomer Pyled.";
+					break;
+				case 2:
+					message += " committed suicide!";
+					break;
+				case 3:
+					message += " just gave up.";
+					break;
+				case 4:
+					message += " really likes the spawn.";
+					break;
 			}
-		}
-		
-		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
-		
-//		NPCHandler.playerDied(player);
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		if(pseudoPlayer == null) {
-			return;
-		}
-		
-//		if(pseudoPlayer._claiming) {
-//        	ArrayList<Plot> controlPoints = PlotHandler.getControlPoints();
-//        	for(Plot cP : controlPoints) {
-//        		if(cP.isUnderAttack() && cP._capturingPlayerName.equals(player.getName())) {
-//        			cP.failCaptureDied(player);
-//        		}
-//        	}
-//        }
-		
-		pseudoPlayer.getTimer().bleedTick = 0;
-		pseudoPlayer.getTimer().spawnTicks = 0;
-		pseudoPlayer.setPvpTicks(0);
-		pseudoPlayer.setDieLog(0);
-//		pseudoPlayer._lastChanceTicks = 0;
-		
-		if(player.getVehicle() instanceof Horse)
-			((Horse) player.getVehicle()).setHealth(0d);
-		
-		//pseudoPlayer._clearTicks = 5;
-		List<RecentAttacker> recentAttackers = pseudoPlayer.getRecentAttackers();
-		
-		//Rank stuff
-		
-		RankHandler.rank(pseudoPlayer);
-		
-		pseudoPlayer.getTimer().lastDeath = new Date().getTime();
-		
-		for(RecentAttacker recentAttacker : recentAttackers) {	
-			if(recentAttacker.isNotCrime())
-				continue;
-			
-			UUID attackerUUID = recentAttacker.getUUID();
-			Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
 
-			if(attackerPlayer != null) {
-				PseudoPlayer attackerPseudo = pm.getPlayer(attackerPlayer);
-				if(!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
-				continue;
-				
-				attackerPlayer.sendMessage("You have murdered "+player.getName());
-				if(attackerPseudo != null) {
-					
-					attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts()+1);
-				if(attackerPseudo.isMurderer()) {
-						attackerPlayer.setDisplayName(ChatColor.RED+attackerPlayer.getName());
+			event.setDeathMessage(message);
+		}
+		else if(((LivingEntity) player).getLastDamage() >= 200d)
+			Bukkit.broadcastMessage(player.getDisplayName()+ChatColor.WHITE+" was executed by an Order guard.");
+		else if(numAttackers > 0) {
+			String deathMessage = Utils.getDisplayName(player)+ChatColor.WHITE+" was killed by";
+			String attackers = "";
+			for(int i=0; i<numAttackers; i++) {
+				Player p = Bukkit.getPlayer(recentAttackers.get(i).getUUID());
+				if(p != null) {
+					if(i == numAttackers-1) {
+						if(attackers != "")
+							attackers += ChatColor.WHITE+" and " +Utils.getDisplayName(p)+ChatColor.WHITE+".";
+						else
+							attackers += ChatColor.WHITE+" "+Utils.getDisplayName(p)+ChatColor.WHITE+".";
 					}
+					else
+						attackers+=ChatColor.WHITE+" "+Utils.getDisplayName(p);
 				}
 			}
+			deathMessage += attackers;
+			event.setDeathMessage(deathMessage);
+		} else {
+			EntityDamageEvent e = player.getLastDamageCause();
+			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
+			Plot plot = ptm.findPlotAt(player.getLocation());
+			if(e == null) {
+				message += " died.";
+			}
+			else if(e.getCause().equals(DamageCause.BLOCK_EXPLOSION)) {
+				message += " exploded";
+				if(Math.random() < .05)
+					message+= " just like the predator *beep*";
+				else if(Math.random() <.05)
+					message+= " just like jaws *Smile, you son of a bitch!*";
+				else
+					message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.DROWNING)) {
+				message += " drowned";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.FALL)) {
+				message += " fell to their doom";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.FIRE) || e.getCause().equals(DamageCause.FIRE_TICK)) {
+				message += " burned alive";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				if(Math.random() < .1)
+					message+= " just like Nicolas Cage. *AAaahhhhhhh!*";
+				else
+					message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.LAVA)) {
+				message += " melted in a pit of lava";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				if(Math.random() < .1)
+					message+= " just like the Terminator. *thumbs up*";
+				else
+					message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.LIGHTNING)) {
+				message += " was struck by lightning";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				if(Math.random() < .1)
+					message+= " just like Powder. *is pale*";
+				else
+					message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.SUFFOCATION)) {
+				message += " suffocated";
+				if(plot != null)
+					message+=" in "+plot.getName();
+				if(Math.random() < .1)
+					message+= " just like David Carradine. *ew*";
+				else
+					message+=".";
+			}
+			else if(e.getCause().equals(DamageCause.VOID)) {
+				message += " fell into the abyss.";
+			}
+			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK) || (e instanceof EntityDamageByEntityEvent && ((EntityDamageByEntityEvent)e).getDamager() instanceof Projectile)) {	
+				EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;	
+					Entity damager = eDBEE.getDamager();
+					if(damager instanceof Projectile)
+						damager = ((Entity) ((Projectile)damager).getShooter());
+					if(damager instanceof Creeper)
+						message+= " was killed by a Creeper.";
+					else if(damager instanceof PigZombie)
+						message+= " was killed by a Zombie Pigman.";
+					else if(damager instanceof Zombie)
+						message+= " was killed by a Zombie.";
+					else if(damager instanceof Skeleton)
+						message+= " was shot by a Skeleton.";
+					else if(damager instanceof Ghast)
+						message+= " was killed by a Ghast.";
+					else if(damager instanceof Giant)
+						message+= " was killed by a huge fucking Zombie.";
+					else if(damager instanceof Slime)
+						message+= " was killed by a Slime.";
+					else if(damager instanceof Spider)
+						message+= " was killed by a Spider.";
+					else if(damager instanceof Witch)
+						message+= " was killed by a Witch";
+					else if(damager instanceof Silverfish)
+						message+= " was killed by a Silverfish";
+					else if(damager instanceof IronGolem)
+						message+= " was killed by a Iron Golem";
+					else if(damager instanceof Wither)
+						message+= " was killed by a Wither";
+					else if(damager instanceof Enderman)
+						message+= " was killed by a Enderman";
+					else if(damager instanceof Blaze)
+						message+= " was killed by a Blaze";
+					else if(damager instanceof CaveSpider)
+						message+= " was killed by a Cave Spider";
+					else if(damager instanceof MagmaCube)
+						message+= " was killed by a Magma Cube";
+					else if(damager instanceof Endermite)
+						message+= " was killed by a Endermite";
+					else if(damager instanceof Guardian)
+						message+= " was killed by a Guardian";
+					else if (damager instanceof EnderDragon)
+						message+= " was killed by the Enderdragon";
+					else
+						message+= "'s life was tragically cut short.";
+			}
+			else if(e.getCause().equals(DamageCause.ENTITY_EXPLOSION)) {
+				message += " exploded.";
+			}
+			else message += " died.";
+			event.setDeathMessage(message);
 		}
-		//Start of death messages
-		
-		DeathHandler.deathMessage(player, recentAttackers, event);
-		pseudoPlayer.clearRecentAttackers();
 	}
-	
 	public static void handleDeath(EntityDeathEvent event) {
 	
 		Random random = new Random();
@@ -437,174 +508,103 @@ public class DeathHandler {
 		//End of survivalism
 		lastAttackers.remove(entity);
 	}
-
 	
-	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
-		int numAttackers = recentAttackers.size();
-		Random random = new Random();
-		if(player.getLastDamageCause() == null) {
-			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
-			int randInt = random.nextInt(5);
+	public static void handleDeath(PlayerDeathEvent event) {
+		Player player = event.getEntity();
+		
+		if(player.getKiller() instanceof Player) {
+			Player killer = player.getKiller();
 			
-			switch(randInt) {
-				case 0:
-					message += " decided to end it all.";
-					break;
-				case 1:
-					message += " Gomer Pyled.";
-					break;
-				case 2:
-					message += " committed suicide!";
-					break;
-				case 3:
-					message += " just gave up.";
-					break;
-				case 4:
-					message += " really likes the spawn.";
-					break;
-			}
-
-			event.setDeathMessage(message);
-		}
-		else if(((LivingEntity) player).getLastDamage() >= 200d)
-			Bukkit.broadcastMessage(player.getDisplayName()+ChatColor.WHITE+" was executed by an Order guard.");
-		else if(numAttackers > 0) {
-			String deathMessage = Utils.getDisplayName(player)+ChatColor.WHITE+" was killed by";
-			String attackers = "";
-			for(int i=0; i<numAttackers; i++) {
-				Player p = Bukkit.getPlayer(recentAttackers.get(i).getUUID());
-				if(p != null) {
-					if(i == numAttackers-1) {
-						if(attackers != "")
-							attackers += ChatColor.WHITE+" and " +Utils.getDisplayName(p)+ChatColor.WHITE+".";
-						else
-							attackers += ChatColor.WHITE+" "+Utils.getDisplayName(p)+ChatColor.WHITE+".";
+			PseudoPlayer pKiller = pm.getPlayer(killer);
+			
+			Material wep = killer.getItemInHand().getType();
+			
+			if(pKiller != null && ItemUtils.isAxe(wep) || ItemUtils.isSword(wep)) {
+				int swordsSkill = pKiller.getCurrentBuild().getBlades().getLvl();
+				int lumberjackingSkill = pKiller.getCurrentBuild().getLumberjacking().getLvl();
+				
+				if(swordsSkill >= 1000 || lumberjackingSkill >= 1000) {
+					if(Math.random() <= .2) {
+						ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1 , (short) SkullType.PLAYER.ordinal());
+						SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
+						skullMeta.setOwner(player.getName());
+				        skullMeta.setDisplayName(ChatColor.RESET + player.getName() + "'s Head");
+						skull.setItemMeta(skullMeta);
+						event.getDrops().add(skull);
 					}
-					else
-						attackers+=ChatColor.WHITE+" "+Utils.getDisplayName(p);
 				}
 			}
-			deathMessage += attackers;
-			event.setDeathMessage(deathMessage);
-		} else {
-			EntityDamageEvent e = player.getLastDamageCause();
-			String message = Utils.getDisplayName(player)+ChatColor.WHITE;
-			Plot plot = ptm.findPlotAt(player.getLocation());
-			if(e == null) {
-				message += " died.";
-			}
-			else if(e.getCause().equals(DamageCause.BLOCK_EXPLOSION)) {
-				message += " exploded";
-				if(Math.random() < .05)
-					message+= " just like the predator *beep*";
-				else if(Math.random() <.05)
-					message+= " just like jaws *Smile, you son of a bitch!*";
-				else
-					message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.DROWNING)) {
-				message += " drowned";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.FALL)) {
-				message += " fell to their doom";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.FIRE) || e.getCause().equals(DamageCause.FIRE_TICK)) {
-				message += " burned alive";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				if(Math.random() < .1)
-					message+= " just like Nicolas Cage. *AAaahhhhhhh!*";
-				else
-					message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.LAVA)) {
-				message += " melted in a pit of lava";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				if(Math.random() < .1)
-					message+= " just like the Terminator. *thumbs up*";
-				else
-					message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.LIGHTNING)) {
-				message += " was struck by lightning";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				if(Math.random() < .1)
-					message+= " just like Powder. *is pale*";
-				else
-					message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.SUFFOCATION)) {
-				message += " suffocated";
-				if(plot != null)
-					message+=" in "+plot.getName();
-				if(Math.random() < .1)
-					message+= " just like David Carradine. *ew*";
-				else
-					message+=".";
-			}
-			else if(e.getCause().equals(DamageCause.VOID)) {
-				message += " fell into the abyss.";
-			}
-			else if(e.getCause().equals(DamageCause.ENTITY_ATTACK) || (e instanceof EntityDamageByEntityEvent && ((EntityDamageByEntityEvent)e).getDamager() instanceof Projectile)) {	
-				EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent)e;	
-					Entity damager = eDBEE.getDamager();
-					if(damager instanceof Projectile)
-						damager = ((Entity) ((Projectile)damager).getShooter());
-					if(damager instanceof Creeper)
-						message+= " was killed by a Creeper.";
-					else if(damager instanceof PigZombie)
-						message+= " was killed by a Zombie Pigman.";
-					else if(damager instanceof Zombie)
-						message+= " was killed by a Zombie.";
-					else if(damager instanceof Skeleton)
-						message+= " was shot by a Skeleton.";
-					else if(damager instanceof Ghast)
-						message+= " was killed by a Ghast.";
-					else if(damager instanceof Giant)
-						message+= " was killed by a huge fucking Zombie.";
-					else if(damager instanceof Slime)
-						message+= " was killed by a Slime.";
-					else if(damager instanceof Spider)
-						message+= " was killed by a Spider.";
-					else if(damager instanceof Witch)
-						message+= " was killed by a Witch";
-					else if(damager instanceof Silverfish)
-						message+= " was killed by a Silverfish";
-					else if(damager instanceof IronGolem)
-						message+= " was killed by a Iron Golem";
-					else if(damager instanceof Wither)
-						message+= " was killed by a Wither";
-					else if(damager instanceof Enderman)
-						message+= " was killed by a Enderman";
-					else if(damager instanceof Blaze)
-						message+= " was killed by a Blaze";
-					else if(damager instanceof CaveSpider)
-						message+= " was killed by a Cave Spider";
-					else if(damager instanceof MagmaCube)
-						message+= " was killed by a Magma Cube";
-					else if(damager instanceof Endermite)
-						message+= " was killed by a Endermite";
-					else if(damager instanceof Guardian)
-						message+= " was killed by a Guardian";
-					else if (damager instanceof EnderDragon)
-						message+= " was killed by the Enderdragon";
-					else
-						message+= "'s life was tragically cut short.";
-			}
-			else if(e.getCause().equals(DamageCause.ENTITY_EXPLOSION)) {
-				message += " exploded.";
-			}
-			else message += " died.";
-			event.setDeathMessage(message);
 		}
+		
+		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
+		
+//		NPCHandler.playerDied(player);
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		if(pseudoPlayer == null) {
+			return;
+		}
+		
+//		if(pseudoPlayer._claiming) {
+//        	ArrayList<Plot> controlPoints = PlotHandler.getControlPoints();
+//        	for(Plot cP : controlPoints) {
+//        		if(cP.isUnderAttack() && cP._capturingPlayerName.equals(player.getName())) {
+//        			cP.failCaptureDied(player);
+//        		}
+//        	}
+//        }
+		
+		pseudoPlayer.getTimer().bleedTick = 0;
+		pseudoPlayer.getTimer().spawnTicks = 0;
+		pseudoPlayer.setPvpTicks(0);
+		pseudoPlayer.setDieLog(0);
+//		pseudoPlayer._lastChanceTicks = 0;
+		
+		if(player.getVehicle() instanceof Horse)
+			((Horse) player.getVehicle()).setHealth(0d);
+		
+		//pseudoPlayer._clearTicks = 5;
+		List<RecentAttacker> recentAttackers = pseudoPlayer.getRecentAttackers();
+		
+		//Rank stuff
+		
+		RankHandler.rank(pseudoPlayer);
+		
+		pseudoPlayer.getTimer().lastDeath = new Date().getTime();
+		
+		for(RecentAttacker recentAttacker : recentAttackers) {	
+			if(recentAttacker.isNotCrime())
+				continue;
+			
+			UUID attackerUUID = recentAttacker.getUUID();
+			Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
+
+			if(attackerPlayer != null) {
+				PseudoPlayer attackerPseudo = pm.getPlayer(attackerPlayer);
+				if(!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
+				continue;
+				
+				attackerPlayer.sendMessage("You have murdered "+player.getName());
+				if(attackerPseudo != null) {
+					
+					attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts()+1);
+				if(attackerPseudo.isMurderer()) {
+						attackerPlayer.setDisplayName(ChatColor.RED+attackerPlayer.getName());
+					}
+				}
+			}
+		}
+		//Start of death messages
+		
+		DeathHandler.deathMessage(player, recentAttackers, event);
+		pseudoPlayer.clearRecentAttackers();
 	}
+	static PlayerManager pm = PlayerManager.getManager();
+	
+	static PlotManager ptm = PlotManager.getManager();
+	
+	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
+
+	
+	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
 	
 }

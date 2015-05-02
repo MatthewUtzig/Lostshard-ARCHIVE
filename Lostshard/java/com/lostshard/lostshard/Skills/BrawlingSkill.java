@@ -16,14 +16,6 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class BrawlingSkill extends Skill {
 	
-	public BrawlingSkill() {
-		super();
-		setName("Brawling");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.PORK);
-	}
-	
 	public static void playerDamagedEntityWithMisc(EntityDamageByEntityEvent event) {
 		if(event.isCancelled())
 			return;
@@ -89,6 +81,14 @@ public class BrawlingSkill extends Skill {
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();
+	}
+	
+	public BrawlingSkill() {
+		super();
+		setName("Brawling");
+		setBaseProb(.2);
+		setScaleConstant(60);
+		setMat(Material.PORK);
 	}
 
 	@Override

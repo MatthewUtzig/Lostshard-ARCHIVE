@@ -14,20 +14,20 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlayerManager {
 	
-	static PlayerManager manager = new PlayerManager();
-
-	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-	
 	public static PlayerManager getManager() {
 		return manager;
 	}
+
+	static PlayerManager manager = new PlayerManager();
 	
-	public List<PseudoPlayer> getPlayers() {
-		return players;
+	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+	
+	public PseudoPlayer getPlayer(OfflinePlayer player) {
+		return getPlayer(player.getUniqueId());
 	}
 	
-	public void setPlayers(List<PseudoPlayer> players) {
-		this.players = players;
+	public PseudoPlayer getPlayer(Player player) {
+		return getPlayer(player.getUniqueId());
 	}
 	
 	public PseudoPlayer getPlayer(UUID uuid) {
@@ -42,27 +42,27 @@ public class PlayerManager {
 		return pPlayer;
 	}
 
-	public PseudoPlayer getPlayer(Player player) {
-		return getPlayer(player.getUniqueId());
+	public List<PseudoPlayer> getPlayers() {
+		return players;
 	}
 	
-	public PseudoPlayer getPlayer(OfflinePlayer player) {
-		return getPlayer(player.getUniqueId());
-	}
-
 	public PseudoPlayer onPlayerLogin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		PseudoPlayer pPlayer = getPlayer(player);
 		players.add(pPlayer);
 		return pPlayer;
 	}
-	
+
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
 		PseudoPlayer pPlayer = getPlayer(event.getPlayer());
 		list.add(pPlayer);
 		Database.updatePlayers(list);
 		players.remove(pPlayer);
+	}
+	
+	public void setPlayers(List<PseudoPlayer> players) {
+		this.players = players;
 	}
 	
 	public void tick(double delta, long tick) {

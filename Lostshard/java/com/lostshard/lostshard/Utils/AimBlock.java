@@ -2,7 +2,7 @@ package com.lostshard.lostshard.Utils;
 
 import java.util.ArrayList;
 
-import org.bukkit.*;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
@@ -20,16 +20,6 @@ public class AimBlock {
     private Vector offset = new Vector();
 
     /**
-* Constructor requiring a player, uses default values
-*
-* @param player Player to work with
-*/
-    public AimBlock(Player player)
-    {
-        this.setValues(player.getLocation(), 300, 1.65, 0.2, null);
-    }
-
-    /**
 * Constructor requiring a location, uses default values
 *
 * @param loc Location to work with
@@ -37,18 +27,6 @@ public class AimBlock {
     public AimBlock(Location loc)
     {
      this.setValues(loc, 300, 0, 0.2, null);
-    }
-    
-    /**
-* Constructor requiring a player, max distance, and a checking distance
-*
-* @param player Player to work with
-* @param maxDistance How far it checks for blocks
-* @param checkDistance How often to check for blocks, the smaller the more precise
-*/
-    public AimBlock(Player player, int maxDistance, double checkDistance)
-    {
-     this.setValues(player.getLocation(), maxDistance, 1.65, checkDistance, null);
     }
 
     /**
@@ -63,18 +41,19 @@ public class AimBlock {
     }
     
     /**
-* Constructor requiring a player, max distance, checking distance and an array of blocks to ignore
+* Constructor requiring a location, max distance, checking distance and an array of blocks to ignore
 *
 * @param loc What location to work with
 * @param maxDistance How far it checks for blocks
 * @param checkDistance How often to check for blocks, the smaller the more precise
 * @param blocksToIgnore Array of what block ids to ignore while checking for viable targets
 */
-    public AimBlock (Player player, int maxDistance, double checkDistance, int[] blocksToIgnore)
+    public AimBlock (Location loc, int maxDistance, double checkDistance, ArrayList<String> blocksToIgnore)
     {
-     this.setValues(player.getLocation(), maxDistance, 1.65, checkDistance, blocksToIgnore);
+     int[] bti = this.convertStringArraytoIntArray(blocksToIgnore);
+     this.setValues(loc, maxDistance, 0, checkDistance, bti);
     }
-    
+
     /**
 * Constructor requiring a location, max distance, checking distance and an array of blocks to ignore
 *
@@ -86,6 +65,28 @@ public class AimBlock {
     public AimBlock (Location loc, int maxDistance, double checkDistance, int[] blocksToIgnore)
     {
      this.setValues(loc, maxDistance, 0, checkDistance, blocksToIgnore);
+    }
+    
+    /**
+* Constructor requiring a player, uses default values
+*
+* @param player Player to work with
+*/
+    public AimBlock(Player player)
+    {
+        this.setValues(player.getLocation(), 300, 1.65, 0.2, null);
+    }
+    
+    /**
+* Constructor requiring a player, max distance, and a checking distance
+*
+* @param player Player to work with
+* @param maxDistance How far it checks for blocks
+* @param checkDistance How often to check for blocks, the smaller the more precise
+*/
+    public AimBlock(Player player, int maxDistance, double checkDistance)
+    {
+     this.setValues(player.getLocation(), maxDistance, 1.65, checkDistance, null);
     }
     
     /**
@@ -103,48 +104,70 @@ public class AimBlock {
     }
     
     /**
-* Constructor requiring a location, max distance, checking distance and an array of blocks to ignore
+* Constructor requiring a player, max distance, checking distance and an array of blocks to ignore
 *
 * @param loc What location to work with
 * @param maxDistance How far it checks for blocks
 * @param checkDistance How often to check for blocks, the smaller the more precise
 * @param blocksToIgnore Array of what block ids to ignore while checking for viable targets
 */
-    public AimBlock (Location loc, int maxDistance, double checkDistance, ArrayList<String> blocksToIgnore)
+    public AimBlock (Player player, int maxDistance, double checkDistance, int[] blocksToIgnore)
     {
-     int[] bti = this.convertStringArraytoIntArray(blocksToIgnore);
-     this.setValues(loc, maxDistance, 0, checkDistance, bti);
+     this.setValues(player.getLocation(), maxDistance, 1.65, checkDistance, blocksToIgnore);
+    }
+    
+    private boolean blockToIgnoreHasValue(int value)
+    {
+     if (this.blockToIgnore != null)
+     {
+if (this.blockToIgnore.length > 0)
+{
+for (int i : this.blockToIgnore)
+{
+if (i == value)
+return true;
+}
+}
+     }
+     return false;
+    }
+
+    private int[] convertStringArraytoIntArray(ArrayList<String> array)
+    {
+if (array != null)
+{
+int intarray[] = new int[array.size()];
+for (int i = 0; i < array.size(); i++)
+{
+try
+{
+intarray[i] = Integer.parseInt(array.get(i));
+}
+catch (NumberFormatException nfe)
+{
+intarray[i] = 0;
+}
+}
+return intarray;
+}
+return null;
     }
     
     /**
-* Set the values, all constructors uses this function
+* Returns the current block along the line of vision
 *
-* @param loc
-* @param maxDistance How far it checks for blocks
-* @param viewPos Where the view is positioned in y-axis
-* @param checkDistance How often to check for blocks, the smaller the more precise
-* @param blocksToIgnore Ids of blocks to ignore while checking for viable targets
+* @return Block
 */
-    private void setValues(Location loc, int maxDistance, double viewPos, double checkDistance, int[] blocksToIgnore)
+    public Block getCurrentBlock()
     {
-     this.loc = loc;
-     this.maxDistance = maxDistance;
-     this.viewPos = viewPos;
-        this.checkDistance = checkDistance;
-        this.blockToIgnore = blocksToIgnore;
-        this.curDistance = 0;
-        xRotation = (loc.getYaw() + 90) % 360;
-        yRotation = loc.getPitch() * -1;
-
-        targetPos = new Vector((int)Math.floor(loc.getX()), (int)Math.floor(loc.getY() + viewPos), (int)Math.floor(loc.getZ()));
-        prevPos = targetPos.clone();
-    }
-
-    private void reset()
-    {
-     targetPos = new Vector((int)Math.floor(this.loc.getX()), (int)Math.floor(this.loc.getY() + viewPos), (int)Math.floor(this.loc.getZ()));
-        prevPos = targetPos.clone();
-     this.curDistance = 0;
+        if (curDistance > maxDistance)
+        {
+            return null;
+        }
+        else
+        {
+            return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+        }
     }
     
     /**
@@ -188,67 +211,6 @@ public class AimBlock {
     }
     
     /**
-* Gets the floored x distance to a block
-*
-* @return int The floored value of the distance
-*/
-    public int getXDistanceToBlock()
-    {
-     this.reset();
-     return (int) Math.floor(getTargetBlock().getX() - loc.getBlockX() + 0.5);
-    }
-    
-    /**
-* Gets the floored y distance to a block
-*
-* @return double
-*/
-    public int getYDistanceToBlock()
-    {
-     this.reset();
-     return (int) Math.floor(getTargetBlock().getY() - loc.getBlockY() + 1.65);
-    }
-    
-    /**
-* Gets the floored z distance to a block
-*
-* @return double
-*/
-    public int getZDistanceToBlock()
-    {
-     this.reset();
-     return (int) Math.floor(getTargetBlock().getZ() - loc.getBlockZ() + 0.5);
-    }
-    
-    /**
-* Returns the block at the aim, null if out of range or if no viable target found
-*
-* @return Block
-*/
-    @SuppressWarnings("deprecation")
-	public Block getTargetBlock()
-    {
-        while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
-        return getCurrentBlock();
-    }
-
-    /**
-* Sets the type of the block at the cursor
-*
-* @param type Id of type to set the block to
-*/
-    @SuppressWarnings("deprecation")
-	public void setTargetBlock(int type)
-    {
-     while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
-        if (getCurrentBlock() != null)
-        {
-         Block blk = loc.getWorld().getBlockAt(targetPos.getBlockX(), targetPos.getBlockY(), targetPos.getBlockZ());
-         blk.setTypeId(type);
-        }
-    }
-
-    /**
 * Returns the block attached to the face at the cursor, or null if out of
 * range
 *
@@ -267,22 +229,7 @@ public class AimBlock {
             return null;
         }
     }
-
-    /**
-* Sets the type of the block attached to the face at the cursor
-*
-* @param type
-*/
-    @SuppressWarnings("deprecation")
-	public void setFaceBlock(int type)
-    {
-        if (getCurrentBlock() != null)
-        {
-         Block blk = loc.getWorld().getBlockAt(prevPos.getBlockX(), prevPos.getBlockY(), prevPos.getBlockZ());
-         blk.setTypeId(type);
-        }
-    }
-
+    
     /**
 * Get next block
 *
@@ -313,22 +260,67 @@ public class AimBlock {
 
         return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
     }
-
+    
     /**
-* Returns the current block along the line of vision
+* Returns the previous block in the aimed path
 *
 * @return Block
 */
-    public Block getCurrentBlock()
+    public Block getPreviousBlock()
     {
-        if (curDistance > maxDistance)
-        {
-            return null;
-        }
-        else
-        {
-            return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
-        }
+        return this.loc.getWorld().getBlockAt(prevPos.getBlockX(), prevPos.getBlockY(), prevPos.getBlockZ());
+    }
+
+    /**
+* Returns the block at the aim, null if out of range or if no viable target found
+*
+* @return Block
+*/
+    @SuppressWarnings("deprecation")
+	public Block getTargetBlock()
+    {
+        while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
+        return getCurrentBlock();
+    }
+
+    /**
+* Gets the floored x distance to a block
+*
+* @return int The floored value of the distance
+*/
+    public int getXDistanceToBlock()
+    {
+     this.reset();
+     return (int) Math.floor(getTargetBlock().getX() - loc.getBlockX() + 0.5);
+    }
+
+    /**
+* Gets the floored y distance to a block
+*
+* @return double
+*/
+    public int getYDistanceToBlock()
+    {
+     this.reset();
+     return (int) Math.floor(getTargetBlock().getY() - loc.getBlockY() + 1.65);
+    }
+
+    /**
+* Gets the floored z distance to a block
+*
+* @return double
+*/
+    public int getZDistanceToBlock()
+    {
+     this.reset();
+     return (int) Math.floor(getTargetBlock().getZ() - loc.getBlockZ() + 0.5);
+    }
+
+    private void reset()
+    {
+     targetPos = new Vector((int)Math.floor(this.loc.getX()), (int)Math.floor(this.loc.getY() + viewPos), (int)Math.floor(this.loc.getZ()));
+        prevPos = targetPos.clone();
+     this.curDistance = 0;
     }
 
     /**
@@ -347,13 +339,18 @@ public class AimBlock {
     }
 
     /**
-* Returns the previous block in the aimed path
+* Sets the type of the block attached to the face at the cursor
 *
-* @return Block
+* @param type
 */
-    public Block getPreviousBlock()
+    @SuppressWarnings("deprecation")
+	public void setFaceBlock(int type)
     {
-        return this.loc.getWorld().getBlockAt(prevPos.getBlockX(), prevPos.getBlockY(), prevPos.getBlockZ());
+        if (getCurrentBlock() != null)
+        {
+         Block blk = loc.getWorld().getBlockAt(prevPos.getBlockX(), prevPos.getBlockY(), prevPos.getBlockZ());
+         blk.setTypeId(type);
+        }
     }
 
     /**
@@ -371,40 +368,43 @@ public class AimBlock {
         }
     }
     
-    private int[] convertStringArraytoIntArray(ArrayList<String> array)
+    /**
+* Sets the type of the block at the cursor
+*
+* @param type Id of type to set the block to
+*/
+    @SuppressWarnings("deprecation")
+	public void setTargetBlock(int type)
     {
-if (array != null)
-{
-int intarray[] = new int[array.size()];
-for (int i = 0; i < array.size(); i++)
-{
-try
-{
-intarray[i] = Integer.parseInt(array.get(i));
-}
-catch (NumberFormatException nfe)
-{
-intarray[i] = 0;
-}
-}
-return intarray;
-}
-return null;
+     while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || this.blockToIgnoreHasValue(getCurrentBlock().getTypeId())));
+        if (getCurrentBlock() != null)
+        {
+         Block blk = loc.getWorld().getBlockAt(targetPos.getBlockX(), targetPos.getBlockY(), targetPos.getBlockZ());
+         blk.setTypeId(type);
+        }
     }
     
-    private boolean blockToIgnoreHasValue(int value)
+    /**
+* Set the values, all constructors uses this function
+*
+* @param loc
+* @param maxDistance How far it checks for blocks
+* @param viewPos Where the view is positioned in y-axis
+* @param checkDistance How often to check for blocks, the smaller the more precise
+* @param blocksToIgnore Ids of blocks to ignore while checking for viable targets
+*/
+    private void setValues(Location loc, int maxDistance, double viewPos, double checkDistance, int[] blocksToIgnore)
     {
-     if (this.blockToIgnore != null)
-     {
-if (this.blockToIgnore.length > 0)
-{
-for (int i : this.blockToIgnore)
-{
-if (i == value)
-return true;
-}
-}
-     }
-     return false;
+     this.loc = loc;
+     this.maxDistance = maxDistance;
+     this.viewPos = viewPos;
+        this.checkDistance = checkDistance;
+        this.blockToIgnore = blocksToIgnore;
+        this.curDistance = 0;
+        xRotation = (loc.getYaw() + 90) % 360;
+        yRotation = loc.getPitch() * -1;
+
+        targetPos = new Vector((int)Math.floor(loc.getX()), (int)Math.floor(loc.getY() + viewPos), (int)Math.floor(loc.getZ()));
+        prevPos = targetPos.clone();
     }
 }

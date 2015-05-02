@@ -3,9 +3,8 @@ package com.lostshard.lostshard.Spells.Structures;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.bukkit.ChatColor;
-
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -15,10 +14,6 @@ import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class FireWalk extends MagicStructure {
 
-	public FireWalk(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
-		super(blocks, uuid, numTicksTillCleanup);
-	}
-	
 	public static void onPlayerMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		if(!event.getTo().getBlock().getState().equals(event.getFrom().getBlock().getState()))
@@ -29,6 +24,10 @@ public class FireWalk extends MagicStructure {
 							event.getTo().getBlock().setType(Material.FIRE);
 							ms.addBlock(event.getTo().getBlock());
 						}
+	}
+	
+	public FireWalk(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
+		super(blocks, uuid, numTicksTillCleanup);
 	}
 	
 	@Override

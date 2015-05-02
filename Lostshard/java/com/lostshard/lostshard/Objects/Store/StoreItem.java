@@ -6,21 +6,25 @@ import com.lostshard.lostshard.Utils.Serializer;
 
 public class StoreItem {
 
+	public static StoreItem fromJson(String string) {
+		return Serializer.gson.fromJson(string, StoreItem.class);
+	}
 	//Item
 	private int id = 0;
 	private ItemStack item;
 	private int salePrice = 0;
 	private int buyPrice = 0;
+	
 	private int stock = 0;
 	
 	//Buyer
 	private int maxBuyAmount = 0;
-	
 	//Restock
 	private boolean autoResotck = false;
 	private int restockTime = 0;
-	private int restockAmount = 0;
 
+	private int restockAmount = 0;
+	
 	public StoreItem(ItemStack item) {
 		this.item = item;
 	}
@@ -28,41 +32,37 @@ public class StoreItem {
 	public String getAsJson() {
 		return Serializer.gson.toJson(this);
 	}
-	
-	public static StoreItem fromJson(String string) {
-		return Serializer.gson.fromJson(string, StoreItem.class);
+
+	public int getBuyPrice() {
+		return buyPrice;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public ItemStack getItem() {
 		return item;
 	}
 
-	public void setItem(ItemStack item) {
-		this.item = item;
+	public int getMaxBuyAmount() {
+		return maxBuyAmount;
+	}
+
+	public int getRestockAmount() {
+		return restockAmount;
+	}
+
+	public int getRestockTime() {
+		return restockTime;
 	}
 
 	public int getSalePrice() {
 		return salePrice;
 	}
 
-	public void setSalePrice(int price) {
-		this.salePrice = price;
-	}
-
 	public int getStock() {
 		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
-	public int getMaxBuyAmount() {
-		return maxBuyAmount;
-	}
-
-	public void setMaxBuyAmount(int maxBuyAmount) {
-		this.maxBuyAmount = maxBuyAmount;
 	}
 
 	public boolean isAutoResotck() {
@@ -73,35 +73,35 @@ public class StoreItem {
 		this.autoResotck = autoResotck;
 	}
 
-	public int getRestockTime() {
-		return restockTime;
+	public void setBuyPrice(int buyPrice) {
+		this.buyPrice = buyPrice;
 	}
 
-	public void setRestockTime(int restockTime) {
-		this.restockTime = restockTime;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public int getRestockAmount() {
-		return restockAmount;
+	public void setItem(ItemStack item) {
+		this.item = item;
+	}
+
+	public void setMaxBuyAmount(int maxBuyAmount) {
+		this.maxBuyAmount = maxBuyAmount;
 	}
 
 	public void setRestockAmount(int restockAmount) {
 		this.restockAmount = restockAmount;
 	}
 
-	public int getBuyPrice() {
-		return buyPrice;
+	public void setRestockTime(int restockTime) {
+		this.restockTime = restockTime;
 	}
 
-	public void setBuyPrice(int buyPrice) {
-		this.buyPrice = buyPrice;
+	public void setSalePrice(int price) {
+		this.salePrice = price;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 }

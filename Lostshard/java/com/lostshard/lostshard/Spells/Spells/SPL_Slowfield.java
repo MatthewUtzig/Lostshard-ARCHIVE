@@ -19,16 +19,10 @@ public class SPL_Slowfield extends RangedSpell {
 		setCarePlot(false);
 	}
 	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		
-	}
-	
 	/* The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 3; x <= getFoundBlock().getX()+2; x++) {
@@ -53,6 +47,14 @@ public class SPL_Slowfield extends RangedSpell {
 		if(blocks.size() > 0) {
 			new WebTrap(blocks, player.getUniqueId(), 50);
 		}
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+		
 	}
 	
 }

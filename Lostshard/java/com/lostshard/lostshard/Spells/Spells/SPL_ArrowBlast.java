@@ -14,16 +14,6 @@ public class SPL_ArrowBlast extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-
-	}
-
-	@Override
 	public void doAction(Player player) {
 		player.getWorld().createExplosion(player.getLocation().add(0, 1, 0), 0);
 		for(int i = 0 ; i < 36 ; i++) {
@@ -42,9 +32,19 @@ public class SPL_ArrowBlast extends Spell {
 		    double z = Math.cos(pitch);
 		 
 		    Vector vector = new Vector(x, z, y);
-		    Arrow arrow = player.getWorld().spawnArrow(player.getLocation().add(0, 1, 0), vector, (float) 0.6, (float) 0);
+		    Arrow arrow = player.getWorld().spawnArrow(player.getLocation().add(0, 1, 0), vector, (float) 0.6, 0);
 		    arrow.setShooter(player);
 		    arrow.setVelocity(vector.multiply(2.5));
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 }

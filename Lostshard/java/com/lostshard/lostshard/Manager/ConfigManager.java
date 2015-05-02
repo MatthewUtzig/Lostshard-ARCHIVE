@@ -2,31 +2,26 @@ package com.lostshard.lostshard.Manager;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import com.lostshard.lostshard.Data.Locations;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Main.Lostshard;
-import com.lostshard.lostshard.Objects.Locations;
 import com.lostshard.lostshard.Utils.Serializer;
 
 public class ConfigManager {
-
-	static ConfigManager manager = new ConfigManager();
-	
-	FileConfiguration config;
-	Lostshard plugin;
-	
-	public ConfigManager() {
-	}
 
 	public static ConfigManager getManager() {
 		return manager;
 	}
 	
-	public void setConfig(Lostshard plugin) {
-		this.plugin = plugin;
-		reload();
-	}
+	static ConfigManager manager = new ConfigManager();
+	FileConfiguration config;
+	
+	Lostshard plugin;
 
+	public ConfigManager() {
+	}
+	
 	public void reload() {
 		plugin.reloadConfig();
 		config = plugin.getConfig();
@@ -55,5 +50,10 @@ public class ConfigManager {
 		Locations.CRIMINAL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.criminal")));
 		Locations.BUILDCHANGLAWFULL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.build.lawfull")));
 		Locations.BUILDCHANGECRIMINAL.setLocation(Serializer.deserializeLocation(config.getString("LOCATIONS.build.criminal")));
+	}
+
+	public void setConfig(Lostshard plugin) {
+		this.plugin = plugin;
+		reload();
 	}
 }

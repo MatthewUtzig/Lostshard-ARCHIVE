@@ -12,8 +12,12 @@ public class SPL_HealSelf extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		double health = player.getHealth();
+		health+=10;
+		if(health > 20)
+			health = 20;
+		player.setHealth(health);
 	}
 
 	@Override
@@ -22,12 +26,8 @@ public class SPL_HealSelf extends Spell {
 	}
 
 	@Override
-	public void doAction(Player player) {
-		double health = player.getHealth();
-		health+=10;
-		if(health > 20)
-			health = 20;
-		player.setHealth(health);
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

@@ -10,35 +10,32 @@ import com.lostshard.lostshard.Objects.Store.Store;
 
 public class StoreManager {
 
+	public static StoreManager getManager() {
+		return manager;
+	}
+	public static void setManager(StoreManager manager) {
+		StoreManager.manager = manager;
+	}
 	private static StoreManager manager = new StoreManager();
-	private List<Store> stores = new ArrayList<Store>();
-	NPCManager npcm = NPCManager.getManager();
 	
+	private List<Store> stores = new ArrayList<Store>();
+
+	NPCManager npcm = NPCManager.getManager();
+
 	private StoreManager() {
 		
 	}
 
-	public static StoreManager getManager() {
-		return manager;
-	}
-
-	public static void setManager(StoreManager manager) {
-		StoreManager.manager = manager;
-	}
-
-	public List<Store> getStores() {
-		return stores;
-	}
-
-	public void setStores(List<Store> stores) {
-		this.stores = stores;
-	}
-	
 	public Store getStore(int npcID) {
 		for(Store s : stores)
 			if(s.getNpcId() == npcID)
 				return s;
 		return null;
+	}
+
+	public Store getStore(Location location) {
+		NPC npc = npcm.getVendor(location);
+		return getStore(npc);
 	}
 	
 	public Store getStore(NPC npc) {
@@ -47,8 +44,11 @@ public class StoreManager {
 		return getStore(npc.getId());
 	}
 	
-	public Store getStore(Location location) {
-		NPC npc = npcm.getVendor(location);
-		return getStore(npc);
+	public List<Store> getStores() {
+		return stores;
+	}
+	
+	public void setStores(List<Store> stores) {
+		this.stores = stores;
 	}
 }

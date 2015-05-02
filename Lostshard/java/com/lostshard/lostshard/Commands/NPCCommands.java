@@ -22,6 +22,7 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 	static NPCManager npcm = NPCManager.getManager();
 	static StoreManager sm = StoreManager.getManager();
 	
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("vendor")) {
 			if(!(sender instanceof Player)) {
@@ -50,43 +51,11 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 		return false;
 	}
 
-	private void vendorList(Player player) {
-		NPC npc = npcm.getVendor(player.getLocation());
-		if(npc == null) {
-			Output.simpleError(player, "Theres no vendors near you");
-			return;
-		}
-		Store store = sm.getStore(npc);
-		int currentItem = 0;
-		//Display items for sale
-		if(!store.getItemsForSale().isEmpty())
-			Output.positiveMessage(player, "-"+npc.getName()+"'s Items for sale-");
-		for(StoreItem item : store.getItemsForSale()) {
-			currentItem ++;
-			player.sendMessage(ChatColor.YELLOW+""+currentItem+". "+item.getItem().getType().toString()+"(price: "+item.getBuyPrice()+") (In Stock: "+item.getStock()+")");
-		}
-		//Display items for buy
-		if(!store.getItemsForBuy().isEmpty())
-			Output.positiveMessage(player, "-"+npc.getName()+"'s Items for buy-");
-		for(StoreItem item : store.getItemsForBuy()) {
-			currentItem ++;
-			player.sendMessage(ChatColor.YELLOW+""+currentItem+". "+item.getItem().getType().toString()+"(price: "+item.getBuyPrice()+") (In Stock: "+item.getStock()+"/"+item.getMaxBuyAmount()+")");	
-		}
-	}
-
-	private void vendorBuy(Player player, String[] args) {
+	@Override
+	public List<String> onTabComplete(CommandSender arg0, Command arg1,
+			String arg2, String[] arg3) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	private void vendorSell(Player player, String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void vendorRemove(Player player, String[] args) {
-		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	private void vendorAdd(Player player, String[] args) {
@@ -148,10 +117,43 @@ public class NPCCommands implements CommandExecutor, TabCompleter  {
 		}
 	}
 
-	public List<String> onTabComplete(CommandSender arg0, Command arg1,
-			String arg2, String[] arg3) {
+	private void vendorBuy(Player player, String[] args) {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	private void vendorList(Player player) {
+		NPC npc = npcm.getVendor(player.getLocation());
+		if(npc == null) {
+			Output.simpleError(player, "Theres no vendors near you");
+			return;
+		}
+		Store store = sm.getStore(npc);
+		int currentItem = 0;
+		//Display items for sale
+		if(!store.getItemsForSale().isEmpty())
+			Output.positiveMessage(player, "-"+npc.getName()+"'s Items for sale-");
+		for(StoreItem item : store.getItemsForSale()) {
+			currentItem ++;
+			player.sendMessage(ChatColor.YELLOW+""+currentItem+". "+item.getItem().getType().toString()+"(price: "+item.getBuyPrice()+") (In Stock: "+item.getStock()+")");
+		}
+		//Display items for buy
+		if(!store.getItemsForBuy().isEmpty())
+			Output.positiveMessage(player, "-"+npc.getName()+"'s Items for buy-");
+		for(StoreItem item : store.getItemsForBuy()) {
+			currentItem ++;
+			player.sendMessage(ChatColor.YELLOW+""+currentItem+". "+item.getItem().getType().toString()+"(price: "+item.getBuyPrice()+") (In Stock: "+item.getStock()+"/"+item.getMaxBuyAmount()+")");	
+		}
+	}
+
+	private void vendorRemove(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void vendorSell(Player player, String[] args) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

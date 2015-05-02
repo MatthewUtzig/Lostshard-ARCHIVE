@@ -10,6 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Data.Locations;
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Manager.ClanManager;
 import com.lostshard.lostshard.Objects.Groups.Clan;
@@ -88,302 +89,18 @@ public class PseudoPlayer {
 		builds.add(new Build());
 	}
 	
-	public void tick(double delta, long tick) {
-		timer.tick(delta, tick);
-	}
-	
-	public Player getOnlinePlayer() {
-		return Bukkit.getPlayer(this.getPlayerUUID());
-	}
-	
-	public OfflinePlayer getPlayer() {
-		return Bukkit.getOfflinePlayer(this.playerUUID);
-	}
-
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = Math.max(0,money);
-		if(scoreboard != null)
-			getScoreboard().updateMoney(this.money);
-		update();
-	}
-
 	public void addMoney(int money) {
 		this.money += money;
 		if(scoreboard != null)
 			getScoreboard().updateMoney(this.money);
 		update();
 	}
-
-	public void subtractMoney(int money) {
-		this.money -= money;
-		if(scoreboard != null)
-			getScoreboard().updateMoney(this.money);
-		update();
-	}
-
-	public int getMurderCounts() {
-		return murderCounts;
-	}
-
-	public void setMurderCounts(int murderCounts) {
-		this.murderCounts = Math.max(0,murderCounts);
-		if(scoreboard != null) {
-			getScoreboard().updateMurderCounts(this.murderCounts);
-			getScoreboard().updateTeams();
-		}
-		update();
-	}
-
-	public boolean isMurderer() {
-		return this.murderCounts >= Variables.murderPoint;
-	}
-
+	
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
 		if(scoreboard != null)
 			getScoreboard().updateMurderCounts(this.murderCounts);
 		update();
-	}
-
-	public void subtractMurderCounts(int murderCounts) {
-		this.murderCounts -= murderCounts;
-		if(scoreboard != null)
-			getScoreboard().updateMurderCounts(murderCounts);
-		update();
-	}
-
-	public UUID getPlayerUUID() {
-		return playerUUID;
-	}
-
-	public void setPlayerUUID(UUID playerUUID) {
-		this.playerUUID = playerUUID;
-		update();
-	}
-	
-	public String getPlayerName() {
-		return this.getPlayer().getName();
-	}
-	
-	public String getDisplayName() {
-		return Utils.getDisplayName(this.getPlayer());
-	}
-
-	public Bank getBank() {
-		return bank;
-	}
-
-	public void setBank(Bank bank) {
-		this.bank = bank;
-	}
-
-	public int getCriminal() {
-		return criminal;
-	}
-
-	public void setCriminal(int criminal) {
-		boolean yesupdate = true;
-		if(this.criminal > 0)
-			yesupdate = false;
-		this.criminal = criminal;
-		if(getScoreboard() != null)
-			if(!isMurderer() && isCriminal() && yesupdate)
-				getScoreboard().updateTeams();
-		update();
-	}
-
-	public boolean isCriminal() {
-		return this.criminal > 0;
-	}
-
-	public boolean isGlobalChat() {
-		return globalChat;
-	}
-
-	public void setGlobalChat(boolean global) {
-		this.globalChat = global;
-		update();
-	}
-
-	public int getSubscribeDays() {
-		return subscribeDays;
-	}
-
-	public void setSubscribeDays(int subscribe) {
-		this.subscribeDays = subscribe;
-		update();
-	}
-
-	public boolean isSubscriber() {
-		return subscribeDays > 0;
-	}
-
-	public boolean wasSubscribed() {
-		return wasSubscribed;
-	}
-
-	public void setWasSubscribed(boolean wasSubscribed) {
-		this.wasSubscribed = wasSubscribed;
-		update();
-	}
-
-	public int getPlotCreatePoints() {
-		return plotCreatePoints;
-	}
-
-	public void setPlotCreatePoints(int plotCreatePoints) {
-		this.plotCreatePoints = plotCreatePoints;
-		update();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-		update();
-	}
-
-	public Plot getTestPlot() {
-		return testPlot;
-	}
-
-	public void setTestPlot(Plot testPlot) {
-		this.testPlot = testPlot;
-	}
-
-	public ChatChannel getChatChannel() {
-		return chatChannel;
-	}
-
-	public void setChatChannel(ChatChannel chatChannel) {
-		this.chatChannel = chatChannel;
-		update();
-	}
-
-	public int getMana() {
-		return mana;
-	}
-
-	public void setMana(int mana) {
-		this.mana = Math.max(mana,0);
-		if(scoreboard != null)
-			getScoreboard().updateMana(this.mana);
-	}
-
-	public int getStamina() {
-		return stamina;
-	}
-
-	public void setStamina(int stamina) {
-		this.stamina = Math.max(stamina,0);
-		if(scoreboard != null)
-			getScoreboard().updateStamina(this.stamina);
-	}
-
-	public String getColoredName() {
-		OfflinePlayer player = Bukkit.getOfflinePlayer(this.playerUUID);
-		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
-				+ player.getName() : this.isCriminal() ? ChatColor.GRAY
-				+ player.getName() : ChatColor.BLUE + player.getName();
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = Math.max(0,rank);
-		if(scoreboard != null)
-			getScoreboard().updateRank(this.rank);
-		update();
-	}
-
-	public Clan getClan() {
-		for(Clan c : cm.getClans())
-			if(c.isInClan(playerUUID))
-				return c;
-		return null;
-	}
-
-	public Location getSpawn() {
-		if(this.isMurderer() || this.isCriminal())
-			return Locations.CRIMINAL.getLocation();
-		else
-			return Locations.LAWFULL.getLocation();
-	}
-
-	public Party getParty() {
-		return party;
-	}
-
-	public void setParty(Party party) {
-		this.party = party;
-	}
-
-	public List<Build> getBuilds() {
-		return builds;
-	}
-
-	public void setBuilds(List<Build> builds) {
-		this.builds = builds;
-	}
-
-	public boolean isPrivateChat() {
-		return privateChat;
-	}
-
-	public void setPrivateChat(boolean privateChat) {
-		this.privateChat = privateChat;
-		update();
-	}
-
-	public int getCurrentBuildId() {
-		return currentBuild;
-	}
-
-	public void setCurrentBuildId(int currentBuild) {
-		this.currentBuild = Math.max(0,currentBuild);
-		if(scoreboard != null)
-			getScoreboard().updateBuild(this.currentBuild);
-		update();
-	}
-	
-	public Build getCurrentBuild() {
-		return getBuilds().get(currentBuild);
-	}
-	
-	public void setCurrentBuild(Build build) {
-		getBuilds().set(currentBuild, build);
-	}
-
-	public int getPvpTicks() {
-		return pvpTicks;
-	}
-
-	public void setPvpTicks(int pvpTicks) {
-		this.pvpTicks = pvpTicks;
-	}
-
-	public int getEngageInCombatTicks() {
-		return engageInCombatTicks;
-	}
-
-	public void setEngageInCombatTicks(int engageInCombatTicks) {
-		this.engageInCombatTicks = engageInCombatTicks;
-	}
-
-	public List<RecentAttacker> getRecentAttackers() {
-		return recentAttackers;
-	}
-
-	public void setRecentAttackers(ArrayList<RecentAttacker> recentAttackers) {
-		this.recentAttackers = recentAttackers;
 	}
 	
 	public void addRecentAttacker(RecentAttacker recentAttacker) {
@@ -398,106 +115,30 @@ public class PseudoPlayer {
 		if(!found)
 			recentAttackers.add(recentAttacker);
 	}
-	
+
+	public void addScroll(Scroll scroll) {
+		scrolls.add(scroll);
+	}
+
+	public void addSpell(Scroll scroll) {
+		this.spellbook.addSpell(scroll);
+		update();
+	}
+
 	public void clearRecentAttackers() {
 		recentAttackers.clear();
 	}
 
-	public List<ChatChannel> getDisabledChatChannels() {
-		return disabledChatChannels;
-	}
-
-	public void setDisabledChatChannels(ArrayList<ChatChannel> disabledChatChannels) {
-		this.disabledChatChannels = disabledChatChannels;
-	}
-	
-	public boolean isChatChannelDisabled(ChatChannel channel) {
-		return disabledChatChannels.contains(channel);
-	}
-	
 	public void disableChatChannel(ChatChannel channel) {
 		disabledChatChannels.add(channel);
 	}
-	
+
 	public void enableChatChannel(ChatChannel channel) {
 		disabledChatChannels.remove(channel);
 	}
 
-	public UUID getLastResiver() {
-		return lastResiver;
-	}
-
-	public void setLastResiver(UUID lastResiver) {
-		this.lastResiver = lastResiver;
-	}
-
-	public List<String> getTitels() {
-		return titels;
-	}
-
-	public void setTitels(List<String> titels) {
-		this.titels = titels;
-		update();
-	}
-
-	public int getCurrentTitleId() {
-		return currenttitle;
-	}
-
-	public void setCurrentTitleId(int currenttitle) {
-		this.currenttitle = currenttitle;
-		update();
-	}
-	
-	public String getCurrentTitle() {
-		if(currenttitle < 0)
-			return "";
-		else
-			return titels.get(currenttitle);
-	}
-	
-	public int getMaxMana() {
-		return maxMana;
-	}
-
-	public void setMaxMana(int maxMana) {
-		this.maxMana = maxMana;
-	}
-
-	public int getMaxStamina() {
-		return maxStamina;
-	}
-
-	public void setMaxStamina(int maxStamina) {
-		this.maxStamina = maxStamina;
-	}
-
-	public boolean isMeditating() {
-		return meditating;
-	}
-
-	public void setMeditating(boolean meditating) {
-		this.meditating = meditating;
-	}
-
-	public void update() {
-		this.update = true;
-	}
-	
-	public boolean isUpdate() {
-		return update;
-	}
-	
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
-	public boolean isResting() {
-		return resting;
-	}
-
-	public void setResting(boolean resting) {
-		this.resting = resting;
+	public Bank getBank() {
+		return bank;
 	}
 
 	public int[] getBuildIds() {
@@ -508,7 +149,168 @@ public class PseudoPlayer {
 		}
 		return ints;
 	}
+
+	public List<Build> getBuilds() {
+		return builds;
+	}
+
+	public ChatChannel getChatChannel() {
+		return chatChannel;
+	}
+
+	public Clan getClan() {
+		for(Clan c : cm.getClans())
+			if(c.isInClan(playerUUID))
+				return c;
+		return null;
+	}
+
+	public String getColoredName() {
+		OfflinePlayer player = Bukkit.getOfflinePlayer(this.playerUUID);
+		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
+				+ player.getName() : this.isCriminal() ? ChatColor.GRAY
+				+ player.getName() : ChatColor.BLUE + player.getName();
+	}
 	
+	public int getCriminal() {
+		return criminal;
+	}
+	
+	public Build getCurrentBuild() {
+		return getBuilds().get(currentBuild);
+	}
+
+	public int getCurrentBuildId() {
+		return currentBuild;
+	}
+
+	public String getCurrentTitle() {
+		if(currenttitle < 0)
+			return "";
+		else
+			return titels.get(currenttitle);
+	}
+
+	public int getCurrentTitleId() {
+		return currenttitle;
+	}
+
+	public int getDieLog() {
+		return dieLog;
+	}
+
+	public List<ChatChannel> getDisabledChatChannels() {
+		return disabledChatChannels;
+	}
+
+	public String getDisplayName() {
+		return Utils.getDisplayName(this.getPlayer());
+	}
+
+	public int getEngageInCombatTicks() {
+		return engageInCombatTicks;
+	}
+
+	public int getFreeSkillPoints() {
+		return freeSkillPoints;
+	}
+
+	public GUI getGui() {
+		return gui;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public List<UUID> getIgnored() {
+		return ignored;
+	}
+
+	public UUID getLastResiver() {
+		return lastResiver;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public int getMaxMana() {
+		return maxMana;
+	}
+
+	public int getMaxSkillValTotal() {
+		return 4000;
+	}
+
+	public int getMaxStamina() {
+		return maxStamina;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public int getMurderCounts() {
+		return murderCounts;
+	}
+
+	public Player getOnlinePlayer() {
+		return Bukkit.getPlayer(this.getPlayerUUID());
+	}
+
+	public Party getParty() {
+		return party;
+	}
+
+	public OfflinePlayer getPlayer() {
+		return Bukkit.getOfflinePlayer(this.playerUUID);
+	}
+
+	public String getPlayerName() {
+		return this.getPlayer().getName();
+	}
+
+	public UUID getPlayerUUID() {
+		return playerUUID;
+	}
+
+	public int getPlotCreatePoints() {
+		return plotCreatePoints;
+	}
+
+	public Spell getPromptedSpell() {
+		return promptedSpell;
+	}
+
+	public int getPvpTicks() {
+		return pvpTicks;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public List<RecentAttacker> getRecentAttackers() {
+		return recentAttackers;
+	}
+
+	public Reputation getReputation() {
+		return reputation;
+	}
+
+	public Runebook getRunebook() {
+		return runebook;
+	}
+
+	public PseudoScoreboard getScoreboard() {
+		return scoreboard;
+	}
+
+	public List<Scroll> getScrolls() {
+		return scrolls;
+	}
+
 	public Skill getSkillByName(String name) {
 		Skill skill = null;
 		if(name.equalsIgnoreCase("mining"))
@@ -538,130 +340,91 @@ public class PseudoPlayer {
 		return skill;
 	}
 
-	public int getMaxSkillValTotal() {
-		return 4000;
-	}
-
-	public int getFreeSkillPoints() {
-		return freeSkillPoints;
-	}
-
-	public void setFreeSkillPoints(int freeSkillPoints) {
-		this.freeSkillPoints = freeSkillPoints;
-		update();
-	}
-
-	public Runebook getRunebook() {
-		return runebook;
-	}
-
-	public void setRunebook(Runebook runebook) {
-		this.runebook = runebook;
+	public Location getSpawn() {
+		if(this.isMurderer() || this.isCriminal())
+			return Locations.CRIMINAL.getLocation();
+		else
+			return Locations.LAWFULL.getLocation();
 	}
 
 	public SpellBook getSpellbook() {
 		return spellbook;
 	}
 
-	public void setSpellbook(SpellBook spellbook) {
-		this.spellbook = spellbook;
+	public int getStamina() {
+		return stamina;
+	}
+
+	public int getSubscribeDays() {
+		return subscribeDays;
 	}
 	
-	public void addSpell(Scroll scroll) {
-		this.spellbook.addSpell(scroll);
-		update();
+	public Plot getTestPlot() {
+		return testPlot;
 	}
 	
-	public void setPromptedSpell(Spell promptedSpell) {
-		this.promptedSpell = promptedSpell;
-	}
-	
-	public Spell getPromptedSpell() {
-		return promptedSpell;
-	}
-
-	public int getDieLog() {
-		return dieLog;
-	}
-
-	public void setDieLog(int dieLog) {
-		this.dieLog = dieLog;
-	}
-
-	public List<Scroll> getScrolls() {
-		return scrolls;
-	}
-
-	public void setScrools(List<Scroll> scrolls) {
-		this.scrolls = scrolls;
-	}
-
-	public void addScroll(Scroll scroll) {
-		scrolls.add(scroll);
-	}
-	
-	public void removeScroll(Scroll scroll) {
-		scrolls.remove(scroll);
-	}
-
 	public PseudoPlayerTimer getTimer() {
 		return timer;
 	}
 
-	public void setTimer(PseudoPlayerTimer timer) {
-		this.timer = timer;
+	public List<String> getTitels() {
+		return titels;
 	}
 
-	public boolean isFriendlyFire() {
-		return friendlyFire;
+	public boolean isAllowGui() {
+		return allowGui;
 	}
 
-	public void setFriendlyFire(boolean friendlyFire) {
-		this.friendlyFire = friendlyFire;
-	}
-
-	public Reputation getReputation() {
-		return reputation;
-	}
-
-	public void setReputation(Reputation reputation) {
-		this.reputation = reputation;
-	}
-
-	public boolean isPrivate() {
-		return isPrivate;
-	}
-
-	public void setPrivate(boolean isPrivate) {
-		this.isPrivate = isPrivate;
-	}
-
-	public PseudoScoreboard getScoreboard() {
-		return scoreboard;
-	}
-
-	public void setScoreboard(PseudoScoreboard scoreboard) {
-		this.scoreboard = scoreboard;
+	public boolean isChatChannelDisabled(ChatChannel channel) {
+		return disabledChatChannels.contains(channel);
 	}
 
 	public boolean isClaming() {
 		return isClaming;
 	}
 
-	public void setClaming(boolean isClaming) {
-		this.isClaming = isClaming;
+	public boolean isCriminal() {
+		return this.criminal > 0;
 	}
 
-	public GUI getGui() {
-		return gui;
+	public boolean isFriendlyFire() {
+		return friendlyFire;
+	}
+	
+	public boolean isGlobalChat() {
+		return globalChat;
+	}
+	
+	public boolean isMeditating() {
+		return meditating;
 	}
 
-	public void setGui(GUI gui) {
-		this.gui = gui;
+	public boolean isMurderer() {
+		return this.murderCounts >= Variables.murderPoint;
 	}
 
-	public boolean isAllowGui() {
-		return allowGui;
+	public boolean isPrivate() {
+		return isPrivate;
+	}
+	
+	public boolean isPrivateChat() {
+		return privateChat;
+	}
+	
+	public boolean isResting() {
+		return resting;
+	}
+	
+	public boolean isSubscriber() {
+		return subscribeDays > 0;
+	}
+
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void removeScroll(Scroll scroll) {
+		scrolls.remove(scroll);
 	}
 
 	public void setAllowGui(boolean allowGui) {
@@ -669,11 +432,249 @@ public class PseudoPlayer {
 		update();
 	}
 
-	public List<UUID> getIgnored() {
-		return ignored;
+	public void setBank(Bank bank) {
+		this.bank = bank;
 	}
 
+	public void setBuilds(List<Build> builds) {
+		this.builds = builds;
+	}
+
+	public void setChatChannel(ChatChannel chatChannel) {
+		this.chatChannel = chatChannel;
+		update();
+	}
+	
+	public void setClaming(boolean isClaming) {
+		this.isClaming = isClaming;
+	}
+	
+	public void setCriminal(int criminal) {
+		boolean yesupdate = true;
+		if(this.criminal > 0)
+			yesupdate = false;
+		this.criminal = criminal;
+		if(getScoreboard() != null)
+			if(!isMurderer() && isCriminal() && yesupdate)
+				getScoreboard().updateTeams();
+		update();
+	}
+
+	public void setCurrentBuild(Build build) {
+		getBuilds().set(currentBuild, build);
+	}
+
+	public void setCurrentBuildId(int currentBuild) {
+		this.currentBuild = Math.max(0,currentBuild);
+		if(scoreboard != null)
+			getScoreboard().updateBuild(this.currentBuild);
+		update();
+	}
+
+	public void setCurrentTitleId(int currenttitle) {
+		this.currenttitle = currenttitle;
+		update();
+	}
+
+	public void setDieLog(int dieLog) {
+		this.dieLog = dieLog;
+	}
+
+	public void setDisabledChatChannels(ArrayList<ChatChannel> disabledChatChannels) {
+		this.disabledChatChannels = disabledChatChannels;
+	}
+
+	public void setEngageInCombatTicks(int engageInCombatTicks) {
+		this.engageInCombatTicks = engageInCombatTicks;
+	}
+	
+	public void setFreeSkillPoints(int freeSkillPoints) {
+		this.freeSkillPoints = freeSkillPoints;
+		update();
+	}
+	
+	public void setFriendlyFire(boolean friendlyFire) {
+		this.friendlyFire = friendlyFire;
+	}
+
+	public void setGlobalChat(boolean global) {
+		this.globalChat = global;
+		update();
+	}
+
+	public void setGui(GUI gui) {
+		this.gui = gui;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+		update();
+	}
+	
 	public void setIgnored(List<UUID> ignored) {
 		this.ignored = ignored;
+	}
+
+	public void setLastResiver(UUID lastResiver) {
+		this.lastResiver = lastResiver;
+	}
+
+	public void setMana(int mana) {
+		this.mana = Math.max(mana,0);
+		if(scoreboard != null)
+			getScoreboard().updateMana(this.mana);
+	}
+
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
+	}
+
+	public void setMaxStamina(int maxStamina) {
+		this.maxStamina = maxStamina;
+	}
+
+	public void setMeditating(boolean meditating) {
+		this.meditating = meditating;
+	}
+
+	public void setMoney(int money) {
+		this.money = Math.max(0,money);
+		if(scoreboard != null)
+			getScoreboard().updateMoney(this.money);
+		update();
+	}
+
+	public void setMurderCounts(int murderCounts) {
+		this.murderCounts = Math.max(0,murderCounts);
+		if(scoreboard != null) {
+			getScoreboard().updateMurderCounts(this.murderCounts);
+			getScoreboard().updateTeams();
+		}
+		update();
+	}
+	
+	public void setParty(Party party) {
+		this.party = party;
+	}
+	
+	public void setPlayerUUID(UUID playerUUID) {
+		this.playerUUID = playerUUID;
+		update();
+	}
+	
+	public void setPlotCreatePoints(int plotCreatePoints) {
+		this.plotCreatePoints = plotCreatePoints;
+		update();
+	}
+
+	public void setPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
+
+	public void setPrivateChat(boolean privateChat) {
+		this.privateChat = privateChat;
+		update();
+	}
+
+	public void setPromptedSpell(Spell promptedSpell) {
+		this.promptedSpell = promptedSpell;
+	}
+
+	public void setPvpTicks(int pvpTicks) {
+		this.pvpTicks = pvpTicks;
+	}
+
+	public void setRank(int rank) {
+		this.rank = Math.max(0,rank);
+		if(scoreboard != null)
+			getScoreboard().updateRank(this.rank);
+		update();
+	}
+	
+	public void setRecentAttackers(ArrayList<RecentAttacker> recentAttackers) {
+		this.recentAttackers = recentAttackers;
+	}
+
+	public void setReputation(Reputation reputation) {
+		this.reputation = reputation;
+	}
+
+	public void setResting(boolean resting) {
+		this.resting = resting;
+	}
+
+	public void setRunebook(Runebook runebook) {
+		this.runebook = runebook;
+	}
+
+	public void setScoreboard(PseudoScoreboard scoreboard) {
+		this.scoreboard = scoreboard;
+	}
+
+	public void setScrools(List<Scroll> scrolls) {
+		this.scrolls = scrolls;
+	}
+
+	public void setSpellbook(SpellBook spellbook) {
+		this.spellbook = spellbook;
+	}
+
+	public void setStamina(int stamina) {
+		this.stamina = Math.max(stamina,0);
+		if(scoreboard != null)
+			getScoreboard().updateStamina(this.stamina);
+	}
+
+	public void setSubscribeDays(int subscribe) {
+		this.subscribeDays = subscribe;
+		update();
+	}
+
+	public void setTestPlot(Plot testPlot) {
+		this.testPlot = testPlot;
+	}
+
+	public void setTimer(PseudoPlayerTimer timer) {
+		this.timer = timer;
+	}
+
+	public void setTitels(List<String> titels) {
+		this.titels = titels;
+		update();
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+
+	public void setWasSubscribed(boolean wasSubscribed) {
+		this.wasSubscribed = wasSubscribed;
+		update();
+	}
+
+	public void subtractMoney(int money) {
+		this.money -= money;
+		if(scoreboard != null)
+			getScoreboard().updateMoney(this.money);
+		update();
+	}
+
+	public void subtractMurderCounts(int murderCounts) {
+		this.murderCounts -= murderCounts;
+		if(scoreboard != null)
+			getScoreboard().updateMurderCounts(murderCounts);
+		update();
+	}
+
+	public void tick(double delta, long tick) {
+		timer.tick(delta, tick);
+	}
+
+	public void update() {
+		this.update = true;
+	}
+
+	public boolean wasSubscribed() {
+		return wasSubscribed;
 	}
 }

@@ -17,11 +17,6 @@ public class SPL_CreateFood extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		Random rand = new Random();
 		Material mat;
@@ -47,6 +42,11 @@ public class SPL_CreateFood extends RangedSpell {
 		}
 		player.getWorld().dropItem(getFoundBlock().getLocation(), new ItemStack(mat, 1));
 
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

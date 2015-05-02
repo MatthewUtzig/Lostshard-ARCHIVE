@@ -15,8 +15,9 @@ public class SPL_MoonJump extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 600, 6));
+		Output.positiveMessage(player, "You suddenly feel lighter... ");
 	}
 
 	@Override
@@ -25,9 +26,8 @@ public class SPL_MoonJump extends Spell {
 	}
 
 	@Override
-	public void doAction(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 600, 6));
-		Output.positiveMessage(player, "You suddenly feel lighter... ");
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

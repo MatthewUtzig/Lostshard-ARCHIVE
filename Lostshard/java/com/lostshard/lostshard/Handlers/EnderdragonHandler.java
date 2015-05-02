@@ -8,7 +8,11 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 public class EnderdragonHandler {
 
-	private static boolean spawnDrake = false;
+	public static void resetDrake() {
+		spawnDrake = true;
+		Bukkit.broadcastMessage(ChatColor.GREEN
+				+ "The Enderdragon has returned to The End.");
+	}
 
 	public static void respawnDragonCheck(PlayerChangedWorldEvent event) {
 		// Check if its The End
@@ -25,9 +29,5 @@ public class EnderdragonHandler {
 		spawnDrake = false;
 	}
 	
-	public static void resetDrake() {
-		spawnDrake = true;
-		Bukkit.broadcastMessage(ChatColor.GREEN
-				+ "The Enderdragon has returned to The End.");
-	}
+	private static boolean spawnDrake = false;
 }

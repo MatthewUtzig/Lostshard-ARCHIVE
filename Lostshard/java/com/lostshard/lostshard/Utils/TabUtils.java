@@ -13,17 +13,10 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 
 public class TabUtils {
 
-	static PlotManager ptm = PlotManager.getManager();
-		
-	public static List<String> StringTab(String[] args, String[] options) {
-		List<String> completions = new ArrayList<String>();
-		for (String option : options) {
-			if (StringUtil.startsWithIgnoreCase(option, args[args.length-1]))
-				completions.add(option);
-		}
-		return completions;
+	public static List<String> empty() {
+		return new ArrayList<String>();
 	}
-
+		
 	public static List<String> OnlinePlayersTab(String[] args) {
 		List<String> completions = new ArrayList<String>();
 		for (Player option : Bukkit.getOnlinePlayers()) {
@@ -47,10 +40,6 @@ public class TabUtils {
 		return completions;
 	}
 
-	public static List<String> empty() {
-		return new ArrayList<String>();
-	}
-
 	public static List<String> PlotFriend(Player player, String[] args) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		List<String> completions = new ArrayList<String>();
@@ -66,7 +55,7 @@ public class TabUtils {
 		}
 		return completions;
 	}
-	
+
 	public static List<String> PlotUnfriend(Player player, String[] args) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
 		List<String> completions = new ArrayList<String>();
@@ -76,5 +65,16 @@ public class TabUtils {
 		}
 		return completions;
 	}
+
+	public static List<String> StringTab(String[] args, String[] options) {
+		List<String> completions = new ArrayList<String>();
+		for (String option : options) {
+			if (StringUtil.startsWithIgnoreCase(option, args[args.length-1]))
+				completions.add(option);
+		}
+		return completions;
+	}
+	
+	static PlotManager ptm = PlotManager.getManager();
 
 }

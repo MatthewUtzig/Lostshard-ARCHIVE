@@ -19,16 +19,6 @@ public class SPL_ClanTeleport extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-		Output.positiveMessage(player, "You begin casting Clan Teleport");
-	}
-
-	@Override
 	public void doAction(Player player) {
 		//System.out.println("RSPNS: "+_response);
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
@@ -84,9 +74,19 @@ public class SPL_ClanTeleport extends Spell {
 			}
 		}
 	}
-	
+
+	@Override
+	public void preAction(Player player) {
+		Output.positiveMessage(player, "You begin casting Clan Teleport");
+	}
+
 	@Override
 	public void runebook(Player player) {
 	
+	}
+	
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 }

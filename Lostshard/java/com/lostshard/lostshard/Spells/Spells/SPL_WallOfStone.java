@@ -20,11 +20,6 @@ public class SPL_WallOfStone extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		ArrayList<Block> stonewallBlocks = new ArrayList<Block>();
 		//stonewall effect
@@ -61,6 +56,11 @@ public class SPL_WallOfStone extends RangedSpell {
 		}
 		
 		new WallOfStone(stonewallBlocks, player.getUniqueId(), 150);
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

@@ -22,40 +22,6 @@ public class SPL_Bridge extends RangedSpell {
 		setCarePlot(false);
 	}
 	
-	public boolean verifyCastable(Player player) {
-		setFoundBlock(SpellUtils.blockInLOS(player, getRange()));
-		if(getFoundBlock() == null) {
-			Output.simpleError(player, "Invalid target.");
-			return false;
-		}
-		
-		//check for lapis below you
-		if(player.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
-		   player.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
-			Output.simpleError(player, "can't bridge from a Lapis Lazuli block.");
-			return false;
-		}
-		
-		//check for lapis
-		for(int x=getFoundBlock().getX()-3; x<=getFoundBlock().getX()+3; x++) {
-			for(int y=getFoundBlock().getY()-3; y<=getFoundBlock().getY()+3; y++) {
-				for(int z=getFoundBlock().getZ()-3; z<=getFoundBlock().getZ()+3; z++) {
-					if(getFoundBlock().getWorld().getBlockAt(x, y, z).getType().equals(Material.LAPIS_BLOCK)) {
-						Output.simpleError(player, "can't bridge to a location near Lapis Lazuli blocks.");
-						return false;
-					}
-				}
-			}
-		}
-		
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-		
-	}
-
 	@Override
 	public void doAction(Player player) {
 		IntPoint srcPoint = new IntPoint(player.getLocation().getBlockX(), player.getLocation().getBlockY()-1, player.getLocation().getBlockZ());
@@ -88,6 +54,41 @@ public class SPL_Bridge extends RangedSpell {
 		if(blocks.size() > 0) {
 			new Bridge(blocks, player.getUniqueId(), 150);
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		setFoundBlock(SpellUtils.blockInLOS(player, getRange()));
+		if(getFoundBlock() == null) {
+			Output.simpleError(player, "Invalid target.");
+			return false;
+		}
+		
+		//check for lapis below you
+		if(player.getLocation().getBlock().getRelative(0,-1,0).getType().equals(Material.LAPIS_BLOCK) ||
+		   player.getLocation().getBlock().getRelative(0,-2,0).getType().equals(Material.LAPIS_BLOCK)){
+			Output.simpleError(player, "can't bridge from a Lapis Lazuli block.");
+			return false;
+		}
+		
+		//check for lapis
+		for(int x=getFoundBlock().getX()-3; x<=getFoundBlock().getX()+3; x++) {
+			for(int y=getFoundBlock().getY()-3; y<=getFoundBlock().getY()+3; y++) {
+				for(int z=getFoundBlock().getZ()-3; z<=getFoundBlock().getZ()+3; z++) {
+					if(getFoundBlock().getWorld().getBlockAt(x, y, z).getType().equals(Material.LAPIS_BLOCK)) {
+						Output.simpleError(player, "can't bridge to a location near Lapis Lazuli blocks.");
+						return false;
+					}
+				}
+			}
+		}
+		
+		return true;
 	}
 
 }

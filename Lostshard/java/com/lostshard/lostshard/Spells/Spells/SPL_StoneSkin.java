@@ -15,8 +15,12 @@ public class SPL_StoneSkin extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		player.sendMessage(ChatColor.GRAY+"Your skin turns to rock");
+		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 300, -3));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 300, 3));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 2));
+
 	}
 
 	@Override
@@ -25,12 +29,8 @@ public class SPL_StoneSkin extends Spell {
 	}
 
 	@Override
-	public void doAction(Player player) {
-		player.sendMessage(ChatColor.GRAY+"Your skin turns to rock");
-		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 300, -3));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 300, 3));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 2));
-
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

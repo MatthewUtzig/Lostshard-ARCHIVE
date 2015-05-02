@@ -23,12 +23,12 @@ public class Bank {
 		return inventory;
 	}
 
-	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
-	}
-
 	public String Serialize() {
 		return Serializer.serializeItems(inventory.getContents());
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
 	}
 	
 	public void setInventory(String string) {

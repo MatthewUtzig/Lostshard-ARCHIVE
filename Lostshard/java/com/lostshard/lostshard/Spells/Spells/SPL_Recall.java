@@ -23,20 +23,10 @@ public class SPL_Recall extends Spell {
 		setPrompt("What rune would you like to recall from?");
 	}
 	
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		Output.positiveMessage(player, "You begin casting Recall...");
-	}
-	
 	/* The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {		
 		//System.out.println("RSPNS: "+_response);
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
@@ -89,5 +79,18 @@ public class SPL_Recall extends Spell {
 			else Output.simpleError(player, "can't recall to there, the plot is private.");
 		}
 		else Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+		Output.positiveMessage(player, "You begin casting Recall...");
+	}
+	
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 }

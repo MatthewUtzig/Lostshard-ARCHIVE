@@ -1,4 +1,4 @@
-package com.lostshard.lostshard.Objects;
+package com.lostshard.lostshard.Data;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

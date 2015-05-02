@@ -33,21 +33,22 @@ public class GameLoop extends BukkitRunnable {
 	@SuppressWarnings("unused")
 	private final JavaPlugin plugin;
 
+	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
+
+	public static List<Plot> plotUpdates = new ArrayList<Plot>();
+	public static List<Clan> clanUpdates = new ArrayList<Clan>();
 	public GameLoop(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
-
-	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
-	public static List<Plot> plotUpdates = new ArrayList<Plot>();
-	public static List<Clan> clanUpdates = new ArrayList<Clan>();
 	
+	@Override
 	public void run() {
 		Date date = new Date();
 		double delta = 1;
 		if(lastTickTime == 0)
 			lastTickTime = date.getTime();
 		else {
-			double diff = (double)(date.getTime() - lastTickTime);
+			double diff = date.getTime() - lastTickTime;
 			delta = diff/100;
 			lastTickTime = date.getTime();
 		}

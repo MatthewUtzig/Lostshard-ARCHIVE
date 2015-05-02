@@ -71,49 +71,14 @@ public class Plot {
 
 	// Getters and Setters
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void addCoowner(Player player) {
+		coowners.add(player.getUniqueId());
 		update();
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-		update();
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-		update();
-	}
-
-	public void expandSize(int size) {
-		this.size += size;
-		update();
-	}
-
-	public void shrinkSize(int size) {
-		this.size -= size;
-		update();
-	}
-
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
+	// Friends
+	public void addFriend(Player player) {
+		friends.add(player.getUniqueId());
 		update();
 	}
 
@@ -122,165 +87,88 @@ public class Plot {
 		update();
 	}
 
-	public void subtractMoney(int money) {
-		this.money -= money;
+	public void addUpgrade(PlotUpgrade upgrade) {
+		this.upgrades.add(upgrade);
 		update();
 	}
 
-	public int getSalePrice() {
-		return salePrice;
+	public void disband() {
+		for(NPC npc : npcs)
+			Database.deleteNPC(npc);
+		ptm.removePlot(this);
 	}
 
-	public void setSalePrice(int salePrice) {
-		this.salePrice = salePrice;
+	public void expandSize(int size) {
+		this.size += size;
 		update();
-	}
-
-	public boolean isForSale() {
-		return (this.salePrice > 0) ? true : false;
-	}
-
-	public List<UUID> getFriends() {
-		return friends;
-	}
-
-	public void setFriends(List<UUID> friends) {
-		this.friends = friends;
 	}
 
 	public List<UUID> getCoowners() {
 		return coowners;
 	}
 
-	public void setCoowners(List<UUID> coowners) {
-		this.coowners = coowners;
+	/**
+	 * @author Frank Oliver
+	 * @param toSize
+	 * @return Expand price from current size to size.
+	 */
+	public int getExpandPrice(int toSize) {
+		return (int) Math.abs((((Math.pow((toSize-1), 2)+toSize-1)/2)-((Math.pow(size, 2)+size)/2))*Variables.plotExpandPrice+100);
 	}
 
-	public boolean isProtected() {
-		return protection;
+	public List<UUID> getFriends() {
+		return friends;
 	}
 
-	public void setProtected(boolean protection) {
-		this.protection = protection;
-		update();
-	}
-
-	public boolean isAllowExplosions() {
-		return allowExplosions;
-	}
-
-	public void setAllowExplosions(boolean allowExplosions) {
-		this.allowExplosions = allowExplosions;
-		update();
-	}
-
-	public boolean isPrivatePlot() {
-		return privatePlot;
-	}
-
-	public void setPrivatePlot(boolean privatePlot) {
-		this.privatePlot = privatePlot;
-		update();
-	}
-
-	public boolean isFriendBuild() {
-		return friendBuild;
-	}
-
-	public void setFriendBuild(boolean friendBuild) {
-		this.friendBuild = friendBuild;
-		update();
+	public int getId() {
+		return id;
 	}
 
 	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
-		update();
+	public int getMaxVendors() {
+		return size / 15;
 	}
 
-	public boolean isAllowMagic() {
-		return allowMagic;
+	public int getMoney() {
+		return money;
 	}
 
-	public void setAllowMagic(boolean allowMagic) {
-		this.allowMagic = allowMagic;
-		update();
+	public String getName() {
+		return name;
 	}
 
-	public boolean isAllowPvp() {
-		return allowPvp;
-	}
-
-	public void setAllowPvp(boolean allowPvp) {
-		this.allowPvp = allowPvp;
-		update();
-	}
-
-	// Getting next id
-	public int nextId() {
-		int nextId = 0;
-		for (Plot p : ptm.getPlots())
-			if (p.getId() > nextId)
-				nextId = p.getId();
-		return nextId + 1;
-	}
-
-	public boolean isOwner(Player player) {
-		return isOwner(player.getUniqueId());
-	}
-
-	public boolean isFriend(Player player) {
-		return friends.contains(player.getUniqueId());
-	}
-
-	public boolean isOwner(UUID uuid) {
-		return uuid.equals(owner);
-	}
-
-	public boolean isFriend(UUID uuid) {
-		return friends.contains(uuid);
-	}
-	
-	// Friends
-	public void addFriend(Player player) {
-		friends.add(player.getUniqueId());
-		update();
-	}
-
-	public void removeFriend(Player player) {
-		friends.remove(player.getUniqueId());
-		update();
-	}
-
-	// Coowners
-	public boolean isCoowner(Player player) {
-		return coowners.contains(player.getUniqueId());
-	}
-	
-	public boolean isCoowner(UUID uuid) {
-		return coowners.contains(uuid);
-	}
-
-	public void addCoowner(Player player) {
-		coowners.add(player.getUniqueId());
-		update();
-	}
-
-	public void removeCoowner(Player player) {
-		coowners.remove(player.getUniqueId());
-		update();
+	public ArrayList<NPC> getNpcs() {
+		return npcs;
 	}
 
 	public UUID getOwner() {
 		return owner;
 	}
 
-	public void setOwner(UUID owner) {
-		this.owner = owner;
-		update();
+	public String getPlayerStatusOfPlotString(Player player) {
+		return isOwner(player) ? "You are the owner of this plot."
+				: isCoowner(player) ? "You are a co-owner of this plot."
+						: isFriend(player) ? "You are a friend of this plot."
+								: "You are not friend of this plot.";
+	}
+
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public int getTax() {
+		return size*10;
+	}
+
+	public List<PlotUpgrade> getUpgrades() {
+		return upgrades;
 	}
 
 	public int getValue() {
@@ -300,23 +188,8 @@ public class Plot {
 		return (int) Math.floor(plotValue * .75);
 	}
 
-	public String getPlayerStatusOfPlotString(Player player) {
-		return isOwner(player) ? "You are the owner of this plot."
-				: isCoowner(player) ? "You are a co-owner of this plot."
-						: isFriend(player) ? "You are a friend of this plot."
-								: "You are not friend of this plot.";
-	}
-
 	public boolean isAllowedToBuild(Player player) {
 		return isAllowedToBuild(player.getUniqueId());
-	}
-
-	public boolean isFriendOrAbove(Player player) {
-		return isFriendOrAbove(player.getUniqueId());
-	}
-
-	public boolean isCoownerOrAbove(Player player) {
-		return isCoownerOrAbove(player.getUniqueId());
 	}
 
 	public boolean isAllowedToBuild(UUID uuid) {
@@ -327,11 +200,64 @@ public class Plot {
 				&& isFriendBuild() ? true : !isProtected() ? true : false;
 	}
 
+	public boolean isAllowedToInteract(Player player) {
+		return isAllowedToInteract(player.getUniqueId());
+	}
+
 	public boolean isAllowedToInteract(UUID uuid) {
 		PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if(pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
 		return  isFriendOrAbove(uuid) ? true : false;
+	}
+
+	public boolean isAllowExplosions() {
+		return allowExplosions;
+	}
+
+	public boolean isAllowMagic() {
+		return allowMagic;
+	}
+
+	public boolean isAllowPvp() {
+		return allowPvp;
+	}
+
+	// Coowners
+	public boolean isCoowner(Player player) {
+		return coowners.contains(player.getUniqueId());
+	}
+
+	public boolean isCoowner(UUID uuid) {
+		return coowners.contains(uuid);
+	}
+
+	public boolean isCoownerOrAbove(Player player) {
+		return isCoownerOrAbove(player.getUniqueId());
+	}
+
+	public boolean isCoownerOrAbove(UUID uuid) {
+		return isOwner(uuid) ? true : isCoowner(uuid) ? true : false;
+	}
+
+	public boolean isForSale() {
+		return (this.salePrice > 0) ? true : false;
+	}
+
+	public boolean isFriend(Player player) {
+		return friends.contains(player.getUniqueId());
+	}
+
+	public boolean isFriend(UUID uuid) {
+		return friends.contains(uuid);
+	}
+
+	public boolean isFriendBuild() {
+		return friendBuild;
+	}
+
+	public boolean isFriendOrAbove(Player player) {
+		return isFriendOrAbove(player.getUniqueId());
 	}
 	
 	public boolean isFriendOrAbove(UUID uuid) {
@@ -339,92 +265,166 @@ public class Plot {
 				: isFriend(uuid) ? true : false;
 	}
 
-	public boolean isCoownerOrAbove(UUID uuid) {
-		return isOwner(uuid) ? true : isCoowner(uuid) ? true : false;
+	public boolean isOwner(Player player) {
+		return isOwner(player.getUniqueId());
+	}
+
+	public boolean isOwner(UUID uuid) {
+		return uuid.equals(owner);
 	}
 	
-	/**
-	 * @author Frank Oliver
-	 * @param toSize
-	 * @return Expand price from current size to size.
-	 */
-	public int getExpandPrice(int toSize) {
-		return (int) Math.abs((((Math.pow((toSize-1), 2)+toSize-1)/2)-((Math.pow(size, 2)+size)/2))*Variables.plotExpandPrice+100);
+	public boolean isPrivatePlot() {
+		return privatePlot;
 	}
 
-	public ArrayList<NPC> getNpcs() {
-		return npcs;
+	public boolean isProtected() {
+		return protection;
 	}
 
-	public void setNpcs(ArrayList<NPC> npcs) {
-		this.npcs = npcs;
+	public boolean isTitleEntrence() {
+		return titleEntrence;
 	}
 
-	public int getMaxVendors() {
-		return size / 15;
-	}
-
-	public void update() {
-		this.update = true;
-	}
-	
 	public boolean isUpdate() {
 		return update;
 	}
 
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
-	public void disband() {
-		for(NPC npc : npcs)
-			Database.deleteNPC(npc);
-		ptm.removePlot(this);
-	}
-
-	public List<PlotUpgrade> getUpgrades() {
-		return upgrades;
-	}
-
-	public void setUpgrades(List<PlotUpgrade> upgrades) {
-		this.upgrades = upgrades;
-	}
-	
-	public void addUpgrade(PlotUpgrade upgrade) {
-		this.upgrades.add(upgrade);
-		update();
-	}
-	
 	public boolean isUpgrade(PlotUpgrade upgrade) {
 		return this.upgrades.contains(upgrade);
+	}
+
+	// Getting next id
+	public int nextId() {
+		int nextId = 0;
+		for (Plot p : ptm.getPlots())
+			if (p.getId() > nextId)
+				nextId = p.getId();
+		return nextId + 1;
+	}
+
+	public void removeCoowner(Player player) {
+		coowners.remove(player.getUniqueId());
+		update();
+	}
+
+	public void removeFriend(Player player) {
+		friends.remove(player.getUniqueId());
+		update();
 	}
 
 	public void removeUpgrade(PlotUpgrade upgrade) {
 		this.upgrades.remove(upgrade);
 		update();
 	}
+
+	public void setAllowExplosions(boolean allowExplosions) {
+		this.allowExplosions = allowExplosions;
+		update();
+	}
+
+	public void setAllowMagic(boolean allowMagic) {
+		this.allowMagic = allowMagic;
+		update();
+	}
+
+	public void setAllowPvp(boolean allowPvp) {
+		this.allowPvp = allowPvp;
+		update();
+	}
 	
+	public void setCoowners(List<UUID> coowners) {
+		this.coowners = coowners;
+	}
+
+	public void setFriendBuild(boolean friendBuild) {
+		this.friendBuild = friendBuild;
+		update();
+	}
+	
+	public void setFriends(List<UUID> friends) {
+		this.friends = friends;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+		update();
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+		update();
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+		update();
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		update();
+	}
+	
+	public void setNpcs(ArrayList<NPC> npcs) {
+		this.npcs = npcs;
+	}
+
+	public void setOwner(UUID owner) {
+		this.owner = owner;
+		update();
+	}
+
+	public void setPrivatePlot(boolean privatePlot) {
+		this.privatePlot = privatePlot;
+		update();
+	}
+
+	public void setProtected(boolean protection) {
+		this.protection = protection;
+		update();
+	}
+
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+		update();
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
+		update();
+	}
+	
+	public void setTitleEntrence(boolean titleEntrence) {
+		this.titleEntrence = titleEntrence;
+		update();
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+	
+	public void setUpgrades(List<PlotUpgrade> upgrades) {
+		this.upgrades = upgrades;
+	}
+
+	public void shrinkSize(int size) {
+		this.size -= size;
+		update();
+	}
+
+	public void subtractMoney(int money) {
+		this.money -= money;
+		update();
+	}
+	
+	public void update() {
+		this.update = true;
+	}
+
 	public String upgradesToJson() {
 		List<String> tjson = new ArrayList<String>();
 		for(PlotUpgrade upgrade : upgrades)
 			tjson.add(upgrade.name());
 		return Serializer.serializeStringArray(tjson);
-	}
-
-	public int getTax() {
-		return size*10;
-	}
-
-	public boolean isAllowedToInteract(Player player) {
-		return isAllowedToInteract(player.getUniqueId());
-	}
-	
-	public boolean isTitleEntrence() {
-		return titleEntrence;
-	}
-
-	public void setTitleEntrence(boolean titleEntrence) {
-		this.titleEntrence = titleEntrence;
-		update();
 	}
 }

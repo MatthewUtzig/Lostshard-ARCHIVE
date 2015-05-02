@@ -10,28 +10,13 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_HealOther extends Spell {
 
+	private Player foundPlayer;
+
+	private int range = 10;
 	public SPL_HealOther(Scroll scroll) {
 		super(scroll);
 	}
-
-	private Player foundPlayer;
-	private int range = 10;
 	
-	@Override
-	public boolean verifyCastable(Player player) {
-		foundPlayer = SpellUtils.playerInLOS(player, range);
-		if(foundPlayer == null) {
-			Output.simpleError(player, "No target found.");
-			return false;
-		}
-		player.sendMessage(ChatColor.GREEN + foundPlayer.getName());
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-	}
-
 	@Override
 	public void doAction(Player player) {
 		if(foundPlayer != null) {
@@ -45,8 +30,23 @@ public class SPL_HealOther extends Spell {
 		return foundPlayer;
 	}
 
+	@Override
+	public void preAction(Player player) {
+	}
+
 	public void setFoundPlayer(Player foundPlayer) {
 		this.foundPlayer = foundPlayer;
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		foundPlayer = SpellUtils.playerInLOS(player, range);
+		if(foundPlayer == null) {
+			Output.simpleError(player, "No target found.");
+			return false;
+		}
+		player.sendMessage(ChatColor.GREEN + foundPlayer.getName());
+		return true;
 	}
 
 }

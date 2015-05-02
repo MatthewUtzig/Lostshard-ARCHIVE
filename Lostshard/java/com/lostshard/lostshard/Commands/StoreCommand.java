@@ -30,6 +30,7 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("vendor").setExecutor(this);
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if(cmd.getName().equalsIgnoreCase("vendor")) {
@@ -52,6 +53,12 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		return null;
+	}
+
 	private void shop(Player player) {
 		Store store = sm.getStore(player.getLocation());
 		if(store == null) {
@@ -146,10 +153,5 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 			player.getWorld().dropItem(player.getLocation(), item);
 			Output.positiveMessage(player, "You have removed "+id+" item from the store.");
 		}
-	}
-
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		return null;
 	}
 }

@@ -13,28 +13,6 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class MiningSkill extends Skill {
 
-	static double miningdropprob = .15;
-	static double coaldroprate = .305344;
-	static double coaloredroprate = .381679;
-	static double ironordroprate = .534351;
-	static double redstonedroprate = .656489;
-	static double redstoneoredroprate = .687023;
-	static double lapisblockdroprate = .717557;
-	static double lapisoreblockdroprate = .839695;
-	static double goldoredroprate = .916031;
-	static double emeralddroprate = .946565;
-	static double emeraldoredroprate = .954198;
-	static double diamonddroprate = .984733;
-	static double diamondoredroprate = .992366;
-
-	public MiningSkill() {
-		super();
-		setName("Mining");
-		setScaleConstant(37);
-		setBaseProb(.2);
-		setMat(Material.IRON_PICKAXE);
-	}
-
 	public static void onBlockBreak(BlockBreakEvent event) {
 		if (event.isCancelled())
 			return;
@@ -48,7 +26,7 @@ public class MiningSkill extends Skill {
 			
 			int curSkill = pPlayer.getCurrentBuild().getMining().getLvl();
 
-			double percent = (double) curSkill / 1000.0;
+			double percent = curSkill / 1000.0;
 			
 			int gain = pPlayer.getCurrentBuild().getMining().skillGain(pPlayer);
 			Output.gainSkill(player, "Mining", gain, curSkill);
@@ -104,6 +82,28 @@ public class MiningSkill extends Skill {
 				}
 			}
 		}
+	}
+	static double miningdropprob = .15;
+	static double coaldroprate = .305344;
+	static double coaloredroprate = .381679;
+	static double ironordroprate = .534351;
+	static double redstonedroprate = .656489;
+	static double redstoneoredroprate = .687023;
+	static double lapisblockdroprate = .717557;
+	static double lapisoreblockdroprate = .839695;
+	static double goldoredroprate = .916031;
+	static double emeralddroprate = .946565;
+	static double emeraldoredroprate = .954198;
+	static double diamonddroprate = .984733;
+
+	static double diamondoredroprate = .992366;
+
+	public MiningSkill() {
+		super();
+		setName("Mining");
+		setScaleConstant(37);
+		setBaseProb(.2);
+		setMat(Material.IRON_PICKAXE);
 	}
 
 	@Override

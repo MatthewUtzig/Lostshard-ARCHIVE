@@ -36,14 +36,66 @@ public class PseudoPlayerTimer {
 		player = pPlayer;
 	}
 	
+	private void bleed() {
+		if(bleedTick > 0) {
+			Player p = player.getOnlinePlayer();
+			bleedTick--;
+			
+			if(bleedTick <= 0) {
+				p.sendMessage("Your bleeding has stopped.");
+				bleedTick = 0;
+			}
+			else
+			{
+				double newHealth = p.getHealth() - 1;
+				if(newHealth > 20)
+					newHealth = 20;
+				if(newHealth < 0)
+					newHealth = 0;
+				p.setHealth(newHealth);
+			}
+		}
+	}
+
 	public PseudoPlayer getPlayer() {
 		return player;
+	}
+	
+	public boolean isLastDeathOlder(long ms) {
+		return new Date().getTime() > lastDeath+ms;
+	}
+	
+	private void recentAttackersTick() {
+		for(RecentAttacker ra : player.getRecentAttackers()) {
+			ra.tick();
+		}
+		player.getRecentAttackers().removeIf(ra ->  ra.isDead());
 	}
 
 	public void setPlayer(PseudoPlayer player) {
 		this.player = player;
 	}
-	
+
+	private void spawn() {
+		if(goToSpawnTicks > 0) {
+			goToSpawnTicks--;
+			if(goToSpawnTicks == 0) {
+				Player player = this.player.getOnlinePlayer();
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.teleport(getPlayer().getSpawn());
+				spawnTicks = 36000;
+				this.player.setMana(0);
+				this.player.setStamina(0);
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
+			}
+			else if(goToSpawnTicks % 10 == 0) {
+				Player player = this.player.getOnlinePlayer();
+				Output.simpleError(player, "Returning to spawn in "+(goToSpawnTicks/10)+" seconds.");
+			}
+		}
+	}
+
 	public void tick(double delta, long tick) {
 		if(player.getOnlinePlayer() == null)
 			return;
@@ -72,54 +124,6 @@ public class PseudoPlayerTimer {
 		spawn();
 	}
 	
-	private void recentAttackersTick() {
-		for(RecentAttacker ra : player.getRecentAttackers()) {
-			ra.tick();
-		}
-		player.getRecentAttackers().removeIf(ra ->  ra.isDead());
-	}
-
-	private void spawn() {
-		if(goToSpawnTicks > 0) {
-			goToSpawnTicks--;
-			if(goToSpawnTicks == 0) {
-				Player player = this.player.getOnlinePlayer();
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				player.teleport(getPlayer().getSpawn());
-				spawnTicks = 36000;
-				this.player.setMana(0);
-				this.player.setStamina(0);
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
-			}
-			else if(goToSpawnTicks % 10 == 0) {
-				Player player = this.player.getOnlinePlayer();
-				Output.simpleError(player, "Returning to spawn in "+(goToSpawnTicks/10)+" seconds.");
-			}
-		}
-	}
-
-	private void bleed() {
-		if(bleedTick > 0) {
-			Player p = player.getOnlinePlayer();
-			bleedTick--;
-			
-			if(bleedTick <= 0) {
-				p.sendMessage("Your bleeding has stopped.");
-				bleedTick = 0;
-			}
-			else
-			{
-				double newHealth = p.getHealth() - 1;
-				if(newHealth > 20)
-					newHealth = 20;
-				if(newHealth < 0)
-					newHealth = 0;
-				p.setHealth(newHealth);
-			}
-		}
-	}
-
 	private void updateMana(double delta) {
 		if(player.getMana() < player.getMaxMana()) {
 			double manaRegenMultiplier = 2; //Meditation.getManaRegenMultiplier(this);
@@ -154,9 +158,5 @@ public class PseudoPlayerTimer {
 				}
 			}
 		}
-	}
-	
-	public boolean isLastDeathOlder(long ms) {
-		return new Date().getTime() > lastDeath+ms;
 	}
 }

@@ -22,6 +22,7 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
 		this.plugin = plugin;
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if(cmd.getName().equalsIgnoreCase("lostshardreload")) {
@@ -32,6 +33,7 @@ public class ReloadCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

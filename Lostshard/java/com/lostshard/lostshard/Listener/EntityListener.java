@@ -45,6 +45,20 @@ public class EntityListener implements Listener {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 	
+	@EventHandler(priority = EventPriority.LOW)
+	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
+		BladesSkill.playerDamagedEntityWithSword(event);
+		LumberjackingSkill.playerDamagedEntityWithAxe(event);
+		BrawlingSkill.playerDamagedEntityWithMisc(event);
+		DamageHandler.damage(event);
+		ArcherySkill.EntityDamageByEntityEvent(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityChangeBlock(EntityChangeBlockEvent event) {
+		PlotProtectionHandler.onEntityChangeBlock(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamaged(EntityDamageEvent event) {
 		if(event.getCause().equals(DamageCause.FALL)) {
@@ -55,11 +69,49 @@ public class EntityListener implements Listener {
 		DamageHandler.goldArmor(event);
 	}
 	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityDamagedByEntityHighest(EntityDamageByEntityEvent event) {
+		Entity defender = event.getEntity();
+		if (defender.hasMetadata("NPC"))
+			return;
+		PlotProtectionHandler.onEntityDamageByEntity(event);
+	}
+	
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onEntityDamagedByEntityLow(EntityDamageByEntityEvent event) {
+		Entity attacker = event.getDamager();
+		Entity defender = event.getEntity();
+		if (defender.hasMetadata("NPC"))
+			return;
+		event.setCancelled(!PVPHandler.canEntityAttackEntity(attacker, defender));
+		PVPHandler.Attack(event);
+		TamingSkill.onDamage(event);
+	}
+	
+	@EventHandler
+	public void onEntityDeath(EntityDeathEvent event) {
+		if (event.getEntity().hasMetadata("NPC"))
+			return;
+		DeathHandler.handleDeath(event);
+		ScrollHandler.onEntityDeathEvent(event);
+	}
+	
+	@EventHandler
+	public void onEntityDismount(EntityDismountEvent event) {
+		Bukkit.broadcastMessage("FUCK");
+		TamingSkill.onDismount(event);
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onEntityExplodeEvent(EntityExplodeEvent event) {
+		PlotProtectionHandler.onBlockExplode(event);
+	}
+	
 	@EventHandler
 	public void onMonsterSpawn(EntitySpawnEvent event) {
 		PlotProtectionHandler.onMonsterSpawn(event);
 	}
-	
+
 	@EventHandler
 	public void onPortalCreate(PortalCreateEvent event) {
 		event.setCancelled(true);
@@ -85,62 +137,10 @@ public class EntityListener implements Listener {
 			Player attacker = (Player) event.getEntity().getShooter();
 			for(LivingEntity e : event.getAffectedEntities()) {
 				if(e instanceof Player)
-					if(!PVPHandler.canEntityAttackEntity(attacker, (Player) e))
+					if(!PVPHandler.canEntityAttackEntity(attacker, e))
 						event.setIntensity(e, 0d);
 			}
 		}
-	}
-	
-	@EventHandler
-	public void onEntityDismount(EntityDismountEvent event) {
-		Bukkit.broadcastMessage("FUCK");
-		TamingSkill.onDismount(event);
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void onEntityDamagedByEntityLow(EntityDamageByEntityEvent event) {
-		Entity attacker = event.getDamager();
-		Entity defender = event.getEntity();
-		if (defender.hasMetadata("NPC"))
-			return;
-		event.setCancelled(!PVPHandler.canEntityAttackEntity(attacker, defender));
-		PVPHandler.Attack(event);
-		TamingSkill.onDamage(event);
-	}
-	
-	@EventHandler(priority = EventPriority.LOW)
-	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
-		BladesSkill.playerDamagedEntityWithSword(event);
-		LumberjackingSkill.playerDamagedEntityWithAxe(event);
-		BrawlingSkill.playerDamagedEntityWithMisc(event);
-		DamageHandler.damage(event);
-		ArcherySkill.EntityDamageByEntityEvent(event);
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onEntityDamagedByEntityHighest(EntityDamageByEntityEvent event) {
-		Entity defender = event.getEntity();
-		if (defender.hasMetadata("NPC"))
-			return;
-		PlotProtectionHandler.onEntityDamageByEntity(event);
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onEntityExplodeEvent(EntityExplodeEvent event) {
-		PlotProtectionHandler.onBlockExplode(event);
-	}
-
-	@EventHandler
-	public void onEntityDeath(EntityDeathEvent event) {
-		if (event.getEntity().hasMetadata("NPC"))
-			return;
-		DeathHandler.handleDeath(event);
-		ScrollHandler.onEntityDeathEvent(event);
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onEntityChangeBlock(EntityChangeBlockEvent event) {
-		PlotProtectionHandler.onEntityChangeBlock(event);
 	}
 	
 }

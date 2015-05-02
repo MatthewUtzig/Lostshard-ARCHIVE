@@ -15,18 +15,6 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class ArcherySkill extends Skill {
 
-	public ArcherySkill() {
-		super();
-		setName("Archery");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.BOW);
-	}
-	
-	public double getDamageBuff() {
-		return 0.004*getLvl();
-	}
-	
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
 		if(!(event.getDamager() instanceof Arrow))
 			return;
@@ -67,6 +55,18 @@ public class ArcherySkill extends Skill {
 		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();
+	}
+	
+	public ArcherySkill() {
+		super();
+		setName("Archery");
+		setBaseProb(.2);
+		setScaleConstant(60);
+		setMat(Material.BOW);
+	}
+	
+	public double getDamageBuff() {
+		return 0.004*getLvl();
 	}
 
 	@Override

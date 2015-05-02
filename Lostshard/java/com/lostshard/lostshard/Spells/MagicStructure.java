@@ -13,16 +13,22 @@ import com.lostshard.lostshard.Manager.PlotManager;
 
 public class MagicStructure {
 	
-	protected static PlotManager ptm = PlotManager.getManager();
-	protected static PlayerManager pm = PlayerManager.getManager();
+	public static MagicStructure findMagicStuckture(Block block) {
+		for(MagicStructure ms : magicstructures)
+			if(ms.getBlockStates().contains(block.getState()))
+				return ms;
+		return null;
+	}
+	public static List<MagicStructure> getMagicStructures() {
+		return magicstructures;
+	}
 	
-	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
+	public static PlayerManager getPm() {
+		return pm;
+	}
 	
-	public static void tickGlobal() {
-		for(MagicStructure ms : magicstructures) {
-			ms.tick();
-		}
-		magicstructures.removeIf(ms -> ms.isDead);
+	public static PlotManager getPtm() {
+		return ptm;
 	}
 	
 	public static void removeAll() {
@@ -31,10 +37,31 @@ public class MagicStructure {
 		magicstructures.clear();
 	}
 	
+	public static void setPm(PlayerManager pm) {
+		MagicStructure.pm = pm;
+	}
+	public static void setPtm(PlotManager ptm) {
+		MagicStructure.ptm = ptm;
+	}
+	public static void tickGlobal() {
+		for(MagicStructure ms : magicstructures) {
+			ms.tick();
+		}
+		magicstructures.removeIf(ms -> ms.isDead);
+	}
+	protected static PlotManager ptm = PlotManager.getManager();
+	protected static PlayerManager pm = PlayerManager.getManager();
+	
+	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
+	
 	private UUID creatorUUID;
+	
 	private boolean isDead = false;
+	
 	private ArrayList<BlockState> blocks  = new ArrayList<BlockState>();
+
 	private int numTicksTillCleanup;
+	
 	private int curTick = 0;
 	
 	public MagicStructure(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
@@ -45,14 +72,8 @@ public class MagicStructure {
 		magicstructures.add(this);
 	}
 	
-	public void tick() {
-		if(!isDead) {
-			if(numTicksTillCleanup > 0) {
-				curTick++;
-				if(curTick >= numTicksTillCleanup)
-					cleanUp();
-			}
-		}
+	public void addBlock(Block block) {
+		blocks.add(block.getState());
 	}
 	
 	public void cleanUp() {
@@ -66,98 +87,77 @@ public class MagicStructure {
 		lastThing();
 	}
 	
-	public void lastThing() {
-	}
-
-	public void addBlock(Block block) {
-		blocks.add(block.getState());
-	}
-	
 	public ArrayList<Block> getBlocks() {
 		ArrayList<Block> result = new ArrayList<Block>();
 		for(BlockState b : blocks)
 			result.add(b.getBlock());
 		return result;
 	}
-	
+
 	public ArrayList<BlockState> getBlockStates() {
 		return blocks;
-	}
-	
-	public void setBlockStates(ArrayList<Block> blocks) {
-		for(Block block : blocks)
-			this.blocks.add(block.getState());
-	}
-	
-	public boolean isDead() {
-		return isDead;
-	}
-	
-	public void setDead(boolean dead) {
-		this.isDead = dead;
 	}
 
 	public UUID getCreatorUUID() {
 		return creatorUUID;
 	}
+	
+	public int getCurTick() {
+		return curTick;
+	}
+	
+	public int getNumTicksTillCleanup() {
+		return numTicksTillCleanup;
+	}
 
-	public void setCreatorUUID(UUID creatorUUID) {
-		this.creatorUUID = creatorUUID;
+	public boolean isDead() {
+		return isDead;
 	}
 	
 	public boolean isPermanent() {
 		return numTicksTillCleanup < 0;
 	}
-	
-	public static MagicStructure findMagicStuckture(Block block) {
-		for(MagicStructure ms : magicstructures)
-			if(ms.getBlockStates().contains(block.getState()))
-				return ms;
-		return null;
+
+	public void lastThing() {
 	}
 
-	public static List<MagicStructure> getMagicStructures() {
-		return magicstructures;
+	public void setBlocks(ArrayList<BlockState> blocks) {
+		this.blocks = blocks;
 	}
-	
+
 	public void setBlocks(List<Block> blocks) {
 		for(Block b : blocks)
 			this.blocks.add(b.getState());
 	}
 
-	public static PlotManager getPtm() {
-		return ptm;
+	public void setBlockStates(ArrayList<Block> blocks) {
+		for(Block block : blocks)
+			this.blocks.add(block.getState());
 	}
 
-	public static void setPtm(PlotManager ptm) {
-		MagicStructure.ptm = ptm;
-	}
-
-	public static PlayerManager getPm() {
-		return pm;
-	}
-
-	public static void setPm(PlayerManager pm) {
-		MagicStructure.pm = pm;
-	}
-
-	public int getNumTicksTillCleanup() {
-		return numTicksTillCleanup;
-	}
-
-	public void setNumTicksTillCleanup(int numTicksTillCleanup) {
-		this.numTicksTillCleanup = numTicksTillCleanup;
-	}
-
-	public int getCurTick() {
-		return curTick;
+	public void setCreatorUUID(UUID creatorUUID) {
+		this.creatorUUID = creatorUUID;
 	}
 
 	public void setCurTick(int curTick) {
 		this.curTick = curTick;
 	}
 
-	public void setBlocks(ArrayList<BlockState> blocks) {
-		this.blocks = blocks;
+	public void setDead(boolean dead) {
+		this.isDead = dead;
+	}
+
+	public void setNumTicksTillCleanup(int numTicksTillCleanup) {
+		this.numTicksTillCleanup = numTicksTillCleanup;
+	}
+
+	public void tick() {
+		if(!isDead) {
+			if(numTicksTillCleanup > 0) {
+				curTick++;
+				if(curTick >= numTicksTillCleanup)
+					cleanUp();
+			}
+		}
 	}
 }

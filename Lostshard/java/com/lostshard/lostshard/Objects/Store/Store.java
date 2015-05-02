@@ -18,29 +18,31 @@ public class Store {
 		this.npcId = npcID;
 	}
 	
+	public void addItem(StoreItem item) {
+		int id = 0;
+		for(StoreItem si : items)
+			id = si.getId()+1;
+		item.setId(id);
+		items.add(item);
+	}
+	
+	public String getAsJson() {
+		return Serializer.gson.toJson(items).toString();
+	}
+	
 	public int getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public List<StoreItem> getItems() {
+		return items;
 	}
 	
-	public int getNpcId() {
-		return npcId;
-	}
-	
-	public void setNpcId(int npcId) {
-		this.npcId = npcId;
-	}
-	
-	public List<StoreItem> getItemsForSale() {
-		List<StoreItem> rs = new ArrayList<StoreItem>();
-		for(StoreItem item : items) {
-			if(item.getSalePrice() > 0)
-				rs.add(item);
-		}
-		return rs;
+	public String getItemsAsJson() {
+		List<String> rs = new ArrayList<String>();
+		for(StoreItem si : items)
+			rs.add(si.getAsJson());
+		return Serializer.serializeStringArray(rs);
 	}
 	
 	public List<StoreItem> getItemsForBuy() {
@@ -52,20 +54,24 @@ public class Store {
 		return rs;
 	}
 	
-	public List<StoreItem> getItems() {
-		return items;
-	}
-	
-	public void setItems(List<StoreItem> items) {
-		this.items = items;
-	}
-	
-	public boolean itemsContains(ItemStack item) {
-		for(StoreItem si : items) {
-			if(si.equals(item))
-				return true;
+	public List<StoreItem> getItemsForSale() {
+		List<StoreItem> rs = new ArrayList<StoreItem>();
+		for(StoreItem item : items) {
+			if(item.getSalePrice() > 0)
+				rs.add(item);
 		}
-		return false;
+		return rs;
+	}
+	
+	public int getNpcId() {
+		return npcId;
+	}
+	
+	public StoreItem getStoreItem(int id) {
+		for(StoreItem i : items)
+			if(id == i.getId())
+				return i;
+		return null;
 	}
 	public StoreItem getStoreItem(ItemStack item) {
 		for(StoreItem si : items) {
@@ -75,37 +81,31 @@ public class Store {
 		return null;
 	}
 	
-	public void update() {
-		Database.updateStore(this);
+	public boolean itemsContains(ItemStack item) {
+		for(StoreItem si : items) {
+			if(si.equals(item))
+				return true;
+		}
+		return false;
 	}
 	
-	public String getAsJson() {
-		return Serializer.gson.toJson(items).toString();
-	}
-
-	public void addItem(StoreItem item) {
-		int id = 0;
-		for(StoreItem si : items)
-			id = si.getId()+1;
-		item.setId(id);
-		items.add(item);
-	}
-
-	public StoreItem getStoreItem(int id) {
-		for(StoreItem i : items)
-			if(id == i.getId())
-				return i;
-		return null;
-	}
-
 	public void removeStoreItem(StoreItem storeItem) {
 		items.remove(storeItem);
 	}
 
-	public String getItemsAsJson() {
-		List<String> rs = new ArrayList<String>();
-		for(StoreItem si : items)
-			rs.add(si.getAsJson());
-		return Serializer.serializeStringArray(rs);
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setItems(List<StoreItem> items) {
+		this.items = items;
+	}
+
+	public void setNpcId(int npcId) {
+		this.npcId = npcId;
+	}
+
+	public void update() {
+		Database.updateStore(this);
 	}
 }

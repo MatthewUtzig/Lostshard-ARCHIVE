@@ -24,11 +24,11 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerLoginEvent.Result;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -66,23 +66,26 @@ public class PlayerListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerPortal(PlayerPortalEvent event) {
-		event.setCancelled(true);
+	public void onInventoryClick(InventoryClickEvent event) {
+		InventoryGUIHandler.onInventoryClick(event);
 	}
 	
 	@EventHandler
-	public void onPlayerBedEnter(PlayerBedEnterEvent event) {
-		PlotProtectionHandler.onPlayerBedEnter(event);
+	public void onInventoryClick(InventoryCloseEvent event) {
+		InventoryGUIHandler.onInventoryClose(event);
 	}
 
-	@EventHandler(priority = EventPriority.HIGH)
-	public void onPlayerFishEvent(PlayerFishEvent event) {
-		FishingSkill.onFish(event);
+	@EventHandler
+	public void onInventoryClick(InventoryInteractEvent event) {
+		InventoryGUIHandler.onInventoryInteract(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
-		EnderdragonHandler.respawnDragonCheck(event);
+	public void onInventoryClose(InventoryCloseEvent event) {
+		Player player = (Player) event.getPlayer();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
+			pPlayer.update();
 	}
 
 	@EventHandler
@@ -119,8 +122,52 @@ public class PlayerListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerSpawn(PlayerRespawnEvent event) {
-		PlotProtectionHandler.onPlayerSpawn(event);
+	public void onPlayerBedEnter(PlayerBedEnterEvent event) {
+		PlotProtectionHandler.onPlayerBedEnter(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerBuckitEmpty(PlayerBucketEmptyEvent event) {
+		PlotProtectionHandler.onBuckitEmpty(event);
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerBuckitFill(PlayerBucketFillEvent event) {
+		PlotProtectionHandler.onBuckitFill(event);
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event) {
+		EnderdragonHandler.respawnDragonCheck(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		ChatHandler.onPlayerChat(event);
+	}
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerDeath(PlayerDeathEvent event) {
+		DeathHandler.handleDeath(event);
+		for(Plot plot : ptm.getPlots())
+			if(plot instanceof PlotCapturePoint)
+				((PlotCapturePoint)plot).failCaptureDied(event.getEntity());
+	}
+
+	@EventHandler(priority = EventPriority.HIGH)
+	public void onPlayerFishEvent(PlayerFishEvent event) {
+		FishingSkill.onFish(event);
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		foodHealHandler.foodHeal(event);
+		SpellManager.onPlayerInteract(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
+		PlotProtectionHandler.onPlayerInteractEntity(event);
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -130,20 +177,6 @@ public class PlayerListener implements Listener {
 		Gate.onPlayerInteractEvent(event);
 		BlackSmithySkill.anvilProtect(event);
 		SurvivalismSkill.onHoe(event);
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		ChatHandler.onPlayerChat(event);
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerLogin(PlayerLoginEvent event) {
-		if(Lostshard.isMysqlError()) {
-			event.setKickMessage(ChatColor.RED+"Something is wrong. We are working on it.");
-			event.setResult(Result.KICK_OTHER);
-			return;
-		}
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -162,7 +195,16 @@ public class PlayerListener implements Listener {
 				p.sendMessage(ChatColor.YELLOW+player.getName()+" joined the game");
 		Database.deleteMessages(player.getUniqueId());
 	}
-
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerLogin(PlayerLoginEvent event) {
+		if(Lostshard.isMysqlError()) {
+			event.setKickMessage(ChatColor.RED+"Something is wrong. We are working on it.");
+			event.setResult(Result.KICK_OTHER);
+			return;
+		}
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		PlotProtectionHandler.onPlotEnter(event);
@@ -171,66 +213,24 @@ public class PlayerListener implements Listener {
 		FireWalk.onPlayerMove(event);
 		CapturepointHandler.onPlayerMove(event);
 	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerBuckitFill(PlayerBucketFillEvent event) {
-		PlotProtectionHandler.onBuckitFill(event);
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerBuckitEmpty(PlayerBucketEmptyEvent event) {
-		PlotProtectionHandler.onBuckitEmpty(event);
-	}
 	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onInventoryClose(InventoryCloseEvent event) {
-		Player player = (Player) event.getPlayer();
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
-			pPlayer.update();
-	}
-	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerInteract(PlayerInteractEvent event) {
-		foodHealHandler.foodHeal(event);
-		SpellManager.onPlayerInteract(event);
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerDeath(PlayerDeathEvent event) {
-		DeathHandler.handleDeath(event);
-		for(Plot plot : ptm.getPlots())
-			if(plot instanceof PlotCapturePoint)
-				((PlotCapturePoint)plot).failCaptureDied(event.getEntity());
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
-		PlotProtectionHandler.onPlayerInteractEntity(event);
+	@EventHandler
+	public void onPlayerPortal(PlayerPortalEvent event) {
+		event.setCancelled(true);
 	}
 	
 	@EventHandler
-	public void onPrepareItemEnchant(PrepareItemEnchantEvent event) {
-		BlackSmithySkill.Enchanting(event);
-	}
-	
-	@EventHandler
-	public void onInventoryClick(InventoryClickEvent event) {
-		InventoryGUIHandler.onInventoryClick(event);
-	}
-	
-	@EventHandler
-	public void onInventoryClick(InventoryCloseEvent event) {
-		InventoryGUIHandler.onInventoryClose(event);
-	}
-	
-	@EventHandler
-	public void onInventoryClick(InventoryInteractEvent event) {
-		InventoryGUIHandler.onInventoryInteract(event);
+	public void onPlayerSpawn(PlayerRespawnEvent event) {
+		PlotProtectionHandler.onPlayerSpawn(event);
 	}
 	
 	@EventHandler
 	public void onPlayerTeleport(PlayerTeleportEvent event) {
 		PlotProtectionHandler.onPlayerTeleport(event);
+	}
+	
+	@EventHandler
+	public void onPrepareItemEnchant(PrepareItemEnchantEvent event) {
+		BlackSmithySkill.Enchanting(event);
 	}
 }

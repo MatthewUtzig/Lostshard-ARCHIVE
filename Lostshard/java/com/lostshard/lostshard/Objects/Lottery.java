@@ -24,10 +24,6 @@ public class Lottery {
 		bets.put(uuid, amount);
 	}
 	
-	public boolean isBetting(UUID uuid) {
-		return bets.containsKey(uuid);
-	}
-	
 	public int betting(UUID uuid) {
 		return bets.get(uuid);
 	}
@@ -53,6 +49,10 @@ public class Lottery {
 	
 	public int getWinnerSum() {
 		return (int) Math.floor(getTotalSum()*0.9);
+	}
+	
+	public boolean isBetting(UUID uuid) {
+		return bets.containsKey(uuid);
 	}
 
 	public void timesup() {

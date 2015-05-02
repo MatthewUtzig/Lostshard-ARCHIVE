@@ -19,36 +19,23 @@ public class Reputation {
 		this.bounty = bounty;
 	}
 
-	public int getMurder() {
-		return murder;
-	}
-	
-	public void setMurder(int murder) {
-		this.murder = murder;
+	public int getBounty() {
+		return bounty;
 	}
 	
 	public int getCriminal() {
 		return criminal;
 	}
 	
-	public void setCriminal(int criminal) {
-		this.criminal = criminal;
+	public int getMurder() {
+		return murder;
 	}
 	
-	public int getTradeing() {
-		return tradeing;
-	}
-	
-	public void setTradeing(int tradeing) {
-		this.tradeing = tradeing;
-	}
-	
-	public int getBounty() {
-		return bounty;
-	}
-	
-	public void setBounty(int bounty) {
-		this.bounty = bounty;
+	public String getReputation() {
+		double total = getTotal()/40d;
+		DecimalFormat format = new DecimalFormat("#0.0", new DecimalFormatSymbols(Locale.ENGLISH));
+		format.setParseIntegerOnly(false);
+		return format.format(total);
 	}
 	
 	public int getTotal() {
@@ -60,10 +47,23 @@ public class Reputation {
 		return total;
 	}
 	
-	public String getReputation() {
-		double total = getTotal()/40d;
-		DecimalFormat format = new DecimalFormat("#0.0", new DecimalFormatSymbols(Locale.ENGLISH));
-		format.setParseIntegerOnly(false);
-		return format.format((double)total);
+	public int getTradeing() {
+		return tradeing;
+	}
+	
+	public void setBounty(int bounty) {
+		this.bounty = bounty;
+	}
+	
+	public void setCriminal(int criminal) {
+		this.criminal = criminal;
+	}
+	
+	public void setMurder(int murder) {
+		this.murder = murder;
+	}
+	
+	public void setTradeing(int tradeing) {
+		this.tradeing = tradeing;
 	}
 }

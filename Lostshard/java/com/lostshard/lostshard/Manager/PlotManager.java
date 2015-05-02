@@ -3,10 +3,9 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -17,23 +16,15 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class PlotManager {
 
+	public static PlotManager getManager() {
+		return manager;
+	}
+	
 	static PlotManager manager = new PlotManager();
 	
 	private List<Plot> plots = new ArrayList<Plot>();
 	
 	public PlotManager() {
-	}
-	
-	public static PlotManager getManager() {
-		return manager;
-	}
-
-	public List<Plot> getPlots() {
-		return plots;
-	}
-
-	public void setPlots(List<Plot> plots) {
-		this.plots = plots;
 	}
 
 	/**
@@ -62,12 +53,7 @@ public class PlotManager {
 				continue;
 		return null;
 	}
-	
-	public void removePlot(Plot plot) {
-		plots.remove(plot);
-		Database.deletePlot(plot);
-	}
-	
+
 	/**
 	 * @param id
 	 * @return plot
@@ -80,12 +66,25 @@ public class PlotManager {
 				return plot;
 		return null;
 	}
-	
+
 	public Plot getPlot(String name) {
 		for(Plot p : plots)
 			if(StringUtils.startsWithIgnoreCase(p.getName(), name))
 				return p;
 		return null;
+	}
+	
+	public List<Plot> getPlots() {
+		return plots;
+	}
+	
+	public void removePlot(Plot plot) {
+		plots.remove(plot);
+		Database.deletePlot(plot);
+	}
+	
+	public void setPlots(List<Plot> plots) {
+		this.plots = plots;
 	}
 
 	public void tax() {

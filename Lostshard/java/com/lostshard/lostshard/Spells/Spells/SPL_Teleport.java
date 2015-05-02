@@ -19,6 +19,34 @@ public class SPL_Teleport extends RangedSpell {
 		setRange(25);
 	}
 	
+	/* The meat of the spell code, this is what happens when the spell is
+	 * actually activated and should be doing something.
+	 */
+	@Override
+	public void doAction(Player player) {
+		Location teleportTo = new Location(player.getWorld(), getFoundBlock().getX()+.5, (double)getFoundBlock().getY()+1, getFoundBlock().getZ()+.5);
+		teleportTo.setPitch(player.getLocation().getPitch());
+		teleportTo.setYaw(player.getLocation().getYaw());
+		player.teleport(teleportTo);
+	}
+
+	private boolean isRoom(Block block) {
+		if(!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0).getType()) ||
+				!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2, 0).getType())) {
+			return false;
+		}
+		return true;
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+		
+	}
+	
+	@Override
 	public boolean verifyCastable(Player player) {
 		Block blockAt = player.getLocation().getBlock();
 		if(!blockAt.getType().equals(Material.IRON_DOOR_BLOCK)) {
@@ -72,31 +100,6 @@ public class SPL_Teleport extends RangedSpell {
 		}
 		else Output.simpleError(player, "can't teleport from an iron door.");
 		return false;
-	}
-
-	private boolean isRoom(Block block) {
-		if(!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0).getType()) ||
-				!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2, 0).getType())) {
-			return false;
-		}
-		return true;
-	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		
-	}
-	
-	/* The meat of the spell code, this is what happens when the spell is
-	 * actually activated and should be doing something.
-	 */
-	public void doAction(Player player) {
-		Location teleportTo = new Location(player.getWorld(), (double)getFoundBlock().getX()+.5, (double)getFoundBlock().getY()+1, (double)getFoundBlock().getZ()+.5);
-		teleportTo.setPitch(player.getLocation().getPitch());
-		teleportTo.setYaw(player.getLocation().getYaw());
-		player.teleport(teleportTo);
 	}
 
 	

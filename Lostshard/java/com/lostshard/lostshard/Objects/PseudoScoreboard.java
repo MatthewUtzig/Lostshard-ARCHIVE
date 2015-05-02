@@ -95,6 +95,38 @@ public class PseudoScoreboard {
 		}
 	}
 	
+	public UUID getPlayerUUID() {
+		return playerUUID;
+	}
+	
+	public void setPlayerUUID(UUID playerUUID) {
+		this.playerUUID = playerUUID;
+	}
+	
+	public void updateBuild(int build) {
+		this.build.setScore(build);
+	}
+	
+	public void updateMana(int mana) {
+		this.mana.setScore(mana);
+	}
+	
+	public void updateMoney(int money) {
+		gc.setScore(money);
+	}
+	
+	public void updateMurderCounts(int murderCounts) {
+		this.mc.setScore(murderCounts);
+	}
+	
+	public void updateRank(int rank) {
+		this.rank.setScore(rank);
+	}
+
+	public void updateStamina(int stamina) {
+		this.stamina.setScore(stamina);
+	}
+
 	public void updateTeams() {
 		PseudoPlayer pPlayer = pm.getPlayer(playerUUID);
 		Player player = Bukkit.getPlayer(playerUUID);
@@ -117,38 +149,6 @@ public class PseudoScoreboard {
 				}
 			}
 		}
-	}
-	
-	public void updateMoney(int money) {
-		gc.setScore(money);
-	}
-	
-	public void updateMana(int mana) {
-		this.mana.setScore(mana);
-	}
-	
-	public void updateStamina(int stamina) {
-		this.stamina.setScore(stamina);
-	}
-	
-	public void updateBuild(int build) {
-		this.build.setScore(build);
-	}
-	
-	public void updateMurderCounts(int murderCounts) {
-		this.mc.setScore(murderCounts);
-	}
-	
-	public void updateRank(int rank) {
-		this.rank.setScore(rank);
-	}
-
-	public UUID getPlayerUUID() {
-		return playerUUID;
-	}
-
-	public void setPlayerUUID(UUID playerUUID) {
-		this.playerUUID = playerUUID;
 	}
 	
 }

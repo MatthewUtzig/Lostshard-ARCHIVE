@@ -12,11 +12,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Data.Locations;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Objects.Locations;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Utils.Output;
@@ -46,167 +46,6 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("ignore").setExecutor(this);
 		plugin.getCommand("unignore").setExecutor(this);
 		plugin.getCommand("help").setExecutor(this);
-	}
-
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
-		if (cmd.getName().equalsIgnoreCase("stats")) {
-			Output.displayStats(sender);
-		} else if (cmd.getName().equalsIgnoreCase("who")) {
-			Output.outputPlayerlist(sender);
-		} else if (cmd.getName().equalsIgnoreCase("whois")) {
-			Output.displayWho(sender, args);
-		} else if (cmd.getName().equalsIgnoreCase("spawn")) {
-			playerSpawn(sender);
-		} else if (cmd.getName().equalsIgnoreCase("resetspawn")) {
-			playerResetSpawn(sender);
-		} else if (cmd.getName().equalsIgnoreCase("rules")) {
-			Output.displayRules(sender);
-		} else if (cmd.getName().equalsIgnoreCase("build")) {
-			buildChange(sender, args);
-		} else if (cmd.getName().equalsIgnoreCase("private")) {
-			playerSetPrivate(sender);
-		} else if (cmd.getName().equalsIgnoreCase("public")) {
-			playerSetPublic(sender);
-		} else if (cmd.getName().equalsIgnoreCase("kill")) {
-			kill(sender);
-		} else if(cmd.getName().equalsIgnoreCase("gui")) {
-			gui(sender);
-		} else if(cmd.getName().equalsIgnoreCase("ff")) {
-			ff(sender);
-		} else if(cmd.getName().equalsIgnoreCase("ignore")) {
-			ignore(sender, args);
-		} else if(cmd.getName().equalsIgnoreCase("unignore")) {
-			unignore(sender, args);
-		} else if(cmd.getName().equalsIgnoreCase("help")) {
-			HelpHandler.handle(sender, args);
-		}
-		return true;
-	}
-
-	private void ignore(CommandSender sender, String[] args) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		Player player = (Player) sender;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(args.length < 1) {
-			Output.simpleError(player, "Use \"/ignore (player) \"");
-			if(pPlayer.getIgnored().isEmpty())
-				Output.simpleError(player, "You are currently not ignoring any players.");
-			else
-				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
-			return;
-		}
-		Player tPlayer = Bukkit.getPlayer(args[0]);
-		if(tPlayer == null) {
-			Output.simpleError(player, args[0]+" is not online.");
-			return;
-		}
-		if(player == tPlayer) {
-			Output.simpleError(player, "You can't ignore your self.");
-			return;
-		}
-		if(pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
-			Output.simpleError(player, "You are currently ignoring "+tPlayer.getName()+".");
-			return;
-		}
-		Output.positiveMessage(player, "You are now ignoreing "+tPlayer.getName()+".");
-		pPlayer.getIgnored().add(tPlayer.getUniqueId());
-	}
-
-	private void unignore(CommandSender sender, String[] args) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		Player player = (Player) sender;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(args.length < 1) {
-			Output.simpleError(player, "Use \"/unignore (player) \"");
-			if(pPlayer.getIgnored().isEmpty())
-				Output.simpleError(player, "You are currently not ignoring any players.");
-			else
-				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
-			return;
-		}
-		@SuppressWarnings("deprecation")
-		OfflinePlayer tPlayer = Bukkit.getOfflinePlayer(args[0]);
-		if(!pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
-			Output.simpleError(player, "You are currently not ignoring "+tPlayer.getName()+".");
-			return;
-		}
-		Output.positiveMessage(player, "You are no longer ignoreing "+tPlayer.getName()+".");
-		pPlayer.getIgnored().add(tPlayer.getUniqueId());
-	}
-
-	private void ff(CommandSender sender) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
-		if(pPlayer.isFriendlyFire()) {
-			Output.positiveMessage(sender, "You have disabled friendly fire.");
-			pPlayer.setFriendlyFire(false);
-		} else {
-			Output.positiveMessage(sender, "You have enabled friendly fire.");
-			pPlayer.setFriendlyFire(true);
-		}
-	}
-
-	private void gui(CommandSender sender) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
-		if(pPlayer.isAllowGui()) {
-			Output.positiveMessage(sender, "You have disabled inventory GUI.");
-			pPlayer.setAllowGui(false);
-		} else {
-			Output.positiveMessage(sender, "You have enabled inventory GUI.");
-			pPlayer.setAllowGui(true);
-		}
-	}
-
-	private void kill(CommandSender sender) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		Player player = (Player) sender;
-		player.setHealth(0);
-		Output.positiveMessage(sender, "You have taken your own life.");
-	}
-
-	private void playerSetPublic(CommandSender sender) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
-		if(!pPlayer.isPrivate())
-			Output.positiveMessage(sender, "You where already set public.");
-		else {
-			pPlayer.setPrivate(false);
-			Output.positiveMessage(sender, "You have been set to public.");
-		}
-	}
-
-	private void playerSetPrivate(CommandSender sender) {
-		if(!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
-		if(pPlayer.isPrivate())
-			Output.positiveMessage(sender, "You where already set private.");
-		else {
-			pPlayer.setPrivate(true);
-			Output.positiveMessage(sender, "You have been set to private.");
-		}
 	}
 
 	private void buildChange(CommandSender sender, String[] args) {
@@ -261,6 +100,123 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
+	private void ff(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isFriendlyFire()) {
+			Output.positiveMessage(sender, "You have disabled friendly fire.");
+			pPlayer.setFriendlyFire(false);
+		} else {
+			Output.positiveMessage(sender, "You have enabled friendly fire.");
+			pPlayer.setFriendlyFire(true);
+		}
+	}
+
+	private void gui(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isAllowGui()) {
+			Output.positiveMessage(sender, "You have disabled inventory GUI.");
+			pPlayer.setAllowGui(false);
+		} else {
+			Output.positiveMessage(sender, "You have enabled inventory GUI.");
+			pPlayer.setAllowGui(true);
+		}
+	}
+
+	private void ignore(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(args.length < 1) {
+			Output.simpleError(player, "Use \"/ignore (player) \"");
+			if(pPlayer.getIgnored().isEmpty())
+				Output.simpleError(player, "You are currently not ignoring any players.");
+			else
+				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+			return;
+		}
+		Player tPlayer = Bukkit.getPlayer(args[0]);
+		if(tPlayer == null) {
+			Output.simpleError(player, args[0]+" is not online.");
+			return;
+		}
+		if(player == tPlayer) {
+			Output.simpleError(player, "You can't ignore your self.");
+			return;
+		}
+		if(pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
+			Output.simpleError(player, "You are currently ignoring "+tPlayer.getName()+".");
+			return;
+		}
+		Output.positiveMessage(player, "You are now ignoreing "+tPlayer.getName()+".");
+		pPlayer.getIgnored().add(tPlayer.getUniqueId());
+	}
+
+	private void kill(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		player.setHealth(0);
+		Output.positiveMessage(sender, "You have taken your own life.");
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("stats")) {
+			Output.displayStats(sender);
+		} else if (cmd.getName().equalsIgnoreCase("who")) {
+			Output.outputPlayerlist(sender);
+		} else if (cmd.getName().equalsIgnoreCase("whois")) {
+			Output.displayWho(sender, args);
+		} else if (cmd.getName().equalsIgnoreCase("spawn")) {
+			playerSpawn(sender);
+		} else if (cmd.getName().equalsIgnoreCase("resetspawn")) {
+			playerResetSpawn(sender);
+		} else if (cmd.getName().equalsIgnoreCase("rules")) {
+			Output.displayRules(sender);
+		} else if (cmd.getName().equalsIgnoreCase("build")) {
+			buildChange(sender, args);
+		} else if (cmd.getName().equalsIgnoreCase("private")) {
+			playerSetPrivate(sender);
+		} else if (cmd.getName().equalsIgnoreCase("public")) {
+			playerSetPublic(sender);
+		} else if (cmd.getName().equalsIgnoreCase("kill")) {
+			kill(sender);
+		} else if(cmd.getName().equalsIgnoreCase("gui")) {
+			gui(sender);
+		} else if(cmd.getName().equalsIgnoreCase("ff")) {
+			ff(sender);
+		} else if(cmd.getName().equalsIgnoreCase("ignore")) {
+			ignore(sender, args);
+		} else if(cmd.getName().equalsIgnoreCase("unignore")) {
+			unignore(sender, args);
+		} else if(cmd.getName().equalsIgnoreCase("help")) {
+			HelpHandler.handle(sender, args);
+		}
+		return true;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("private") || cmd.getName().equalsIgnoreCase("public"))
+			return null;
+		return null;
+	}
+
 	private void playerResetSpawn(CommandSender sender) {
 		if (!(sender instanceof Player)) {
 			Output.simpleError(sender, "Only players may perform this command.");
@@ -275,6 +231,34 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 					"You have reset your spawn to Order.");
 		((Player)sender).setBedSpawnLocation(null);
 		return;
+	}
+
+	private void playerSetPrivate(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(pPlayer.isPrivate())
+			Output.positiveMessage(sender, "You where already set private.");
+		else {
+			pPlayer.setPrivate(true);
+			Output.positiveMessage(sender, "You have been set to private.");
+		}
+	}
+
+	private void playerSetPublic(CommandSender sender) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer((Player) sender);
+		if(!pPlayer.isPrivate())
+			Output.positiveMessage(sender, "You where already set public.");
+		else {
+			pPlayer.setPrivate(false);
+			Output.positiveMessage(sender, "You have been set to public.");
+		}
 	}
 
 	private void playerSpawn(CommandSender sender) {
@@ -295,10 +279,28 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("private") || cmd.getName().equalsIgnoreCase("public"))
-			return null;
-		return null;
+	private void unignore(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(args.length < 1) {
+			Output.simpleError(player, "Use \"/unignore (player) \"");
+			if(pPlayer.getIgnored().isEmpty())
+				Output.simpleError(player, "You are currently not ignoring any players.");
+			else
+				player.sendMessage(ChatColor.YELLOW+Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+			return;
+		}
+		@SuppressWarnings("deprecation")
+		OfflinePlayer tPlayer = Bukkit.getOfflinePlayer(args[0]);
+		if(!pPlayer.getIgnored().contains(tPlayer.getUniqueId())) {
+			Output.simpleError(player, "You are currently not ignoring "+tPlayer.getName()+".");
+			return;
+		}
+		Output.positiveMessage(player, "You are no longer ignoreing "+tPlayer.getName()+".");
+		pPlayer.getIgnored().add(tPlayer.getUniqueId());
 	}
 }

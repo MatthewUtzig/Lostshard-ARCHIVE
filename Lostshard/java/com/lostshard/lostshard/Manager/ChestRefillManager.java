@@ -11,30 +11,22 @@ import com.lostshard.lostshard.Objects.ChestRefill;
 
 public class ChestRefillManager {
 	
-	private static ChestRefillManager manager = new ChestRefillManager();
-	private List<ChestRefill> chests = new ArrayList<ChestRefill>();
-	
-	private ChestRefillManager() {
-	
-	}
-
 	public static ChestRefillManager getManager() {
 		return manager;
 	}
+	private static ChestRefillManager manager = new ChestRefillManager();
+	
+	private List<ChestRefill> chests = new ArrayList<ChestRefill>();
 
-	public List<ChestRefill> getChests() {
-		return chests;
-	}
-
-	public void setChests(List<ChestRefill> chests) {
-		this.chests = chests;
+	private ChestRefillManager() {
+	
 	}
 
 	public void add(ChestRefill cr) {
 		chests.add(cr);
 		Database.insertChest(cr);
 	}
-	
+
 	public ChestRefill getChest(Chest chest) {
 		for(ChestRefill cr : chests) {
 			if(cr.getLocation().equals(chest.getLocation()))
@@ -58,9 +50,17 @@ public class ChestRefillManager {
 		return null;
 	}
 
+	public List<ChestRefill> getChests() {
+		return chests;
+	}
+	
 	public void remove(ChestRefill cr) {
 		chests.remove(cr);
 		Database.deleteChest(cr);
+	}
+
+	public void setChests(List<ChestRefill> chests) {
+		this.chests = chests;
 	}
 	
 	public void tick() {

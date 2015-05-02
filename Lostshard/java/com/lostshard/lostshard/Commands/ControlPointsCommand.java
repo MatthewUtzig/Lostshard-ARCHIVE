@@ -35,28 +35,6 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("claim").setExecutor(this);
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
-		if (cmd.getName().equalsIgnoreCase("capturepoints")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			Player player = (Player) sender;
-			Output.capturePointsInfo(player);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("claim")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			Player player = (Player) sender;
-			claim(player);
-			return true;
-		}
-		return false;
-	}
-
 	private void claim(Player player) {
 		Plot checkplot = ptm.findPlotAt(player.getLocation());
 		if(checkplot == null || !(checkplot instanceof PlotCapturePoint)) {
@@ -113,6 +91,30 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
     	return;
 	}
 
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("capturepoints")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			Output.capturePointsInfo(player);
+			return true;
+		} else if (cmd.getName().equalsIgnoreCase("claim")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			claim(player);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

@@ -14,12 +14,11 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class CapturepointHandler {
 
-	static PlotManager ptm = PlotManager.getManager();
-	
-	public static void tick(double delta) {
+	public static void onPlayerDie(PlayerDeathEvent event) {
+		Player player = event.getEntity();
 		for(Plot plot : ptm.getPlots())
 			if(plot instanceof PlotCapturePoint)
-				((PlotCapturePoint)plot).tick(delta);
+				((PlotCapturePoint)plot).failCaptureLeft(player);
 	}
 	
 	public static void onPlayerMove(PlayerMoveEvent event) {
@@ -47,17 +46,18 @@ public class CapturepointHandler {
     		}
 	    }
 	}
-
+	
 	public static void onPlayerQuit(PlayerQuitEvent event) {
 		for(Plot plot : ptm.getPlots())
 			if(plot instanceof PlotCapturePoint)
 				((PlotCapturePoint)plot).failCaptureLeft(event.getPlayer());
 	}
-	
-	public static void onPlayerDie(PlayerDeathEvent event) {
-		Player player = event.getEntity();
+
+	public static void tick(double delta) {
 		for(Plot plot : ptm.getPlots())
 			if(plot instanceof PlotCapturePoint)
-				((PlotCapturePoint)plot).failCaptureLeft(player);
+				((PlotCapturePoint)plot).tick(delta);
 	}
+	
+	static PlotManager ptm = PlotManager.getManager();
 }

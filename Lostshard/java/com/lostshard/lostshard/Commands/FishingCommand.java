@@ -18,6 +18,7 @@ public class FishingCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("boat").setExecutor(this);
 	}
 	
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("boat")) {
 			if(!(sender instanceof Player)) {
@@ -31,6 +32,7 @@ public class FishingCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		return null;
 	}

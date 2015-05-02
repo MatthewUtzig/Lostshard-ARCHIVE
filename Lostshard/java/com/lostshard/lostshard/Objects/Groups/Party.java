@@ -10,6 +10,7 @@ import com.lostshard.lostshard.Main.Lostshard;
 
 public class Party extends Group {
 
+	@Override
 	public void sendMessage(String message) {
 		for(UUID member : getMembers()) {
 			Player memberPlayer = Bukkit.getPlayer(member);

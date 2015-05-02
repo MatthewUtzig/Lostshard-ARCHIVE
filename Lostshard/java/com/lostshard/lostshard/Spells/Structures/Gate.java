@@ -20,48 +20,29 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class Gate extends MagicStructure {
 
-	private Block fromBlock;
-	private Block toBlock;
-	private boolean direction;
-	
-	@SuppressWarnings("deprecation")
-	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
-		super(blocks, uuid, numTicksTillCleanup);
-		this.direction = direction;
-		if(!direction) {
-			for(Block b : blocks) {
-				b.setType(Material.PORTAL);
-				b.setData((byte)2);
+	public static Location checkPortals(Block block, Player player) {
+	    	PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+	    	if(pseudoPlayer.getTimer().recentlyTeleportedTicks > 0)
+	    		return null;
+			
+			MagicStructure ms = findMagicStuckture(block);
+			if(ms instanceof Gate) {
+				Gate gate = (Gate) ms;
+				Location targetLoc = null;
+				if(gate.isSourceBlock(block)) {
+					targetLoc = gate.getToBlock().getLocation();
+				}
+				else if(gate.isDestBlock(block)) {
+					targetLoc = gate.getFromBlock().getLocation();
+				}
+				return targetLoc;
 			}
-		}else {
-			for(Block b : blocks)
-				b.setType(Material.PORTAL);
+			return null;
 		}
-		setBlocks(blocks);
-		fromBlock = blocks.get(0);
-		toBlock = blocks.get(1);
+	public static void onBlockPhysics(BlockPhysicsEvent event) {
+		if(event.getBlock().getType().equals(Material.PORTAL))
+			event.setCancelled(true);
 	}
-	
-	public boolean isSourceBlock(Block block) {
-		if(fromBlock.getLocation().equals(block.getLocation()))
-			return true;
-		return false;
-	}
-	
-	public boolean isDestBlock(Block block) {
-		if(toBlock.getLocation().equals(block.getLocation()))
-			return true;
-		return false;
-	}
-	
-	public Block getFromBlock() {
-		return fromBlock;
-	}
-	
-	public Block getToBlock() {
-		return toBlock;
-	}
-
 	public static void onPlayerInteractEvent(PlayerInteractEvent event) {
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Block block = event.getClickedBlock();
@@ -81,12 +62,7 @@ public class Gate extends MagicStructure {
 			}
 		}
 	}
-
-	public static void onBlockPhysics(BlockPhysicsEvent event) {
-		if(event.getBlock().getType().equals(Material.PORTAL))
-			event.setCancelled(true);
-	}
-
+	
 	public static void onPlayerMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		PseudoPlayer pPlayer = pm.getPlayer(player);
@@ -103,28 +79,52 @@ public class Gate extends MagicStructure {
     	}
 	}
 	
-   public static Location checkPortals(Block block, Player player) {
-    	PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-    	if(pseudoPlayer.getTimer().recentlyTeleportedTicks > 0)
-    		return null;
-		
-		MagicStructure ms = findMagicStuckture(block);
-		if(ms instanceof Gate) {
-			Gate gate = (Gate) ms;
-			Location targetLoc = null;
-			if(gate.isSourceBlock(block)) {
-				targetLoc = gate.getToBlock().getLocation();
+	private Block fromBlock;
+	
+	private Block toBlock;
+	
+	private boolean direction;
+	
+	@SuppressWarnings("deprecation")
+	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
+		super(blocks, uuid, numTicksTillCleanup);
+		this.direction = direction;
+		if(!direction) {
+			for(Block b : blocks) {
+				b.setType(Material.PORTAL);
+				b.setData((byte)2);
 			}
-			else if(gate.isDestBlock(block)) {
-				targetLoc = gate.getFromBlock().getLocation();
-			}
-			return targetLoc;
+		}else {
+			for(Block b : blocks)
+				b.setType(Material.PORTAL);
 		}
-		return null;
+		setBlocks(blocks);
+		fromBlock = blocks.get(0);
+		toBlock = blocks.get(1);
 	}
 
-	public boolean isDirection() {
-		return direction;
+	public Block getFromBlock() {
+		return fromBlock;
+	}
+
+	public Block getToBlock() {
+		return toBlock;
+	}
+
+	public boolean isDestBlock(Block block) {
+		if(toBlock.getLocation().equals(block.getLocation()))
+			return true;
+		return false;
+	}
+	
+   public boolean isDirection() {
+	return direction;
+}
+
+	public boolean isSourceBlock(Block block) {
+		if(fromBlock.getLocation().equals(block.getLocation()))
+			return true;
+		return false;
 	}
 	
 	public void setDirection(boolean direction) {

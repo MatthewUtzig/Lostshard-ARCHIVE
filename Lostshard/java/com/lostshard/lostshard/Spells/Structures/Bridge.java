@@ -11,12 +11,12 @@ import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class Bridge extends MagicStructure {
 
+	protected int buildTicks = 25;
+	
+	protected int solidTicks = 125;
 	public Bridge(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
 	}
-	
-	protected int buildTicks = 25;
-	protected int solidTicks = 125;
 	
 	@Override 
 	public void tick() {

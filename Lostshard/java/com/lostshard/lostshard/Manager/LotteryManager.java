@@ -7,14 +7,14 @@ import com.lostshard.lostshard.Objects.Lottery;
 
 public class LotteryManager {
 
-	static LotteryManager manager = new LotteryManager();
-	private Lottery lottery = null;
-	
-	private LotteryManager() { }
-	
 	public static LotteryManager getManager() {
 		return manager;
 	}
+	static LotteryManager manager = new LotteryManager();
+	
+	private Lottery lottery = null;
+	
+	private LotteryManager() { }
 	
 	public Lottery getLottery() {
 		return lottery;

@@ -19,91 +19,9 @@ import com.lostshard.lostshard.Objects.Groups.Party;
 
 public class SpellUtils {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	
-	public static HashSet<Material> invisibleBlocks = new HashSet<Material>(Arrays.asList(
-			Material.AIR,
-			Material.SNOW,
-			Material.FIRE,
-			Material.TORCH,
-			Material.LADDER,
-			Material.RED_MUSHROOM,
-			Material.RED_ROSE,
-			Material.YELLOW_FLOWER,
-			Material.BROWN_MUSHROOM,
-			Material.REDSTONE_WIRE,
-			Material.WOOD_PLATE,
-			Material.STONE_PLATE,
-			Material.PORTAL,
-			Material.LAVA,
-			Material.WATER,
-			Material.STONE_BUTTON,
-			Material.LEVER,
-			Material.CARPET,
-			Material.IRON_PLATE,
-			Material.GOLD_PLATE,
-			Material.WOOD_BUTTON,
-			Material.LONG_GRASS,
-			Material.RAILS,
-			Material.VINE,
-			Material.SIGN_POST,
-			Material.WALL_SIGN,
-			null));
-	
-	public static boolean isValidRuneLocation(Player player, Location location) {
-		Block blockAt = location.getBlock();
-		Block blockAbove = blockAt.getRelative(0,1,0);
-		if(blockAbove == null || blockAt == null)
-			return true;
-		if(!invisibleBlocks.contains(blockAt.getType()) || !invisibleBlocks.contains(blockAbove.getType())) {
-			Output.simpleError(player, "Invalid location, blocked.");
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public static Player playerInLOS(Player player, int range) {
-		AimBlock aimHit = new AimBlock(player, range, .5);
-		
-		Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
-		ArrayList<Player> playersInRange = new ArrayList<Player>();
-		for(Player p : onlinePlayers) {
-			if(p != player) {
-				if(Utils.isWithin(player.getLocation(), p.getLocation(), range)) {
-					playersInRange.add(p);
-				}
-			}
-		}
-		
-		if(playersInRange.size() <= 0)
-			return null;
-		
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		
-		Clan clan = pPlayer.getClan();
-		Party party = pPlayer.getParty();
-		
-		boolean done = false;
-		Player firstNeutralFound = null;
-		while (!done) {
-			Block b = aimHit.getNextBlock();
-			if(b != null) {
-				for(Player p : playersInRange) {
-					if(Utils.isWithin(b.getLocation(), p.getLocation(), 1.5)) {
-						if(((clan != null) && clan.isInClan(p.getUniqueId())) || ((party != null) && (party.isMember(p)))) {
-							return p;
-						}
-						
-						if(firstNeutralFound == null)
-							firstNeutralFound = p;
-					}
-				}
-			}
-			else return firstNeutralFound;
-		}
-		
-		return firstNeutralFound;
+	public static Block blockInLOS(Player player, int range) {
+		Block targetBlock = player.getTargetBlock(invisibleBlocks, range);
+		return targetBlock;
 	}
 	
 	public static ArrayList<LivingEntity> enemiesInLOS(Player player, PseudoPlayer pseudoPlayer, int range) {
@@ -175,9 +93,91 @@ public class SpellUtils {
 		
 		return validTargets;
 	}
-
-	public static Block blockInLOS(Player player, int range) {
-		Block targetBlock = player.getTargetBlock(invisibleBlocks, range);
-		return targetBlock;
+	
+	public static boolean isValidRuneLocation(Player player, Location location) {
+		Block blockAt = location.getBlock();
+		Block blockAbove = blockAt.getRelative(0,1,0);
+		if(blockAbove == null || blockAt == null)
+			return true;
+		if(!invisibleBlocks.contains(blockAt.getType()) || !invisibleBlocks.contains(blockAbove.getType())) {
+			Output.simpleError(player, "Invalid location, blocked.");
+			return false;
+		}
+		
+		return true;
 	}
+	
+	public static Player playerInLOS(Player player, int range) {
+		AimBlock aimHit = new AimBlock(player, range, .5);
+		
+		Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+		ArrayList<Player> playersInRange = new ArrayList<Player>();
+		for(Player p : onlinePlayers) {
+			if(p != player) {
+				if(Utils.isWithin(player.getLocation(), p.getLocation(), range)) {
+					playersInRange.add(p);
+				}
+			}
+		}
+		
+		if(playersInRange.size() <= 0)
+			return null;
+		
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		
+		Clan clan = pPlayer.getClan();
+		Party party = pPlayer.getParty();
+		
+		boolean done = false;
+		Player firstNeutralFound = null;
+		while (!done) {
+			Block b = aimHit.getNextBlock();
+			if(b != null) {
+				for(Player p : playersInRange) {
+					if(Utils.isWithin(b.getLocation(), p.getLocation(), 1.5)) {
+						if(((clan != null) && clan.isInClan(p.getUniqueId())) || ((party != null) && (party.isMember(p)))) {
+							return p;
+						}
+						
+						if(firstNeutralFound == null)
+							firstNeutralFound = p;
+					}
+				}
+			}
+			else return firstNeutralFound;
+		}
+		
+		return firstNeutralFound;
+	}
+	
+	static PlayerManager pm = PlayerManager.getManager();
+
+	public static HashSet<Material> invisibleBlocks = new HashSet<Material>(Arrays.asList(
+			Material.AIR,
+			Material.SNOW,
+			Material.FIRE,
+			Material.TORCH,
+			Material.LADDER,
+			Material.RED_MUSHROOM,
+			Material.RED_ROSE,
+			Material.YELLOW_FLOWER,
+			Material.BROWN_MUSHROOM,
+			Material.REDSTONE_WIRE,
+			Material.WOOD_PLATE,
+			Material.STONE_PLATE,
+			Material.PORTAL,
+			Material.LAVA,
+			Material.WATER,
+			Material.STONE_BUTTON,
+			Material.LEVER,
+			Material.CARPET,
+			Material.IRON_PLATE,
+			Material.GOLD_PLATE,
+			Material.WOOD_BUTTON,
+			Material.LONG_GRASS,
+			Material.RAILS,
+			Material.VINE,
+			Material.SIGN_POST,
+			Material.WALL_SIGN,
+			null));
 }

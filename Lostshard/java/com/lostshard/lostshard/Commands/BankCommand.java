@@ -42,6 +42,33 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("lottery").setExecutor(this);
 	}
 
+	/**
+	 * @param sender
+	 * 
+	 *            Let player access bank.
+	 */
+	private void bank(CommandSender sender) {
+		if (!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		for (NPC npc : npcm.getBankers())
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
+					Variables.bankRadius)) {
+				player.openInventory(pPlayer.getBank().getInventory());
+				return;
+			}
+		Output.simpleError(player, "You are not close enough to a bank.");
+		return;
+	}
+
+	private void lottery(CommandSender sender, String[] args) {
+		
+	}
+
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("bank")) {
@@ -56,8 +83,21 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
-	private void lottery(CommandSender sender, String[] args) {
-		
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("pay"))
+			if (args.length == 1)
+				if (sender instanceof Player)
+					return TabUtils.OnlinePlayersTab(args,
+							new Player[] { (Player) sender });
+				else
+					return TabUtils.OnlinePlayersTab(args);
+		if (cmd.getName().equalsIgnoreCase("tradegold"))
+			return null;
+		if (cmd.getName().equalsIgnoreCase("bank"))
+			return null;
+		return null;
 	}
 
 	/**
@@ -146,44 +186,6 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		} else
 			Output.simpleError(player, "You dont have " + amount
 					+ " gold ingots in your inventory.");
-	}
-
-	/**
-	 * @param sender
-	 * 
-	 *            Let player access bank.
-	 */
-	private void bank(CommandSender sender) {
-		if (!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		Player player = (Player) sender;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		for (NPC npc : npcm.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
-					Variables.bankRadius)) {
-				player.openInventory(pPlayer.getBank().getInventory());
-				return;
-			}
-		Output.simpleError(player, "You are not close enough to a bank.");
-		return;
-	}
-
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("pay"))
-			if (args.length == 1)
-				if (sender instanceof Player)
-					return TabUtils.OnlinePlayersTab(args,
-							new Player[] { (Player) sender });
-				else
-					return TabUtils.OnlinePlayersTab(args);
-		if (cmd.getName().equalsIgnoreCase("tradegold"))
-			return null;
-		if (cmd.getName().equalsIgnoreCase("bank"))
-			return null;
-		return null;
 	}
 
 }

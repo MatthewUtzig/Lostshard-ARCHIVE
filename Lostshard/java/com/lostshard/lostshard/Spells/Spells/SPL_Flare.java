@@ -17,24 +17,10 @@ public class SPL_Flare extends Spell {
 		super(scroll);
 	}
 	
-	/* Used to confirm that the spell can be cast, so, for example, if you were
-	 * attempting to teleport to some location that was blocked, we would figure
-	 * that out here and cancel the spell.
-	 */
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-
-	}
-	
 	/* The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {
 		//Spawn the Firework, get the FireworkMeta.
         Firework fw = (Firework) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
@@ -51,6 +37,23 @@ public class SPL_Flare extends Spell {
        
         //Then apply this to our rocket
         fw.setFireworkMeta(fwm); 
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+
+	}
+	
+	/* Used to confirm that the spell can be cast, so, for example, if you were
+	 * attempting to teleport to some location that was blocked, we would figure
+	 * that out here and cancel the spell.
+	 */
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 	
 }

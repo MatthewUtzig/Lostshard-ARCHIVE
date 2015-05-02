@@ -10,28 +10,20 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 
 public abstract class RangedSpell extends Spell {
 
+	private int range;
+
+	private Block foundBlock;
+	private boolean carePlot;
 	public RangedSpell(Scroll scroll) {
 		super(scroll);
 	}
-
-	private int range;
-	private Block foundBlock;
-	private boolean carePlot;
 	
-	public int getRange() {
-		return range;
-	}
-
-	public void setRange(int range) {
-		this.range = range;
-	}
-
 	public Block getFoundBlock() {
 		return foundBlock;
 	}
 
-	public void setFoundBlock(Block foundBlock) {
-		this.foundBlock = foundBlock;
+	public int getRange() {
+		return range;
 	}
 
 	public boolean isCarePlot() {
@@ -41,7 +33,16 @@ public abstract class RangedSpell extends Spell {
 	public void setCarePlot(boolean carePlot) {
 		this.carePlot = carePlot;
 	}
+
+	public void setFoundBlock(Block foundBlock) {
+		this.foundBlock = foundBlock;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
 	
+	@Override
 	public boolean verifyCastable(Player player) {
 		setFoundBlock(SpellUtils.blockInLOS(player, getRange()));
 		if(getFoundBlock() == null) {

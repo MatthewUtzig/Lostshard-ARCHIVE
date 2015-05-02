@@ -15,16 +15,6 @@ public class SPL_DetectHidden extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-	
-	}
-
-	@Override
 	public void doAction(Player player) {
 		for(Player p : Bukkit.getOnlinePlayers()) 
 		{
@@ -38,6 +28,16 @@ public class SPL_DetectHidden extends Spell {
 			}
 		}
 
+	}
+
+	@Override
+	public void preAction(Player player) {
+	
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

@@ -8,8 +8,6 @@ import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
 public class RankHandler {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	
 	public static void rank(PseudoPlayer pPlayer) {
 		List<RecentAttacker> recentAttackers = pPlayer.getRecentAttackers();
 		if(recentAttackers.size() >= 1 && pPlayer.getTimer().isLastDeathOlder(300000)) {
@@ -54,5 +52,7 @@ public class RankHandler {
 			pPlayer.setRank((int)LOSERNEWRANK);
 		}
 	}
+	
+	static PlayerManager pm = PlayerManager.getManager();
 	
 }

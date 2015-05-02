@@ -20,6 +20,11 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("enhance").setExecutor(this);
 	}
 
+	private void enhance(Player player) {
+		BlackSmithySkill.enhance(player);
+	}
+	
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if(cmd.getName().equalsIgnoreCase("repair")) {
@@ -49,22 +54,19 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 		}
 		return false;
 	}
-	
-	private void enhance(Player player) {
-		BlackSmithySkill.enhance(player);
-	}
 
-	private void semt(Player player) {
-		BlackSmithySkill.smelt(player);
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		return null;
 	}
 
 	private void repair(Player player) {
 		BlackSmithySkill.repair(player);
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		return null;
+	private void semt(Player player) {
+		BlackSmithySkill.smelt(player);
 	}
 	
 }

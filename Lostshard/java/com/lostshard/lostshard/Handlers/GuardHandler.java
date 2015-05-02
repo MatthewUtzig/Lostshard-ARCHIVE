@@ -14,9 +14,6 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 
 public class GuardHandler {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	static PlotManager ptm = PlotManager.getManager();
-	
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
 		Plot plot = ptm.findPlotAt(player.getLocation());
@@ -57,5 +54,8 @@ public class GuardHandler {
 //		NPCManager.getNPC(guard.getId()).teleport(guard.getLocation(),
 //				TeleportCause.PLUGIN);
 	}
+	static PlayerManager pm = PlayerManager.getManager();
+	
+	static PlotManager ptm = PlotManager.getManager();
 
 }

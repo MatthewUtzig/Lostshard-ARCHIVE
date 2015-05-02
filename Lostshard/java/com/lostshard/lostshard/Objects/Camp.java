@@ -27,6 +27,35 @@ public class Camp {
 		fireBlock = fire;
 	}
 	
+	public void campHealTick() {
+		Location loc = logBlock.getLocation();
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			if(Utils.isWithin(p.getLocation(), loc, campHealDistance)) {
+				if(p.getHealth() > 0 && p.getHealth() < 20) 
+				{
+					double newHealth = Math.min(Math.max(p.getHealth() + 1, 0),20);
+					p.setHealth(newHealth);
+				}
+			}
+		}
+	}
+	
+	public UUID getCreator() {
+		return creator;
+	}
+	
+	public Block getFireBlock() {
+		return fireBlock;
+	}
+	
+	public Block getLogBlock() {
+		return logBlock;
+	}
+	
+	public boolean isDead() {
+		return isDead;
+	}
+	
 	public void tick() {
 		if(!isDead) {
 			boolean doused = false;
@@ -65,35 +94,6 @@ public class Camp {
 				}
 			}
 		}
-	}
-	
-	public UUID getCreator() {
-		return creator;
-	}
-	
-	public void campHealTick() {
-		Location loc = logBlock.getLocation();
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			if(Utils.isWithin(p.getLocation(), loc, campHealDistance)) {
-				if(p.getHealth() > 0 && p.getHealth() < 20) 
-				{
-					double newHealth = Math.min(Math.max(p.getHealth() + 1, 0),20);
-					p.setHealth(newHealth);
-				}
-			}
-		}
-	}
-	
-	public boolean isDead() {
-		return isDead;
-	}
-	
-	public Block getLogBlock() {
-		return logBlock;
-	}
-	
-	public Block getFireBlock() {
-		return fireBlock;
 	}
 
 

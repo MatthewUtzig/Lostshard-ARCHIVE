@@ -13,21 +13,6 @@ import org.bukkit.inventory.ItemStack;
 public class DamageHandler {
 
 	
-	public static double base = .9d;
-	public static double armor = .7d;
-	public static double magic = 1d;
-	public static double resistance = 1d;
-	public static double hardhat = 1d;
-	
-	public static double arrow = 1d;
-	public static double hand = 1d;
-	public static double swords = 1d;
-	public static double diamondSword = 1d;
-	public static double ironSword = 1d;
-	public static double goldSword = 2d;
-	public static double stoneSword = 1d;
-	public static double woodSword = 1d;
-	
 	public static void damage(EntityDamageByEntityEvent event) {
 		
 		double weapon = 1d;
@@ -72,7 +57,6 @@ public class DamageHandler {
 			
 		}
 	}
-
 	public static void goldArmor(EntityDamageEvent event) {
 		if(event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
@@ -95,5 +79,21 @@ public class DamageHandler {
 			}
 		}
 	}
+	public static double base = .9d;
+	public static double armor = .7d;
+	public static double magic = 1d;
+	
+	public static double resistance = 1d;
+	public static double hardhat = 1d;
+	public static double arrow = 1d;
+	public static double hand = 1d;
+	public static double swords = 1d;
+	public static double diamondSword = 1d;
+	public static double ironSword = 1d;
+	public static double goldSword = 2d;
+	
+	public static double stoneSword = 1d;
+
+	public static double woodSword = 1d;
 
 }

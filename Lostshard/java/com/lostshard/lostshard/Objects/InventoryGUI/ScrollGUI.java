@@ -8,7 +8,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -25,6 +24,33 @@ public class ScrollGUI extends GUI {
 	public ScrollGUI(PseudoPlayer pPlayer) {
 		super(36, "Scrolls", pPlayer);
 		optionSelector();
+	}
+
+	@Override
+	public void onClick(InventoryClickEvent event) {
+		if(event.getCurrentItem().getItemMeta().hasDisplayName() && event.getAction().equals(InventoryAction.PICKUP_ALL)) {
+			Player player = (Player)event.getWhoClicked();
+			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+			if(scroll == null)
+				return;
+			if(getPlayer().getSpellbook().containSpell(scroll))
+				return;
+			getPlayer().addSpell(scroll);
+			Database.deleteScroll(scroll, getPlayer().getId());
+			getPlayer().update();
+			Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");
+			forceClose();
+		}else if(event.getCurrentItem().getItemMeta().hasDisplayName() && event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) {
+			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+			Player player = (Player) event.getWhoClicked();
+			if(scroll == null || !getPlayer().getScrolls().contains(scroll))
+				return;
+			if(sm.useScroll(player, scroll)) {
+				getPlayer().getScrolls().remove(scroll);
+				Database.deleteScroll(scroll, getPlayer().getId());
+				forceClose();
+			}
+		}
 	}
 
 	@Override
@@ -59,37 +85,5 @@ public class ScrollGUI extends GUI {
 			item.setItemMeta(itemMeta);
 			addOption(item);
 		}
-	}
-
-	@Override
-	public void onClick(InventoryClickEvent event) {
-		if(event.getCurrentItem().getItemMeta().hasDisplayName() && event.getAction().equals(InventoryAction.PICKUP_ALL)) {
-			Player player = (Player)event.getWhoClicked();
-			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
-			if(scroll == null)
-				return;
-			if(getPlayer().getSpellbook().containSpell(scroll))
-				return;
-			getPlayer().addSpell(scroll);
-			Database.deleteScroll(scroll, getPlayer().getId());
-			getPlayer().update();
-			Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");
-			forceClose();
-		}else if(event.getCurrentItem().getItemMeta().hasDisplayName() && event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)) {
-			Scroll scroll = Scroll.getByString(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
-			Player player = (Player) event.getWhoClicked();
-			if(scroll == null || !getPlayer().getScrolls().contains(scroll))
-				return;
-			if(sm.useScroll(player, scroll)) {
-				getPlayer().getScrolls().remove(scroll);
-				Database.deleteScroll(scroll, getPlayer().getId());
-				forceClose();
-			}
-		}
-	}
-
-	@Override
-	public void onClose(InventoryCloseEvent event) {
-		
 	}
 }

@@ -17,11 +17,6 @@ public class SPL_SummonAnimal extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-	
-	}
-
-	@Override
 	public void doAction(Player player) {
 		setFoundBlock(getFoundBlock().getRelative(0, 1, 0));
 		EntityType e;
@@ -59,5 +54,10 @@ public class SPL_SummonAnimal extends RangedSpell {
 		
 		player.getWorld().spawnEntity(getFoundBlock().getLocation(), e);
 
+	}
+
+	@Override
+	public void preAction(Player player) {
+	
 	}
 }

@@ -23,20 +23,10 @@ public class SPL_PermanentGateTravel extends Spell {
 		setPrompt("What rune would you like to open a permanent gate to?");
 	}
 	
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		Output.positiveMessage(player, "You begin casting Permanent Gate Travel...");
-	}
-	
 	/* The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {
 		//System.out.println("RSPNS: "+_response);
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
@@ -109,6 +99,19 @@ public class SPL_PermanentGateTravel extends Spell {
 			new PermanentGate(blocks, player.getUniqueId(), direction);
 		}
 		else Output.simpleError(player, "can't gate to there, not a friend of the plot.");
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+		Output.positiveMessage(player, "You begin casting Permanent Gate Travel...");
+	}
+	
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

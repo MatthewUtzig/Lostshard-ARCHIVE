@@ -42,19 +42,142 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class SurvivalismSkill extends Skill {
 
-	private static final int TRACK_STAMINA_COST = 25;
-	private static final int CAMP_STAMINA_COST = 50;
-	
-	private static ArrayList<Camp> camps = new ArrayList<Camp>();
-	
-	public SurvivalismSkill() {
-		super();
-		setName("Survivalism");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.COMPASS);
+	public static void camp(Player player) {
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
+		if(curSkill < 500) {
+			Output.simpleError(player, "Not enough skill - Camping requires 50");
+			return;
+		}
+		
+		if(pPlayer.getStamina() < CAMP_STAMINA_COST) {
+			Output.simpleError(player, "Not enough stamina - Camping requires "+CAMP_STAMINA_COST+".");
+			return;
+		}
+		
+		for(Camp camp : camps) {
+			if(camp.getCreator().equals(player.getUniqueId())) {
+				Output.simpleError(player, "You may only have 1 camp active at a time.");
+				return;
+			}
+		}
+		
+		// 0-1
+		double chanceToCast = ((double)curSkill-500)/500;
+		chanceToCast *= .8;
+		chanceToCast += .2; 
+			
+		double rand = Math.random();
+		if(rand > chanceToCast) {
+			Output.simpleError(player, "You failed to successfully create a camp.");
+			pPlayer.setStamina(pPlayer.getStamina()-CAMP_STAMINA_COST);
+			int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
+			Output.gainSkill(player, "Survivalism", gain, curSkill);
+			return;
+		}
+		
+		//Place a log where you are looking
+		Block blockAt = player.getTargetBlock(SpellUtils.invisibleBlocks, 10);
+		Block logFound = null;
+		Block fireFound = null;
+		if(blockAt.getRelative(0,1,0).getType().equals(Material.AIR) && blockAt.getRelative(0,2,0).getType().equals(Material.AIR)) {
+			logFound = blockAt.getRelative(0,1,0);
+			logFound.setType(Material.LOG);
+			fireFound = blockAt.getRelative(0,2,0);
+			fireFound.setType(Material.FIRE);
+		}
+		else {
+			Output.simpleError(player, "Invalid location.");
+			return;
+		}
+		
+		camps.add(new Camp(player.getUniqueId(), 600, logFound, fireFound));
+		player.sendMessage(ChatColor.GOLD+"You set up a temporary camp.");
+		pPlayer.setStamina(pPlayer.getStamina()-CAMP_STAMINA_COST);
+		int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
+		Output.gainSkill(player, "Survivalism", gain, curSkill);
+	}
+	public static ArrayList<Camp> getCamps() {
+		return camps;
 	}
 	
+	public static void onHoe(PlayerInteractEvent event) {
+		if(event.isCancelled())
+			return;
+		if(!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+			return;
+		}
+		Block block = event.getClickedBlock();
+		ItemStack itemInHand = event.getPlayer().getItemInHand();
+		Player player = event.getPlayer();
+		if(!block.getType().equals(Material.GRASS)) {
+			return;	
+		}
+		if(!(itemInHand.getType().equals(Material.WOOD_HOE) ||
+				itemInHand.getType().equals(Material.STONE_HOE) ||
+				itemInHand.getType().equals(Material.IRON_HOE) ||
+				itemInHand.getType().equals(Material.DIAMOND_HOE) ||
+				itemInHand.getType().equals(Material.GOLD_HOE))) {
+			return;
+		}
+					
+		Plot plot = ptm.findPlotAt(block.getLocation());
+		if(plot != null) {
+			if(plot.isProtected()) {
+				if(!plot.isAllowedToBuild(player)){
+					Output.simpleError(player, "You can't do that, this plot is protected.");
+					event.setCancelled(true);
+					return;
+				}
+			}
+		}
+	
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		int curSurvSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
+		double percent = curSurvSkill / 1000.0;
+		int hoeRange = (int)(3.0*percent);
+    				
+		for(int x=block.getX()-hoeRange; x<= block.getX()+hoeRange; x++) {
+			for(int y=block.getY()-hoeRange; y<=block.getY()+hoeRange; y++) {
+				for(int z=block.getZ()-hoeRange; z<=block.getZ()+hoeRange; z++) {
+					Block blockAt = block.getWorld().getBlockAt(x,y,z);
+					if(Utils.isWithin(block.getLocation(), blockAt.getLocation(), hoeRange)) {
+						if(block.getWorld().getBlockAt(x,y,z).getType().equals(Material.GRASS)) {
+							blockAt.setType(Material.SOIL);
+							double rand = Math.random();
+							if(rand < .2) {
+								blockAt.getWorld().dropItemNaturally(new Location(blockAt.getWorld(), blockAt.getLocation().getX()+.5, blockAt.getLocation().getY()+1.5, blockAt.getLocation().getZ()+.5), new ItemStack(Material.SEEDS, 1));
+							}
+							else if(rand < .04) {
+								double rand2 = Math.random();
+								if(rand2 < .5)
+									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(), new ItemStack(Material.RED_MUSHROOM, 1));
+								else 
+									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(), new ItemStack(Material.BROWN_MUSHROOM, 1));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public static void onPlayerDamage(EntityDamageEvent event) {
+		if(event.getCause().equals(DamageCause.FALL)) {
+			if(event.getEntity() instanceof Player){
+				Player player = (Player) event.getEntity();
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				if(pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500){
+					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)/2);
+				}
+			}
+		}
+	}
+	
+	public static void setCamps(ArrayList<Camp> camps) {
+		SurvivalismSkill.camps = camps;
+	}
+
 	public static void track(Player player, String[] args) {
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
@@ -182,7 +305,7 @@ public class SurvivalismSkill extends Skill {
 					Output.simpleError(player, "You must have 50 Survivalism to track a player.");
 					return;
 				}
-				foundLivingEntity = (LivingEntity)targetPlayer;
+				foundLivingEntity = targetPlayer;
 //				if(false) {
 //					Output.simpleError(player, "That player is too new, can't track them.");
 //					return;
@@ -322,142 +445,19 @@ public class SurvivalismSkill extends Skill {
 		else Output.simpleError(player, "Use \"/track (player name)\"");
 	}
 
-	public static void camp(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
-		if(curSkill < 500) {
-			Output.simpleError(player, "Not enough skill - Camping requires 50");
-			return;
-		}
-		
-		if(pPlayer.getStamina() < CAMP_STAMINA_COST) {
-			Output.simpleError(player, "Not enough stamina - Camping requires "+CAMP_STAMINA_COST+".");
-			return;
-		}
-		
-		for(Camp camp : camps) {
-			if(camp.getCreator().equals(player.getUniqueId())) {
-				Output.simpleError(player, "You may only have 1 camp active at a time.");
-				return;
-			}
-		}
-		
-		// 0-1
-		double chanceToCast = ((double)curSkill-500)/500;
-		chanceToCast *= .8;
-		chanceToCast += .2; 
-			
-		double rand = Math.random();
-		if(rand > chanceToCast) {
-			Output.simpleError(player, "You failed to successfully create a camp.");
-			pPlayer.setStamina(pPlayer.getStamina()-CAMP_STAMINA_COST);
-			int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
-			Output.gainSkill(player, "Survivalism", gain, curSkill);
-			return;
-		}
-		
-		//Place a log where you are looking
-		Block blockAt = player.getTargetBlock(SpellUtils.invisibleBlocks, 10);
-		Block logFound = null;
-		Block fireFound = null;
-		if(blockAt.getRelative(0,1,0).getType().equals(Material.AIR) && blockAt.getRelative(0,2,0).getType().equals(Material.AIR)) {
-			logFound = blockAt.getRelative(0,1,0);
-			logFound.setType(Material.LOG);
-			fireFound = blockAt.getRelative(0,2,0);
-			fireFound.setType(Material.FIRE);
-		}
-		else {
-			Output.simpleError(player, "Invalid location.");
-			return;
-		}
-		
-		camps.add(new Camp(player.getUniqueId(), 600, logFound, fireFound));
-		player.sendMessage(ChatColor.GOLD+"You set up a temporary camp.");
-		pPlayer.setStamina(pPlayer.getStamina()-CAMP_STAMINA_COST);
-		int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
-		Output.gainSkill(player, "Survivalism", gain, curSkill);
-	}
-
 	
-	public static ArrayList<Camp> getCamps() {
-		return camps;
-	}
+	private static final int TRACK_STAMINA_COST = 25;
 
-	public static void setCamps(ArrayList<Camp> camps) {
-		SurvivalismSkill.camps = camps;
-	}
+	private static final int CAMP_STAMINA_COST = 50;
 	
-	public static void onHoe(PlayerInteractEvent event) {
-		if(event.isCancelled())
-			return;
-		if(!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			return;
-		}
-		Block block = event.getClickedBlock();
-		ItemStack itemInHand = event.getPlayer().getItemInHand();
-		Player player = event.getPlayer();
-		if(!block.getType().equals(Material.GRASS)) {
-			return;	
-		}
-		if(!(itemInHand.getType().equals(Material.WOOD_HOE) ||
-				itemInHand.getType().equals(Material.STONE_HOE) ||
-				itemInHand.getType().equals(Material.IRON_HOE) ||
-				itemInHand.getType().equals(Material.DIAMOND_HOE) ||
-				itemInHand.getType().equals(Material.GOLD_HOE))) {
-			return;
-		}
-					
-		Plot plot = ptm.findPlotAt(block.getLocation());
-		if(plot != null) {
-			if(plot.isProtected()) {
-				if(!plot.isAllowedToBuild(player)){
-					Output.simpleError(player, "You can't do that, this plot is protected.");
-					event.setCancelled(true);
-					return;
-				}
-			}
-		}
-	
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		int curSurvSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
-		double percent = (double)curSurvSkill / 1000.0;
-		int hoeRange = (int)(3.0*percent);
-    				
-		for(int x=block.getX()-hoeRange; x<= block.getX()+hoeRange; x++) {
-			for(int y=block.getY()-hoeRange; y<=block.getY()+hoeRange; y++) {
-				for(int z=block.getZ()-hoeRange; z<=block.getZ()+hoeRange; z++) {
-					Block blockAt = block.getWorld().getBlockAt(x,y,z);
-					if(Utils.isWithin(block.getLocation(), blockAt.getLocation(), hoeRange)) {
-						if(block.getWorld().getBlockAt(x,y,z).getType().equals(Material.GRASS)) {
-							blockAt.setType(Material.SOIL);
-							double rand = Math.random();
-							if(rand < .2) {
-								blockAt.getWorld().dropItemNaturally(new Location(blockAt.getWorld(), blockAt.getLocation().getX()+.5, blockAt.getLocation().getY()+1.5, blockAt.getLocation().getZ()+.5), new ItemStack(Material.SEEDS, 1));
-							}
-							else if(rand < .04) {
-								double rand2 = Math.random();
-								if(rand2 < .5)
-									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(), new ItemStack(Material.RED_MUSHROOM, 1));
-								else 
-									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(), new ItemStack(Material.BROWN_MUSHROOM, 1));
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	private static ArrayList<Camp> camps = new ArrayList<Camp>();
 
-	public static void onPlayerDamage(EntityDamageEvent event) {
-		if(event.getCause().equals(DamageCause.FALL)) {
-			if(event.getEntity() instanceof Player){
-				Player player = (Player) event.getEntity();
-				PseudoPlayer pPlayer = pm.getPlayer(player);
-				if(pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500){
-					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)/2);
-				}
-			}
-		}
+	public SurvivalismSkill() {
+		super();
+		setName("Survivalism");
+		setBaseProb(.2);
+		setScaleConstant(60);
+		setMat(Material.COMPASS);
 	}
 
 	@Override

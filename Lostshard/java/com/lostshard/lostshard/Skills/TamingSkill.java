@@ -7,7 +7,6 @@ import net.minecraft.server.v1_8_R2.GenericAttributes;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R2.entity.CraftLivingEntity;
-import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Horse.Color;
@@ -27,17 +26,6 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class TamingSkill extends Skill {
 
-	public TamingSkill() {
-		super();
-		setName("Taming");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.IRON_BARDING);
-	}
-	
-	private int doogs = 0;
-	private boolean mount = true;
-	
 	public static void callMount(Player player, PseudoPlayer pseudoPlayer) {
 		if(pseudoPlayer.getStamina() >= 10) {
 
@@ -79,7 +67,7 @@ public class TamingSkill extends Skill {
 	    		
 	    		horse = (Horse) player.getWorld().spawnEntity(player.getLocation(), EntityType.HORSE);
 	    		horse.setTamed(true);
-	    		horse.setOwner((AnimalTamer)player);
+	    		horse.setOwner(player);
 	    		horse.setAdult();
 	    		horse.setAge(10);
 	    		horse.setAgeLock(true);
@@ -105,25 +93,19 @@ public class TamingSkill extends Skill {
 	    	Output.positiveMessage(player, "You have summoned your mount.");
 	    	
 	}
-
-	public void callPets() {
-		
+	
+	public static void onDamage(EntityDamageByEntityEvent event) {
+		if(event.getEntity() instanceof Horse && ((Horse) event.getEntity()).getPassenger() != null)
+			event.getEntity().remove();
+	}
+	public static void onDismount(EntityDismountEvent event) {
+		if(event.getDismounted() instanceof Horse)
+			event.getDismounted().remove();
 	}
 	
-	public int getDoogs() {
-		return doogs;
-	}
-
-	public void setDoogs(int doogs) {
-		this.doogs = doogs;
-	}
-
-	public boolean isMount() {
-		return mount;
-	}
-
-	public void setMount(boolean mount) {
-		this.mount = mount;
+	public static void onLave(PlayerQuitEvent event) {
+		if(event.getPlayer().getVehicle() instanceof Horse)
+			event.getPlayer().getVehicle().remove();
 	}
 
 	public static void onMount(EntityMountEvent event) {
@@ -133,24 +115,41 @@ public class TamingSkill extends Skill {
 	public static void onTame(EntityTameEvent event) {
 		
 	}
-	
-	public static void onDismount(EntityDismountEvent event) {
-		if(event.getDismounted() instanceof Horse)
-			event.getDismounted().remove();
-	}
-	
-	public static void onDamage(EntityDamageByEntityEvent event) {
-		if(event.getEntity() instanceof Horse && ((Horse) event.getEntity()).getPassenger() != null)
-			event.getEntity().remove();
-	}
-	
-	public static void onLave(PlayerQuitEvent event) {
-		if(event.getPlayer().getVehicle() instanceof Horse)
-			event.getPlayer().getVehicle().remove();
+
+	private int doogs = 0;
+
+	private boolean mount = true;
+
+	public TamingSkill() {
+		super();
+		setName("Taming");
+		setBaseProb(.2);
+		setScaleConstant(60);
+		setMat(Material.IRON_BARDING);
 	}
 
+	public void callPets() {
+		
+	}
+	
+	public int getDoogs() {
+		return doogs;
+	}
+	
 	@Override
 	public String howToGain() {
 		return "You can gain taming by...";
+	}
+	
+	public boolean isMount() {
+		return mount;
+	}
+	
+	public void setDoogs(int doogs) {
+		this.doogs = doogs;
+	}
+
+	public void setMount(boolean mount) {
+		this.mount = mount;
 	}
 }

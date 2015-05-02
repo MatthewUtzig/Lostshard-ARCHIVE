@@ -18,11 +18,6 @@ public class SPL_Lightning extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		Location strikeLoc = getFoundBlock().getLocation();
 		strikeLoc.setX(strikeLoc.getX()+.5);
@@ -37,6 +32,11 @@ public class SPL_Lightning extends RangedSpell {
 				}				
 			}
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

@@ -26,53 +26,30 @@ public class ChestRefill {
 		refill();
 	}
 
+	public void empty() {
+		
+	}
+	
 	public ItemStack[] getItems() {
 		return items;
 	}
 	
-	public void setItems(ItemStack[] items) {
-		this.items = items;
-	}
-	
-	public long getRangeMin() {
-		return rangeMin;
-	}
-	
-	public void setRangeMin(long rangeMin) {
-		this.rangeMin = rangeMin;
+	public Location getLocation() {
+		return location;
 	}
 	
 	public long getRangeMax() {
 		return rangeMax;
 	}
-
-	public void setRangeMax(long rangeMax) {
-		this.rangeMax = rangeMax;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setiLocation(Location location) {
-		this.location = location;
-	}
 	
+	public long getRangeMin() {
+		return rangeMin;
+	}
+
 	public Date getRefillDate() {
 		return refillDate;
 	}
 
-	public void setRefillDate(Date refill) {
-		this.refillDate = refill;
-	}
-	
-	public void tick() {
-		Date date = new Date();
-		if(date.getTime() > refillDate.getTime()) {
-			refill();
-		}
-	}
-	
 	public void refill() {
 		Block block = location.getBlock();
 		block.setType(Material.CHEST);
@@ -96,8 +73,31 @@ public class ChestRefill {
 			refillDate = new Date(newDate);
 		}
 	}
+
+	public void setiLocation(Location location) {
+		this.location = location;
+	}
 	
-	public void empty() {
-		
+	public void setItems(ItemStack[] items) {
+		this.items = items;
+	}
+
+	public void setRangeMax(long rangeMax) {
+		this.rangeMax = rangeMax;
+	}
+	
+	public void setRangeMin(long rangeMin) {
+		this.rangeMin = rangeMin;
+	}
+	
+	public void setRefillDate(Date refill) {
+		this.refillDate = refill;
+	}
+	
+	public void tick() {
+		Date date = new Date();
+		if(date.getTime() > refillDate.getTime()) {
+			refill();
+		}
 	}
 }

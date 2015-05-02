@@ -67,12 +67,19 @@ public enum Scroll {
 	FORCEPUSH("Force Push","Fus Ro Dah!",6,15,20,0,new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE)}),
 	WALLOFSTONE("Wall of Stone","Blockus Rockius",4,15,20,0,new ItemStack[] {new ItemStack(Material.STONE), new ItemStack(Material.REDSTONE)});	
 	
+	public static Scroll getByString(String string) {
+		for(Scroll st : values())
+			if(st.name().equalsIgnoreCase(string.trim().replace(" ", "")))
+				return st;
+		return null;
+	}
 	private String name;
 	private String spellWords;
 	private int manaCost;
 	private int page;
 	private int cooldown;
 	private int castingDelay;
+	
 	private List<ItemStack> reagentCost = new ArrayList<ItemStack>();
 	
 	private Scroll(String name, String spellWords, int page, int manaCost,
@@ -87,6 +94,53 @@ public enum Scroll {
 			this.reagentCost.add(item);
 	}
 	
+	public int getCastingDelay() {
+		return castingDelay;
+	}
+
+	public int getCooldown() {
+		return cooldown;
+	}
+
+	public int getManaCost() {
+		return manaCost;
+	}
+
+	public int getMinMagery() {
+		switch(getPage()) {
+		case 9:
+			return 1000;
+		case 8:
+			return 840;
+		case 7:
+			return 720;
+		case 6:
+			return 600;
+		case 5:
+			return 480;
+		case 4:
+			return 360;
+		case 3:
+			return 240;
+		case 2:
+			return 120;
+		default:
+			return 0;
+		}	
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public List<ItemStack> getReagentCost() {
+		return reagentCost;
+	}
+
 	public Spell getSpell() {
 		switch (this) {
 			case MARK:
@@ -151,74 +205,20 @@ public enum Scroll {
 				return null;
 		}
 	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getSpellWords() {
 		return spellWords;
-	}
-
-	public void setSpellWords(String spellWords) {
-		this.spellWords = spellWords;
-	}
-
-	public int getManaCost() {
-		return manaCost;
 	}
 
 	public void setManaCost(int manaCost) {
 		this.manaCost = manaCost;
 	}
 
-	public int getMinMagery() {
-		switch(getPage()) {
-		case 9:
-			return 1000;
-		case 8:
-			return 840;
-		case 7:
-			return 720;
-		case 6:
-			return 600;
-		case 5:
-			return 480;
-		case 4:
-			return 360;
-		case 3:
-			return 240;
-		case 2:
-			return 120;
-		default:
-			return 0;
-		}	
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getPage() {
-		return page;
-	}
-
-	public int getCooldown() {
-		return cooldown;
-	}
-
-	public int getCastingDelay() {
-		return castingDelay;
-	}
-
-	public List<ItemStack> getReagentCost() {
-		return reagentCost;
-	}
-
-	public static Scroll getByString(String string) {
-		for(Scroll st : values())
-			if(st.name().equalsIgnoreCase(string.trim().replace(" ", "")))
-				return st;
-		return null;
+	public void setSpellWords(String spellWords) {
+		this.spellWords = spellWords;
 	}
 }

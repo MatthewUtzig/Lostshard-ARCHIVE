@@ -24,19 +24,25 @@ public enum FoodType {
 	CookedFish(Material.COOKED_FISH, 3, 10, 5, 6f);
 	//RawFish(349, 2, 5, 2, 1.2f);
 	
+	public static FoodType getFoodTypeByMaterial(Material foodType) {
+		if(lookupByMaterial.containsKey(foodType))
+			return lookupByMaterial.get(foodType);
+		return null;
+	}
+	
 	private static final Map<Material,FoodType> lookupByMaterial  = new HashMap<Material,FoodType>();
 	
 	static {
 		for(FoodType f : EnumSet.allOf(FoodType.class))
 			lookupByMaterial.put(f.getItem(), f);
     }
-	
 	private final Material item;
 	private final int healAmount;
 	private final int staminaCost;
 	private final int fullnessAmount;
-	private final float saturation;
 			
+	private final float saturation;
+
 	private FoodType(Material item, int healAmount, int staminaCost,
 			int fullnessAmount, float saturation) {
 		this.item = item;
@@ -45,30 +51,24 @@ public enum FoodType {
 		this.fullnessAmount = fullnessAmount;
 		this.saturation = saturation;
 	}
-
-	public Material getItem() {
-		return item;
+	
+	public int getFullnessAmount() {
+		return fullnessAmount;
 	}
 	
 	public int getHealAmount() {
 		return healAmount;
 	}
 	
-	public int getStaminaCost() {
-		return staminaCost;
-	}
-	
-	public int getFullnessAmount() {
-		return fullnessAmount;
+	public Material getItem() {
+		return item;
 	}
 	
 	public float getSaturation() {
 		return saturation;
 	}
 	
-	public static FoodType getFoodTypeByMaterial(Material foodType) {
-		if(lookupByMaterial.containsKey(foodType))
-			return lookupByMaterial.get(foodType);
-		return null;
+	public int getStaminaCost() {
+		return staminaCost;
 	}
 }

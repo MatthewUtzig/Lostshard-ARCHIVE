@@ -19,16 +19,6 @@ public class SPL_FireWalk extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 320, 1));
 		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 320, 1));
@@ -38,6 +28,16 @@ public class SPL_FireWalk extends Spell {
 			fireBlock.setType(Material.FIRE);
 			fireWalk.addBlock(fireBlock);
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

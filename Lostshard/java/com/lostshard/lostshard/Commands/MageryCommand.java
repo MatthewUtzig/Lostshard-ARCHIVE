@@ -3,10 +3,9 @@ package com.lostshard.lostshard.Commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.ChatColor;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -49,6 +48,37 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("unbind").setExecutor(this);
 	}
 
+	private void bind(Player player, String[] args) {
+		if(!player.getItemInHand().getType().equals(Material.STICK)) {
+			Output.simpleError(player, "You can only bind spells to sticks.");
+			return;
+		}
+		if(args.length < 1) {
+			Output.simpleError(player, "/bind (spell)");
+			return;
+		}
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		String scrollName = StringUtils.join(args, "", 0, args.length);
+		Scroll scroll = Scroll.getByString(scrollName);
+		if(scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
+			Output.simpleError(player, "Your spellbook does not contain "+scrollName+".");
+			return;
+		}
+		String spellName = scroll.getName();
+		ItemStack wand = player.getItemInHand();
+		ItemMeta wandMeta = wand.getItemMeta();
+		wandMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		wandMeta.addEnchant(Enchantment.DURABILITY, 0, false);
+		wandMeta.setDisplayName(ChatColor.GOLD+spellName);
+		List<String> wandLore = new ArrayList<String>();
+		wandLore.add("This magical wand can be used to cast a spell with only a touch of a button.");
+		wandMeta.setLore(wandLore);
+		wand.setItemMeta(wandMeta);
+		player.setItemInHand(wand);
+		Output.positiveMessage(player, "You have bound "+spellName+" to the wand.");
+	}
+
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if(cmd.getName().equalsIgnoreCase("cast")) {
@@ -112,136 +142,13 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 		}
 		return false;
 	}
-
-	private void bind(Player player, String[] args) {
-		if(!player.getItemInHand().getType().equals(Material.STICK)) {
-			Output.simpleError(player, "You can only bind spells to sticks.");
-			return;
-		}
-		if(args.length < 1) {
-			Output.simpleError(player, "/bind (spell)");
-			return;
-		}
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		String scrollName = StringUtils.join(args, "", 0, args.length);
-		Scroll scroll = Scroll.getByString(scrollName);
-		if(scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
-			Output.simpleError(player, "Your spellbook does not contain "+scrollName+".");
-			return;
-		}
-		String spellName = scroll.getName();
-		ItemStack wand = player.getItemInHand();
-		ItemMeta wandMeta = wand.getItemMeta();
-		wandMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		wandMeta.addEnchant(Enchantment.DURABILITY, 0, false);
-		wandMeta.setDisplayName(ChatColor.GOLD+spellName);
-		List<String> wandLore = new ArrayList<String>();
-		wandLore.add("This magical wand can be used to cast a spell with only a touch of a button.");
-		wandMeta.setLore(wandLore);
-		wand.setItemMeta(wandMeta);
-		player.setItemInHand(wand);
-		Output.positiveMessage(player, "You have bound "+spellName+" to the wand.");
+	
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		return null;
 	}
 	
-	private void unbind(Player player) {
-		if(!player.getItemInHand().getType().equals(Material.STICK)) {
-			Output.simpleError(player, "You can only bind spells to sticks.");
-			return;
-		}
-		ItemStack wand = player.getItemInHand();
-		ItemMeta wandMeta = wand.getItemMeta();
-		if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0).equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button.")) {
-			if(wandMeta.hasDisplayName()) {
-				wand.setItemMeta(null);
-				String spellName = ChatColor.stripColor(wandMeta.getLore().get(0));
-				player.setItemInHand(wand);
-				Output.positiveMessage(player, "You have unbound "+spellName.toLowerCase()+" from the wand.");
-			}else{
-				Output.simpleError(player, "Thats just a simple stick you fool.");
-			}
-		}else{
-			Output.simpleError(player, "Thats just a simple stick you fool.");
-		}
-	}
-	
-
-	private void scrolls(Player player, String[] args) {
-		if(args.length >= 2) {
-			if(args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
-				PseudoPlayer pPlayer = pm.getPlayer(player);
-				String scrollName = StringUtils.join(args, "", 1, args.length);
-				Scroll scroll = Scroll.getByString(scrollName);
-				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
-					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
-					return;
-				}
-				if(sm.useScroll(player, scroll)) {
-					pPlayer.getScrolls().remove(scroll);
-					Database.deleteScroll(scroll, pPlayer.getId());
-				}
-			}
-			else if(args[0].equalsIgnoreCase("give")) {
-				if(args.length < 3) {
-					Output.simpleError(player, "Use \"/scrolls give (player name) (spell name)\"");
-					return;
-				}
-				
-				PseudoPlayer pPlayer = pm.getPlayer(player);
-				Player targetPlayer = player.getServer().getPlayer(args[1]);
-				if(targetPlayer == null) {
-					Output.simpleError(player, args[1]+" is not online.");
-					return;
-				}
-				
-				
-				PseudoPlayer tpPlayer = pm.getPlayer(targetPlayer);
-				
-				if(!player.isOp()){
-					if(!Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 10)) {
-						Output.simpleError(player, "You are not close enough to give "+targetPlayer.getName()+" a scroll.");
-						return;
-					}
-				}
-				
-				String scrollName = StringUtils.join(args, "", 2, args.length);
-				Scroll scroll = Scroll.getByString(scrollName);
-				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
-					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
-					return;
-				}
-				
-				pPlayer.getScrolls().remove(scroll);
-				tpPlayer.getScrolls().add(scroll);
-				Database.updateScrollOwner(scroll, tpPlayer.getId(), pPlayer.getId());
-				Output.positiveMessage(player, "You have given "+targetPlayer.getName()+" a scroll of "+scroll.getName()+".");
-				Output.positiveMessage(targetPlayer, player.getName()+" has given you a scroll of "+scroll.getName()+".");
-			}else if(args[0].equalsIgnoreCase("spellbook")) {
-				PseudoPlayer pPlayer = pm.getPlayer(player);
-				String scrollName = StringUtils.join(args, "", 1, args.length);
-				Scroll scroll = Scroll.getByString(scrollName);
-				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
-					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
-					return;
-				}
-				SpellBook spellbook = pPlayer.getSpellbook();
-				if(!spellbook.containSpell(scroll)) {
-					pPlayer.addSpell(scroll);
-					Database.deleteScroll(scroll, pPlayer.getId());
-					pPlayer.update();
-					Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");
-				}
-				else Output.simpleError(player, "Your spellbook already contains the "+scroll.getName()+" spell.");
-			}
-			return;
-		}else {
-			Output.outputScrolls(player, args);
-			return;
-		}
-	}
-
-	private void spellbook(Player player, String[] args) {
-		Output.outputSpellbook(player, args);
-	}
 
 	private void runebook(Player player, String[] args) {
 		if(args.length == 0 || (args.length >= 11 && args[1].equalsIgnoreCase("page"))) {
@@ -332,8 +239,102 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		return null;
+	private void scrolls(Player player, String[] args) {
+		if(args.length >= 2) {
+			if(args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				String scrollName = StringUtils.join(args, "", 1, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
+				}
+				if(sm.useScroll(player, scroll)) {
+					pPlayer.getScrolls().remove(scroll);
+					Database.deleteScroll(scroll, pPlayer.getId());
+				}
+			}
+			else if(args[0].equalsIgnoreCase("give")) {
+				if(args.length < 3) {
+					Output.simpleError(player, "Use \"/scrolls give (player name) (spell name)\"");
+					return;
+				}
+				
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				Player targetPlayer = player.getServer().getPlayer(args[1]);
+				if(targetPlayer == null) {
+					Output.simpleError(player, args[1]+" is not online.");
+					return;
+				}
+				
+				
+				PseudoPlayer tpPlayer = pm.getPlayer(targetPlayer);
+				
+				if(!player.isOp()){
+					if(!Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 10)) {
+						Output.simpleError(player, "You are not close enough to give "+targetPlayer.getName()+" a scroll.");
+						return;
+					}
+				}
+				
+				String scrollName = StringUtils.join(args, "", 2, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
+				}
+				
+				pPlayer.getScrolls().remove(scroll);
+				tpPlayer.getScrolls().add(scroll);
+				Database.updateScrollOwner(scroll, tpPlayer.getId(), pPlayer.getId());
+				Output.positiveMessage(player, "You have given "+targetPlayer.getName()+" a scroll of "+scroll.getName()+".");
+				Output.positiveMessage(targetPlayer, player.getName()+" has given you a scroll of "+scroll.getName()+".");
+			}else if(args[0].equalsIgnoreCase("spellbook")) {
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				String scrollName = StringUtils.join(args, "", 1, args.length);
+				Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+					Output.simpleError(player, "You do not have a scroll of "+scrollName+".");
+					return;
+				}
+				SpellBook spellbook = pPlayer.getSpellbook();
+				if(!spellbook.containSpell(scroll)) {
+					pPlayer.addSpell(scroll);
+					Database.deleteScroll(scroll, pPlayer.getId());
+					pPlayer.update();
+					Output.positiveMessage(player, "You have transferred "+scroll.getName()+" to your spellbook.");
+				}
+				else Output.simpleError(player, "Your spellbook already contains the "+scroll.getName()+" spell.");
+			}
+			return;
+		}else {
+			Output.outputScrolls(player, args);
+			return;
+		}
+	}
+
+	private void spellbook(Player player, String[] args) {
+		Output.outputSpellbook(player, args);
+	}
+
+	private void unbind(Player player) {
+		if(!player.getItemInHand().getType().equals(Material.STICK)) {
+			Output.simpleError(player, "You can only bind spells to sticks.");
+			return;
+		}
+		ItemStack wand = player.getItemInHand();
+		ItemMeta wandMeta = wand.getItemMeta();
+		if(wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0).equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button.")) {
+			if(wandMeta.hasDisplayName()) {
+				wand.setItemMeta(null);
+				String spellName = ChatColor.stripColor(wandMeta.getLore().get(0));
+				player.setItemInHand(wand);
+				Output.positiveMessage(player, "You have unbound "+spellName.toLowerCase()+" from the wand.");
+			}else{
+				Output.simpleError(player, "Thats just a simple stick you fool.");
+			}
+		}else{
+			Output.simpleError(player, "Thats just a simple stick you fool.");
+		}
 	}
 }

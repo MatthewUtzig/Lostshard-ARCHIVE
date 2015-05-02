@@ -26,9 +26,27 @@ import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
  */
 public class PVPHandler {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	static PlotManager ptm = PlotManager.getManager();
-	
+	public static void Attack(EntityDamageByEntityEvent event) {
+		if(event.isCancelled())
+			return;
+		if(!(event.getEntity() instanceof Player))
+			return;
+		Player player = (Player) event.getEntity();
+		Entity attackerEntity = event.getDamager();
+		
+		if(event.getDamager() instanceof Projectile)
+			if(((Projectile) attackerEntity).getShooter() instanceof Entity)
+			attackerEntity = (Entity) ((Projectile) attackerEntity).getShooter();
+		
+		if(!(attackerEntity instanceof Player))
+			return;
+		Player attacker = (Player) attackerEntity;
+		
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		pPlayer.addRecentAttacker(new RecentAttacker(
+				attacker.getUniqueId(), 300));
+		criminalAction(player, attacker);
+	}
 	/**
 	 * @param attacker
 	 * @param defender
@@ -215,25 +233,7 @@ public class PVPHandler {
 		pseudoPlayerDefender.addRecentAttacker(recentAttacker);
 	}
 	
-	public static void Attack(EntityDamageByEntityEvent event) {
-		if(event.isCancelled())
-			return;
-		if(!(event.getEntity() instanceof Player))
-			return;
-		Player player = (Player) event.getEntity();
-		Entity attackerEntity = event.getDamager();
-		
-		if(event.getDamager() instanceof Projectile)
-			if(((Projectile) attackerEntity).getShooter() instanceof Entity)
-			attackerEntity = (Entity) ((Projectile) attackerEntity).getShooter();
-		
-		if(!(attackerEntity instanceof Player))
-			return;
-		Player attacker = (Player) attackerEntity;
-		
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		pPlayer.addRecentAttacker(new RecentAttacker(
-				attacker.getUniqueId(), 300));
-		criminalAction(player, attacker);
-	}
+	static PlayerManager pm = PlayerManager.getManager();
+	
+	static PlotManager ptm = PlotManager.getManager();
 }

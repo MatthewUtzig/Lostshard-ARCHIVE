@@ -30,92 +30,56 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("clan").setExecutor(this);
 	}
 	
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("clan")) {
-			if(!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
+	@SuppressWarnings("deprecation")
+	private void clanDemote(Player player, String[] split) {
+		if(split.length == 2) {
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
+			Clan clan = pseudoPlayer.getClan();
+			if(clan != null) {
+				if(clan.isOwner(player.getUniqueId())) {
+					String targetName = split[1];
+					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
+					targetName = targetOfflinePlayer.getName();
+					if(!targetName.equalsIgnoreCase(player.getName())) {
+						if(clan.isLeader(targetOfflinePlayer.getUniqueId())) {
+							Player targetPlayer = targetOfflinePlayer.getPlayer();
+							if(targetPlayer != null)
+								targetName = targetPlayer.getName();
+							else
+								targetName = targetOfflinePlayer.getName();
+							clan.demoteLeader(targetOfflinePlayer.getUniqueId());
+							clan.addMember(targetOfflinePlayer.getUniqueId());
+							if(targetPlayer != null)
+								Output.positiveMessage(targetPlayer, "You have been demoted to a normal member in your clan.");
+							Output.positiveMessage(player, "You have demoted "+targetName+" to a normal member in your clan.");
+						}
+						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
+					}
+					else Output.simpleError(player, "You can't demote yourself.");
+				}
+				else Output.simpleError(player, "Only a clan owner may demote clan members."); 
 			}
-			Player player = (Player) sender;
-			if(args.length >= 1) {
-				String clanCommand = args[0];
-				if(clanCommand.equalsIgnoreCase("create"))
-					createClan(player, args);
-				else if(clanCommand.equalsIgnoreCase("info"))
-					clanInfo(player);
-				else if(clanCommand.equalsIgnoreCase("help"))
-					HelpHandler.helpClan(player, new String[0]);
-				else if(clanCommand.equalsIgnoreCase("invite"))
-					clanInvite(player, args);
-				else if(clanCommand.equalsIgnoreCase("uninvite"))
-					clanUnInvite(player, args);
-				else if(clanCommand.equalsIgnoreCase("promote"))
-					clanPromote(player, args);
-				else if(clanCommand.equalsIgnoreCase("demote"))
-					clanDemote(player, args);
-				else if(clanCommand.equalsIgnoreCase("kick"))
-					clanKick(player, args);
-				else if(clanCommand.equalsIgnoreCase("leave"))
-					clanLeave(player);
-				else if(clanCommand.equalsIgnoreCase("transfer"))
-					clanTransfer(player, args);
-				else if(clanCommand.equalsIgnoreCase("disband"))
-					clanDisband(player);
-				else if(clanCommand.equalsIgnoreCase("join"))
-					clanJoin(player, args);
-				else
-					Output.simpleError(player, "Use \"/clan help\" for commands.");
-			}else
-				Output.simpleError(player, "Use \"/clan help\" for commands.");
-			return true;
-		}else
-		return false;
+			else Output.simpleError(player, "You are not currently in a clan.");
+		}
+		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
-	private void createClan(Player player, String[] split) {
-		if(split.length >= 2) {
-			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-			if(pseudoPlayer.getClan() == null) {
-				int splitNameLength = split.length;
-				String clanName = "";
-				for(int i=1; i<splitNameLength; i++) {
-					clanName += split[i];
-					if(i < splitNameLength-1)
-						clanName+= " ";
+	private void clanDisband(Player player) {
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		Clan clan = pseudoPlayer.getClan();
+		if(clan != null) {
+			if(clan.isOwner(player)) {
+				List<Player> onlineMembers = clan.getOnlineMembers();
+				for(Player p : onlineMembers) {
+					// inform them the clan is gone
+					Output.simpleError(p, "Your clan has been disbanded.");
 				}
-				
-				clanName = clanName.trim();
-				
-				if(!clanName.contains("\"")) {
-					boolean nameExists = false;
-					for(Clan c : cm.getClans()) {
-						if(c.getName().equalsIgnoreCase(clanName)) {
-							nameExists = true;
-							break;
-						}
-					}
-					
-					if(!nameExists) {
-						if(clanName.length() <= Variables.clanMaxNameLeangh) {
-							int curMoney = pseudoPlayer.getMoney();
-							if(curMoney >= Variables.clanCreateCost) {
-								pseudoPlayer.setMoney(pseudoPlayer.getMoney()-Variables.clanCreateCost);
-								Clan clan = new Clan(clanName, player.getUniqueId());
-								cm.getClans().add(clan);
-								Database.insertClan(clan);
-								Output.positiveMessage(player, "You have created the clan "+clan.getName());
-							}
-							else Output.simpleError(player, "can't afford to create clan, cost: " + Variables.clanCreateCost+" gold coins.");
-						}
-						else Output.simpleError(player, "Clan name too long, 20 characters max.");
-					}
-					else Output.simpleError(player, "A clan with that name already exists.");
-				}
-				else Output.simpleError(player, "can't use \" in clan name.");
+				Database.deleteClan(clan);
+				cm.getClans().remove(clan);
 			}
-			else Output.simpleError(player, "You must leave your current clan to create a new one.");
+			else Output.simpleError(player, "Only the clan owner may disband the clan.");
 		}
-		else Output.simpleError(player, "Use \"/clan create (clan name)\"");
+		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
 	private void clanInfo(Player player) {
@@ -160,105 +124,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			}
 			else Output.simpleError(player, "You are not currently in a clan.");
 			
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
-	}
-	
-	@SuppressWarnings("deprecation")
-	private void clanUnInvite(Player player, String[] split) {
-		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
-					String targetName = split[1];
-					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
-					if(targetOfflinePlayer.getName() != player.getName()) {
-						if(clan.isInvited(targetOfflinePlayer.getUniqueId())) {
-							clan.removeInvited(targetOfflinePlayer.getUniqueId());
-							Player targetPlayer = targetOfflinePlayer.getPlayer();
-							if(targetPlayer != null) {
-								Output.simpleError(targetPlayer, "Your invitation to join "+clan.getName()+" has been revoked.");
-							}
-							Output.positiveMessage(player, "You have uninvited "+targetOfflinePlayer.getName()+" from your clan.");
-						}else{
-							Output.simpleError(player, "He is currently not invited to your clan.");
-						}
-					}
-				}else{
-					Output.simpleError(player, "Only the owner and leaders may perform this command.");
-				}
-			}else{
-				Output.simpleError(player, "You are currently not in a clan.");
-			}
-		}
-	}
-	
-	@SuppressWarnings("deprecation")
-	private void clanPromote(Player player, String[] split) {
-		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getUniqueId())) {
-					String targetName = split[1];
-					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
-					targetName = targetOfflinePlayer.getName();
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						if(!clan.isLeader(targetOfflinePlayer.getUniqueId())) {
-							if(clan.isMember(targetOfflinePlayer.getUniqueId())) {
-								Player targetPlayer = targetOfflinePlayer.getPlayer();
-								if(targetPlayer != null) {
-									Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
-									targetName = targetPlayer.getName();
-								}
-								clan.removeMember(targetOfflinePlayer.getUniqueId());
-								clan.promoteMember(targetOfflinePlayer.getUniqueId());
-								Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
-							}
-							else Output.simpleError(player, "That player is not currently a member of your clan.");
-						}
-						else Output.simpleError(player, "That player is already a leader of the clan.");
-					}
-					else Output.simpleError(player, "You can't promote yourself.");
-				}
-				else Output.simpleError(player, "Only a clan owner may promote clan members."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
-		}
-		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
-	}
-
-	@SuppressWarnings("deprecation")
-	private void clanDemote(Player player, String[] split) {
-		if(split.length == 2) {
-			PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
-			Clan clan = pseudoPlayer.getClan();
-			if(clan != null) {
-				if(clan.isOwner(player.getUniqueId())) {
-					String targetName = split[1];
-					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
-					targetName = targetOfflinePlayer.getName();
-					if(!targetName.equalsIgnoreCase(player.getName())) {
-						if(clan.isLeader(targetOfflinePlayer.getUniqueId())) {
-							Player targetPlayer = targetOfflinePlayer.getPlayer();
-							if(targetPlayer != null)
-								targetName = targetPlayer.getName();
-							else
-								targetName = targetOfflinePlayer.getName();
-							clan.demoteLeader(targetOfflinePlayer.getUniqueId());
-							clan.addMember(targetOfflinePlayer.getUniqueId());
-							if(targetPlayer != null)
-								Output.positiveMessage(targetPlayer, "You have been demoted to a normal member in your clan.");
-							Output.positiveMessage(player, "You have demoted "+targetName+" to a normal member in your clan.");
-						}
-						else Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
-					}
-					else Output.simpleError(player, "You can't demote yourself.");
-				}
-				else Output.simpleError(player, "Only a clan owner may demote clan members."); 
-			}
-			else Output.simpleError(player, "You are not currently in a clan.");
 		}
 		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
@@ -351,7 +216,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		}
 		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
-	
+
 	private void clanLeave(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player.getUniqueId());
 		Clan clan = pseudoPlayer.getClan();
@@ -370,12 +235,39 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
-	public Clan findClanByPlayer(Player player) {
-		for(Clan clan : cm.getClans()) {
-			if(clan.isInClan(player.getUniqueId()))
-				return clan;
+	@SuppressWarnings("deprecation")
+	private void clanPromote(Player player, String[] split) {
+		if(split.length == 2) {
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+			Clan clan = pseudoPlayer.getClan();
+			if(clan != null) {
+				if(clan.isOwner(player.getUniqueId())) {
+					String targetName = split[1];
+					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
+					targetName = targetOfflinePlayer.getName();
+					if(!targetName.equalsIgnoreCase(player.getName())) {
+						if(!clan.isLeader(targetOfflinePlayer.getUniqueId())) {
+							if(clan.isMember(targetOfflinePlayer.getUniqueId())) {
+								Player targetPlayer = targetOfflinePlayer.getPlayer();
+								if(targetPlayer != null) {
+									Output.positiveMessage(targetPlayer, "You have been promoted to a leader in your clan.");
+									targetName = targetPlayer.getName();
+								}
+								clan.removeMember(targetOfflinePlayer.getUniqueId());
+								clan.promoteMember(targetOfflinePlayer.getUniqueId());
+								Output.positiveMessage(player, "You have promoted "+targetName+" to leader in your clan.");
+							}
+							else Output.simpleError(player, "That player is not currently a member of your clan.");
+						}
+						else Output.simpleError(player, "That player is already a leader of the clan.");
+					}
+					else Output.simpleError(player, "You can't promote yourself.");
+				}
+				else Output.simpleError(player, "Only a clan owner may promote clan members."); 
+			}
+			else Output.simpleError(player, "You are not currently in a clan.");
 		}
-		return null;
+		else Output.simpleError(player, "Use \"/clan invite (player name)\"");
 	}
 	
 	private void clanTransfer(Player player, String[] split) {
@@ -414,25 +306,135 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 		}
 		else Output.simpleError(player, "You are not currently in a clan.");
 	}
-
-	private void clanDisband(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		Clan clan = pseudoPlayer.getClan();
-		if(clan != null) {
-			if(clan.isOwner(player)) {
-				List<Player> onlineMembers = clan.getOnlineMembers();
-				for(Player p : onlineMembers) {
-					// inform them the clan is gone
-					Output.simpleError(p, "Your clan has been disbanded.");
+	
+	@SuppressWarnings("deprecation")
+	private void clanUnInvite(Player player, String[] split) {
+		if(split.length == 2) {
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+			Clan clan = pseudoPlayer.getClan();
+			if(clan != null) {
+				if(clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
+					String targetName = split[1];
+					OfflinePlayer targetOfflinePlayer = Bukkit.getOfflinePlayer(targetName);
+					if(targetOfflinePlayer.getName() != player.getName()) {
+						if(clan.isInvited(targetOfflinePlayer.getUniqueId())) {
+							clan.removeInvited(targetOfflinePlayer.getUniqueId());
+							Player targetPlayer = targetOfflinePlayer.getPlayer();
+							if(targetPlayer != null) {
+								Output.simpleError(targetPlayer, "Your invitation to join "+clan.getName()+" has been revoked.");
+							}
+							Output.positiveMessage(player, "You have uninvited "+targetOfflinePlayer.getName()+" from your clan.");
+						}else{
+							Output.simpleError(player, "He is currently not invited to your clan.");
+						}
+					}
+				}else{
+					Output.simpleError(player, "Only the owner and leaders may perform this command.");
 				}
-				Database.deleteClan(clan);
-				cm.getClans().remove(clan);
+			}else{
+				Output.simpleError(player, "You are currently not in a clan.");
 			}
-			else Output.simpleError(player, "Only the clan owner may disband the clan.");
 		}
-		else Output.simpleError(player, "You are not currently in a clan.");
 	}
 	
+	private void createClan(Player player, String[] split) {
+		if(split.length >= 2) {
+			PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+			if(pseudoPlayer.getClan() == null) {
+				int splitNameLength = split.length;
+				String clanName = "";
+				for(int i=1; i<splitNameLength; i++) {
+					clanName += split[i];
+					if(i < splitNameLength-1)
+						clanName+= " ";
+				}
+				
+				clanName = clanName.trim();
+				
+				if(!clanName.contains("\"")) {
+					boolean nameExists = false;
+					for(Clan c : cm.getClans()) {
+						if(c.getName().equalsIgnoreCase(clanName)) {
+							nameExists = true;
+							break;
+						}
+					}
+					
+					if(!nameExists) {
+						if(clanName.length() <= Variables.clanMaxNameLeangh) {
+							int curMoney = pseudoPlayer.getMoney();
+							if(curMoney >= Variables.clanCreateCost) {
+								pseudoPlayer.setMoney(pseudoPlayer.getMoney()-Variables.clanCreateCost);
+								Clan clan = new Clan(clanName, player.getUniqueId());
+								cm.getClans().add(clan);
+								Database.insertClan(clan);
+								Output.positiveMessage(player, "You have created the clan "+clan.getName());
+							}
+							else Output.simpleError(player, "can't afford to create clan, cost: " + Variables.clanCreateCost+" gold coins.");
+						}
+						else Output.simpleError(player, "Clan name too long, 20 characters max.");
+					}
+					else Output.simpleError(player, "A clan with that name already exists.");
+				}
+				else Output.simpleError(player, "can't use \" in clan name.");
+			}
+			else Output.simpleError(player, "You must leave your current clan to create a new one.");
+		}
+		else Output.simpleError(player, "Use \"/clan create (clan name)\"");
+	}
+	
+	public Clan findClanByPlayer(Player player) {
+		for(Clan clan : cm.getClans()) {
+			if(clan.isInClan(player.getUniqueId()))
+				return clan;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("clan")) {
+			if(!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			Player player = (Player) sender;
+			if(args.length >= 1) {
+				String clanCommand = args[0];
+				if(clanCommand.equalsIgnoreCase("create"))
+					createClan(player, args);
+				else if(clanCommand.equalsIgnoreCase("info"))
+					clanInfo(player);
+				else if(clanCommand.equalsIgnoreCase("help"))
+					HelpHandler.helpClan(player, new String[0]);
+				else if(clanCommand.equalsIgnoreCase("invite"))
+					clanInvite(player, args);
+				else if(clanCommand.equalsIgnoreCase("uninvite"))
+					clanUnInvite(player, args);
+				else if(clanCommand.equalsIgnoreCase("promote"))
+					clanPromote(player, args);
+				else if(clanCommand.equalsIgnoreCase("demote"))
+					clanDemote(player, args);
+				else if(clanCommand.equalsIgnoreCase("kick"))
+					clanKick(player, args);
+				else if(clanCommand.equalsIgnoreCase("leave"))
+					clanLeave(player);
+				else if(clanCommand.equalsIgnoreCase("transfer"))
+					clanTransfer(player, args);
+				else if(clanCommand.equalsIgnoreCase("disband"))
+					clanDisband(player);
+				else if(clanCommand.equalsIgnoreCase("join"))
+					clanJoin(player, args);
+				else
+					Output.simpleError(player, "Use \"/clan help\" for commands.");
+			}else
+				Output.simpleError(player, "Use \"/clan help\" for commands.");
+			return true;
+		}else
+		return false;
+	}
+	
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("clan") && args.length == 1) {

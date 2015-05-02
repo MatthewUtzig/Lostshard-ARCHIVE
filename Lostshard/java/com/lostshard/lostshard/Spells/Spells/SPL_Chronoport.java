@@ -12,30 +12,12 @@ import com.lostshard.lostshard.Spells.Spell;
 
 public class SPL_Chronoport extends Spell {
 	
-	public SPL_Chronoport(Scroll scroll) {
-		super(scroll);
-	}
-	
 	int chronoTick = 50;
+	
 	private Location startLoc;
 	UUID playerUUID;
-
-	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
-	public void doAction(Player player) {
-		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
-		setStartLoc(player.getLocation());
-		pseudoPlayer.getTimer().chronoport = this;
-		playerUUID = player.getUniqueId();
+	public SPL_Chronoport(Scroll scroll) {
+		super(scroll);
 	}
 
 	public void chronoTick() {
@@ -51,12 +33,30 @@ public class SPL_Chronoport extends Spell {
 		}
 	}
 
+	@Override
+	public void doAction(Player player) {
+		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		setStartLoc(player.getLocation());
+		pseudoPlayer.getTimer().chronoport = this;
+		playerUUID = player.getUniqueId();
+	}
+
 	public Location getStartLoc() {
 		return startLoc;
 	}
 
+	@Override
+	public void preAction(Player player) {
+		
+	}
+
 	public void setStartLoc(Location startLoc) {
 		this.startLoc = startLoc;
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

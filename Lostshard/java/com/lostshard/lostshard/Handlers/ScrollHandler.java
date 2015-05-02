@@ -14,8 +14,6 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class ScrollHandler {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	
 	public static void onEntityDeathEvent(EntityDeathEvent event) {
 		if(event.getEntity().getKiller() == null)
 			return;
@@ -34,4 +32,6 @@ public class ScrollHandler {
 			Database.insertScroll(scroll, pPlayer.getId());
 		}
 	}
+	
+	static PlayerManager pm = PlayerManager.getManager();
 }

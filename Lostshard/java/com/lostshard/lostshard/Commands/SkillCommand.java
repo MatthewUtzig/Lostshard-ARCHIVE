@@ -18,24 +18,6 @@ import com.lostshard.lostshard.Utils.Utils;
 
 public class SkillCommand implements CommandExecutor, TabCompleter {
 	
-	static PlayerManager pm = PlayerManager.getManager();
-	
-	/**
-	 * @param Lostshard
-	 *            as plugin
-	 */
-	public SkillCommand(Lostshard plugin) {
-		plugin.getCommand("skills").setExecutor(this);
-	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("skills")) {
-			skills(sender, args);
-			return true;
-		}
-		return false;
-	}
-	
 	public static void skills(CommandSender sender, String[] args) {
 		if(!(sender instanceof Player)){
 			Output.mustBePlayer(sender);
@@ -204,6 +186,26 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 		return;
 	}
 	
+	static PlayerManager pm = PlayerManager.getManager();
+	
+	/**
+	 * @param Lostshard
+	 *            as plugin
+	 */
+	public SkillCommand(Lostshard plugin) {
+		plugin.getCommand("skills").setExecutor(this);
+	}
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("skills")) {
+			skills(sender, args);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public List<String> onTabComplete(CommandSender arg0, Command arg1,
 			String arg2, String[] arg3) {
 		// TODO Auto-generated method stub

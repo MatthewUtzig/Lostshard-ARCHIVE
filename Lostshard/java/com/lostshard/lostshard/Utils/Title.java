@@ -14,41 +14,13 @@ import org.bukkit.entity.Player;
 public class Title {
 
     @Deprecated
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
-        sendTitle(player, fadeIn, stay, fadeOut, message, null);
+    public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
+        sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
     }
 
     @Deprecated
     public static void sendSubtitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
         sendTitle(player, fadeIn, stay, fadeOut, null, message);
-    }
-
-    @Deprecated
-    public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-        sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
-    }
-
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-
-        PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay, fadeOut);
-        connection.sendPacket(packetPlayOutTimes);
-
-        if (subtitle != null) {
-            subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
-            subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
-            IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
-            PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, titleSub);
-            connection.sendPacket(packetPlayOutSubTitle);
-        }
-
-        if (title != null) {
-            title = title.replaceAll("%player%", player.getDisplayName());
-            title = ChatColor.translateAlternateColorCodes('&', title);
-            IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
-            PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, titleMain);
-            connection.sendPacket(packetPlayOutTitle);
-        }
     }
 
     public static void sendTabTitle(Player player, String header, String footer) {
@@ -74,6 +46,34 @@ public class Title {
             e.printStackTrace();
         } finally {
             connection.sendPacket(headerPacket);
+        }
+    }
+
+    @Deprecated
+    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
+        sendTitle(player, fadeIn, stay, fadeOut, message, null);
+    }
+
+    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
+        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
+
+        PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay, fadeOut);
+        connection.sendPacket(packetPlayOutTimes);
+
+        if (subtitle != null) {
+            subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
+            subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
+            IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
+            PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, titleSub);
+            connection.sendPacket(packetPlayOutSubTitle);
+        }
+
+        if (title != null) {
+            title = title.replaceAll("%player%", player.getDisplayName());
+            title = ChatColor.translateAlternateColorCodes('&', title);
+            IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
+            PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, titleMain);
+            connection.sendPacket(packetPlayOutTitle);
         }
     }
 	

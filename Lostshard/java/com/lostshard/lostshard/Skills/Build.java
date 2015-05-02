@@ -18,94 +18,42 @@ public class Build {
 	private Skill magery = new MagerySkill();
 	private Skill archery = new ArcherySkill();
 	
-	public Skill getMining() {
-		return mining;
+	public Skill getArchery() {
+		return archery;
+	}
+	
+	public Skill getBlackSmithy() {
+		return blackSmithy;
+	}
+
+	public Skill getBlades() {
+		return blades;
+	}
+
+	public Skill getBrawling() {
+		return brawling;
+	}
+	
+	public Skill getFishing() {
+		return fishing;
 	}
 	
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setMining(Skill mining) {
-		this.mining = mining;
-	}
-	
-	public Skill getBlades() {
-		return blades;
-	}
-	
 	public Skill getLumberjacking() {
 		return lumberjacking;
-	}
-
-	public void setLumberjacking(Skill lumberjacking) {
-		this.lumberjacking = lumberjacking;
-	}
-
-	public Skill getFishing() {
-		return fishing;
-	}
-
-	public void setFishing(Skill fishing) {
-		this.fishing = fishing;
-	}
-
-	public Skill getSurvivalism() {
-		return survivalism;
-	}
-
-	public void setSurvivalism(Skill survivalism) {
-		this.survivalism = survivalism;
-	}
-
-	public Skill getTaming() {
-		return taming;
-	}
-
-	public void setTaming(Skill taming) {
-		this.taming = taming;
 	}
 
 	public Skill getMagery() {
 		return magery;
 	}
 
-	public void setMagery(Skill magery) {
-		this.magery = magery;
+	public Skill getMining() {
+		return mining;
 	}
 
-	public void setBlades(Skill blades) {
-		this.blades = blades;
-	}
-
-	public Skill getBrawling() {
-		return brawling;
-	}
-
-	public void setBrawling(Skill brawling) {
-		this.brawling = brawling;
-	}
-
-	public Skill getBlackSmithy() {
-		return blackSmithy;
-	}
-
-	public void setBlackSmithy(Skill blackSmithy) {
-		this.blackSmithy = blackSmithy;
-	}
-	
-	public Skill getArchery() {
-		return archery;
-	}
-	
-	public void setArcher(Skill archery) {
-		this.archery = archery;
-	}
-	
 	public List<Skill> getSkills() {
 		List<Skill> skills = new ArrayList<Skill>();
 		skills.add(mining);
@@ -120,12 +68,21 @@ public class Build {
 		skills.add(archery);
 		skills.sort(new Comparator<Skill>()
                 {
-            public int compare(Skill skill1, Skill skill2)
+            @Override
+			public int compare(Skill skill1, Skill skill2)
             {
                 return skill1.getName().compareTo(skill2.getName());
             }        
         });
 		return skills;
+	}
+
+	public Skill getSurvivalism() {
+		return survivalism;
+	}
+
+	public Skill getTaming() {
+		return taming;
 	}
 
 	public int getTotalSkillVal() {
@@ -140,5 +97,49 @@ public class Build {
 		total+=survivalism.getLvl();
 		total+=taming.getLvl();
 		return total;
+	}
+
+	public void setArcher(Skill archery) {
+		this.archery = archery;
+	}
+
+	public void setBlackSmithy(Skill blackSmithy) {
+		this.blackSmithy = blackSmithy;
+	}
+
+	public void setBlades(Skill blades) {
+		this.blades = blades;
+	}
+
+	public void setBrawling(Skill brawling) {
+		this.brawling = brawling;
+	}
+
+	public void setFishing(Skill fishing) {
+		this.fishing = fishing;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setLumberjacking(Skill lumberjacking) {
+		this.lumberjacking = lumberjacking;
+	}
+	
+	public void setMagery(Skill magery) {
+		this.magery = magery;
+	}
+	
+	public void setMining(Skill mining) {
+		this.mining = mining;
+	}
+	
+	public void setSurvivalism(Skill survivalism) {
+		this.survivalism = survivalism;
+	}
+
+	public void setTaming(Skill taming) {
+		this.taming = taming;
 	}
 }

@@ -22,6 +22,7 @@ public class TamingCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("mount").setExecutor(this);
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if(cmd.getName().equalsIgnoreCase("mount")) {
@@ -37,6 +38,7 @@ public class TamingCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 	
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

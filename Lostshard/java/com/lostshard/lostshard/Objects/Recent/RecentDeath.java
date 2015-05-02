@@ -17,12 +17,12 @@ public class RecentDeath {
 		return entity;
 	}
 
-	public int getTicksRemaining() {
-		return ticksRemaining;
-	}
-
 	public int getOriginalTicks() {
 		return originalTicks;
+	}
+
+	public int getTicksRemaining() {
+		return ticksRemaining;
 	}
 
 	public void setOriginalTicks(int originalTicks) {

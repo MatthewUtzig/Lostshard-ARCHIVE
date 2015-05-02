@@ -20,11 +20,6 @@ public class SPL_Firefield extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
-		
-	}
-
-	@Override
 	public void doAction(Player player) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
 		for(int x = getFoundBlock().getX() - 2; x <= getFoundBlock().getX()+2; x++) {
@@ -45,6 +40,11 @@ public class SPL_Firefield extends RangedSpell {
 		if(blocks.size() > 0) {
 			new FireField(blocks, player.getUniqueId(), 200);
 		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+		
 	}
 
 }

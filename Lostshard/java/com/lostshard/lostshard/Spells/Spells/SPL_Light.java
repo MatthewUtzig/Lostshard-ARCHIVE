@@ -15,12 +15,12 @@ public class SPL_Light extends RangedSpell {
 	}
 
 	@Override
-	public void preAction(Player player) {
+	public void doAction(Player player) {
+		getFoundBlock().setType(Material.TORCH);
 	}
 
 	@Override
-	public void doAction(Player player) {
-		getFoundBlock().setType(Material.TORCH);
+	public void preAction(Player player) {
 	}
 
 }

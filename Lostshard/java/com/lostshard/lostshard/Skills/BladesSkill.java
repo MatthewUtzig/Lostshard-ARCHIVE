@@ -17,14 +17,6 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class BladesSkill extends Skill {
 	
-	public BladesSkill() {
-		super();
-		setName("Blades");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.IRON_SWORD);
-	}
-	
 	public static void playerDamagedEntityWithSword(EntityDamageByEntityEvent event) {
 		if(event.isCancelled())
 			return;
@@ -91,6 +83,14 @@ public class BladesSkill extends Skill {
 		Output.gainSkill(player, "Bladess", gain, skill.getLvl());
 		if(gain > 0)
 			pPlayer.update();
+	}
+	
+	public BladesSkill() {
+		super();
+		setName("Blades");
+		setBaseProb(.2);
+		setScaleConstant(60);
+		setMat(Material.IRON_SWORD);
 	}
 
 	@Override

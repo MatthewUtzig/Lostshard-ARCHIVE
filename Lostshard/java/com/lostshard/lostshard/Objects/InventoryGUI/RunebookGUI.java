@@ -8,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -24,30 +23,6 @@ public class RunebookGUI extends GUI {
 	public RunebookGUI(PseudoPlayer pPlayer) {
 		super(pPlayer.getRunebook().getNumRunes(), "Runebook", pPlayer);
 		optionSelector();
-	}
-
-	@Override
-	public void optionSelector() {
-		for(Rune r : getPlayer().getRunebook().getRunes()) {
-			ItemStack item = new ItemStack(Material.PAPER);
-			ItemMeta itemMeta = item.getItemMeta();
-			List<String> lore = new ArrayList<String>();
-			
-			itemMeta.setDisplayName(ChatColor.GOLD+r.getLabel());
-			
-			lore.add(ChatColor.GREEN+"Location:");
-			lore.add(ChatColor.YELLOW+"x:"+r.getLocation().getX());
-			lore.add(ChatColor.YELLOW+"y:"+r.getLocation().getX());
-			lore.add(ChatColor.YELLOW+"z:"+r.getLocation().getX());
-			lore.add("You can remove the rune by shift clicking it");
-			lore.add(ChatColor.GOLD+"Commands");
-			lore.add("/runebook give "+ChatColor.RED+"(player) (rune)");
-			
-			itemMeta.setLore(lore);
-			
-			item.setItemMeta(itemMeta);
-			addOption(item);
-		}
 	}
 
 	@Override
@@ -84,7 +59,26 @@ public class RunebookGUI extends GUI {
 	}
 
 	@Override
-	public void onClose(InventoryCloseEvent event) {
-		
+	public void optionSelector() {
+		for(Rune r : getPlayer().getRunebook().getRunes()) {
+			ItemStack item = new ItemStack(Material.PAPER);
+			ItemMeta itemMeta = item.getItemMeta();
+			List<String> lore = new ArrayList<String>();
+			
+			itemMeta.setDisplayName(ChatColor.GOLD+r.getLabel());
+			
+			lore.add(ChatColor.GREEN+"Location:");
+			lore.add(ChatColor.YELLOW+"x:"+r.getLocation().getX());
+			lore.add(ChatColor.YELLOW+"y:"+r.getLocation().getX());
+			lore.add(ChatColor.YELLOW+"z:"+r.getLocation().getX());
+			lore.add("You can remove the rune by shift clicking it");
+			lore.add(ChatColor.GOLD+"Commands");
+			lore.add("/runebook give "+ChatColor.RED+"(player) (rune)");
+			
+			itemMeta.setLore(lore);
+			
+			item.setItemMeta(itemMeta);
+			addOption(item);
+		}
 	}
 }

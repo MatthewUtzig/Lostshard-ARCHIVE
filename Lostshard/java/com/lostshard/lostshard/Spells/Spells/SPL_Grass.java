@@ -18,16 +18,10 @@ public class SPL_Grass extends RangedSpell {
 		setCarePlot(true);
 	}
 	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		
-	}
-	
 	/* The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {
 		
 		ArrayList<Block> blocks = new ArrayList<Block>();
@@ -49,6 +43,14 @@ public class SPL_Grass extends RangedSpell {
 		for(Block block : blocks) {
 			block.setType(Material.GRASS);
 		}
+		
+	}
+	
+	/* Used for anything that must be handled as soon as the spell is cast,
+	 * for example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
 		
 	}
 

@@ -11,13 +11,13 @@ import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class WallOfStone extends MagicStructure {
 
+	protected int buildTicks = 25;
+
+	protected int solidTicks = 125;
 	public WallOfStone(ArrayList<Block> blocks, UUID uuid,
 			int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
 	}
-
-	protected int buildTicks = 25;
-	protected int solidTicks = 125;
 	
 	@Override 
 	public void tick() {
@@ -28,7 +28,7 @@ public class WallOfStone extends MagicStructure {
 			else if(getCurTick() >= solidTicks) {
 				//System.out.println("removing tick");
 				int totalBlocks = getBlockStates().size();
-				int blocksPerTick = (int)Math.ceil((double)totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
+				int blocksPerTick = (int)Math.ceil(totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
 				int curBlock = ((getCurTick()-solidTicks))*blocksPerTick;
 				int maxSize = curBlock+blocksPerTick;
 				if(curBlock+blocksPerTick >= getBlockStates().size())
@@ -44,7 +44,7 @@ public class WallOfStone extends MagicStructure {
 			}
 			else {
 				int totalBlocks = getBlockStates().size();
-				int blocksPerTick = (int)Math.ceil((double)totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
+				int blocksPerTick = (int)Math.ceil(totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
 				int curBlock = (getCurTick()-1)*blocksPerTick;
 				int maxSize = curBlock+blocksPerTick;
 				if(curBlock+blocksPerTick >= getBlockStates().size()) {

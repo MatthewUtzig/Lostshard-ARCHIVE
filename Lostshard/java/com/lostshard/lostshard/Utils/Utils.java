@@ -27,54 +27,25 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class Utils {
 
-	static PlayerManager pm = PlayerManager.getManager();
-	public static DecimalFormat df = new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
+	public static void addPotion(Player player, int amplifier, int duration,
+			PotionEffectType type, boolean force) {
+		if (player.hasPotionEffect(type))
+			player.removePotionEffect(type);
+		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
+				force);
+	}
+	public static void addPotion(Player player, int amplifier, int duration,
+			PotionEffectType type, boolean force, int increase) {
+		for (PotionEffect pe : player.getActivePotionEffects())
+			if (pe.getType().equals(type))
+				duration += pe.getDuration();
+		duration = Math.min(duration, increase);
+		if (player.hasPotionEffect(type))
+			player.removePotionEffect(type);
+		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
+				force);
+	}
 	
-	@SuppressWarnings("deprecation")
-	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,
-			int argsnr) {
-		if (args.length < argsnr + 1)
-			return null;
-		String targetName = args[argsnr];
-		return Bukkit.getOfflinePlayer(targetName);
-	}
-
-	public static String scaledIntToString(int x) {
-	    return new BigDecimal(BigInteger.valueOf(x), 1).toString();
-	}
-	
-	public static Player getPlayer(Player player, String[] args, int argsnr) {
-		if (args.length < argsnr + 1)
-			return null;
-		String targetName = args[argsnr];
-		return Bukkit.getPlayer(targetName);
-	}
-
-	public static String booleanToString(boolean bol, String ifTrue,
-			String ifFalse) {
-		return bol ? ifTrue : ifFalse;
-	}
-
-	public static String booleanToString(boolean bol) {
-		return booleanToString(bol, "Yes", "No");
-	}
-
-	public static boolean isWithin(Location loc1, Location loc2, double radius) {
-		return fastDistance(loc1, loc2) < Math.pow(radius, 2)
-				&& loc1.getWorld().equals(loc2.getWorld());
-	}
-
-	public static double fastDistance(Location loc1, Location loc2) {
-		double fastDist = Math.pow((loc2.getX() - loc1.getX()), 2)
-				+ Math.pow((loc2.getY() - loc1.getY()), 2)
-				+ Math.pow((loc2.getZ() - loc1.getZ()), 2);
-		return fastDist;
-	}
-
-	public static double distance(Location loc1, Location loc2) {
-		return Math.sqrt(fastDistance(loc1, loc2));
-	}
-
 	public static double adjustDamageForArmor(Player player, double newDamage) {
 		int defensePoints = 0;
 
@@ -120,42 +91,24 @@ public class Utils {
 		return adjustDamage;
 	}
 
-	public static List<String> UUIDArrayToUsernameArray(List<UUID> list) {
-		List<String> result = new ArrayList<String>();
-		for(UUID uuid : list)
-			result.add(Bukkit.getOfflinePlayer(uuid).getName());
-		return result;
-	}
-
-	public static List<OfflinePlayer> UUIDArrayToOfflinePlayerArray(List<UUID> list) {
-		List<OfflinePlayer> result = new ArrayList<OfflinePlayer>();
-		for(UUID uuid : list)
-			result.add(Bukkit.getOfflinePlayer(uuid));
-		return result;
+	public static String booleanToString(boolean bol) {
+		return booleanToString(bol, "Yes", "No");
 	}
 	
-	public static List<Player> UUIDArrayToOnlinePlayerArray(List<UUID> list) {
-		List<Player> result = new ArrayList<Player>();
-		for(OfflinePlayer p : UUIDArrayToOfflinePlayerArray(list))
-			if(p.isOnline())
-				result.add(p.getPlayer());
-		return result;
-	}
-	
-	public static <T> Iterable<T> nullGuard(Iterable<T> list) {
-		return list == null ? Collections.<T> emptyList() : list;
+	public static String booleanToString(boolean bol, String ifTrue,
+			String ifFalse) {
+		return bol ? ifTrue : ifFalse;
 	}
 
-	public static String listToString(List<String> list) {
-		return StringUtils.join(list, ", ");
+	public static double distance(Location loc1, Location loc2) {
+		return Math.sqrt(fastDistance(loc1, loc2));
 	}
 
-	public static List<Player> getPlayersNear(Player player, int radius) {
-		List<Player> result = new ArrayList<Player>();
-		for (Player p : Bukkit.getOnlinePlayers())
-			if (isWithin(p.getLocation(), player.getLocation(), radius))
-				result.add(p);
-		return result;
+	public static double fastDistance(Location loc1, Location loc2) {
+		double fastDist = Math.pow((loc2.getX() - loc1.getX()), 2)
+				+ Math.pow((loc2.getY() - loc1.getY()), 2)
+				+ Math.pow((loc2.getZ() - loc1.getZ()), 2);
+		return fastDist;
 	}
 
 	public static String getDisplayName(OfflinePlayer player) {
@@ -166,27 +119,74 @@ public class Utils {
 						: ChatColor.BLUE + player.getName();
 	}
 
+	@SuppressWarnings("deprecation")
+	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,
+			int argsnr) {
+		if (args.length < argsnr + 1)
+			return null;
+		String targetName = args[argsnr];
+		return Bukkit.getOfflinePlayer(targetName);
+	}
+
+	public static Player getPlayer(Player player, String[] args, int argsnr) {
+		if (args.length < argsnr + 1)
+			return null;
+		String targetName = args[argsnr];
+		return Bukkit.getPlayer(targetName);
+	}
+
+	public static List<Player> getPlayersNear(Player player, int radius) {
+		List<Player> result = new ArrayList<Player>();
+		for (Player p : Bukkit.getOnlinePlayers())
+			if (isWithin(p.getLocation(), player.getLocation(), radius))
+				result.add(p);
+		return result;
+	}
+
 	public static String getStringFromList(String[] args) {
 		return StringUtils.join(args, ", ");
 	}
 
-	public static void addPotion(Player player, int amplifier, int duration,
-			PotionEffectType type, boolean force) {
-		if (player.hasPotionEffect(type))
-			player.removePotionEffect(type);
-		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
-				force);
+	public static boolean isWithin(Location loc1, Location loc2, double radius) {
+		return fastDistance(loc1, loc2) < Math.pow(radius, 2)
+				&& loc1.getWorld().equals(loc2.getWorld());
+	}
+	
+	public static String listToString(List<String> list) {
+		return StringUtils.join(list, ", ");
+	}
+	
+	public static <T> Iterable<T> nullGuard(Iterable<T> list) {
+		return list == null ? Collections.<T> emptyList() : list;
 	}
 
-	public static void addPotion(Player player, int amplifier, int duration,
-			PotionEffectType type, boolean force, int increase) {
-		for (PotionEffect pe : player.getActivePotionEffects())
-			if (pe.getType().equals(type))
-				duration += pe.getDuration();
-		duration = Math.min(duration, increase);
-		if (player.hasPotionEffect(type))
-			player.removePotionEffect(type);
-		player.addPotionEffect(new PotionEffect(type, duration, amplifier),
-				force);
+	public static String scaledIntToString(int x) {
+	    return new BigDecimal(BigInteger.valueOf(x), 1).toString();
 	}
+
+	public static List<OfflinePlayer> UUIDArrayToOfflinePlayerArray(List<UUID> list) {
+		List<OfflinePlayer> result = new ArrayList<OfflinePlayer>();
+		for(UUID uuid : list)
+			result.add(Bukkit.getOfflinePlayer(uuid));
+		return result;
+	}
+
+	public static List<Player> UUIDArrayToOnlinePlayerArray(List<UUID> list) {
+		List<Player> result = new ArrayList<Player>();
+		for(OfflinePlayer p : UUIDArrayToOfflinePlayerArray(list))
+			if(p.isOnline())
+				result.add(p.getPlayer());
+		return result;
+	}
+
+	public static List<String> UUIDArrayToUsernameArray(List<UUID> list) {
+		List<String> result = new ArrayList<String>();
+		for(UUID uuid : list)
+			result.add(Bukkit.getOfflinePlayer(uuid).getName());
+		return result;
+	}
+
+	static PlayerManager pm = PlayerManager.getManager();
+
+	public static DecimalFormat df = new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
  }

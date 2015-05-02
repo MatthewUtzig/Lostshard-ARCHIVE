@@ -13,22 +13,22 @@ public class Runebook {
 		runes.add(rune);
 	}
 	
-	public ArrayList<Rune> getRunes() {
-		return runes;
-	}
-	
 	public int getNumRunes() {
 		return runes.size();
 	}
 	
-	public void removeRune(Rune rune) {
-		runes.remove(rune);
-	}
-
 	public Rune getRune(String runeLabel) {
 		for(Rune r : runes)
 			if(r.getLabel().equalsIgnoreCase(runeLabel))
 				return r;
 		return null;
+	}
+	
+	public ArrayList<Rune> getRunes() {
+		return runes;
+	}
+
+	public void removeRune(Rune rune) {
+		runes.remove(rune);
 	}
 }

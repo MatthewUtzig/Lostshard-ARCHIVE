@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -24,6 +23,20 @@ public class SpellbookPageGUI extends GUI {
 		super(9, "Spellbook page: "+page, pPlayer);
 		this.page = page;
 		optionSelector();
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	@Override
+	public void onClick(InventoryClickEvent event) {
+		if(event.getCurrentItem().getItemMeta().hasDisplayName()) {
+			if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.GOLD+"Back to Spellbook.")) {
+				GUI spellbookGUI = new SpellbookGUI(getPlayer());
+				spellbookGUI.openInventory((Player)event.getWhoClicked());
+			}
+		}
 	}
 
 	@Override
@@ -55,25 +68,6 @@ public class SpellbookPageGUI extends GUI {
 			item.setItemMeta(itemMeta);
 			addOption(item);
 		}
-	}
-
-	@Override
-	public void onClick(InventoryClickEvent event) {
-		if(event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.GOLD+"Back to Spellbook.")) {
-				GUI spellbookGUI = new SpellbookGUI(getPlayer());
-				spellbookGUI.openInventory((Player)event.getWhoClicked());
-			}
-		}
-	}
-
-	@Override
-	public void onClose(InventoryCloseEvent event) {
-		
-	}
-
-	public int getPage() {
-		return page;
 	}
 
 	public void setPage(int page) {

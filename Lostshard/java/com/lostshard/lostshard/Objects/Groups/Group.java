@@ -18,33 +18,60 @@ public class Group {
 	private List<UUID> members = new ArrayList<UUID>();
 	private List<UUID> invited = new ArrayList<UUID>();
 
-	public List<UUID> getMembers() {
-		return members;
+	public void addInvited(UUID invite) {
+		if(!this.invited.contains(invite))
+			this.invited.add(invite);
 	}
 
-	public void setMembers(List<UUID> members) {
-		this.members = members;
+	public void addMember(UUID member) {
+		members.add(member);
 	}
 
 	public List<UUID> getInvited() {
 		return invited;
 	}
 
-	public void setInvited(List<UUID> invited) {
-		this.invited = invited;
+	public List<UUID> getMembers() {
+		return members;
 	}
 	
-	public void addMember(UUID member) {
-		members.add(member);
+	public List<Player> getOnlineMembers() {
+		List<Player> rs = new ArrayList<Player>();
+		for(UUID pUUID : members) {
+			Player p = Bukkit.getPlayer(pUUID);
+			if(p != null)
+				rs.add(p);
+		}
+		return rs;	
 	}
 	
-	public void removeMember(UUID member) {
-		members.remove(member);
+	public boolean isDead() {
+		for(UUID member : members)
+			if(Bukkit.getPlayer(member) == null)
+				members.remove(member);
+		if(members.size() <= 0)
+			return true;
+		return false;
 	}
 	
-	public void addInvited(UUID invite) {
-		if(!this.invited.contains(invite))
-			this.invited.add(invite);
+	public boolean isInvited(UUID invite) {
+		if(invited.contains(invite))
+			return true;
+		return false;
+	}
+	
+	public boolean isMember(OfflinePlayer player) {
+		return isMember(player.getUniqueId());
+	}
+	
+	public boolean isMember(Player player) {
+		return isMember(player.getUniqueId());
+	}
+	
+	public boolean isMember(UUID member) {
+		if(members.contains(member))
+			return true;
+		return false;
 	}
 	
 	public void removeInvited(UUID invite) {
@@ -55,24 +82,8 @@ public class Group {
 		}
 	}
 	
-	public boolean isInvited(UUID invite) {
-		if(invited.contains(invite))
-			return true;
-		return false;
-	}
-	
-	public boolean isMember(UUID member) {
-		if(members.contains(member))
-			return true;
-		return false;
-	}
-	
-	public boolean isMember(Player player) {
-		return isMember(player.getUniqueId());
-	}
-	
-	public boolean isMember(OfflinePlayer player) {
-		return isMember(player.getUniqueId());
+	public void removeMember(UUID member) {
+		members.remove(member);
 	}
 	
 	
@@ -86,22 +97,11 @@ public class Group {
 		}
 	}
 	
-	public boolean isDead() {
-		for(UUID member : members)
-			if(Bukkit.getPlayer(member) == null)
-				members.remove(member);
-		if(members.size() <= 0)
-			return true;
-		return false;
+	public void setInvited(List<UUID> invited) {
+		this.invited = invited;
 	}
 	
-	public List<Player> getOnlineMembers() {
-		List<Player> rs = new ArrayList<Player>();
-		for(UUID pUUID : members) {
-			Player p = Bukkit.getPlayer(pUUID);
-			if(p != null)
-				rs.add(p);
-		}
-		return rs;	
+	public void setMembers(List<UUID> members) {
+		this.members = members;
 	}
 }

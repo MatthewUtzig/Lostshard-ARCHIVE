@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -21,6 +20,11 @@ public class StoreGUI extends GUI {
 		super(store.getItems().size(), "Store", pPlayer);
 		this.store = store;
 		optionSelector();
+	}
+
+	@Override
+	public void onClick(InventoryClickEvent event) {
+		
 	}
 
 	@Override
@@ -42,15 +46,5 @@ public class StoreGUI extends GUI {
 			item.setItemMeta(itemMeta);
 			addOption(item);
 		}
-	}
-
-	@Override
-	public void onClick(InventoryClickEvent event) {
-		
-	}
-
-	@Override
-	public void onClose(InventoryCloseEvent event) {
-		
 	}
 }

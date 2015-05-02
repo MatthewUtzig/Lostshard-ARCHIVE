@@ -19,45 +19,12 @@ public class SPL_Mark extends Spell {
 	
 	private Location markLoc = null;
 	
-	public Location getMarkLoc() {
-		return markLoc;
-	}
-
-	public void setMarkLoc(Location markLoc) {
-		this.markLoc = markLoc;
-	}
-
 	public SPL_Mark(Scroll scroll) {
 		super(scroll);
 		setPrompt("What would you like to label the marked rune?");
 	}
-	
+
 	@Override
-	public void runebook(Player player) {
-		
-	}
-	
-	public boolean verifyCastable(Player player) {
-		Plot plot = ptm.findPlotAt(player.getLocation());
-		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
-			setMarkLoc(player.getLocation().getBlock().getLocation());
-		}
-		else {
-			Output.simpleError(player, "You can't mark a rune here, the plot is private.");
-			return false;
-		}
-		
-		if(!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public void preAction(Player player) {
-		Output.positiveMessage(player, "You begin casting Mark...");
-	}
-	
 	public void doAction(Player player) {
 		PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if(getResponse().length() > 20 || getResponse().contains("\"") || getResponse().contains("'")) {
@@ -85,5 +52,41 @@ public class SPL_Mark extends Spell {
 			}
 			else Output.simpleError(player, "Too many runes, remove one to mark a new rune.");
 		}
+	}
+
+	public Location getMarkLoc() {
+		return markLoc;
+	}
+	
+	@Override
+	public void preAction(Player player) {
+		Output.positiveMessage(player, "You begin casting Mark...");
+	}
+	
+	@Override
+	public void runebook(Player player) {
+		
+	}
+	
+	public void setMarkLoc(Location markLoc) {
+		this.markLoc = markLoc;
+	}
+	
+	@Override
+	public boolean verifyCastable(Player player) {
+		Plot plot = ptm.findPlotAt(player.getLocation());
+		if((plot == null) || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
+			setMarkLoc(player.getLocation().getBlock().getLocation());
+		}
+		else {
+			Output.simpleError(player, "You can't mark a rune here, the plot is private.");
+			return false;
+		}
+		
+		if(!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
+			return false;
+		}
+		
+		return true;
 	}
 }

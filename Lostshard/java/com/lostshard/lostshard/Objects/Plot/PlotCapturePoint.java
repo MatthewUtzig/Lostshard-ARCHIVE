@@ -37,103 +37,6 @@ public class PlotCapturePoint extends Plot {
 		super(id, name, owner, location);
 	}
 
-	public boolean isCapturePoint() {
-		return capturePoint;
-	}
-
-	public void setCapturePoint(boolean capturePoint) {
-		this.capturePoint = capturePoint;
-	}
-	
-	public Clan getOwningClan() {
-		for(Clan c : cm.getClans())
-			if(c.equals(capturingClan))
-				return c;
-		this.owningClan = null;
-		return null;
-	}
-
-	public void setOwningClan(Clan owningClan) {
-		this.owningClan = owningClan;
-		update();
-	}
-
-	public long getLastCaptureDate() {
-		return lastCaptureDate;
-	}
-
-	public void setLastCaptureDate(long lastCaptureDate) {
-		this.lastCaptureDate = lastCaptureDate;
-	}
-
-	public UUID getCapturingPlayer() {
-		return capturingPlayer;
-	}
-
-	public void setCapturingPlayer(UUID capturingPlayer) {
-		this.capturingPlayer = capturingPlayer;
-	}
-
-	public Clan getCapturingClan() {
-		return capturingClan;
-	}
-
-	public void setCapturingClan(Clan capturingClan) {
-		this.capturingClan = capturingClan;
-	}
-
-	public List<UUID> getRecentCaptureFails() {
-		return recentCaptureFails;
-	}
-
-	public void setRecentCaptureFails(List<UUID> recentCaptureFails) {
-		this.recentCaptureFails = recentCaptureFails;
-	}
-
-	public int getClaimSecRemaining() {
-		return claimSecRemaining;
-	}
-
-	public void setClaimSecRemaining(int claimSecRemaining) {
-		this.claimSecRemaining = claimSecRemaining;
-	}
-
-	public int getTimeoutSecRemaining() {
-		return timeoutSecRemaining;
-	}
-
-	public void setTimeoutSecRemaining(int timeoutSecRemaining) {
-		this.timeoutSecRemaining = timeoutSecRemaining;
-	}
-
-	public double getRefractoryPeriod() {
-		return refractoryPeriod;
-	}
-
-	public void setRefractoryPeriod(double refractoryPeriod) {
-		this.refractoryPeriod = refractoryPeriod;
-	}
-
-	public boolean isCapturedRecently() {
-		return capturedRecently;
-	}
-
-	public void setCapturedRecently(boolean capturedRecently) {
-		this.capturedRecently = capturedRecently;
-	}
-
-	public int getRecentClaims() {
-		return recentClaims;
-	}
-
-	public void setRecentClaims(int recentClaims) {
-		this.recentClaims = recentClaims;
-	}
-	
-	public boolean isUnderAttack() {
-		return capturingPlayer != null;
-	}
-	
 	public void beginCapture(Player player, PseudoPlayer pPlayer, Clan clan) {
 		if(player == null)
 			return;
@@ -156,7 +59,7 @@ public class PlotCapturePoint extends Plot {
     		player.sendMessage(ChatColor.GOLD+"You must stay alive and within "+this.getName()+" for 120 seconds.");
 		}
 	}
-	
+
 	public void failCaptureDied(Player player) {
 		if(!isUnderAttack())
 			return;
@@ -187,6 +90,103 @@ public class PlotCapturePoint extends Plot {
 		claimSecRemaining = 0;
 		recentCaptureFails.add(player.getUniqueId());
 		capturingClan = null;
+	}
+
+	public Clan getCapturingClan() {
+		return capturingClan;
+	}
+
+	public UUID getCapturingPlayer() {
+		return capturingPlayer;
+	}
+
+	public int getClaimSecRemaining() {
+		return claimSecRemaining;
+	}
+
+	public long getLastCaptureDate() {
+		return lastCaptureDate;
+	}
+
+	public Clan getOwningClan() {
+		for(Clan c : cm.getClans())
+			if(c.equals(capturingClan))
+				return c;
+		this.owningClan = null;
+		return null;
+	}
+
+	public List<UUID> getRecentCaptureFails() {
+		return recentCaptureFails;
+	}
+
+	public int getRecentClaims() {
+		return recentClaims;
+	}
+
+	public double getRefractoryPeriod() {
+		return refractoryPeriod;
+	}
+
+	public int getTimeoutSecRemaining() {
+		return timeoutSecRemaining;
+	}
+
+	public boolean isCapturedRecently() {
+		return capturedRecently;
+	}
+
+	public boolean isCapturePoint() {
+		return capturePoint;
+	}
+
+	public boolean isUnderAttack() {
+		return capturingPlayer != null;
+	}
+
+	public void setCapturedRecently(boolean capturedRecently) {
+		this.capturedRecently = capturedRecently;
+	}
+
+	public void setCapturePoint(boolean capturePoint) {
+		this.capturePoint = capturePoint;
+	}
+
+	public void setCapturingClan(Clan capturingClan) {
+		this.capturingClan = capturingClan;
+	}
+
+	public void setCapturingPlayer(UUID capturingPlayer) {
+		this.capturingPlayer = capturingPlayer;
+	}
+
+	public void setClaimSecRemaining(int claimSecRemaining) {
+		this.claimSecRemaining = claimSecRemaining;
+	}
+
+	public void setLastCaptureDate(long lastCaptureDate) {
+		this.lastCaptureDate = lastCaptureDate;
+	}
+
+	public void setOwningClan(Clan owningClan) {
+		this.owningClan = owningClan;
+		update();
+	}
+	
+	public void setRecentCaptureFails(List<UUID> recentCaptureFails) {
+		this.recentCaptureFails = recentCaptureFails;
+	}
+	
+	public void setRecentClaims(int recentClaims) {
+		this.recentClaims = recentClaims;
+	}
+	
+	public void setRefractoryPeriod(double refractoryPeriod) {
+		this.refractoryPeriod = refractoryPeriod;
+	}
+	
+	public void setTimeoutSecRemaining(int timeoutSecRemaining) {
+		this.timeoutSecRemaining = timeoutSecRemaining;
 	}
 	
 	public void tick(double delta) {

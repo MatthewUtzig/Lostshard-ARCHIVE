@@ -16,27 +16,12 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class SPL_Forcepush extends Spell {
 
+	private ArrayList<LivingEntity> entitiesFound;
+	
 	public SPL_Forcepush(Scroll scroll) {
 		super(scroll);
 	}
 	
-	private ArrayList<LivingEntity> entitiesFound;
-	
-	@Override
-	public boolean verifyCastable(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		entitiesFound = SpellUtils.enemiesInLOS(player, pPlayer, 10);
-		if(entitiesFound.size() <= 0) {
-			Output.simpleError(player, "No enemy target found.");
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public void preAction(Player player) {
-	}
-
 	@Override
 	public void doAction(Player player) {
 		for(LivingEntity lE : entitiesFound) {
@@ -60,6 +45,21 @@ public class SPL_Forcepush extends Spell {
 			}
 		}
 
+	}
+
+	@Override
+	public void preAction(Player player) {
+	}
+
+	@Override
+	public boolean verifyCastable(Player player) {
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		entitiesFound = SpellUtils.enemiesInLOS(player, pPlayer, 10);
+		if(entitiesFound.size() <= 0) {
+			Output.simpleError(player, "No enemy target found.");
+			return false;
+		}
+		return true;
 	}
 
 }

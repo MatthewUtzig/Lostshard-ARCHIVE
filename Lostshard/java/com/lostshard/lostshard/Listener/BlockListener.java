@@ -41,26 +41,13 @@ public class BlockListener implements Listener {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onBlockPlace(BlockPlaceEvent event) {
-		PlotProtectionHandler.placeBlockInPlot(event);
-	}
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void onBlockPlaceLow(BlockPlaceEvent event) {
-		if(event.isCancelled())
-			return;
-		Block block = event.getBlock();
-		block.setMetadata("placed", new FixedMetadataValue(Lostshard.getPlugin(), true));
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBurn(BlockBurnEvent event) {
 		PlotProtectionHandler.burnBlockInPlot(event);
 	}
-
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onBlockIgnite(BlockIgniteEvent event) {
-		PlotProtectionHandler.igniteBlockInPlot(event);
+	public void onBlockFade(BlockFadeEvent event) {
+		PlotProtectionHandler.onBlockFade(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -69,13 +56,8 @@ public class BlockListener implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPistonExtend(BlockPistonExtendEvent event) {
-		PlotProtectionHandler.onPistonExtend(event);
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onBlockFade(BlockFadeEvent event) {
-		PlotProtectionHandler.onBlockFade(event);
+	public void onBlockIgnite(BlockIgniteEvent event) {
+		PlotProtectionHandler.igniteBlockInPlot(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -87,7 +69,20 @@ public class BlockListener implements Listener {
 		}
 		Gate.onBlockPhysics(event);
 	}
-	
+
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onBlockPlace(BlockPlaceEvent event) {
+		PlotProtectionHandler.placeBlockInPlot(event);
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onBlockPlaceLow(BlockPlaceEvent event) {
+		if(event.isCancelled())
+			return;
+		Block block = event.getBlock();
+		block.setMetadata("placed", new FixedMetadataValue(Lostshard.getPlugin(), true));
+	}
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onHangingBreak(HangingBreakEvent event) {
 		PlotProtectionHandler.onHangingDestory(event);
@@ -96,5 +91,10 @@ public class BlockListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onHangingPlace(HangingPlaceEvent event) {
 		PlotProtectionHandler.onHangingPlace(event);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPistonExtend(BlockPistonExtendEvent event) {
+		PlotProtectionHandler.onPistonExtend(event);
 	}
 }

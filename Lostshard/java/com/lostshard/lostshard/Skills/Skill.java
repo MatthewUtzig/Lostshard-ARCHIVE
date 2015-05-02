@@ -26,34 +26,68 @@ public abstract class Skill {
 		return baseProb;
 	}
 
-	public void setBaseProb(double baseProb) {
-		this.baseProb = baseProb;
-	}
-
-	public double getScaleConstant() {
-		return scaleConstant;
-	}
-
-	public void setScaleConstant(double scaleConstant) {
-		this.scaleConstant = scaleConstant;
-	}
-
 	public int getLvl() {
 		return lvl;
 	}
 
-	public void setLvl(int lvl) {
-		this.lvl = lvl;
+	public Material getMat() {
+		return mat;
+	}
+
+	public int getMaxGain() {
+		return maxGain;
+	}
+
+	public int getMinGain() {
+		return minGain;
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public double getScaleConstant() {
+		return scaleConstant;
+	}
+
+	abstract public String howToGain();
+	
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setBaseProb(double baseProb) {
+		this.baseProb = baseProb;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
+
+	public void setMat(Material mat) {
+		this.mat = mat;
+	}
+
+	public void setMaxGain(int maxGain) {
+		this.maxGain = maxGain;
+	}
+
+	public void setMinGain(int minGain) {
+		this.minGain = minGain;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public void setScaleConstant(double scaleConstant) {
+		this.scaleConstant = scaleConstant;
+	}
+
 	public int skillGain(PseudoPlayer pPlayer) {
 		if(locked)
 			return 0;
@@ -70,38 +104,4 @@ public abstract class Skill {
 		}
 		return gain;
 	}
-
-	public boolean isLocked() {
-		return locked;
-	}
-
-	public void setLocked(boolean locked) {
-		this.locked = locked;
-	}
-
-	public int getMinGain() {
-		return minGain;
-	}
-
-	public void setMinGain(int minGain) {
-		this.minGain = minGain;
-	}
-
-	public int getMaxGain() {
-		return maxGain;
-	}
-
-	public void setMaxGain(int maxGain) {
-		this.maxGain = maxGain;
-	}
-
-	public Material getMat() {
-		return mat;
-	}
-
-	public void setMat(Material mat) {
-		this.mat = mat;
-	}
-
-	abstract public String howToGain();
 }

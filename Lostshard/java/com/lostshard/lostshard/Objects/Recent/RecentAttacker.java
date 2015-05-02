@@ -15,14 +15,6 @@ public class RecentAttacker {
 		this.ticksRemaining = ticksRemaining;
 	}
 
-	public void tick() {
-		if (!isDead) {
-			ticksRemaining--;
-			if (ticksRemaining <= 0)
-				isDead = true;
-		}
-	}
-
 	public UUID getUUID() {
 		return murdererUUID;
 	}
@@ -31,19 +23,27 @@ public class RecentAttacker {
 		return isDead;
 	}
 
-	public void resetTicks() {
-		ticksRemaining = originalTicks;
-	}
-
 	public boolean isNotCrim() {
 		return notCrim;
+	}
+
+	public boolean isNotCrime()	{
+		return this.notCrim;
+	}
+
+	public void resetTicks() {
+		ticksRemaining = originalTicks;
 	}
 
 	public void setNotCrim(boolean notCrim) {
 		this.notCrim = notCrim;
 	}
 	
-	public boolean isNotCrime()	{
-		return this.notCrim;
+	public void tick() {
+		if (!isDead) {
+			ticksRemaining--;
+			if (ticksRemaining <= 0)
+				isDead = true;
+		}
 	}
 }
