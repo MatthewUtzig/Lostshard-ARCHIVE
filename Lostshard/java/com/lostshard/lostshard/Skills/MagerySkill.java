@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Skills;
 
-
 import org.bukkit.Material;
 
 import com.lostshard.lostshard.Manager.SpellManager;
@@ -8,13 +7,13 @@ import com.lostshard.lostshard.Manager.SpellManager;
 public class MagerySkill extends Skill {
 
 	static SpellManager sm = SpellManager.getManager();
-	
+
 	public MagerySkill() {
 		super();
-		setName("Magery");
-		setBaseProb(1);
-		setScaleConstant(40);
-		setMat(Material.STICK);
+		this.setName("Magery");
+		this.setBaseProb(1);
+		this.setScaleConstant(40);
+		this.setMat(Material.STICK);
 	}
 
 	@Override

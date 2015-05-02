@@ -9,24 +9,23 @@ public class RegionUtils {
 
 	public static List<Location> getCylinder(Location pos, double radius,
 			int height) {
-		List<Location> rs = new ArrayList<Location>();
+		final List<Location> rs = new ArrayList<Location>();
 
 		pos.getBlock().getLocation(pos);
 
 		radius += 0.5;
 
-		if (height == 0) {
+		if (height == 0)
 			return rs;
-		} else if (height < 0) {
+		else if (height < 0) {
 			height = -height;
 			pos = pos.subtract(0, height, 0);
 		}
 
-		if (pos.getBlockY() < 0) {
+		if (pos.getBlockY() < 0)
 			pos.setY(0);
-		} else if (pos.getBlockY() + height - 1 > pos.getWorld().getMaxHeight()) {
+		else if (pos.getBlockY() + height - 1 > pos.getWorld().getMaxHeight())
 			height = pos.getWorld().getMaxHeight() - pos.getBlockY() + 1;
-		}
 
 		final double invRadius = 1 / radius;
 
@@ -41,11 +40,10 @@ public class RegionUtils {
 				final double zn = nextZn;
 				nextZn = (z + 1) * invRadius;
 
-				double distanceSq = lengthSq(xn, zn);
+				final double distanceSq = lengthSq(xn, zn);
 				if (distanceSq > 1) {
-					if (z == 0) {
+					if (z == 0)
 						break forX;
-					}
 					break forZ;
 				}
 
@@ -61,7 +59,7 @@ public class RegionUtils {
 	}
 
 	public static List<Location> getSphere(Location pos, double radius) {
-		List<Location> rs = new ArrayList<Location>();
+		final List<Location> rs = new ArrayList<Location>();
 
 		pos.getBlock().getLocation(pos);
 
@@ -84,12 +82,11 @@ public class RegionUtils {
 					final double zn = nextZn;
 					nextZn = (z + 1) * invRadius;
 
-					double distanceSq = lengthSq(xn, yn, zn);
+					final double distanceSq = lengthSq(xn, yn, zn);
 					if (distanceSq > 1) {
 						if (z == 0) {
-							if (y == 0) {
+							if (y == 0)
 								break forX;
-							}
 							break forY;
 						}
 						break forZ;
@@ -110,11 +107,11 @@ public class RegionUtils {
 	}
 
 	private static double lengthSq(double x, double z) {
-		return (x * x) + (z * z);
+		return x * x + z * z;
 	}
 
 	private static double lengthSq(double x, double y, double z) {
-		return (x * x) + (y * y) + (z * z);
+		return x * x + y * y + z * z;
 	}
 
 }

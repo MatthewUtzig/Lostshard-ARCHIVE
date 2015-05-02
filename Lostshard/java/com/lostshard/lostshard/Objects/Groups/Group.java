@@ -14,93 +14,91 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 public class Group {
 
 	public PlayerManager pm = PlayerManager.getManager();
-	
+
 	private List<UUID> members = new ArrayList<UUID>();
 	private List<UUID> invited = new ArrayList<UUID>();
 
 	public void addInvited(UUID invite) {
-		if(!this.invited.contains(invite))
+		if (!this.invited.contains(invite))
 			this.invited.add(invite);
 	}
 
 	public void addMember(UUID member) {
-		members.add(member);
+		this.members.add(member);
 	}
 
 	public List<UUID> getInvited() {
-		return invited;
+		return this.invited;
 	}
 
 	public List<UUID> getMembers() {
-		return members;
+		return this.members;
 	}
-	
+
 	public List<Player> getOnlineMembers() {
-		List<Player> rs = new ArrayList<Player>();
-		for(UUID pUUID : members) {
-			Player p = Bukkit.getPlayer(pUUID);
-			if(p != null)
+		final List<Player> rs = new ArrayList<Player>();
+		for (final UUID pUUID : this.members) {
+			final Player p = Bukkit.getPlayer(pUUID);
+			if (p != null)
 				rs.add(p);
 		}
-		return rs;	
+		return rs;
 	}
-	
+
 	public boolean isDead() {
-		for(UUID member : members)
-			if(Bukkit.getPlayer(member) == null)
-				members.remove(member);
-		if(members.size() <= 0)
+		for (final UUID member : this.members)
+			if (Bukkit.getPlayer(member) == null)
+				this.members.remove(member);
+		if (this.members.size() <= 0)
 			return true;
 		return false;
 	}
-	
+
 	public boolean isInvited(UUID invite) {
-		if(invited.contains(invite))
+		if (this.invited.contains(invite))
 			return true;
 		return false;
 	}
-	
+
 	public boolean isMember(OfflinePlayer player) {
-		return isMember(player.getUniqueId());
+		return this.isMember(player.getUniqueId());
 	}
-	
+
 	public boolean isMember(Player player) {
-		return isMember(player.getUniqueId());
+		return this.isMember(player.getUniqueId());
 	}
-	
+
 	public boolean isMember(UUID member) {
-		if(members.contains(member))
+		if (this.members.contains(member))
 			return true;
 		return false;
 	}
-	
+
 	public void removeInvited(UUID invite) {
-		int numInvitedNames = invited.size();
-		for(int i=numInvitedNames-1; i>=0; i--) {
-			if(invited.get(i).equals(invite))
-				invited.remove(i);
-		}
+		final int numInvitedNames = this.invited.size();
+		for (int i = numInvitedNames - 1; i >= 0; i--)
+			if (this.invited.get(i).equals(invite))
+				this.invited.remove(i);
 	}
-	
+
 	public void removeMember(UUID member) {
-		members.remove(member);
+		this.members.remove(member);
 	}
-	
-	
+
 	public void sendMessage(String message) {
-		for(UUID member : members) {
-			Player memberPlayer = Bukkit.getPlayer(member);
-			if(memberPlayer != null) {
+		for (final UUID member : this.members) {
+			final Player memberPlayer = Bukkit.getPlayer(member);
+			if (memberPlayer != null) {
 				Lostshard.log.finest(message);
 				memberPlayer.sendMessage(message);
 			}
 		}
 	}
-	
+
 	public void setInvited(List<UUID> invited) {
 		this.invited = invited;
 	}
-	
+
 	public void setMembers(List<UUID> members) {
 		this.members = members;
 	}

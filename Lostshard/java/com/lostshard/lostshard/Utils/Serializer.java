@@ -24,25 +24,27 @@ public class Serializer {
 	public static int[] deserializeIntegerArray(String integerArray) {
 		return gson.fromJson(integerArray, int[].class);
 	}
+
 	@SuppressWarnings("unchecked")
 	public static ItemStack[] deserializeItems(String string) {
 		ItemStack[] rs;
 		try {
-			List<Map<String, Object>> stacks = gson.fromJson(string, new ArrayList<Map<String, Object>>().getClass());
+			final List<Map<String, Object>> stacks = gson.fromJson(string,
+					new ArrayList<Map<String, Object>>().getClass());
 			rs = new ItemStack[stacks.size()];
 			for (int i = 0; i < stacks.size(); i++) {
-				Map<String, Object> map = stacks.get(i);
-		        if (map.containsKey("damage")) {
-		            map.replace("damage", ((Number) map.get("damage")).shortValue());
-		        }
+				final Map<String, Object> map = stacks.get(i);
+				if (map.containsKey("damage"))
+					map.replace("damage",
+							((Number) map.get("damage")).shortValue());
 
-		        if (map.containsKey("amount")) {
-		            map.replace("amount", ((Number) map.get("amount")).intValue());
-		        }
+				if (map.containsKey("amount"))
+					map.replace("amount",
+							((Number) map.get("amount")).intValue());
 				rs[i] = ItemStack.deserialize(map);
 			}
 			return rs;
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] "
 					+ string);
 			e.printStackTrace();
@@ -50,63 +52,62 @@ public class Serializer {
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };
 		return rs;
 	}
-	
+
 	public static Location deserializeLocation(String locationString) {
 		try {
-			Object jo = parser.parse(locationString);
-			JSONObject map = (JSONObject) jo;
-			
-			World world = Bukkit.getWorld(map.get("world").toString());
-			Double x = ((Number) map.get("x")).doubleValue();
-			Double y = ((Number) map.get("y")).doubleValue();
-			Double z = ((Number) map.get("z")).doubleValue();
-			Float yaw = ((Number) map.get("yaw")).floatValue();
-			Float pitch = ((Number) map.get("pitch")).floatValue();
-			
+			final Object jo = parser.parse(locationString);
+			final JSONObject map = (JSONObject) jo;
+
+			final World world = Bukkit.getWorld(map.get("world").toString());
+			final Double x = ((Number) map.get("x")).doubleValue();
+			final Double y = ((Number) map.get("y")).doubleValue();
+			final Double z = ((Number) map.get("z")).doubleValue();
+			final Float yaw = ((Number) map.get("yaw")).floatValue();
+			final Float pitch = ((Number) map.get("pitch")).floatValue();
+
 			return new Location(world, x, y, z, yaw, pitch);
-		} catch (ParseException e) {
+		} catch (final ParseException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static List<String> deserializeStringArray(String stringArray) {
 		return gson.fromJson(stringArray, List.class);
 	}
-	
+
 	public static List<UUID> deserializeUUIDList(String uuidString) {
-		String[] array = gson.fromJson(uuidString, String[].class);
-		if(array == null)
+		final String[] array = gson.fromJson(uuidString, String[].class);
+		if (array == null)
 			return new ArrayList<UUID>();
-		List<UUID> uuids = new ArrayList<UUID>();
-		for (String s : array)
+		final List<UUID> uuids = new ArrayList<UUID>();
+		for (final String s : array)
 			uuids.add(UUID.fromString(s));
 		return uuids;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static ItemStack fromJsonToItemStack(String s) {
-		Map<String, Object> map = gson.fromJson(
-				s, Map.class);
+		final Map<String, Object> map = gson.fromJson(s, Map.class);
 		ItemStack is;
 		try {
 			is = ItemStack.deserialize(map);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			is = new ItemStack(Material.AIR);
 			e.printStackTrace();
 		}
 		return is;
 	}
-	
+
 	public static String serializeIntegerArray(int[] integerArray) {
 		return gson.toJson(integerArray);
 	}
 
 	public static String serializeItems(ItemStack[] items) {
-		List<Map<String, Object>> array = new ArrayList<Map<String, Object>>();
-		for (int i = 0; i < items.length; i++) {
-			ItemStack is = items[i];
+		final List<Map<String, Object>> array = new ArrayList<Map<String, Object>>();
+		for (final ItemStack item : items) {
+			ItemStack is = item;
 			if (is == null)
 				is = new ItemStack(Material.AIR);
 			array.add(is.serialize());
@@ -115,7 +116,7 @@ public class Serializer {
 	}
 
 	public static String serializeLocation(Location location) {
-		Map<String, Object> obj = new HashMap<String, Object>();
+		final Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("world", location.getWorld().getName());
 		obj.put("x", location.getX());
 		obj.put("y", location.getY());
@@ -128,10 +129,10 @@ public class Serializer {
 	public static String serializeStringArray(List<String> stringArray) {
 		return gson.toJson(stringArray);
 	}
-	
+
 	public static String serializeUUIDList(List<UUID> uuids) {
-		List<String> array = new ArrayList<String>();
-		for (UUID uuid : uuids)
+		final List<String> array = new ArrayList<String>();
+		for (final UUID uuid : uuids)
 			array.add(uuid.toString());
 		return gson.toJson(array);
 	}
@@ -139,13 +140,12 @@ public class Serializer {
 	public static String toJsonItemStack(ItemStack item) {
 		return gson.toJson(item.serialize());
 	}
-	
-	
+
 	public static String toJsonList(List<String> list) {
 		return gson.toJson(list);
 	}
 
 	public static JSONParser parser = new JSONParser();
-	
+
 	public static Gson gson = new Gson();
 }

@@ -24,7 +24,7 @@ public class Plot {
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	// String's
 	private String name;
 
@@ -72,39 +72,39 @@ public class Plot {
 	// Getters and Setters
 
 	public void addCoowner(Player player) {
-		coowners.add(player.getUniqueId());
-		update();
+		this.coowners.add(player.getUniqueId());
+		this.update();
 	}
 
 	// Friends
 	public void addFriend(Player player) {
-		friends.add(player.getUniqueId());
-		update();
+		this.friends.add(player.getUniqueId());
+		this.update();
 	}
 
 	public void addMoney(int money) {
 		this.money += money;
-		update();
+		this.update();
 	}
 
 	public void addUpgrade(PlotUpgrade upgrade) {
 		this.upgrades.add(upgrade);
-		update();
+		this.update();
 	}
 
 	public void disband() {
-		for(NPC npc : npcs)
+		for (final NPC npc : this.npcs)
 			Database.deleteNPC(npc);
-		ptm.removePlot(this);
+		this.ptm.removePlot(this);
 	}
 
 	public void expandSize(int size) {
 		this.size += size;
-		update();
+		this.update();
 	}
 
 	public List<UUID> getCoowners() {
-		return coowners;
+		return this.coowners;
 	}
 
 	/**
@@ -113,73 +113,78 @@ public class Plot {
 	 * @return Expand price from current size to size.
 	 */
 	public int getExpandPrice(int toSize) {
-		return (int) Math.abs((((Math.pow((toSize-1), 2)+toSize-1)/2)-((Math.pow(size, 2)+size)/2))*Variables.plotExpandPrice+100);
+		return (int) Math
+				.abs(((Math.pow(toSize - 1, 2) + toSize - 1) / 2 - (Math.pow(
+						this.size, 2) + this.size) / 2)
+						* Variables.plotExpandPrice + 100);
 	}
 
 	public List<UUID> getFriends() {
-		return friends;
+		return this.friends;
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public Location getLocation() {
-		return location;
+		return this.location;
 	}
 
 	public int getMaxVendors() {
-		return size / 15;
+		return this.size / 15;
 	}
 
 	public int getMoney() {
-		return money;
+		return this.money;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public ArrayList<NPC> getNpcs() {
-		return npcs;
+		return this.npcs;
 	}
 
 	public UUID getOwner() {
-		return owner;
+		return this.owner;
 	}
 
 	public String getPlayerStatusOfPlotString(Player player) {
-		return isOwner(player) ? "You are the owner of this plot."
-				: isCoowner(player) ? "You are a co-owner of this plot."
-						: isFriend(player) ? "You are a friend of this plot."
-								: "You are not friend of this plot.";
+		return this.isOwner(player) ? "You are the owner of this plot." : this
+				.isCoowner(player) ? "You are a co-owner of this plot." : this
+				.isFriend(player) ? "You are a friend of this plot."
+				: "You are not friend of this plot.";
 	}
 
 	public int getSalePrice() {
-		return salePrice;
+		return this.salePrice;
 	}
 
 	public int getSize() {
-		return size;
+		return this.size;
 	}
 
 	public int getTax() {
-		return size*10;
+		return this.size * 10;
 	}
 
 	public List<PlotUpgrade> getUpgrades() {
-		return upgrades;
+		return this.upgrades;
 	}
 
 	public int getValue() {
-		int plotValue = (int) Math.floor(Math.abs((((Math.pow(size-1, 2)+size-1)/2-45)*Variables.plotExpandPrice)));
-		if (isUpgrade(PlotUpgrade.TOWN))
+		int plotValue = (int) Math.floor(Math.abs(((Math.pow(this.size - 1, 2)
+				+ this.size - 1) / 2 - 45)
+				* Variables.plotExpandPrice));
+		if (this.isUpgrade(PlotUpgrade.TOWN))
 			plotValue += Variables.plotTownPrice;
-		if (isUpgrade(PlotUpgrade.DUNGEON))
+		if (this.isUpgrade(PlotUpgrade.DUNGEON))
 			plotValue += Variables.plotDungeonPrice;
-		if (isUpgrade(PlotUpgrade.AUTOKICK))
+		if (this.isUpgrade(PlotUpgrade.AUTOKICK))
 			plotValue += Variables.plotAutoKickPrice;
-		if (isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+		if (this.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			plotValue += Variables.plotNeutralAlignmentPrice;
 
 		if (this.getLocation().getWorld().getEnvironment()
@@ -189,104 +194,105 @@ public class Plot {
 	}
 
 	public boolean isAllowedToBuild(Player player) {
-		return isAllowedToBuild(player.getUniqueId());
+		return this.isAllowedToBuild(player.getUniqueId());
 	}
 
 	public boolean isAllowedToBuild(UUID uuid) {
-		PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
-		if(pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
+		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
+		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
-		return  isCoownerOrAbove(uuid) ? true : isFriend(uuid)
-				&& isFriendBuild() ? true : !isProtected() ? true : false;
+		return this.isCoownerOrAbove(uuid) ? true : this.isFriend(uuid)
+				&& this.isFriendBuild() ? true : !this.isProtected() ? true
+				: false;
 	}
 
 	public boolean isAllowedToInteract(Player player) {
-		return isAllowedToInteract(player.getUniqueId());
+		return this.isAllowedToInteract(player.getUniqueId());
 	}
 
 	public boolean isAllowedToInteract(UUID uuid) {
-		PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
-		if(pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
+		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
+		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
-		return  isFriendOrAbove(uuid) ? true : false;
+		return this.isFriendOrAbove(uuid) ? true : false;
 	}
 
 	public boolean isAllowExplosions() {
-		return allowExplosions;
+		return this.allowExplosions;
 	}
 
 	public boolean isAllowMagic() {
-		return allowMagic;
+		return this.allowMagic;
 	}
 
 	public boolean isAllowPvp() {
-		return allowPvp;
+		return this.allowPvp;
 	}
 
 	// Coowners
 	public boolean isCoowner(Player player) {
-		return coowners.contains(player.getUniqueId());
+		return this.coowners.contains(player.getUniqueId());
 	}
 
 	public boolean isCoowner(UUID uuid) {
-		return coowners.contains(uuid);
+		return this.coowners.contains(uuid);
 	}
 
 	public boolean isCoownerOrAbove(Player player) {
-		return isCoownerOrAbove(player.getUniqueId());
+		return this.isCoownerOrAbove(player.getUniqueId());
 	}
 
 	public boolean isCoownerOrAbove(UUID uuid) {
-		return isOwner(uuid) ? true : isCoowner(uuid) ? true : false;
+		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : false;
 	}
 
 	public boolean isForSale() {
-		return (this.salePrice > 0) ? true : false;
+		return this.salePrice > 0 ? true : false;
 	}
 
 	public boolean isFriend(Player player) {
-		return friends.contains(player.getUniqueId());
+		return this.friends.contains(player.getUniqueId());
 	}
 
 	public boolean isFriend(UUID uuid) {
-		return friends.contains(uuid);
+		return this.friends.contains(uuid);
 	}
 
 	public boolean isFriendBuild() {
-		return friendBuild;
+		return this.friendBuild;
 	}
 
 	public boolean isFriendOrAbove(Player player) {
-		return isFriendOrAbove(player.getUniqueId());
+		return this.isFriendOrAbove(player.getUniqueId());
 	}
-	
+
 	public boolean isFriendOrAbove(UUID uuid) {
-		return isOwner(uuid) ? true : isCoowner(uuid) ? true
-				: isFriend(uuid) ? true : false;
+		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : this
+				.isFriend(uuid) ? true : false;
 	}
 
 	public boolean isOwner(Player player) {
-		return isOwner(player.getUniqueId());
+		return this.isOwner(player.getUniqueId());
 	}
 
 	public boolean isOwner(UUID uuid) {
-		return uuid.equals(owner);
+		return uuid.equals(this.owner);
 	}
-	
+
 	public boolean isPrivatePlot() {
-		return privatePlot;
+		return this.privatePlot;
 	}
 
 	public boolean isProtected() {
-		return protection;
+		return this.protection;
 	}
 
 	public boolean isTitleEntrence() {
-		return titleEntrence;
+		return this.titleEntrence;
 	}
 
 	public boolean isUpdate() {
-		return update;
+		return this.update;
 	}
 
 	public boolean isUpgrade(PlotUpgrade upgrade) {
@@ -296,134 +302,134 @@ public class Plot {
 	// Getting next id
 	public int nextId() {
 		int nextId = 0;
-		for (Plot p : ptm.getPlots())
+		for (final Plot p : this.ptm.getPlots())
 			if (p.getId() > nextId)
 				nextId = p.getId();
 		return nextId + 1;
 	}
 
 	public void removeCoowner(Player player) {
-		coowners.remove(player.getUniqueId());
-		update();
+		this.coowners.remove(player.getUniqueId());
+		this.update();
 	}
 
 	public void removeFriend(Player player) {
-		friends.remove(player.getUniqueId());
-		update();
+		this.friends.remove(player.getUniqueId());
+		this.update();
 	}
 
 	public void removeUpgrade(PlotUpgrade upgrade) {
 		this.upgrades.remove(upgrade);
-		update();
+		this.update();
 	}
 
 	public void setAllowExplosions(boolean allowExplosions) {
 		this.allowExplosions = allowExplosions;
-		update();
+		this.update();
 	}
 
 	public void setAllowMagic(boolean allowMagic) {
 		this.allowMagic = allowMagic;
-		update();
+		this.update();
 	}
 
 	public void setAllowPvp(boolean allowPvp) {
 		this.allowPvp = allowPvp;
-		update();
+		this.update();
 	}
-	
+
 	public void setCoowners(List<UUID> coowners) {
 		this.coowners = coowners;
 	}
 
 	public void setFriendBuild(boolean friendBuild) {
 		this.friendBuild = friendBuild;
-		update();
+		this.update();
 	}
-	
+
 	public void setFriends(List<UUID> friends) {
 		this.friends = friends;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-		update();
+		this.update();
 	}
 
 	public void setLocation(Location location) {
 		this.location = location;
-		update();
+		this.update();
 	}
 
 	public void setMoney(int money) {
 		this.money = money;
-		update();
+		this.update();
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		update();
+		this.update();
 	}
-	
+
 	public void setNpcs(ArrayList<NPC> npcs) {
 		this.npcs = npcs;
 	}
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
-		update();
+		this.update();
 	}
 
 	public void setPrivatePlot(boolean privatePlot) {
 		this.privatePlot = privatePlot;
-		update();
+		this.update();
 	}
 
 	public void setProtected(boolean protection) {
 		this.protection = protection;
-		update();
+		this.update();
 	}
 
 	public void setSalePrice(int salePrice) {
 		this.salePrice = salePrice;
-		update();
+		this.update();
 	}
-	
+
 	public void setSize(int size) {
 		this.size = size;
-		update();
+		this.update();
 	}
-	
+
 	public void setTitleEntrence(boolean titleEntrence) {
 		this.titleEntrence = titleEntrence;
-		update();
+		this.update();
 	}
 
 	public void setUpdate(boolean update) {
 		this.update = update;
 	}
-	
+
 	public void setUpgrades(List<PlotUpgrade> upgrades) {
 		this.upgrades = upgrades;
 	}
 
 	public void shrinkSize(int size) {
 		this.size -= size;
-		update();
+		this.update();
 	}
 
 	public void subtractMoney(int money) {
 		this.money -= money;
-		update();
+		this.update();
 	}
-	
+
 	public void update() {
 		this.update = true;
 	}
 
 	public String upgradesToJson() {
-		List<String> tjson = new ArrayList<String>();
-		for(PlotUpgrade upgrade : upgrades)
+		final List<String> tjson = new ArrayList<String>();
+		for (final PlotUpgrade upgrade : this.upgrades)
 			tjson.add(upgrade.name());
 		return Serializer.serializeStringArray(tjson);
 	}

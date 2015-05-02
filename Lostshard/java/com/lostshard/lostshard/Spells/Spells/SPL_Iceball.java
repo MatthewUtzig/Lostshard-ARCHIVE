@@ -15,39 +15,38 @@ public class SPL_Iceball extends RangedSpell {
 
 	public SPL_Iceball(Scroll scroll) {
 		super(scroll);
-		setCarePlot(false);
-		setRange(15);
+		this.setCarePlot(false);
+		this.setRange(15);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		
-		ArrayList<Block> blocks = new ArrayList<Block>();
-		for(int x = getFoundBlock().getX() - 3; x <= getFoundBlock().getX()+3; x++) {
-			for(int y = getFoundBlock().getY() - 3; y <= getFoundBlock().getY()+3; y++) {
-				for(int z = getFoundBlock().getZ() - 3; z <= getFoundBlock().getZ()+3; z++) {
-					Block blockAt = getFoundBlock().getWorld().getBlockAt(x,y,z);
-					if(Utils.isWithin(blockAt.getLocation(), getFoundBlock().getLocation(), 3)) {
-						if(blockAt.getType().equals(Material.AIR)) {
+
+		final ArrayList<Block> blocks = new ArrayList<Block>();
+		for (int x = this.getFoundBlock().getX() - 3; x <= this.getFoundBlock()
+				.getX() + 3; x++)
+			for (int y = this.getFoundBlock().getY() - 3; y <= this
+					.getFoundBlock().getY() + 3; y++)
+				for (int z = this.getFoundBlock().getZ() - 3; z <= this
+						.getFoundBlock().getZ() + 3; z++) {
+					final Block blockAt = this.getFoundBlock().getWorld()
+							.getBlockAt(x, y, z);
+					if (Utils.isWithin(blockAt.getLocation(), this
+							.getFoundBlock().getLocation(), 3))
+						if (blockAt.getType().equals(Material.AIR))
 							blocks.add(blockAt);
-						}
-					}
 				}
-			}
-		}
-		
-		for(Block block : blocks) {
+
+		for (final Block block : blocks)
 			block.setType(Material.SNOW_BLOCK);
-		}
-		
-		if(blocks.size() > 0) {
+
+		if (blocks.size() > 0)
 			new Iceball(blocks, player.getUniqueId(), 25, false);
-		}
 	}
 
 	@Override
 	public void preAction(Player player) {
-		
+
 	}
 
 }

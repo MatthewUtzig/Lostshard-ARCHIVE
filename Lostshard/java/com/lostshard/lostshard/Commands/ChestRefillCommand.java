@@ -19,25 +19,26 @@ import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class ChestRefillCommand implements CommandExecutor, TabCompleter {
-	
+
 	ChestRefillManager cm = ChestRefillManager.getManager();
-	
+
 	public ChestRefillCommand(Lostshard plugin) {
 		plugin.getCommand("dc").setExecutor(this);
 	}
 
 	private void dcCreate(Player player, String[] args) {
-		if(args.length < 3) {
+		if (args.length < 3) {
 			Output.simpleError(player, "/dc create (minMinuters) (maxMinuters)");
 			return;
 		}
-		Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
-		if(!block.getState().getType().equals(Material.CHEST)) {
+		final Block block = player
+				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		ChestRefill cr = cm.getChest((Chest)block.getState());
-		if(cr != null) {
+		ChestRefill cr = this.cm.getChest((Chest) block.getState());
+		if (cr != null) {
 			Output.simpleError(player, "Thats already a Dungeon Chest.");
 			return;
 		}
@@ -46,27 +47,29 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 		try {
 			rangeMin = Integer.parseInt(args[1]);
 			rangeMax = Integer.parseInt(args[2]);
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			Output.simpleError(player, "/dc create (minMinuters) (maxMinuters)");
 			return;
 		}
-		
-		rangeMin*=60000;
-		rangeMax*=60000;
-		
-		ItemStack[] items = ((Chest) block.getState()).getInventory().getContents();
+
+		rangeMin *= 60000;
+		rangeMax *= 60000;
+
+		final ItemStack[] items = ((Chest) block.getState()).getInventory()
+				.getContents();
 		cr = new ChestRefill(block.getLocation(), rangeMin, rangeMax, items);
-		cm.add(cr);
+		this.cm.add(cr);
 	}
-	
+
 	private void dcFill(Player player) {
-		Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
-		if(!block.getState().getType().equals(Material.CHEST)) {
+		final Block block = player
+				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		ChestRefill cr = cm.getChest((Chest)block.getState());
-		if(cr == null) {
+		final ChestRefill cr = this.cm.getChest((Chest) block.getState());
+		if (cr == null) {
 			Output.simpleError(player, "Thats not a Dungeon Chest.");
 			return;
 		}
@@ -75,65 +78,70 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void dcRemove(Player player) {
-		Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
-		if(!block.getState().getType().equals(Material.CHEST)) {
+		final Block block = player
+				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		ChestRefill cr = cm.getChest((Chest)block);
-		if(cr == null) {
+		final ChestRefill cr = this.cm.getChest((Chest) block);
+		if (cr == null) {
 			Output.simpleError(player, "Thats not a Dungeon Chest.");
 			return;
 		}
-		cm.remove(cr);
+		this.cm.remove(cr);
 		Output.positiveMessage(player, "You have removed the Dungeon Chest.");
 	}
 
 	private void dcSetContents(Player player) {
-		Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
-		if(!block.getState().getType().equals(Material.CHEST)) {
+		final Block block = player
+				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		ChestRefill cr = cm.getChest((Chest)block);
-		if(cr == null) {
+		final ChestRefill cr = this.cm.getChest((Chest) block);
+		if (cr == null) {
 			Output.simpleError(player, "Thats not a Dungeon Chest.");
 			return;
 		}
-		cr.setItems(((Chest)block.getState()).getInventory().getContents());
+		cr.setItems(((Chest) block.getState()).getInventory().getContents());
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("dc")) {
-			if(!(sender instanceof Player)) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("dc")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			if(args.length < 1) {
-        		Output.positiveMessage(player, "Dungeon Chest");
-        		Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
-        		Output.positiveMessage(player, "/dc remove");
-        		Output.positiveMessage(player, "/dc setcontents");
-        		Output.positiveMessage(player, "/dc fill");
+			final Player player = (Player) sender;
+			if (args.length < 1) {
+				Output.positiveMessage(player, "Dungeon Chest");
+				Output.positiveMessage(player,
+						"/dc create (minMinuters) (maxMinuters)");
+				Output.positiveMessage(player, "/dc remove");
+				Output.positiveMessage(player, "/dc setcontents");
+				Output.positiveMessage(player, "/dc fill");
 				return true;
 			}
-			String subCmd = args[0];
-			if(subCmd.equalsIgnoreCase("create"))
-					dcCreate(player, args);
-			else if(subCmd.equalsIgnoreCase("remove"))
-				dcRemove(player);
-			else if(subCmd.equalsIgnoreCase("setContents")) 
-				dcSetContents(player);
-			else if(subCmd.equalsIgnoreCase("fill"))
-				dcFill(player);
+			final String subCmd = args[0];
+			if (subCmd.equalsIgnoreCase("create"))
+				this.dcCreate(player, args);
+			else if (subCmd.equalsIgnoreCase("remove"))
+				this.dcRemove(player);
+			else if (subCmd.equalsIgnoreCase("setContents"))
+				this.dcSetContents(player);
+			else if (subCmd.equalsIgnoreCase("fill"))
+				this.dcFill(player);
 			else {
-        		Output.positiveMessage(player, "Dungeon Chest");
-        		Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
-        		Output.positiveMessage(player, "/dc remove");
-        		Output.positiveMessage(player, "/dc setcontents");
-        		Output.positiveMessage(player, "/dc fill");
+				Output.positiveMessage(player, "Dungeon Chest");
+				Output.positiveMessage(player,
+						"/dc create (minMinuters) (maxMinuters)");
+				Output.positiveMessage(player, "/dc remove");
+				Output.positiveMessage(player, "/dc setcontents");
+				Output.positiveMessage(player, "/dc fill");
 				return true;
 			}
 			return true;
@@ -142,7 +150,8 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
 		return null;
 	}
 }

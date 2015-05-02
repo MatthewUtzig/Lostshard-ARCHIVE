@@ -19,32 +19,32 @@ public class DataSource {
 				e.printStackTrace();
 			}
 			return datasource;
-		} else {
+		} else
 			return datasource;
-		}
 	}
+
 	private static DataSource datasource;
 
-	private ComboPooledDataSource ds;
+	private final ComboPooledDataSource ds;
 
 	private DataSource() throws IOException, SQLException,
-			PropertyVetoException {
-		ds = new ComboPooledDataSource();
-		ds.setDriverClass(Variables.mysqlDriver);
-		ds.setJdbcUrl(Variables.mysqlUrl);
-		ds.setUser(Variables.mysqlUsername);
-		ds.setPassword(Variables.mysqlPassword);
+	PropertyVetoException {
+		this.ds = new ComboPooledDataSource();
+		this.ds.setDriverClass(Variables.mysqlDriver);
+		this.ds.setJdbcUrl(Variables.mysqlUrl);
+		this.ds.setUser(Variables.mysqlUsername);
+		this.ds.setPassword(Variables.mysqlPassword);
 
-		ds.setMaxStatements(180);
+		this.ds.setMaxStatements(180);
 	}
 
 	public void closeConnection() {
-		ds.close();
+		this.ds.close();
 		Lostshard.log.info("[DS] Connection close.");
 	}
 
 	public Connection getConnection() throws SQLException {
-		Connection conn = this.ds.getConnection();
+		final Connection conn = this.ds.getConnection();
 		if (conn.isClosed())
 			Lostshard.mysqlError();
 		return conn;

@@ -8,7 +8,7 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 public class PlotInfoGUI extends GUI {
 
 	public PlotInfoGUI(PseudoPlayer pPlayer, Plot plot) {
-		super(9, "plot info: "+plot.getName(), pPlayer);
+		super(9, "plot info: " + plot.getName(), pPlayer);
 	}
 
 	@Override

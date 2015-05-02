@@ -12,96 +12,95 @@ import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
 import com.lostshard.lostshard.Objects.InventoryGUI.RunebookGUI;
 
 public abstract class Spell {
-	
+
 	protected PlayerManager pm = PlayerManager.getManager();
 	protected PlotManager ptm = PlotManager.getManager();
-	
+
 	private Scroll scroll;
 	private String response;
 	private String prompt;
 
 	private int tick = 0;
-	
+
 	public Spell(Scroll scroll) {
 		this.scroll = scroll;
 	}
-	
+
 	public void addReagentCost(ItemStack item) {
-		scroll.getReagentCost().add(item);
+		this.scroll.getReagentCost().add(item);
 	}
-	
+
 	public abstract void doAction(Player player);
 
 	public void finish(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		pPlayer.setPromptedSpell(null);
 		pPlayer.getTimer().delayedSpell = null;
 	}
-	
+
 	public int getCastingDelay() {
-		return scroll.getCastingDelay();
+		return this.scroll.getCastingDelay();
 	}
-	
+
 	public int getCooldown() {
-		return scroll.getCooldown();
+		return this.scroll.getCooldown();
 	}
-	
+
 	public int getManaCost() {
-		return scroll.getManaCost();
+		return this.scroll.getManaCost();
 	}
-	
+
 	public int getMinMagery() {
-		return scroll.getMinMagery();
+		return this.scroll.getMinMagery();
 	}
 
 	public String getName() {
-		return scroll.getName();
+		return this.scroll.getName();
 	}
 
 	public int getPage() {
-		return scroll.getPage();
+		return this.scroll.getPage();
 	}
 
 	public String getPrompt() {
-		return prompt;
+		return this.prompt;
 	}
 
 	public List<ItemStack> getReagentCost() {
-		return scroll.getReagentCost();
+		return this.scroll.getReagentCost();
 	}
 
 	public String getResponse() {
-		return response;
+		return this.response;
 	}
-	
+
 	public Scroll getScroll() {
-		return scroll;
+		return this.scroll;
 	}
-	
+
 	public String getSpellWords() {
-		return scroll.getSpellWords();
+		return this.scroll.getSpellWords();
 	}
-	
 
 	public int getTick() {
-		return tick;
+		return this.tick;
 	}
+
 	public abstract void preAction(Player player);
 
 	public void runebook(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(pPlayer.isAllowGui()) {
-			GUI gui = new RunebookGUI(pPlayer);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		if (pPlayer.isAllowGui()) {
+			final GUI gui = new RunebookGUI(pPlayer);
 			gui.openInventory(player);
 			return;
 		}
 	}
 
-
 	public void setPrompt(String prompt) {
 		this.prompt = prompt;
 	}
-	
+
 	public void setResponse(String response) {
 		this.response = response;
 	}
@@ -115,10 +114,10 @@ public abstract class Spell {
 	}
 
 	public void tick(Player player) {
-		tick++;
-		if(tick >= getCastingDelay()){
-			doAction(player);
-			finish(player);
+		this.tick++;
+		if (this.tick >= this.getCastingDelay()) {
+			this.doAction(player);
+			this.finish(player);
 		}
 	}
 

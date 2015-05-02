@@ -27,7 +27,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	/**
 	 * @param Lostshard
 	 *            as plugin
@@ -48,7 +48,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "/admin inv (Player)");
 			return;
 		}
-		Player tPlayer = Utils.getPlayer(player, args, 1);
+		final Player tPlayer = Utils.getPlayer(player, args, 1);
 		if (tPlayer == null) {
 			Output.simpleError(player, "Player is not online");
 			return;
@@ -57,25 +57,26 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void broadcast(CommandSender sender, String[] args) {
-		if(args.length < 1) {
+		if (args.length < 1) {
 			Output.simpleError(sender, "/broadcast (message)");
 			return;
 		}
-		String[] msgs = StringUtils.join(args, " ").split(";");
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN+msgs[0],ChatColor.AQUA+(msgs.length > 1 ? msgs[1] : ""));
+		final String[] msgs = StringUtils.join(args, " ").split(";");
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN + msgs[0],
+					ChatColor.AQUA + (msgs.length > 1 ? msgs[1] : ""));
 			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
 		}
 	}
 
 	private void inv(CommandSender sender, String[] args) {
-		if(!(sender instanceof Player)) {
+		if (!(sender instanceof Player)) {
 			Output.mustBePlayer(sender);
 			return;
 		}
-		Player player = (Player) sender;
-		Player tPlayer = Bukkit.getPlayer(args[0]);
-		if(tPlayer == null) {
+		final Player player = (Player) sender;
+		final Player tPlayer = Bukkit.getPlayer(args[0]);
+		if (tPlayer == null) {
 			Output.plotNotIn(player);
 			return;
 		}
@@ -90,56 +91,55 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			if (!player.isOp()) {
-				Output.simpleError(player, "Only operator may perform this command.");
+				Output.simpleError(player,
+						"Only operator may perform this command.");
 				return true;
 			}
 			if (args.length < 1) {
 				Output.simpleError(player, "/admin (subCommand)");
 				return true;
 			}
-			String subCommand = args[0];
-			if (subCommand.equalsIgnoreCase("inv")) {
-				adminInv(player, args);
-			} else if (subCommand.equalsIgnoreCase("tpplot")) {
-				tpPlot(player, args);
-			}
-		}else if(cmd.getName().equalsIgnoreCase("tpplot")) {
-			if(!(sender instanceof Player)) {
+			final String subCommand = args[0];
+			if (subCommand.equalsIgnoreCase("inv"))
+				this.adminInv(player, args);
+			else if (subCommand.equalsIgnoreCase("tpplot"))
+				this.tpPlot(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("tpplot")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			tpPlot(player, args);
-		}else if(cmd.getName().equalsIgnoreCase("tpworld")) {
-			if(!(sender instanceof Player)) {
+			final Player player = (Player) sender;
+			this.tpPlot(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("tpworld")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			tpWorld(player, args);
-		}else if(cmd.getName().equalsIgnoreCase("test")) {
-			Player player = (Player) sender;
-			PseudoPlayer pPlayer = pm.getPlayer(player);
-			for(Scroll scroll : Scroll.values())
+			final Player player = (Player) sender;
+			this.tpWorld(player, args);
+		} else if (cmd.getName().equalsIgnoreCase("test")) {
+			final Player player = (Player) sender;
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+			for (final Scroll scroll : Scroll.values())
 				pPlayer.addSpell(scroll);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("setmurders")) {
-			if(!(sender instanceof Player)) {
+		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			setMurder(player, args);
+			final Player player = (Player) sender;
+			this.setMurder(player, args);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("tax"))  {
-			ptm.tax();
-		}else if(cmd.getName().equalsIgnoreCase("inv")) {
-			inv(sender, args);
-		}else if(cmd.getName().equalsIgnoreCase("broadcast")) {
-			broadcast(sender, args);
-		}
+		} else if (cmd.getName().equalsIgnoreCase("tax"))
+			this.ptm.tax();
+		else if (cmd.getName().equalsIgnoreCase("inv"))
+			this.inv(sender, args);
+		else if (cmd.getName().equalsIgnoreCase("broadcast"))
+			this.broadcast(sender, args);
 		return true;
 	}
 
@@ -148,61 +148,64 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			String string, String[] args) {
 		return null;
 	}
-	
+
 	private void setMurder(Player player, String[] args) {
-		if(args.length < 2) {
+		if (args.length < 2) {
 			Output.simpleError(player, "/setmurders (player) (amount)");
 			return;
 		}
-		Player tPlayer = Bukkit.getPlayer(args[0]);
-		if(tPlayer == null) {
+		final Player tPlayer = Bukkit.getPlayer(args[0]);
+		if (tPlayer == null) {
 			Output.plotNotIn(player);
 			return;
 		}
 		int amount;
 		try {
 			amount = Integer.parseInt(args[1]);
-			PseudoPlayer pPlayer = pm.getPlayer(tPlayer);
+			final PseudoPlayer pPlayer = this.pm.getPlayer(tPlayer);
 			pPlayer.setMurderCounts(amount);
-			Output.positiveMessage(player, "You have set "+tPlayer.getName()+" murdercounts to "+amount+".");
-			Output.positiveMessage(tPlayer, player.getName()+" have set your murdercounts to "+amount+".");
-		} catch (Exception e) {
+			Output.positiveMessage(player, "You have set " + tPlayer.getName()
+					+ " murdercounts to " + amount + ".");
+			Output.positiveMessage(tPlayer, player.getName()
+					+ " have set your murdercounts to " + amount + ".");
+		} catch (final Exception e) {
 			Output.simpleError(player, "/setmurders (player) (amount)");
 			return;
 		}
 	}
 
 	private void tpPlot(Player player, String[] args) {
-		if(args.length < 1) {
+		if (args.length < 1) {
 			Output.simpleError(player, "/tpplot (plot)");
 			return;
 		}
-		String name = StringUtils.join(args, " ");
-		Plot plot = ptm.getPlot(name);
-		if(plot == null) {
-			Output.simpleError(player, "Coulden find plot, \""+name+"\"");
+		final String name = StringUtils.join(args, " ");
+		final Plot plot = this.ptm.getPlot(name);
+		if (plot == null) {
+			Output.simpleError(player, "Coulden find plot, \"" + name + "\"");
 			return;
 		}
 		player.teleport(plot.getLocation());
-		Output.positiveMessage(player, "Found plot, \""+plot.getName()+"\"");
+		Output.positiveMessage(player, "Found plot, \"" + plot.getName() + "\"");
 	}
 
 	public void tpWorld(Player player, String[] args) {
-		if(args.length < 1) {
+		if (args.length < 1) {
 			Output.simpleError(player, "/tpworld (world)");
 			return;
 		}
-		String name = StringUtils.join(args, " ");
+		final String name = StringUtils.join(args, " ");
 		World world = null;
-		for(World w : Bukkit.getWorlds())
-			if(StringUtils.contains(w.getName(), name))
+		for (final World w : Bukkit.getWorlds())
+			if (StringUtils.contains(w.getName(), name))
 				world = w;
-		if(world == null) {
-			Output.simpleError(player, "Coulden find world, \""+name+"\"");
+		if (world == null) {
+			Output.simpleError(player, "Coulden find world, \"" + name + "\"");
 			return;
 		}
 		player.teleport(world.getSpawnLocation());
-		Output.positiveMessage(player, "Found world, \""+world.getName()+"\"");
+		Output.positiveMessage(player, "Found world, \"" + world.getName()
+				+ "\"");
 	}
 
 }

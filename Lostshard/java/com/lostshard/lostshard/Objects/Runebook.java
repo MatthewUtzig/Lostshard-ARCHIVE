@@ -3,32 +3,32 @@ package com.lostshard.lostshard.Objects;
 import java.util.ArrayList;
 
 public class Runebook {
-	private ArrayList<Rune> runes;
-	
+	private final ArrayList<Rune> runes;
+
 	public Runebook() {
-		runes = new ArrayList<Rune>();
+		this.runes = new ArrayList<Rune>();
 	}
-	
+
 	public void addRune(Rune rune) {
-		runes.add(rune);
+		this.runes.add(rune);
 	}
-	
+
 	public int getNumRunes() {
-		return runes.size();
+		return this.runes.size();
 	}
-	
+
 	public Rune getRune(String runeLabel) {
-		for(Rune r : runes)
-			if(r.getLabel().equalsIgnoreCase(runeLabel))
+		for (final Rune r : this.runes)
+			if (r.getLabel().equalsIgnoreCase(runeLabel))
 				return r;
 		return null;
 	}
-	
+
 	public ArrayList<Rune> getRunes() {
-		return runes;
+		return this.runes;
 	}
 
 	public void removeRune(Rune rune) {
-		runes.remove(rune);
+		this.runes.remove(rune);
 	}
 }

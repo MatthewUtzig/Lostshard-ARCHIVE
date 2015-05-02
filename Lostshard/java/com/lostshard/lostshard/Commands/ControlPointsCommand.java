@@ -29,66 +29,80 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public ControlPointsCommand(Lostshard plugin) {
 		plugin.getCommand("capturepoints").setExecutor(this);
 		plugin.getCommand("claim").setExecutor(this);
 	}
 
 	private void claim(Player player) {
-		Plot checkplot = ptm.findPlotAt(player.getLocation());
-		if(checkplot == null || !(checkplot instanceof PlotCapturePoint)) {
+		final Plot checkplot = this.ptm.findPlotAt(player.getLocation());
+		if (checkplot == null || !(checkplot instanceof PlotCapturePoint)) {
 			Output.simpleError(player, "This is not a capturepoint.");
 			return;
 		}
-		PlotCapturePoint plot = (PlotCapturePoint) checkplot;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		Clan clan = pPlayer.getClan();
-		if(clan == null) {
-			Output.simpleError(player, "You may only claim "+plot.getName()+" if you are in a clan.");
+		final PlotCapturePoint plot = (PlotCapturePoint) checkplot;
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final Clan clan = pPlayer.getClan();
+		if (clan == null) {
+			Output.simpleError(player, "You may only claim " + plot.getName()
+					+ " if you are in a clan.");
 			return;
-			
+
 		}
-		
-		if(clan.equals(plot.getOwningClan())) {
-			Output.simpleError(player, "Your clan already owns "+plot.getName());
+
+		if (clan.equals(plot.getOwningClan())) {
+			Output.simpleError(player,
+					"Your clan already owns " + plot.getName());
 			return;
-			
+
 		}
-		
-		Capturepoint cp = Capturepoint.getByName(plot.getName());
-		if(cp == null && !Utils.isWithin(player.getLocation(), plot.getLocation(), 5) || cp != null && !Utils.isWithin(player.getLocation(), new Location(plot.getLocation().getWorld(), cp.getPoint().x, cp.getPoint().y, cp.getPoint().z), 5)) {
-			Output.simpleError(player, "You may only claim "+plot.getName()+" if you are within the claim range.");
+
+		final Capturepoint cp = Capturepoint.getByName(plot.getName());
+		if (cp == null
+				&& !Utils.isWithin(player.getLocation(), plot.getLocation(), 5)
+				|| cp != null
+				&& !Utils
+						.isWithin(
+								player.getLocation(),
+								new Location(plot.getLocation().getWorld(), cp
+										.getPoint().x, cp.getPoint().y, cp
+										.getPoint().z), 5)) {
+			Output.simpleError(player, "You may only claim " + plot.getName()
+					+ " if you are within the claim range.");
 			return;
 		}
-		
-		long lastCaptureTime = plot.getLastCaptureDate();
-		Date date = new Date();
-		long curTime = date.getTime();
-		long diff = (curTime - lastCaptureTime);
-		if(diff > 1000*60*60*1) {
-			if(plot.isUnderAttack()) {
-				Output.simpleError(player, plot.getName()+" is already under attack.");
+
+		final long lastCaptureTime = plot.getLastCaptureDate();
+		final Date date = new Date();
+		final long curTime = date.getTime();
+		long diff = curTime - lastCaptureTime;
+		if (diff > 1000 * 60 * 60 * 1) {
+			if (plot.isUnderAttack()) {
+				Output.simpleError(player, plot.getName()
+						+ " is already under attack.");
 				return;
-				
+
 			}
-			if(clan.equals(plot.getOwningClan())) {
-				Output.simpleError(player, "Your clan already owns "+plot.getName());
+			if (clan.equals(plot.getOwningClan())) {
+				Output.simpleError(player,
+						"Your clan already owns " + plot.getName());
 				return;
-				
+
 			}
-    		plot.beginCapture(player, pPlayer, clan);
+			plot.beginCapture(player, pPlayer, clan);
+		} else {
+			diff = 1000 * 60 * 60 * 1 - diff;
+			final int numHours = (int) ((double) diff / (1000 * 60 * 60));
+			diff -= numHours * 60 * 60 * 1000;
+			final int numMinutes = (int) ((double) diff / (1000 * 60));
+			diff -= numMinutes * 60 * 1000;
+			final int numSeconds = (int) ((double) diff / 1000);
+			Output.simpleError(player, "can't claim " + plot.getName()
+					+ " yet, " + numHours + " hours, " + numMinutes
+					+ " minutes and " + numSeconds + " seconds remaining.");
 		}
-		else {
-			diff = 1000*60*60*1 - diff;
-			int numHours = (int)((double)diff/(1000*60*60));
-			diff -= numHours*60*60*1000;
-			int numMinutes = (int)((double)diff/(1000*60));
-			diff -= numMinutes*60*1000;
-			int numSeconds = (int)((double)diff/(1000));
-			Output.simpleError(player, "can't claim "+plot.getName()+" yet, "+numHours+" hours, "+numMinutes+" minutes and "+numSeconds+" seconds remaining.");
-		}
-    	return;
+		return;
 	}
 
 	@Override
@@ -99,7 +113,7 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			Output.capturePointsInfo(player);
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("claim")) {
@@ -107,8 +121,8 @@ public class ControlPointsCommand implements CommandExecutor, TabCompleter {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			claim(player);
+			final Player player = (Player) sender;
+			this.claim(player);
 			return true;
 		}
 		return false;

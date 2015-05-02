@@ -14,15 +14,15 @@ import com.lostshard.lostshard.Main.Lostshard;
 public class CitizensLisenter implements Listener {
 
 	public CitizensLisenter(Lostshard plugin) {
-//		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+		// plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
-	
-//	@EventHandler(priority = EventPriority.HIGHEST)
-//	public void onCitizensEnable(CitizensEnableEvent event) {
-//		System.out.print("Spawning NPCS!");
-//		NPCManager.getRegistry().deregisterAll();
-//		for(NPC npc : Lostshard.getRegistry().getNpcs())
-//			npc.spawn();
-//	}
-	
+
+	// @EventHandler(priority = EventPriority.HIGHEST)
+	// public void onCitizensEnable(CitizensEnableEvent event) {
+	// System.out.print("Spawning NPCS!");
+	// NPCManager.getRegistry().deregisterAll();
+	// for(NPC npc : Lostshard.getRegistry().getNpcs())
+	// npc.spawn();
+	// }
+
 }

@@ -13,84 +13,81 @@ public class Store {
 	private int id = 1;
 	private int npcId = 0;
 	private List<StoreItem> items = new ArrayList<StoreItem>();
-	
+
 	public Store(int npcID) {
 		this.npcId = npcID;
 	}
-	
+
 	public void addItem(StoreItem item) {
 		int id = 0;
-		for(StoreItem si : items)
-			id = si.getId()+1;
+		for (final StoreItem si : this.items)
+			id = si.getId() + 1;
 		item.setId(id);
-		items.add(item);
+		this.items.add(item);
 	}
-	
+
 	public String getAsJson() {
-		return Serializer.gson.toJson(items).toString();
+		return Serializer.gson.toJson(this.items).toString();
 	}
-	
+
 	public int getId() {
-		return id;
+		return this.id;
 	}
-	
+
 	public List<StoreItem> getItems() {
-		return items;
+		return this.items;
 	}
-	
+
 	public String getItemsAsJson() {
-		List<String> rs = new ArrayList<String>();
-		for(StoreItem si : items)
+		final List<String> rs = new ArrayList<String>();
+		for (final StoreItem si : this.items)
 			rs.add(si.getAsJson());
 		return Serializer.serializeStringArray(rs);
 	}
-	
+
 	public List<StoreItem> getItemsForBuy() {
-		List<StoreItem> rs = new ArrayList<StoreItem>();
-		for(StoreItem item : items) {
-			if(item.getBuyPrice() > 0)
+		final List<StoreItem> rs = new ArrayList<StoreItem>();
+		for (final StoreItem item : this.items)
+			if (item.getBuyPrice() > 0)
 				rs.add(item);
-		}
 		return rs;
 	}
-	
+
 	public List<StoreItem> getItemsForSale() {
-		List<StoreItem> rs = new ArrayList<StoreItem>();
-		for(StoreItem item : items) {
-			if(item.getSalePrice() > 0)
+		final List<StoreItem> rs = new ArrayList<StoreItem>();
+		for (final StoreItem item : this.items)
+			if (item.getSalePrice() > 0)
 				rs.add(item);
-		}
 		return rs;
 	}
-	
+
 	public int getNpcId() {
-		return npcId;
+		return this.npcId;
 	}
-	
+
 	public StoreItem getStoreItem(int id) {
-		for(StoreItem i : items)
-			if(id == i.getId())
+		for (final StoreItem i : this.items)
+			if (id == i.getId())
 				return i;
 		return null;
 	}
+
 	public StoreItem getStoreItem(ItemStack item) {
-		for(StoreItem si : items) {
-			if(si.equals(item))
+		for (final StoreItem si : this.items)
+			if (si.equals(item))
 				return si;
-		}
 		return null;
 	}
-	
+
 	public boolean itemsContains(ItemStack item) {
-		for(StoreItem si : items) {
-			if(si.equals(item))
+		for (final StoreItem si : this.items)
+			if (si.equals(item))
 				return true;
-		}
 		return false;
 	}
-	
+
 	public void removeStoreItem(StoreItem storeItem) {
-		items.remove(storeItem);
+		this.items.remove(storeItem);
 	}
 
 	public void setId(int id) {

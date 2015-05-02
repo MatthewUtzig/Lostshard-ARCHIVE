@@ -50,34 +50,34 @@ public class Lostshard extends JavaPlugin {
 	public static BukkitTask getGameLoop() {
 		return gameLoop;
 	}
-	
+
 	public static Lostshard getLostshard() {
 		return lostshard;
 	}
-	
+
 	public static Plugin getPlugin() {
 		return plugin;
 	}
-	
+
 	public static String getVersion() {
 		return "1.0";
 	}
-	
+
 	public static boolean isDebug() {
 		return debug;
 	}
-	
+
 	public static boolean isMysqlError() {
 		return mysqlError;
 	}
-	
+
 	public static void mysqlError() {
 		Lostshard.mysqlError = true;
 		System.out.print("ERROR MYSQL");
-		for(Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED+"Server ERROR something went wrong..");
+		for (final Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server ERROR something went wrong..");
 	}
-	
+
 	public static void setDebug(boolean debug) {
 		Lostshard.debug = debug;
 	}
@@ -95,7 +95,7 @@ public class Lostshard extends JavaPlugin {
 	}
 
 	public static void shutdown() {
-		for (Player p : Bukkit.getOnlinePlayers())
+		for (final Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server rebooting.");
 	}
 
@@ -104,7 +104,7 @@ public class Lostshard extends JavaPlugin {
 	public static Logger log;
 
 	private static BukkitTask gameLoop;
-	
+
 	private static Plugin plugin;
 
 	private static boolean mysqlError = true;
@@ -115,32 +115,32 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		for (Player p : Bukkit.getOnlinePlayers())
+		for (final Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server restarting.");
 		MagicStructure.removeAll();
-//		Database.saveAll();
+		// Database.saveAll();
 		CustomSchedule.stopSchedule();
 		DataSource.getInstance().closeConnection();
 	}
 
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
-		
+		this.saveDefaultConfig();
+
 		ConfigManager.getManager().setConfig(this);
-		
+
 		setLostshard(this);
-		
+
 		log = this.getLogger();
 		log.info(ChatColor.GREEN + "Lostshard has invoke.");
-		
+
 		// Lisenters
 		new BlockListener(this);
 		new EntityListener(this);
 		new PlayerListener(this);
 		new ServerListener(this);
 		new VehicleListener(this);
-		if (getServer().getPluginManager().isPluginEnabled("votifier"))
+		if (this.getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
 		new CitizensLisenter(this);
@@ -163,16 +163,16 @@ public class Lostshard extends JavaPlugin {
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
 		ItemUtils.addChainMail();
-		
+
 		Lostshard.setPlugin(this);
-		
+
 		setMysqlError(!Database.testDatabaseConnection());
-		
+
 		Database.getPermanentGates();
 		Database.getClans();
 		Database.getPlots();
 		Database.getChests();
-	
+
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);

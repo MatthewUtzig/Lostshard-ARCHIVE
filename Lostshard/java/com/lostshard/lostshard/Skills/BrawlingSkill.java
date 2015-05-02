@@ -15,85 +15,89 @@ import com.lostshard.lostshard.Utils.ItemUtils;
 import com.lostshard.lostshard.Utils.Output;
 
 public class BrawlingSkill extends Skill {
-	
-	public static void playerDamagedEntityWithMisc(EntityDamageByEntityEvent event) {
-		if(event.isCancelled())
+
+	public static void playerDamagedEntityWithMisc(
+			EntityDamageByEntityEvent event) {
+		if (event.isCancelled())
 			return;
-		if(!(event.getDamager() instanceof Player))
+		if (!(event.getDamager() instanceof Player))
 			return;
-		if(!(event.getEntity() instanceof LivingEntity))
+		if (!(event.getEntity() instanceof LivingEntity))
 			return;
-		if(event.getEntity().getType().equals(EntityType.ARMOR_STAND))
+		if (event.getEntity().getType().equals(EntityType.ARMOR_STAND))
 			return;
-		Player player = (Player) event.getDamager();
-		Material item = player.getItemInHand().getType();
-		if(ItemUtils.isSword(item) || ItemUtils.isAxe(item))
+		final Player player = (Player) event.getDamager();
+		final Material item = player.getItemInHand().getType();
+		if (ItemUtils.isSword(item) || ItemUtils.isAxe(item))
 			return;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		Skill skill = pPlayer.getCurrentBuild().getBrawling();
-		Entity damagedEntity = event.getEntity();
-		int brawlingSkill = skill.getLvl();
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
+		final Skill skill = pPlayer.getCurrentBuild().getBrawling();
+		final Entity damagedEntity = event.getEntity();
+		final int brawlingSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
-		
-		if(brawlingSkill >= 1000)
+
+		if (brawlingSkill >= 1000)
 			additionalDamage = 4;
-		else if(brawlingSkill >= 750)
+		else if (brawlingSkill >= 750)
 			additionalDamage = 3;
-		else if(brawlingSkill >= 500)
+		else if (brawlingSkill >= 500)
 			additionalDamage = 2;
-		else if(brawlingSkill >= 250)
-				additionalDamage = 1;
-		
-		double chanceOfEffect = (double)brawlingSkill / 1000;
-		double stunChance = chanceOfEffect * .25;
-		
-		double rand = Math.random();
-		if(stunChance > rand) {
-			if(damagedEntity instanceof Player) {
-				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
-				if(defenderPseudoPlayer.getTimer().stunTick <= 0) {
+		else if (brawlingSkill >= 250)
+			additionalDamage = 1;
+
+		final double chanceOfEffect = (double) brawlingSkill / 1000;
+		final double stunChance = chanceOfEffect * .25;
+
+		final double rand = Math.random();
+		if (stunChance > rand)
+			if (damagedEntity instanceof Player) {
+				final Player defenderPlayer = (Player) damagedEntity;
+				final PseudoPlayer defenderPseudoPlayer = pm
+						.getPlayer(defenderPlayer);
+				if (defenderPseudoPlayer.getTimer().stunTick <= 0) {
 					defenderPseudoPlayer.getTimer().stunTick = 30;
-					defenderPlayer.sendMessage(ChatColor.GREEN+"You have been stunned!");
-					player.sendMessage(ChatColor.GREEN+"You stunned "+defenderPlayer.getName()+"!");
+					defenderPlayer.sendMessage(ChatColor.GREEN
+							+ "You have been stunned!");
+					player.sendMessage(ChatColor.GREEN + "You stunned "
+							+ defenderPlayer.getName() + "!");
 				}
 			}
-		}
-		
-		if(damagedEntity instanceof Player) {
-			if(brawlingSkill >= 1000) {
-				Player defenderPlayer = (Player)damagedEntity;
-				PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
-				if(defenderPseudoPlayer.getTimer().stunTick <= 0)
+
+		if (damagedEntity instanceof Player)
+			if (brawlingSkill >= 1000) {
+				final Player defenderPlayer = (Player) damagedEntity;
+				final PseudoPlayer defenderPseudoPlayer = pm
+						.getPlayer(defenderPlayer);
+				if (defenderPseudoPlayer.getTimer().stunTick <= 0)
 					defenderPseudoPlayer.getTimer().stunTick = 17;
 			}
-		}
-		
+
 		damage += additionalDamage;
 		event.setDamage(damage);
-		
-		if(damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
+
+		if (damagedEntity instanceof Monster || damagedEntity instanceof Player
+				|| damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		int gain = skill.skillGain(pPlayer);
+		final int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(player, "Brawling", gain, skill.getLvl());
-		if(gain > 0)
+		if (gain > 0)
 			pPlayer.update();
 	}
-	
+
 	public BrawlingSkill() {
 		super();
-		setName("Brawling");
-		setBaseProb(.2);
-		setScaleConstant(60);
-		setMat(Material.PORK);
+		this.setName("Brawling");
+		this.setBaseProb(.2);
+		this.setScaleConstant(60);
+		this.setMat(Material.PORK);
 	}
 
 	@Override
 	public String howToGain() {
 		return "You can gain brawling by hitting or killing mobs";
 	}
-	
+
 }

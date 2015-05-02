@@ -14,20 +14,21 @@ public abstract class RangedSpell extends Spell {
 
 	private Block foundBlock;
 	private boolean carePlot;
+
 	public RangedSpell(Scroll scroll) {
 		super(scroll);
 	}
-	
+
 	public Block getFoundBlock() {
-		return foundBlock;
+		return this.foundBlock;
 	}
 
 	public int getRange() {
-		return range;
+		return this.range;
 	}
 
 	public boolean isCarePlot() {
-		return carePlot;
+		return this.carePlot;
 	}
 
 	public void setCarePlot(boolean carePlot) {
@@ -41,28 +42,29 @@ public abstract class RangedSpell extends Spell {
 	public void setRange(int range) {
 		this.range = range;
 	}
-	
+
 	@Override
 	public boolean verifyCastable(Player player) {
-		setFoundBlock(SpellUtils.blockInLOS(player, getRange()));
-		if(getFoundBlock() == null) {
+		this.setFoundBlock(SpellUtils.blockInLOS(player, this.getRange()));
+		if (this.getFoundBlock() == null) {
 			Output.simpleError(player, "Invalid target.");
 			return false;
 		}
-		if(getFoundBlock().getType().equals(Material.AIR)) {
+		if (this.getFoundBlock().getType().equals(Material.AIR)) {
 			Output.simpleError(player, "Invalid target.");
 			return false;
 		}
-		if(carePlot) {
-			Plot plot = ptm.findPlotAt(getFoundBlock().getLocation());
-			if(plot != null) {
-				if(plot.isProtected()) {
-					if(!plot.isFriendOrAbove(player)) {
-						Output.simpleError(player, "You can't cast "+getName()+" there, that plot is protected.");
+		if (this.carePlot) {
+			final Plot plot = this.ptm.findPlotAt(this.getFoundBlock()
+					.getLocation());
+			if (plot != null)
+				if (plot.isProtected())
+					if (!plot.isFriendOrAbove(player)) {
+						Output.simpleError(player,
+								"You can't cast " + this.getName()
+										+ " there, that plot is protected.");
 						return false;
 					}
-				}
-			}
 		}
 		return true;
 	}

@@ -12,41 +12,43 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 public class PlotGUI extends GUI {
 
 	private Plot plot;
-	
+
 	public PlotGUI(PseudoPlayer pPlayer, Plot plot) {
 		super(9, plot.getName(), pPlayer);
 		this.setPlot(plot);
 	}
 
 	public Plot getPlot() {
-		return plot;
+		return this.plot;
 	}
 
 	@Override
 	public void onClick(InventoryClickEvent event) {
-		if(!event.getCurrentItem().getItemMeta().hasDisplayName())
+		if (!event.getCurrentItem().getItemMeta().hasDisplayName())
 			return;
-		ItemStack item = event.getCurrentItem();
-		String option = ChatColor.stripColor(item.getItemMeta().getDisplayName());
-		Player player = (Player) event.getWhoClicked();
-		if(option.equalsIgnoreCase("Plot info")) {
-			PlotInfoGUI plotInfoGui = new PlotInfoGUI(getPlayer(), getPlot());
+		final ItemStack item = event.getCurrentItem();
+		final String option = ChatColor.stripColor(item.getItemMeta()
+				.getDisplayName());
+		final Player player = (Player) event.getWhoClicked();
+		if (option.equalsIgnoreCase("Plot info")) {
+			final PlotInfoGUI plotInfoGui = new PlotInfoGUI(this.getPlayer(),
+					this.getPlot());
 			plotInfoGui.openInventory(player);
-		}else if(option.equalsIgnoreCase("Expand")) {
-			
-		}else if(option.equalsIgnoreCase("Shrink")) {
-			
-		}else if(option.equalsIgnoreCase("Upgrade")) {
-			
+		} else if (option.equalsIgnoreCase("Expand")) {
+
+		} else if (option.equalsIgnoreCase("Shrink")) {
+
+		} else if (option.equalsIgnoreCase("Upgrade")) {
+
 		}
 	}
 
 	@Override
 	public void optionSelector() {
-		addOption("Plot info", Material.STONE);
-		addOption("Expand", Material.STONE);
-		addOption("Shrink", Material.STONE);
-		addOption("Upgrade", Material.STONE);
+		this.addOption("Plot info", Material.STONE);
+		this.addOption("Expand", Material.STONE);
+		this.addOption("Shrink", Material.STONE);
+		this.addOption("Upgrade", Material.STONE);
 	}
 
 	public void setPlot(Plot plot) {

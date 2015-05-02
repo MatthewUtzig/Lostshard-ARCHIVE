@@ -15,23 +15,24 @@ import com.lostshard.lostshard.Utils.Output;
 public class ScrollHandler {
 
 	public static void onEntityDeathEvent(EntityDeathEvent event) {
-		if(event.getEntity().getKiller() == null)
+		if (event.getEntity().getKiller() == null)
 			return;
-		if(!(event.getEntity().getKiller() instanceof Player))
+		if (!(event.getEntity().getKiller() instanceof Player))
 			return;
-		if(Math.random() > .2)
+		if (Math.random() > .2)
 			return;
-		Player player = event.getEntity().getKiller();
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		Entity entity = event.getEntity();
-		EntityType type = entity.getType();
-		Scroll scroll = new ScrollFactory().getRandomScroll(type);
-		if(scroll != null) {
+		final Player player = event.getEntity().getKiller();
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
+		final Entity entity = event.getEntity();
+		final EntityType type = entity.getType();
+		final Scroll scroll = new ScrollFactory().getRandomScroll(type);
+		if (scroll != null) {
 			pPlayer.addScroll(scroll);
-			Output.positiveMessage(player, "The "+type.name().toLowerCase()+" dropped a scroll of "+scroll.getName()+".");
+			Output.positiveMessage(player, "The " + type.name().toLowerCase()
+					+ " dropped a scroll of " + scroll.getName() + ".");
 			Database.insertScroll(scroll, pPlayer.getId());
 		}
 	}
-	
+
 	static PlayerManager pm = PlayerManager.getManager();
 }

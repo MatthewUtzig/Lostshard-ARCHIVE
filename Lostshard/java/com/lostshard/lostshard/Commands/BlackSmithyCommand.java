@@ -23,33 +23,33 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 	private void enhance(Player player) {
 		BlackSmithySkill.enhance(player);
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("repair")) {
-			if(!(sender instanceof Player)) {
+		if (cmd.getName().equalsIgnoreCase("repair")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			repair(player);
+			final Player player = (Player) sender;
+			this.repair(player);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("smelt")){
-			if(!(sender instanceof Player)) {
+		} else if (cmd.getName().equalsIgnoreCase("smelt")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			semt(player);
+			final Player player = (Player) sender;
+			this.semt(player);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("enhance")){
-			if(!(sender instanceof Player)) {
+		} else if (cmd.getName().equalsIgnoreCase("enhance")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			enhance(player);
+			final Player player = (Player) sender;
+			this.enhance(player);
 			return true;
 		}
 		return false;
@@ -68,5 +68,5 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 	private void semt(Player player) {
 		BlackSmithySkill.smelt(player);
 	}
-	
+
 }

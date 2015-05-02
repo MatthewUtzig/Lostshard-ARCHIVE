@@ -16,15 +16,15 @@ public class Rune {
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public String getLabel() {
-		return label;
+		return this.label;
 	}
 
 	public Location getLocation() {
-		return location;
+		return this.location;
 	}
 
 	public void setId(int id) {

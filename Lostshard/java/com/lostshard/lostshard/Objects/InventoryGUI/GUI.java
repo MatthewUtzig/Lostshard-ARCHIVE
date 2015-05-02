@@ -18,85 +18,87 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public abstract class GUI {
 
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	private Inventory GUI = null;
 	private PseudoPlayer player;
-	
+
 	public GUI(int size, String name, PseudoPlayer pPlayer) {
 		super();
-		this.GUI = Bukkit.createInventory(null, (int)Math.max(9,Math.ceil(size/9)*9), name);
+		this.GUI = Bukkit.createInventory(null,
+				(int) Math.max(9, Math.ceil(size / 9) * 9), name);
 		this.player = pPlayer;
-		player.setGui(this);
+		this.player.setGui(this);
 	}
-	
+
 	public GUI(PseudoPlayer pPlayer) {
 		super();
 		this.player = pPlayer;
 	}
-	
+
 	public void addOption(ItemStack item) {
-		GUI.addItem(item);
+		this.GUI.addItem(item);
 	}
+
 	public void addOption(String name, Material mat) {
-		ItemStack item = new ItemStack(mat);
-		ItemMeta itemMeta = item.getItemMeta();
+		final ItemStack item = new ItemStack(mat);
+		final ItemMeta itemMeta = item.getItemMeta();
 		itemMeta.setDisplayName(name);
 		item.setItemMeta(itemMeta);
-		GUI.addItem(item);
+		this.GUI.addItem(item);
 	}
-	
+
 	public void addOption(String name, Material mat, List<String> lore) {
-		ItemStack item = new ItemStack(mat);
-		ItemMeta itemMeta = item.getItemMeta();
+		final ItemStack item = new ItemStack(mat);
+		final ItemMeta itemMeta = item.getItemMeta();
 		itemMeta.setDisplayName(name);
 		itemMeta.setLore(lore);
 		item.setItemMeta(itemMeta);
-		GUI.addItem(item);
+		this.GUI.addItem(item);
 	}
-	
+
 	public void forceClose() {
-		player.setGui(null);
-		player.getOnlinePlayer().closeInventory();
+		this.player.setGui(null);
+		this.player.getOnlinePlayer().closeInventory();
 	}
-	
+
 	public Inventory getGUI() {
-		return GUI;
+		return this.GUI;
 	}
-	
+
 	public PseudoPlayer getPlayer() {
-		return player;
+		return this.player;
 	}
-	
+
 	public void inventoryClick(InventoryClickEvent event) {
-		if(event.getClickedInventory() == null)
+		if (event.getClickedInventory() == null)
 			return;
-		if(!event.getClickedInventory().equals(GUI))
+		if (!event.getClickedInventory().equals(this.GUI))
 			return;
-		if(event.getCurrentItem() == null)
+		if (event.getCurrentItem() == null)
 			return;
-		if(event.getAction() == null)
+		if (event.getAction() == null)
 			return;
-		if(event.getCurrentItem().getItemMeta() == null)
+		if (event.getCurrentItem().getItemMeta() == null)
 			return;
 		event.setCancelled(true);
-		onClick(event);
+		this.onClick(event);
 	}
-	
+
 	public void inventoryClose(InventoryCloseEvent event) {
-		player.setGui(null);
+		this.player.setGui(null);
 	}
-	
+
 	public void inventoryInteract(InventoryInteractEvent event) {
-		if(!event.getInventory().equals(GUI))
+		if (!event.getInventory().equals(this.GUI))
 			return;
 		event.setCancelled(true);
 	}
-	
+
 	abstract public void onClick(InventoryClickEvent event);
 
 	public void openInventory(Player player) {
-		pm.getPlayer(player).setGui(this);
-		player.openInventory(GUI);
+		this.pm.getPlayer(player).setGui(this);
+		player.openInventory(this.GUI);
 	}
 
 	abstract public void optionSelector();

@@ -11,26 +11,26 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 public class InventoryGUIHandler {
 
 	public static void onInventoryClick(InventoryClickEvent event) {
-		Player p = (Player) event.getWhoClicked();
-		PseudoPlayer pP = pm.getPlayer(p);
-		if(pP.getGui() != null)
+		final Player p = (Player) event.getWhoClicked();
+		final PseudoPlayer pP = pm.getPlayer(p);
+		if (pP.getGui() != null)
 			pP.getGui().inventoryClick(event);
 	}
-	
+
 	public static void onInventoryClose(InventoryCloseEvent event) {
-		Player p = (Player) event.getPlayer();
-		PseudoPlayer pP = pm.getPlayer(p);
-		if(pP.getGui() != null && event.getInventory().equals(pP.getGui().getGUI()))
+		final Player p = (Player) event.getPlayer();
+		final PseudoPlayer pP = pm.getPlayer(p);
+		if (pP.getGui() != null
+				&& event.getInventory().equals(pP.getGui().getGUI()))
 			pP.getGui().inventoryClose(event);
 	}
-	
+
 	public static void onInventoryInteract(InventoryInteractEvent event) {
-		Player p = (Player) event.getWhoClicked();
-		PseudoPlayer pP = pm.getPlayer(p);
-		if(pP.getGui() != null)
+		final Player p = (Player) event.getWhoClicked();
+		final PseudoPlayer pP = pm.getPlayer(p);
+		if (pP.getGui() != null)
 			pP.getGui().inventoryInteract(event);
 	}
-	
-	
+
 	static PlayerManager pm = PlayerManager.getManager();
 }

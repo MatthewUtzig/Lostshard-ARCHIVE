@@ -11,18 +11,15 @@ import com.lostshard.lostshard.Utils.ItemUtils;
 public class PlayersGUI extends GUI {
 
 	private List<OfflinePlayer> players;
-	
-	public PlayersGUI(String name, PseudoPlayer pPlayer, List<OfflinePlayer> players) {
+
+	public PlayersGUI(String name, PseudoPlayer pPlayer,
+			List<OfflinePlayer> players) {
 		super(players.size(), name, pPlayer);
 		this.players = players;
 	}
 
 	public List<OfflinePlayer> getPlayers() {
-		return players;
-	}
-
-	public void setPlayers(List<OfflinePlayer> players) {
-		this.players = players;
+		return this.players;
 	}
 
 	@Override
@@ -32,9 +29,12 @@ public class PlayersGUI extends GUI {
 
 	@Override
 	public void optionSelector() {
-		for(OfflinePlayer p : players) {
-			addOption(ItemUtils.getPlayerHead(p.getName()));
-		}
+		for (final OfflinePlayer p : this.players)
+			this.addOption(ItemUtils.getPlayerHead(p.getName()));
+	}
+
+	public void setPlayers(List<OfflinePlayer> players) {
+		this.players = players;
 	}
 
 }

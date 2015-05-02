@@ -25,7 +25,7 @@ import com.lostshard.lostshard.Utils.TabUtils;
 public class ChatCommand implements CommandExecutor, TabCompleter {
 
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	/**
 	 * @param Lostshard
 	 *            as JavaPlugin
@@ -46,19 +46,19 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output clan chat for player.
 	 */
 	private void clanChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.CLAN);
 			Output.positiveMessage(player, "You have togglet clan chat.");
 			return;
 		}
-		
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.CLAN);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
@@ -67,19 +67,19 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output global chat for player.
 	 */
 	private void globalChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have togglet global chat.");
 			return;
 		}
 
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.GLOBAL);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
@@ -88,45 +88,50 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output local chat for player.
 	 */
 	private void localChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.LOCAL);
 			Output.positiveMessage(player, "You have togglet local chat.");
 			return;
 		}
 
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.LOCAL);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
 	}
 
 	private void msgChat(Player player, String[] args) {
-		if(args.length < 2) {
+		if (args.length < 2) {
 			Output.simpleError(player, "/msg (Player) (message)");
 			return;
 		}
-		String targetName = args[0];
-		Player targetPlayer = Bukkit.getPlayer(targetName);
-		if(player == null) {
+		final String targetName = args[0];
+		final Player targetPlayer = Bukkit.getPlayer(targetName);
+		if (player == null) {
 			Output.simpleError(player, "player not online");
 			return;
 		}
-		if(player == targetPlayer) {
+		if (player == targetPlayer) {
 			Output.simpleError(player, "You can't msg your self.");
 			return;
 		}
-		String message = StringUtils.join(args, " ", 1, args.length);
-		
-		PseudoPlayer pPlayer = pm.getPlayer(targetPlayer);
-		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+targetPlayer.getName()+ChatColor.WHITE+"] " +  message);
-		if(!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE) && !pPlayer.getIgnored().contains(player.getUniqueId()))
-			targetPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
+		final String message = StringUtils.join(args, " ", 1, args.length);
+
+		final PseudoPlayer pPlayer = this.pm.getPlayer(targetPlayer);
+		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
+				+ "MSG to " + targetPlayer.getName() + ChatColor.WHITE + "] "
+				+ message);
+		if (!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE)
+				&& !pPlayer.getIgnored().contains(player.getUniqueId()))
+			targetPlayer.sendMessage(ChatColor.WHITE + "["
+					+ ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
+					+ ChatColor.WHITE + "] " + message);
 	}
 
 	@Override
@@ -136,137 +141,140 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			Output.mustBePlayer(sender);
 			return true;
 		}
-		Player player = (Player) sender;
-		if (cmd.getName().equalsIgnoreCase("global")) {
-			globalChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("shout")) {
-			shoutChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("local")) {
-			localChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("whisper")) {
-			whisperChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("c")) {
-			clanChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("p")) {
-			partyChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("msg")) {
-			msgChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("replay")) {
-			replayChat(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("toggleglobal")) {
-			toggleGlobalChat(player);
-		} else if (cmd.getName().equalsIgnoreCase("togglemsg")) {
-			toggleMsgChat(player);
-		}
+		final Player player = (Player) sender;
+		if (cmd.getName().equalsIgnoreCase("global"))
+			this.globalChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("shout"))
+			this.shoutChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("local"))
+			this.localChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("whisper"))
+			this.whisperChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("c"))
+			this.clanChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("p"))
+			this.partyChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("msg"))
+			this.msgChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("replay"))
+			this.replayChat(player, args);
+		else if (cmd.getName().equalsIgnoreCase("toggleglobal"))
+			this.toggleGlobalChat(player);
+		else if (cmd.getName().equalsIgnoreCase("togglemsg"))
+			this.toggleMsgChat(player);
 		return true;
 	}
 
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1) {
+		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1)
 			if (sender instanceof Player)
 				return TabUtils.OnlinePlayersTab(args,
 						new Player[] { (Player) sender });
 			else
 				return TabUtils.OnlinePlayersTab(args);
-		}
 		return TabUtils.empty();
 	}
 
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output party chat for player.
 	 */
 	private void partyChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.PARTY);
 			Output.positiveMessage(player, "You have togglet party chat.");
 			return;
 		}
 
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.PARTY);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
 	}
 
 	private void replayChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
-		if(to == null) {
-			Output.simpleError(player, Bukkit.getOfflinePlayer(pPlayer.getLastResiver()).getName()+" is no longer online.");
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
+		if (to == null) {
+			Output.simpleError(player,
+					Bukkit.getOfflinePlayer(pPlayer.getLastResiver()).getName()
+							+ " is no longer online.");
 			return;
 		}
-		String message = StringUtils.join(args, " ");
-		
-		player.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG to "+to.getName()+ChatColor.WHITE+"] " +  message);
-		to.sendMessage(ChatColor.WHITE+"["+ChatColor.LIGHT_PURPLE+"MSG from "+player.getName()+ChatColor.WHITE+"] " + message);
+		final String message = StringUtils.join(args, " ");
+
+		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
+				+ "MSG to " + to.getName() + ChatColor.WHITE + "] " + message);
+		to.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
+				+ "MSG from " + player.getName() + ChatColor.WHITE + "] "
+				+ message);
 	}
 
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output shout chat for player.
 	 */
 	private void shoutChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.SHOUT);
 			Output.positiveMessage(player, "You have toggled shout chat.");
 			return;
 		}
 
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.SHOUT);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);
 	}
-	
+
 	private void toggleGlobalChat(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		if (pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
 			pPlayer.enableChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have enabled Global Chat.");
-		}else{
+		} else {
 			pPlayer.disableChatChannel(ChatChannel.GLOBAL);
-			Output.positiveMessage(player, "You have disabled Global Chat.");			
+			Output.positiveMessage(player, "You have disabled Global Chat.");
 		}
 	}
-	
+
 	private void toggleMsgChat(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		if (pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
 			pPlayer.enableChatChannel(ChatChannel.PRIVATE);
 			Output.positiveMessage(player, "You have enabled Private Chat.");
-		}else{
+		} else {
 			pPlayer.disableChatChannel(ChatChannel.PRIVATE);
-			Output.positiveMessage(player, "You have disabled Private Chat.");			
+			Output.positiveMessage(player, "You have disabled Private Chat.");
 		}
 	}
-	
+
 	/**
 	 * @param player
 	 * @param args
-	 * 
+	 *
 	 *            Output whisper chat for player.
 	 */
 	private void whisperChat(Player player, String[] args) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.WHISPER);
 			Output.positiveMessage(player, "You have togglet whisper chat.");
 			return;
 		}
 
-		String msg = StringUtils.join(args, " ");
-		ChatChannel curChannel = pPlayer.getChatChannel();
+		final String msg = StringUtils.join(args, " ");
+		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.WHISPER);
 		player.chat(msg);
 		pPlayer.setChatChannel(curChannel);

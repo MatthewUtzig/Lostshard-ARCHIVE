@@ -22,12 +22,12 @@ public class EnderdragonHandler {
 		if (!spawnDrake)
 			return;
 		event.getPlayer()
-				.getLocation()
-				.getWorld()
-				.spawnEntity(event.getPlayer().getLocation().add(0, 40, 0),
-						EntityType.ENDER_DRAGON);
+		.getLocation()
+		.getWorld()
+		.spawnEntity(event.getPlayer().getLocation().add(0, 40, 0),
+				EntityType.ENDER_DRAGON);
 		spawnDrake = false;
 	}
-	
+
 	private static boolean spawnDrake = false;
 }

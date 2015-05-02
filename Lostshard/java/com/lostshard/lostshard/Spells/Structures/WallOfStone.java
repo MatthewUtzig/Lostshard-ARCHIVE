@@ -14,52 +14,54 @@ public class WallOfStone extends MagicStructure {
 	protected int buildTicks = 25;
 
 	protected int solidTicks = 125;
+
 	public WallOfStone(ArrayList<Block> blocks, UUID uuid,
 			int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
 	}
-	
-	@Override 
+
+	@Override
 	public void tick() {
-		if(!isDead()) {
-			setCurTick(getCurTick()+1);
-			if(getCurTick() >= getNumTicksTillCleanup())
-				cleanUp();
-			else if(getCurTick() >= solidTicks) {
-				//System.out.println("removing tick");
-				int totalBlocks = getBlockStates().size();
-				int blocksPerTick = (int)Math.ceil(totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
-				int curBlock = ((getCurTick()-solidTicks))*blocksPerTick;
-				int maxSize = curBlock+blocksPerTick;
-				if(curBlock+blocksPerTick >= getBlockStates().size())
-					maxSize = getBlockStates().size();
-				for(int i=curBlock; i<maxSize; i++) {
-					BlockState b = getBlockStates().get(i);
-					if(b.equals(b.getBlock().getState()))
+		if (!this.isDead()) {
+			this.setCurTick(this.getCurTick() + 1);
+			if (this.getCurTick() >= this.getNumTicksTillCleanup())
+				this.cleanUp();
+			else if (this.getCurTick() >= this.solidTicks) {
+				// System.out.println("removing tick");
+				final int totalBlocks = this.getBlockStates().size();
+				final int blocksPerTick = (int) Math
+						.ceil(totalBlocks
+								/ ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
+				final int curBlock = (this.getCurTick() - this.solidTicks)
+						* blocksPerTick;
+				int maxSize = curBlock + blocksPerTick;
+				if (curBlock + blocksPerTick >= this.getBlockStates().size())
+					maxSize = this.getBlockStates().size();
+				for (int i = curBlock; i < maxSize; i++) {
+					final BlockState b = this.getBlockStates().get(i);
+					if (b.equals(b.getBlock().getState()))
 						b.getBlock().setType(Material.AIR);
 				}
-			}
-			else if(getCurTick() > buildTicks) {
+			} else if (this.getCurTick() > this.buildTicks) {
 				// solid ticks
-			}
-			else {
-				int totalBlocks = getBlockStates().size();
-				int blocksPerTick = (int)Math.ceil(totalBlocks / ((double)getNumTicksTillCleanup()-(double)solidTicks));
-				int curBlock = (getCurTick()-1)*blocksPerTick;
-				int maxSize = curBlock+blocksPerTick;
-				if(curBlock+blocksPerTick >= getBlockStates().size()) {
-					maxSize = getBlockStates().size();
-				}
-				for(int i=curBlock; i<maxSize; i++) {
-					Block b = getBlockStates().get(i).getBlock();
-					if(b.getType().equals(Material.AIR)){
+			} else {
+				final int totalBlocks = this.getBlockStates().size();
+				final int blocksPerTick = (int) Math
+						.ceil(totalBlocks
+								/ ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
+				final int curBlock = (this.getCurTick() - 1) * blocksPerTick;
+				int maxSize = curBlock + blocksPerTick;
+				if (curBlock + blocksPerTick >= this.getBlockStates().size())
+					maxSize = this.getBlockStates().size();
+				for (int i = curBlock; i < maxSize; i++) {
+					final Block b = this.getBlockStates().get(i).getBlock();
+					if (b.getType().equals(Material.AIR)) {
 						b.setType(Material.STONE);
-						getBlockStates().set(i, b.getState());
+						this.getBlockStates().set(i, b.getState());
 					}
 				}
 			}
 		}
 	}
 
-	
 }

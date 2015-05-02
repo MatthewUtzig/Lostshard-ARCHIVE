@@ -9,64 +9,65 @@ public class StoreItem {
 	public static StoreItem fromJson(String string) {
 		return Serializer.gson.fromJson(string, StoreItem.class);
 	}
-	//Item
+
+	// Item
 	private int id = 0;
 	private ItemStack item;
 	private int salePrice = 0;
 	private int buyPrice = 0;
-	
+
 	private int stock = 0;
-	
-	//Buyer
+
+	// Buyer
 	private int maxBuyAmount = 0;
-	//Restock
+	// Restock
 	private boolean autoResotck = false;
 	private int restockTime = 0;
 
 	private int restockAmount = 0;
-	
+
 	public StoreItem(ItemStack item) {
 		this.item = item;
 	}
-	
+
 	public String getAsJson() {
 		return Serializer.gson.toJson(this);
 	}
 
 	public int getBuyPrice() {
-		return buyPrice;
+		return this.buyPrice;
 	}
 
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public ItemStack getItem() {
-		return item;
+		return this.item;
 	}
 
 	public int getMaxBuyAmount() {
-		return maxBuyAmount;
+		return this.maxBuyAmount;
 	}
 
 	public int getRestockAmount() {
-		return restockAmount;
+		return this.restockAmount;
 	}
 
 	public int getRestockTime() {
-		return restockTime;
+		return this.restockTime;
 	}
 
 	public int getSalePrice() {
-		return salePrice;
+		return this.salePrice;
 	}
 
 	public int getStock() {
-		return stock;
+		return this.stock;
 	}
 
 	public boolean isAutoResotck() {
-		return autoResotck;
+		return this.autoResotck;
 	}
 
 	public void setAutoResotck(boolean autoResotck) {

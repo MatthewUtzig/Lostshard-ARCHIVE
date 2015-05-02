@@ -39,12 +39,12 @@ public class BlockListener implements Listener {
 		MiningSkill.onBlockBreak(event);
 		LumberjackingSkill.blockBrokeWithAxe(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBurn(BlockBurnEvent event) {
 		PlotProtectionHandler.burnBlockInPlot(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockFade(BlockFadeEvent event) {
 		PlotProtectionHandler.onBlockFade(event);
@@ -64,9 +64,8 @@ public class BlockListener implements Listener {
 	public void onBlockPhysics(BlockPhysicsEvent event) {
 		if (event.isCancelled())
 			return;
-		if (event.getBlock().getType().equals(Material.PORTAL)) {
+		if (event.getBlock().getType().equals(Material.PORTAL))
 			event.setCancelled(true);
-		}
 		Gate.onBlockPhysics(event);
 	}
 
@@ -77,22 +76,23 @@ public class BlockListener implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockPlaceLow(BlockPlaceEvent event) {
-		if(event.isCancelled())
+		if (event.isCancelled())
 			return;
-		Block block = event.getBlock();
-		block.setMetadata("placed", new FixedMetadataValue(Lostshard.getPlugin(), true));
+		final Block block = event.getBlock();
+		block.setMetadata("placed",
+				new FixedMetadataValue(Lostshard.getPlugin(), true));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onHangingBreak(HangingBreakEvent event) {
 		PlotProtectionHandler.onHangingDestory(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onHangingPlace(HangingPlaceEvent event) {
 		PlotProtectionHandler.onHangingPlace(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPistonExtend(BlockPistonExtendEvent event) {
 		PlotProtectionHandler.onPistonExtend(event);

@@ -17,33 +17,32 @@ import com.lostshard.lostshard.Utils.SpellUtils;
 public class SPL_Forcepush extends Spell {
 
 	private ArrayList<LivingEntity> entitiesFound;
-	
+
 	public SPL_Forcepush(Scroll scroll) {
 		super(scroll);
 	}
-	
+
 	@Override
 	public void doAction(Player player) {
-		for(LivingEntity lE : entitiesFound) {
-			if(lE != null) {
-				if(lE instanceof Player) {
-					Player p = (Player)lE;
+		for (final LivingEntity lE : this.entitiesFound)
+			if (lE != null) {
+				if (lE instanceof Player) {
+					final Player p = (Player) lE;
 					PVPHandler.criminalAction(p, player);
 				}
-				Location aLoc = player.getLocation();
-				Location dLoc = lE.getLocation();
+				final Location aLoc = player.getLocation();
+				final Location dLoc = lE.getLocation();
 				Vector v = new Vector();
 				v.setX(dLoc.getX() - aLoc.getX());
 				v.setY(dLoc.getY() - aLoc.getY());
 				v.setZ(dLoc.getZ() - aLoc.getZ());
 				v = v.normalize();
 				v = v.multiply(5);
-				if(v.getY() > .75)
+				if (v.getY() > .75)
 					v.setY(.75);
-				
+
 				lE.setVelocity(v);
 			}
-		}
 
 	}
 
@@ -53,9 +52,9 @@ public class SPL_Forcepush extends Spell {
 
 	@Override
 	public boolean verifyCastable(Player player) {
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		entitiesFound = SpellUtils.enemiesInLOS(player, pPlayer, 10);
-		if(entitiesFound.size() <= 0) {
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		this.entitiesFound = SpellUtils.enemiesInLOS(player, pPlayer, 10);
+		if (this.entitiesFound.size() <= 0) {
 			Output.simpleError(player, "No enemy target found.");
 			return false;
 		}

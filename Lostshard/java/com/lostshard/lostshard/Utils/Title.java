@@ -13,68 +13,83 @@ import org.bukkit.entity.Player;
 
 public class Title {
 
-    @Deprecated
-    public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-        sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
-    }
+	@Deprecated
+	public static void sendFullTitle(Player player, Integer fadeIn,
+			Integer stay, Integer fadeOut, String title, String subtitle) {
+		sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
+	}
 
-    @Deprecated
-    public static void sendSubtitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
-        sendTitle(player, fadeIn, stay, fadeOut, null, message);
-    }
+	@Deprecated
+	public static void sendSubtitle(Player player, Integer fadeIn,
+			Integer stay, Integer fadeOut, String message) {
+		sendTitle(player, fadeIn, stay, fadeOut, null, message);
+	}
 
-    public static void sendTabTitle(Player player, String header, String footer) {
-        if (header == null) header = "";
-        header = ChatColor.translateAlternateColorCodes('&', header);
+	public static void sendTabTitle(Player player, String header, String footer) {
+		if (header == null)
+			header = "";
+		header = ChatColor.translateAlternateColorCodes('&', header);
 
-        if (footer == null) footer = "";
-        footer = ChatColor.translateAlternateColorCodes('&', footer);
+		if (footer == null)
+			footer = "";
+		footer = ChatColor.translateAlternateColorCodes('&', footer);
 
-        header = header.replaceAll("%player%", player.getDisplayName());
-        footer = footer.replaceAll("%player%", player.getDisplayName());
+		header = header.replaceAll("%player%", player.getDisplayName());
+		footer = footer.replaceAll("%player%", player.getDisplayName());
 
-        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-        IChatBaseComponent tabTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + header + "\"}");
-        IChatBaseComponent tabFoot = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
-        PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter(tabTitle);
+		final PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
+		final IChatBaseComponent tabTitle = IChatBaseComponent.ChatSerializer
+				.a("{\"text\": \"" + header + "\"}");
+		final IChatBaseComponent tabFoot = IChatBaseComponent.ChatSerializer
+				.a("{\"text\": \"" + footer + "\"}");
+		final PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter(
+				tabTitle);
 
-        try {
-            Field field = headerPacket.getClass().getDeclaredField("b");
-            field.setAccessible(true);
-            field.set(headerPacket, tabFoot);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            connection.sendPacket(headerPacket);
-        }
-    }
+		try {
+			final Field field = headerPacket.getClass().getDeclaredField("b");
+			field.setAccessible(true);
+			field.set(headerPacket, tabFoot);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.sendPacket(headerPacket);
+		}
+	}
 
-    @Deprecated
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
-        sendTitle(player, fadeIn, stay, fadeOut, message, null);
-    }
+	@Deprecated
+	public static void sendTitle(Player player, Integer fadeIn, Integer stay,
+			Integer fadeOut, String message) {
+		sendTitle(player, fadeIn, stay, fadeOut, message, null);
+	}
 
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
+	public static void sendTitle(Player player, Integer fadeIn, Integer stay,
+			Integer fadeOut, String title, String subtitle) {
+		final PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 
-        PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay, fadeOut);
-        connection.sendPacket(packetPlayOutTimes);
+		final PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(
+				PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay,
+				fadeOut);
+		connection.sendPacket(packetPlayOutTimes);
 
-        if (subtitle != null) {
-            subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
-            subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
-            IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
-            PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, titleSub);
-            connection.sendPacket(packetPlayOutSubTitle);
-        }
+		if (subtitle != null) {
+			subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
+			subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
+			final IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer
+					.a("{\"text\": \"" + subtitle + "\"}");
+			final PacketPlayOutTitle packetPlayOutSubTitle = new PacketPlayOutTitle(
+					PacketPlayOutTitle.EnumTitleAction.SUBTITLE, titleSub);
+			connection.sendPacket(packetPlayOutSubTitle);
+		}
 
-        if (title != null) {
-            title = title.replaceAll("%player%", player.getDisplayName());
-            title = ChatColor.translateAlternateColorCodes('&', title);
-            IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
-            PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, titleMain);
-            connection.sendPacket(packetPlayOutTitle);
-        }
-    }
-	
+		if (title != null) {
+			title = title.replaceAll("%player%", player.getDisplayName());
+			title = ChatColor.translateAlternateColorCodes('&', title);
+			final IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer
+					.a("{\"text\": \"" + title + "\"}");
+			final PacketPlayOutTitle packetPlayOutTitle = new PacketPlayOutTitle(
+					PacketPlayOutTitle.EnumTitleAction.TITLE, titleMain);
+			connection.sendPacket(packetPlayOutTitle);
+		}
+	}
+
 }

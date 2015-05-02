@@ -12,40 +12,40 @@ import com.lostshard.lostshard.Spells.MagicStructure;
 public class Iceball extends MagicStructure {
 
 	private boolean leaveSnow;
-	
-	public Iceball(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean leaveSnow) {
+
+	public Iceball(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup,
+			boolean leaveSnow) {
 		super(blocks, uuid, numTicksTillCleanup);
 		this.setLeaveSnow(leaveSnow);
 	}
 
-	@Override 
+	@Override
 	public void cleanUp() {
-		// go through each block, 
-		for(int i=0; i<getBlockStates().size(); i++) {
-			BlockState b = getBlockStates().get(i);
-			if(b.getBlock().getState().equals(b)) {
-				Material blockBelow = b.getWorld().getBlockAt(b.getX(), b.getY()-1, b.getZ()).getType();
-				if(isLeaveSnow()) {
-					if(blockBelow != Material.AIR && blockBelow != Material.SNOW)
+		// go through each block,
+		for (int i = 0; i < this.getBlockStates().size(); i++) {
+			final BlockState b = this.getBlockStates().get(i);
+			if (b.getBlock().getState().equals(b)) {
+				final Material blockBelow = b.getWorld()
+						.getBlockAt(b.getX(), b.getY() - 1, b.getZ()).getType();
+				if (this.isLeaveSnow()) {
+					if (blockBelow != Material.AIR
+							&& blockBelow != Material.SNOW)
 						b.getBlock().setType(Material.SNOW);
 					else
 						b.getBlock().setType(Material.AIR);
-				}
-				else {
+				} else
 					b.getBlock().setType(Material.AIR);
-				}
 			}
 		}
-		setDead(true);
+		this.setDead(true);
 	}
 
 	public boolean isLeaveSnow() {
-		return leaveSnow;
+		return this.leaveSnow;
 	}
 
 	public void setLeaveSnow(boolean leaveSnow) {
 		this.leaveSnow = leaveSnow;
 	}
 
-	
 }

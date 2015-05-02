@@ -10,50 +10,50 @@ public abstract class Skill {
 
 	static PlayerManager pm = PlayerManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
-	
+
 	private double baseProb = 0.2;
 	private double scaleConstant = 25;
 	private int minGain = 0;
 	private int maxGain = 5;
 	private Material mat;
-	
+
 	private String name = "none";
-	
+
 	private int lvl = 0; // 0-1000 and displayed as level/10
 	private boolean locked = false;
 
 	public double getBaseProb() {
-		return baseProb;
+		return this.baseProb;
 	}
 
 	public int getLvl() {
-		return lvl;
+		return this.lvl;
 	}
 
 	public Material getMat() {
-		return mat;
+		return this.mat;
 	}
 
 	public int getMaxGain() {
-		return maxGain;
+		return this.maxGain;
 	}
 
 	public int getMinGain() {
-		return minGain;
+		return this.minGain;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public double getScaleConstant() {
-		return scaleConstant;
+		return this.scaleConstant;
 	}
 
 	abstract public String howToGain();
-	
+
 	public boolean isLocked() {
-		return locked;
+		return this.locked;
 	}
 
 	public void setBaseProb(double baseProb) {
@@ -89,18 +89,22 @@ public abstract class Skill {
 	}
 
 	public int skillGain(PseudoPlayer pPlayer) {
-		if(locked)
+		if (this.locked)
 			return 0;
-		if(pPlayer.getCurrentBuild().getTotalSkillVal() >= pPlayer.getMaxSkillValTotal())
+		if (pPlayer.getCurrentBuild().getTotalSkillVal() >= pPlayer
+				.getMaxSkillValTotal())
 			return 0;
-		if(lvl >= 1000)
+		if (this.lvl >= 1000)
 			return 0;
-		double RND = Math.random();
-		int gain = RND <= baseProb * Math.exp(-lvl/10/scaleConstant) ? ((Double)Math.ceil(Math.random()*maxGain+minGain)).intValue() : 0;
-		lvl += gain;
-		if(lvl > 1000) {
-			gain -= lvl - 1000;
-			lvl = 1000;
+		final double RND = Math.random();
+		int gain = RND <= this.baseProb
+				* Math.exp(-this.lvl / 10 / this.scaleConstant) ? ((Double) Math
+				.ceil(Math.random() * this.maxGain + this.minGain)).intValue()
+				: 0;
+		this.lvl += gain;
+		if (this.lvl > 1000) {
+			gain -= this.lvl - 1000;
+			this.lvl = 1000;
 		}
 		return gain;
 	}

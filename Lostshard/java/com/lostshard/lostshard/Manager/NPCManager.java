@@ -12,72 +12,74 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class NPCManager {
-	
+
 	public static NPCManager getManager() {
 		return manager;
 	}
+
 	private static NPCManager manager = new NPCManager();
-	
+
 	PlotManager ptm = PlotManager.getManager();
 
 	private NPCManager() {
-	
+
 	}
 
 	public NPC getBanker(Location location) {
-		for (NPC npc : getBankers())
+		for (final NPC npc : this.getBankers())
 			if (Utils.isWithin(location, npc.getLocation(),
 					Variables.bankRadius))
 				return npc;
 		return null;
 	}
-	
+
 	public List<NPC> getBankers() {
-		List<NPC> result = new ArrayList<NPC>();
-		for (NPC npc : getNpcs())
+		final List<NPC> result = new ArrayList<NPC>();
+		for (final NPC npc : this.getNpcs())
 			if (npc.getType().equals(NPCType.BANKER))
 				result.add(npc);
 		return result;
 	}
-	
+
 	public List<NPC> getGuards() {
-		List<NPC> result = new ArrayList<NPC>();
-		for (NPC npc : getNpcs())
+		final List<NPC> result = new ArrayList<NPC>();
+		for (final NPC npc : this.getNpcs())
 			if (npc.getType().equals(NPCType.GUARD))
 				result.add(npc);
 		return result;
 	}
-	
+
 	public NPC getNearstNPC(Location location) {
-		double ndis = 9999999;
+		final double ndis = 9999999;
 		NPC rs = null;
-		for(NPC n : getNpcs()) {
-			double dis = Utils.fastDistance(n.getLocation(), location);
-			if(dis < ndis)
+		for (final NPC n : this.getNpcs()) {
+			final double dis = Utils.fastDistance(n.getLocation(), location);
+			if (dis < ndis)
 				rs = n;
 		}
 		return rs;
 	}
 
 	public List<NPC> getNpcs() {
-		ArrayList<NPC> rs = new ArrayList<NPC>();
-		for (Plot plot : ptm.getPlots())
-			for (NPC npc : plot.getNpcs())
+		final ArrayList<NPC> rs = new ArrayList<NPC>();
+		for (final Plot plot : this.ptm.getPlots())
+			for (final NPC npc : plot.getNpcs())
 				rs.add(npc);
 		return rs;
 	}
 
 	public NPC getVendor(Location location) {
-		Plot plot = ptm.findPlotAt(location);
-		for(NPC n : plot.getNpcs())
-			if(n.getType().equals(NPCType.VENDOR) && Utils.isWithin(location, n.getLocation(), 5))
+		final Plot plot = this.ptm.findPlotAt(location);
+		for (final NPC n : plot.getNpcs())
+			if (n.getType().equals(NPCType.VENDOR)
+					&& Utils.isWithin(location, n.getLocation(), 5))
 				return n;
 		return null;
 	}
 
 	public List<NPC> getVendors() {
-		List<NPC> result = new ArrayList<NPC>();
-		for (NPC npc : getNpcs())
+		final List<NPC> result = new ArrayList<NPC>();
+		for (final NPC npc : this.getNpcs())
 			if (npc.getType().equals(NPCType.VENDOR))
 				result.add(npc);
 		return result;

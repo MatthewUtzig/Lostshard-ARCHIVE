@@ -17,23 +17,25 @@ public class FishingCommand implements CommandExecutor, TabCompleter {
 	public FishingCommand(Lostshard plugin) {
 		plugin.getCommand("boat").setExecutor(this);
 	}
-	
+
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if(cmd.getName().equalsIgnoreCase("boat")) {
-			if(!(sender instanceof Player)) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("boat")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			FishingSkill.callBoat(player);
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
 		return null;
 	}
 

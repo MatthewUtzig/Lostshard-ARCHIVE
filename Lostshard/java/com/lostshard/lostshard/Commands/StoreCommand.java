@@ -21,10 +21,10 @@ import com.lostshard.lostshard.Objects.Store.StoreItem;
 import com.lostshard.lostshard.Utils.Output;
 
 public class StoreCommand implements CommandExecutor, TabCompleter {
-	
+
 	StoreManager sm = StoreManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public StoreCommand(Lostshard plugin) {
 		plugin.getCommand("shop").setExecutor(this);
 		plugin.getCommand("vendor").setExecutor(this);
@@ -33,26 +33,26 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("vendor")) {
-			if(!(sender instanceof Player)){
+		if (cmd.getName().equalsIgnoreCase("vendor")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			vendor(player, args);
+			final Player player = (Player) sender;
+			this.vendor(player, args);
 			return true;
-		}else if(cmd.getName().equalsIgnoreCase("shop")) {
-			if(!(sender instanceof Player)){
+		} else if (cmd.getName().equalsIgnoreCase("shop")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			shop(player);
+			final Player player = (Player) sender;
+			this.shop(player);
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
@@ -60,98 +60,110 @@ public class StoreCommand implements CommandExecutor, TabCompleter {
 	}
 
 	private void shop(Player player) {
-		Store store = sm.getStore(player.getLocation());
-		if(store == null) {
+		final Store store = this.sm.getStore(player.getLocation());
+		if (store == null) {
 			Output.simpleError(player, "You are not close enough to a vendor.");
 			return;
 		}
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		GUI gui = new StoreGUI(pPlayer, store);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final GUI gui = new StoreGUI(pPlayer, store);
 		gui.openInventory(player);
 	}
 
 	private void vendor(Player player, String[] args) {
-		if(args.length < 1) {
+		if (args.length < 1) {
 			Output.simpleError(player, "Use \"/vendor help\" commands.");
 			return;
 		}
-		String subCmd = args[0];
-		if(subCmd.equalsIgnoreCase("help")) {
-			player.sendMessage(ChatColor.GOLD+"-Vendor help-");
-			player.sendMessage(ChatColor.YELLOW+"/vendor additem (sellprice) (buyprice)");
+		final String subCmd = args[0];
+		if (subCmd.equalsIgnoreCase("help")) {
+			player.sendMessage(ChatColor.GOLD + "-Vendor help-");
+			player.sendMessage(ChatColor.YELLOW
+					+ "/vendor additem (sellprice) (buyprice)");
 			return;
-		}else if(subCmd.equalsIgnoreCase("additem")) {
-			if(args.length < 3) {
-				player.sendMessage(ChatColor.YELLOW+"/vendor additem (sellprice) (buyprice)");
+		} else if (subCmd.equalsIgnoreCase("additem")) {
+			if (args.length < 3) {
+				player.sendMessage(ChatColor.YELLOW
+						+ "/vendor additem (sellprice) (buyprice)");
 				return;
 			}
-			Store store = sm.getStore(player.getLocation());
-			if(store == null) {
-				Output.simpleError(player, "You are not close enough to a vendor.");
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player,
+						"You are not close enough to a vendor.");
 				return;
 			}
 			int sellPrice;
 			int buyPrice;
-			try{
+			try {
 				sellPrice = Integer.parseInt(args[1]);
 				buyPrice = Integer.parseInt(args[2]);
-			}catch(Exception e) {
-				player.sendMessage(ChatColor.YELLOW+"/vendor additem (sellprice) (buyprice)");
+			} catch (final Exception e) {
+				player.sendMessage(ChatColor.YELLOW
+						+ "/vendor additem (sellprice) (buyprice)");
 				return;
 			}
-			if(sellPrice < 0) {
+			if (sellPrice < 0) {
 				Output.simpleError(player, "Sell price can't be below 0.");
 				return;
 			}
-			if(buyPrice < 0) {
+			if (buyPrice < 0) {
 				Output.simpleError(player, "Buy price can't be below 0.");
 				return;
 			}
-			ItemStack item = player.getItemInHand();
-			StoreItem sitem = new StoreItem(item);
+			final ItemStack item = player.getItemInHand();
+			final StoreItem sitem = new StoreItem(item);
 			sitem.setSalePrice(sellPrice);
 			sitem.setBuyPrice(buyPrice);
 			sitem.setStock(0);
 			store.addItem(sitem);
-			Output.positiveMessage(player, "You have added an item to the store, right click the store with items to add them to stock or use \"/vendor addstock\".");
-		}else if(subCmd.equalsIgnoreCase("addstock")) {
-			Store store = sm.getStore(player.getLocation());
-			if(store == null) {
-				Output.simpleError(player, "You are not close enough to a vendor.");
+			Output.positiveMessage(
+					player,
+					"You have added an item to the store, right click the store with items to add them to stock or use \"/vendor addstock\".");
+		} else if (subCmd.equalsIgnoreCase("addstock")) {
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player,
+						"You are not close enough to a vendor.");
 				return;
 			}
-			ItemStack item = player.getItemInHand();
-			StoreItem sitem = store.getStoreItem(item);
-			if(sitem == null) {
-				Output.simpleError(player, "The vendor do not sell that item use \"/vendor additem (sellprice) (buyprice)\".");
+			final ItemStack item = player.getItemInHand();
+			final StoreItem sitem = store.getStoreItem(item);
+			if (sitem == null) {
+				Output.simpleError(
+						player,
+						"The vendor do not sell that item use \"/vendor additem (sellprice) (buyprice)\".");
 				return;
 			}
 			player.getInventory().remove(item);
 			sitem.setStock(item.getAmount());
-			Output.positiveMessage(player, "You have added "+item.getAmount()+" items to the stores stock.");
-		}else if(subCmd.equalsIgnoreCase("removeitem")) {
-			Store store = sm.getStore(player.getLocation());
-			if(store == null) {
-				Output.simpleError(player, "You are not close enough to a vendor.");
+			Output.positiveMessage(player, "You have added " + item.getAmount()
+					+ " items to the stores stock.");
+		} else if (subCmd.equalsIgnoreCase("removeitem")) {
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player,
+						"You are not close enough to a vendor.");
 				return;
 			}
-			if(args.length < 2) {
+			if (args.length < 2) {
 				Output.simpleError(player, "/vendor removeitem (id)");
 				return;
 			}
 			int id;
-			try{
+			try {
 				id = Integer.parseInt(args[1]);
-			}catch(Exception e) {
-				player.sendMessage(ChatColor.YELLOW+"/vendor removeitem (id)");
+			} catch (final Exception e) {
+				player.sendMessage(ChatColor.YELLOW + "/vendor removeitem (id)");
 				return;
 			}
-			StoreItem si = store.getStoreItem(id);
-			ItemStack item = si.getItem().clone();
+			final StoreItem si = store.getStoreItem(id);
+			final ItemStack item = si.getItem().clone();
 			item.setAmount(si.getStock());
 			store.removeStoreItem(si);
 			player.getWorld().dropItem(player.getLocation(), item);
-			Output.positiveMessage(player, "You have removed "+id+" item from the store.");
+			Output.positiveMessage(player, "You have removed " + id
+					+ " item from the store.");
 		}
 	}
 }

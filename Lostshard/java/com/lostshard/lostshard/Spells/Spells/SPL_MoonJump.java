@@ -22,7 +22,7 @@ public class SPL_MoonJump extends Spell {
 
 	@Override
 	public void preAction(Player player) {
-		
+
 	}
 
 	@Override

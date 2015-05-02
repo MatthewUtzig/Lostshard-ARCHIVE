@@ -3,8 +3,8 @@ package com.lostshard.lostshard.Objects.Recent;
 import org.bukkit.entity.Entity;
 
 public class RecentDeath {
-	private Entity entity;
-	private int ticksRemaining;
+	private final Entity entity;
+	private final int ticksRemaining;
 	private int originalTicks;
 
 	public RecentDeath(Entity entity, int ticksRemaining) {
@@ -14,15 +14,15 @@ public class RecentDeath {
 	}
 
 	public Entity getEntity() {
-		return entity;
+		return this.entity;
 	}
 
 	public int getOriginalTicks() {
-		return originalTicks;
+		return this.originalTicks;
 	}
 
 	public int getTicksRemaining() {
-		return ticksRemaining;
+		return this.ticksRemaining;
 	}
 
 	public void setOriginalTicks(int originalTicks) {

@@ -12,110 +12,114 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 
 public class MagicStructure {
-	
+
 	public static MagicStructure findMagicStuckture(Block block) {
-		for(MagicStructure ms : magicstructures)
-			if(ms.getBlockStates().contains(block.getState()))
+		for (final MagicStructure ms : magicstructures)
+			if (ms.getBlockStates().contains(block.getState()))
 				return ms;
 		return null;
 	}
+
 	public static List<MagicStructure> getMagicStructures() {
 		return magicstructures;
 	}
-	
+
 	public static PlayerManager getPm() {
 		return pm;
 	}
-	
+
 	public static PlotManager getPtm() {
 		return ptm;
 	}
-	
+
 	public static void removeAll() {
-		for(MagicStructure ms : magicstructures)
+		for (final MagicStructure ms : magicstructures)
 			ms.cleanUp();
 		magicstructures.clear();
 	}
-	
+
 	public static void setPm(PlayerManager pm) {
 		MagicStructure.pm = pm;
 	}
+
 	public static void setPtm(PlotManager ptm) {
 		MagicStructure.ptm = ptm;
 	}
+
 	public static void tickGlobal() {
-		for(MagicStructure ms : magicstructures) {
+		for (final MagicStructure ms : magicstructures)
 			ms.tick();
-		}
 		magicstructures.removeIf(ms -> ms.isDead);
 	}
+
 	protected static PlotManager ptm = PlotManager.getManager();
 	protected static PlayerManager pm = PlayerManager.getManager();
-	
+
 	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
-	
+
 	private UUID creatorUUID;
-	
+
 	private boolean isDead = false;
-	
-	private ArrayList<BlockState> blocks  = new ArrayList<BlockState>();
+
+	private ArrayList<BlockState> blocks = new ArrayList<BlockState>();
 
 	private int numTicksTillCleanup;
-	
+
 	private int curTick = 0;
-	
-	public MagicStructure(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
-		for(Block b : blocks)
+
+	public MagicStructure(ArrayList<Block> blocks, UUID uuid,
+			int numTicksTillCleanup) {
+		for (final Block b : blocks)
 			this.blocks.add(b.getState());
 		this.setCreatorUUID(uuid);
 		this.numTicksTillCleanup = numTicksTillCleanup;
 		magicstructures.add(this);
 	}
-	
+
 	public void addBlock(Block block) {
-		blocks.add(block.getState());
+		this.blocks.add(block.getState());
 	}
-	
+
 	public void cleanUp() {
-		// go through each block, 
-		for(int i=0; i<blocks.size(); i++) {
-			BlockState b = blocks.get(i);
-			if(b.getType() == b.getBlock().getType())
+		// go through each block,
+		for (int i = 0; i < this.blocks.size(); i++) {
+			final BlockState b = this.blocks.get(i);
+			if (b.getType() == b.getBlock().getType())
 				b.getBlock().setType(Material.AIR);
 		}
-		isDead = true;
-		lastThing();
+		this.isDead = true;
+		this.lastThing();
 	}
-	
+
 	public ArrayList<Block> getBlocks() {
-		ArrayList<Block> result = new ArrayList<Block>();
-		for(BlockState b : blocks)
+		final ArrayList<Block> result = new ArrayList<Block>();
+		for (final BlockState b : this.blocks)
 			result.add(b.getBlock());
 		return result;
 	}
 
 	public ArrayList<BlockState> getBlockStates() {
-		return blocks;
+		return this.blocks;
 	}
 
 	public UUID getCreatorUUID() {
-		return creatorUUID;
+		return this.creatorUUID;
 	}
-	
+
 	public int getCurTick() {
-		return curTick;
+		return this.curTick;
 	}
-	
+
 	public int getNumTicksTillCleanup() {
-		return numTicksTillCleanup;
+		return this.numTicksTillCleanup;
 	}
 
 	public boolean isDead() {
-		return isDead;
+		return this.isDead;
 	}
-	
+
 	public boolean isPermanent() {
-		return numTicksTillCleanup < 0;
+		return this.numTicksTillCleanup < 0;
 	}
 
 	public void lastThing() {
@@ -126,12 +130,12 @@ public class MagicStructure {
 	}
 
 	public void setBlocks(List<Block> blocks) {
-		for(Block b : blocks)
+		for (final Block b : blocks)
 			this.blocks.add(b.getState());
 	}
 
 	public void setBlockStates(ArrayList<Block> blocks) {
-		for(Block block : blocks)
+		for (final Block block : blocks)
 			this.blocks.add(block.getState());
 	}
 
@@ -152,12 +156,11 @@ public class MagicStructure {
 	}
 
 	public void tick() {
-		if(!isDead) {
-			if(numTicksTillCleanup > 0) {
-				curTick++;
-				if(curTick >= numTicksTillCleanup)
-					cleanUp();
+		if (!this.isDead)
+			if (this.numTicksTillCleanup > 0) {
+				this.curTick++;
+				if (this.curTick >= this.numTicksTillCleanup)
+					this.cleanUp();
 			}
-		}
 	}
 }
