@@ -60,6 +60,7 @@ public class PlayerListener implements Listener {
 
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
+	SpellManager sm = SpellManager.getManager();
 
 	public PlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -169,7 +170,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		foodHealHandler.foodHeal(event);
-		SpellManager.onPlayerInteract(event);
+		sm.onPlayerInteract(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -218,7 +219,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		PlotProtectionHandler.onPlotEnter(event);
-		SpellManager.move(event);
+		sm.move(event);
 		Gate.onPlayerMove(event);
 		FireWalk.onPlayerMove(event);
 		CapturepointHandler.onPlayerMove(event);

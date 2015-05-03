@@ -30,105 +30,15 @@ public class SpellManager {
 		return manager;
 	}
 
-	public static void move(PlayerMoveEvent event) {
-		final Player player = event.getPlayer();
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		if (event.getTo() != null
-				&& event.getFrom() != null
-				&& !event.getTo().getBlock().getState()
-						.equals(event.getFrom().getBlock().getState()))
-			if (pPlayer.getPromptedSpell() != null
-					|| pPlayer.getTimer().delayedSpell != null) {
-				pPlayer.setPromptedSpell(null);
-				pPlayer.getTimer().delayedSpell = null;
-				Output.simpleError(player,
-						"Moved while casting a spell, it was disrupted.");
-			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
-				pPlayer.getTimer().goToSpawnTicks = 0;
-				Output.simpleError(player,
-						"Moved while casting, /spawn was disrupted.");
-			}
-	}
-
-	public static void onPlayerInteract(PlayerInteractEvent event) {
-		if (!(event.getAction().equals(Action.LEFT_CLICK_AIR) || event
-				.getAction().equals(Action.LEFT_CLICK_BLOCK)))
-			return;
-		final Player player = event.getPlayer();
-		if (player.getItemInHand().getType().equals(Material.STICK)) {
-			final ItemStack wand = player.getItemInHand();
-			final ItemMeta wandMeta = wand.getItemMeta();
-			if (wandMeta.hasLore()
-					&& wandMeta.getLore().size() > 0
-					&& wandMeta
-							.getLore()
-							.get(0)
-							.equalsIgnoreCase(
-									"This magical wand can be used to cast a spell with only a touch of a button."))
-				if (wandMeta.hasDisplayName()) {
-					final Scroll scroll = Scroll.getByString(ChatColor
-							.stripColor(wandMeta.getDisplayName()));
-					manager.castSpell(player, scroll.getSpell());
-				}
-		}
-	}
-
-	public static void onPlayerPromt(AsyncPlayerChatEvent event) {
-		final Player player = event.getPlayer();
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		final String message = event.getMessage();
-		final Spell spell = pPlayer.getPromptedSpell();
-		spell.setResponse(message);
-
-		final int castingDelay = spell.getCastingDelay();
-		if (castingDelay > 0) {
-			spell.preAction(player);
-			pPlayer.getTimer().delayedSpell = spell;
-		} else {
-			spell.preAction(player);
-			pPlayer.getTimer().cantCastTicks = spell.getCooldown();
-			spell.doAction(player);
-		}
-		pPlayer.setPromptedSpell(null);
-		event.setCancelled(true);
-	}
-
-	public static void possibleSkillGain(Player player,
-			PseudoPlayer pseudoPlayer, Spell spell) {
-		if (pseudoPlayer.getCurrentBuild().getMagery().isLocked())
-			return;
-
-		final int curSkill = pseudoPlayer.getCurrentBuild().getMagery()
-				.getLvl();
-		if (curSkill < 1000
-				&& pseudoPlayer.getCurrentBuild().getTotalSkillVal() < pseudoPlayer
-						.getMaxSkillValTotal()) {
-			final int minMagery = spell.getMinMagery();
-			double percentChance;
-			if (curSkill < minMagery + 200) {
-				// possible to gain (within 20 skill points)
-				percentChance = (double) (1000 - curSkill) / 1000;
-				// we don't want it to be TOOOO hard to gain skill
-				if (percentChance < minPercentChanceSkillGain) {
-					final int gain = pseudoPlayer.getCurrentBuild().getMining()
-							.skillGain(pseudoPlayer);
-					Output.gainSkill(player, "Magery", gain, curSkill);
-				}
-			}
-		}
-	}
-
 	static SpellManager manager = new SpellManager();
 
-	static PlayerManager pm = PlayerManager.getManager();
+	PlayerManager pm = PlayerManager.getManager();
 
-	static PlotManager ptm = PlotManager.getManager();
+	PlotManager ptm = PlotManager.getManager();
 
-	private static double minChanceToCast = .2;
+	private double minChanceToCast = .2;
 
-	private static double minPercentChanceSkillGain = .2;
-
-	public static int lastLightningDamageTicks = 0;
+	private double minPercentChanceSkillGain = .2;
 
 	public void castDelayed(Player player, PseudoPlayer pPlayer, Spell spell) {
 		if (spell.getPrompt() == null) {
@@ -148,7 +58,7 @@ public class SpellManager {
 	}
 
 	public boolean castSpell(Player player, Spell spell) {
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 
 		if (pPlayer.getTimer().cantCastTicks > 0) {
 			Output.simpleError(player,
@@ -166,7 +76,7 @@ public class SpellManager {
 			return false;
 		}
 
-		final Plot plot = ptm.findPlotAt(player.getLocation());
+		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
 			if (!plot.isAllowMagic()) {
 				Output.simpleError(player,
@@ -196,7 +106,7 @@ public class SpellManager {
 							.getWorld()
 							.getBlockAt(loc.getBlockX() + x,
 									loc.getBlockY() + y, loc.getBlockZ() + z)
-							.getType();
+									.getType();
 					if (type == Material.LAPIS_BLOCK) {
 						Output.simpleError(player,
 								"You can't seem to cast a spell here...");
@@ -227,8 +137,8 @@ public class SpellManager {
 
 		final int skillDif = magerySkill - minMagery;
 		double chanceToCast = (double) skillDif / 200;
-		if (chanceToCast < minChanceToCast)
-			chanceToCast = minChanceToCast;
+		if (chanceToCast < this.minChanceToCast)
+			chanceToCast = this.minChanceToCast;
 		final double rand = Math.random();
 
 		if (!(magerySkill >= 1000 || rand < chanceToCast)) {
@@ -250,7 +160,7 @@ public class SpellManager {
 		else
 			this.castInstant(player, pPlayer, spell);
 		// Whether we succeeded or failed, we have a chance to gain
-		possibleSkillGain(player, pPlayer, spell);
+		this.possibleSkillGain(player, pPlayer, spell);
 		// but you also lose the regs
 		this.takeRegs(player, spell.getReagentCost());
 
@@ -294,6 +204,26 @@ public class SpellManager {
 		return true;
 	}
 
+	public void move(PlayerMoveEvent event) {
+		final Player player = event.getPlayer();
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		if (event.getTo() != null
+				&& event.getFrom() != null
+				&& !event.getTo().getBlock().getState()
+				.equals(event.getFrom().getBlock().getState()))
+			if (pPlayer.getPromptedSpell() != null
+			|| pPlayer.getTimer().delayedSpell != null) {
+				pPlayer.setPromptedSpell(null);
+				pPlayer.getTimer().delayedSpell = null;
+				Output.simpleError(player,
+						"Moved while casting a spell, it was disrupted.");
+			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
+				pPlayer.getTimer().goToSpawnTicks = 0;
+				Output.simpleError(player,
+						"Moved while casting, /spawn was disrupted.");
+			}
+	}
+
 	public void notEnoughMana(Player player, Spell spell) {
 		Output.simpleError(player, "You do not have enough mana to cast "
 				+ spell.getName() + ".");
@@ -313,6 +243,74 @@ public class SpellManager {
 						+ spell.getName() + ".");
 	}
 
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		if (!(event.getAction().equals(Action.LEFT_CLICK_AIR) || event
+				.getAction().equals(Action.LEFT_CLICK_BLOCK)))
+			return;
+		final Player player = event.getPlayer();
+		if (player.getItemInHand().getType().equals(Material.STICK)) {
+			final ItemStack wand = player.getItemInHand();
+			final ItemMeta wandMeta = wand.getItemMeta();
+			if (wandMeta.hasLore()
+					&& wandMeta.getLore().size() > 0
+					&& wandMeta
+					.getLore()
+					.get(0)
+					.equalsIgnoreCase(
+							"This magical wand can be used to cast a spell with only a touch of a button."))
+				if (wandMeta.hasDisplayName()) {
+					final Scroll scroll = Scroll.getByString(ChatColor
+							.stripColor(wandMeta.getDisplayName()));
+					manager.castSpell(player, scroll.getSpell());
+				}
+		}
+	}
+
+	public void onPlayerPromt(AsyncPlayerChatEvent event) {
+		final Player player = event.getPlayer();
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final String message = event.getMessage();
+		final Spell spell = pPlayer.getPromptedSpell();
+		spell.setResponse(message);
+
+		final int castingDelay = spell.getCastingDelay();
+		if (castingDelay > 0) {
+			spell.preAction(player);
+			pPlayer.getTimer().delayedSpell = spell;
+		} else {
+			spell.preAction(player);
+			pPlayer.getTimer().cantCastTicks = spell.getCooldown();
+			spell.doAction(player);
+		}
+		pPlayer.setPromptedSpell(null);
+		event.setCancelled(true);
+	}
+
+	public void possibleSkillGain(Player player, PseudoPlayer pseudoPlayer,
+			Spell spell) {
+		if (pseudoPlayer.getCurrentBuild().getMagery().isLocked())
+			return;
+
+		final int curSkill = pseudoPlayer.getCurrentBuild().getMagery()
+				.getLvl();
+		if (curSkill < 1000
+				&& pseudoPlayer.getCurrentBuild().getTotalSkillVal() < pseudoPlayer
+				.getMaxSkillValTotal()) {
+			final int minMagery = spell.getMinMagery();
+			double percentChance;
+			if (curSkill < minMagery + 200) {
+				// possible to gain (within 20 skill points)
+				percentChance = (double) (1000 - curSkill) / 1000;
+				// we don't want it to be TOOOO hard to gain skill
+				if (percentChance < this.minPercentChanceSkillGain) {
+					final int gain = pseudoPlayer.getCurrentBuild().getMining()
+							.skillGain(pseudoPlayer);
+					Output.gainSkill(player, "Magery", gain, curSkill);
+				}
+			}
+		}
+	}
+
 	public void spellFizzled(Player player, Spell spell) {
 		player.sendMessage(ChatColor.DARK_GRAY + "The spell fizzles.");
 		player.getWorld().playEffect(player.getLocation(), Effect.EXTINGUISH,
@@ -328,7 +326,7 @@ public class SpellManager {
 	}
 
 	public boolean useScroll(Player player, Scroll scroll) {
-		final Plot plot = ptm.findPlotAt(player.getLocation());
+		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
 			if (!plot.isAllowMagic()) {
 				Output.simpleError(player,
@@ -336,7 +334,7 @@ public class SpellManager {
 				return false;
 			}
 
-		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
+		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 
 		if (pseudoPlayer.getTimer().cantCastTicks > 0) {
 			Output.simpleError(player,
@@ -358,7 +356,7 @@ public class SpellManager {
 							.getWorld()
 							.getBlockAt(loc.getBlockX() + x,
 									loc.getBlockY() + y, loc.getBlockZ() + z)
-							.getType();
+									.getType();
 					if (blockMat == Material.LAPIS_BLOCK) {
 						Output.simpleError(player,
 								"You can't seem to cast a spell here...");

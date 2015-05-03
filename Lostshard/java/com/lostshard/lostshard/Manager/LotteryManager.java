@@ -33,7 +33,7 @@ public class LotteryManager {
 		} else {
 			this.setLottery(new Lottery());
 			Bukkit.broadcastMessage(ChatColor.GREEN
-					+ "The lottery have started, go to the nearst bank to bet money.");
+					+ "The lottery have started, go to the nearst bank to bet.");
 		}
 	}
 }

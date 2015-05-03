@@ -23,7 +23,9 @@ import com.lostshard.lostshard.Utils.Utils;
  *
  */
 public class ChatHandler {
-
+	
+	static SpellManager sm = SpellManager.getManager();
+	
 	public static void clanChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;
@@ -97,7 +99,7 @@ public class ChatHandler {
 		}
 		final PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 		if (pPlayer.getPromptedSpell() != null) {
-			SpellManager.onPlayerPromt(event);
+			sm.onPlayerPromt(event);
 			return;
 		}
 		if (pPlayer.getChatChannel().equals(ChatChannel.LOCAL))

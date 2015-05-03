@@ -166,7 +166,7 @@ public class Database {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
 					.prepareStatement(
-							"DELETE FROM scrolls WHERE playerid=? AND scroll=? LIMIT 1;",
+							"DELETE FROM scrolls WHERE player_id=? AND scroll=? LIMIT 1;",
 							Statement.RETURN_GENERATED_KEYS);
 			prep.setInt(1, playerID);
 			prep.setString(2, scroll.name());
@@ -201,7 +201,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM builds WHERE playerid=?");
+					.prepareStatement("SELECT * FROM builds WHERE player_id=?");
 			prep.setInt(1, playerID);
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();
@@ -646,7 +646,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("SELECT label, location, id  FROM runes WHERE playerid=?");
+					.prepareStatement("SELECT label, location, id  FROM runes WHERE player_id=?");
 			prep.setInt(1, playerID);
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();
@@ -684,7 +684,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("SELECT scroll FROM scrolls WHERE playerid=?;");
+					.prepareStatement("SELECT scroll FROM scrolls WHERE player_id=?;");
 			prep.setInt(1, playerID);
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();
@@ -713,7 +713,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn.prepareStatement(
-					"INSERT IGNORE INTO builds (playerid) VALUES (?);",
+					"INSERT IGNORE INTO builds (player_id) VALUES (?);",
 					Statement.RETURN_GENERATED_KEYS);
 			prep.setInt(1, playerID);
 			prep.execute();
@@ -800,7 +800,7 @@ public class Database {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
 					.prepareStatement(
-							"INSERT IGNORE INTO npcs (name,location,type,plotId) VALUES (?,?,?,?);",
+							"INSERT IGNORE INTO npcs (name,location,type,plot_id) VALUES (?,?,?,?);",
 							Statement.RETURN_GENERATED_KEYS);
 			prep.setString(1, npc.getName());
 			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
@@ -932,7 +932,7 @@ public class Database {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
 					.prepareStatement(
-							"INSERT IGNORE INTO runes (location, label, playerid) VALUES (?,?,?);",
+							"INSERT IGNORE INTO runes (location, label, player_id) VALUES (?,?,?);",
 							Statement.RETURN_GENERATED_KEYS);
 			prep.setString(1, Serializer.serializeLocation(markLoc));
 			prep.setString(2, response);
@@ -959,7 +959,7 @@ public class Database {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
 					.prepareStatement("INSERT IGNORE INTO scrolls "
-							+ "(scroll,playerid) VALUES (?,?)");
+							+ "(scroll,player_id) VALUES (?,?)");
 			prep.setString(1, scroll.name());
 			prep.setInt(2, playerID);
 			prep.execute();
@@ -1144,7 +1144,7 @@ public class Database {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
 					.prepareStatement("UPDATE npcs SET "
-							+ "name=? location=?, type=?, plotId=? WHERE id=?");
+							+ "name=? location=?, type=?, plot_id=? WHERE id=?");
 
 			prep.setString(1, npc.getName());
 			prep.setString(2, Serializer.serializeLocation(npc.getLocation()));
@@ -1335,7 +1335,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("UPDATE runes SET playerid=? WHERE id=?;");
+					.prepareStatement("UPDATE runes SET player_id=? WHERE id=?;");
 			prep.setInt(1, targetPlayer.getId());
 			prep.setInt(2, foundRune.getId());
 			prep.executeUpdate();
@@ -1355,7 +1355,7 @@ public class Database {
 		try {
 			final Connection conn = connPool.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("UPDATE scrolls SET playerid=? WHERE playerid=?;");
+					.prepareStatement("UPDATE scrolls SET player_id=? WHERE player_id=?;");
 			prep.setInt(1, tID);
 			prep.setInt(1, pID);
 			prep.executeUpdate();
