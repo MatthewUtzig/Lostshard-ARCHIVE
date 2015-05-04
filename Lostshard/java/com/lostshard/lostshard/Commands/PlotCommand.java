@@ -506,7 +506,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					for (final PlotUpgrade upgrade : plot.getUpgrades())
 						player.sendMessage(ChatColor.YELLOW + "- "
 								+ upgrade.getName() + " ("
-								+ Utils.df.format(upgrade.getPrice()) + " gc)");
+								+ Utils.getDecimalFormater().format(upgrade.getPrice()) + " gc)");
 				Output.positiveMessage(player, "-Plot Upgrades Available-");
 				for (final PlotUpgrade upgrade : PlotUpgrade.values()) {
 					if (plot.isUpgrade(upgrade))
@@ -527,7 +527,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							continue;
 						player.sendMessage(ChatColor.YELLOW + "- "
 								+ u.getName() + " ("
-								+ Utils.df.format(u.getPrice()) + " gc)");
+								+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
 					}
 					return;
 				}
@@ -1560,7 +1560,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				if (plot.isUpgrade(upgrade))
 					continue;
 				player.sendMessage(ChatColor.YELLOW + "- " + upgrade.getName()
-						+ " (" + Utils.df.format(upgrade.getPrice()) + " gc)");
+						+ " (" + Utils.getDecimalFormater().format(upgrade.getPrice()) + " gc)");
 			}
 		} else if (args.length >= 2) {
 
@@ -1573,7 +1573,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					if (plot.isUpgrade(u))
 						continue;
 					player.sendMessage(ChatColor.YELLOW + "- " + u.getName()
-							+ " (" + Utils.df.format(u.getPrice()) + " gc)");
+							+ " (" + Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
 				}
 				return;
 			}
@@ -1594,7 +1594,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					Output.simpleError(
 							player,
 							"Not enough money in plot funds. ("
-									+ Utils.df.format(upgrade.getPrice())
+									+ Utils.getDecimalFormater().format(upgrade.getPrice())
 									+ " gc)");
 			} else
 				Output.simpleError(player, plot.getName()
