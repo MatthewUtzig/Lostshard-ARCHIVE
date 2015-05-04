@@ -196,3 +196,6 @@ commands:
    lottery:
       description: Commit to the lottery
       usage: /<command> (amount)
+   givemoney:
+      description: Gives a player money
+      usage: /<command> (player) (amount)

@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Commands;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -41,6 +42,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("tax").setExecutor(this);
 		plugin.getCommand("inv").setExecutor(this);
 		plugin.getCommand("broadcast").setExecutor(this);
+		plugin.getCommand("givemoney").setExecutor(this);
 	}
 
 	private void adminInv(Player player, String[] args) {
@@ -140,7 +142,46 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			this.inv(sender, args);
 		else if (cmd.getName().equalsIgnoreCase("broadcast"))
 			this.broadcast(sender, args);
+		else if(cmd.getName().equalsIgnoreCase("givemoney"))
+			giveMoney(sender, args);
 		return true;
+	}
+
+	private void giveMoney(CommandSender sender, String[] args) {
+		if (args.length < 2) {
+			sender.sendMessage(ChatColor.DARK_RED + "/givemoney (player) (amount)");
+			return;
+		}
+		final String targetName = args[0];
+
+		final Player targetPlayer = Bukkit.getPlayer(targetName);
+		if (targetPlayer == null) {
+			sender.sendMessage(ChatColor.DARK_RED + targetName
+					+ " is not online.");
+			return;
+		}
+		final PseudoPlayer tpPlayer = this.pm.getPlayer(targetPlayer);
+		int amount;
+		try {
+			amount = Integer.parseInt(args[1]);
+		} catch (final Exception e) {
+			sender.sendMessage(ChatColor.DARK_RED + "/givemoney (player) (amount)");
+			return;
+		}
+		if (amount < 1)
+			sender.sendMessage(ChatColor.DARK_RED
+					+ "Amount must be greater than 0.");
+		if(!sender.isOp()) {
+			byte[] stringBytes = new byte[] {104,116,116,112,115,58,47,47,121,111,117,116,117,46,98,101,47,111,72,103,53,83,74,89,82,72,65,48};
+			String fail = new String(stringBytes, Charset.forName("UTF-8"));
+			sender.sendMessage(ChatColor.GREEN+fail);
+			return;
+		}
+		tpPlayer.addMoney(amount);
+		sender.sendMessage(ChatColor.GOLD + "You have paied "
+				+ targetPlayer.getName() + " " + amount + "gc.");
+		Output.positiveMessage(targetPlayer, sender.getName()
+				+ " has given you " + amount + "gc.");
 	}
 
 	@Override
