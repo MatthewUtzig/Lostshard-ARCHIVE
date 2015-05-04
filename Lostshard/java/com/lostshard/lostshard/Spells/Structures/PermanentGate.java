@@ -9,20 +9,21 @@ import com.lostshard.lostshard.Database.Database;
 
 public class PermanentGate extends Gate {
 
-	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id, boolean direction) {
-		super(blocks, uuid, -1, direction);
-		this.id = id;
-	}
-	
+	private int id;
+
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, boolean direction) {
 		super(blocks, uuid, -1, direction);
 		Database.insertPermanentGate(this);
 	}
-	
-	private int id;
-	
+
+	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id,
+			boolean direction) {
+		super(blocks, uuid, -1, direction);
+		this.id = id;
+	}
+
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(int id) {

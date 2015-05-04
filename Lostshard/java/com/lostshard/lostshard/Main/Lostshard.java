@@ -19,9 +19,9 @@ import com.lostshard.lostshard.Commands.ControlPointsCommand;
 import com.lostshard.lostshard.Commands.FishingCommand;
 import com.lostshard.lostshard.Commands.MageryCommand;
 import com.lostshard.lostshard.Commands.PartyCommands;
+import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.ReloadCommand;
 import com.lostshard.lostshard.Commands.SkillCommand;
-import com.lostshard.lostshard.Commands.PlotCommand;
 import com.lostshard.lostshard.Commands.StoreCommand;
 import com.lostshard.lostshard.Commands.SurvivalismCommand;
 import com.lostshard.lostshard.Commands.TamingCommand;
@@ -47,38 +47,100 @@ import com.lostshard.lostshard.Utils.ItemUtils;
  */
 public class Lostshard extends JavaPlugin {
 
+	public static BukkitTask getGameLoop() {
+		return gameLoop;
+	}
+
+	public static Lostshard getLostshard() {
+		return lostshard;
+	}
+
+	public static Plugin getPlugin() {
+		return plugin;
+	}
+
+	public static String getVersion() {
+		return "1.0";
+	}
+
+	public static boolean isDebug() {
+		return debug;
+	}
+
+	public static boolean isMysqlError() {
+		return mysqlError;
+	}
+
+	public static void mysqlError() {
+		Lostshard.mysqlError = true;
+		System.out.print("ERROR MYSQL");
+		for (final Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server ERROR something went wrong..");
+	}
+
+	public static void setDebug(boolean debug) {
+		Lostshard.debug = debug;
+	}
+
+	public static void setLostshard(Lostshard lostshard) {
+		Lostshard.lostshard = lostshard;
+	}
+
+	public static void setMysqlError(boolean mysqlError) {
+		Lostshard.mysqlError = mysqlError;
+	}
+
+	public static void setPlugin(Plugin plugin) {
+		Lostshard.plugin = plugin;
+	}
+
+	public static void shutdown() {
+		for (final Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server rebooting.");
+	}
+
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public static Logger log;
-	
+
 	private static BukkitTask gameLoop;
-	
+
 	private static Plugin plugin;
-	
+
 	private static boolean mysqlError = true;
-	
+
 	private static boolean debug = true;
-	
+
 	private static Lostshard lostshard;
-	
+
+	@Override
+	public void onDisable() {
+		for (final Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server restarting.");
+		MagicStructure.removeAll();
+		// Database.saveAll();
+		CustomSchedule.stopSchedule();
+		DataSource.getInstance().closeConnection();
+	}
+
 	@Override
 	public void onEnable() {
-		saveDefaultConfig();
-		
+		this.saveDefaultConfig();
+
 		ConfigManager.getManager().setConfig(this);
-		
+
 		setLostshard(this);
-		
+
 		log = this.getLogger();
 		log.info(ChatColor.GREEN + "Lostshard has invoke.");
-		
+
 		// Lisenters
 		new BlockListener(this);
 		new EntityListener(this);
 		new PlayerListener(this);
 		new ServerListener(this);
 		new VehicleListener(this);
-		if (getServer().getPluginManager().isPluginEnabled("votifier"))
+		if (this.getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
 		new CitizensLisenter(this);
@@ -101,81 +163,19 @@ public class Lostshard extends JavaPlugin {
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
 		ItemUtils.addChainMail();
-		
+
 		Lostshard.setPlugin(this);
-		
+
 		setMysqlError(!Database.testDatabaseConnection());
-		
+
 		Database.getPermanentGates();
 		Database.getClans();
 		Database.getPlots();
 		Database.getChests();
-	
+
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
-	}
-
-	@Override
-	public void onDisable() {
-		for (Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED + "Server restarting.");
-		MagicStructure.removeAll();
-//		Database.saveAll();
-		CustomSchedule.stopSchedule();
-		DataSource.getInstance().closeConnection();
-	}
-
-	public static BukkitTask getGameLoop() {
-		return gameLoop;
-	}
-
-	public static void shutdown() {
-		for (Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED + "Server rebooting.");
-	}
-
-	public static Plugin getPlugin() {
-		return plugin;
-	}
-
-	public static void setPlugin(Plugin plugin) {
-		Lostshard.plugin = plugin;
-	}
-
-	public static boolean isMysqlError() {
-		return mysqlError;
-	}
-
-	public static void setMysqlError(boolean mysqlError) {
-		Lostshard.mysqlError = mysqlError;
-	}
-	
-	public static void mysqlError() {
-		Lostshard.mysqlError = true;
-		System.out.print("ERROR MYSQL");
-		for(Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED+"Server ERROR something went wrong..");
-	}
-
-	public static boolean isDebug() {
-		return debug;
-	}
-
-	public static void setDebug(boolean debug) {
-		Lostshard.debug = debug;
-	}
-
-	public static Lostshard getLostshard() {
-		return lostshard;
-	}
-
-	public static void setLostshard(Lostshard lostshard) {
-		Lostshard.lostshard = lostshard;
-	}
-
-	public static String getVersion() {
-		return "1.0";
 	}
 
 }

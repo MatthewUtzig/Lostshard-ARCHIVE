@@ -14,22 +14,23 @@ public class SPL_Fireball extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		final Vector v = player.getLocation().getDirection();
+
+		final Fireball fb = player.getWorld().spawn(player.getEyeLocation(),
+				Fireball.class);
+		fb.setShooter(player);
+		fb.setVelocity(v);
 	}
 
 	@Override
 	public void preAction(Player player) {
-		
+
 	}
 
 	@Override
-	public void doAction(Player player) {
-		Vector v = player.getLocation().getDirection();
-		
-		Fireball fb = player.getWorld().spawn(player.getEyeLocation(), Fireball.class);
-		fb.setShooter(player);
-		fb.setVelocity(v);
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

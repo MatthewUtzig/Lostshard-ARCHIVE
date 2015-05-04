@@ -15,29 +15,25 @@ public class SPL_DetectHidden extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			if (p == player)
+				continue;
+			if (Utils.isWithin(player.getLocation(), p.getLocation(), 10))
+				if (p.hasPotionEffect(PotionEffectType.INVISIBILITY))
+					p.removePotionEffect(PotionEffectType.INVISIBILITY);
+		}
+
 	}
 
 	@Override
 	public void preAction(Player player) {
-	
+
 	}
 
 	@Override
-	public void doAction(Player player) {
-		for(Player p : Bukkit.getOnlinePlayers()) 
-		{
-			if(p == player)
-				continue;
-			if(Utils.isWithin(player.getLocation(), p.getLocation(), 10)) 
-			{
-				if(p.hasPotionEffect(PotionEffectType.INVISIBILITY)) {
-					p.removePotionEffect(PotionEffectType.INVISIBILITY);
-				}
-			}
-		}
-
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

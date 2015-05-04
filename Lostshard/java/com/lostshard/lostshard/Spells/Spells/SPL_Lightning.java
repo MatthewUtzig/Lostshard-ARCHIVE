@@ -13,30 +13,27 @@ public class SPL_Lightning extends RangedSpell {
 
 	public SPL_Lightning(Scroll scroll) {
 		super(scroll);
-		setCarePlot(false);
-		setRange(20);
-	}
-
-	@Override
-	public void preAction(Player player) {
-		
+		this.setCarePlot(false);
+		this.setRange(20);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		Location strikeLoc = getFoundBlock().getLocation();
-		strikeLoc.setX(strikeLoc.getX()+.5);
-		strikeLoc.setZ(strikeLoc.getZ()+.5);
-		getFoundBlock().getWorld().strikeLightning(strikeLoc);
-		
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			if(Utils.isWithin(p.getLocation(), strikeLoc, 5)) {
-				//Casting lightning at someone?
-				if(PVPHandler.canEntityAttackEntity(player, p)) {
+		final Location strikeLoc = this.getFoundBlock().getLocation();
+		strikeLoc.setX(strikeLoc.getX() + .5);
+		strikeLoc.setZ(strikeLoc.getZ() + .5);
+		this.getFoundBlock().getWorld().strikeLightning(strikeLoc);
+
+		for (final Player p : Bukkit.getOnlinePlayers())
+			if (Utils.isWithin(p.getLocation(), strikeLoc, 5))
+				// Casting lightning at someone?
+				if (PVPHandler.canEntityAttackEntity(player, p))
 					PVPHandler.criminalAction(p, player);
-				}				
-			}
-		}
+	}
+
+	@Override
+	public void preAction(Player player) {
+
 	}
 
 }

@@ -19,144 +19,148 @@ public class PseudoPlayerTimer {
 	// Effects
 	public int bleedTick = 0;
 	public int stunTick = 0;
-	
+
 	public long lastDeath = 0;
 	public int goToSpawnTicks = 0;
-	
+
 	public int spawnTicks = 0;
-	
+
 	public int cantCastTicks = 0;
-	
+
 	public Spell delayedSpell = null;
-	
+
 	public SPL_Chronoport chronoport = null;
-	
+
 	public PseudoPlayerTimer(PseudoPlayer pPlayer) {
 		super();
-		player = pPlayer;
-	}
-	
-	public PseudoPlayer getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(PseudoPlayer player) {
-		this.player = player;
-	}
-	
-	public void tick(double delta, long tick) {
-		if(player.getOnlinePlayer() == null)
-			return;
-		if(tick % 10 == 0) { // one second passed 
-			updateMana(delta);
-			updateStamina(delta);
-			bleed();
-		}
-		if(cantCastTicks > 0)
-			cantCastTicks--;
-		recentAttackersTick();
-		if(spawnTicks > 0)
-			spawnTicks--;
-		if(player.getCriminal() > 0)
-			player.setCriminal(player.getCriminal()-1);
-		if(player.getPvpTicks() > 0)
-			player.setPvpTicks(player.getPvpTicks()-1);
-		if(player.getEngageInCombatTicks() > 0)
-			player.setPvpTicks(player.getEngageInCombatTicks()-1);
-		if(delayedSpell != null && player.getPromptedSpell() == null)
-			delayedSpell.tick(player.getOnlinePlayer());
-		if(chronoport != null)
-			chronoport.chronoTick();
-		if(recentlyTeleportedTicks > 0)
-			recentlyTeleportedTicks--;
-		spawn();
-	}
-	
-	private void recentAttackersTick() {
-		for(RecentAttacker ra : player.getRecentAttackers()) {
-			ra.tick();
-		}
-		player.getRecentAttackers().removeIf(ra ->  ra.isDead());
-	}
-
-	private void spawn() {
-		if(goToSpawnTicks > 0) {
-			goToSpawnTicks--;
-			if(goToSpawnTicks == 0) {
-				Player player = this.player.getOnlinePlayer();
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				player.teleport(getPlayer().getSpawn());
-				spawnTicks = 36000;
-				this.player.setMana(0);
-				this.player.setStamina(0);
-				player.getWorld().strikeLightningEffect(player.getLocation());
-				player.sendMessage(ChatColor.GRAY+"Teleporting without a rune has exausted you.");
-			}
-			else if(goToSpawnTicks % 10 == 0) {
-				Player player = this.player.getOnlinePlayer();
-				Output.simpleError(player, "Returning to spawn in "+(goToSpawnTicks/10)+" seconds.");
-			}
-		}
+		this.player = pPlayer;
 	}
 
 	private void bleed() {
-		if(bleedTick > 0) {
-			Player p = player.getOnlinePlayer();
-			bleedTick--;
-			
-			if(bleedTick <= 0) {
+		if (this.bleedTick > 0) {
+			final Player p = this.player.getOnlinePlayer();
+			this.bleedTick--;
+
+			if (this.bleedTick <= 0) {
 				p.sendMessage("Your bleeding has stopped.");
-				bleedTick = 0;
-			}
-			else
-			{
+				this.bleedTick = 0;
+			} else {
 				double newHealth = p.getHealth() - 1;
-				if(newHealth > 20)
+				if (newHealth > 20)
 					newHealth = 20;
-				if(newHealth < 0)
+				if (newHealth < 0)
 					newHealth = 0;
 				p.setHealth(newHealth);
 			}
 		}
 	}
 
-	private void updateMana(double delta) {
-		if(player.getMana() < player.getMaxMana()) {
-			double manaRegenMultiplier = 2; //Meditation.getManaRegenMultiplier(this);
-			if(player.isMeditating())
-				player.setMana((int)(player.getMana()+2*manaRegenMultiplier*delta));
-			else
-				player.setMana((int)(player.getMana()+1*manaRegenMultiplier*delta));
-			if(player.getMana() >= player.getMaxMana()) {
-				player.setMana(player.getMaxMana());;
-				// just reached max...
-				Player p = player.getOnlinePlayer();
-				if(p != null) {
-					Output.positiveMessage(p, "Your mana has fully regenerated.");
-				}
-			}
-		}
+	public PseudoPlayer getPlayer() {
+		return this.player;
 	}
-	
-	private void updateStamina(double delta) {
-		if(player.getStamina() < player.getMaxStamina()) {
-			double staminaRegenMultiplier = 1;
-			if(player.isResting())
-				player.setStamina((int)(player.getStamina()+2*staminaRegenMultiplier*delta));
-			else
-				player.setStamina((int)(player.getStamina()+1*staminaRegenMultiplier*delta));
-			if(player.getStamina() >= player.getMaxStamina()) {
-				player.setStamina(player.getMaxStamina());;
-				// just reached max...
-				Player p = player.getOnlinePlayer();
-				if(p != null) {
-					Output.positiveMessage(p, "Your stamina has fully regenerated.");
-				}
-			}
-		}
-	}
-	
+
 	public boolean isLastDeathOlder(long ms) {
-		return new Date().getTime() > lastDeath+ms;
+		return new Date().getTime() > this.lastDeath + ms;
+	}
+
+	private void recentAttackersTick() {
+		for (final RecentAttacker ra : this.player.getRecentAttackers())
+			ra.tick();
+		this.player.getRecentAttackers().removeIf(ra -> ra.isDead());
+	}
+
+	public void setPlayer(PseudoPlayer player) {
+		this.player = player;
+	}
+
+	private void spawn() {
+		if (this.goToSpawnTicks > 0) {
+			this.goToSpawnTicks--;
+			if (this.goToSpawnTicks == 0) {
+				final Player player = this.player.getOnlinePlayer();
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.teleport(this.getPlayer().getSpawn());
+				this.spawnTicks = 36000;
+				this.player.setMana(0);
+				this.player.setStamina(0);
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage(ChatColor.GRAY
+						+ "Teleporting without a rune has exausted you.");
+			} else if (this.goToSpawnTicks % 10 == 0) {
+				final Player player = this.player.getOnlinePlayer();
+				Output.simpleError(player, "Returning to spawn in "
+						+ this.goToSpawnTicks / 10 + " seconds.");
+			}
+		}
+	}
+
+	public void tick(double delta, long tick) {
+		if (this.player.getOnlinePlayer() == null)
+			return;
+		if (tick % 10 == 0) { // one second passed
+			this.updateMana(delta);
+			this.updateStamina(delta);
+			this.bleed();
+		}
+		if (this.cantCastTicks > 0)
+			this.cantCastTicks--;
+		this.recentAttackersTick();
+		if (this.spawnTicks > 0)
+			this.spawnTicks--;
+		if (this.player.getCriminal() > 0)
+			this.player.setCriminal(this.player.getCriminal() - 1);
+		if (this.player.getPvpTicks() > 0)
+			this.player.setPvpTicks(this.player.getPvpTicks() - 1);
+		if (this.player.getEngageInCombatTicks() > 0)
+			this.player.setPvpTicks(this.player.getEngageInCombatTicks() - 1);
+		if (this.delayedSpell != null && this.player.getPromptedSpell() == null)
+			this.delayedSpell.tick(this.player.getOnlinePlayer());
+		if (this.chronoport != null)
+			this.chronoport.chronoTick();
+		if (this.recentlyTeleportedTicks > 0)
+			this.recentlyTeleportedTicks--;
+		this.spawn();
+	}
+
+	private void updateMana(double delta) {
+		if (this.player.getMana() < this.player.getMaxMana()) {
+			final double manaRegenMultiplier = 2; // Meditation.getManaRegenMultiplier(this);
+			if (this.player.isMeditating())
+				this.player.setMana((int) (this.player.getMana() + 2
+						* manaRegenMultiplier * delta));
+			else
+				this.player.setMana((int) (this.player.getMana() + 1
+						* manaRegenMultiplier * delta));
+			if (this.player.getMana() >= this.player.getMaxMana()) {
+				this.player.setMana(this.player.getMaxMana());
+				;
+				// just reached max...
+				final Player p = this.player.getOnlinePlayer();
+				if (p != null)
+					Output.positiveMessage(p,
+							"Your mana has fully regenerated.");
+			}
+		}
+	}
+
+	private void updateStamina(double delta) {
+		if (this.player.getStamina() < this.player.getMaxStamina()) {
+			final double staminaRegenMultiplier = 1;
+			if (this.player.isResting())
+				this.player.setStamina((int) (this.player.getStamina() + 2
+						* staminaRegenMultiplier * delta));
+			else
+				this.player.setStamina((int) (this.player.getStamina() + 1
+						* staminaRegenMultiplier * delta));
+			if (this.player.getStamina() >= this.player.getMaxStamina()) {
+				this.player.setStamina(this.player.getMaxStamina());
+				;
+				// just reached max...
+				final Player p = this.player.getOnlinePlayer();
+				if (p != null)
+					Output.positiveMessage(p,
+							"Your stamina has fully regenerated.");
+			}
+		}
 	}
 }

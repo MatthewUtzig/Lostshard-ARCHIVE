@@ -9,8 +9,7 @@ import com.lostshard.lostshard.Spells.MagicStructure;
 
 public class WebTrap extends MagicStructure {
 
-	public WebTrap(ArrayList<Block> blocks, UUID uuid,
-			int numTicksTillCleanup) {
+	public WebTrap(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
 	}
 

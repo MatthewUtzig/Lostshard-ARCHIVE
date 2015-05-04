@@ -3,7 +3,7 @@ package com.lostshard.lostshard.Objects.Recent;
 import java.util.UUID;
 
 public class RecentAttacker {
-	private UUID murdererUUID;
+	private final UUID murdererUUID;
 	private int ticksRemaining;
 	private final int originalTicks;
 	private boolean isDead = false;
@@ -15,35 +15,35 @@ public class RecentAttacker {
 		this.ticksRemaining = ticksRemaining;
 	}
 
-	public void tick() {
-		if (!isDead) {
-			ticksRemaining--;
-			if (ticksRemaining <= 0)
-				isDead = true;
-		}
-	}
-
 	public UUID getUUID() {
-		return murdererUUID;
+		return this.murdererUUID;
 	}
 
 	public boolean isDead() {
-		return isDead;
-	}
-
-	public void resetTicks() {
-		ticksRemaining = originalTicks;
+		return this.isDead;
 	}
 
 	public boolean isNotCrim() {
-		return notCrim;
+		return this.notCrim;
+	}
+
+	public boolean isNotCrime() {
+		return this.notCrim;
+	}
+
+	public void resetTicks() {
+		this.ticksRemaining = this.originalTicks;
 	}
 
 	public void setNotCrim(boolean notCrim) {
 		this.notCrim = notCrim;
 	}
-	
-	public boolean isNotCrime()	{
-		return this.notCrim;
+
+	public void tick() {
+		if (!this.isDead) {
+			this.ticksRemaining--;
+			if (this.ticksRemaining <= 0)
+				this.isDead = true;
+		}
 	}
 }

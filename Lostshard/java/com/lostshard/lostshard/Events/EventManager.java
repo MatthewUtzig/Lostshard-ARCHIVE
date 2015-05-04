@@ -8,5 +8,5 @@ public class EventManager {
 	public static void callEvent(Event event) {
 		Bukkit.getPluginManager().callEvent(event);
 	}
-	
+
 }

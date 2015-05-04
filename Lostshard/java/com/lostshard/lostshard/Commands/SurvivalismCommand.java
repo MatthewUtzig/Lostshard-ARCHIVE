@@ -14,36 +14,38 @@ import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Utils.Output;
 
 public class SurvivalismCommand implements CommandExecutor, TabCompleter {
-	
+
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public SurvivalismCommand(Lostshard plugin) {
 		plugin.getCommand("track").setExecutor(this);
 		plugin.getCommand("camp").setExecutor(this);
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("track")) {
-			if(!(sender instanceof Player)){
+		if (cmd.getName().equalsIgnoreCase("track")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			SurvivalismSkill.track(player, args);
 			return true;
-		} else if(cmd.getName().equalsIgnoreCase("camp")) {
-			if(!(sender instanceof Player)){
+		} else if (cmd.getName().equalsIgnoreCase("camp")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
+			final Player player = (Player) sender;
 			SurvivalismSkill.camp(player);
 			return true;
 		}
 		return false;
 	}
-	
+
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

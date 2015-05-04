@@ -15,7 +15,7 @@ import com.lostshard.lostshard.Objects.Bank;
 public class Clan extends Group {
 
 	private int id = 0;
-	
+
 	// String's
 	private String name;
 
@@ -24,157 +24,163 @@ public class Clan extends Group {
 
 	// Array's
 	private List<UUID> leaders = new ArrayList<UUID>();
-	
+
 	private Bank bank = new Bank(null, false);
 
 	private boolean update = false;
-	
+
 	public Clan(String name, UUID owner) {
 		super();
 		this.name = name;
 		this.owner = owner;
 	}
 
-	public String getName() {
-		return name;
+	@Override
+	public void addInvited(UUID invite) {
+		this.getInvited().add(invite);
+		this.update();
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	@Override
+	public void addMember(UUID member) {
+		this.getMembers().add(member);
+		this.update();
+	}
+
+	public void demoteLeader(UUID uuid) {
+		this.leaders.remove(uuid);
+		this.update();
+	}
+
+	public Bank getBank() {
+		return this.bank;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public List<UUID> getLeaders() {
+		return this.leaders;
+	}
+
+	public ArrayList<UUID> getMembersAndLeders() {
+		final ArrayList<UUID> result = new ArrayList<UUID>();
+		result.addAll(this.getMembers());
+		result.addAll(this.leaders);
+		result.add(this.owner);
+		return result;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public List<Player> getOnlineMembers() {
+		final List<Player> rs = new ArrayList<Player>();
+		for (final UUID pUUID : this.getMembersAndLeders()) {
+			final Player p = Bukkit.getPlayer(pUUID);
+			if (p != null)
+				rs.add(p);
+		}
+		return rs;
 	}
 
 	public UUID getOwner() {
-		return owner;
+		return this.owner;
 	}
 
-	public void setOwner(UUID owner) {
-		this.owner = owner;
-		update();
+	public boolean isInClan(UUID uuid) {
+		if (this.getMembers().contains(uuid) || this.isLeader(uuid)
+				|| this.isOwner(uuid))
+			return true;
+		return false;
 	}
-	
+
+	public boolean isLeader(UUID uuid) {
+		return this.leaders.contains(uuid);
+	}
+
+	public boolean isOwner(OfflinePlayer player) {
+		return this.isOwner(player.getUniqueId());
+	}
+
+	public boolean isOwner(Player player) {
+		return this.isOwner(player.getUniqueId());
+	}
+
 	public boolean isOwner(UUID owner) {
 		return this.owner.equals(owner);
 	}
 
-	public boolean isOwner(Player player) {
-		return isOwner(player.getUniqueId());
-	}
-	
-	public boolean isOwner(OfflinePlayer player) {
-		return isOwner(player.getUniqueId());
-	}
-	
-	public List<UUID> getLeaders() {
-		return leaders;
+	public boolean isUpdate() {
+		return this.update;
 	}
 
-	public void setLeaders(List<UUID> leaders) {
-		this.leaders = leaders;
-	}
-	
 	public void promoteMember(UUID uuid) {
 		this.leaders.add(uuid);
-		update();
+		this.update();
 	}
-	
-	public void demoteLeader(UUID uuid) {
-		this.leaders.remove(uuid);
-		update();
-	}
-	
-	public boolean isLeader(UUID uuid) {
-		return this.leaders.contains(uuid);
-	}
-	
 
-	public ArrayList<UUID> getMembersAndLeders() {
-		ArrayList<UUID> result = new ArrayList<UUID>();
-		result.addAll(getMembers());
-		result.addAll(leaders);
-		result.add(owner);
-		return result;
+	@Override
+	public void removeInvited(UUID invite) {
+		final int numInvitedNames = this.getInvited().size();
+		for (int i = numInvitedNames - 1; i >= 0; i--)
+			if (this.getInvited().get(i).equals(invite))
+				this.getInvited().remove(i);
+		this.update();
 	}
-	
+
+	@Override
+	public void removeMember(UUID member) {
+		final int numPartyMemberNames = this.getMembers().size();
+		for (int i = numPartyMemberNames - 1; i >= 0; i--)
+			if (this.getMembers().get(i).equals(member))
+				this.getMembers().remove(i);
+		this.update();
+	}
+
+	@Override
 	public void sendMessage(String message) {
-		for(UUID member : getMembersAndLeders()) {
-			Player memberPlayer = Bukkit.getPlayer(member);
-			if(memberPlayer != null) {
-				Lostshard.log.finest(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"] "+message);
-				memberPlayer.sendMessage(ChatColor.WHITE+"["+ChatColor.GREEN+"Clan"+ChatColor.WHITE+"] "+message);
+		for (final UUID member : this.getMembersAndLeders()) {
+			final Player memberPlayer = Bukkit.getPlayer(member);
+			if (memberPlayer != null) {
+				Lostshard.log.finest(ChatColor.WHITE + "[" + ChatColor.GREEN
+						+ "Clan" + ChatColor.WHITE + "] " + message);
+				memberPlayer.sendMessage(ChatColor.WHITE + "["
+						+ ChatColor.GREEN + "Clan" + ChatColor.WHITE + "] "
+						+ message);
 			}
 		}
-	}
-
-	public Bank getBank() {
-		return bank;
 	}
 
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public boolean isUpdate() {
-		return update;
+	public void setLeaders(List<UUID> leaders) {
+		this.leaders = leaders;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setOwner(UUID owner) {
+		this.owner = owner;
+		this.update();
 	}
 
 	public void setUpdate(boolean update) {
 		this.update = update;
 	}
-	
+
 	public void update() {
-		setUpdate(true);
-	}
-	
-	public void addMember(UUID member) {
-		this.getMembers().add(member);
-		update();
-	}
-
-	public void removeMember(UUID member) {
-		int numPartyMemberNames = getMembers().size();
-		for(int i=numPartyMemberNames-1; i>=0; i--) {
-			if(getMembers().get(i).equals(member))
-				getMembers().remove(i);
-		}
-		update();
-	}
-	
-	public void addInvited(UUID invite) {
-		this.getInvited().add(invite);
-		update();
-	}
-	
-	public void removeInvited(UUID invite) {
-		int numInvitedNames = getInvited().size();
-		for(int i=numInvitedNames-1; i>=0; i--) {
-			if(getInvited().get(i).equals(invite))
-				getInvited().remove(i);
-		}
-		update();
-	}
-
-	public boolean isInClan(UUID uuid) {
-		if(getMembers().contains(uuid) || isLeader(uuid) || isOwner(uuid))
-			return true;
-		return false;
-	}
-	
-	
-	public List<Player> getOnlineMembers() {
-		List<Player> rs = new ArrayList<Player>();
-		for(UUID pUUID : getMembersAndLeders()) {
-			Player p = Bukkit.getPlayer(pUUID);
-			if(p != null)
-				rs.add(p);
-		}
-		return rs;	
+		this.setUpdate(true);
 	}
 }

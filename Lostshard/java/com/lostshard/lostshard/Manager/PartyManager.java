@@ -7,23 +7,24 @@ import com.lostshard.lostshard.Objects.Groups.Party;
 
 public class PartyManager {
 
-	private static PartyManager manager = new PartyManager();
-	private List<Party> paries = new ArrayList<Party>();
-	
-	private PartyManager() {
-		
-	}
-
 	public static PartyManager getManager() {
 		return manager;
 	}
 
+	private static PartyManager manager = new PartyManager();
+
+	private List<Party> paries = new ArrayList<Party>();
+
+	private PartyManager() {
+
+	}
+
 	public List<Party> getParies() {
-		return paries;
+		return this.paries;
 	}
 
 	public void setParies(List<Party> paries) {
 		this.paries = paries;
 	}
-	
+
 }

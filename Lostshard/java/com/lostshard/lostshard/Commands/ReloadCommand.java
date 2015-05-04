@@ -14,27 +14,29 @@ import com.lostshard.lostshard.Utils.Output;
 public class ReloadCommand implements CommandExecutor, TabCompleter {
 
 	ConfigManager cm = ConfigManager.getManager();
-	
+
 	Lostshard plugin;
-	
+
 	public ReloadCommand(Lostshard plugin) {
 		plugin.getCommand("lostshardreload").setExecutor(this);
 		this.plugin = plugin;
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("lostshardreload")) {
-			cm.reload();
+		if (cmd.getName().equalsIgnoreCase("lostshardreload")) {
+			this.cm.reload();
 			Output.positiveMessage(sender, "Reload complete.");
 			return true;
 		}
 		return false;
 	}
-	
+
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;
 	}
-	
+
 }

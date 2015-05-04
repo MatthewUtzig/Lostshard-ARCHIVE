@@ -6,9 +6,9 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.lostshard.Manager.ConfigManager;
 
 public class Variables {
-	
+
 	static ConfigManager cm = ConfigManager.getManager();
-	
+
 	// Plot
 	public static final ItemStack plotCreateItemPrice = new ItemStack(
 			Material.DIAMOND, 1);
@@ -38,7 +38,7 @@ public class Variables {
 	public static final int murderPoint = 5;
 	// NPC
 	public static final int guardRange = 15;
-	
+
 	public static final int clanMaxNameLeangh = 20;
 	public static final int clanCreateCost = 2000;
 }

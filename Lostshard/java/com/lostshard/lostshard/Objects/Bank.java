@@ -13,29 +13,29 @@ public class Bank {
 	public Bank(String bankData, boolean large) {
 		super();
 		if (large)
-			inventory = Bukkit.createInventory(null, 54, "Large bank");
+			this.inventory = Bukkit.createInventory(null, 54, "Large bank");
 		else
-			inventory = Bukkit.createInventory(null, 27, "Small bank");
-		setInventory(bankData);
+			this.inventory = Bukkit.createInventory(null, 27, "Small bank");
+		this.setInventory(bankData);
 	}
 
 	public Inventory getInventory() {
-		return inventory;
+		return this.inventory;
+	}
+
+	public String Serialize() {
+		return Serializer.serializeItems(this.inventory.getContents());
 	}
 
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
 	}
 
-	public String Serialize() {
-		return Serializer.serializeItems(inventory.getContents());
-	}
-	
 	public void setInventory(String string) {
 		if (string != null && string != "") {
-			ItemStack[] content = Serializer.deserializeItems(string);
-			if(content.length > inventory.getSize())
-				inventory = Bukkit.createInventory(null, 54, "Large bank");
+			final ItemStack[] content = Serializer.deserializeItems(string);
+			if (content.length > this.inventory.getSize())
+				this.inventory = Bukkit.createInventory(null, 54, "Large bank");
 			this.inventory.setContents(content);
 		}
 	}

@@ -10,14 +10,6 @@ import com.lostshard.lostshard.Objects.Store.Store;
 
 public class StoreManager {
 
-	private static StoreManager manager = new StoreManager();
-	private List<Store> stores = new ArrayList<Store>();
-	NPCManager npcm = NPCManager.getManager();
-	
-	private StoreManager() {
-		
-	}
-
 	public static StoreManager getManager() {
 		return manager;
 	}
@@ -26,29 +18,39 @@ public class StoreManager {
 		StoreManager.manager = manager;
 	}
 
+	private static StoreManager manager = new StoreManager();
+
+	private List<Store> stores = new ArrayList<Store>();
+
+	NPCManager npcm = NPCManager.getManager();
+
+	private StoreManager() {
+
+	}
+
+	public Store getStore(int npcID) {
+		for (final Store s : this.stores)
+			if (s.getNpcId() == npcID)
+				return s;
+		return null;
+	}
+
+	public Store getStore(Location location) {
+		final NPC npc = this.npcm.getVendor(location);
+		return this.getStore(npc);
+	}
+
+	public Store getStore(NPC npc) {
+		if (npc == null)
+			return null;
+		return this.getStore(npc.getId());
+	}
+
 	public List<Store> getStores() {
-		return stores;
+		return this.stores;
 	}
 
 	public void setStores(List<Store> stores) {
 		this.stores = stores;
-	}
-	
-	public Store getStore(int npcID) {
-		for(Store s : stores)
-			if(s.getNpcId() == npcID)
-				return s;
-		return null;
-	}
-	
-	public Store getStore(NPC npc) {
-		if(npc == null)
-			return null;
-		return getStore(npc.getId());
-	}
-	
-	public Store getStore(Location location) {
-		NPC npc = npcm.getVendor(location);
-		return getStore(npc);
 	}
 }

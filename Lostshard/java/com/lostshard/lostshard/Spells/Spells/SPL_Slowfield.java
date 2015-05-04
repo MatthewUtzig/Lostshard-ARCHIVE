@@ -15,44 +15,50 @@ public class SPL_Slowfield extends RangedSpell {
 
 	public SPL_Slowfield(Scroll scroll) {
 		super(scroll);
-		setRange(20);
-		setCarePlot(false);
+		this.setRange(20);
+		this.setCarePlot(false);
 	}
-	
-	/* Used for anything that must be handled as soon as the spell is cast,
-	 * for example targeting a location for a delayed spell.
-	 */
-	public void preAction(Player player) {
-		
-	}
-	
-	/* The meat of the spell code, this is what happens when the spell is
+
+	/*
+	 * The meat of the spell code, this is what happens when the spell is
 	 * actually activated and should be doing something.
 	 */
+	@Override
 	public void doAction(Player player) {
-		ArrayList<Block> blocks = new ArrayList<Block>();
-		for(int x = getFoundBlock().getX() - 3; x <= getFoundBlock().getX()+2; x++) {
-			for(int y = getFoundBlock().getY() - 3; y <= getFoundBlock().getY()+2; y++) {
-				for(int z = getFoundBlock().getZ() - 3; z <= getFoundBlock().getZ()+2; z++) {
-					Block blockAt = getFoundBlock().getWorld().getBlockAt(x,y,z);
-					if(!blockAt.getType().equals(Material.AIR)) {
-						Block blockAbove = getFoundBlock().getWorld().getBlockAt(x,y+1,z);
-						if(blockAbove.getType().equals(Material.AIR) || blockAbove.getType().equals(Material.SNOW)) {
-							if(Utils.isWithin(blockAbove.getLocation(), getFoundBlock().getLocation(), 3))
+		final ArrayList<Block> blocks = new ArrayList<Block>();
+		for (int x = this.getFoundBlock().getX() - 3; x <= this.getFoundBlock()
+				.getX() + 2; x++)
+			for (int y = this.getFoundBlock().getY() - 3; y <= this
+					.getFoundBlock().getY() + 2; y++)
+				for (int z = this.getFoundBlock().getZ() - 3; z <= this
+						.getFoundBlock().getZ() + 2; z++) {
+					final Block blockAt = this.getFoundBlock().getWorld()
+							.getBlockAt(x, y, z);
+					if (!blockAt.getType().equals(Material.AIR)) {
+						final Block blockAbove = this.getFoundBlock()
+								.getWorld().getBlockAt(x, y + 1, z);
+						if (blockAbove.getType().equals(Material.AIR)
+								|| blockAbove.getType().equals(Material.SNOW))
+							if (Utils.isWithin(blockAbove.getLocation(), this
+									.getFoundBlock().getLocation(), 3))
 								blocks.add(blockAbove);
-						}
 					}
 				}
-			}
-		}
 
-		for(Block block : blocks) {
+		for (final Block block : blocks)
 			block.setType(Material.WEB);
-		}
-		
-		if(blocks.size() > 0) {
+
+		if (blocks.size() > 0)
 			new WebTrap(blocks, player.getUniqueId(), 50);
-		}
 	}
-	
+
+	/*
+	 * Used for anything that must be handled as soon as the spell is cast, for
+	 * example targeting a location for a delayed spell.
+	 */
+	@Override
+	public void preAction(Player player) {
+
+	}
+
 }

@@ -12,28 +12,23 @@ public class SPL_SummonMonster extends RangedSpell {
 
 	public SPL_SummonMonster(Scroll scroll) {
 		super(scroll);
-		setRange(20);
-		setCarePlot(false);
-	}
-
-	@Override
-	public void preAction(Player player) {
-	
+		this.setRange(20);
+		this.setCarePlot(false);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		setFoundBlock(getFoundBlock().getRelative(0, 1, 0));
+		this.setFoundBlock(this.getFoundBlock().getRelative(0, 1, 0));
 		EntityType e;
-		
-		Random rand = new Random();
-		
-		//Random chance to do a big monster
-		if(Math.random() <.03) {
-			switch(rand.nextInt(3)){
+
+		final Random rand = new Random();
+
+		// Random chance to do a big monster
+		if (Math.random() < .03)
+			switch (rand.nextInt(3)) {
 			case 0:
-			e = EntityType.GIANT;
-			break;
+				e = EntityType.GIANT;
+				break;
 			case 1:
 				e = EntityType.GHAST;
 				break;
@@ -41,12 +36,11 @@ public class SPL_SummonMonster extends RangedSpell {
 				e = EntityType.SLIME;
 				break;
 			}
-		}
-		else {
-			switch(rand.nextInt(6)){
+		else
+			switch (rand.nextInt(6)) {
 			case 0:
-			e = EntityType.PIG_ZOMBIE;
-			break;
+				e = EntityType.PIG_ZOMBIE;
+				break;
 			case 1:
 				e = EntityType.ZOMBIE;
 				break;
@@ -63,8 +57,12 @@ public class SPL_SummonMonster extends RangedSpell {
 				e = EntityType.SILVERFISH;
 				break;
 			}
-		}
-		
-		player.getWorld().spawnEntity(getFoundBlock().getLocation(), e);
+
+		player.getWorld().spawnEntity(this.getFoundBlock().getLocation(), e);
+	}
+
+	@Override
+	public void preAction(Player player) {
+
 	}
 }

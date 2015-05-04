@@ -10,65 +10,70 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlotCreateEvent extends Event implements Cancellable {
 
+	public static HandlerList getHandlerList() {
+		return handlers;
+	}
+
 	private static final HandlerList handlers = new HandlerList();
 	private boolean cancelled;
 	private Player player;
 	private PseudoPlayer pPlayer;
 	private Location locatin;
+
 	private String plotName;
-	
-	public PlotCreateEvent(Player player, PseudoPlayer pPlayer, Location location, String plotName) {
+
+	public PlotCreateEvent(Player player, PseudoPlayer pPlayer,
+			Location location, String plotName) {
 		this.player = player;
 		this.pPlayer = pPlayer;
 		this.locatin = location;
 		this.plotName = plotName;
 	}
 
-	public boolean isCancelled() {
-		return cancelled;
-	}
-
-	public void setCancelled(boolean cancel) {
-		cancelled = cancel;
-	}
-
+	@Override
 	public HandlerList getHandlers() {
 		return handlers;
 	}
 
-	public static HandlerList getHandlerList() {
-		return handlers;
+	public Location getLocatin() {
+		return this.locatin;
 	}
 
 	public Player getPlayer() {
-		return player;
+		return this.player;
 	}
 
-	public void setPlayer(Player player) {
-		this.player = player;
+	public String getPlotName() {
+		return this.plotName;
 	}
 
 	public PseudoPlayer getpPlayer() {
-		return pPlayer;
+		return this.pPlayer;
 	}
 
-	public void setpPlayer(PseudoPlayer pPlayer) {
-		this.pPlayer = pPlayer;
+	@Override
+	public boolean isCancelled() {
+		return this.cancelled;
 	}
 
-	public Location getLocatin() {
-		return locatin;
+	@Override
+	public void setCancelled(boolean cancel) {
+		this.cancelled = cancel;
 	}
 
 	public void setLocatin(Location locatin) {
 		this.locatin = locatin;
 	}
 
-	public String getPlotName() {
-		return plotName;
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public void setPlotName(String plotName) {
 		this.plotName = plotName;
+	}
+
+	public void setpPlayer(PseudoPlayer pPlayer) {
+		this.pPlayer = pPlayer;
 	}
 }

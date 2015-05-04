@@ -13,60 +13,60 @@ import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlayerManager {
-	
-	static PlayerManager manager = new PlayerManager();
 
-	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
-	
 	public static PlayerManager getManager() {
 		return manager;
 	}
-	
-	public List<PseudoPlayer> getPlayers() {
-		return players;
+
+	static PlayerManager manager = new PlayerManager();
+
+	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+
+	public PseudoPlayer getPlayer(OfflinePlayer player) {
+		return this.getPlayer(player.getUniqueId());
 	}
-	
-	public void setPlayers(List<PseudoPlayer> players) {
-		this.players = players;
+
+	public PseudoPlayer getPlayer(Player player) {
+		return this.getPlayer(player.getUniqueId());
 	}
-	
+
 	public PseudoPlayer getPlayer(UUID uuid) {
-		if(uuid == null)
+		if (uuid == null)
 			return null;
-		for (PseudoPlayer pPlayer : players)
+		for (final PseudoPlayer pPlayer : this.players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
-					return pPlayer;
+				return pPlayer;
 		PseudoPlayer pPlayer = Database.getPlayer(uuid);
-		if(pPlayer == null)
+		if (pPlayer == null)
 			pPlayer = Database.insertPlayer(new PseudoPlayer(uuid, 1));
 		return pPlayer;
 	}
 
-	public PseudoPlayer getPlayer(Player player) {
-		return getPlayer(player.getUniqueId());
-	}
-	
-	public PseudoPlayer getPlayer(OfflinePlayer player) {
-		return getPlayer(player.getUniqueId());
+	public List<PseudoPlayer> getPlayers() {
+		return this.players;
 	}
 
 	public PseudoPlayer onPlayerLogin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
-		PseudoPlayer pPlayer = getPlayer(player);
-		players.add(pPlayer);
+		final Player player = event.getPlayer();
+		final PseudoPlayer pPlayer = this.getPlayer(player);
+		this.players.add(pPlayer);
 		return pPlayer;
 	}
-	
+
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
-		PseudoPlayer pPlayer = getPlayer(event.getPlayer());
+		final List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
+		final PseudoPlayer pPlayer = this.getPlayer(event.getPlayer());
 		list.add(pPlayer);
 		Database.updatePlayers(list);
-		players.remove(pPlayer);
+		this.players.remove(pPlayer);
 	}
-	
+
+	public void setPlayers(List<PseudoPlayer> players) {
+		this.players = players;
+	}
+
 	public void tick(double delta, long tick) {
-		for(PseudoPlayer pPlayer : players)
+		for (final PseudoPlayer pPlayer : this.players)
 			pPlayer.tick(delta, tick);
 	}
 }

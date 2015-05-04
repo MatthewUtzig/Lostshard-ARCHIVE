@@ -12,10 +12,9 @@ public class FireField extends MagicStructure {
 
 	public FireField(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
-		for(Block block : blocks) {
+		for (final Block block : blocks)
 			block.setType(Material.FIRE);
-		}
-		setBlocks(blocks);
+		this.setBlocks(blocks);
 	}
 
 }

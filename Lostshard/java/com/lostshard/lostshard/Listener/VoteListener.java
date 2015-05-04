@@ -14,15 +14,15 @@ import com.vexsoftware.votifier.model.VotifierEvent;
 public class VoteListener implements Listener {
 
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public VoteListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onVote(VotifierEvent event) {
-		Vote vote = event.getVote();
-		for (PseudoPlayer player : pm.getPlayers())
+		final Vote vote = event.getVote();
+		for (final PseudoPlayer player : this.pm.getPlayers())
 			if (player.getPlayer().getName()
 					.equalsIgnoreCase(vote.getUsername())) {
 				// Set player money

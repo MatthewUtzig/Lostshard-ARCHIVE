@@ -14,40 +14,43 @@ public class SPL_Flowers extends RangedSpell {
 
 	public SPL_Flowers(Scroll scroll) {
 		super(scroll);
-		setRange(10);
-		setCarePlot(true);
-	}
-
-	@Override
-	public void preAction(Player player) {
-		
+		this.setRange(10);
+		this.setCarePlot(true);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		ArrayList<Block> blocks = new ArrayList<Block>();
-		for(int x = getFoundBlock().getX() - 2; x <= getFoundBlock().getX()+2; x++) {
-			for(int y = getFoundBlock().getY() - 2; y <= getFoundBlock().getY()+2; y++) {
-				for(int z = getFoundBlock().getZ() - 2; z <= getFoundBlock().getZ()+2; z++) {
-					Block blockAt = getFoundBlock().getWorld().getBlockAt(x,y,z);
-					if(!blockAt.getType().equals(Material.AIR)) {
-						Block blockAbove = getFoundBlock().getWorld().getBlockAt(x,y+1,z);
-						if(blockAbove.getType().equals(Material.AIR)) {
-							if(Utils.isWithin(blockAbove.getLocation(), getFoundBlock().getLocation(), 2))
+		final ArrayList<Block> blocks = new ArrayList<Block>();
+		for (int x = this.getFoundBlock().getX() - 2; x <= this.getFoundBlock()
+				.getX() + 2; x++)
+			for (int y = this.getFoundBlock().getY() - 2; y <= this
+					.getFoundBlock().getY() + 2; y++)
+				for (int z = this.getFoundBlock().getZ() - 2; z <= this
+						.getFoundBlock().getZ() + 2; z++) {
+					final Block blockAt = this.getFoundBlock().getWorld()
+							.getBlockAt(x, y, z);
+					if (!blockAt.getType().equals(Material.AIR)) {
+						final Block blockAbove = this.getFoundBlock()
+								.getWorld().getBlockAt(x, y + 1, z);
+						if (blockAbove.getType().equals(Material.AIR))
+							if (Utils.isWithin(blockAbove.getLocation(), this
+									.getFoundBlock().getLocation(), 2))
 								blocks.add(blockAbove);
-						}
 					}
 				}
-			}
-		}
-		
-		for(Block block : blocks) {
-			double rand = Math.random();
-			if(rand < .2)
+
+		for (final Block block : blocks) {
+			final double rand = Math.random();
+			if (rand < .2)
 				block.setType(Material.RED_ROSE);
-			else if(rand < .4) 
+			else if (rand < .4)
 				block.setType(Material.YELLOW_FLOWER);
 		}
+
+	}
+
+	@Override
+	public void preAction(Player player) {
 
 	}
 

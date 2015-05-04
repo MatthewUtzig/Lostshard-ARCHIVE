@@ -7,20 +7,20 @@ import com.lostshard.lostshard.Spells.RangedSpell;
 import com.lostshard.lostshard.Spells.Scroll;
 
 public class SPL_Light extends RangedSpell {
-	
+
 	public SPL_Light(Scroll scroll) {
 		super(scroll);
-		setRange(10);
-		setCarePlot(true);
-	}
-
-	@Override
-	public void preAction(Player player) {
+		this.setRange(10);
+		this.setCarePlot(true);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		getFoundBlock().setType(Material.TORCH);
+		this.getFoundBlock().setType(Material.TORCH);
+	}
+
+	@Override
+	public void preAction(Player player) {
 	}
 
 }

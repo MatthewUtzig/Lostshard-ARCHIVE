@@ -13,7 +13,7 @@ import com.lostshard.lostshard.Objects.Plot.Plot;
 public class NPC {
 
 	PlotManager ptm = PlotManager.getManager();
-	
+
 	private int id;
 	private NPCType type;
 	private String name;
@@ -52,10 +52,60 @@ public class NPC {
 	}
 
 	/**
+	 * Delete this npc
+	 */
+	public void fire() {
+		// NPCManager.getNPC(id).destroy();
+		final Plot plot = this.getPlot();
+		plot.getNpcs().remove(this);
+		Database.deleteNPC(this);
+	}
+
+	/**
 	 * @return return npc id
 	 */
 	public int getId() {
-		return id;
+		return this.id;
+	}
+
+	/**
+	 * @return
+	 */
+	public Location getLocation() {
+		return this.location;
+	}
+
+	/**
+	 * @return name of npc
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	public Plot getPlot() {
+		return this.ptm.getPlot(this.plotId);
+	}
+
+	/**
+	 * @return
+	 */
+	public int getPlotId() {
+		return this.plotId;
+	}
+
+	/**
+	 * @return NPCType
+	 */
+	public NPCType getType() {
+		return this.type;
+	}
+
+	/**
+	 * @param move
+	 *            npc to a location
+	 */
+	public void move(Location location) {
+		// NPCManager.moveNPC(id, location);
 	}
 
 	/**
@@ -67,26 +117,11 @@ public class NPC {
 	}
 
 	/**
-	 * @return NPCType
+	 * @param location
 	 */
-	public NPCType getType() {
-		return type;
-	}
-
-	/**
-	 * @param set
-	 *            NPCType
-	 */
-	public void setType(NPCType type) {
-		this.type = type;
-		getPlot().update();
-	}
-
-	/**
-	 * @return name of npc
-	 */
-	public String getName() {
-		return name;
+	public void setLocation(Location location) {
+		this.location = location;
+		this.getPlot().update();
 	}
 
 	/**
@@ -95,29 +130,7 @@ public class NPC {
 	 */
 	public void setName(String name) {
 		this.name = name;
-		getPlot().update();
-	}
-
-	/**
-	 * @return
-	 */
-	public Location getLocation() {
-		return location;
-	}
-
-	/**
-	 * @param location
-	 */
-	public void setLocation(Location location) {
-		this.location = location;
-		getPlot().update();
-	}
-
-	/**
-	 * @return
-	 */
-	public int getPlotId() {
-		return this.plotId;
+		this.getPlot().update();
 	}
 
 	/**
@@ -128,32 +141,19 @@ public class NPC {
 	}
 
 	/**
+	 * @param set
+	 *            NPCType
+	 */
+	public void setType(NPCType type) {
+		this.type = type;
+		this.getPlot().update();
+	}
+
+	/**
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-//		 NPCManager.spawnNPC(this);
+		// NPCManager.spawnNPC(this);
 	}
 
-	/**
-	 * @param move
-	 *            npc to a location
-	 */
-	public void move(Location location) {
-//		NPCManager.moveNPC(id, location);
-	}
-
-	/**
-	 * Delete this npc
-	 */
-	public void fire() {
-//		NPCManager.getNPC(id).destroy();
-		Plot plot = getPlot();
-		plot.getNpcs().remove(this);
-		Database.deleteNPC(this);
-	}
-	
-	public Plot getPlot() {
-		return ptm.getPlot(plotId);
-	}
-	
 }

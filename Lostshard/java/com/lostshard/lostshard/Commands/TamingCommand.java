@@ -15,28 +15,30 @@ import com.lostshard.lostshard.Skills.TamingSkill;
 import com.lostshard.lostshard.Utils.Output;
 
 public class TamingCommand implements CommandExecutor, TabCompleter {
-	
+
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public TamingCommand(Lostshard plugin) {
 		plugin.getCommand("mount").setExecutor(this);
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("mount")) {
-			if(!(sender instanceof Player)){
+		if (cmd.getName().equalsIgnoreCase("mount")) {
+			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
 			}
-			Player player = (Player) sender;
-			PseudoPlayer pPlayer = pm.getPlayer(player);
+			final Player player = (Player) sender;
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 			TamingSkill.callMount(player, pPlayer);
 			return true;
 		}
 		return false;
 	}
-	
+
+	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

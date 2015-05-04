@@ -12,22 +12,17 @@ public class SPL_SummonAnimal extends RangedSpell {
 
 	public SPL_SummonAnimal(Scroll scroll) {
 		super(scroll);
-		setRange(20);
-		setCarePlot(false);
-	}
-
-	@Override
-	public void preAction(Player player) {
-	
+		this.setRange(20);
+		this.setCarePlot(false);
 	}
 
 	@Override
 	public void doAction(Player player) {
-		setFoundBlock(getFoundBlock().getRelative(0, 1, 0));
+		this.setFoundBlock(this.getFoundBlock().getRelative(0, 1, 0));
 		EntityType e;
-		Random rand = new Random();
-		if(Math.random() <.1) {
-			switch(rand.nextInt(3)){
+		final Random rand = new Random();
+		if (Math.random() < .1)
+			switch (rand.nextInt(3)) {
 			case 0:
 				e = EntityType.HORSE;
 				break;
@@ -35,11 +30,10 @@ public class SPL_SummonAnimal extends RangedSpell {
 				e = EntityType.HORSE;
 			default:
 				e = EntityType.WOLF;
-			break;
+				break;
 			}
-		}
-		else {
-			switch(rand.nextInt(5)){
+		else
+			switch (rand.nextInt(5)) {
 			case 0:
 				e = EntityType.PIG;
 				break;
@@ -55,9 +49,13 @@ public class SPL_SummonAnimal extends RangedSpell {
 			default:
 				e = EntityType.SQUID;
 			}
-		}		
-		
-		player.getWorld().spawnEntity(getFoundBlock().getLocation(), e);
+
+		player.getWorld().spawnEntity(this.getFoundBlock().getLocation(), e);
+
+	}
+
+	@Override
+	public void preAction(Player player) {
 
 	}
 }

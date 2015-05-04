@@ -19,25 +19,27 @@ public class SPL_FireWalk extends Spell {
 	}
 
 	@Override
-	public boolean verifyCastable(Player player) {
-		return true;
+	public void doAction(Player player) {
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 320, 1));
+		player.addPotionEffect(new PotionEffect(
+				PotionEffectType.FIRE_RESISTANCE, 320, 1));
+		final FireWalk fireWalk = new FireWalk(new ArrayList<Block>(),
+				player.getUniqueId(), 150);
+		final Block fireBlock = player.getLocation().getBlock();
+		if (fireBlock.getType().equals(Material.AIR)) {
+			fireBlock.setType(Material.FIRE);
+			fireWalk.addBlock(fireBlock);
+		}
 	}
 
 	@Override
 	public void preAction(Player player) {
-		
+
 	}
 
 	@Override
-	public void doAction(Player player) {
-		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 320, 1));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 320, 1));
-		FireWalk fireWalk = new FireWalk(new ArrayList<Block>(),player.getUniqueId(),150);
-		Block fireBlock = player.getLocation().getBlock();
-		if(fireBlock.getType().equals(Material.AIR)) {
-			fireBlock.setType(Material.FIRE);
-			fireWalk.addBlock(fireBlock);
-		}
+	public boolean verifyCastable(Player player) {
+		return true;
 	}
 
 }

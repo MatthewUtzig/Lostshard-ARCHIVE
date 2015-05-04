@@ -10,7 +10,7 @@ public class Reputation {
 	private int criminal = 100;
 	private int tradeing = 0;
 	private int bounty = 0;
-	
+
 	public Reputation(int murder, int criminal, int tradeing, int bounty) {
 		super();
 		this.murder = murder;
@@ -19,51 +19,52 @@ public class Reputation {
 		this.bounty = bounty;
 	}
 
-	public int getMurder() {
-		return murder;
-	}
-	
-	public void setMurder(int murder) {
-		this.murder = murder;
-	}
-	
-	public int getCriminal() {
-		return criminal;
-	}
-	
-	public void setCriminal(int criminal) {
-		this.criminal = criminal;
-	}
-	
-	public int getTradeing() {
-		return tradeing;
-	}
-	
-	public void setTradeing(int tradeing) {
-		this.tradeing = tradeing;
-	}
-	
 	public int getBounty() {
-		return bounty;
+		return this.bounty;
 	}
-	
+
+	public int getCriminal() {
+		return this.criminal;
+	}
+
+	public int getMurder() {
+		return this.murder;
+	}
+
+	public String getReputation() {
+		final double total = this.getTotal() / 40d;
+		final DecimalFormat format = new DecimalFormat("#0.0",
+				new DecimalFormatSymbols(Locale.ENGLISH));
+		format.setParseIntegerOnly(false);
+		return format.format(total);
+	}
+
+	public int getTotal() {
+		int total = 0;
+		total += this.murder;
+		total += this.criminal;
+		total += this.tradeing;
+		total += this.bounty;
+		return total;
+	}
+
+	public int getTradeing() {
+		return this.tradeing;
+	}
+
 	public void setBounty(int bounty) {
 		this.bounty = bounty;
 	}
-	
-	public int getTotal() {
-		int total = 0;
-		total += murder;
-		total += criminal;
-		total += tradeing;
-		total += bounty;
-		return total;
+
+	public void setCriminal(int criminal) {
+		this.criminal = criminal;
 	}
-	
-	public String getReputation() {
-		double total = getTotal()/40d;
-		DecimalFormat format = new DecimalFormat("#0.0", new DecimalFormatSymbols(Locale.ENGLISH));
-		format.setParseIntegerOnly(false);
-		return format.format((double)total);
+
+	public void setMurder(int murder) {
+		this.murder = murder;
+	}
+
+	public void setTradeing(int tradeing) {
+		this.tradeing = tradeing;
 	}
 }

@@ -20,51 +20,53 @@ public class BlackSmithyCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("enhance").setExecutor(this);
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
-		if(cmd.getName().equalsIgnoreCase("repair")) {
-			if(!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			Player player = (Player) sender;
-			repair(player);
-			return true;
-		}else if(cmd.getName().equalsIgnoreCase("smelt")){
-			if(!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			Player player = (Player) sender;
-			semt(player);
-			return true;
-		}else if(cmd.getName().equalsIgnoreCase("enhance")){
-			if(!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			Player player = (Player) sender;
-			enhance(player);
-			return true;
-		}
-		return false;
-	}
-	
 	private void enhance(Player player) {
 		BlackSmithySkill.enhance(player);
 	}
 
-	private void semt(Player player) {
-		BlackSmithySkill.smelt(player);
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string,
+			String[] args) {
+		if (cmd.getName().equalsIgnoreCase("repair")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			final Player player = (Player) sender;
+			this.repair(player);
+			return true;
+		} else if (cmd.getName().equalsIgnoreCase("smelt")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			final Player player = (Player) sender;
+			this.semt(player);
+			return true;
+		} else if (cmd.getName().equalsIgnoreCase("enhance")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			final Player player = (Player) sender;
+			this.enhance(player);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String string, String[] args) {
+		return null;
 	}
 
 	private void repair(Player player) {
 		BlackSmithySkill.repair(player);
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
-		return null;
+	private void semt(Player player) {
+		BlackSmithySkill.smelt(player);
 	}
-	
+
 }
