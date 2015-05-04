@@ -187,9 +187,11 @@ public class Utils {
 			result.add(Bukkit.getOfflinePlayer(uuid).getName());
 		return result;
 	}
+	
+	public static DecimalFormat getDecimalFormater() {
+		return new DecimalFormat("#,###,###,###",
+				new DecimalFormatSymbols(Locale.ENGLISH));
+	}
 
 	static PlayerManager pm = PlayerManager.getManager();
-
-	public static DecimalFormat df = new DecimalFormat("#,###,###,###",
-			new DecimalFormatSymbols(Locale.ENGLISH));
 }

@@ -388,7 +388,7 @@ public class Output {
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Statistics-");
 		player.sendMessage(ChatColor.YELLOW + "Gold Coins: " + ChatColor.WHITE
-				+ Utils.df.format(pseudoPlayer.getMoney()));
+				+ Utils.getDecimalFormater().format(pseudoPlayer.getMoney()));
 		player.sendMessage(ChatColor.YELLOW + "Mana: " + ChatColor.WHITE
 				+ pseudoPlayer.getMana() + "/" + 100);
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE
@@ -480,11 +480,11 @@ public class Output {
 		if (plot.isCoownerOrAbove(player)) {
 			player.sendMessage(ChatColor.YELLOW + "Size: " + ChatColor.WHITE
 					+ plot.getSize() + ChatColor.YELLOW + ", Funds: "
-					+ ChatColor.WHITE + Utils.df.format(plot.getMoney())
+					+ ChatColor.WHITE + Utils.getDecimalFormater().format(plot.getMoney())
 					+ ChatColor.YELLOW + ", Tax: " + ChatColor.WHITE
-					+ Utils.df.format(plot.getTax()) + ChatColor.YELLOW
+					+ Utils.getDecimalFormater().format(plot.getTax()) + ChatColor.YELLOW
 					+ ", Plot Value: " + ChatColor.WHITE
-					+ Utils.df.format(plot.getValue()));
+					+ Utils.getDecimalFormater().format(plot.getValue()));
 			final int distanceFromCenter = (int) Math.round(Utils.distance(
 					player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE
