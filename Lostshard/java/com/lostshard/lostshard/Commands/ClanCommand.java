@@ -3,6 +3,7 @@ package com.lostshard.lostshard.Commands;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +21,7 @@ import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Groups.Clan;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.TabUtils;
+import com.lostshard.lostshard.Utils.Utils;
 
 public class ClanCommand implements CommandExecutor, TabCompleter {
 
@@ -130,15 +132,16 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 														+ targetPlayer
 																.getName()
 														+ " to your clan.");
-										Output.positiveMessage(targetPlayer,
-												"You have been invited to the "
-														+ clan.getName()
-														+ " clan.");
-										Output.positiveMessage(
-												targetPlayer,
-												"\"/clan join "
-														+ clan.getName()
-														+ "\" to join.");
+										Utils.sendSmartTextCommand(targetPlayer, ChatColor.GOLD+player.getName()+" has invited you to "+clan.getName()+", click to join.", ChatColor.LIGHT_PURPLE+"click to join the clan.", "/clan join "+clan.getName());
+//										Output.positiveMessage(targetPlayer,
+//												"You have been invited to the "
+//														+ clan.getName()
+//														+ " clan.");
+//										Output.positiveMessage(
+//												targetPlayer,
+//												"\"/clan join "
+//														+ clan.getName()
+//														+ "\" to join.");
 									} else
 										Output.simpleError(
 												player,

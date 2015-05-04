@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -191,6 +196,13 @@ public class Utils {
 	public static DecimalFormat getDecimalFormater() {
 		return new DecimalFormat("#,###,###,###",
 				new DecimalFormatSymbols(Locale.ENGLISH));
+	}
+	
+	public static void sendSmartTextCommand(Player player, String text, String hoverText, String command) {
+		TextComponent smartText = new TextComponent(text);
+		smartText.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, command));
+		smartText.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(hoverText).create()));
+		player.spigot().sendMessage(smartText);
 	}
 
 	static PlayerManager pm = PlayerManager.getManager();
