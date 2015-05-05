@@ -40,7 +40,6 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("tradegold").setExecutor(this);
 		plugin.getCommand("pay").setExecutor(this);
 		plugin.getCommand("lottery").setExecutor(this);
-		plugin.getCommand("givemoney").setExecutor(this);
 	}
 
 	/**

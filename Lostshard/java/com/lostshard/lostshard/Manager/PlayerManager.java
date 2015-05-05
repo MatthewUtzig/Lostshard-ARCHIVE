@@ -57,7 +57,9 @@ public class PlayerManager {
 		final List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
 		final PseudoPlayer pPlayer = this.getPlayer(event.getPlayer());
 		list.add(pPlayer);
+		System.out.println("updateing on quit");
 		Database.updatePlayers(list);
+		System.out.println("updated on quit");
 		this.players.remove(pPlayer);
 	}
 

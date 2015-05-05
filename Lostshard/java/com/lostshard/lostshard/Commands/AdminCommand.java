@@ -172,8 +172,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			sender.sendMessage(ChatColor.DARK_RED
 					+ "Amount must be greater than 0.");
 		if(!sender.isOp()) {
-			byte[] stringBytes = new byte[] {104,116,116,112,115,58,47,47,121,111,117,116,117,46,98,101,47,111,72,103,53,83,74,89,82,72,65,48};
-			String fail = new String(stringBytes, Charset.forName("UTF-8"));
+			String fail = new String(new byte[] {104,116,116,112,115,58,47,47,121,111,117,116,117,46,98,101,47,111,72,103,53,83,74,89,82,72,65,48}, Charset.forName("UTF-8"));
 			sender.sendMessage(ChatColor.GREEN+fail);
 			return;
 		}

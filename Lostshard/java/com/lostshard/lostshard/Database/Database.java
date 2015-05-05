@@ -1203,6 +1203,7 @@ public class Database {
 			final PreparedStatement prep = conn
 					.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=?, ignored=? WHERE id=?; ");
 			for (final PseudoPlayer pPlayer : pPlayers) {
+				System.out.println(pPlayer.getId());
 				pPlayer.setUpdate(false);
 				prep.setInt(1, pPlayer.getMoney());
 				prep.setString(2, pPlayer.getBank().Serialize());
@@ -1242,6 +1243,7 @@ public class Database {
 			if (Lostshard.isDebug())
 				e.printStackTrace();
 		}
+		System.out.println("done updateing players");
 	}
 
 	public static void updatePlot(Plot plot) {
