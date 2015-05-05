@@ -5,7 +5,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.lostshard.Factory.ScrollFactory;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -30,7 +30,7 @@ public class ScrollHandler {
 			pPlayer.addScroll(scroll);
 			Output.positiveMessage(player, "The " + type.name().toLowerCase()
 					+ " dropped a scroll of " + scroll.getName() + ".");
-			Database.insertScroll(scroll, pPlayer.getId());
+			ScrollMapper.insertScroll(scroll, pPlayer.getId());
 		}
 	}
 

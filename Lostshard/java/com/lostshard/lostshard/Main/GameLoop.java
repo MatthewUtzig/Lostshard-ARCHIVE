@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
@@ -65,7 +66,7 @@ public class GameLoop extends BukkitRunnable {
 					if (p.isUpdate())
 						playerUpdates.add(p);
 				if (!playerUpdates.isEmpty())
-					Database.updatePlayers(playerUpdates);
+					PlayerMapper.updatePlayers(playerUpdates);
 				playerUpdates.clear();
 				for (final Plot p : this.ptm.getPlots())
 					if (p.isUpdate())

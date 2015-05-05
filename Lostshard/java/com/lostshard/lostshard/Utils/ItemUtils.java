@@ -16,32 +16,32 @@ public class ItemUtils {
 				Material.CHAINMAIL_HELMET));
 		helmet1.shape("SSS", "SAS", "AAA");
 		helmet1.setIngredient('S', Material.COBBLESTONE);
-		helmet1.setIngredient('A', Material.COBBLESTONE);
+		helmet1.setIngredient('A', Material.AIR);
 		final ShapedRecipe helmet2 = new ShapedRecipe(new ItemStack(
 				Material.CHAINMAIL_HELMET));
 		helmet2.shape("AAA", "SSS", "SAS");
 		helmet2.setIngredient('S', Material.COBBLESTONE);
-		helmet2.setIngredient('A', Material.COBBLESTONE);
+		helmet2.setIngredient('A', Material.AIR);
 		final ShapedRecipe chest = new ShapedRecipe(new ItemStack(
 				Material.CHAINMAIL_CHESTPLATE));
 		chest.shape("SAS", "SSS", "SSS");
 		chest.setIngredient('S', Material.COBBLESTONE);
-		chest.setIngredient('A', Material.COBBLESTONE);
+		chest.setIngredient('A', Material.AIR);
 		final ShapedRecipe leggings = new ShapedRecipe(new ItemStack(
 				Material.CHAINMAIL_LEGGINGS));
 		leggings.shape("SSS", "SAS", "SAS");
 		leggings.setIngredient('S', Material.COBBLESTONE);
-		leggings.setIngredient('A', Material.COBBLESTONE);
+		leggings.setIngredient('A', Material.AIR);
 		final ShapedRecipe boots1 = new ShapedRecipe(new ItemStack(
 				Material.CHAINMAIL_BOOTS));
 		boots1.shape("AAA", "SAS", "SAS");
 		boots1.setIngredient('S', Material.COBBLESTONE);
-		boots1.setIngredient('A', Material.COBBLESTONE);
+		boots1.setIngredient('A', Material.AIR);
 		final ShapedRecipe boots2 = new ShapedRecipe(new ItemStack(
 				Material.CHAINMAIL_BOOTS));
 		boots2.shape("SAS", "SAS", "AAA");
 		boots2.setIngredient('S', Material.COBBLESTONE);
-		boots2.setIngredient('A', Material.COBBLESTONE);
+		boots2.setIngredient('A', Material.AIR);
 		Bukkit.addRecipe(helmet1);
 		Bukkit.addRecipe(helmet2);
 		Bukkit.addRecipe(chest);

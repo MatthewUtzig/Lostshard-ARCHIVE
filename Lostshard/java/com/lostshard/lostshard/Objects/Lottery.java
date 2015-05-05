@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Utils.Output;
 
@@ -78,7 +79,7 @@ public class Lottery {
 							+ winnerSum - Math.floor(b.getValue() * .9) + b
 							.getValue()));
 					if (!op.isOnline())
-						Database.updatePlayer(winnerPseudo);
+						PlayerMapper.updatePlayer(winnerPseudo);
 				} else if (op.isOnline())
 					op.getPlayer().sendMessage(
 							ChatColor.GOLD + winner.getName() + " won "
@@ -103,7 +104,7 @@ public class Lottery {
 				final PseudoPlayer pP = this.pm.getPlayer(b.getKey());
 				pP.setMoney(pP.getMoney() + b.getValue());
 				if (!op.isOnline())
-					Database.updatePlayer(pP);
+					PlayerMapper.updatePlayer(pP);
 			}
 	}
 }

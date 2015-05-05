@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.SpellManager;
@@ -282,7 +283,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				}
 				if (this.sm.useScroll(player, scroll)) {
 					pPlayer.getScrolls().remove(scroll);
-					Database.deleteScroll(scroll, pPlayer.getId());
+					ScrollMapper.deleteScroll(scroll, pPlayer.getId());
 				}
 			} else if (args[0].equalsIgnoreCase("give")) {
 				if (args.length < 3) {
@@ -321,7 +322,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 
 				pPlayer.getScrolls().remove(scroll);
 				tpPlayer.getScrolls().add(scroll);
-				Database.updateScrollOwner(scroll, tpPlayer.getId(),
+				ScrollMapper.updateScrollOwner(scroll, tpPlayer.getId(),
 						pPlayer.getId());
 				Output.positiveMessage(player,
 						"You have given " + targetPlayer.getName()
@@ -342,7 +343,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 				final SpellBook spellbook = pPlayer.getSpellbook();
 				if (!spellbook.containSpell(scroll)) {
 					pPlayer.addSpell(scroll);
-					Database.deleteScroll(scroll, pPlayer.getId());
+					ScrollMapper.deleteScroll(scroll, pPlayer.getId());
 					pPlayer.update();
 					Output.positiveMessage(player, "You have transferred "
 							+ scroll.getName() + " to your spellbook.");

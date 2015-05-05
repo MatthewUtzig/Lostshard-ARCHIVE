@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 
 public class PlayerManager {
@@ -36,9 +36,9 @@ public class PlayerManager {
 		for (final PseudoPlayer pPlayer : this.players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
 				return pPlayer;
-		PseudoPlayer pPlayer = Database.getPlayer(uuid);
+		PseudoPlayer pPlayer = PlayerMapper.getPlayer(uuid);
 		if (pPlayer == null)
-			pPlayer = Database.insertPlayer(new PseudoPlayer(uuid, 1));
+			pPlayer = PlayerMapper.insertPlayer(new PseudoPlayer(uuid, 1));
 		return pPlayer;
 	}
 
@@ -58,7 +58,7 @@ public class PlayerManager {
 		final PseudoPlayer pPlayer = this.getPlayer(event.getPlayer());
 		list.add(pPlayer);
 		System.out.println("updateing on quit");
-		Database.updatePlayers(list);
+		PlayerMapper.updatePlayers(list);
 		System.out.println("updated on quit");
 		this.players.remove(pPlayer);
 	}

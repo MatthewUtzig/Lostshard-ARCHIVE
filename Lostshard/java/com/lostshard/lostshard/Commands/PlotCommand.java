@@ -18,6 +18,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Events.EventManager;
 import com.lostshard.lostshard.Events.PlotCreateEvent;
 import com.lostshard.lostshard.Handlers.HelpHandler;
@@ -27,6 +28,8 @@ import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.lostshard.Objects.InventoryGUI.PlotGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
@@ -180,8 +183,15 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			final Player player = (Player) sender;
+			final PseudoPlayer pPlayer = pm.getPlayer(player);
 			if (args.length < 1) {
-				Output.simpleError(player, "Use \"/plot help\" for commands.");
+				Plot plot = ptm.findPlotAt(player.getLocation());
+				if(plot != null) {
+					GUI gui = new PlotGUI(pPlayer, plot);
+					gui.openInventory(player);
+				}else{
+					Output.simpleError(player, "Theres no plot here, try /help plot");
+				}
 				return true;
 			}
 			final String plotCommand = args[0];
@@ -352,7 +362,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 							+ player.getName() + " for " + salePrice + ".");
 		final List<PseudoPlayer> plist = new ArrayList<PseudoPlayer>();
 		plist.add(sellerPseudoPlayer);
-		Database.updatePlayers(plist);
+		PlayerMapper.updatePlayers(plist);
 	}
 
 	private void plotCapturePoint(Player player) {
@@ -375,8 +385,8 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 	}
 
 	/**
-	 * @param player
-	 * @param args
+	 * @param player the executor of the command
+	 * @param args the message that contains the player name, who the executor wants to co-own.
 	 *
 	 *            Co-owner player of plot at player.
 	 */

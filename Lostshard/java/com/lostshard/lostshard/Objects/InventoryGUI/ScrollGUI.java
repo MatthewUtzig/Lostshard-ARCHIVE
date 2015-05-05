@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.lostshard.Manager.SpellManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Spells.Scroll;
@@ -38,7 +38,7 @@ public class ScrollGUI extends GUI {
 			if (this.getPlayer().getSpellbook().containSpell(scroll))
 				return;
 			this.getPlayer().addSpell(scroll);
-			Database.deleteScroll(scroll, this.getPlayer().getId());
+			ScrollMapper.deleteScroll(scroll, this.getPlayer().getId());
 			this.getPlayer().update();
 			Output.positiveMessage(player,
 					"You have transferred " + scroll.getName()
@@ -55,7 +55,7 @@ public class ScrollGUI extends GUI {
 				return;
 			if (this.sm.useScroll(player, scroll)) {
 				this.getPlayer().getScrolls().remove(scroll);
-				Database.deleteScroll(scroll, this.getPlayer().getId());
+				ScrollMapper.deleteScroll(scroll, this.getPlayer().getId());
 				this.forceClose();
 			}
 		}

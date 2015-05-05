@@ -21,8 +21,6 @@ import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
-import com.lostshard.lostshard.Objects.Bank;
-import com.lostshard.lostshard.Objects.ChatChannel;
 import com.lostshard.lostshard.Objects.ChestRefill;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
@@ -46,7 +44,6 @@ public class Database {
 					.prepareStatement("DELETE FROM chests WHERE location=?;");
 			prep.setString(1, Serializer.serializeLocation(cr.getLocation()));
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CHESTREFILL] deleteChest mysql error");
@@ -63,7 +60,6 @@ public class Database {
 					.prepareStatement("DELETE FROM clans WHERE id=?;");
 			prep.setInt(1, clan.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CLAN] deleteClan mysql error");
@@ -80,7 +76,6 @@ public class Database {
 					.prepareStatement("DELETE FROM offlineMessages WHERE player=?;");
 			prep.setString(1, uuid.toString());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[MESSAGES] deleteMessages mysql error");
@@ -97,7 +92,6 @@ public class Database {
 					.prepareStatement("DELETE FROM npcs WHERE id=?;");
 			prep.setInt(1, npc.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[NPC] deleteNPC mysql error");
@@ -114,7 +108,6 @@ public class Database {
 					.prepareStatement("DELETE FROM permanentgates WHERE id=?;");
 			prep.setInt(1, gate.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log
@@ -132,7 +125,6 @@ public class Database {
 					.prepareStatement("DELETE FROM plots WHERE id=?;");
 			prep.setInt(1, plot.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[PLOT] deletePlot mysql error");
@@ -149,33 +141,12 @@ public class Database {
 					.prepareStatement("DELETE FROM runes WHERE id=?;");
 			prep.setInt(1, rune.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[RUNES] deleteRune mysql error");
 			Lostshard.mysqlError();
 			if (Lostshard.isDebug())
 				e.printStackTrace();
-		}
-	}
-
-	public static void deleteScroll(Scroll scroll, int playerID) {
-		if (Lostshard.isDebug())
-			System.out.print("INSERT SCROLL!");
-		try {
-			final Connection conn = connPool.getConnection();
-			final PreparedStatement prep = conn
-					.prepareStatement(
-							"DELETE FROM scrolls WHERE player_id=? AND scroll=? LIMIT 1;",
-							Statement.RETURN_GENERATED_KEYS);
-			prep.setInt(1, playerID);
-			prep.setString(2, scroll.name());
-			prep.execute();
-			prep.close();
-			conn.close();
-		} catch (final Exception e) {
-			Lostshard.log.warning("[SCROLL] deleteScroll mysql error");
-			e.printStackTrace();
 		}
 	}
 
@@ -186,7 +157,6 @@ public class Database {
 					.prepareStatement("DELETE FROM stores WHERE id=?;");
 			prep.setInt(1, store.getId());
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[STORE] deleteStore mysql error");
@@ -264,7 +234,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[BUILD] getBuilds mysql error");
@@ -303,7 +272,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CHESTREFILL] getMessages mysql error");
@@ -346,7 +314,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CLAN] getClans mysql error");
@@ -384,7 +351,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[NPC] getNPCS mysql error");
@@ -415,7 +381,6 @@ public class Database {
 									+ uuid.toString() + "\":");
 					e.printStackTrace();
 				}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[MESSAGES] getMessages mysql error");
@@ -455,7 +420,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log
@@ -465,100 +429,7 @@ public class Database {
 				e.printStackTrace();
 		}
 	}
-
-	// Player
-	public static PseudoPlayer getPlayer(UUID uuid) {
-		Lostshard.log.finest("[PLAYER] Getting Player from DB!");
-		PseudoPlayer pPlayer = null;
-		try {
-			final Connection conn = connPool.getConnection();
-			final PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM players WHERE uuid=?");
-			prep.setString(1, uuid.toString());
-			prep.execute();
-			final ResultSet rs = prep.getResultSet();
-			while (rs.next()) {
-				final int id = rs.getInt("id");
-				try {
-					final int money = rs.getInt("money");
-					final int murderCounts = rs.getInt("murderCounts");
-					final int criminalTick = rs.getInt("criminalTicks");
-					final boolean globalChat = rs.getBoolean("globalChat");
-					final boolean privateChat = rs.getBoolean("privateChat");
-					final int subscriberDays = rs.getInt("subscribeDays");
-					final boolean wasSubscribed = rs
-							.getBoolean("wasSubscribed");
-					final Bank bank = new Bank(rs.getString("bank"),
-							wasSubscribed);
-					final int plotCreationPoints = rs
-							.getInt("plotCreationPoints");
-					final String chatChannel = rs.getString("chatChannel");
-					final int mana = rs.getInt("mana");
-					final int stamina = rs.getInt("stamina");
-					final int rank = rs.getInt("rank");
-					final int spawnTick = rs.getInt("spawnTick");
-					final int currentBuild = rs.getInt("currentBuild");
-					final List<String> titles = Serializer
-							.deserializeStringArray(rs.getString("titles"));
-					final int currentTitle = rs.getInt("currentTitle");
-					final int freeSkillPoints = rs.getInt("freeSkillPoints");
-					final List<String> spellbook = Serializer
-							.deserializeStringArray(rs.getString("spellbook"));
-					final boolean gui = rs.getBoolean("gui");
-					final List<UUID> ignored = Serializer
-							.deserializeUUIDList(rs.getString("ignored"));
-
-					pPlayer = new PseudoPlayer(uuid, id);
-
-					pPlayer.setMoney(money);
-					pPlayer.setMurderCounts(murderCounts);
-					pPlayer.setCriminal(criminalTick);
-					pPlayer.setGlobalChat(globalChat);
-					pPlayer.setPrivateChat(privateChat);
-					pPlayer.setSubscribeDays(subscriberDays);
-					pPlayer.setWasSubscribed(wasSubscribed);
-					pPlayer.setPlotCreatePoints(plotCreationPoints);
-					pPlayer.setBank(bank);
-					pPlayer.setChatChannel(ChatChannel.valueOf(chatChannel));
-					pPlayer.setMana(mana);
-					pPlayer.setStamina(stamina);
-					pPlayer.setRank(rank);
-					pPlayer.getTimer().spawnTicks = spawnTick;
-					pPlayer.setCurrentBuildId(currentBuild);
-					pPlayer.setTitels(titles);
-					pPlayer.setCurrentTitleId(currentTitle);
-					pPlayer.setFreeSkillPoints(freeSkillPoints);
-					pPlayer.setAllowGui(gui);
-					pPlayer.setIgnored(ignored);
-					if (spellbook != null)
-						for (final String s : spellbook)
-							pPlayer.getSpellbook().addSpell(
-									Scroll.getByString(s));
-					pPlayer.setBuilds(Database.getBuilds(id));
-					pPlayer.setRunebook(Database.getRunebook(id));
-					pPlayer.setScrools(Database.getScrolls(id));
-				} catch (final Exception e) {
-					Lostshard.log.log(Level.WARNING,
-							"[PLAYER] Exception when generating \"" + id
-									+ "\" player: ");
-					e.printStackTrace();
-				}
-			}
-			prep.close();
-			conn.close();
-		} catch (final Exception e) {
-			Lostshard.log.warning("[PLAYER] getPlayers mysql error");
-			Lostshard.mysqlError();
-			if (Lostshard.isDebug())
-				e.printStackTrace();
-		}
-		if (pPlayer != null)
-			Lostshard.log.finest("[PLAYER] got "
-					+ Bukkit.getOfflinePlayer(uuid).getName()
-					+ " players from DB.");
-		return pPlayer;
-	}
-
+	
 	public static void getPlots() {
 		System.out.print("GETTING PLOTS!");
 		final List<NPC> npcs = getNPCS();
@@ -633,7 +504,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING, "[PLOT] getPlots mysql error");
@@ -665,7 +535,6 @@ public class Database {
 					e.printStackTrace();
 				}
 			}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[RUNES] getRunes mysql error");
@@ -700,7 +569,6 @@ public class Database {
 							+ "\" scroll: ");
 					e.printStackTrace();
 				}
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING, "[SCROLL] getScrolls mysql error");
@@ -739,7 +607,6 @@ public class Database {
 			prep.setLong(3, cr.getRangeMin() / 60000);
 			prep.setLong(4, cr.getRangeMax() / 60000);
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CHESTREFILL] insertChest mysql error");
@@ -767,7 +634,6 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			clan.setId(id);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[CLAN] inserClan mysql error");
@@ -785,7 +651,6 @@ public class Database {
 			prep.setString(1, uuid.toString());
 			prep.setString(2, msg);
 			prep.execute();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[MESSAGES] insertMessages mysql error");
@@ -812,7 +677,6 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			npc.setId(id);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[NPC] insertNPC mysql error");
@@ -841,7 +705,6 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			gate.setId(id);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[PERMANENTGATE] inserPermanent mysql error");
@@ -850,40 +713,6 @@ public class Database {
 				e.printStackTrace();
 		}
 		return id;
-	}
-
-	public static PseudoPlayer insertPlayer(PseudoPlayer pPlayer) {
-		try {
-			final Connection conn = connPool.getConnection();
-			final PreparedStatement prep = conn
-					.prepareStatement(
-							"INSERT IGNORE INTO players "
-									+ "(uuid,bank,titles,spellbook,ignored) VALUES (?,?,?,?,?)",
-							Statement.RETURN_GENERATED_KEYS);
-			prep.setString(1, pPlayer.getPlayerUUID().toString());
-			prep.setString(2, pPlayer.getBank().Serialize());
-			prep.setString(3,
-					Serializer.serializeStringArray(pPlayer.getTitels()));
-			prep.setString(4, pPlayer.getSpellbook().toJson());
-			prep.setString(5,
-					Serializer.serializeUUIDList(pPlayer.getIgnored()));
-			prep.execute();
-			final ResultSet rs = prep.getGeneratedKeys();
-			int id = 0;
-			while (rs.next())
-				id = rs.getInt(1);
-			pPlayer.setId(id);
-			prep.close();
-			conn.close();
-			insertBuild(pPlayer.getCurrentBuild(), pPlayer.getId());
-		} catch (final Exception e) {
-			Lostshard.log.log(Level.WARNING,
-					"[PLAYER] insertPlayer mysql error");
-			Lostshard.mysqlError();
-			if (Lostshard.isDebug())
-				e.printStackTrace();
-		}
-		return pPlayer;
 	}
 
 	public static void insertPlot(Plot plot) {
@@ -918,7 +747,6 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			plot.setId(id);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[PLOT] insertPlot mysql error");
@@ -941,7 +769,6 @@ public class Database {
 			final ResultSet rs = prep.getGeneratedKeys();
 			while (rs.next())
 				id = rs.getInt(1);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[RUNES] inserRune mysql error");
@@ -950,25 +777,6 @@ public class Database {
 				e.printStackTrace();
 		}
 		return id;
-	}
-
-	public static void insertScroll(Scroll scroll, int playerID) {
-		if (Lostshard.isDebug())
-			System.out.print("INSERT SCROLL!");
-		try {
-			final Connection conn = connPool.getConnection();
-			final PreparedStatement prep = conn
-					.prepareStatement("INSERT IGNORE INTO scrolls "
-							+ "(scroll,player_id) VALUES (?,?)");
-			prep.setString(1, scroll.name());
-			prep.setInt(2, playerID);
-			prep.execute();
-			prep.close();
-			conn.close();
-		} catch (final Exception e) {
-			Lostshard.log.warning("[SCROLL] deleteScroll mysql error");
-			e.printStackTrace();
-		}
 	}
 
 	public static void insertStore(Store store) {
@@ -985,7 +793,6 @@ public class Database {
 			while (rs.next())
 				id = rs.getInt(1);
 			store.setId(id);
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[STORE] inserStore mysql error");
@@ -1043,7 +850,6 @@ public class Database {
 					.prepareStatement("SELECT * FROM test");
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();
-			prep.close();
 			conn.close();
 			while (rs.next()) {
 				final String name = rs.getString("test");
@@ -1153,7 +959,6 @@ public class Database {
 			prep.setInt(5, npc.getId());
 
 			prep.executeUpdate();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[NPC] updateNPC mysql error");
@@ -1187,65 +992,6 @@ public class Database {
 		}
 	}
 
-	public static void updatePlayer(PseudoPlayer winnerPseudo) {
-		final List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
-		list.add(winnerPseudo);
-		updatePlayers(list);
-	}
-
-	public static void updatePlayers(List<PseudoPlayer> pPlayers) {
-		if (Lostshard.isDebug())
-			System.out.print("UPDATING PLAYERS!");
-		final List<Build> builds = new ArrayList<Build>();
-		try {
-			final Connection conn = connPool.getConnection();
-
-			final PreparedStatement prep = conn
-					.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=?, ignored=? WHERE id=?; ");
-			for (final PseudoPlayer pPlayer : pPlayers) {
-				System.out.println(pPlayer.getId());
-				pPlayer.setUpdate(false);
-				prep.setInt(1, pPlayer.getMoney());
-				prep.setString(2, pPlayer.getBank().Serialize());
-				prep.setInt(3, pPlayer.getMurderCounts());
-				prep.setInt(4, pPlayer.getCriminal());
-				prep.setBoolean(5, pPlayer.isGlobalChat());
-				prep.setBoolean(6, pPlayer.isPrivateChat());
-				prep.setInt(7, pPlayer.getSubscribeDays());
-				prep.setBoolean(8, pPlayer.wasSubscribed());
-				prep.setInt(9, pPlayer.getPlotCreatePoints());
-				prep.setString(10, pPlayer.getChatChannel().toString());
-				prep.setInt(11, pPlayer.getMana());
-				prep.setInt(12, pPlayer.getStamina());
-				prep.setInt(13, pPlayer.getRank());
-				prep.setInt(14, pPlayer.getTimer().spawnTicks);
-				prep.setInt(15, pPlayer.getCurrentBuildId());
-				prep.setString(16,
-						Serializer.serializeStringArray(pPlayer.getTitels()));
-				prep.setInt(17, pPlayer.getCurrentTitleId());
-				prep.setInt(18, pPlayer.getFreeSkillPoints());
-				prep.setString(19, pPlayer.getSpellbook().toJson());
-				prep.setBoolean(20, pPlayer.isPrivate());
-				prep.setBoolean(21, pPlayer.isAllowGui());
-				prep.setInt(22, pPlayer.getId());
-				prep.setString(23,
-						Serializer.serializeUUIDList(pPlayer.getIgnored()));
-				prep.addBatch();
-				builds.addAll(pPlayer.getBuilds());
-			}
-			prep.executeBatch();
-			prep.close();
-			conn.close();
-			updateBuilds(builds);
-		} catch (final Exception e) {
-			Lostshard.log.warning("[PLAYER] updatePlayers mysql error");
-			Lostshard.mysqlError();
-			if (Lostshard.isDebug())
-				e.printStackTrace();
-		}
-		System.out.println("done updateing players");
-	}
-
 	public static void updatePlot(Plot plot) {
 		if (plot == null)
 			return;
@@ -1276,7 +1022,6 @@ public class Database {
 			prep.setInt(18, plot.getId());
 
 			prep.executeUpdate();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING,
@@ -1322,7 +1067,6 @@ public class Database {
 				npcs.addAll(plot.getNpcs());
 			}
 			prep.executeBatch();
-			prep.close();
 			conn.close();
 			updateNPCS(npcs);
 		} catch (final Exception e) {
@@ -1341,7 +1085,6 @@ public class Database {
 			prep.setInt(1, targetPlayer.getId());
 			prep.setInt(2, foundRune.getId());
 			prep.executeUpdate();
-			prep.close();
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[RUNES] updateRune mysql error");
@@ -1350,23 +1093,6 @@ public class Database {
 				e.printStackTrace();
 		}
 
-	}
-
-	public static void updateScrollOwner(Scroll scroll, int tID, int pID) {
-		Lostshard.log.finest("GETTING SCROLLS!");
-		try {
-			final Connection conn = connPool.getConnection();
-			final PreparedStatement prep = conn
-					.prepareStatement("UPDATE scrolls SET player_id=? WHERE player_id=?;");
-			prep.setInt(1, tID);
-			prep.setInt(1, pID);
-			prep.executeUpdate();
-			prep.close();
-			conn.close();
-		} catch (final Exception e) {
-			Lostshard.log.log(Level.WARNING, "[SCROLL] getScrolls mysql error");
-			e.printStackTrace();
-		}
 	}
 
 	public static void updateStore(Store store) {

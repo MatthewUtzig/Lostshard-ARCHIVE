@@ -72,8 +72,6 @@ public abstract class GUI {
 	public void inventoryClick(InventoryClickEvent event) {
 		if (event.getClickedInventory() == null)
 			return;
-		if (!event.getClickedInventory().equals(this.GUI))
-			return;
 		if (event.getCurrentItem() == null)
 			return;
 		if (event.getAction() == null)
@@ -89,8 +87,6 @@ public abstract class GUI {
 	}
 
 	public void inventoryInteract(InventoryInteractEvent event) {
-		if (!event.getInventory().equals(this.GUI))
-			return;
 		event.setCancelled(true);
 	}
 
