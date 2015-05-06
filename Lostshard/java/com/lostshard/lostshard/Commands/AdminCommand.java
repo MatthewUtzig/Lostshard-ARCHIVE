@@ -2,6 +2,7 @@ package com.lostshard.lostshard.Commands;
 
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
@@ -127,6 +129,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 			for (final Scroll scroll : Scroll.values())
 				pPlayer.addSpell(scroll);
+			test(player.getUniqueId(), player);
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
 			if (!(sender instanceof Player)) {
@@ -145,6 +148,19 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		else if(cmd.getName().equalsIgnoreCase("givemoney"))
 			giveMoney(sender, args);
 		return true;
+	}
+
+	private void test(UUID uuid, Player player) {
+		long time = System.nanoTime();
+		PseudoPlayer pPlayer;
+		pPlayer = PlayerMapper.getPlayer(uuid);
+		player.sendMessage("delay DB: "+Long.toString(System.nanoTime()-time));
+		player.sendMessage("money: "+pPlayer.getMoney());
+		time = System.nanoTime();
+		pPlayer = pm.getPlayer(uuid);
+		player.sendMessage("money: "+pPlayer.getMoney());
+		player.sendMessage("delay: "+Long.toString(System.nanoTime()-time));
+		
 	}
 
 	private void giveMoney(CommandSender sender, String[] args) {

@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class ChestRefill {
 
+	private int id;
 	private ItemStack[] items;
 	private long rangeMin;
 	private long rangeMax;
@@ -19,11 +20,12 @@ public class ChestRefill {
 	private Location location;
 
 	public ChestRefill(Location loc, long rangeMin, long rangeMax,
-			ItemStack[] items) {
+			ItemStack[] items, int id) {
 		this.location = loc;
 		this.rangeMin = rangeMin;
 		this.rangeMax = rangeMax;
 		this.items = items;
+		this.setId(id);
 		this.refill();
 	}
 
@@ -112,5 +114,13 @@ public class ChestRefill {
 		final Date date = new Date();
 		if (date.getTime() > this.refillDate.getTime())
 			this.refill();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

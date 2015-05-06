@@ -12,7 +12,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ClanMapper;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.ClanManager;
@@ -83,7 +83,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 				for (final Player p : onlineMembers)
 					// inform them the clan is gone
 					Output.simpleError(p, "Your clan has been disbanded.");
-				Database.deleteClan(clan);
+				ClanMapper.deleteClan(clan);
 				this.cm.getClans().remove(clan);
 			} else
 				Output.simpleError(player,
@@ -467,7 +467,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 								final Clan clan = new Clan(clanName,
 										player.getUniqueId());
 								this.cm.getClans().add(clan);
-								Database.insertClan(clan);
+								ClanMapper.insertClan(clan);
 								Output.positiveMessage(
 										player,
 										"You have created the clan "

@@ -56,6 +56,8 @@ public class CustomSchedule {
 			tax.stop();
 		if (serviceMessage.isStarted())
 			serviceMessage.stop();
+		if(lottery.isStarted())
+			lottery.stop();
 	}
 
 	static PlotManager ptm = PlotManager.getManager();

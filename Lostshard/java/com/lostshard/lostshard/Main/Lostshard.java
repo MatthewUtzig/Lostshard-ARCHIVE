@@ -28,6 +28,10 @@ import com.lostshard.lostshard.Commands.TamingCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
 import com.lostshard.lostshard.Database.DataSource;
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ChestRefillMapper;
+import com.lostshard.lostshard.Database.Mappers.ClanMapper;
+import com.lostshard.lostshard.Database.Mappers.PermanentGateMapper;
+import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Listener.BlockListener;
 import com.lostshard.lostshard.Listener.CitizensLisenter;
 import com.lostshard.lostshard.Listener.EntityListener;
@@ -168,10 +172,10 @@ public class Lostshard extends JavaPlugin {
 
 		setMysqlError(!Database.testDatabaseConnection());
 
-		Database.getPermanentGates();
-		Database.getClans();
-		Database.getPlots();
-		Database.getChests();
+		PermanentGateMapper.getPermanentGates();
+		ClanMapper.getClans();
+		PlotMapper.getPlots();
+		ChestRefillMapper.getChests();
 
 		// GameLoop should run last.
 		CustomSchedule.Schedule();

@@ -32,7 +32,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.MessagesMapper;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
@@ -194,7 +194,7 @@ public class PlayerListener implements Listener {
 		final PseudoPlayer pPlayer = this.pm.onPlayerLogin(event);
 		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
-		final List<String> msgs = Database.getOfflineMessages(player
+		final List<String> msgs = MessagesMapper.getOfflineMessages(player
 				.getUniqueId());
 		for (final String msg : msgs)
 			player.sendMessage(ChatColor.BLUE + msg);
@@ -203,7 +203,7 @@ public class PlayerListener implements Listener {
 			if (p != player)
 				p.sendMessage(ChatColor.YELLOW + player.getName()
 						+ " joined the game");
-		Database.deleteMessages(player.getUniqueId());
+		MessagesMapper.deleteMessages(player.getUniqueId());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

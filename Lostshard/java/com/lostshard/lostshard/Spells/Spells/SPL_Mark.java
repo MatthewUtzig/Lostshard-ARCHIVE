@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.RuneMapper;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -45,7 +45,7 @@ public class SPL_Mark extends Spell {
 						break;
 					}
 				if (!foundMatching) {
-					final int runeId = Database.insertRune(
+					final int runeId = RuneMapper.insertRune(
 							pseudoPlayer.getId(), this.getResponse(),
 							this.markLoc);
 					final Rune newRune = new Rune(this.markLoc,

@@ -11,7 +11,6 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 
-import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Database.LostshardConnection;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Objects.Bank;
@@ -81,14 +80,14 @@ public class PlayerMapper implements LostshardConnection {
 			for (final String s : spellbook)
 				result.getSpellbook().addSpell(
 						Scroll.getByString(s));
-		result.setBuilds(Database.getBuilds(id));
-		result.setRunebook(Database.getRunebook(id));
-		result.setScrools(Database.getScrolls(id));
+		result.setBuilds(BuildMapper.getBuilds(id));
+		result.setRunebook(RuneMapper.getRunebook(id));
+		result.setScrools(ScrollMapper.getScrolls(id));
 		
 		return result;
 	}
 	
-	public static PreparedStatement updatePlayerPreparedStatement(PreparedStatement prep, PseudoPlayer pPlayer) throws SQLException {
+	public static PreparedStatement updatePreparedStatement(PreparedStatement prep, PseudoPlayer pPlayer) throws SQLException {
 		prep.setInt(1, pPlayer.getMoney());
 		prep.setString(2, pPlayer.getBank().Serialize());
 		prep.setInt(3, pPlayer.getMurderCounts());
@@ -149,10 +148,10 @@ public class PlayerMapper implements LostshardConnection {
 			Connection conn = ds.getConnection();
 			PreparedStatement prep = conn
 					.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=?, ignored=? WHERE id=?; ");
-			updatePlayerPreparedStatement(prep, pPlayer);
+			updatePreparedStatement(prep, pPlayer);
 			prep.executeUpdate();
 			conn.close();
-			Database.updateBuilds(pPlayer.getBuilds());
+			BuildMapper.updateBuilds(pPlayer.getBuilds());
 			pPlayer.setUpdate(false);
 		} catch (SQLException e) {
 			Lostshard.log.warning("[PLAYER] updatePlayers mysql error");
@@ -170,13 +169,13 @@ public class PlayerMapper implements LostshardConnection {
 			PreparedStatement prep = conn
 					.prepareStatement("UPDATE players SET money=?, bank=?, murderCounts=?, criminalTicks=?, globalChat=?, privateChat=?, subscribeDays=?, wasSubscribed=?, plotCreationPoints=?, chatChannel=?, mana=?, stamina=?, rank=?, spawnTick=?, currentBuild=?, titles=?, currentTitle=?, freeSkillPoints=?, spellbook=?, private=?, gui=?, ignored=? WHERE id=?; ");
 			for(PseudoPlayer pPlayer : pPlayers) {
-				updatePlayerPreparedStatement(prep, pPlayer);
+				updatePreparedStatement(prep, pPlayer);
 				prep.addBatch();
 			}
 			prep.executeBatch();
 			conn.close();
 			for(PseudoPlayer pPlayer : pPlayers) {
-				Database.updateBuilds(pPlayer.getBuilds());
+				BuildMapper.updateBuilds(pPlayer.getBuilds());
 				pPlayer.setUpdate(false);
 			}
 		} catch (SQLException e) {
@@ -207,7 +206,7 @@ public class PlayerMapper implements LostshardConnection {
 				id = rs.getInt(1);
 			pPlayer.setId(id);
 			conn.close();
-			Database.insertBuild(pPlayer.getCurrentBuild(), pPlayer.getId());
+			BuildMapper.insertBuild(pPlayer.getCurrentBuild(), pPlayer.getId());
 		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING,
 					"[PLAYER] insertPlayer mysql error");

@@ -57,7 +57,7 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 
 		final ItemStack[] items = ((Chest) block.getState()).getInventory()
 				.getContents();
-		cr = new ChestRefill(block.getLocation(), rangeMin, rangeMax, items);
+		cr = new ChestRefill(block.getLocation(), rangeMin, rangeMax, items, 0);
 		this.cm.add(cr);
 	}
 

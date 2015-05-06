@@ -2,7 +2,7 @@ package com.lostshard.lostshard.NPC;
 
 import org.bukkit.Location;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.NPCMapper;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 
@@ -58,7 +58,7 @@ public class NPC {
 		// NPCManager.getNPC(id).destroy();
 		final Plot plot = this.getPlot();
 		plot.getNpcs().remove(this);
-		Database.deleteNPC(this);
+		NPCMapper.deleteNPC(this);
 	}
 
 	/**

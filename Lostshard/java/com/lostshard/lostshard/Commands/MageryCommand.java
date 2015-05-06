@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.RuneMapper;
 import com.lostshard.lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -206,7 +206,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 								if (!foundMatching) {
 									runebook.removeRune(foundRune);
 									targetRunebook.addRune(foundRune);
-									Database.updateRune(targetPseudoPlayer,
+									RuneMapper.updateRune(targetPseudoPlayer,
 											foundRune);
 									Output.positiveMessage(
 											player,
@@ -257,7 +257,7 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 								player,
 								"You have removed the rune "
 										+ foundRune.getLabel());
-						Database.deleteRune(foundRune);
+						RuneMapper.deleteRune(foundRune);
 					} else
 						Output.simpleError(player,
 								"Could not find a rune with that label.");

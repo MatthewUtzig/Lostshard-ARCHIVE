@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.StoreMapper;
 import com.lostshard.lostshard.Utils.Serializer;
 
 public class Store {
@@ -103,6 +103,6 @@ public class Store {
 	}
 
 	public void update() {
-		Database.updateStore(this);
+		StoreMapper.updateStore(this);
 	}
 }

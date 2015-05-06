@@ -13,7 +13,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Locations;
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.BuildMapper;
 import com.lostshard.lostshard.Handlers.HelpHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
@@ -88,7 +88,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			if (pPlayer.getBuilds().size() < id + 1) {
 				final Build build = new Build();
 				pPlayer.getBuilds().add(build);
-				Database.insertBuild(build, pPlayer.getId());
+				BuildMapper.insertBuild(build, pPlayer.getId());
 			}
 			pPlayer.setCurrentBuildId(id);
 			Output.positiveMessage(sender, "You have changed build to " + id

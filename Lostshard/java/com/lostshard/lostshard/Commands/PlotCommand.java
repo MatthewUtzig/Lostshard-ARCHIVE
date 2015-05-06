@@ -17,8 +17,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.MessagesMapper;
+import com.lostshard.lostshard.Database.Mappers.NPCMapper;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
+import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Events.EventManager;
 import com.lostshard.lostshard.Events.PlotCreateEvent;
 import com.lostshard.lostshard.Handlers.HelpHandler;
@@ -157,7 +159,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 			final Plot plot = new Plot(-1, plotName, player.getUniqueId(),
 					curLoc);
-			Database.insertPlot(plot);
+			PlotMapper.insertPlot(plot);
 			this.ptm.getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost
@@ -357,7 +359,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			sellerPlayer.sendMessage("You have sold the plot " + plot.getName()
 					+ " to " + player.getName() + " for " + salePrice + ".");
 		else
-			Database.insertMessages(sellerPlayer.getUniqueId(),
+			MessagesMapper.insertMessages(sellerPlayer.getUniqueId(),
 					"You have sold the plot " + plot.getName() + " to "
 							+ player.getName() + " for " + salePrice + ".");
 		final List<PseudoPlayer> plist = new ArrayList<PseudoPlayer>();
@@ -896,7 +898,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				final NPC npc = new NPC(NPCType.BANKER, name,
 						player.getLocation(), plot.getId());
-				Database.insertNPC(npc);
+				NPCMapper.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
@@ -945,7 +947,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				final NPC npc = new NPC(NPCType.VENDOR, name,
 						player.getLocation(), plot.getId());
-				Database.insertNPC(npc);
+				NPCMapper.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -982,7 +984,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 				final NPC npc = new NPC(NPCType.GUARD, name,
 						player.getLocation(), plot.getId());
-				Database.insertNPC(npc);
+				NPCMapper.insertNPC(npc);
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -1339,10 +1341,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			// If a plot's border is within range of the player
 			if (Utils.isWithin(curLoc, p.getLocation(), range + border))
 				plotsInRange.add(p);
-			// System.out.println("In range - "+p.getName());
-			else {
-				// System.out.println("Out of range - "+p.getName());
-			}
 		}
 
 		if (!inPlot)

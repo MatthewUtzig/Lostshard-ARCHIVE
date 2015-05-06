@@ -9,7 +9,7 @@ import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Data.Variables;
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.NPCMapper;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
@@ -94,7 +94,7 @@ public class Plot {
 
 	public void disband() {
 		for (final NPC npc : this.npcs)
-			Database.deleteNPC(npc);
+			NPCMapper.deleteNPC(npc);
 		this.ptm.removePlot(this);
 	}
 

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.bukkit.block.Block;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PermanentGateMapper;
 
 public class PermanentGate extends Gate {
 
@@ -13,7 +13,7 @@ public class PermanentGate extends Gate {
 
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, boolean direction) {
 		super(blocks, uuid, -1, direction);
-		Database.insertPermanentGate(this);
+		PermanentGateMapper.insertPermanentGate(this);
 	}
 
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id,

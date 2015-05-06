@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.MessagesMapper;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Utils.Output;
@@ -70,7 +70,7 @@ public class Lottery {
 								ChatColor.GOLD + "Congratulations you won "
 										+ winnerSum + " in the lottery.");
 					else
-						Database.insertMessages(b.getKey(),
+						MessagesMapper.insertMessages(b.getKey(),
 								"Congratulations you won " + winnerSum
 										+ " in the lottery, while offline.");
 					final PseudoPlayer winnerPseudo = this.pm
@@ -85,7 +85,7 @@ public class Lottery {
 							ChatColor.GOLD + winner.getName() + " won "
 									+ winnerSum + "gc.");
 				else
-					Database.insertMessages(
+					MessagesMapper.insertMessages(
 							b.getKey(),
 							"You lost the lottery while offline, "
 									+ b.getValue() + "gc.");
@@ -98,7 +98,7 @@ public class Lottery {
 							"The conditions for the lottery where not met, "
 									+ b.getValue() + ".");
 				else
-					Database.insertMessages(b.getKey(),
+					MessagesMapper.insertMessages(b.getKey(),
 							"The conditions for the lottery where not met, "
 									+ b.getValue() + ".");
 				final PseudoPlayer pP = this.pm.getPlayer(b.getKey());

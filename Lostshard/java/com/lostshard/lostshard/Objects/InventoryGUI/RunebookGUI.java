@@ -11,7 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.RuneMapper;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Rune;
 import com.lostshard.lostshard.Objects.Runebook;
@@ -56,7 +56,7 @@ public class RunebookGUI extends GUI {
 				return;
 
 			runebook.removeRune(rune);
-			Database.deleteRune(rune);
+			RuneMapper.deleteRune(rune);
 			this.forceClose();
 			Output.positiveMessage(
 					player,

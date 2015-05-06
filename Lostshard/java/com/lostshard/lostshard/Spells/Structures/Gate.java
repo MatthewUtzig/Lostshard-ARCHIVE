@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.PermanentGateMapper;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Spells.MagicStructure;
@@ -54,7 +54,7 @@ public class Gate extends MagicStructure {
 					if (ms != null && ms instanceof Gate) {
 						ms.cleanUp();
 						if (ms instanceof PermanentGate)
-							Database.deletePermanentGate((PermanentGate) ms);
+							PermanentGateMapper.deletePermanentGate((PermanentGate) ms);
 					} else
 						block.setType(Material.AIR);
 				else

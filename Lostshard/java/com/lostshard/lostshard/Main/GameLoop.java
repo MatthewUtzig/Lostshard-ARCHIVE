@@ -8,7 +8,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
+import com.lostshard.lostshard.Database.Mappers.ClanMapper;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
+import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
@@ -72,13 +74,13 @@ public class GameLoop extends BukkitRunnable {
 					if (p.isUpdate())
 						plotUpdates.add(p);
 				if (!plotUpdates.isEmpty())
-					Database.updatePlots(plotUpdates);
+					PlotMapper.updatePlots(plotUpdates);
 				plotUpdates.clear();
 				for (final Clan c : this.cm.getClans())
 					if (c.isUpdate())
 						clanUpdates.add(c);
 				if (!clanUpdates.isEmpty())
-					Database.updateClans(clanUpdates);
+					ClanMapper.updateClans(clanUpdates);
 				clanUpdates.clear();
 			}
 			if (tick % 600 == 0)

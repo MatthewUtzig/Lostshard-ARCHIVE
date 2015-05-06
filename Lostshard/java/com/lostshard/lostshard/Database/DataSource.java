@@ -34,7 +34,6 @@ public class DataSource {
 		this.ds.setJdbcUrl(Variables.mysqlUrl);
 		this.ds.setUser(Variables.mysqlUsername);
 		this.ds.setPassword(Variables.mysqlPassword);
-
 		this.ds.setMaxStatements(180);
 		this.ds.setMaxIdleTime(40);
 	}
