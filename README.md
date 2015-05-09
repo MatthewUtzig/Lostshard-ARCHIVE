@@ -1,7 +1,6 @@
 #Left over
  - Taming commands
  - Stores
- - Whitelist
  - Wipe commands
  - Banmanager
 
