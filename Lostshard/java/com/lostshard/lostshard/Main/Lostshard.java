@@ -44,6 +44,7 @@ import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.ItemUtils;
+import com.lostshard.whitelistkey.KeyPlayerListener;
 
 /**
  * @author Jacob Rosborg
@@ -148,6 +149,7 @@ public class Lostshard extends JavaPlugin {
 			new VoteListener(this);
 		new WorldListener(this);
 		new CitizensLisenter(this);
+		new KeyPlayerListener(this);
 		// Commands
 		new PlotCommand(this);
 		new ChatCommand(this);

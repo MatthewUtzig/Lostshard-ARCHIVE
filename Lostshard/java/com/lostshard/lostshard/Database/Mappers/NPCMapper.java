@@ -24,7 +24,7 @@ public class NPCMapper implements LostshardConnection {
 		final NPCType type = NPCType.valueOf(rs.getString("type"));
 		final Location location = Serializer.deserializeLocation(rs
 				.getString("location"));
-		final int plotId = rs.getInt("plotId");
+		final int plotId = rs.getInt("plot_id");
 
 		final NPC npc = new NPC(id, type, name, location, plotId);
 		return npc;
@@ -101,7 +101,7 @@ public class NPCMapper implements LostshardConnection {
 		try {
 			final Connection conn = ds.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("UPDATE npcs SET name=?, type=?, location=?, plotId=? WHERE id=?;");
+					.prepareStatement("UPDATE npcs SET name=?, type=?, location=?, plot_id=? WHERE id=?;");
 			for (final NPC npc : npcs) {
 				prep.setString(1, npc.getName());
 				prep.setString(2, npc.getType().toString());
