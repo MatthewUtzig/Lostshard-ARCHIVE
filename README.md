@@ -1,7 +1,8 @@
 #Left over
  - Taming commands
- - ChestRefill
  - Stores
+ - Wipe commands
+ - Banmanager
 
 #Plots
 - [x] Commands
@@ -20,12 +21,12 @@
 - [x] Mysql
 
 #Clan
-- [X] Clan found
-- [X] Clan invite
-- [X] Clan kick
-- [X] Clan promote
-- [X] Clan demote
-- [X] Mysql
+- [x] Clan found
+- [x] Clan invite
+- [x] Clan kick
+- [x] Clan promote
+- [x] Clan demote
+- [x] Mysql
 
 #Party
 - [x] Commands
