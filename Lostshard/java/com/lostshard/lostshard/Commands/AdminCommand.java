@@ -91,6 +91,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("admin")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
@@ -111,6 +115,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			else if (subCommand.equalsIgnoreCase("tpplot"))
 				this.tpPlot(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("tpplot")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
@@ -118,6 +126,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			final Player player = (Player) sender;
 			this.tpPlot(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("tpworld")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
@@ -125,6 +137,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			final Player player = (Player) sender;
 			this.tpWorld(player, args);
 		} else if (cmd.getName().equalsIgnoreCase("test")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			final Player player = (Player) sender;
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 			for (final Scroll scroll : Scroll.values())
@@ -132,6 +148,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			test(player.getUniqueId(), player);
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
 				return true;
@@ -140,13 +160,29 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			this.setMurder(player, args);
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("tax"))
-			this.ptm.tax();
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}else
+				this.ptm.tax();
 		else if (cmd.getName().equalsIgnoreCase("inv"))
-			this.inv(sender, args);
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}else
+				this.inv(sender, args);
 		else if (cmd.getName().equalsIgnoreCase("broadcast"))
-			this.broadcast(sender, args);
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}else
+				this.broadcast(sender, args);
 		else if(cmd.getName().equalsIgnoreCase("givemoney"))
-			giveMoney(sender, args);
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}else
+				giveMoney(sender, args);
 		return true;
 	}
 
