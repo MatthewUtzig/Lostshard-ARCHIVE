@@ -184,10 +184,9 @@ public class PseudoPlayer {
 	}
 
 	public String getCurrentTitle() {
-		if (this.currenttitle < 0)
-			return "";
-		else
+		if (this.currenttitle < this.titels.size() && this.currenttitle >= 0)
 			return this.titels.get(this.currenttitle);
+		return "";
 	}
 
 	public int getCurrentTitleId() {
