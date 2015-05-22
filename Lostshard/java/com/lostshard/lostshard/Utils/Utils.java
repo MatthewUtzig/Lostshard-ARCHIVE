@@ -205,5 +205,9 @@ public class Utils {
 		player.spigot().sendMessage(smartText);
 	}
 
+	public static Player getPlayer(String name) {
+		return Bukkit.getPlayer(name);
+	}
+	
 	static PlayerManager pm = PlayerManager.getManager();
 }

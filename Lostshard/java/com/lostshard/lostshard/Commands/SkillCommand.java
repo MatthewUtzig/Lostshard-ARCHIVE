@@ -88,8 +88,10 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 				if (amountInt > 0) {
 					final String skillName = args[1];
 					final Skill skill = pPlayer.getSkillByName(skillName);
-					if (skill == null)
+					if (skill == null) {
 						Output.simpleError(player, "That skill does not exist.");
+						return;
+					}
 					final int curSkill = skill.getLvl();
 					int newSkill = curSkill + amountInt;
 					int dif = 0;

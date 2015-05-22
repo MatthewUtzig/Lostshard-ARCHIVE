@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.md_5.bungee.api.ChatColor;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -46,6 +47,7 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("ignore").setExecutor(this);
 		plugin.getCommand("unignore").setExecutor(this);
 		plugin.getCommand("help").setExecutor(this);
+		plugin.getCommand("title").setExecutor(this);
 	}
 
 	private void buildChange(CommandSender sender, String[] args) {
@@ -214,7 +216,75 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 			this.unignore(sender, args);
 		else if (cmd.getName().equalsIgnoreCase("help"))
 			HelpHandler.handle(sender, args);
+		else if (cmd.getName().equalsIgnoreCase("title"))
+			this.title(sender, args);
 		return true;
+	}
+
+	private void title(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			sender.sendMessage(ChatColor.RED+"Only players may perform this command.");
+			return;
+		}
+		Player player = (Player) sender;
+		if(args.length > 0) {
+			String subCmd = args[0];
+			if(subCmd.equalsIgnoreCase("none") || subCmd.equalsIgnoreCase("null")) {
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				pPlayer.setCurrentTitleId(-1);
+				Output.positiveMessage(player, "You have disabled your title");
+			}else if(subCmd.equalsIgnoreCase("give")) {
+				if(!(args.length > 2)) {
+					Output.simpleError(player, "/title give (player) (title)");
+					return;
+				}
+				String name = args[1];
+				Player tPlayer = Utils.getPlayer(name);
+				if(tPlayer == null) {
+					Output.simpleError(player, name+" is not online.");
+					return;
+				}
+				PseudoPlayer pPlayer = pm.getPlayer(tPlayer);
+				String title = StringUtils.join(args, " ", 2, args.length);
+				if(title.length() > 15) {
+					Output.simpleError(player, "Title must be less than 15 characters.");
+					return;
+				}
+				pPlayer.getTitels().add(title);
+				Output.positiveMessage(player, "You have given \""+title+"\" to \""+tPlayer.getName()+"\".");
+			}else if(subCmd.equalsIgnoreCase("remove") || subCmd.equalsIgnoreCase("take")) {
+				if(args.length < 2) {
+					Output.simpleError(player, "/title take (player) (title)");
+					return;
+				}
+				String name = args[1];
+				Player tPlayer = Utils.getPlayer(name);
+				if(tPlayer == null) {
+					Output.simpleError(player, name+" is not online.");
+					return;
+				}
+				PseudoPlayer pPlayer = pm.getPlayer(tPlayer);
+				String title = StringUtils.join(args, " ", 2, args.length);
+				if(pPlayer.getTitels().remove(title))
+					Output.positiveMessage(player, "You have taken \""+title+"\" from \""+tPlayer.getName()+"\".");
+				else
+					Output.simpleError(player, tPlayer.getName()+" do not have such title.");
+			}else{
+				PseudoPlayer pPlayer = pm.getPlayer(player);
+				subCmd = StringUtils.join(args);
+				for(int i=0; i<pPlayer.getTitels().size(); i++) {
+					String title = pPlayer.getTitels().get(i);
+					if(StringUtils.containsIgnoreCase(title.replace(" ", ""), subCmd.replace(" ", ""))) {
+						pPlayer.setCurrentTitleId(i);
+						Output.positiveMessage(player, "You have set your title to \""+title+"\"");
+						return;
+					}
+				}
+				Output.simpleError(player, "You have no such title.");
+			}
+		}else{
+			Output.displayTitles(player);
+		}
 	}
 
 	@Override

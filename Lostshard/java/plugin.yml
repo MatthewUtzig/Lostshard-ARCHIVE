@@ -199,3 +199,7 @@ commands:
    givemoney:
       description: Gives a player money
       usage: /<command> (player) (amount)
+   title:
+      description: Displays all titles and allows you to use sub commands for activating title
+      aliases: [titles]
+      usage: /<command> (title)

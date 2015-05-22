@@ -153,13 +153,13 @@ public class PlotMapper implements LostshardConnection {
 			final PreparedStatement prep = conn
 					.prepareStatement(
 							"INSERT IGNORE INTO plots "
-									+ "(name,location,owner,friends,coowners) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+									+ "(name,location,owner,friends,coowners) VALUES (?,?,?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 			prep.setString(1, plot.getName());
 			prep.setString(2, Serializer.serializeLocation(plot.getLocation()));
-			prep.setString(4, plot.getOwner().toString());
-			prep.setString(15, Serializer.serializeUUIDList(plot.getFriends()));
-			prep.setString(16, Serializer.serializeUUIDList(plot.getCoowners()));
+			prep.setString(3, plot.getOwner().toString());
+			prep.setString(4, Serializer.serializeUUIDList(plot.getFriends()));
+			prep.setString(5, Serializer.serializeUUIDList(plot.getCoowners()));
 			prep.execute();
 			final ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;

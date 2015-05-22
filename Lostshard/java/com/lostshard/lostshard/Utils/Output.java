@@ -530,7 +530,13 @@ public class Output {
 	public static void simpleError(CommandSender sender, String message) {
 		sender.sendMessage(ChatColor.DARK_RED + message);
 	}
-
+	
+	public static void displayTitles(Player player) {
+		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Titles-");
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		for(String title : pPlayer.getTitels())
+			player.sendMessage(ChatColor.YELLOW+" - "+ChatColor.WHITE+title);
+	}
+	
 	static PlayerManager pm = PlayerManager.getManager();
-
 }

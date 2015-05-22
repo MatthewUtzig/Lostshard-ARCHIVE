@@ -310,7 +310,6 @@ public class PseudoPlayer {
 	}
 
 	public Skill getSkillByName(String name) {
-		final Skill skill = null;
 		if (name.equalsIgnoreCase("mining"))
 			return this.getCurrentBuild().getMining();
 		else if (name.equalsIgnoreCase("lumberjacking"))
@@ -335,7 +334,8 @@ public class PseudoPlayer {
 			return this.getCurrentBuild().getSurvivalism();
 		else if (name.equalsIgnoreCase("taming"))
 			return this.getCurrentBuild().getTaming();
-		return skill;
+		else
+			return null;
 	}
 
 	public Location getSpawn() {
