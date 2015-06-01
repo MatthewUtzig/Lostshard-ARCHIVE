@@ -20,7 +20,7 @@ public class StoreMapper implements LostshardConnection {
 					"INSERT IGNORE INTO stores (npcId,content) VALUES (?,?);",
 					Statement.RETURN_GENERATED_KEYS);
 			prep.setInt(1, store.getNpcId());
-			prep.setString(2, "");
+			prep.setString(2, store.getAsJson());
 			prep.execute();
 			final ResultSet rs = prep.getGeneratedKeys();
 			int id = 0;
@@ -36,7 +36,6 @@ public class StoreMapper implements LostshardConnection {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public static List<Store> getStores() {
 		List<Store> stores = new ArrayList<Store>();
 		try {
@@ -51,7 +50,7 @@ public class StoreMapper implements LostshardConnection {
 					int npcID = rs.getInt("npcId");
 					String content = rs.getString("content");
 
-					Store store = new Store(npcID);
+					Store store = new Store(npcID, content);
 					store.setId(id);
 
 					stores.add(store);

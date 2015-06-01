@@ -18,6 +18,10 @@ public class Store {
 		this.npcId = npcID;
 	}
 
+	public Store(int npcID, String content) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addItem(StoreItem item) {
 		int id = 0;
 		for (final StoreItem si : this.items)
