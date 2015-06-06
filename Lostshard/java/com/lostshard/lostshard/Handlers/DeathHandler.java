@@ -237,6 +237,11 @@ public class DeathHandler {
 		// event.setDroppedExp(event.getDroppedExp() * 2);
 
 		// Start of Horse
+		
+		if(entity.getLastDamageCause() == null) {
+			event.getDrops().clear();
+			return;
+		}
 
 		if (entity instanceof Horse)
 			event.getDrops().clear();

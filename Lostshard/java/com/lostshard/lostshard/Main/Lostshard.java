@@ -9,6 +9,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.lostshard.Skyland.SkyLand;
+import com.lostshard.Whitelist.KeyPlayerListener;
 import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
 import com.lostshard.lostshard.Commands.BlackSmithyCommand;
@@ -44,7 +46,6 @@ import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.ItemUtils;
-import com.lostshard.whitelistkey.KeyPlayerListener;
 
 /**
  * @author Jacob Rosborg
@@ -52,6 +53,8 @@ import com.lostshard.whitelistkey.KeyPlayerListener;
  */
 public class Lostshard extends JavaPlugin {
 
+	private SkyLand skyland;
+	
 	public static BukkitTask getGameLoop() {
 		return gameLoop;
 	}
@@ -179,9 +182,19 @@ public class Lostshard extends JavaPlugin {
 		PlotMapper.getPlots();
 		ChestRefillMapper.getChests();
 
+		skyland = new SkyLand("Skyland", "1e8e7f4c-6293-40fd-91fb-1d828d59cc26");
+		
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
+	}
+
+	public SkyLand getSkyland() {
+		return skyland;
+	}
+
+	public void setSkyland(SkyLand skyland) {
+		this.skyland = skyland;
 	}
 
 }

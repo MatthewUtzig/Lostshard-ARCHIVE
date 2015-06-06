@@ -30,6 +30,7 @@ public class LotteryManager {
 		if (this.getLottery() != null) {
 			final Lottery lottery = this.getLottery();
 			lottery.timesup();
+			this.lottery = null;
 		} else {
 			this.setLottery(new Lottery());
 			Bukkit.broadcastMessage(ChatColor.GREEN

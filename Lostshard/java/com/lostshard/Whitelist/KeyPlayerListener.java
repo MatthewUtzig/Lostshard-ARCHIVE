@@ -1,4 +1,4 @@
-package com.lostshard.whitelistkey;
+package com.lostshard.Whitelist;
 
 import net.md_5.bungee.api.ChatColor;
 

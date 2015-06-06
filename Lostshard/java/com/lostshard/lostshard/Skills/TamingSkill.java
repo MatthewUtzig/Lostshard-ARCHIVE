@@ -139,7 +139,7 @@ public class TamingSkill extends Skill {
 	}
 
 	public void callPets() {
-
+		
 	}
 
 	public int getDoogs() {

@@ -106,5 +106,6 @@ public class Lottery {
 				if (!op.isOnline())
 					PlayerMapper.updatePlayer(pP);
 			}
+		Bukkit.broadcastMessage(ChatColor.GREEN+"The Lottery is over.");
 	}
 }

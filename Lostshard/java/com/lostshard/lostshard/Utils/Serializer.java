@@ -1,5 +1,6 @@
 package com.lostshard.lostshard.Utils;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.lostshard.lostshard.Main.Lostshard;
 
@@ -25,23 +27,30 @@ public class Serializer {
 		return gson.fromJson(integerArray, int[].class);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("serial")
 	public static ItemStack[] deserializeItems(String string) {
 		ItemStack[] rs;
 		try {
-			final List<Map<String, Object>> stacks = gson.fromJson(string,
-					new ArrayList<Map<String, Object>>().getClass());
+			Type itemlist = new TypeToken<List<Map<String, Object>>>(){}.getType();
+			final List<Map<String, Object>> stacks = gson.fromJson(string, itemlist);
 			rs = new ItemStack[stacks.size()];
 			for (int i = 0; i < stacks.size(); i++) {
-				final Map<String, Object> map = stacks.get(i);
-				if (map.containsKey("damage"))
-					map.replace("damage",
-							((Number) map.get("damage")).shortValue());
-
-				if (map.containsKey("amount"))
-					map.replace("amount",
-							((Number) map.get("amount")).intValue());
-				rs[i] = ItemStack.deserialize(map);
+				try {
+					final Map<String, Object> map = stacks.get(i);
+					if (map.containsKey("damage"))
+						map.replace("damage",
+								((Number) map.get("damage")).shortValue());
+	
+					if (map.containsKey("amount"))
+						map.replace("amount",
+								((Number) map.get("amount")).intValue()); 
+					rs[i] = ItemStack.deserialize(map);
+				} catch(final Exception e) {
+					Lostshard.log.log(Level.WARNING, "[Inventory-Serialization] Single item"
+							+ string);
+					e.printStackTrace();
+					rs[i] = new ItemStack(Material.AIR);
+				}
 			}
 			return rs;
 		} catch (final Exception e) {
@@ -52,7 +61,7 @@ public class Serializer {
 		rs = new ItemStack[] { new ItemStack(Material.AIR) };
 		return rs;
 	}
-
+	
 	public static Location deserializeLocation(String locationString) {
 		try {
 			final Object jo = parser.parse(locationString);

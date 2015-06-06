@@ -1,4 +1,4 @@
-package com.lostshard.whitelistkey;
+package com.lostshard.Whitelist;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

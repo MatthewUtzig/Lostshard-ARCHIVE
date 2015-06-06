@@ -30,8 +30,6 @@ import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Objects.InventoryGUI.GUI;
-import com.lostshard.lostshard.Objects.InventoryGUI.PlotGUI;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.lostshard.Objects.Plot.PlotUpgrade;
@@ -185,17 +183,17 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			final Player player = (Player) sender;
-			final PseudoPlayer pPlayer = pm.getPlayer(player);
-			if (args.length < 1) {
-				Plot plot = ptm.findPlotAt(player.getLocation());
-				if(plot != null) {
-					GUI gui = new PlotGUI(pPlayer, plot);
-					gui.openInventory(player);
-				}else{
-					Output.simpleError(player, "Theres no plot here, try /help plot");
-				}
-				return true;
-			}
+//			final PseudoPlayer pPlayer = pm.getPlayer(player);
+//			if (args.length < 1) {
+//				Plot plot = ptm.findPlotAt(player.getLocation());
+//				if(plot != null) {
+//					GUI gui = new PlotGUI(pPlayer, plot);
+//					gui.openInventory(player);
+//				}else{
+//					Output.simpleError(player, "Theres no plot here, try /help plot");
+//				}
+//				return true;
+//			}
 			final String plotCommand = args[0];
 			if (plotCommand.equalsIgnoreCase("help"))
 				HelpHandler.helpLandOwnership(sender, new String[0]);
