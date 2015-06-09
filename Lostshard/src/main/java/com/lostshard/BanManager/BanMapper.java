@@ -48,7 +48,7 @@ public class BanMapper implements LostshardConnection {
 	public static boolean isBanned() {
 		try {
 			final Connection conn = ds.getConnection();
-			final PreparedStatement prep = conn.prepareStatement("");
+			final PreparedStatement prep = conn.prepareStatement("SELECT FROM `bans` ");
 			prep.execute();
 			conn.close();
 		} catch (Exception e) {

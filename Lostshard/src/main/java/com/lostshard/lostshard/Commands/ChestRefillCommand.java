@@ -108,7 +108,6 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 		cr.setItems(((Chest) block.getState()).getInventory().getContents());
 	}
 
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("dc")) {
@@ -149,7 +148,6 @@ public class ChestRefillCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

@@ -544,7 +544,6 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 			return false;
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("clan") && args.length == 1)

@@ -38,7 +38,6 @@ public class TamingCommand implements CommandExecutor, TabCompleter {
 		return false;
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

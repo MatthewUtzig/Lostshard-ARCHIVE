@@ -21,7 +21,7 @@ public class KeyPlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerJoin(PlayerLoginEvent event) {
 		final boolean allowed = km.isWhitelisted(event.getPlayer().getUniqueId());
-		if(!allowed) {
+		if(!(allowed || event.getPlayer().isWhitelisted())) {
 			event.disallow(Result.KICK_WHITELIST, ChatColor.RED+"You are not a beta tester \n "+ChatColor.GOLD+"http://lostshard.com/beta-tester");
 		}
 	}	

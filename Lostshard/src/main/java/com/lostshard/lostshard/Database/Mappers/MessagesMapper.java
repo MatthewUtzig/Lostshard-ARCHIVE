@@ -16,7 +16,7 @@ public class MessagesMapper implements LostshardConnection {
 		try {
 			final Connection conn = ds.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("DELETE FROM offlineMessages WHERE player=?;");
+					.prepareStatement("DELETE FROM offlinemessages WHERE player=?;");
 			prep.setString(1, uuid.toString());
 			prep.execute();
 			conn.close();
@@ -33,7 +33,7 @@ public class MessagesMapper implements LostshardConnection {
 		try {
 			final Connection conn = ds.getConnection();
 			final PreparedStatement prep = conn
-					.prepareStatement("SELECT * FROM offlineMessages WHERE player=?;");
+					.prepareStatement("SELECT * FROM offlinemessages WHERE player=?;");
 			prep.setString(1, uuid.toString());
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();

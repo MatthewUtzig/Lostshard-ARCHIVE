@@ -87,7 +87,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		player.openInventory(tPlayer.getInventory());
 	}
 
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("admin")) {
@@ -235,7 +234,6 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 				+ " has given you " + amount + "gc.");
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		return null;

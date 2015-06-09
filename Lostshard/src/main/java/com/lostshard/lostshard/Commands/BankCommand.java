@@ -68,7 +68,6 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 
 	}
 
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (cmd.getName().equalsIgnoreCase("bank"))
@@ -82,7 +81,6 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("pay"))

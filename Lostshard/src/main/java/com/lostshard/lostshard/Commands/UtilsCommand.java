@@ -287,7 +287,6 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		}
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("private")

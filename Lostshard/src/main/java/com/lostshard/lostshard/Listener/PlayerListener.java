@@ -203,7 +203,8 @@ public class PlayerListener implements Listener {
 			if (p != player)
 				p.sendMessage(ChatColor.YELLOW + player.getName()
 						+ " joined the game");
-		MessagesMapper.deleteMessages(player.getUniqueId());
+		if(!msgs.isEmpty())
+			MessagesMapper.deleteMessages(player.getUniqueId());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

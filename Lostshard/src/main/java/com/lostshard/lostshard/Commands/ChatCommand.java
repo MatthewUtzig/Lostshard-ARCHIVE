@@ -134,7 +134,6 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 					+ ChatColor.WHITE + "] " + message);
 	}
 
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string,
 			String[] args) {
 		if (!(sender instanceof Player)) {
@@ -165,7 +164,6 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
-	@Override
 	public List<String> onTabComplete(CommandSender sender, Command cmd,
 			String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1)
