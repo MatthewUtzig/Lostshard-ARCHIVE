@@ -54,11 +54,13 @@ public class PlayerManager {
 	}
 
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		final List<PseudoPlayer> list = new ArrayList<PseudoPlayer>();
 		final PseudoPlayer pPlayer = this.getPlayer(event.getPlayer());
-		list.add(pPlayer);
+		if(pPlayer.getParty() != null) {
+			pPlayer.getParty().removeMember(event.getPlayer().getUniqueId());
+			pPlayer.getParty().sendMessage(event.getPlayer().getName() + " has left the party.");
+		}
 		System.out.println("updateing on quit");
-		PlayerMapper.updatePlayers(list);
+		PlayerMapper.updatePlayer(pPlayer);
 		System.out.println("updated on quit");
 		this.players.remove(pPlayer);
 	}

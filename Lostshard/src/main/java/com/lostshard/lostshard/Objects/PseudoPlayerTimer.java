@@ -107,12 +107,15 @@ public class PseudoPlayerTimer {
 		this.recentAttackersTick();
 		if (this.spawnTicks > 0)
 			this.spawnTicks--;
-		if (this.player.getCriminal() > 0)
+		if (this.player.getCriminal() > 0) {
 			this.player.setCriminal(this.player.getCriminal() - 1);
+			if(this.player.getCriminal() <= 0)
+				this.player.getScoreboard().updateTeams();
+		}
 		if (this.player.getPvpTicks() > 0)
 			this.player.setPvpTicks(this.player.getPvpTicks() - 1);
 		if (this.player.getEngageInCombatTicks() > 0)
-			this.player.setPvpTicks(this.player.getEngageInCombatTicks() - 1);
+			this.player.setEngageInCombatTicks(this.player.getEngageInCombatTicks() - 1);
 		if (this.delayedSpell != null && this.player.getPromptedSpell() == null)
 			this.delayedSpell.tick(this.player.getOnlinePlayer());
 		if (this.chronoport != null)

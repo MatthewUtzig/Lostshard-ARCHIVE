@@ -50,8 +50,7 @@ public class PseudoScoreboard {
 
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 
-		this.stats.setDisplayName(ChatColor.GOLD + "-" + "Your"
-				+ " Statistics-");
+		this.stats.setDisplayName(ChatColor.GOLD + "- Statistics -");
 
 		this.gc.setScore(pPlayer.getMoney());
 

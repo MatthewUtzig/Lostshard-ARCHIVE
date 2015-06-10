@@ -290,7 +290,6 @@ public class SpellManager {
 			Spell spell) {
 		if (pseudoPlayer.getCurrentBuild().getMagery().isLocked())
 			return;
-
 		final int curSkill = pseudoPlayer.getCurrentBuild().getMagery()
 				.getLvl();
 		if (curSkill < 1000
@@ -302,8 +301,8 @@ public class SpellManager {
 				// possible to gain (within 20 skill points)
 				percentChance = (double) (1000 - curSkill) / 1000;
 				// we don't want it to be TOOOO hard to gain skill
-				if (percentChance < this.minPercentChanceSkillGain) {
-					final int gain = pseudoPlayer.getCurrentBuild().getMining()
+				if (percentChance > this.minPercentChanceSkillGain) {
+					final int gain = pseudoPlayer.getCurrentBuild().getMagery()
 							.skillGain(pseudoPlayer);
 					Output.gainSkill(player, "Magery", gain, curSkill);
 				}
@@ -315,6 +314,7 @@ public class SpellManager {
 		player.sendMessage(ChatColor.DARK_GRAY + "The spell fizzles.");
 		player.getWorld().playEffect(player.getLocation(), Effect.EXTINGUISH,
 				15);
+		takeRegs(player, spell.getReagentCost());
 	}
 
 	public void takeRegs(Player player, List<ItemStack> list) {

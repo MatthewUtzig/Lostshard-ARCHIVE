@@ -5,10 +5,12 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -30,6 +32,7 @@ import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.lostshard.Database.Mappers.MessagesMapper;
@@ -55,6 +58,7 @@ import com.lostshard.lostshard.Skills.TamingSkill;
 import com.lostshard.lostshard.Spells.Structures.FireWalk;
 import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.lostshard.Utils.SpellUtils;
 
 public class PlayerListener implements Listener {
 
@@ -171,6 +175,15 @@ public class PlayerListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		foodHealHandler.foodHeal(event);
 		sm.onPlayerInteract(event);
+		
+		Player p = event.getPlayer();
+		Block b = event.getClickedBlock();
+		Action a = event.getAction();
+		if(a.equals(Action.RIGHT_CLICK_BLOCK) && b != null && b.getState() instanceof InventoryHolder) {
+			Block block = SpellUtils.blockInLOS(p, 6);
+			if(block != null && !(block.getState() instanceof InventoryHolder))
+				event.setCancelled(true);
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

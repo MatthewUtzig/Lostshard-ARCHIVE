@@ -1296,17 +1296,14 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		final int numPlots = plots.size();
 
 		// First, determine if we are currently in a plot
-		boolean inPlot = false;
-		if (plot != null) {
-			inPlot = true;
+		if (plot != null && !plot.isCoowner(player)) {
 			Output.positiveMessage(player, "-Plot Survey Results-");
 			player.sendMessage(ChatColor.YELLOW + "You " + ChatColor.RED
 					+ "can't" + ChatColor.YELLOW + " create a plot here.");
 			player.sendMessage(ChatColor.YELLOW
 					+ "You are currently in the plot \"" + plot.getName()
 					+ "\".");
-
-			// return;
+			return;
 		}
 
 		// Determine the max range
@@ -1341,33 +1338,110 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 				plotsInRange.add(p);
 		}
 
-		if (!inPlot)
-			// If there are no plots within range
-			if (plotsInRange.size() == 0) {
-				Output.positiveMessage(player, "-Plot Survey Results-");
-				player.sendMessage(ChatColor.YELLOW + "You " + ChatColor.GOLD
-						+ "can" + ChatColor.YELLOW + " create a plot here.");
-				player.sendMessage(ChatColor.YELLOW
-						+ "There are no plots within " + range
-						+ " blocks of here.");
+		// If there are no plots within range
+		if (plotsInRange.isEmpty()) {
+			Output.positiveMessage(player, "-Plot Survey Results-");
+			player.sendMessage(ChatColor.YELLOW + "You " + ChatColor.GOLD
+					+ "can" + ChatColor.YELLOW + " create a plot here.");
+			player.sendMessage(ChatColor.YELLOW
+					+ "There are no plots within " + range
+					+ " blocks of here.");
 
-				final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
-				int plotsThisWeek = 0;
-				if (plotCreatePoints > 0)
-					plotsThisWeek = plotCreatePoints / 7;
-				int plotMoneyCost = Variables.plotCreatePrice;
-				int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
-				// for each owned plot, double the price
-				for (int i = 0; i < plotsThisWeek; i++) {
-					plotMoneyCost *= 2;
-					plotDiamondCost *= 2;
-				}
-
-				player.sendMessage(ChatColor.YELLOW + "It would cost "
-						+ plotMoneyCost + " gc and " + plotDiamondCost
-						+ " diamonds to create a size 10 plot here.");
-				return;
+			final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
+			int plotsThisWeek = 0;
+			if (plotCreatePoints > 0)
+				plotsThisWeek = plotCreatePoints / 7;
+			int plotMoneyCost = Variables.plotCreatePrice;
+			int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
+			// for each owned plot, double the price
+			for (int i = 0; i < plotsThisWeek; i++) {
+				plotMoneyCost *= 2;
+				plotDiamondCost *= 2;
 			}
+
+			player.sendMessage(ChatColor.YELLOW + "It would cost "
+					+ plotMoneyCost + " gc and " + plotDiamondCost
+					+ " diamonds to create a size 10 plot here.");
+			return;
+		}
+		
+		// If there ARE plots within range
+		double closestDist = 99999;
+		Plot closestPlot = null;
+		int numPlotsInRange = plotsInRange.size();
+		for(int i=0; i<numPlotsInRange; i++) {
+			Plot p = plotsInRange.get(i);
+			int border;
+			if(p.isCoownerOrAbove(player)) {
+				border = p.getSize();
+			}
+			else {
+				if(p.getUpgrades().contains(PlotUpgrade.TOWN))
+					border = p.getSize() * 2;
+				else
+					border = (int)Math.ceil(p.getSize() * 1.5);
+			}
+				
+			// Determine the distance from the player to the border of the plot
+			double dist = Utils.distance(curLoc, p.getLocation()) - border;
+			//System.out.println("Dist to "+p.getName()+" - "+dist);
+			
+			if(dist < closestDist) {
+				closestDist = dist;
+				closestPlot = p;
+			}
+		}
+		
+		if(plot != null && plot.isCoownerOrAbove(player)) {
+			if(closestPlot != null) {
+				player.sendMessage(ChatColor.YELLOW+"The nearest plot is \""+closestPlot.getName()+"\"");
+				player.sendMessage(ChatColor.YELLOW+"it is "+(Variables.plotStartingSize+(int)closestDist-10)+" blocks from here.");
+			}
+			
+			if(closestDist > range)
+				closestDist = range;
+			
+			player.sendMessage(ChatColor.YELLOW+"If you expanded this plot, you could expand it to at least size "+(Variables.plotStartingSize+(int)(closestDist-10)));
+			return;
+		}
+		
+		// Pretty much can't happen, but I'm checking for it anyway
+		if(closestPlot == null) {
+			Output.simpleError(player, "Something went wrong, tell an admin =(");
+			return;
+		}
+		
+		// Determine whether the closest plot border is within 10 blocks of the player's position (plot minimum size)
+		if(closestDist <= Variables.plotStartingSize) {
+			Output.positiveMessage(player, "-Plot Survey Results-");
+			player.sendMessage(ChatColor.YELLOW+"You "+ChatColor.RED+"cannot"+ChatColor.YELLOW+" create a plot here.");
+			player.sendMessage(ChatColor.YELLOW+"This location is too close to the plot");
+			player.sendMessage(ChatColor.YELLOW+"\""+closestPlot.getName()+"\".");
+			return;
+		}
+		
+		// We are not within the min plot size of an existing plot
+		Output.positiveMessage(player, "-Plot Survey Results-");
+		player.sendMessage(ChatColor.YELLOW+"You "+ChatColor.GOLD+"can"+ChatColor.YELLOW+" create a plot here.");
+		player.sendMessage(ChatColor.YELLOW+"The nearest plot is \""+closestPlot.getName()+"\"");
+		player.sendMessage(ChatColor.YELLOW+"it is "+(Variables.plotStartingSize+(int)closestDist-10)+" blocks from here. If you created a");
+		player.sendMessage(ChatColor.YELLOW+"plot here, you could expand it to about size "+(Variables.plotStartingSize+(int)(closestDist-10)));
+		
+		int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
+		int plotsThisWeek = 0;
+		if(plotCreatePoints > 0) {
+			plotsThisWeek = (plotCreatePoints/7);
+		}
+		int plotMoneyCost = Variables.plotCreatePrice;
+		int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
+		// for each owned plot, double the price
+		for(int i=0; i<plotsThisWeek; i++) {
+			plotMoneyCost *= 2;
+			plotDiamondCost *= 2;
+		}
+		
+		player.sendMessage(ChatColor.YELLOW+"It would cost $"+plotMoneyCost+" and "+plotDiamondCost+" diamonds to create a size 10 plot here.");
+		return;
 	}
 
 	/**

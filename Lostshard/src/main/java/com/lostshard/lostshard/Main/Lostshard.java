@@ -9,6 +9,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.lostshard.Crates.CrateManager;
+import com.lostshard.Crates.CratePlayerListener;
 import com.lostshard.Skyland.SkyLand;
 import com.lostshard.Whitelist.KeyPlayerListener;
 import com.lostshard.lostshard.Commands.AdminCommand;
@@ -28,11 +30,13 @@ import com.lostshard.lostshard.Commands.StoreCommand;
 import com.lostshard.lostshard.Commands.SurvivalismCommand;
 import com.lostshard.lostshard.Commands.TamingCommand;
 import com.lostshard.lostshard.Commands.UtilsCommand;
+import com.lostshard.lostshard.Data.Locations;
 import com.lostshard.lostshard.Database.DataSource;
 import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Database.Mappers.ChestRefillMapper;
 import com.lostshard.lostshard.Database.Mappers.ClanMapper;
 import com.lostshard.lostshard.Database.Mappers.PermanentGateMapper;
+import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Listener.BlockListener;
 import com.lostshard.lostshard.Listener.CitizensLisenter;
@@ -44,6 +48,8 @@ import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Objects.PseudoScoreboard;
 import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.ItemUtils;
 
@@ -124,7 +130,12 @@ public class Lostshard extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		for (final Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED + "Server restarting.");
+		{
+			final Player player = p;
+			final PseudoPlayer pPlayer = pm.getPlayer(player);
+			PlayerMapper.updatePlayer(pPlayer);
+			pm.getPlayers().remove(pPlayer);
+		}
 		MagicStructure.removeAll();
 		// Database.saveAll();
 		CustomSchedule.stopSchedule();
@@ -133,6 +144,7 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		ItemUtils.addChainMail();
 		this.saveDefaultConfig();
 
 		ConfigManager.getManager().setConfig(this);
@@ -153,6 +165,7 @@ public class Lostshard extends JavaPlugin {
 		new WorldListener(this);
 		new CitizensLisenter(this);
 		new KeyPlayerListener(this);
+		new CratePlayerListener(this);
 		// Commands
 		new PlotCommand(this);
 		new ChatCommand(this);
@@ -171,7 +184,6 @@ public class Lostshard extends JavaPlugin {
 		new SurvivalismCommand(this);
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
-		ItemUtils.addChainMail();
 
 		Lostshard.setPlugin(this);
 
@@ -181,12 +193,21 @@ public class Lostshard extends JavaPlugin {
 		ClanMapper.getClans();
 		PlotMapper.getPlots();
 		ChestRefillMapper.getChests();
-
+		
+		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int)Locations.LAWFULL.getLocation().getX(), (int)Locations.LAWFULL.getLocation().getY(), (int)Locations.LAWFULL.getLocation().getZ());
+		
 		skyland = new SkyLand("Skyland", "1e8e7f4c-6293-40fd-91fb-1d828d59cc26");
+		
+		CrateManager.getManager().createCrates();
 		
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			final PseudoPlayer pPlayer = pm.getPlayer(p);
+			pm.getPlayers().add(pPlayer);
+			pPlayer.setScoreboard(new PseudoScoreboard(p.getUniqueId()));
+		}
 	}
 
 	public SkyLand getSkyland() {

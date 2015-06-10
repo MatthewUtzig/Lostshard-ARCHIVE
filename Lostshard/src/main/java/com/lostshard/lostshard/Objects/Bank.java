@@ -1,6 +1,7 @@
 package com.lostshard.lostshard.Objects;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,6 +18,17 @@ public class Bank {
 		else
 			this.inventory = Bukkit.createInventory(null, 27, "Small bank");
 		this.setInventory(bankData);
+	}
+	
+	public Bank(boolean large) {
+		super();
+		if (large)
+			this.inventory = Bukkit.createInventory(null, 54, "Large bank");
+		else
+			this.inventory = Bukkit.createInventory(null, 27, "Small bank");
+		this.inventory.addItem(new ItemStack(Material.GOLD_INGOT, 32));
+		this.inventory.addItem(new ItemStack(Material.DIAMOND, 3));
+		this.inventory.addItem(new ItemStack(Material.MELON, 10));
 	}
 
 	public Inventory getInventory() {

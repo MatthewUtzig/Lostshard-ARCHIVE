@@ -180,7 +180,7 @@ public class PVPHandler {
 		// add pvp ticks
 		pseudoPlayerDefender.setPvpTicks(150); // 10 seconds
 		pseudoPlayerDefender.setEngageInCombatTicks(300);
-		; // attacker attacked someone, he is engaging in combat
+		// attacker attacked someone, he is engaging in combat
 
 		pseudoPlayerAttacker.setPvpTicks(150);
 		pseudoPlayerAttacker.setEngageInCombatTicks(300); // attacker attacked

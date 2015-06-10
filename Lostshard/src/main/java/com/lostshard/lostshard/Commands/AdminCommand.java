@@ -15,13 +15,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import com.lostshard.Crates.Crate;
+import com.lostshard.Crates.CrateManager;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
-import com.lostshard.lostshard.Spells.Scroll;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Title;
 import com.lostshard.lostshard.Utils.Utils;
@@ -141,10 +142,10 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 				return true;
 			}
 			final Player player = (Player) sender;
-			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			for (final Scroll scroll : Scroll.values())
-				pPlayer.addSpell(scroll);
-			test(player.getUniqueId(), player);
+			CrateManager cm = CrateManager.getManager();
+			Crate crate = cm.getCrates().get(0);
+			player.getWorld().dropItem(player.getLocation(), crate.getCrate());
+			Output.positiveMessage(player, "You got a key");
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
 			if(!sender.isOp()) {
@@ -185,7 +186,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 
-	private void test(UUID uuid, Player player) {
+	public void test(UUID uuid, Player player) {
 		long time = System.nanoTime();
 		PseudoPlayer pPlayer;
 		pPlayer = PlayerMapper.getPlayer(uuid);
