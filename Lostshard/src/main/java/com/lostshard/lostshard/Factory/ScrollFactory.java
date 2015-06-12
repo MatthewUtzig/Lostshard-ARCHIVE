@@ -1,142 +1,115 @@
 package com.lostshard.lostshard.Factory;
 
-import java.util.Random;
-
 import org.bukkit.entity.EntityType;
 
+import com.lostshard.Utils.RandomSelector;
 import com.lostshard.lostshard.Spells.Scroll;
 
 public class ScrollFactory {
-
+	
+	private final RandomSelector zombie;
+	private final RandomSelector skeleton;
+	private final RandomSelector spider;
+	private final RandomSelector creeper;
+	private final RandomSelector tier1;
+	private final RandomSelector tier2;
+	private final RandomSelector tier3;
+	private final RandomSelector boss;
+	
+	
+	
+	public ScrollFactory() {
+		zombie = new RandomSelector();
+		zombie.add(1, Scroll.GRASS);
+		zombie.add(1, Scroll.FLOWERS);
+		zombie.add(1, Scroll.LIGHT);
+		zombie.add(1, Scroll.CREATEFOOD);
+		
+		skeleton = new RandomSelector();
+		skeleton.add(1, Scroll.ICEBALL);
+		skeleton.add(1, Scroll.FIREFIELD);
+		skeleton.add(1, Scroll.HEALSELF);
+		skeleton.add(1, Scroll.HEALOTHER);
+		skeleton.add(1, Scroll.FIREWALK);
+		skeleton.add(1, Scroll.SUMMONANIMAL);
+		skeleton.add(1, Scroll.SLOWFIELD);
+		skeleton.add(1, Scroll.FORCEPUSH);
+		skeleton.add(1, Scroll.CHRONOPORT);
+		skeleton.add(1, Scroll.DETECTHIDDEN);
+		
+		spider = new RandomSelector();
+		spider.add(1, Scroll.TELEPORT);
+		spider.add(2, Scroll.MARK);
+		spider.add(1, Scroll.RECALL);
+		spider.add(1, Scroll.BRIDGE);
+		spider.add(1, Scroll.WALLOFSTONE);
+		
+		creeper = new RandomSelector();
+		creeper.add(1, Scroll.GATETRAVEL);
+		creeper.add(1, Scroll.CLANTELEPORT);
+		creeper.add(1, Scroll.FIREBALL);
+		creeper.add(1, Scroll.LIGHTNING);
+		creeper.add(1, Scroll.STONESKIN);
+		creeper.add(0.25, Scroll.PERMANENTGATETRAVEL);
+		creeper.add(0.25, Scroll.MOONJUMP);
+		creeper.add(0.25, Scroll.ARROWBLAST);
+		creeper.add(1, Scroll.RECALL);
+		
+		tier1 = new RandomSelector();
+		for(Scroll s : Scroll.values())
+			tier1.add(1, s);
+		
+		tier2 = new RandomSelector();
+		for(Scroll s : Scroll.values())
+			tier2.add(1, s);
+		
+		tier3 = new RandomSelector();
+		for(Scroll s : Scroll.values())
+			tier3.add(1, s);
+		
+		boss = new RandomSelector();
+		boss.add(1, Scroll.PERMANENTGATETRAVEL);
+		boss.add(1, Scroll.LIGHTNING);
+		boss.add(0.005, Scroll.FLARE);
+	}
+	
 	public Scroll getRandomScroll(EntityType type) {
-		final Random rand = new Random();
 		switch (type) {
 		case ZOMBIE:
-			switch (rand.nextInt(4)) {
-			case 0:
-				return Scroll.GRASS;
-			case 1:
-				return Scroll.FLOWERS;
-			case 2:
-				return Scroll.LIGHT;
-			default:
-				return Scroll.CREATEFOOD;
-			}
+			return (Scroll) zombie.getRandomObject();
 		case SKELETON:
-			switch (rand.nextInt(10)) {
-			case 0:
-				return Scroll.ICEBALL;
-			case 1:
-				return Scroll.FIREFIELD;
-			case 2:
-				return Scroll.HEALSELF;
-			case 3:
-				return Scroll.HEALOTHER;
-			case 4:
-				return Scroll.FIREWALK;
-			case 5:
-				return Scroll.SUMMONANIMAL;
-			case 6:
-				return Scroll.SLOWFIELD;
-			case 7:
-				return Scroll.FORCEPUSH;
-			case 8:
-				return Scroll.CHRONOPORT;
-			default:
-				return Scroll.DETECTHIDDEN;
-			}
+			return (Scroll) skeleton.getRandomObject();
 		case BLAZE:
-			return null;
+			return (Scroll) tier2.getRandomObject();
 		case CAVE_SPIDER:
 		case SPIDER:
-			switch (rand.nextInt(5)) {
-			case 0:
-				return Scroll.TELEPORT;
-			case 1:
-			case 2:
-				return Scroll.MARK;
-			case 3:
-				return Scroll.BRIDGE;
-			default:
-				return Scroll.WALLOFSTONE;
-			}
+			return (Scroll) spider.getRandomObject();
 		case CREEPER:
-			switch (rand.nextInt(27)) {
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-				return Scroll.GATETRAVEL;
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-				return Scroll.CLANTELEPORT;
-			case 9:
-			case 10:
-			case 11:
-			case 12:
-				return Scroll.FIREBALL;
-			case 13:
-			case 14:
-			case 15:
-			case 16:
-				return Scroll.LIGHTNING;
-			case 17:
-			case 18:
-			case 19:
-			case 20:
-				return Scroll.STONESKIN;
-			case 21:
-				return Scroll.PERMANENTGATETRAVEL;
-			case 22:
-				// return Scroll.DAY;
-				return null;
-			case 23:
-				// return Scroll.CLEARSKY;
-				return null;
-			case 24:
-				return Scroll.SUMMONMONSTER;
-			case 25:
-				return Scroll.MOONJUMP;
-			default:
-				return Scroll.ARROWBLAST;
-			}
+			return (Scroll) creeper.getRandomObject();
 		case GHAST:
-			switch (rand.nextInt(6)) {
-			case 0:
-				return Scroll.PERMANENTGATETRAVEL;
-			case 1:
-				// return Scroll.DAY;
-				return null;
-			case 2:
-				// return Scroll.CLEARSKY;
-				return null;
-			case 3:
-				return Scroll.MOONJUMP;
-			case 4:
-				return Scroll.SUMMONMONSTER;
-			default:
-				return Scroll.ARROWBLAST;
-			}
+			return (Scroll) tier2.getRandomObject();
 		case ENDERMAN:
-			return null;
+			return (Scroll) tier2.getRandomObject();
 		case ENDERMITE:
-			return null;
+			return (Scroll) tier1.getRandomObject();
 		case GUARDIAN:
-			return null;
+			return (Scroll) tier3.getRandomObject();
 		case PIG_ZOMBIE:
-			return null;
+			return (Scroll) tier2.getRandomObject();
 		case WITCH:
-			return null;
+			return (Scroll) tier3.getRandomObject();
 		case SILVERFISH:
-			return null;
+			return (Scroll) tier2.getRandomObject();
 		case ENDER_DRAGON:
-			return null;
+			return (Scroll) boss.getRandomObject();
 		case WITHER:
-			return null;
+			return (Scroll) boss.getRandomObject();
 		default:
 			return null;
 		}
+	}
+	
+	public RandomSelector getZombie() {
+		return zombie;
 	}
 }

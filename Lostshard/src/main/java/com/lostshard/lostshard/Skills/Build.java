@@ -135,4 +135,21 @@ public class Build {
 	public void setTaming(Skill taming) {
 		this.taming = taming;
 	}
+
+	public Skill getSkillByName(String name) {
+		
+		switch(name.toLowerCase()) {
+		case "mining": return this.getMining();
+		case "lumberjacking": this.getLumberjacking();
+		case "blacksmithy": this.getBlackSmithy();
+		case "blades": this.getBlades();
+		case "archery": this.getArchery();
+		case "brawling": this.getBrawling();
+		case "fishing": this.getFishing();
+		case "survivalism": this.getSurvivalism();
+		case "taming": return this.getTaming();
+		case "magery": return this.getMagery();
+		default: return null;
+		}
+	}
 }

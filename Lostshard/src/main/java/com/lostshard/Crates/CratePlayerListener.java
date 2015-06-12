@@ -36,7 +36,7 @@ public class CratePlayerListener implements Listener {
 					key.setAmount(key.getAmount()-1);
 				ItemStack item = crate.getItem();
 				player.getLocation().getWorld().dropItem(player.getLocation(), item);
-				Output.positiveMessage(player, "You have received "+item.getAmount()+" "+item.getType().name().toLowerCase()+"'s.");
+				Output.positiveMessage(player, "You have received "+item.getAmount()+" "+item.getType().name().toLowerCase().replace("_", " ")+"'s.");
 				event.setCancelled(true);
 			}
 		}

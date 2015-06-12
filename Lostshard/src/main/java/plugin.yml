@@ -203,3 +203,6 @@ commands:
       description: Displays all titles and allows you to use sub commands for activating title
       aliases: [titles]
       usage: /<command> (title)
+   resetallskills:
+      description: Resetallskills allows you to reset all your skills and increase one skill to 50
+      usage: /<command> (skill)

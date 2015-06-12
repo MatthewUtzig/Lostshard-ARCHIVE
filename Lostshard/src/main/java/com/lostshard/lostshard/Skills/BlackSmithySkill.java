@@ -371,7 +371,7 @@ public class BlackSmithySkill extends Skill {
 			return;
 		}
 
-		final double dblSkillVal = (double) skill.getLvl() / 1000;
+		final double dblSkillVal = (double) Math.max(skill.getLvl(), 200) / 1000;
 		final double rand = Math.random();
 		if (dblSkillVal >= rand) {
 			item.setDurability((short) 0);

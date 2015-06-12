@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Skills.Build;
 import com.lostshard.lostshard.Skills.Skill;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.Utils;
@@ -228,6 +229,7 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 	 */
 	public SkillCommand(Lostshard plugin) {
 		plugin.getCommand("skills").setExecutor(this);
+		plugin.getCommand("resetallskills").setExecutor(this);
 	}
 
 	@Override
@@ -236,13 +238,40 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 		if (cmd.getName().equalsIgnoreCase("skills")) {
 			skills(sender, args);
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("resetallskills")) {
+			resetallskills(sender, args);
+			return true;
 		}
 		return false;
 	}
 
+	private void resetallskills(CommandSender sender, String[] args) {
+		if(!(sender instanceof Player)) {
+			Output.simpleError(sender, "Only players may perform this command.");
+			return;
+		}
+		Player player = (Player) sender;
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(args.length < 1) {
+			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build());
+			pPlayer.update();
+			Output.positiveMessage(player, "Skills wiped, but you diden chose a skill to increase.");
+		}else if(args.length < 2){
+			Build build = new Build();
+			Skill skill = build.getSkillByName(args[0]);
+			if(skill == null) {
+				Output.simpleError(player, "You chose a invalid skill to increase.");
+				return;
+			}
+			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build());
+			Output.positiveMessage(player, "Skills wiped, "+skill.getName()+" set to 50.0");
+		}
+		pPlayer.update();
+	}
+
 	@Override
-	public List<String> onTabComplete(CommandSender arg0, Command arg1,
-			String arg2, String[] arg3) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd,
+			String strin, String[] args) {
 		// TODO Auto-generated method stub
 		return null;
 	}

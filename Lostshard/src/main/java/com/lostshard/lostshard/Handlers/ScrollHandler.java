@@ -14,6 +14,8 @@ import com.lostshard.lostshard.Utils.Output;
 
 public class ScrollHandler {
 
+	private static ScrollFactory sf = new ScrollFactory();
+	
 	public static void onEntityDeathEvent(EntityDeathEvent event) {
 		if (event.getEntity().getKiller() == null)
 			return;
@@ -25,7 +27,7 @@ public class ScrollHandler {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		final Entity entity = event.getEntity();
 		final EntityType type = entity.getType();
-		final Scroll scroll = new ScrollFactory().getRandomScroll(type);
+		final Scroll scroll = sf.getRandomScroll(type);
 		if (scroll != null) {
 			pPlayer.addScroll(scroll);
 			Output.positiveMessage(player, "The " + type.name().toLowerCase()

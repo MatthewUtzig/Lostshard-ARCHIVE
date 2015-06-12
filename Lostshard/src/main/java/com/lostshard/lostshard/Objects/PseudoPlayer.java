@@ -310,32 +310,7 @@ public class PseudoPlayer {
 	}
 
 	public Skill getSkillByName(String name) {
-		if (name.equalsIgnoreCase("mining"))
-			return this.getCurrentBuild().getMining();
-		else if (name.equalsIgnoreCase("lumberjacking"))
-			return this.getCurrentBuild().getLumberjacking();
-		else if (name.equalsIgnoreCase("blacksmithy"))
-			return this.getCurrentBuild().getBlackSmithy();
-		else if (name.equalsIgnoreCase("blades"))
-			return this.getCurrentBuild().getBlades();
-		else if (name.equalsIgnoreCase("archery"))
-			return this.getCurrentBuild().getArchery();
-		else if (name.equalsIgnoreCase("brawling"))
-			return this.getCurrentBuild().getBrawling();
-		else if (name.equalsIgnoreCase("fishing"))
-			return this.getCurrentBuild().getFishing();
-		else if (name.equalsIgnoreCase("lumberjacking"))
-			return this.getCurrentBuild().getLumberjacking();
-		else if (name.equalsIgnoreCase("magery"))
-			return this.getCurrentBuild().getMagery();
-		else if (name.equalsIgnoreCase("mining"))
-			return this.getCurrentBuild().getMining();
-		else if (name.equalsIgnoreCase("survivalism"))
-			return this.getCurrentBuild().getSurvivalism();
-		else if (name.equalsIgnoreCase("taming"))
-			return this.getCurrentBuild().getTaming();
-		else
-			return null;
+		return this.getCurrentBuild().getSkillByName(name);
 	}
 
 	public Location getSpawn() {

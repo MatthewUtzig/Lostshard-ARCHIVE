@@ -38,12 +38,14 @@ public class ScrollGUI extends GUI {
 			if (this.getPlayer().getSpellbook().containSpell(scroll))
 				return;
 			this.getPlayer().addSpell(scroll);
+			this.getPlayer().getScrolls().remove(scroll);
 			ScrollMapper.deleteScroll(scroll, this.getPlayer().getId());
 			this.getPlayer().update();
 			Output.positiveMessage(player,
 					"You have transferred " + scroll.getName()
 							+ " to your spellbook.");
-			this.forceClose();
+			this.getGUI().clear();
+			optionSelector();
 		} else if (event.getCurrentItem().getItemMeta().hasDisplayName()
 				&& event.getAction().equals(
 						InventoryAction.MOVE_TO_OTHER_INVENTORY)) {

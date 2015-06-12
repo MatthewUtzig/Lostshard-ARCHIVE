@@ -145,7 +145,11 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			CrateManager cm = CrateManager.getManager();
 			Crate crate = cm.getCrates().get(0);
 			player.getWorld().dropItem(player.getLocation(), crate.getCrate());
-			Output.positiveMessage(player, "You got a key");
+			
+			crate = cm.getCrates().get(1);
+			player.getWorld().dropItem(player.getLocation(), crate.getCrate());
+			
+			Output.positiveMessage(player, "You got a crate");
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
 			if(!sender.isOp()) {

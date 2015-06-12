@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -49,6 +50,12 @@ public class SkillsGUI extends GUI {
 					+ (skill.isLocked() ? ChatColor.RED + "yes"
 							: ChatColor.GREEN + "no"));
 			item.setLore(lore);
+			item.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+			item.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			item.addItemFlags(ItemFlag.HIDE_DESTROYS);
+			item.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+			item.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+			item.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 			event.getCurrentItem().setItemMeta(item);
 		}
 	}

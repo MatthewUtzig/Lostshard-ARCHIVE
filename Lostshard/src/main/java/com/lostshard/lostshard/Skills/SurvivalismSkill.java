@@ -536,6 +536,6 @@ public class SurvivalismSkill extends Skill {
 
 	@Override
 	public String howToGain() {
-		return "You can gain survivalism by caming and tracking";
+		return "You can gain survivalism by camping and tracking";
 	}
 }

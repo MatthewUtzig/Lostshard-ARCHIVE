@@ -485,6 +485,7 @@ public class Output {
 					+ Utils.getDecimalFormater().format(plot.getTax()) + ChatColor.YELLOW
 					+ ", Plot Value: " + ChatColor.WHITE
 					+ Utils.getDecimalFormater().format(plot.getValue()));
+			player.sendMessage(ChatColor.GRAY+"("+(plot.getMoney() / plot.getTax())+" days worth of funds remaining.)");
 			final int distanceFromCenter = (int) Math.round(Utils.distance(
 					player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE
