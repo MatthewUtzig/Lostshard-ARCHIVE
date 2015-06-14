@@ -423,13 +423,13 @@ public class PseudoPlayer {
 	}
 
 	public void setCriminal(int criminal) {
-		boolean yesupdate = true;
-		if (this.criminal > 0)
-			yesupdate = false;
 		this.criminal = criminal;
 		if (this.getScoreboard() != null)
-			if (!this.isMurderer() && this.isCriminal() && yesupdate)
+			if (!this.isMurderer() && this.isCriminal() && this.criminal <= 0) {
+				if(getOnlinePlayer() != null)
+					getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer()));
 				this.getScoreboard().updateTeams();
+			}
 		this.update();
 	}
 
@@ -522,6 +522,8 @@ public class PseudoPlayer {
 		this.murderCounts = Math.max(0, murderCounts);
 		if (this.scoreboard != null) {
 			this.getScoreboard().updateMurderCounts(this.murderCounts);
+			if(getOnlinePlayer() != null)
+				getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer()));
 			this.getScoreboard().updateTeams();
 		}
 		this.update();

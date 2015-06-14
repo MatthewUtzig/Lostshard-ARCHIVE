@@ -71,9 +71,8 @@ public class ChatHandler {
 					&& !ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
 		}
-		event.setFormat(prefix + " " + title
-				+ Utils.getDisplayName(event.getPlayer()) + ChatColor.WHITE
-				+ ": " + event.getMessage());
+		event.setFormat(prefix + " " + title + "%s" + ChatColor.WHITE
+				+ ": " + "%s");
 	}
 
 	public static void localChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
@@ -83,8 +82,8 @@ public class ChatHandler {
 				getLocalChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
-		event.setFormat(Utils.getDisplayName(event.getPlayer())
-				+ ChatColor.WHITE + ": " + event.getMessage());
+		event.setFormat(Utils.getDisplayColor(event.getPlayer()) + "%s"
+				+ ChatColor.WHITE + ": " + "%s");
 	}
 
 	public static void onPlayerChat(AsyncPlayerChatEvent event) {
@@ -149,8 +148,7 @@ public class ChatHandler {
 				getShoutChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
-		event.setFormat(Utils.getDisplayName(event.getPlayer())
-				+ ChatColor.WHITE + " shouts: " + event.getMessage());
+		event.setFormat("%s" + ChatColor.WHITE + " shouts: " + "%s");
 	}
 
 	public static void whisperChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
@@ -160,8 +158,7 @@ public class ChatHandler {
 				getWhisperChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
-		event.setFormat(Utils.getDisplayName(event.getPlayer())
-				+ ChatColor.WHITE + " whisper: " + event.getMessage());
+		event.setFormat("%s" + ChatColor.WHITE + " whisper: " + "%s");
 	}
 
 	static PlayerManager pm = PlayerManager.getManager();

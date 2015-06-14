@@ -124,6 +124,13 @@ public class Utils {
 				: pPlayer.isCriminal() ? ChatColor.GRAY + player.getName()
 						: ChatColor.BLUE + player.getName();
 	}
+	
+	public static ChatColor getDisplayColor(OfflinePlayer player) {
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
+		return pPlayer.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
+				: pPlayer.isCriminal() ? ChatColor.GRAY
+						: ChatColor.BLUE;
+	}
 
 	@SuppressWarnings("deprecation")
 	public static OfflinePlayer getOfflinePlayer(Player player, String[] args,

@@ -21,7 +21,7 @@ public class ScrollHandler {
 			return;
 		if (!(event.getEntity().getKiller() instanceof Player))
 			return;
-		if (Math.random() > .2)
+		if (Math.random() > .4)
 			return;
 		final Player player = event.getEntity().getKiller();
 		final PseudoPlayer pPlayer = pm.getPlayer(player);

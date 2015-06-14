@@ -231,14 +231,14 @@ public class DeathHandler {
 
 		final Random random = new Random();
 		final Entity entity = event.getEntity();
-
+		
 		// event.setDroppedExp(0);
 
 		// event.setDroppedExp(event.getDroppedExp() * 2);
 
 		// Start of Horse
 		
-		if(entity.getLastDamageCause() == null) {
+		if(!(entity instanceof Player) && (entity.getLastDamageCause() == null || event.getEntity().getKiller() == null) && !(entity instanceof Creeper && entity.getLastDamageCause().getCause().equals(DamageCause.PROJECTILE))) {
 			event.getDrops().clear();
 			return;
 		}
