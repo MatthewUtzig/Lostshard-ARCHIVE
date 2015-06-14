@@ -76,10 +76,7 @@ public class RunebookGUI extends GUI {
 
 			itemMeta.setDisplayName(ChatColor.GOLD + r.getLabel());
 
-			lore.add(ChatColor.GREEN + "Location:");
-			lore.add(ChatColor.YELLOW + "x:" + r.getLocation().getX());
-			lore.add(ChatColor.YELLOW + "y:" + r.getLocation().getX());
-			lore.add(ChatColor.YELLOW + "z:" + r.getLocation().getX());
+			lore.add(ChatColor.YELLOW + "XYZ: " + (r.getLocation().getX()+0.5)+"/"+(r.getLocation().getY()+0.5)+"/"+ (r.getLocation().getZ()+0.5));
 			lore.add("You can remove the rune by shift clicking it");
 			lore.add(ChatColor.GOLD + "Commands");
 			lore.add("/runebook give " + ChatColor.RED + "(player) (rune)");

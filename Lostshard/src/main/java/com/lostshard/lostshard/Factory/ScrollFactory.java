@@ -40,7 +40,7 @@ public class ScrollFactory {
 		spider = new RandomSelector();
 		spider.add(1, Scroll.TELEPORT);
 		spider.add(2, Scroll.MARK);
-		spider.add(1, Scroll.RECALL);
+		spider.add(2, Scroll.RECALL);
 		spider.add(1, Scroll.BRIDGE);
 		spider.add(1, Scroll.WALLOFSTONE);
 		

@@ -313,13 +313,23 @@ public class MageryCommand implements CommandExecutor, TabCompleter {
 
 				final String scrollName = StringUtils.join(args, "", 2,
 						args.length);
+				if(scrollName.equalsIgnoreCase("all") && player.isOp())
+				{
+					for(Scroll s : Scroll.values())
+						tpPlayer.addScroll(s);
+					Output.positiveMessage(player,
+							"You have given " + targetPlayer.getName()
+									+ " all scrolls.");
+					Output.positiveMessage(targetPlayer, player.getName()
+							+ " has given you all scrolls.");
+					return;
+				}
 				final Scroll scroll = Scroll.getByString(scrollName);
-				if (scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+				if ((scroll == null || !pPlayer.getScrolls().contains(scroll)) && !(player.isOp() || scroll != null)) {
 					Output.simpleError(player, "You do not have a scroll of "
 							+ scrollName + ".");
 					return;
 				}
-
 				pPlayer.getScrolls().remove(scroll);
 				tpPlayer.getScrolls().add(scroll);
 				ScrollMapper.updateScrollOwner(scroll, tpPlayer.getId(),

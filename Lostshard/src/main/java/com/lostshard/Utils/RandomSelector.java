@@ -23,7 +23,7 @@ public class RandomSelector {
 		double currentWeight = 0;
 		for(SelectorObject o : objects) {
 			if(o.getWeight()+currentWeight >= weight) {
-				return o;
+				return o.getObject();
 			}
 			currentWeight += o.getWeight();
 		}
