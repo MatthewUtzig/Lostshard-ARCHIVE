@@ -1,6 +1,5 @@
 package com.lostshard.lostshard.Listener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -12,6 +11,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -19,27 +19,31 @@ import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.spigotmc.event.entity.EntityDismountEvent;
 
 import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
+import com.lostshard.lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Manager.SpellManager;
+import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
 import com.lostshard.lostshard.Skills.BrawlingSkill;
 import com.lostshard.lostshard.Skills.LumberjackingSkill;
 import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Skills.TamingSkill;
+import com.lostshard.lostshard.Utils.Output;
 
 public class EntityListener implements Listener {
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
+	SpellManager sm = SpellManager.getManager();
 
 	public EntityListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -47,6 +51,7 @@ public class EntityListener implements Listener {
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
+		if(event.getEntity().hasMetadata("NPC")) return;
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);
@@ -61,12 +66,34 @@ public class EntityListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamaged(EntityDamageEvent event) {
+		if(event.getEntity().hasMetadata("NPC")) return;
+		
 		if (event.getCause().equals(DamageCause.FALL))
 			if (event.getEntity().getLocation().subtract(0, 1, 0).getBlock()
 					.getType() == Material.WOOL)
 				event.setCancelled(true);
 		SurvivalismSkill.onPlayerDamage(event);
 		DamageHandler.goldArmor(event);
+		sm.damage(event);
+		restDamage(event);
+	}
+
+	private void restDamage(EntityDamageEvent event) {
+		if(event.getEntity() instanceof Player) {
+			Player player = (Player) event.getEntity();
+			PseudoPlayer pPlayer = pm.getPlayer(player);
+			if(pPlayer.isResting() && pPlayer.isMeditating()) {
+				pPlayer.setMeditating(false);
+				pPlayer.setResting(false);
+				Output.simpleError(player, "You have been damage and stopped resting and meditating.");
+			}else if(pPlayer.isResting()) {
+				pPlayer.setResting(false);
+				Output.simpleError(player, "You have been damage and stopped resting.");
+			}else if(pPlayer.isMeditating()) {
+				pPlayer.setMeditating(false);
+				Output.simpleError(player, "You have been damage and stopped meditating.");
+			}
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -97,12 +124,6 @@ public class EntityListener implements Listener {
 		ScrollHandler.onEntityDeathEvent(event);
 	}
 
-	@EventHandler
-	public void onEntityDismount(EntityDismountEvent event) {
-		Bukkit.broadcastMessage("FUCK");
-		TamingSkill.onDismount(event);
-	}
-
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityExplodeEvent(EntityExplodeEvent event) {
 		PlotProtectionHandler.onBlockExplode(event);
@@ -111,6 +132,11 @@ public class EntityListener implements Listener {
 	@EventHandler
 	public void onMonsterSpawn(EntitySpawnEvent event) {
 		PlotProtectionHandler.onMonsterSpawn(event);
+	}
+	
+	@EventHandler
+	public void onEntityPortalCreate(EntityCreatePortalEvent event) {
+		EnderdragonHandler.onPortalCreate(event);
 	}
 
 	@EventHandler

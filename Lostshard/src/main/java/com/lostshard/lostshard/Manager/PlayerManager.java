@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
+import com.lostshard.lostshard.Utils.Utils;
 
 public class PlayerManager {
 
@@ -25,31 +26,44 @@ public class PlayerManager {
 	public PseudoPlayer getPlayer(OfflinePlayer player) {
 		return this.getPlayer(player.getUniqueId());
 	}
+	
+	public PseudoPlayer getPlayer(OfflinePlayer player, boolean create) {
+		return this.getPlayer(player.getUniqueId(), create);
+	}
 
 	public PseudoPlayer getPlayer(Player player) {
 		return this.getPlayer(player.getUniqueId());
 	}
 
-	public PseudoPlayer getPlayer(UUID uuid) {
+	public PseudoPlayer getPlayer(Player player, boolean create) {
+		return this.getPlayer(player.getUniqueId(), create);
+	}
+	
+	public PseudoPlayer getPlayer(UUID uuid, boolean create) {
 		if (uuid == null)
 			return null;
 		for (final PseudoPlayer pPlayer : this.players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
 				return pPlayer;
 		PseudoPlayer pPlayer = PlayerMapper.getPlayer(uuid);
-		if (pPlayer == null)
+		if (pPlayer == null && create)
 			pPlayer = PlayerMapper.insertPlayer(new PseudoPlayer(uuid, 1));
 		return pPlayer;
 	}
 
+	public PseudoPlayer getPlayer(UUID uuid) {
+		return getPlayer(uuid, false);
+	}
+	
 	public List<PseudoPlayer> getPlayers() {
 		return this.players;
 	}
 
 	public PseudoPlayer onPlayerLogin(PlayerJoinEvent event) {
 		final Player player = event.getPlayer();
-		final PseudoPlayer pPlayer = this.getPlayer(player);
+		final PseudoPlayer pPlayer = this.getPlayer(player, true);
 		this.players.add(pPlayer);
+		player.setDisplayName(Utils.getDisplayName(player));
 		return pPlayer;
 	}
 

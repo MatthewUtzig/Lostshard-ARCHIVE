@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -45,8 +46,24 @@ public class SPL_Recall extends Spell {
 			}
 			count++;
 		}
+		
+		boolean usingSpawn = false;
+		if(runeFound == null && getResponse().equalsIgnoreCase("spawn")) {
+			runeFound = new Rune(pseudoPlayer.getSpawn(), "spawn", -1);
+			usingSpawn = true;
+		}
+		else
+			if(runeFound == null && getResponse().equalsIgnoreCase("random")) {
+				if(player.getWorld().getWorldBorder() == null || !player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
+					Output.simpleError(player, "You cannot random recall in this world.");
+					return;
+				}
+				double size = player.getWorld().getWorldBorder().getSize();
+				Location center = player.getWorld().getWorldBorder().getCenter();
+				Location randomLoc = player.getWorld().getHighestBlockAt(center.add(Math.random()*size-size/2, 60, Math.random()*size-size/2)).getLocation();
+				runeFound = new Rune(randomLoc, "random", -1);
+			}
 
-		final boolean usingSpawn = false;
 		if (runeFound != null) {
 			final Location runeLoc = runeFound.getLocation();
 			if (!SpellUtils.isValidRuneLocation(player, runeLoc))

@@ -343,14 +343,18 @@ public class UtilsCommand implements CommandExecutor, TabCompleter {
 		if (sender instanceof Player) {
 			final Player player = (Player) sender;
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			if (pPlayer.getTimer().goToSpawnTicks <= 0) {
+			if (pPlayer.getTimer().spawnTicks <= 0) {
+				if(pPlayer.getTimer().goToSpawnTicks < 1) {
 				pPlayer.getTimer().goToSpawnTicks = 100;
 				Output.positiveMessage(player,
 						"Returning to spawn in 10 seconds.");
+				}else{
+					Output.simpleError(player, "You are already spawning.");
+				}
 			} else {
 				final int ticks = pPlayer.getTimer().spawnTicks;
 				final int seconds = ticks / 10;
-				player.sendMessage("can't go to spawn, " + seconds / 60
+				Output.simpleError(player, "can't go to spawn, " + seconds / 60
 						+ " minutes, " + seconds % 60 + " seconds remaining.");
 			}
 		} else

@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -207,21 +208,17 @@ public class SpellManager {
 	public void move(PlayerMoveEvent event) {
 		final Player player = event.getPlayer();
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (event.getTo() != null
-				&& event.getFrom() != null
-				&& !event.getTo().getBlock().getState()
-				.equals(event.getFrom().getBlock().getState()))
-			if (pPlayer.getPromptedSpell() != null
-			|| pPlayer.getTimer().delayedSpell != null) {
-				pPlayer.setPromptedSpell(null);
-				pPlayer.getTimer().delayedSpell = null;
-				Output.simpleError(player,
-						"Moved while casting a spell, it was disrupted.");
-			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
-				pPlayer.getTimer().goToSpawnTicks = 0;
-				Output.simpleError(player,
-						"Moved while casting, /spawn was disrupted.");
-			}
+		if (pPlayer.getPromptedSpell() != null
+		|| pPlayer.getTimer().delayedSpell != null) {
+			pPlayer.setPromptedSpell(null);
+			pPlayer.getTimer().delayedSpell = null;
+			Output.simpleError(player,
+					"Moved while casting a spell, it was disrupted.");
+		} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
+			pPlayer.getTimer().goToSpawnTicks = 0;
+			Output.simpleError(player,
+					"Moved while casting, /spawn was disrupted.");
+		}
 	}
 
 	public void notEnoughMana(Player player, Spell spell) {
@@ -399,5 +396,23 @@ public class SpellManager {
 			return false;
 		}
 		return true;
+	}
+
+	public void damage(EntityDamageEvent event) {
+		if(event.getEntity() instanceof Player) {
+			final Player player = (Player) event.getEntity();
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+			if (pPlayer.getPromptedSpell() != null
+			|| pPlayer.getTimer().delayedSpell != null) {
+				pPlayer.setPromptedSpell(null);
+				pPlayer.getTimer().delayedSpell = null;
+				Output.simpleError(player,
+						"Damaged while casting a spell, it was disrupted.");
+			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
+				pPlayer.getTimer().goToSpawnTicks = 0;
+				Output.simpleError(player,
+						"Damaged while casting, /spawn was disrupted.");
+			}
+		}
 	}
 }

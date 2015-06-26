@@ -46,10 +46,13 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("inv").setExecutor(this);
 		plugin.getCommand("broadcast").setExecutor(this);
 		plugin.getCommand("givemoney").setExecutor(this);
+		plugin.getCommand("speed").setExecutor(this);
+		plugin.getCommand("item").setExecutor(this);
+		plugin.getCommand("vanish").setExecutor(this);
 	}
 
 	private void adminInv(Player player, String[] args) {
-		if (args.length < 2) {
+		if (args.length < 1) {
 			Output.simpleError(player, "/admin inv (Player)");
 			return;
 		}
@@ -80,9 +83,13 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			return;
 		}
 		final Player player = (Player) sender;
+		if(args.length < 1) {
+			Output.simpleError(player, "/inv (player)");
+			return;
+		}
 		final Player tPlayer = Bukkit.getPlayer(args[0]);
 		if (tPlayer == null) {
-			Output.plotNotIn(player);
+			Output.simpleError(player, "Player not found");
 			return;
 		}
 		player.openInventory(tPlayer.getInventory());
@@ -182,12 +189,47 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			}else
 				this.broadcast(sender, args);
 		else if(cmd.getName().equalsIgnoreCase("givemoney"))
-			if(!sender.isOp()) {
-				Output.simpleError(sender, "Unknown command");
-				return true;
-			}else
-				giveMoney(sender, args);
+			giveMoney(sender, args);
+		else if(cmd.getName().equalsIgnoreCase("vanish")) {
+			adminVanish(sender);
+		}else if(cmd.getName().equalsIgnoreCase("item")) {
+			adminItem(sender, args);
+		}else if(cmd.getName().equalsIgnoreCase("speed")) {
+			adminSpeed(sender, args);
+		}
 		return true;
+	}
+
+	private void adminVanish(CommandSender sender) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void adminItem(CommandSender sender, String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void adminSpeed(CommandSender sender, String[] args) {
+		if(!sender.isOp()) {
+			Output.simpleError(sender, "Unknown command");
+			return;
+		}
+		if(!(sender instanceof Player)) {
+			Output.simpleError(sender, "Only players may perform this command.");
+			return;
+		}
+		Player player = (Player) sender;
+		if(args.length < 1) {
+			player.setFlySpeed(1f);
+		}else{
+			try {
+				float speed = Float.parseFloat(args[0]);
+				player.setFlySpeed(speed);
+			}catch(Exception e) {
+				Output.simpleError(player, "/speed (speed)");
+			}
+		}
 	}
 
 	public void test(UUID uuid, Player player) {

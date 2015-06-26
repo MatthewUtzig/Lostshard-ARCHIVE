@@ -17,6 +17,6 @@ public class ServerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPing(ServerListPingEvent event) {
 		event.setMotd(Variables.motd.replace("&", "§"));
-		event.setMaxPlayers(Variables.maxPlayers);
+		event.setMaxPlayers(Lostshard.getMaxPlayers());
 	}
 }

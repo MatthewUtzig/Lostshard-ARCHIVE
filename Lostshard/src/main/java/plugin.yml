@@ -55,7 +55,7 @@ commands:
       description: Toggle private chat.
       aliases: [toggleprivatechat,togglemsgchat]
       usage: /<command>
-   replay:
+   reply:
       description: Replay on a private message.
       aliases: [r]
       usage: /<command> (Message)
@@ -206,3 +206,21 @@ commands:
    resetallskills:
       description: Resetallskills allows you to reset all your skills and increase one skill to 50
       usage: /<command> (skill)
+   rest:
+      description: Allows you to regain stamina faster
+      usage: /<command>
+   meditate:
+      description: Allows you to regain mana faster
+      usage: /<command>
+   vanish:
+      description: Allows admins to hide
+      usage: /<command>
+   item:
+      description: Allows admins to give items with ezz
+      aliases: [i]
+      usage: /<command>
+   speed:
+      description: Allows admins to set there gamemode speed.
+      usage: /<command>
+
+      

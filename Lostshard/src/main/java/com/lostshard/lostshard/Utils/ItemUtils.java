@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.ShapedRecipe;
@@ -13,35 +14,17 @@ public class ItemUtils {
 
 	public static void addChainMail() {
 		final ShapedRecipe helmet1 = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_HELMET));
-		helmet1.shape("SSS", "SAS", "AAA");
-		helmet1.setIngredient('S', Material.COBBLESTONE);
-		helmet1.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_HELMET, 1)).shape(new String[] {"SSS", "SAS", "AAA"}).setIngredient('S', Material.COBBLESTONE);
 		final ShapedRecipe helmet2 = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_HELMET));
-		helmet2.shape("AAA", "SSS", "SAS");
-		helmet2.setIngredient('S', Material.COBBLESTONE);
-		helmet2.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_HELMET, 1)).shape(new String[] {"AAA", "SSS", "SAS"}).setIngredient('S', Material.COBBLESTONE);
 		final ShapedRecipe chest = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_CHESTPLATE));
-		chest.shape("SAS", "SSS", "SSS");
-		chest.setIngredient('S', Material.COBBLESTONE);
-		chest.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_CHESTPLATE, 1)).shape(new String[] {"SAS", "SSS", "SSS"}).setIngredient('S', Material.COBBLESTONE);
 		final ShapedRecipe leggings = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_LEGGINGS));
-		leggings.shape("SSS", "SAS", "SAS");
-		leggings.setIngredient('S', Material.COBBLESTONE);
-		leggings.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_LEGGINGS, 1)).shape(new String[] {"SSS", "SAS", "SAS"}).setIngredient('S', Material.COBBLESTONE);
 		final ShapedRecipe boots1 = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_BOOTS));
-		boots1.shape("AAA", "SAS", "SAS");
-		boots1.setIngredient('S', Material.COBBLESTONE);
-		boots1.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_BOOTS, 1)).shape(new String[] {"AAA", "SAS", "SAS"}).setIngredient('S', Material.COBBLESTONE);
 		final ShapedRecipe boots2 = new ShapedRecipe(new ItemStack(
-				Material.CHAINMAIL_BOOTS));
-		boots2.shape("SAS", "SAS", "AAA");
-		boots2.setIngredient('S', Material.COBBLESTONE);
-		boots2.setIngredient('A', Material.AIR);
+				Material.CHAINMAIL_BOOTS, 1)).shape(new String[] {"SAS", "SAS", "AAA"}).setIngredient('S', Material.COBBLESTONE);
 		Bukkit.addRecipe(helmet1);
 		Bukkit.addRecipe(helmet2);
 		Bukkit.addRecipe(chest);
@@ -298,5 +281,13 @@ public class ItemUtils {
 						break;
 				}
 			}
+	}
+
+	public static int containsAmount(Inventory inventory, Material mat) {
+		int amount = 0;
+		for(ItemStack i : inventory.getContents())
+			if(i.getType().equals(mat))
+				amount += i.getAmount();
+		return amount;
 	}
 }

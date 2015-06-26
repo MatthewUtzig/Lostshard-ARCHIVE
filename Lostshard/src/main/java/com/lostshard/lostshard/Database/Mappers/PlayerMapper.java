@@ -117,7 +117,7 @@ public class PlayerMapper implements LostshardConnection {
 	}
 	
 	public static PseudoPlayer getPlayer(UUID uuid) {
-		Lostshard.log.finest("[PLAYER] Getting Player from DB!");
+		Lostshard.log.warning("[PLAYER] Getting Player from DB!");
 		PseudoPlayer pPlayer = null;
 		try {
 			final Connection conn = ds.getConnection();
@@ -125,8 +125,9 @@ public class PlayerMapper implements LostshardConnection {
 					.prepareStatement("SELECT * FROM players WHERE uuid=?");
 			prep.setString(1, uuid.toString());
 			prep.execute();
-			while(prep.getResultSet().next())
+			while(prep.getResultSet().next()) {
 				pPlayer = PlayerMapper.createPlayerFromResultSet(prep.getResultSet());
+			}
 			conn.close();
 		} catch (final Exception e) {
 			Lostshard.log.warning("[PLAYER] getPlayer mysql error, "+uuid);
@@ -153,7 +154,7 @@ public class PlayerMapper implements LostshardConnection {
 			conn.close();
 			BuildMapper.updateBuilds(pPlayer.getBuilds());
 			pPlayer.setUpdate(false);
-		} catch (SQLException e) {
+		} catch (final Exception e) {
 			Lostshard.log.warning("[PLAYER] updatePlayers mysql error");
 			Lostshard.mysqlError();
 			if (Lostshard.isDebug())

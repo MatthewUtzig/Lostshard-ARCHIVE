@@ -126,6 +126,7 @@ public class ClanMapper implements LostshardConnection {
 			final PreparedStatement prep = conn
 					.prepareStatement("UPDATE clans SET name=?, owner=?, leaders=?, members=?, invited=? WHERE id=?;");
 			for (final Clan clan : clans) {
+				updateClanPreparedStatement(prep, clan);
 				clan.setUpdate(false);
 				prep.addBatch();
 			}

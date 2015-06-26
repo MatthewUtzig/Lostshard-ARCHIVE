@@ -2,7 +2,10 @@ package com.lostshard.lostshard.Handlers;
 
 import java.util.List;
 
+import com.lostshard.lostshard.Manager.NPCManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
@@ -13,7 +16,11 @@ public class RankHandler {
 				.getRecentAttackers();
 		if (recentAttackers.size() >= 1
 				&& pPlayer.getTimer().isLastDeathOlder(300000)) {
-
+			for(RecentAttacker ra : recentAttackers) {
+				NPC guard = NPCManager.getManager().getByUUID(ra.getUUID());
+				if(guard.getType().equals(NPCType.GUARD))
+					return;
+			}
 			float attackerSUM = 0;
 			final int rankFLOOR = 200;
 			final int rankCELING = 3000;

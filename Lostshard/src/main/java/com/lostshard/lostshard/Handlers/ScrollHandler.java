@@ -30,7 +30,7 @@ public class ScrollHandler {
 		final Scroll scroll = sf.getRandomScroll(type);
 		if (scroll != null) {
 			pPlayer.addScroll(scroll);
-			Output.positiveMessage(player, "The " + type.name().toLowerCase()
+			Output.positiveMessage(player, "The " + type.name().toLowerCase().replace("_", " ")
 					+ " dropped a scroll of " + scroll.getName() + ".");
 			ScrollMapper.insertScroll(scroll, pPlayer.getId());
 		}

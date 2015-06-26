@@ -26,7 +26,6 @@ import org.bukkit.entity.Giant;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.IronGolem;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Pig;
@@ -50,8 +49,11 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import com.lostshard.lostshard.Manager.NPCManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.NPC.NPC;
+import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -64,7 +66,36 @@ public class DeathHandler {
 			List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
 		final int numAttackers = recentAttackers.size();
 		final Random random = new Random();
-		if (player.getLastDamageCause() == null) {
+		if (numAttackers > 0) {
+			String deathMessage = Utils.getDisplayName(player)
+					+ ChatColor.WHITE + " was killed by";
+			String attackers = "";
+			for (int i = 0; i < numAttackers; i++) {
+				NPC guard = NPCManager.getManager().getByUUID(recentAttackers.get(i).getUUID());
+				if(guard != null && guard.getType().equals(NPCType.GUARD)) {
+					deathMessage = player.getDisplayName() + ChatColor.WHITE
+							+ " was executed by an Order guard.";
+					break;
+				}
+				final Player p = Bukkit.getPlayer(recentAttackers.get(i)
+						.getUUID());
+				if (p != null)
+					if (i == numAttackers - 1) {
+						if (attackers != "")
+							attackers += ChatColor.WHITE + " and "
+									+ Utils.getDisplayName(p) + ChatColor.WHITE
+									+ ".";
+						else
+							attackers += ChatColor.WHITE + " "
+									+ Utils.getDisplayName(p) + ChatColor.WHITE
+									+ ".";
+					} else
+						attackers += ChatColor.WHITE + " "
+								+ Utils.getDisplayName(p);
+			}
+			deathMessage += attackers;
+			event.setDeathMessage(deathMessage);
+		} else if (player.getLastDamageCause() == null) {
 			String message = Utils.getDisplayName(player) + ChatColor.WHITE;
 			final int randInt = random.nextInt(5);
 
@@ -87,32 +118,6 @@ public class DeathHandler {
 			}
 
 			event.setDeathMessage(message);
-		} else if (((LivingEntity) player).getLastDamage() >= 200d)
-			Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.WHITE
-					+ " was executed by an Order guard.");
-		else if (numAttackers > 0) {
-			String deathMessage = Utils.getDisplayName(player)
-					+ ChatColor.WHITE + " was killed by";
-			String attackers = "";
-			for (int i = 0; i < numAttackers; i++) {
-				final Player p = Bukkit.getPlayer(recentAttackers.get(i)
-						.getUUID());
-				if (p != null)
-					if (i == numAttackers - 1) {
-						if (attackers != "")
-							attackers += ChatColor.WHITE + " and "
-									+ Utils.getDisplayName(p) + ChatColor.WHITE
-									+ ".";
-						else
-							attackers += ChatColor.WHITE + " "
-									+ Utils.getDisplayName(p) + ChatColor.WHITE
-									+ ".";
-					} else
-						attackers += ChatColor.WHITE + " "
-								+ Utils.getDisplayName(p);
-			}
-			deathMessage += attackers;
-			event.setDeathMessage(deathMessage);
 		} else {
 			final EntityDamageEvent e = player.getLastDamageCause();
 			String message = Utils.getDisplayName(player) + ChatColor.WHITE;
@@ -415,10 +420,6 @@ public class DeathHandler {
 		final List<RecentAttacker> recentAttackers = pseudoPlayer
 				.getRecentAttackers();
 
-		// Rank stuff
-
-		RankHandler.rank(pseudoPlayer);
-
 		pseudoPlayer.getTimer().lastDeath = new Date().getTime();
 
 		for (final RecentAttacker recentAttacker : recentAttackers) {
@@ -449,6 +450,11 @@ public class DeathHandler {
 		// Start of death messages
 
 		DeathHandler.deathMessage(player, recentAttackers, event);
+		
+		// Rank stuff
+
+		RankHandler.rank(pseudoPlayer);
+		
 		pseudoPlayer.clearRecentAttackers();
 	}
 

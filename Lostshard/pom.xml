@@ -3,13 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.Lostshard.Lostshard</groupId>
 	<artifactId>Lostshard</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>Lostshard</name>
 	<description>Lostshard a minecraft server.</description>
 	<repositories>
 		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+		<id>everything</id>
+		<url>http://repo.citizensnpcs.co</url>
 		</repository>
 	</repositories>
 	<dependencies>
@@ -22,7 +26,7 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.8.3-R0.1-SNAPSHOT</version>
+			<version>1.8.7-R0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -35,9 +39,10 @@
 			<version>2.2.5</version>
 		</dependency>
 		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>mchange-commons-java</artifactId>
-			<version>0.2.10</version>
+			<groupId>net.citizensnpcs</groupId>
+			<artifactId>citizensapi</artifactId>
+			<version>2.0.16-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -59,7 +64,7 @@
                         <includes>
                             <include>c3p0:c3p0</include>
 							<include>it.sauronsoftware.cron4j:cron4j</include>
-							<include>com.mchange:mchange-commons-java</include>
+                        	<include>net.citizensnpcs:citizensapi</include>
                         </includes>
                     </artifactSet>
                     <createDependencyReducedPom>false</createDependencyReducedPom>

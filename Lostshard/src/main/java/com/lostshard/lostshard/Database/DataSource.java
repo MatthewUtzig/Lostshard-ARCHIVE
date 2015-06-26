@@ -36,6 +36,7 @@ public class DataSource {
 		this.ds.setPassword(Variables.mysqlPassword);
 		this.ds.setMaxStatements(180);
 		this.ds.setMaxIdleTime(40);
+		this.ds.setCheckoutTimeout(500);
 	}
 
 	public void closeConnection() {

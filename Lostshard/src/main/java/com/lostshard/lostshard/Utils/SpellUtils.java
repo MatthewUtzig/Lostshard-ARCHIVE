@@ -78,6 +78,11 @@ public class SpellUtils {
 				return validTargets;
 		}
 	}
+	
+	public static Block faceBlockInLOS(Player player, int range) {
+		AimBlock aimHit = new AimBlock(player, range, .5);
+		return aimHit.getFaceBlock();
+	}
 
 	public static boolean isValidRuneLocation(Player player, Location location) {
 		final Block blockAt = location.getBlock();

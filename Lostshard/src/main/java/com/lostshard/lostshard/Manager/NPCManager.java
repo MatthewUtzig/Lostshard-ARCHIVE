@@ -2,8 +2,13 @@ package com.lostshard.lostshard.Manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import com.lostshard.lostshard.Data.Variables;
 import com.lostshard.lostshard.NPC.NPC;
@@ -83,5 +88,40 @@ public class NPCManager {
 			if (npc.getType().equals(NPCType.VENDOR))
 				result.add(npc);
 		return result;
+	}
+	
+	public NPC getByUUID(UUID uuid) {
+		for(NPC npc : getNpcs())
+			if(npc.getUuid().equals(uuid))
+				return npc;
+		return null;
+	}
+	
+	public NPC getByLocation(Location loc) {
+		for(NPC npc : getNpcs())
+			if(npc.getLocation().equals(loc))
+				return npc;
+		return null;
+	}
+
+	public void interac(PlayerInteractEntityEvent event) {
+		if(!event.getRightClicked().hasMetadata("NPC"))
+			return;
+		Entity e = event.getRightClicked();
+		Player player = event.getPlayer();
+		NPC npc = getByLocation(e.getLocation());
+		if(npc == null)
+			return;
+		if(npc.getType().equals(NPCType.BANKER)) {
+			if(player.getItemInHand().getType().equals(Material.GOLD_INGOT))
+				player.performCommand("/tradegold "+player.getItemInHand().getAmount());
+			else
+				player.performCommand("bank");
+			return;
+		}
+		if(npc.getType().equals(NPCType.VENDOR)) {
+			
+			return;
+		}
 	}
 }

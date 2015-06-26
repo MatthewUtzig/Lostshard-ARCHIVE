@@ -55,7 +55,7 @@ public class Output {
 		player.sendMessage(ChatColor.RED
 				+ "-Combat logging drops your items on logout.");
 		Title.sendTabTitle(player, ChatColor.GOLD + "Lostshard", ChatColor.GOLD
-				+ "Version: " + Lostshard.getVersion());
+				+ "IP: minecraft.lostshard.com");
 		Title.sendTitle(player, 20, 30, 20, ChatColor.GOLD
 				+ "Welcome to Lostshard", ChatColor.RED + "BETA");
 	}
@@ -141,11 +141,10 @@ public class Output {
 			filteredPlayers.add(Utils.getDisplayName(p));
 
 		Collections.sort(filteredPlayers, String.CASE_INSENSITIVE_ORDER);
-
 		String message = ChatColor.YELLOW + "Online Players ("
-				+ filteredPlayers.size() + "/" + Bukkit.getMaxPlayers() + "):"
+				+ filteredPlayers.size() + "/" + Lostshard.getMaxPlayers() + "):"
 				+ ChatColor.WHITE + " ";
-		message += StringUtils.join(filteredPlayers, ", ");
+		message += StringUtils.join(filteredPlayers, ChatColor.RESET+", ");
 		sender.sendMessage(message);
 	}
 

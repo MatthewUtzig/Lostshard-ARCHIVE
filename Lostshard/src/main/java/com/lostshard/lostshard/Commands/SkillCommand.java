@@ -230,6 +230,8 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 	public SkillCommand(Lostshard plugin) {
 		plugin.getCommand("skills").setExecutor(this);
 		plugin.getCommand("resetallskills").setExecutor(this);
+		plugin.getCommand("rest").setExecutor(this);
+		plugin.getCommand("meditate").setExecutor(this);
 	}
 
 	@Override
@@ -241,8 +243,36 @@ public class SkillCommand implements CommandExecutor, TabCompleter {
 		}else if(cmd.getName().equalsIgnoreCase("resetallskills")) {
 			resetallskills(sender, args);
 			return true;
+		}else if(cmd.getName().equalsIgnoreCase("rest")) {
+			playerRest(sender);
+			return true;
+		}else if(cmd.getName().equalsIgnoreCase("meditate")) {
+			playerMeditate(sender);
+			return true;
 		}
 		return false;
+	}
+
+	private void playerMeditate(CommandSender sender) {
+		if (!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		Output.positiveMessage(player, "You begin meditating...");
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		pPlayer.setMeditating(true);
+	}
+
+	private void playerRest(CommandSender sender) {
+		if (!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		Player player = (Player) sender;
+		Output.positiveMessage(player, "You begin resting...");
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		pPlayer.setResting(true);
 	}
 
 	private void resetallskills(CommandSender sender, String[] args) {

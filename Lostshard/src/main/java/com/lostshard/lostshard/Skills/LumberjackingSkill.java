@@ -110,15 +110,15 @@ public class LumberjackingSkill extends Skill {
 		double damage = event.getDamage();
 		final int additionalDamage = 0;
 
-		double damagePercent = 0;
+		double damagePercent = 1;
 		if (lumberjackingSkill >= 1000)
-			damagePercent = .5;
+			damagePercent += .5;
 		else if (lumberjackingSkill >= 750)
-			damagePercent = .35;
+			damagePercent += .35;
 		else if (lumberjackingSkill >= 500)
-			damagePercent = .25;
+			damagePercent += .25;
 		else if (lumberjackingSkill >= 250)
-			damagePercent = .15;
+			damagePercent += .15;
 
 		damage += additionalDamage;
 

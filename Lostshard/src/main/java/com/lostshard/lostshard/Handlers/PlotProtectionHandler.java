@@ -72,7 +72,7 @@ public class PlotProtectionHandler {
 				return;
 			event.setCancelled(true);
 			Output.simpleError(player,
-					"can't break blocks here, " + plot.getName()
+					"Can't break blocks here, " + plot.getName()
 					+ " is protected.");
 		}
 	}
@@ -147,7 +147,7 @@ public class PlotProtectionHandler {
 			if (!plot.isAllowedToBuild(player)) {
 				event.setCancelled(true);
 				Output.simpleError(player,
-						"can't ignite blocks here, " + plot.getName()
+						"Can't ignite blocks here, " + plot.getName()
 						+ " is protected.");
 			}
 		} else
@@ -220,7 +220,7 @@ public class PlotProtectionHandler {
 			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpleError(player, "can't spill water or lava here, "
+			Output.simpleError(player, "Can't spill water or lava here, "
 					+ plot.getName() + " is protected.");
 		}
 	}
@@ -244,7 +244,7 @@ public class PlotProtectionHandler {
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
-					"can't fill water or lava here, " + plot.getName()
+					"Can't fill water or lava here, " + plot.getName()
 					+ " is protected.");
 		}
 	}
@@ -274,7 +274,7 @@ public class PlotProtectionHandler {
 			return;
 		event.setCancelled(true);
 		final Player player = event.getPlayer();
-		Output.simpleError(player, "can't click button in \"" + plot.getName()
+		Output.simpleError(player, "Can't click button in \"" + plot.getName()
 				+ "\" is protected.");
 	}
 
@@ -324,7 +324,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "can't destroy item frame here "
+					Output.simpleError(player, "Can't destroy item frame here "
 							+ plot.getName() + " is protected.");
 
 				return;
@@ -337,7 +337,7 @@ public class PlotProtectionHandler {
 
 				if (player != null)
 					Output.simpleError(player,
-							"can't destroy armor stands here " + plot.getName()
+							"Can't destroy armor stands here " + plot.getName()
 							+ " is protected.");
 
 				return;
@@ -374,7 +374,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "can't destroy item frame here "
+					Output.simpleError(player, "Can't destroy item frame here "
 							+ plot.getName() + " is protected.");
 
 				return;
@@ -384,7 +384,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "can't destroy paintings here "
+					Output.simpleError(player, "Can't destroy paintings here "
 							+ plot.getName() + " is protected.");
 
 				return;
@@ -413,7 +413,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "can't place item frame here "
+					Output.simpleError(player, "Can't place item frame here "
 							+ plot.getName() + " is protected.");
 
 				return;
@@ -423,7 +423,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "can't place paintings here "
+					Output.simpleError(player, "Can't place paintings here "
 							+ plot.getName() + " is protected.");
 
 				return;
@@ -529,7 +529,7 @@ public class PlotProtectionHandler {
 					if (player != null)
 						Output.simpleError(
 								player,
-								"can't place armor stand here "
+								"Can't place armor stand here "
 										+ plot.getName() + " is protected.");
 					return;
 				}
@@ -690,10 +690,11 @@ public class PlotProtectionHandler {
 							|| owner.isMurderer() ? ChatColor.RED
 									: ChatColor.BLUE) + toPlot.getName(), "");
 				}
-			} else
+			} else {
 				player.sendMessage(ChatColor.GRAY + "You have left "
 						+ fromPlot.getName() + " and entered "
 						+ toPlot.getName());
+			}
 	}
 
 	/**
@@ -812,7 +813,7 @@ public class PlotProtectionHandler {
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
 			Output.simpleError(player,
-					"can't place blocks here, " + plot.getName()
+					"Can't place blocks here, " + plot.getName()
 					+ " is protected.");
 		}
 	}

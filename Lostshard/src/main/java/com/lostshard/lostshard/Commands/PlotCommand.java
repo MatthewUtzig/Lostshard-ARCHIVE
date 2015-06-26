@@ -92,11 +92,6 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		final ArrayList<Plot> intersectingRegions = new ArrayList<Plot>();
 		final String plotName = StringUtils.join(args, " ", 1, args.length);
 
-		if (plotName.contains("\"") || plotName.contains("'")) {
-			Output.simpleError(player, "can't use \" in plot name.");
-			return;
-		}
-
 		final int nameLength = plotName.length();
 		if (nameLength < 1) {
 			Output.simpleError(player, "/plot create (name)");
@@ -424,6 +419,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 
 		if (plot.isFriend(targetPlayer))
 			plot.getFriends().remove(targetPlayer.getUniqueId());
+		
+		if(plot.isCoowner(targetPlayer)) {
+			Output.simpleError(player, "They are already a friend of the plot.");
+			return;
+		}
+		
 		plot.addCoowner(targetPlayer);
 		Output.positiveMessage(player, targetPlayer.getName()
 				+ " is now a co-owner of this plot.");
@@ -712,7 +713,12 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 			Output.simpleError(player, "Only the owner may friend co-owners.");
 			return;
 		}
-
+		
+		if(plot.isFriend(targetPlayer)) {
+			Output.simpleError(player, "They are already a friend of the plot.");
+			return;
+		}
+		
 		if (plot.isCoowner(targetPlayer))
 			plot.getCoowners().remove(targetPlayer.getUniqueId());
 		plot.addFriend(targetPlayer);
@@ -1110,7 +1116,7 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 		if (!plot.isPrivatePlot())
 			Output.simpleError(player, "The plot is already public.");
 		else {
-			plot.setPrivatePlot(true);
+			plot.setPrivatePlot(false);
 			Output.positiveMessage(player, "You have made the plot public.");
 		}
 	}

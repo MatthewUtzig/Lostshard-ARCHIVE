@@ -1,9 +1,13 @@
 package com.lostshard.lostshard.NPC;
 
+import java.util.UUID;
+
 import org.bukkit.Location;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.lostshard.lostshard.Database.Mappers.NPCMapper;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.NPC.NPCLib.NPCLibManager;
 import com.lostshard.lostshard.Objects.Plot.Plot;
 
 /**
@@ -19,6 +23,7 @@ public class NPC {
 	private String name;
 	private Location location;
 	private int plotId;
+	private UUID uuid = UUID.randomUUID();
 
 	/**
 	 * @param id
@@ -55,10 +60,10 @@ public class NPC {
 	 * Delete this npc
 	 */
 	public void fire() {
-		// NPCManager.getNPC(id).destroy();
 		final Plot plot = this.getPlot();
 		plot.getNpcs().remove(this);
 		NPCMapper.deleteNPC(this);
+		NPCLibManager.getManager().despawnNPC(this);
 	}
 
 	/**
@@ -105,7 +110,7 @@ public class NPC {
 	 *            npc to a location
 	 */
 	public void move(Location location) {
-		// NPCManager.moveNPC(id, location);
+		NPCLibManager.getManager().moveNPC(this);
 	}
 
 	/**
@@ -153,7 +158,26 @@ public class NPC {
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-		// NPCManager.spawnNPC(this);
+		NPCLibManager.getManager().spawnNPC(this);
 	}
 
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getDisplayName() {
+		return (getType().equals(NPCType.BANKER) ? "[BANKER] " : getType().equals(NPCType.GUARD) ? "[GUARD] " : getType().equals(NPCType.VENDOR) ? "[VENDOR] " : "") + getName();
+	}
+
+	public void teleport(Location location, TeleportCause reason) {
+		NPCLibManager.getManager().teleportNPC(this.id, location, reason);
+	}
+
+	public net.citizensnpcs.api.npc.NPC getCitizensNPC() {
+		return NPCLibManager.getManager().getNPC(id);
+	}
 }

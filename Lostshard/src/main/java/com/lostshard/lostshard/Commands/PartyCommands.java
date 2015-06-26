@@ -53,7 +53,7 @@ public class PartyCommands implements CommandExecutor, TabCompleter {
 				if (!party.isMember(invitedPlayer)) {
 					if (!party.isInvited(invitedPlayer.getUniqueId())) {
 						party.addInvited(invitedPlayer.getUniqueId());
-						Utils.sendSmartTextCommand(invitedPlayer, ChatColor.GOLD+player.getName()+" has invited you to a party, click to join.", ChatColor.LIGHT_PURPLE+"click to join the party.", "/party join "+player.getName());
+						Utils.sendSmartTextCommand(invitedPlayer, ChatColor.GOLD+player.getName()+" has invited you to a party, Click to join.", ChatColor.LIGHT_PURPLE+"click to join the party.", "/party join "+player.getName());
 //						Output.positiveMessage(invitedPlayer, player.getName()
 //								+ " has invited you to join a party.");
 //						Output.positiveMessage(invitedPlayer,

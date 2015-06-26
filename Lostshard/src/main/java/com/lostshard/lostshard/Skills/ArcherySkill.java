@@ -16,6 +16,8 @@ import com.lostshard.lostshard.Utils.Output;
 public class ArcherySkill extends Skill {
 
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
+		if(event.isCancelled())
+			return;
 		if (!(event.getDamager() instanceof Arrow))
 			return;
 		final Arrow arrow = (Arrow) event.getDamager();
@@ -30,7 +32,7 @@ public class ArcherySkill extends Skill {
 		final Skill skill = pPlayer.getCurrentBuild().getArchery();
 		final int lvl = skill.getLvl();
 
-		final double damage = skill.getLvl();
+		final double damage = skill.getLvl()/250;
 
 		if (entity instanceof Player
 				&& lvl >= 500

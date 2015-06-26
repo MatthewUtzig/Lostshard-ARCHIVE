@@ -81,7 +81,7 @@ public class PseudoPlayer {
 
 	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
 	private PseudoScoreboard scoreboard;
-
+	
 	public PseudoPlayer(UUID playerUUID, int id) {
 		super();
 		this.playerUUID = playerUUID;
@@ -424,12 +424,12 @@ public class PseudoPlayer {
 
 	public void setCriminal(int criminal) {
 		this.criminal = criminal;
-		if (this.getScoreboard() != null)
-			if (!this.isMurderer() && this.isCriminal() && this.criminal <= 0) {
-				if(getOnlinePlayer() != null)
-					getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer()));
-				this.getScoreboard().updateTeams();
-			}
+		if(getOnlinePlayer() != null && scoreboard != null)
+			getOnlinePlayer().setDisplayName((this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
+					: this.isCriminal() ? ChatColor.GRAY
+							: ChatColor.BLUE)+getOnlinePlayer().getName()+ChatColor.RESET);
+		if(scoreboard != null)
+			this.getScoreboard().updateTeams();
 		this.update();
 	}
 
@@ -523,7 +523,7 @@ public class PseudoPlayer {
 		if (this.scoreboard != null) {
 			this.getScoreboard().updateMurderCounts(this.murderCounts);
 			if(getOnlinePlayer() != null)
-				getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer()));
+				getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer())+ChatColor.RESET);
 			this.getScoreboard().updateTeams();
 		}
 		this.update();

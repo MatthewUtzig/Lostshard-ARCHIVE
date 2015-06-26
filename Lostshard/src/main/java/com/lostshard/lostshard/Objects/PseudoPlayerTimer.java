@@ -100,7 +100,9 @@ public class PseudoPlayerTimer {
 		if (tick % 10 == 0) { // one second passed
 			this.updateMana(delta);
 			this.updateStamina(delta);
-			this.bleed();
+		}
+		if(tick % 20 == 0) {
+			this.bleed();	
 		}
 		if (this.cantCastTicks > 0)
 			this.cantCastTicks--;
@@ -122,6 +124,8 @@ public class PseudoPlayerTimer {
 			this.chronoport.chronoTick();
 		if (this.recentlyTeleportedTicks > 0)
 			this.recentlyTeleportedTicks--;
+		if(this.stunTick > 0)
+			this.stunTick --;
 		this.spawn();
 	}
 

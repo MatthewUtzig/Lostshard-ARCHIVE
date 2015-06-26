@@ -132,7 +132,7 @@ public class ClanCommand implements CommandExecutor, TabCompleter {
 														+ targetPlayer
 																.getName()
 														+ " to your clan.");
-										Utils.sendSmartTextCommand(targetPlayer, ChatColor.GOLD+player.getName()+" has invited you to "+clan.getName()+", click to join.", ChatColor.LIGHT_PURPLE+"click to join the clan.", "/clan join "+clan.getName());
+										Utils.sendSmartTextCommand(targetPlayer, ChatColor.GOLD+player.getName()+" has invited you to "+clan.getName()+", Click to join.", ChatColor.LIGHT_PURPLE+"click to join the clan.", "/clan join "+clan.getName());
 //										Output.positiveMessage(targetPlayer,
 //												"You have been invited to the "
 //														+ clan.getName()

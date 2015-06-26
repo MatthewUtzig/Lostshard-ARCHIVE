@@ -211,6 +211,8 @@ public class Plot {
 	}
 
 	public boolean isAllowedToInteract(UUID uuid) {
+		if(!this.isPrivatePlot())
+			return true;
 		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;

@@ -59,7 +59,7 @@ public class PermanentGateMapper implements LostshardConnection {
 			prep.execute();
 			final ResultSet rs = prep.getResultSet();
 			while (rs.next()) {
-				
+				createPermanentGateFromResultSet(rs);
 			}
 			conn.close();
 		} catch (final Exception e) {

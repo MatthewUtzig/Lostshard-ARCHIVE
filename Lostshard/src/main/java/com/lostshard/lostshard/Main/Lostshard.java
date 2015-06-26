@@ -2,6 +2,8 @@ package com.lostshard.lostshard.Main;
 
 import java.util.logging.Logger;
 
+import net.citizensnpcs.api.npc.NPC;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -48,10 +50,12 @@ import com.lostshard.lostshard.Listener.VoteListener;
 import com.lostshard.lostshard.Listener.WorldListener;
 import com.lostshard.lostshard.Manager.ConfigManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
+import com.lostshard.lostshard.NPC.NPCLib.NPCLibManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.PseudoScoreboard;
 import com.lostshard.lostshard.Spells.MagicStructure;
 import com.lostshard.lostshard.Utils.ItemUtils;
+import com.lostshard.lostshard.Utils.Utils;
 
 /**
  * @author Jacob Rosborg
@@ -60,6 +64,7 @@ import com.lostshard.lostshard.Utils.ItemUtils;
 public class Lostshard extends JavaPlugin {
 
 	private SkyLand skyland;
+	private static final int maxPlayers = 30;
 	
 	public static BukkitTask getGameLoop() {
 		return gameLoop;
@@ -129,6 +134,9 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+		for(NPC npc : NPCLibManager.getManager().getRegistry().sorted())
+			npc.despawn();
+		NPCLibManager.getManager().getRegistry().deregisterAll();
 		for (final Player p : Bukkit.getOnlinePlayers())
 		{
 			final Player player = p;
@@ -145,6 +153,7 @@ public class Lostshard extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		ItemUtils.addChainMail();
+		Bukkit.setIdleTimeout(15);
 		this.saveDefaultConfig();
 
 		ConfigManager.getManager().setConfig(this);
@@ -188,7 +197,7 @@ public class Lostshard extends JavaPlugin {
 		Lostshard.setPlugin(this);
 
 		setMysqlError(!Database.testDatabaseConnection());
-
+		
 		PermanentGateMapper.getPermanentGates();
 		ClanMapper.getClans();
 		PlotMapper.getPlots();
@@ -207,6 +216,7 @@ public class Lostshard extends JavaPlugin {
 			final PseudoPlayer pPlayer = pm.getPlayer(p);
 			pm.getPlayers().add(pPlayer);
 			pPlayer.setScoreboard(new PseudoScoreboard(p.getUniqueId()));
+			p.setDisplayName(Utils.getDisplayName(p)+ChatColor.RESET);
 		}
 	}
 
@@ -216,6 +226,10 @@ public class Lostshard extends JavaPlugin {
 
 	public void setSkyland(SkyLand skyland) {
 		this.skyland = skyland;
+	}
+
+	public static int getMaxPlayers() {
+		return maxPlayers;
 	}
 
 }

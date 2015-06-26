@@ -69,14 +69,20 @@ public class RunebookGUI extends GUI {
 
 	@Override
 	public void optionSelector() {
-		for (final Rune r : this.getPlayer().getRunebook().getRunes()) {
+		List<Rune> runes = new ArrayList<Rune>();
+		runes.add(new Rune(null, "random", -1));
+		runes.add(new Rune(this.getPlayer().getSpawn(), "spawn", -1));
+		runes.addAll(this.getPlayer().getRunebook().getRunes());
+		for (final Rune r : runes) {
 			final ItemStack item = new ItemStack(Material.PAPER);
 			final ItemMeta itemMeta = item.getItemMeta();
 			final List<String> lore = new ArrayList<String>();
 
 			itemMeta.setDisplayName(ChatColor.GOLD + r.getLabel());
-
-			lore.add(ChatColor.YELLOW + "XYZ: " + (r.getLocation().getX()+0.5)+"/"+(r.getLocation().getY()+0.5)+"/"+ (r.getLocation().getZ()+0.5));
+			if(r.getLocation() != null)
+				lore.add(ChatColor.YELLOW + "XYZ: " + (r.getLocation().getX()+0.5)+"/"+(r.getLocation().getY()+0.5)+"/"+ (r.getLocation().getZ()+0.5));
+			else
+				lore.add(ChatColor.YELLOW+"Random location.");
 			lore.add("You can remove the rune by shift clicking it");
 			lore.add(ChatColor.GOLD + "Commands");
 			lore.add("/runebook give " + ChatColor.RED + "(player) (rune)");

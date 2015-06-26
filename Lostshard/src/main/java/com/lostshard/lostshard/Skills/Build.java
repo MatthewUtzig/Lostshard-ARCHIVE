@@ -137,16 +137,15 @@ public class Build {
 	}
 
 	public Skill getSkillByName(String name) {
-		
 		switch(name.toLowerCase()) {
 		case "mining": return this.getMining();
-		case "lumberjacking": this.getLumberjacking();
-		case "blacksmithy": this.getBlackSmithy();
-		case "blades": this.getBlades();
-		case "archery": this.getArchery();
-		case "brawling": this.getBrawling();
-		case "fishing": this.getFishing();
-		case "survivalism": this.getSurvivalism();
+		case "lumberjacking": return this.getLumberjacking();
+		case "blacksmithy": return this.getBlackSmithy();
+		case "blades": return this.getBlades();
+		case "archery": return this.getArchery();
+		case "brawling": return this.getBrawling();
+		case "fishing": return this.getFishing();
+		case "survivalism": return this.getSurvivalism();
 		case "taming": return this.getTaming();
 		case "magery": return this.getMagery();
 		default: return null;

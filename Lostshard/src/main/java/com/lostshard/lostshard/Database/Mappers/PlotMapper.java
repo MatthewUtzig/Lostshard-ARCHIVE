@@ -141,10 +141,13 @@ public class PlotMapper implements LostshardConnection {
 				ptm.getPlots().add(plot);
 			}
 			conn.close();
+			Lostshard.log.info("[PLOT] got "+ptm.getPlots().size());
 		} catch (final Exception e) {
 			Lostshard.log.log(Level.WARNING, "[PLOT] getPlots mysql error");
 			e.printStackTrace();
 		}
+		for(NPC npc : npcs)
+			npc.spawn();
 	}
 	
 	public static void insertPlot(Plot plot) {
@@ -198,7 +201,6 @@ public class PlotMapper implements LostshardConnection {
 		final List<NPC> npcs = new ArrayList<NPC>();
 		try {
 			final Connection conn = ds.getConnection();
-
 			final PreparedStatement prep = conn
 					.prepareStatement("UPDATE plots SET "
 							+ "name=?, location=?, size=?, owner=?, money=?, salePrice=?, protection=?, "

@@ -38,7 +38,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("c").setExecutor(this);
 		plugin.getCommand("p").setExecutor(this);
 		plugin.getCommand("msg").setExecutor(this);
-		plugin.getCommand("replay").setExecutor(this);
+		plugin.getCommand("reply").setExecutor(this);
 		plugin.getCommand("toggleglobal").setExecutor(this);
 		plugin.getCommand("togglemsg").setExecutor(this);
 	}
@@ -124,6 +124,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 		final String message = StringUtils.join(args, " ", 1, args.length);
 
 		final PseudoPlayer pPlayer = this.pm.getPlayer(targetPlayer);
+		pPlayer.setLastResiver(player.getUniqueId());
 		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
 				+ "MSG to " + targetPlayer.getName() + ChatColor.WHITE + "] "
 				+ message);
@@ -155,7 +156,7 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 			this.partyChat(player, args);
 		else if (cmd.getName().equalsIgnoreCase("msg"))
 			this.msgChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("replay"))
+		else if (cmd.getName().equalsIgnoreCase("reply"))
 			this.replayChat(player, args);
 		else if (cmd.getName().equalsIgnoreCase("toggleglobal"))
 			this.toggleGlobalChat(player);
@@ -198,6 +199,11 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 
 	private void replayChat(Player player, String[] args) {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		if(pPlayer.getLastResiver() == null) {
+			Output.simpleError(player, "You havent received any messages.");
+			return;
+		}
+
 		final Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
 		if (to == null) {
 			Output.simpleError(player,
@@ -205,6 +211,8 @@ public class ChatCommand implements CommandExecutor, TabCompleter {
 							+ " is no longer online.");
 			return;
 		}
+		final PseudoPlayer toPp = pm.getPlayer(to);
+		toPp.setLastResiver(to.getUniqueId());
 		final String message = StringUtils.join(args, " ");
 
 		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE

@@ -16,8 +16,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTameEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.inventory.ItemStack;
-import org.spigotmc.event.entity.EntityDismountEvent;
 import org.spigotmc.event.entity.EntityMountEvent;
 
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -108,9 +108,9 @@ public class TamingSkill extends Skill {
 			event.getEntity().remove();
 	}
 
-	public static void onDismount(EntityDismountEvent event) {
-		if (event.getDismounted() instanceof Horse)
-			event.getDismounted().remove();
+	public static void onDismount(VehicleExitEvent event) {
+		if (event.getVehicle() instanceof Horse)
+			event.getVehicle().remove();
 	}
 
 	public static void onLave(PlayerQuitEvent event) {

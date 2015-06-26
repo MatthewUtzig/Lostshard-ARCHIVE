@@ -13,6 +13,7 @@ import org.bukkit.entity.Blaze;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ghast;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -30,6 +31,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -103,11 +105,22 @@ public class SurvivalismSkill extends Skill {
 				.skillGain(pPlayer);
 		Output.gainSkill(player, "Survivalism", gain, curSkill);
 	}
+	
+	public static void entityDeath(EntityDeathEvent event) {
+		Entity e = event.getEntity();
+		Entity k = e.getLastDamageCause().getEntity();
+		if(e instanceof Animals && k != null && k instanceof Player) {
+			PseudoPlayer pPlayer = pm.getPlayer((Player) k);
+			for(ItemStack i : event.getDrops())
+				i.setAmount((int) (i.getAmount()*(Math.random()*pPlayer.getCurrentBuild().getSurvivalism().getLvl()/330+1)));
+			Output.gainSkill((Player) k, "Magery", pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer), pPlayer.getCurrentBuild().getSurvivalism().getLvl());
+		}
+	}
 
 	public static ArrayList<Camp> getCamps() {
 		return camps;
 	}
-
+	
 	public static void onHoe(PlayerInteractEvent event) {
 		if (event.isCancelled())
 			return;

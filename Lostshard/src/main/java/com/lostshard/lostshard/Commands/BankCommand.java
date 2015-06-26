@@ -1,7 +1,9 @@
 package com.lostshard.lostshard.Commands;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -91,9 +93,9 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 				else
 					return TabUtils.OnlinePlayersTab(args);
 		if (cmd.getName().equalsIgnoreCase("tradegold"))
-			return null;
+			return Arrays.asList(ArrayUtils.EMPTY_STRING_ARRAY);
 		if (cmd.getName().equalsIgnoreCase("bank"))
-			return null;
+			return Arrays.asList(ArrayUtils.EMPTY_STRING_ARRAY);
 		return null;
 	}
 
@@ -168,8 +170,12 @@ public class BankCommand implements CommandExecutor, TabCompleter {
 		}
 		int amount;
 		try {
-			amount = Integer.parseInt(args[0]);
-		} catch (final Exception e) {
+			if(args[0].equalsIgnoreCase("all")) {
+				amount = ItemUtils.containsAmount(player.getInventory(), Material.GOLD_INGOT);
+			}else{
+				amount = Integer.parseInt(args[0]);
+			}
+			} catch (final Exception e) {
 			Output.simpleError(player, "/tradegold (amount)");
 			return;
 		}

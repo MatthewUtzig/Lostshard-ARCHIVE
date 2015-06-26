@@ -46,7 +46,7 @@ public class SkillsGUI extends GUI {
 				item.setDisplayName(ChatColor.GREEN + skill.getName() + " "
 						+ Utils.scaledIntToString(skill.getLvl()));
 			final List<String> lore = item.getLore();
-			lore.set(1, "Locked: "
+			lore.set(2, "Locked: "
 					+ (skill.isLocked() ? ChatColor.RED + "yes"
 							: ChatColor.GREEN + "no"));
 			item.setLore(lore);

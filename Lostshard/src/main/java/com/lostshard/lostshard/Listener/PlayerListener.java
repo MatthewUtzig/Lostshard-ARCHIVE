@@ -2,6 +2,7 @@ package com.lostshard.lostshard.Listener;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -40,10 +41,12 @@ import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Handlers.ChatHandler;
 import com.lostshard.lostshard.Handlers.DeathHandler;
 import com.lostshard.lostshard.Handlers.EnderdragonHandler;
+import com.lostshard.lostshard.Handlers.GuardHandler;
 import com.lostshard.lostshard.Handlers.InventoryGUIHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.NPCManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Manager.SpellManager;
@@ -156,6 +159,8 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
 		ChatHandler.onPlayerChat(event);
+		if(StringUtils.containsIgnoreCase(event.getMessage(), "guard"))
+			GuardHandler.Guard(event.getPlayer());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -186,6 +191,11 @@ public class PlayerListener implements Listener {
 		}
 	}
 
+	@EventHandler
+	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+		NPCManager.getManager().interac(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
 		PlotProtectionHandler.onPlayerInteractEntity(event);
@@ -233,10 +243,37 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		PlotProtectionHandler.onPlotEnter(event);
-		sm.move(event);
+		onMoveBlock(event);
 		Gate.onPlayerMove(event);
 		FireWalk.onPlayerMove(event);
 		CapturepointHandler.onPlayerMove(event);
+		GuardHandler.move(event);
+	}
+
+	private void onMoveBlock(PlayerMoveEvent event) {
+		if (event.getTo() != null
+				&& event.getFrom() != null
+				&& !event.getTo().getBlock().getState()
+				.equals(event.getFrom().getBlock().getState())) {
+			sm.move(event);
+			restAndMeditate(event);
+		}
+	}
+
+	private void restAndMeditate(PlayerMoveEvent event) {
+		Player player = event.getPlayer();
+		PseudoPlayer pPlayer = pm.getPlayer(player);
+		if(pPlayer.isResting() && pPlayer.isMeditating()) {
+			pPlayer.setMeditating(false);
+			pPlayer.setResting(false);
+			Output.simpleError(player, "You have moved and stopped resting and meditating.");
+		}else if(pPlayer.isResting()) {
+			pPlayer.setResting(false);
+			Output.simpleError(player, "You have moved and stopped resting.");
+		}else if(pPlayer.isMeditating()) {
+			pPlayer.setMeditating(false);
+			Output.simpleError(player, "You have moved and stopped meditating.");
+		}
 	}
 
 	@EventHandler
