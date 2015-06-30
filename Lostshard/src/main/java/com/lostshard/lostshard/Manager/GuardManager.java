@@ -2,8 +2,7 @@ package com.lostshard.lostshard.Manager;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.bukkit.entity.Player;
+import java.util.UUID;
 
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Tasks.GuardTask;
@@ -20,8 +19,8 @@ public class GuardManager {
 		return manager;
 	}
 
-	public void add(Player c, NPC guard, int wait) {
-		tasks.add(new GuardTask(guard, c.getUniqueId(), wait));
+	public void add(UUID target, NPC guard, int wait) {
+		tasks.add(new GuardTask(guard, target, wait));
 	}
 
 	public List<GuardTask> getTasks() {

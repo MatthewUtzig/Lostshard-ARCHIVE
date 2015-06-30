@@ -35,8 +35,10 @@ public class GuardTask {
 	}
 	
 	public void guard() {
-		if(this.target == null)
+		if(this.target == null) {
 			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
+			return;
+		}
 		Player target = Bukkit.getPlayer(this.target);
 		if(ptm.findPlotAt(target.getLocation()) == guard.getPlot()) {
 			PseudoPlayer pPlayer = pm.getPlayer(target);

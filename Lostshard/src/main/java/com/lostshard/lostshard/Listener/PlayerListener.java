@@ -10,7 +10,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -63,18 +62,15 @@ import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
-public class PlayerListener implements Listener {
+public class PlayerListener extends LostshardListener {
+
+	public PlayerListener(Lostshard plugin) {
+		super(plugin);
+	}
 
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
 	SpellManager sm = SpellManager.getManager();
-
-	private Lostshard plugin;
-	
-	public PlayerListener(Lostshard plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-		this.plugin = plugin;
-	}
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
@@ -235,7 +231,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		if (plugin.isMysqlError()) {
+		if (getPlugin().isMysqlError()) {
 			event.setKickMessage(ChatColor.RED
 					+ "Something is wrong. We are working on it.");
 			event.setResult(Result.KICK_OTHER);

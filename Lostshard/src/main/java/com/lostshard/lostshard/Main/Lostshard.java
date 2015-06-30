@@ -40,7 +40,6 @@ import com.lostshard.lostshard.Database.Mappers.PermanentGateMapper;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Listener.BlockListener;
-import com.lostshard.lostshard.Listener.CitizensLisenter;
 import com.lostshard.lostshard.Listener.EntityListener;
 import com.lostshard.lostshard.Listener.PlayerListener;
 import com.lostshard.lostshard.Listener.ServerListener;
@@ -158,7 +157,6 @@ public class Lostshard extends JavaPlugin {
 		if (this.getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
-		new CitizensLisenter(this);
 		new KeyPlayerListener(this);
 		new CratePlayerListener(this);
 		// Commands

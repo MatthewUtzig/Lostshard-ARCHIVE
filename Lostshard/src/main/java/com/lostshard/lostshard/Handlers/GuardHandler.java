@@ -61,7 +61,7 @@ public class GuardHandler {
 		// Slaying all criminals that are in range
 		for (int i=0; i<criminals.size(); i++) {
 			Player c = criminals.get(i);
-			gm.add(c, guard, i*20+10);
+			gm.add(c.getUniqueId(), guard, i*20+10);
 		 }
 		gm.add(null, guard, criminals.size()*20+20);
 	}

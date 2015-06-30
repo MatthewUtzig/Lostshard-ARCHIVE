@@ -4,7 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
@@ -23,14 +22,13 @@ import com.lostshard.lostshard.Skills.LumberjackingSkill;
 import com.lostshard.lostshard.Skills.MiningSkill;
 import com.lostshard.lostshard.Spells.Structures.Gate;
 
-public class BlockListener implements Listener {
+public class BlockListener extends LostshardListener {
+
+	public BlockListener(Lostshard plugin) {
+		super(plugin);
+	}
 
 	private Lostshard plugin;
-	
-	public BlockListener(Lostshard plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-		this.plugin = plugin;
-	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBreakHigh(BlockBreakEvent event) {

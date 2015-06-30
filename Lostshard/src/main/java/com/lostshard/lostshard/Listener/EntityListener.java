@@ -6,7 +6,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -39,15 +38,15 @@ import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Skills.TamingSkill;
 import com.lostshard.lostshard.Utils.Output;
 
-public class EntityListener implements Listener {
+public class EntityListener extends LostshardListener {
+
+	public EntityListener(Lostshard plugin) {
+		super(plugin);
+	}
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
 	SpellManager sm = SpellManager.getManager();
-
-	public EntityListener(Lostshard plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-	}
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {

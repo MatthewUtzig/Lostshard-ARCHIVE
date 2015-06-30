@@ -1,16 +1,16 @@
 package com.lostshard.lostshard.Listener;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleExitEvent;
 
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Skills.TamingSkill;
 
-public class VehicleListener implements Listener {
+public class VehicleListener extends LostshardListener {
 
 	public VehicleListener(Lostshard plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+		super(plugin);
+		// TODO Auto-generated constructor stub
 	}
 
 	@EventHandler
