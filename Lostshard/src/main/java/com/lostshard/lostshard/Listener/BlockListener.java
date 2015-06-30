@@ -25,8 +25,11 @@ import com.lostshard.lostshard.Spells.Structures.Gate;
 
 public class BlockListener implements Listener {
 
+	private Lostshard plugin;
+	
 	public BlockListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+		this.plugin = plugin;
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -80,7 +83,7 @@ public class BlockListener implements Listener {
 			return;
 		final Block block = event.getBlock();
 		block.setMetadata("placed",
-				new FixedMetadataValue(Lostshard.getPlugin(), true));
+				new FixedMetadataValue(plugin, true));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

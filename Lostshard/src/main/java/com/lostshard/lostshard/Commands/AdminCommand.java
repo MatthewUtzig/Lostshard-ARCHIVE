@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.Crates.Crate;
 import com.lostshard.Crates.CrateManager;
 import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
+import com.lostshard.lostshard.Handlers.DamageHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
@@ -49,6 +50,7 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 		plugin.getCommand("speed").setExecutor(this);
 		plugin.getCommand("item").setExecutor(this);
 		plugin.getCommand("vanish").setExecutor(this);
+		plugin.getCommand("pvp").setExecutor(this);
 	}
 
 	private void adminInv(Player player, String[] args) {
@@ -196,6 +198,19 @@ public class AdminCommand implements CommandExecutor, TabCompleter {
 			adminItem(sender, args);
 		}else if(cmd.getName().equalsIgnoreCase("speed")) {
 			adminSpeed(sender, args);
+		}else if(cmd.getName().equalsIgnoreCase("pvp")) {
+			if(!(sender instanceof Player)) {
+				Output.simpleError(sender, "Only players may perform this command.");
+			}else{
+				Player player = (Player) sender;
+				if(DamageHandler.players.contains(player.getUniqueId())){
+					DamageHandler.players.remove(((Player)sender).getUniqueId());
+					Output.positiveMessage(sender, "You can no lonmger see all damage.");
+				}else {
+					DamageHandler.players.add(((Player)sender).getUniqueId());
+					Output.positiveMessage(sender, "You can now see all damage.");
+				}
+			}
 		}
 		return true;
 	}

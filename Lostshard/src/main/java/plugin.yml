@@ -222,5 +222,6 @@ commands:
    speed:
       description: Allows admins to set there gamemode speed.
       usage: /<command>
-
-      
+   pvp:
+      description: Allows ez testing of pvp
+      usage: /<command>      

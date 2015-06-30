@@ -69,8 +69,11 @@ public class PlayerListener implements Listener {
 	PlotManager ptm = PlotManager.getManager();
 	SpellManager sm = SpellManager.getManager();
 
+	private Lostshard plugin;
+	
 	public PlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
+		this.plugin = plugin;
 	}
 
 	@EventHandler
@@ -232,7 +235,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		if (Lostshard.isMysqlError()) {
+		if (plugin.isMysqlError()) {
 			event.setKickMessage(ChatColor.RED
 					+ "Something is wrong. We are working on it.");
 			event.setResult(Result.KICK_OTHER);

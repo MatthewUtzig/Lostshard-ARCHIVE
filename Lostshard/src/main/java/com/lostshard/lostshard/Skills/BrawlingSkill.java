@@ -35,16 +35,7 @@ public class BrawlingSkill extends Skill {
 		final Entity damagedEntity = event.getEntity();
 		final int brawlingSkill = skill.getLvl();
 		double damage = event.getDamage();
-		int additionalDamage = 0;
-
-		if (brawlingSkill >= 1000)
-			additionalDamage = 4;
-		else if (brawlingSkill >= 750)
-			additionalDamage = 3;
-		else if (brawlingSkill >= 500)
-			additionalDamage = 2;
-		else if (brawlingSkill >= 250)
-			additionalDamage = 1;
+		int additionalDamage = skill.getLvl()/160;
 
 		final double chanceOfEffect = (double) brawlingSkill / 1000;
 		final double stunChance = chanceOfEffect * .25;

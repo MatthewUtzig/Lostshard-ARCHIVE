@@ -55,8 +55,8 @@ public class EntityListener implements Listener {
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);
-		DamageHandler.damage(event);
 		ArcherySkill.EntityDamageByEntityEvent(event);
+		DamageHandler.damage(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

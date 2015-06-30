@@ -13,7 +13,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import com.lostshard.Crates.CrateManager;
 import com.lostshard.Crates.CratePlayerListener;
-import com.lostshard.Skyland.SkyLand;
 import com.lostshard.Whitelist.KeyPlayerListener;
 import com.lostshard.lostshard.Commands.AdminCommand;
 import com.lostshard.lostshard.Commands.BankCommand;
@@ -63,35 +62,29 @@ import com.lostshard.lostshard.Utils.Utils;
  */
 public class Lostshard extends JavaPlugin {
 
-	private SkyLand skyland;
 	private static final int maxPlayers = 30;
 	
-	public static BukkitTask getGameLoop() {
+	public BukkitTask getGameLoop() {
 		return gameLoop;
 	}
-
-	public static Lostshard getLostshard() {
-		return lostshard;
-	}
-
-	public static Plugin getPlugin() {
+	public Plugin getPlugin() {
 		return plugin;
 	}
 
-	public static String getVersion() {
+	public String getVersion() {
 		return "1.0";
 	}
 
 	public static boolean isDebug() {
-		return debug;
+		return Lostshard.debug;
 	}
 
-	public static boolean isMysqlError() {
+	public boolean isMysqlError() {
 		return mysqlError;
 	}
 
 	public static void mysqlError() {
-		Lostshard.mysqlError = true;
+		mysqlError = true;
 		System.out.print("ERROR MYSQL");
 		for (final Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server ERROR something went wrong..");
@@ -101,19 +94,15 @@ public class Lostshard extends JavaPlugin {
 		Lostshard.debug = debug;
 	}
 
-	public static void setLostshard(Lostshard lostshard) {
-		Lostshard.lostshard = lostshard;
-	}
-
 	public static void setMysqlError(boolean mysqlError) {
 		Lostshard.mysqlError = mysqlError;
 	}
 
-	public static void setPlugin(Plugin plugin) {
+	public void setPlugin(Plugin plugin) {
 		Lostshard.plugin = plugin;
 	}
 
-	public static void shutdown() {
+	public void shutdown() {
 		for (final Player p : Bukkit.getOnlinePlayers())
 			p.kickPlayer(ChatColor.RED + "Server rebooting.");
 	}
@@ -122,15 +111,15 @@ public class Lostshard extends JavaPlugin {
 
 	public static Logger log;
 
-	private static BukkitTask gameLoop;
+	private BukkitTask gameLoop;
 
+	private BukkitTask asyncGameLoop;
+	
 	private static Plugin plugin;
 
 	private static boolean mysqlError = true;
 
 	private static boolean debug = true;
-
-	private static Lostshard lostshard;
 
 	@Override
 	public void onDisable() {
@@ -145,7 +134,6 @@ public class Lostshard extends JavaPlugin {
 			pm.getPlayers().remove(pPlayer);
 		}
 		MagicStructure.removeAll();
-		// Database.saveAll();
 		CustomSchedule.stopSchedule();
 		DataSource.getInstance().closeConnection();
 	}
@@ -157,8 +145,6 @@ public class Lostshard extends JavaPlugin {
 		this.saveDefaultConfig();
 
 		ConfigManager.getManager().setConfig(this);
-
-		setLostshard(this);
 
 		log = this.getLogger();
 		log.info(ChatColor.GREEN + "Lostshard has invoke.");
@@ -194,8 +180,6 @@ public class Lostshard extends JavaPlugin {
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
 
-		Lostshard.setPlugin(this);
-
 		setMysqlError(!Database.testDatabaseConnection());
 		
 		PermanentGateMapper.getPermanentGates();
@@ -205,13 +189,13 @@ public class Lostshard extends JavaPlugin {
 		
 		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int)Locations.LAWFULL.getLocation().getX(), (int)Locations.LAWFULL.getLocation().getY(), (int)Locations.LAWFULL.getLocation().getZ());
 		
-		skyland = new SkyLand("Skyland", "1e8e7f4c-6293-40fd-91fb-1d828d59cc26");
-		
 		CrateManager.getManager().createCrates();
 		
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
 		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
+		asyncGameLoop = new AsyncGameLoop().runTaskTimerAsynchronously(this, 0L, 100L);
+		
 		for(Player p : Bukkit.getOnlinePlayers()) {
 			final PseudoPlayer pPlayer = pm.getPlayer(p);
 			pm.getPlayers().add(pPlayer);
@@ -219,17 +203,16 @@ public class Lostshard extends JavaPlugin {
 			p.setDisplayName(Utils.getDisplayName(p)+ChatColor.RESET);
 		}
 	}
-
-	public SkyLand getSkyland() {
-		return skyland;
-	}
-
-	public void setSkyland(SkyLand skyland) {
-		this.skyland = skyland;
-	}
-
+	
 	public static int getMaxPlayers() {
 		return maxPlayers;
 	}
 
+	public BukkitTask getAsyncGameLoop() {
+		return asyncGameLoop;
+	}
+
+	public void setAsyncGameLoop(BukkitTask asyncGameLoop) {
+		this.asyncGameLoop = asyncGameLoop;
+	}
 }

@@ -4,24 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.lostshard.Manager.GuardManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
-import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class GuardHandler {
-
+	
 	public static void Guard(Player player) {
 		// Checking if the player are inside a plot
 		final Plot plot = ptm.findPlotAt(player.getLocation());
@@ -65,27 +61,9 @@ public class GuardHandler {
 		// Slaying all criminals that are in range
 		for (int i=0; i<criminals.size(); i++) {
 			Player c = criminals.get(i);
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					if(ptm.findPlotAt(c.getLocation()) == guard.getPlot()) {
-						PseudoPlayer pPlayer = pm.getPlayer(c);
-						if((pPlayer.isMurderer() || pPlayer.isCriminal()) && c.getGameMode().equals(GameMode.SURVIVAL) && !c.isDead()) {
-							guard.teleport(c.getLocation(), TeleportCause.PLUGIN);
-							pPlayer.addRecentAttacker(new RecentAttacker(guard.getUuid(), 100));
-							c.damage(0d);
-							c.setHealth(0);
-						}
-					}
-				}
-			}.runTaskLater(Lostshard.getPlugin(), i*20);
+			gm.add(c, guard, i*20+10);
 		 }
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
-			}
-		}.runTaskLater(Lostshard.getPlugin(), criminals.size()*20);
+		gm.add(null, guard, criminals.size()*20+20);
 	}
 	
 	public static void move(PlayerMoveEvent event) {
@@ -111,6 +89,6 @@ public class GuardHandler {
 	}
 	
 	static PlayerManager pm = PlayerManager.getManager();
-
+	static GuardManager gm = GuardManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
 }

@@ -1,25 +1,17 @@
 package com.lostshard.lostshard.Main;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.lostshard.lostshard.Database.Database;
-import com.lostshard.lostshard.Database.Mappers.ClanMapper;
-import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
-import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
+import com.lostshard.lostshard.Manager.GuardManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.Camp;
-import com.lostshard.lostshard.Objects.PseudoPlayer;
-import com.lostshard.lostshard.Objects.Groups.Clan;
-import com.lostshard.lostshard.Objects.Plot.Plot;
 import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Spells.MagicStructure;
 
@@ -29,19 +21,14 @@ public class GameLoop extends BukkitRunnable {
 	PlotManager ptm = PlotManager.getManager();
 	ClanManager cm = ClanManager.getManager();
 	ChestRefillManager crm = ChestRefillManager.getManager();
+	GuardManager gm = GuardManager.getManager();
 
 	public static long tick = 0;
 	public static long lastTickTime = 0;
 
-	@SuppressWarnings("unused")
-	private final JavaPlugin plugin;
+	private final Lostshard plugin;
 
-	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
-
-	public static List<Plot> plotUpdates = new ArrayList<Plot>();
-	public static List<Clan> clanUpdates = new ArrayList<Clan>();
-
-	public GameLoop(JavaPlugin plugin) {
+	public GameLoop(Lostshard plugin) {
 		this.plugin = plugin;
 	}
 
@@ -57,38 +44,19 @@ public class GameLoop extends BukkitRunnable {
 			lastTickTime = date.getTime();
 		}
 		tick++;
-		if (Lostshard.isMysqlError())
+		if (plugin.isMysqlError())
 			Lostshard.setMysqlError(!Database.testDatabaseConnection());
 		else {
 			this.pm.tick(delta, tick);
 			MagicStructure.tickGlobal();
 			// 5 sec loop
-			if (tick % 50 == 0) {
-				for (final PseudoPlayer p : this.pm.getPlayers())
-					if (p.isUpdate())
-						playerUpdates.add(p);
-				if (!playerUpdates.isEmpty())
-					PlayerMapper.updatePlayers(playerUpdates);
-				playerUpdates.clear();
-				for (final Plot p : this.ptm.getPlots())
-					if (p.isUpdate())
-						plotUpdates.add(p);
-				if (!plotUpdates.isEmpty())
-					PlotMapper.updatePlots(plotUpdates);
-				plotUpdates.clear();
-				for (final Clan c : this.cm.getClans())
-					if (c.isUpdate())
-						clanUpdates.add(c);
-				if (!clanUpdates.isEmpty())
-					ClanMapper.updateClans(clanUpdates);
-				clanUpdates.clear();
-			}
 			if (tick % 600 == 0)
 				this.crm.tick();
 			for (final Camp camp : SurvivalismSkill.getCamps())
 				camp.tick();
 			if (tick % 10 == 0)
 				CapturepointHandler.tick(delta);
+			gm.tick();
 		}
 	}
 }
