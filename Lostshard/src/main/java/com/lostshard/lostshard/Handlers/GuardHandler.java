@@ -7,13 +7,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.lostshard.lostshard.Manager.GuardManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Manager.TaskManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Tasks.GuardTask;
 import com.lostshard.lostshard.Utils.Utils;
 
 public class GuardHandler {
@@ -61,9 +62,9 @@ public class GuardHandler {
 		// Slaying all criminals that are in range
 		for (int i=0; i<criminals.size(); i++) {
 			Player c = criminals.get(i);
-			gm.add(c.getUniqueId(), guard, i*20+10);
+			tm.add(new GuardTask(guard, c.getUniqueId(), i*20+10));
 		 }
-		gm.add(null, guard, criminals.size()*20+20);
+		tm.add(new GuardTask(guard, null, criminals.size()*20+20));
 	}
 	
 	public static void move(PlayerMoveEvent event) {
@@ -89,6 +90,6 @@ public class GuardHandler {
 	}
 	
 	static PlayerManager pm = PlayerManager.getManager();
-	static GuardManager gm = GuardManager.getManager();
+	static TaskManager tm = TaskManager.getManager();
 	static PlotManager ptm = PlotManager.getManager();
 }

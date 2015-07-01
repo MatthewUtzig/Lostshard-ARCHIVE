@@ -13,28 +13,21 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
 
-public class GuardTask {
+public class GuardTask extends DelayedTask {
 
 	private NPC guard;
 	private UUID target;
-	private int delay;
 	
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
 	
 	public GuardTask(NPC guard, UUID target, int delay) {
+		super(delay);
 		this.guard = guard;
 		this.target = target;
-		this.delay = delay;
 	}
 	
-	public void tick() {
-		delay--;
-		if(delay <= 0)
-			guard();
-	}
-	
-	public void guard() {
+	public void run() {
 		if(this.target == null) {
 			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
 			return;
@@ -57,9 +50,5 @@ public class GuardTask {
 	
 	public void setTarget(UUID target) {
 		this.target = target;
-	}
-	
-	public boolean remove() {
-		return delay <= 0;
 	}
 }

@@ -42,7 +42,7 @@ public class PseudoPlayerTimer {
 			this.bleedTick--;
 
 			if (this.bleedTick <= 0) {
-				p.sendMessage("Your bleeding has stopped.");
+				p.sendMessage(ChatColor.GREEN+"Your bleeding has stopped.");
 				this.bleedTick = 0;
 			} else {
 				double newHealth = p.getHealth() - 1;

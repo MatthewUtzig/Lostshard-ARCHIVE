@@ -10,7 +10,6 @@ import com.lostshard.lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
-import com.lostshard.lostshard.Manager.GuardManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
@@ -23,7 +22,6 @@ public class AsyncGameLoop extends BukkitRunnable {
 	PlotManager ptm = PlotManager.getManager();
 	ClanManager cm = ClanManager.getManager();
 	ChestRefillManager crm = ChestRefillManager.getManager();
-	GuardManager gm = GuardManager.getManager();
 	
 	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
 

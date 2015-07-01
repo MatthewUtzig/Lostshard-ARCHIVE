@@ -8,9 +8,9 @@ import com.lostshard.lostshard.Database.Database;
 import com.lostshard.lostshard.Handlers.CapturepointHandler;
 import com.lostshard.lostshard.Manager.ChestRefillManager;
 import com.lostshard.lostshard.Manager.ClanManager;
-import com.lostshard.lostshard.Manager.GuardManager;
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Manager.TaskManager;
 import com.lostshard.lostshard.Objects.Camp;
 import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Spells.MagicStructure;
@@ -21,8 +21,8 @@ public class GameLoop extends BukkitRunnable {
 	PlotManager ptm = PlotManager.getManager();
 	ClanManager cm = ClanManager.getManager();
 	ChestRefillManager crm = ChestRefillManager.getManager();
-	GuardManager gm = GuardManager.getManager();
-
+	TaskManager tm = TaskManager.getManager();
+	
 	public static long tick = 0;
 	public static long lastTickTime = 0;
 
@@ -34,6 +34,7 @@ public class GameLoop extends BukkitRunnable {
 
 	@Override
 	public void run() {
+		
 		final Date date = new Date();
 		double delta = 1;
 		if (lastTickTime == 0)
@@ -56,7 +57,7 @@ public class GameLoop extends BukkitRunnable {
 				camp.tick();
 			if (tick % 10 == 0)
 				CapturepointHandler.tick(delta);
-			gm.tick();
+			tm.tick();
 		}
 	}
 }

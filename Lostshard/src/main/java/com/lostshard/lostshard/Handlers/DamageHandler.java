@@ -31,17 +31,17 @@ public class DamageHandler {
 			if (wep == Material.AIR)
 				weapon = hand;
 			else if (wep == Material.DIAMOND_SWORD)
-				weapon = diamondSword * swords;
+				weapon = diamondSword + swords;
 			else if (wep == Material.IRON_SWORD)
-				weapon = ironSword * swords;
+				weapon = ironSword + swords;
 			else if (wep == Material.GOLD_SWORD) {
-				weapon = goldSword * swords;
+				weapon = goldSword + swords;
 				event.getEntity().getLocation().getWorld()
 						.strikeLightningEffect(event.getEntity().getLocation());
 			} else if (wep == Material.STONE_SWORD)
-				weapon = stoneSword * swords;
+				weapon = stoneSword + swords;
 			else if (wep == Material.WOOD_SWORD)
-				weapon = woodSword * swords;
+				weapon = woodSword + swords;
 		}
 		
 		if (event.getEntity() instanceof Player) {
@@ -56,19 +56,19 @@ public class DamageHandler {
 			}
 			if (event.isApplicable(DamageModifier.BASE))
 				event.setDamage(DamageModifier.BASE,
-						event.getDamage(DamageModifier.BASE) * base * weapon);
+						(event.getDamage(DamageModifier.BASE) * base) - weapon);
 			if (event.isApplicable(DamageModifier.ARMOR))
 				event.setDamage(DamageModifier.ARMOR,
-						event.getDamage(DamageModifier.ARMOR) * armor);
+						event.getDamage(DamageModifier.ARMOR) - armor);
 			if (event.isApplicable(DamageModifier.MAGIC))
 				event.setDamage(DamageModifier.MAGIC,
-						event.getDamage(DamageModifier.MAGIC) * magic);
+						event.getDamage(DamageModifier.MAGIC) - magic);
 			if (event.isApplicable(DamageModifier.RESISTANCE))
 				event.setDamage(DamageModifier.RESISTANCE,
-						event.getDamage(DamageModifier.RESISTANCE) * resistance);
+						event.getDamage(DamageModifier.RESISTANCE) - resistance);
 			if (event.isApplicable(DamageModifier.HARD_HAT))
 				event.setDamage(DamageModifier.HARD_HAT,
-						event.getDamage(DamageModifier.HARD_HAT) * hardhat);
+						event.getDamage(DamageModifier.HARD_HAT) - hardhat);
 			if(players.contains(player.getUniqueId())) {
 				player.sendMessage("Base: "+event.getDamage(DamageModifier.BASE));
 				player.sendMessage("Blocking: "+event.getDamage(DamageModifier.BLOCKING));

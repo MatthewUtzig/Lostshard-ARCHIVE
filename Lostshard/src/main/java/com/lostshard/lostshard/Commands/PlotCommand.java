@@ -744,10 +744,16 @@ public class PlotCommand implements CommandExecutor, TabCompleter {
 					"Only the owner and co-owner may toggle friendbuild.");
 			return;
 		}
-		if (plot.isFriendBuild()) {
-			plot.setFriendBuild(false);
+		if (!plot.isFriendBuild()) {
+			plot.setFriendBuild(true);
 			Output.positiveMessage(player,
 					"You have turned on friend build for " + plot.getName()
+					+ ".");
+			return;
+		}else{
+			plot.setFriendBuild(false);
+			Output.positiveMessage(player,
+					"You have turned off friend build for " + plot.getName()
 					+ ".");
 			return;
 		}
