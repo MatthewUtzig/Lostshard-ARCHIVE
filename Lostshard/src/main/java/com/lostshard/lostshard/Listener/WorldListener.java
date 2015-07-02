@@ -16,5 +16,4 @@ public class WorldListener extends LostshardListener {
 	public void onWorldLoad(WorldLoadEvent event) {
 
 	}
-
 }

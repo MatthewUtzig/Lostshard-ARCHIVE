@@ -14,6 +14,7 @@ import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.NPC.NPCType;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Plot.Plot;
+import com.lostshard.lostshard.Tasks.DelayedTask;
 import com.lostshard.lostshard.Tasks.GuardTask;
 import com.lostshard.lostshard.Utils.Utils;
 
@@ -41,6 +42,11 @@ public class GuardHandler {
 		
 		if(!guard.getLocation().equals(guard.getCitizensNPC().getEntity().getLocation()))
 			return;
+	
+		for(DelayedTask dt : TaskManager.getManager().getTasks())
+			if(dt instanceof GuardTask)
+				if(((GuardTask)dt).getTarget().equals(player.getUniqueId()))
+					return;
 		
 		// Finding the nearest guard, on the same plot.
 		// Check if the plot is guarded

@@ -26,9 +26,7 @@ import com.lostshard.lostshard.Handlers.PVPHandler;
 import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.ScrollHandler;
 import com.lostshard.lostshard.Main.Lostshard;
-import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Manager.SpellManager;
+import com.lostshard.lostshard.Objects.Managers;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Skills.ArcherySkill;
 import com.lostshard.lostshard.Skills.BladesSkill;
@@ -38,15 +36,11 @@ import com.lostshard.lostshard.Skills.SurvivalismSkill;
 import com.lostshard.lostshard.Skills.TamingSkill;
 import com.lostshard.lostshard.Utils.Output;
 
-public class EntityListener extends LostshardListener {
+public class EntityListener extends LostshardListener implements Managers {
 
 	public EntityListener(Lostshard plugin) {
 		super(plugin);
 	}
-
-	PlotManager ptm = PlotManager.getManager();
-	PlayerManager pm = PlayerManager.getManager();
-	SpellManager sm = SpellManager.getManager();
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {

@@ -3,6 +3,8 @@ package com.lostshard.lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+
 import com.lostshard.lostshard.Tasks.DelayedTask;
 
 public class TaskManager {
@@ -26,7 +28,10 @@ public class TaskManager {
 	}
 	
 	public void tick() {
-		tasks.forEach(dt -> dt.tick());
+		if(tasks.size()>0)
+			Bukkit.broadcastMessage("Tick: "+tasks.size());
+		for(DelayedTask dt : tasks)
+			dt.tick();
 		tasks.removeIf(dt -> dt.remove());
 	}
 }

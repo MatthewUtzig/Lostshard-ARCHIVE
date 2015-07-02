@@ -46,9 +46,7 @@ import com.lostshard.lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.lostshard.Handlers.foodHealHandler;
 import com.lostshard.lostshard.Main.Lostshard;
 import com.lostshard.lostshard.Manager.NPCManager;
-import com.lostshard.lostshard.Manager.PlayerManager;
-import com.lostshard.lostshard.Manager.PlotManager;
-import com.lostshard.lostshard.Manager.SpellManager;
+import com.lostshard.lostshard.Objects.Managers;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.PseudoScoreboard;
 import com.lostshard.lostshard.Objects.Plot.Plot;
@@ -62,15 +60,11 @@ import com.lostshard.lostshard.Spells.Structures.Gate;
 import com.lostshard.lostshard.Utils.Output;
 import com.lostshard.lostshard.Utils.SpellUtils;
 
-public class PlayerListener extends LostshardListener {
+public class PlayerListener extends LostshardListener implements Managers {
 
 	public PlayerListener(Lostshard plugin) {
 		super(plugin);
 	}
-
-	PlayerManager pm = PlayerManager.getManager();
-	PlotManager ptm = PlotManager.getManager();
-	SpellManager sm = SpellManager.getManager();
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
@@ -90,7 +84,7 @@ public class PlayerListener extends LostshardListener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClose(InventoryCloseEvent event) {
 		final Player player = (Player) event.getPlayer();
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (event.getInventory().getTitle()
 				.equals(pPlayer.getBank().getInventory().getTitle()))
 			pPlayer.update();
@@ -99,7 +93,7 @@ public class PlayerListener extends LostshardListener {
 	@EventHandler
 	public void onPlayeQuit(PlayerQuitEvent event) {
 		final Player player = event.getPlayer();
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (pPlayer.getPvpTicks() > 0) {
 			// Drop inventory
 			for (final ItemStack itemStack : player.getInventory()
@@ -130,7 +124,7 @@ public class PlayerListener extends LostshardListener {
 					+ " left the game while in combat.");
 			event.setQuitMessage(null);
 		}
-		this.pm.onPlayerQuit(event);
+		pm.onPlayerQuit(event);
 		TamingSkill.onLave(event);
 		CapturepointHandler.onPlayerQuit(event);
 	}
@@ -165,7 +159,7 @@ public class PlayerListener extends LostshardListener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		DeathHandler.handleDeath(event);
-		for (final Plot plot : this.ptm.getPlots())
+		for (final Plot plot : ptm.getPlots())
 			if (plot instanceof PlotCapturePoint)
 				((PlotCapturePoint) plot).failCaptureDied(event.getEntity());
 	}
@@ -213,7 +207,7 @@ public class PlayerListener extends LostshardListener {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		final Player player = event.getPlayer();
 		Output.displayLoginMessages(player);
-		final PseudoPlayer pPlayer = this.pm.onPlayerLogin(event);
+		final PseudoPlayer pPlayer = pm.onPlayerLogin(event);
 		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
 		final List<String> msgs = MessagesMapper.getOfflineMessages(player

@@ -21,6 +21,7 @@
 	<classpathentry kind="lib" path="lib/mchange-commons-java-0.2.9.jar"/>
 	<classpathentry kind="lib" path="lib/spigot-api-1.8.5-R0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/spigot-1.8.5-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/Votifier.jar"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>

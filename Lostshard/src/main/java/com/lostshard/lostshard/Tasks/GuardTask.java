@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.lostshard.lostshard.Manager.PlayerManager;
 import com.lostshard.lostshard.Manager.PlotManager;
+import com.lostshard.lostshard.Manager.TaskManager;
 import com.lostshard.lostshard.NPC.NPC;
 import com.lostshard.lostshard.Objects.PseudoPlayer;
 import com.lostshard.lostshard.Objects.Recent.RecentAttacker;
@@ -25,8 +26,10 @@ public class GuardTask extends DelayedTask {
 		super(delay);
 		this.guard = guard;
 		this.target = target;
+		TaskManager.getManager().add(this);
 	}
 	
+	@Override
 	public void run() {
 		if(this.target == null) {
 			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
@@ -50,5 +53,13 @@ public class GuardTask extends DelayedTask {
 	
 	public void setTarget(UUID target) {
 		this.target = target;
+	}
+	
+	public UUID getTarget() {
+		return target;
+	}
+	
+	public NPC getGuard() {
+		return guard;
 	}
 }

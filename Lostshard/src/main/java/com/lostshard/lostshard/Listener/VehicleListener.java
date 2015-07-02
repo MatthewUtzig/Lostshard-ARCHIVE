@@ -10,7 +10,6 @@ public class VehicleListener extends LostshardListener {
 
 	public VehicleListener(Lostshard plugin) {
 		super(plugin);
-		// TODO Auto-generated constructor stub
 	}
 
 	@EventHandler

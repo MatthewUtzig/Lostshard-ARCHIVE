@@ -48,11 +48,9 @@ public class DamageHandler {
 			Player player = (Player) event.getEntity();
 			if(players.contains(player.getUniqueId())) {
 				player.sendMessage("Base: "+event.getDamage(DamageModifier.BASE));
-				player.sendMessage("Blocking: "+event.getDamage(DamageModifier.BLOCKING));
 				player.sendMessage("Armor: "+event.getDamage(DamageModifier.ARMOR));
 				player.sendMessage("Magic: "+event.getDamage(DamageModifier.MAGIC));
 				player.sendMessage("Resistance: "+event.getDamage(DamageModifier.RESISTANCE));
-				player.sendMessage("Hat: "+event.getDamage(DamageModifier.HARD_HAT));
 			}
 			if (event.isApplicable(DamageModifier.BASE))
 				event.setDamage(DamageModifier.BASE,
@@ -71,11 +69,9 @@ public class DamageHandler {
 						event.getDamage(DamageModifier.HARD_HAT) - hardhat);
 			if(players.contains(player.getUniqueId())) {
 				player.sendMessage("Base: "+event.getDamage(DamageModifier.BASE));
-				player.sendMessage("Blocking: "+event.getDamage(DamageModifier.BLOCKING));
 				player.sendMessage("Armor: "+event.getDamage(DamageModifier.ARMOR));
 				player.sendMessage("Magic: "+event.getDamage(DamageModifier.MAGIC));
 				player.sendMessage("Resistance: "+event.getDamage(DamageModifier.RESISTANCE));
-				player.sendMessage("Hat: "+event.getDamage(DamageModifier.HARD_HAT));
 				player.sendMessage("Weapon multiplier: "+weapon);
 				player.sendMessage("Final damage: "+event.getFinalDamage());
 			}

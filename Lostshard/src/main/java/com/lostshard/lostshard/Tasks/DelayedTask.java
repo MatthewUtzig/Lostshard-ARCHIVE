@@ -13,9 +13,8 @@ public abstract class DelayedTask implements Task {
 	}
 	
 	public void tick() {
-		if(delay>0)
 			delay--;
-		else
+		if(delay<=0)
 			run();
 	}
 	
