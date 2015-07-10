@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
-import org.bukkit.event.inventory.InventoryAction;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,65 +19,23 @@ public class SkillsGUI extends GUI {
 
 	public SkillsGUI(PseudoPlayer pPlayer) {
 		super("Skills", pPlayer);
-		this.optionSelector();
-	}
-
-	@Override
-	public void onClick(InventoryClickEvent event) {
-		if (event.getAction().equals(InventoryAction.MOVE_TO_OTHER_INVENTORY)
-				&& event.getCurrentItem().getItemMeta() != null
-				&& event.getCurrentItem().getItemMeta().hasDisplayName()) {
-			final String[] skillName = ChatColor.stripColor(
-					event.getCurrentItem().getItemMeta().getDisplayName())
-					.split(" ");
-			if (skillName.length < 1)
-				return;
-			final Skill skill = this.getPlayer().getSkillByName(skillName[0]);
-			if (skill == null)
-				return;
-			if (skill.isLocked())
-				skill.setLocked(false);
-			else
-				skill.setLocked(true);
-			final ItemMeta item = event.getCurrentItem().getItemMeta();
-			if (skill.isLocked())
-				item.setDisplayName(ChatColor.RED + skill.getName() + " "
-						+ Utils.scaledIntToString(skill.getLvl()));
-			else
-				item.setDisplayName(ChatColor.GREEN + skill.getName() + " "
-						+ Utils.scaledIntToString(skill.getLvl()));
-			final List<String> lore = item.getLore();
-			lore.set(2, "Locked: "
-					+ (skill.isLocked() ? ChatColor.RED + "yes"
-							: ChatColor.GREEN + "no"));
-			item.setLore(lore);
-			item.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-			item.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			item.addItemFlags(ItemFlag.HIDE_DESTROYS);
-			item.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-			item.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-			item.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-			event.getCurrentItem().setItemMeta(item);
-		}
-	}
-
-	@Override
-	public void optionSelector() {
-		for (final Skill s : this.getPlayer().getCurrentBuild().getSkills()) {
+		for (int i=0; i<pPlayer.getCurrentBuild().getSkills().size(); i++) {
+			Skill s = pPlayer.getCurrentBuild().getSkills().get(i);
 			final ItemStack skillItem = new ItemStack(s.getMat());
 			final ItemMeta skillMeta = skillItem.getItemMeta();
 			final List<String> skillLore = new ArrayList<String>();
+			GUIItem[] items = new GUIItem[pPlayer.getCurrentBuild().getSkills().size()];
 			if (s.isLocked())
 				skillMeta.setDisplayName(ChatColor.RED + s.getName() + " "
 						+ Utils.scaledIntToString(s.getLvl()));
 			else
 				skillMeta.setDisplayName(ChatColor.GREEN + s.getName() + " "
 						+ Utils.scaledIntToString(s.getLvl()));
-			skillLore.add(Utils.scaledIntToString(this.getPlayer()
+			skillLore.add(Utils.scaledIntToString(pPlayer
 					.getCurrentBuild().getTotalSkillVal())
 					+ "/"
-					+ Utils.scaledIntToString(this.getPlayer()
-							.getMaxSkillValTotal()) + " skill points");
+					+ Utils.scaledIntToString(pPlayer.getMaxSkillValTotal())
+					+ " skill points");
 			skillLore.add(s.howToGain());
 			skillLore.add("Locked: "
 					+ (s.isLocked() ? ChatColor.RED + "yes" : ChatColor.GREEN
@@ -90,7 +49,39 @@ public class SkillsGUI extends GUI {
 			skillLore.add("/skills increase " + ChatColor.RED + "(amount)");
 			skillMeta.setLore(skillLore);
 			skillItem.setItemMeta(skillMeta);
-			this.addOption(skillItem);
+			items[i] = new GUIItem(skillItem, new GUIClick() {
+				
+				@Override
+				public void click(Player player, PseudoPlayer pPlayer, ItemStack item,
+						ClickType click, Inventory inv, int slot) {
+					if (click.equals(ClickType.SHIFT_LEFT)) {
+						final Skill skill = s;
+						if (skill.isLocked())
+							skill.setLocked(false);
+						else
+							skill.setLocked(true);
+						final ItemMeta itemMeta = item.getItemMeta();
+						if (skill.isLocked())
+							itemMeta.setDisplayName(ChatColor.RED + skill.getName() + " "
+									+ Utils.scaledIntToString(skill.getLvl()));
+						else
+							itemMeta.setDisplayName(ChatColor.GREEN + skill.getName() + " "
+									+ Utils.scaledIntToString(skill.getLvl()));
+						final List<String> lore = itemMeta.getLore();
+						lore.set(2, "Locked: "
+								+ (skill.isLocked() ? ChatColor.RED + "yes"
+										: ChatColor.GREEN + "no"));
+						itemMeta.setLore(lore);
+						itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+						itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+						itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+						itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+						itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+						itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+						item.setItemMeta(itemMeta);
+					}
+				}
+			});
 		}
 	}
 }

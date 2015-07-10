@@ -6,7 +6,8 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.ClickType;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -17,37 +18,28 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class SpellbookPageGUI extends GUI {
 
-	private int page;
 
 	public SpellbookPageGUI(PseudoPlayer pPlayer, int page) {
 		super("Spellbook page: " + page, pPlayer);
-		this.page = page;
-		this.optionSelector();
-	}
-
-	public int getPage() {
-		return this.page;
-	}
-
-	@Override
-	public void onClick(InventoryClickEvent event) {
-		if (event.getCurrentItem().getItemMeta().hasDisplayName())
-			if (event.getCurrentItem().getItemMeta().getDisplayName()
-					.equals(ChatColor.GOLD + "Back to Spellbook.")) {
-				final GUI spellbookGUI = new SpellbookGUI(this.getPlayer());
-				spellbookGUI.openInventory((Player) event.getWhoClicked());
-			}
-	}
-
-	@Override
-	public void optionSelector() {
 		final SpellBook spellbook = this.getPlayer().getSpellbook();
 		final ItemStack pageBack = new ItemStack(Material.BOOK);
 		final ItemMeta pageBackMeta = pageBack.getItemMeta();
 		pageBackMeta.setDisplayName(ChatColor.GOLD + "Back to Spellbook.");
 		pageBack.setItemMeta(pageBackMeta);
-		this.addOption(pageBack);
-		for (final Scroll s : spellbook.getSpellsOnPage(this.page)) {
+		List<Scroll> scrolls = spellbook.getSpellsOnPage(page);
+		GUIItem[] items = new GUIItem[scrolls.size()+1];
+		items[0] = new GUIItem(pageBack, new GUIClick() {
+			
+			@Override
+			public void click(Player player, PseudoPlayer pPlayer, ItemStack item,
+					ClickType click, Inventory inv, int slot) {
+				final GUI spellbookGUI = new SpellbookGUI(pPlayer);
+				spellbookGUI.openInventory(player);
+			}
+		});
+		
+		for (int i=0; i<scrolls.size(); i++) {
+			Scroll s = scrolls.get(i);
 			final ItemStack item = new ItemStack(s.getReagentCost().get(0)
 					.getType());
 			final ItemMeta itemMeta = item.getItemMeta();
@@ -63,19 +55,15 @@ public class SpellbookPageGUI extends GUI {
 						+ Utils.scaledIntToString(s.getMinMagery()));
 			lore.add(ChatColor.BLUE + "Mana cost: " + s.getManaCost());
 			lore.add(ChatColor.GOLD + "Reagent Cost");
-			for (final ItemStack i : s.getReagentCost())
-				lore.add(i.getAmount() + " "
-						+ i.getType().name().toLowerCase().replace("_", " "));
+			for (final ItemStack it : s.getReagentCost())
+				lore.add(it.getAmount() + " "
+						+ it.getType().name().toLowerCase().replace("_", " "));
 			lore.add(ChatColor.GOLD + "Commands");
 			lore.add("/cast " + ChatColor.RED + "(spell)");
 			lore.add("/bind " + ChatColor.RED + "(spell)");
 			itemMeta.setLore(lore);
 			item.setItemMeta(itemMeta);
-			this.addOption(item);
+			items[i+1] = new GUIItem(item);
 		}
-	}
-
-	public void setPage(int page) {
-		this.page = page;
 	}
 }
