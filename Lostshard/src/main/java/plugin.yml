@@ -224,4 +224,7 @@ commands:
       usage: /<command>
    pvp:
       description: Allows ez testing of pvp
-      usage: /<command>      
+      usage: /<command>
+   say:
+      description: Changes the say command
+      usage: /<command> (message)

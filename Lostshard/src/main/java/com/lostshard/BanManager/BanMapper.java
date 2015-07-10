@@ -3,8 +3,8 @@ package com.lostshard.BanManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-import com.lostshard.lostshard.Database.LostshardConnection;
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Database.LostshardConnection;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.mysql.jdbc.Statement;
 
 import java.sql.PreparedStatement;

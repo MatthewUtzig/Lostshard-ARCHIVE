@@ -10,8 +10,8 @@ import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 
-import com.lostshard.lostshard.Database.LostshardConnection;
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Database.LostshardConnection;
+import com.lostshard.Lostshard.Main.Lostshard;
 
 public class KeyMapper implements LostshardConnection {
 	

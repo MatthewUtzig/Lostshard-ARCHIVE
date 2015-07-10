@@ -9,8 +9,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.lostshard.Main.Lostshard;
-import com.lostshard.lostshard.Utils.Output;
+import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Utils.Output;
 
 public class CratePlayerListener implements Listener {
 

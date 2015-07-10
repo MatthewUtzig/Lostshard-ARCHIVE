@@ -10,8 +10,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Utils.RandomSelector;
-import com.lostshard.lostshard.Main.Lostshard;
 
 public class CrateManager {
 

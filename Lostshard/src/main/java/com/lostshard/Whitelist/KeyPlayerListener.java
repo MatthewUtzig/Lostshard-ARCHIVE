@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 
-import com.lostshard.lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Main.Lostshard;
 
 public class KeyPlayerListener implements Listener {
 	
