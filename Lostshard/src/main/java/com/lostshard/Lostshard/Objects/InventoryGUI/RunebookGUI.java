@@ -82,5 +82,6 @@ public class RunebookGUI extends GUI {
 				}
 			});
 		}
+		setItems(items);
 	}
 }

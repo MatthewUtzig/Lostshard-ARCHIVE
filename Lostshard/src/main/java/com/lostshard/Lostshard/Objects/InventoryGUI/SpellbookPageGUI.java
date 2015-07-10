@@ -65,5 +65,6 @@ public class SpellbookPageGUI extends GUI {
 			item.setItemMeta(itemMeta);
 			items[i+1] = new GUIItem(item);
 		}
+		setItems(items);
 	}
 }

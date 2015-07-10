@@ -19,12 +19,12 @@ public class SkillsGUI extends GUI {
 
 	public SkillsGUI(PseudoPlayer pPlayer) {
 		super("Skills", pPlayer);
+		GUIItem[] items = new GUIItem[pPlayer.getCurrentBuild().getSkills().size()];
 		for (int i=0; i<pPlayer.getCurrentBuild().getSkills().size(); i++) {
 			Skill s = pPlayer.getCurrentBuild().getSkills().get(i);
 			final ItemStack skillItem = new ItemStack(s.getMat());
 			final ItemMeta skillMeta = skillItem.getItemMeta();
 			final List<String> skillLore = new ArrayList<String>();
-			GUIItem[] items = new GUIItem[pPlayer.getCurrentBuild().getSkills().size()];
 			if (s.isLocked())
 				skillMeta.setDisplayName(ChatColor.RED + s.getName() + " "
 						+ Utils.scaledIntToString(s.getLvl()));
@@ -83,5 +83,6 @@ public class SkillsGUI extends GUI {
 				}
 			});
 		}
+		setItems(items);
 	}
 }

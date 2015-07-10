@@ -1,5 +1,5 @@
 name: Lostshard
-main: com.lostshard.lostshard.Main.Lostshard
+main: com.lostshard.Lostshard.Main.Lostshard
 version: 0.2
 softdepend: [Citizens]
 commands:

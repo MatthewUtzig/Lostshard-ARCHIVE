@@ -17,11 +17,10 @@ public class GUIItem {
     
     @SuppressWarnings("deprecation")
 	public GUIItem(ItemStack item) {
-        this.displayName = ((item.hasItemMeta() && item.getItemMeta().hasDisplayName()) ? item.getItemMeta().getDisplayName() : null);
+        this.displayName = ((item.hasItemMeta() && item.getItemMeta().hasDisplayName()) ? item.getItemMeta().getDisplayName() : "UNKNOWN");
         this.displayItem = item.getType();
         this.lore = ((item.hasItemMeta() && item.getItemMeta().hasLore()) ? item.getItemMeta().getLore() : null);
         this.data = (int) item.getData().getData();
-        
     }
 
     public GUIItem(String displayName, Material displayItem){
@@ -61,7 +60,7 @@ public class GUIItem {
     	this.click = click;
     }
     
-    public ItemStack constructItem(){
+    public ItemStack getItemStack(){
         ItemStack stack = new ItemStack(displayItem, 1, (byte) data);
 
         ItemMeta meta = stack.getItemMeta();

@@ -36,5 +36,6 @@ public class SpellbookGUI extends GUI {
 				}
 			});
 		}
+		setItems(items);
 	}
 }

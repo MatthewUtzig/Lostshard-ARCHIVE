@@ -83,5 +83,6 @@ public class ScrollGUI extends GUI {
 				}
 			});
 		}
+		setItems(items);
 	}
 }

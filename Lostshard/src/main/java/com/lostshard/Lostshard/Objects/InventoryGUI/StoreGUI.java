@@ -48,5 +48,6 @@ public class StoreGUI extends GUI {
 				}
 			});
 		}
+		setItems(items);
 	}
 }

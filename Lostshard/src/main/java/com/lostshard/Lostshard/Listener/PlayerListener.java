@@ -15,7 +15,6 @@ import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -74,11 +73,6 @@ public class PlayerListener extends LostshardListener implements Managers {
 	@EventHandler
 	public void onInventoryClick(InventoryCloseEvent event) {
 		InventoryGUIHandler.onInventoryClose(event);
-	}
-
-	@EventHandler
-	public void onInventoryClick(InventoryInteractEvent event) {
-		InventoryGUIHandler.onInventoryInteract(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

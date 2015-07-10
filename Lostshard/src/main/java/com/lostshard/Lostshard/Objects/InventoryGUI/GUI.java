@@ -6,6 +6,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.PseudoPlayer;
@@ -36,6 +37,12 @@ public abstract class GUI {
 	public Inventory getGUI() {
 		Inventory inv = Bukkit.createInventory(null,
 				(int) Math.max(9, Math.ceil(items.length / 9) * 9), getName());
+		ItemStack[] itemStacks = new ItemStack[items.length];
+		Bukkit.broadcastMessage(""+items.length);
+		for(int i=0; i<items.length; i++)
+			itemStacks[i] = items[i].getItemStack();
+		inv.setContents(itemStacks);
+		Bukkit.broadcastMessage("Got gui with: "+items.length+" items.");
 		return inv;
 	}
 
@@ -44,11 +51,13 @@ public abstract class GUI {
 	}
 
 	public void inventoryClick(InventoryClickEvent event) {
-		event.setCancelled(true);
 		if (event.getClickedInventory() == null)
 			return;
 		if (event.getClick() == null)
 			return;
+		if(!getPlayer().getGui().equals(this))
+			return;
+		event.setCancelled(true);
 		GUIClick click = items[event.getSlot()].getClick();
 		if(click != null && event.getCurrentItem() != null && event.getClick() != null && event.getWhoClicked() != null)
 			click.click((Player) event.getWhoClicked(), getPlayer(), event.getCurrentItem(), event.getClick(), event.getInventory(), event.getSlot());
