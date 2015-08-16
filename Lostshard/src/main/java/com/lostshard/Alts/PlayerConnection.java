@@ -29,4 +29,12 @@ public class PlayerConnection {
     public UUID getPlayer() {
         return this.player;
     }
+
+	public Date getJoin() {
+		return join;
+	}
+
+	public Date getQuit() {
+		return quit;
+	}
 }

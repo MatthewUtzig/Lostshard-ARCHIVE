@@ -1,5 +1,10 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
+import com.lostshard.Lostshard.Manager.PlayerManager;
+import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -8,25 +13,20 @@ import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
-
 public abstract class GUI {
-
 	PlayerManager pm = PlayerManager.getManager();
-
 	private PseudoPlayer player;
-	private GUIItem[] items;
+	private List<GUIItem> items;
 	private String name;
-	
-	public GUI(String name, PseudoPlayer pPlayer, GUIItem...items) {
+
+	public GUI(String name, PseudoPlayer pPlayer, GUIItem... items) {
 		this.name = name;
 		this.player = pPlayer;
-		this.items = items;
+		this.items = new ArrayList<GUIItem>(Arrays.asList(items));
 	}
-	
+
 	public void setItem(int slot, GUIItem item) {
-		items[slot] = item;
+		this.items.set(slot, item);
 	}
 
 	public void forceClose() {
@@ -35,14 +35,16 @@ public abstract class GUI {
 	}
 
 	public Inventory getGUI() {
-		Inventory inv = Bukkit.createInventory(null,
-				(int) Math.max(9, Math.ceil(items.length / 9) * 9), getName());
-		ItemStack[] itemStacks = new ItemStack[items.length];
-		Bukkit.broadcastMessage(""+items.length);
-		for(int i=0; i<items.length; i++)
-			itemStacks[i] = items[i].getItemStack();
+		Inventory inv = Bukkit.createInventory(null, (int) Math.max(9.0D, Math.ceil(this.items.size() / 9.0D) * 9.0D),
+				getName());
+		if ((this.items == null) || (this.items.isEmpty())) {
+			return inv;
+		}
+		ItemStack[] itemStacks = new ItemStack[this.items.size()];
+		for (int i = 0; i < this.items.size(); i++) {
+			itemStacks[i] = ((GUIItem) this.items.get(i)).getItemStack();
+		}
 		inv.setContents(itemStacks);
-		Bukkit.broadcastMessage("Got gui with: "+items.length+" items.");
 		return inv;
 	}
 
@@ -51,16 +53,25 @@ public abstract class GUI {
 	}
 
 	public void inventoryClick(InventoryClickEvent event) {
-		if (event.getClickedInventory() == null)
+		if (event.getClickedInventory() == null) {
 			return;
-		if (event.getClick() == null)
+		}
+		if (event.getClick() == null) {
 			return;
-		if(!getPlayer().getGui().equals(this))
+		}
+		if (!getPlayer().getGui().equals(this)) {
 			return;
+		}
 		event.setCancelled(true);
-		GUIClick click = items[event.getSlot()].getClick();
-		if(click != null && event.getCurrentItem() != null && event.getClick() != null && event.getWhoClicked() != null)
-			click.click((Player) event.getWhoClicked(), getPlayer(), event.getCurrentItem(), event.getClick(), event.getInventory(), event.getSlot());
+		if (event.getSlot() >= this.items.size()) {
+			return;
+		}
+		GUIClick click = ((GUIItem) this.items.get(event.getSlot())).getClick();
+		if ((click != null) && (event.getCurrentItem() != null) && (event.getClick() != null)
+				&& (event.getWhoClicked() != null)) {
+			click.click((Player) event.getWhoClicked(), getPlayer(), event.getCurrentItem(), event.getClick(),
+					event.getInventory(), event.getSlot());
+		}
 	}
 
 	public void inventoryClose(InventoryCloseEvent event) {
@@ -72,8 +83,8 @@ public abstract class GUI {
 	}
 
 	public void openInventory(Player player) {
-		this.pm.getPlayer(player).setGui(this);
-		player.openInventory(this.getGUI());
+		player.openInventory(getGUI());
+		getPlayer().setGui(this);
 	}
 
 	public void setPlayer(PseudoPlayer player) {
@@ -81,18 +92,22 @@ public abstract class GUI {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public GUIItem[] getItems() {
-		return items;
+	public List<GUIItem> getItems() {
+		return this.items;
 	}
 
-	public void setItems(GUIItem[] items) {
+	public void setItems(GUIItem... items) {
+		this.items = new ArrayList<GUIItem>(Arrays.asList(items));
+	}
+
+	public void setItems(List<GUIItem> items) {
 		this.items = items;
 	}
 }

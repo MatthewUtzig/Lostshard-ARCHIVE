@@ -1,5 +1,7 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
+import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.SpellBook;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -8,30 +10,25 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.SpellBook;
-
 public class SpellbookGUI extends GUI {
-
 	public SpellbookGUI(PseudoPlayer pPlayer) {
-		super("Spellbook", pPlayer);
-		final SpellBook spellbook = this.getPlayer().getSpellbook();
-		GUIItem[] items = new GUIItem[spellbook.getSpells().size()];
-		for (int i = 1; i < 10; i++) {
-			int index = i;
-			final ItemStack item = new ItemStack(Material.PAPER);
-			final ItemMeta itemMeta = item.getItemMeta();
-			if (spellbook.getSpellsOnPage(i).isEmpty())
-				itemMeta.setDisplayName(ChatColor.RED + "Spellbook page: " + i);
-			else
-				itemMeta.setDisplayName(ChatColor.GOLD + "Spellbook page: " + i);
+		super("Spellbook", pPlayer, new GUIItem[0]);
+		SpellBook spellbook = getPlayer().getSpellbook();
+		GUIItem[] items = new GUIItem[9];
+		for (int i = 0; i < 9; i++) {
+			final int index = i;
+			ItemStack item = new ItemStack(Material.PAPER);
+			ItemMeta itemMeta = item.getItemMeta();
+			if (spellbook.getSpellsOnPage(i + 1).isEmpty()) {
+				itemMeta.setDisplayName(ChatColor.RED + "Spellbook page: " + (i + 1));
+			} else {
+				itemMeta.setDisplayName(ChatColor.GOLD + "Spellbook page: " + (i + 1));
+			}
 			item.setItemMeta(itemMeta);
 			items[i] = new GUIItem(item, new GUIClick() {
-				
-				@Override
-				public void click(Player player, PseudoPlayer pPlayer, ItemStack item,
-						ClickType click, Inventory inv, int slot) {
-					final GUI pageGUI = new SpellbookPageGUI(pPlayer, index);
+				public void click(Player player, PseudoPlayer pPlayer, ItemStack item, ClickType click, Inventory inv,
+						int slot) {
+					GUI pageGUI = new SpellbookPageGUI(pPlayer, index + 1);
 					pageGUI.openInventory(player);
 				}
 			});

@@ -28,11 +28,10 @@ public class ScrollGUI extends GUI {
 			if (!scrolls.contains(s))
 				scrolls.add(s);
 		GUIItem[] items = new GUIItem[scrolls.size()];
-		for (int i=0; i<scrolls.size(); i++) {
+		for (int i = 0; i < scrolls.size(); i++) {
 			Scroll s = scrolls.get(i);
 			final int amount = Collections.frequency(scrolls, s);
-			final ItemStack item = new ItemStack(s.getReagentCost().get(0)
-					.getType(), amount);
+			final ItemStack item = new ItemStack(s.getReagentCost().get(0).getType(), amount);
 			final ItemMeta itemMeta = item.getItemMeta();
 			final List<String> lore = new ArrayList<String>();
 
@@ -54,10 +53,10 @@ public class ScrollGUI extends GUI {
 
 			item.setItemMeta(itemMeta);
 			items[i] = new GUIItem(item, new GUIClick() {
-				
+
 				@Override
-				public void click(Player player, PseudoPlayer pPlayer, ItemStack item,
-						ClickType click, Inventory inv, int slot) {
+				public void click(Player player, PseudoPlayer pPlayer, ItemStack item, ClickType click, Inventory inv,
+						int slot) {
 					if (click.equals(ClickType.LEFT)) {
 						final Scroll scroll = s;
 						if (pPlayer.getSpellbook().containSpell(scroll))
@@ -67,8 +66,7 @@ public class ScrollGUI extends GUI {
 						ScrollMapper.deleteScroll(scroll, pPlayer.getId());
 						pPlayer.update();
 						Output.positiveMessage(player,
-								"You have transferred " + scroll.getName()
-										+ " to your spellbook.");
+								"You have transferred " + scroll.getName() + " to your spellbook.");
 						openInventory(player);
 					} else if (click.equals(ClickType.SHIFT_LEFT)) {
 						final Scroll scroll = s;
