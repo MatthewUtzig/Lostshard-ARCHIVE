@@ -100,9 +100,11 @@ public class SpellManager {
 
 		final Location loc = player.getLocation();
 
-		for (int x = -2; x <= 2; x++)
-			for (int y = -2; y <= 2; y++)
-				for (int z = -2; z <= 2; z++) {
+		int size = 2;
+		
+		for (int x = -size; x <= size; x++)
+			for (int y = -size; y <= size; y++)
+				for (int z = -size; z <= size; z++) {
 					final Material type = player
 							.getWorld()
 							.getBlockAt(loc.getBlockX() + x,

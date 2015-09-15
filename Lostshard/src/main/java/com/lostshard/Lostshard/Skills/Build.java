@@ -17,6 +17,10 @@ public class Build {
 	private Skill magery = new MagerySkill();
 	private Skill archery = new ArcherySkill();
 
+	public Build(int id) {
+		this.id = id;
+	}
+	
 	public Skill getArchery() {
 		return this.archery;
 	}

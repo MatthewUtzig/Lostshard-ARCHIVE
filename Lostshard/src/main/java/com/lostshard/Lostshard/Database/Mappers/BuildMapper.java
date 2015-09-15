@@ -37,8 +37,7 @@ public class BuildMapper implements LostshardConnection {
 		final int archery = rs.getInt("archery");
 		final boolean archeryLock = rs.getBoolean("archeryLock");
 
-		final Build build = new Build();
-		build.setId(id);
+		final Build build = new Build(id);
 		build.getMining().setLvl(mining);
 		build.getMining().setLocked(miningLock);
 		build.getMagery().setLvl(magery);

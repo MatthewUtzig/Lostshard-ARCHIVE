@@ -448,6 +448,11 @@ public class BlackSmithySkill extends Skill {
 		if (ItemUtils.isArmor(cost))
 			amount = 3;
 		player.getInventory().setItemInHand(null);
+		if (pPlayer.getStamina() < SMELT_STAMINA_COST) {
+			Output.simpleError(player, "Not enough stamina - Smelting requires "
+					+ SMELT_STAMINA_COST + ".");
+			return;
+		}
 		pPlayer.setStamina(pPlayer.getStamina() - SMELT_STAMINA_COST);
 		if (cansmelt) {
 			player.getWorld().dropItem(player.getLocation(),

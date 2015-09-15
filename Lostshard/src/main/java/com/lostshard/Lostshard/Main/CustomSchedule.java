@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Handlers.EnderdragonHandler;
-import com.lostshard.Lostshard.Manager.LotteryManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.PseudoPlayer;
@@ -18,7 +17,6 @@ public class CustomSchedule {
 		s.start();
 		tax.schedule("0 0 * * *", () -> ptm.tax());
 		tax.start();
-		lottery.schedule("0 */1 * * *", () -> lm.tick());
 		lottery.start();
 		serviceMessage
 				.schedule(
@@ -63,7 +61,6 @@ public class CustomSchedule {
 	static PlotManager ptm = PlotManager.getManager();
 
 	static PlayerManager pm = PlayerManager.getManager();
-	static LotteryManager lm = LotteryManager.getManager();
 	static Scheduler s = new Scheduler();
 	static Scheduler tax = new Scheduler();
 	static Scheduler serviceMessage = new Scheduler();

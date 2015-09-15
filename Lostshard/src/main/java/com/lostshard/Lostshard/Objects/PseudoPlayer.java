@@ -86,7 +86,7 @@ public class PseudoPlayer {
 		super();
 		this.playerUUID = playerUUID;
 		this.id = id;
-		this.builds.add(new Build());
+		this.builds.add(new Build(0));
 	}
 
 	public void addMoney(int money) {

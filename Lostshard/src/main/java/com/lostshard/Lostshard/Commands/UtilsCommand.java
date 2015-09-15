@@ -70,7 +70,7 @@ public class UtilsCommand extends LostshardCommand {
 				return;
 			}
 			if (pPlayer.getBuilds().size() < id + 1) {
-				final Build build = new Build();
+				final Build build = new Build(0);
 				pPlayer.getBuilds().add(build);
 				BuildMapper.insertBuild(build, pPlayer.getId());
 			}
