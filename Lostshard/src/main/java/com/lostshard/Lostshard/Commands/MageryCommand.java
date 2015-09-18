@@ -318,6 +318,10 @@ public class MageryCommand extends LostshardCommand {
 				tpPlayer.getScrolls().add(scroll);
 				ScrollMapper.updateScrollOwner(scroll, tpPlayer.getId(),
 						pPlayer.getId());
+				if(scroll == null) {
+					Output.simpleError(player, "Theres no scroll with the name \""+scrollName+"\".");
+					return;
+				}
 				Output.positiveMessage(player,
 						"You have given " + targetPlayer.getName()
 								+ " a scroll of " + scroll.getName() + ".");
