@@ -27,7 +27,7 @@ import com.lostshard.Lostshard.Handlers.PlotProtectionHandler;
 import com.lostshard.Lostshard.Handlers.ScrollHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Managers;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Skills.ArcherySkill;
 import com.lostshard.Lostshard.Skills.BladesSkill;
 import com.lostshard.Lostshard.Skills.BrawlingSkill;

@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public class PlotCreateEvent extends Event implements Cancellable {
 

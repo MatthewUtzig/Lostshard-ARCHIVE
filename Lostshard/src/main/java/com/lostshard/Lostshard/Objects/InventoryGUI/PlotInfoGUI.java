@@ -1,7 +1,7 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
 
 public class PlotInfoGUI extends GUI {
 	public PlotInfoGUI(PseudoPlayer pPlayer, Plot plot) {

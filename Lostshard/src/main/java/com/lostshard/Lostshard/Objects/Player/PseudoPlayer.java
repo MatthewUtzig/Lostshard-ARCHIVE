@@ -1,4 +1,4 @@
-package com.lostshard.Lostshard.Objects;
+package com.lostshard.Lostshard.Objects.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Manager.ClanManager;
+import com.lostshard.Lostshard.Objects.ChatChannel;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;

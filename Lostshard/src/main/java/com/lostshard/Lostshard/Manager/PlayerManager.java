@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Utils;
 
 public class PlayerManager {

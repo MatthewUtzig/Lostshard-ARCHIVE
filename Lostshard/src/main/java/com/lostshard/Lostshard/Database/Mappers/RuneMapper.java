@@ -10,9 +10,9 @@ import org.bukkit.Location;
 
 import com.lostshard.Lostshard.Database.LostshardConnection;
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Rune;
-import com.lostshard.Lostshard.Objects.Runebook;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.Rune;
+import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Utils.Serializer;
 
 public class RuneMapper implements LostshardConnection {

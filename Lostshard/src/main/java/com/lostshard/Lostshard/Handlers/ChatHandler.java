@@ -12,9 +12,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 

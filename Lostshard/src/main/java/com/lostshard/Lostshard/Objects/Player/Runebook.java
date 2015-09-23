@@ -1,4 +1,4 @@
-package com.lostshard.Lostshard.Objects;
+package com.lostshard.Lostshard.Objects.Player;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,8 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.lostshard.Lostshard.Objects;
+package com.lostshard.Lostshard.Objects.Player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

@@ -28,7 +28,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public class Utils {
 

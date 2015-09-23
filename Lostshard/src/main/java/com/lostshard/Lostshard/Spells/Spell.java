@@ -7,9 +7,9 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
 import com.lostshard.Lostshard.Objects.InventoryGUI.RunebookGUI;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public abstract class Spell {
 

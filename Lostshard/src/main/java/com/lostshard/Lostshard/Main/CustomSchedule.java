@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import com.lostshard.Lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public class CustomSchedule {
 	public static void Schedule() {

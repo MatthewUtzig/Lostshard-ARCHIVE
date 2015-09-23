@@ -1,7 +1,5 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.SpellBook;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -9,6 +7,9 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.SpellBook;
 
 public class SpellbookGUI extends GUI {
 	public SpellbookGUI(PseudoPlayer pPlayer) {

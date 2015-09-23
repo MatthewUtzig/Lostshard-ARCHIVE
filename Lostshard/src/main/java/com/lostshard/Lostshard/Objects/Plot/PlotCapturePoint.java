@@ -12,8 +12,8 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.Lostshard.Manager.ClanManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 
 public class PlotCapturePoint extends Plot {

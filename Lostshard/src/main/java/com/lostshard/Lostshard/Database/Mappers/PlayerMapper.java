@@ -13,9 +13,9 @@ import org.bukkit.Bukkit;
 
 import com.lostshard.Lostshard.Database.LostshardConnection;
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Objects.Bank;
 import com.lostshard.Lostshard.Objects.ChatChannel;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.Bank;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Utils.Serializer;
 

@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.Lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.Lostshard.Manager.SpellManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Utils.Output;
 

@@ -10,7 +10,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Objects.Bank;
+import com.lostshard.Lostshard.Objects.Player.Bank;
 
 public class Clan extends Group {
 

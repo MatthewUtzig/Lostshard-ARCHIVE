@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import com.lostshard.Lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.Lostshard.Factory.ScrollFactory;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Utils.Output;
 

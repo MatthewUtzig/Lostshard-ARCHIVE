@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Skills.TamingSkill;
 import com.lostshard.Lostshard.Utils.Output;
 

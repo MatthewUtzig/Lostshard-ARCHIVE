@@ -12,8 +12,8 @@ import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 
 public class AsyncGameLoop extends BukkitRunnable {
@@ -49,7 +49,10 @@ public class AsyncGameLoop extends BukkitRunnable {
 		if (!clanUpdates.isEmpty())
 			ClanMapper.updateClans(clanUpdates);
 		clanUpdates.clear();
-		if(Lostshard.isDebug())
-			Lostshard.log.info("AsyncGameloop: "+(System.nanoTime()-time));
+		if(Lostshard.isDebug()) {
+			long delay = System.nanoTime()-time;
+			if(delay >= 10000)
+				Lostshard.log.warning("AsyncGameloop: "+delay);
+		}
 	}
 }

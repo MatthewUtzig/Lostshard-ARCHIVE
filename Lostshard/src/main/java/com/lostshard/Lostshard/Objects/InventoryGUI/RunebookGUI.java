@@ -1,9 +1,9 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
 import com.lostshard.Lostshard.Database.Mappers.RuneMapper;
-import com.lostshard.Lostshard.Objects.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Rune;
-import com.lostshard.Lostshard.Objects.Runebook;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Player.Rune;
+import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Utils.Output;
 import java.util.ArrayList;
