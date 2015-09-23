@@ -2,10 +2,10 @@ package com.lostshard.Utils;
 
 public class SelectorObject {
 
-	private final double weight;
+	private final int weight;
 	private final Object object;
 	
-	public SelectorObject(double weight, Object object) {
+	public SelectorObject(int weight, Object object) {
 		super();
 		this.weight = weight;
 		this.object = object;

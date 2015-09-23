@@ -43,15 +43,15 @@ public class CrateManager {
 		rs = new RandomSelector();
 
 		//High value
-		rs.add(1, new ItemStack(Material.DIAMOND, 3));
-		rs.add(1, new ItemStack(Material.GOLD_INGOT, 5));
-		rs.add(1, new ItemStack(Material.IRON_INGOT, 7));
-		rs.add(0.2, new ItemStack(Material.DIAMOND_SWORD, 1));
-		rs.add(0.2, new ItemStack(Material.MONSTER_EGG, 1, (short) 96));
+		rs.add(5, new ItemStack(Material.DIAMOND, 3));
+		rs.add(5, new ItemStack(Material.GOLD_INGOT, 5));
+		rs.add(5, new ItemStack(Material.IRON_INGOT, 7));
+		rs.add(1, new ItemStack(Material.DIAMOND_SWORD, 1));
+		rs.add(1, new ItemStack(Material.MONSTER_EGG, 1, (short) 96));
 		//Low value
-		rs.add(0.2, new ItemStack(Material.DIAMOND, 2));
-		rs.add(0.2, new ItemStack(Material.GOLD_INGOT, 3));
-		rs.add(0.2, new ItemStack(Material.IRON_INGOT, 4));
+		rs.add(1, new ItemStack(Material.DIAMOND, 2));
+		rs.add(1, new ItemStack(Material.GOLD_INGOT, 3));
+		rs.add(1, new ItemStack(Material.IRON_INGOT, 4));
 		
 		crate = new Crate(2, ChatColor.GOLD+"Legendary Crate", new String[] {ChatColor.GOLD+"Crate's contains random loot."}, rs);
 		crates.add(crate);
@@ -59,16 +59,16 @@ public class CrateManager {
 		rs = new RandomSelector();
 		
 		//High value
-		rs.add(0.2, new ItemStack(Material.DIAMOND, 2));
-		rs.add(0.3, new ItemStack(Material.GOLD_INGOT, 4));
-		rs.add(0.6, new ItemStack(Material.IRON_INGOT, 6));
-		rs.add(0.2, new ItemStack(Material.DIAMOND_SWORD, 1));
-		rs.add(0.05, new ItemStack(Material.MONSTER_EGG, 1, (short) 96));
-		rs.add(0.05, crates.get(0).getCrate());
+		rs.add(80, new ItemStack(Material.DIAMOND, 2));
+		rs.add(80, new ItemStack(Material.GOLD_INGOT, 4));
+		rs.add(120, new ItemStack(Material.IRON_INGOT, 6));
+		rs.add(20, new ItemStack(Material.DIAMOND_SWORD, 1));
+		rs.add(1, new ItemStack(Material.MONSTER_EGG, 1, (short) 96));
+		rs.add(1, crates.get(0).getCrate());
 		//Low value
-		rs.add(0.8, new ItemStack(Material.DIAMOND, 1));
-		rs.add(0.8, new ItemStack(Material.GOLD_INGOT, 2));
-		rs.add(1, new ItemStack(Material.IRON_INGOT, 3));
+		rs.add(1, new ItemStack(Material.DIAMOND, 1));
+		rs.add(1, new ItemStack(Material.GOLD_INGOT, 2));
+		rs.add(300, new ItemStack(Material.IRON_INGOT, 3));
 		
 		crate = new Crate(1, ChatColor.GOLD+"Vote Crate", new String[] {ChatColor.GOLD+"Crate's contains random loot."}, rs);
 		crates.add(crate);

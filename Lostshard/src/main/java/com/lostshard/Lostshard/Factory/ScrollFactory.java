@@ -45,14 +45,14 @@ public class ScrollFactory {
 		spider.add(1, Scroll.WALLOFSTONE);
 		
 		creeper = new RandomSelector();
-		creeper.add(1, Scroll.GATETRAVEL);
-		creeper.add(1, Scroll.CLANTELEPORT);
-		creeper.add(1, Scroll.FIREBALL);
-		creeper.add(1, Scroll.LIGHTNING);
-		creeper.add(1, Scroll.STONESKIN);
-		creeper.add(0.25, Scroll.PERMANENTGATETRAVEL);
-		creeper.add(0.25, Scroll.MOONJUMP);
-		creeper.add(0.25, Scroll.ARROWBLAST);
+		creeper.add(4, Scroll.GATETRAVEL);
+		creeper.add(4, Scroll.CLANTELEPORT);
+		creeper.add(4, Scroll.FIREBALL);
+		creeper.add(4, Scroll.LIGHTNING);
+		creeper.add(4, Scroll.STONESKIN);
+		creeper.add(1, Scroll.PERMANENTGATETRAVEL);
+		creeper.add(4, Scroll.MOONJUMP);
+		creeper.add(4, Scroll.ARROWBLAST);
 		creeper.add(1, Scroll.RECALL);
 		
 		tier1 = new RandomSelector();
@@ -68,9 +68,9 @@ public class ScrollFactory {
 			tier3.add(1, s);
 		
 		boss = new RandomSelector();
-		boss.add(1, Scroll.PERMANENTGATETRAVEL);
-		boss.add(1, Scroll.LIGHTNING);
-		boss.add(0.005, Scroll.FLARE);
+		boss.add(5000, Scroll.PERMANENTGATETRAVEL);
+		boss.add(5000, Scroll.LIGHTNING);
+		boss.add(1, Scroll.FLARE);
 	}
 	
 	public Scroll getRandomScroll(EntityType type) {

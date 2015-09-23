@@ -13,7 +13,7 @@ public class RandomSelector {
 		this.objects = new ArrayList<SelectorObject>();
 	}
 	
-	public boolean add(double weight, Object object) {
+	public boolean add(int weight, Object object) {
 		return objects.add(new SelectorObject(weight, object));
 	}
 	
