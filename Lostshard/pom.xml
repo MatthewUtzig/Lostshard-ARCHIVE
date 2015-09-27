@@ -12,21 +12,25 @@
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
 		<repository>
-		<id>everything</id>
-		<url>http://repo.citizensnpcs.co</url>
+			<id>citizensnpcs-repo</id>
+			<url>http://repo.citizensnpcs.co</url>
+		</repository>
+		<repository>
+			<id>votifier-repo/</id>
+			<url>http://repo.howaner.de</url>
 		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.8.3-R0.1-SNAPSHOT</version>
+			<version>1.8.8-R0.1-SNAPSHOT</version>
 		</dependency>
 		<!--Bukkit API -->
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.8.7-R0.1-SNAPSHOT</version>
+			<version>1.8.8-R0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -42,7 +46,16 @@
 			<groupId>net.citizensnpcs</groupId>
 			<artifactId>citizensapi</artifactId>
 			<version>2.0.16-SNAPSHOT</version>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.vexsoftware</groupId>
+			<artifactId>votifier</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>mchange-commons-java</artifactId>
+			<version>0.2.10</version>
 		</dependency>
 	</dependencies>
 	<build>
