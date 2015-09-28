@@ -22,7 +22,7 @@ public class StoreCommand extends LostshardCommand {
 	PlayerManager pm = PlayerManager.getManager();
 
 	public StoreCommand(Lostshard plugin) {
-		super(plugin, "shop", "vendor");
+		super(plugin, "vendor");
 	}
 
 	@Override
@@ -36,32 +36,20 @@ public class StoreCommand extends LostshardCommand {
 			final Player player = (Player) sender;
 			this.vendor(player, args);
 			return true;
-		} else if (cmd.getName().equalsIgnoreCase("shop")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.shop(player);
-			return true;
 		}
 		return false;
 	}
 
-	private void shop(Player player) {
-		final Store store = this.sm.getStore(player.getLocation());
-		if (store == null) {
-			Output.simpleError(player, "You are not close enough to a vendor.");
-			return;
-		}
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		final GUI gui = new StoreGUI(pPlayer, store);
-		gui.openInventory(player);
-	}
-
 	private void vendor(Player player, String[] args) {
 		if (args.length < 1) {
-			Output.simpleError(player, "Use \"/vendor help\" commands.");
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player, "You are not close enough to a vendor.");
+				return;
+			}
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+			final GUI gui = new StoreGUI(pPlayer, store);
+			gui.openInventory(player);
 			return;
 		}
 		final String subCmd = args[0];

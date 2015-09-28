@@ -80,7 +80,6 @@ public class TamingSkill extends Skill {
 			horse.setBreed(false);
 			horse.setMaxHealth(20);
 			horse.setHealth(20);
-			horse.sets
 			final AttributeInstance attributes = ((EntityInsentient) ((CraftLivingEntity) horse)
 					.getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
 			attributes.setValue(0.2);

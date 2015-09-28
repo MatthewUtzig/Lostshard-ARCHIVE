@@ -40,6 +40,7 @@ public class PseudoScoreboard {
 			+ "Murder Counts:");
 	protected Score rank = this.stats.getScore(ChatColor.YELLOW + "Rank:");
 
+	@SuppressWarnings("deprecation")
 	public PseudoScoreboard(UUID uuid) {
 
 		this.playerUUID = uuid;
@@ -130,6 +131,7 @@ public class PseudoScoreboard {
 		this.stamina.setScore(stamina);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void updateTeams() {
 		final PseudoPlayer pPlayer = pm.getPlayer(this.playerUUID);
 		final Player player = Bukkit.getPlayer(this.playerUUID);
