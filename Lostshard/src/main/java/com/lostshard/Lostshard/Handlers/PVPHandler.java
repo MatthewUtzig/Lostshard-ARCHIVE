@@ -17,8 +17,8 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
-import com.lostshard.Lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 
 /**

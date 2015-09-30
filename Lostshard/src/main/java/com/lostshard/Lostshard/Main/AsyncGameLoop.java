@@ -30,7 +30,7 @@ public class AsyncGameLoop extends BukkitRunnable {
 	
 	@Override
 	public void run() {
-		long time = System.nanoTime();
+//		long time = System.nanoTime();
 		for (final PseudoPlayer p : pm.getPlayers())
 			if (p.isUpdate())
 				playerUpdates.add(p);
@@ -50,9 +50,9 @@ public class AsyncGameLoop extends BukkitRunnable {
 			ClanMapper.updateClans(clanUpdates);
 		clanUpdates.clear();
 		if(Lostshard.isDebug()) {
-			long delay = System.nanoTime()-time;
-			if(delay >= 10000)
-				Lostshard.log.warning("AsyncGameloop: "+delay);
+//			long delay = System.nanoTime()-time;
+//			if(delay >= 10000)
+//				Lostshard.log.warning("AsyncGameloop: "+delay);
 		}
 	}
 }

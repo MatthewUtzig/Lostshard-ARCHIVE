@@ -29,8 +29,8 @@ import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
-import com.lostshard.Lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.TabUtils;
@@ -372,13 +372,21 @@ public class PlotCommand extends LostshardCommand {
 			newPlot.setCoowners(plot.getCoowners());
 			newPlot.setFriends(plot.getFriends());
 			newPlot.setMoney(plot.getMoney());
+			newPlot.setSize(plot.getSize());
 			ptm.getPlots().remove(plot);
 			ptm.getPlots().add(newPlot);
 			Output.positiveMessage(player, "You have turend " + plot.getName()
 			+ " into a normal plot.");
-		} else
+		} else {
+			PlotCapturePoint newPlot = new PlotCapturePoint(plot.getId(), plot.getName(), plot.getOwner(), plot.getLocation());
+			newPlot.setCoowners(plot.getCoowners());
+			newPlot.setFriends(plot.getFriends());
+			newPlot.setMoney(plot.getMoney());
+			ptm.getPlots().remove(plot);
+			ptm.getPlots().add(newPlot);
 			Output.positiveMessage(player, "You have turend " + plot.getName()
 					+ " into a capturepoint.");
+		}
 	}
 
 	/**
@@ -785,10 +793,14 @@ public class PlotCommand extends LostshardCommand {
 	private void plotList(Player player, String[] args) {
 		if (args.length >= 2 && player.isOp()) {
 			final String name = args[1];
-			Output.positiveMessage(player, "-" + name + "'s Plots-");
+			OfflinePlayer tPlayer = Bukkit.getOfflinePlayer(name);
+			if(tPlayer == null) {
+				Output.simpleError(player, "No player exist whith that name.");
+				return;
+			}
+			Output.positiveMessage(player, "-" + tPlayer.getUniqueId() + "'s Plots-");
 			for (final Plot plot : this.ptm.getPlots())
-				if (plot.getOwner().equals(
-						Bukkit.getOfflinePlayer(name).getUniqueId()))
+				if (plot.getOwner().equals(tPlayer.getUniqueId()))
 					player.sendMessage(" - " + plot.getName() + " ("
 							+ plot.getSize() + ") @("
 							+ plot.getLocation().getBlockX() + ","

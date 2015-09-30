@@ -17,8 +17,8 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
-import com.lostshard.Lostshard.Objects.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Utils.Serializer;
 
 public class PlotMapper implements LostshardConnection {
