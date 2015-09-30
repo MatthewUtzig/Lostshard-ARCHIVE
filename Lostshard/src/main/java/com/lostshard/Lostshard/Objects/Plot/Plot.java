@@ -15,6 +15,7 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Serializer;
+import com.lostshard.Utils.ExtraMath;
 
 /**
  * @author Jacob Rosborg
@@ -113,10 +114,7 @@ public class Plot {
 	 * @return Expand price from current size to size.
 	 */
 	public int getExpandPrice(int toSize) {
-		return (int) Math
-				.abs(((Math.pow(toSize - 1, 2) + toSize - 1) / 2 - (Math.pow(
-						this.size, 2) + this.size) / 2)
-						* Variables.plotExpandPrice + 100);
+		return Variables.plotExpandPrice*(-ExtraMath.Triangular(size)+ExtraMath.Triangular(toSize)+size-toSize);
 	}
 
 	public List<UUID> getFriends() {
@@ -175,9 +173,7 @@ public class Plot {
 	}
 
 	public int getValue() {
-		int plotValue = (int) Math.floor(Math.abs(((Math.pow(this.size - 1, 2)
-				+ this.size - 1) / 2 - 45)
-				* Variables.plotExpandPrice));
+		int plotValue = Variables.plotExpandPrice*(-55+ExtraMath.Triangular(getSize())+10-getSize());
 		if (this.isUpgrade(PlotUpgrade.TOWN))
 			plotValue += Variables.plotTownPrice;
 		if (this.isUpgrade(PlotUpgrade.DUNGEON))
@@ -186,7 +182,7 @@ public class Plot {
 			plotValue += Variables.plotAutoKickPrice;
 		if (this.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			plotValue += Variables.plotNeutralAlignmentPrice;
-
+		
 		if (this.getLocation().getWorld().getEnvironment()
 				.equals(Environment.NETHER))
 			return plotValue;

@@ -1,12 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
-import net.minecraft.server.v1_8_R3.AttributeInstance;
-import net.minecraft.server.v1_8_R3.EntityInsentient;
-import net.minecraft.server.v1_8_R3.GenericAttributes;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Horse.Color;
@@ -80,9 +75,9 @@ public class TamingSkill extends Skill {
 			horse.setBreed(false);
 			horse.setMaxHealth(20);
 			horse.setHealth(20);
-			final AttributeInstance attributes = ((EntityInsentient) ((CraftLivingEntity) horse)
-					.getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
-			attributes.setValue(0.2);
+//			final AttributeInstance attributes = ((EntityInsentient) ((CraftLivingEntity) horse)
+//					.getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
+//			attributes.setValue(0.2);
 			if (!(player.isOp() || pseudoPlayer.isSubscriber())) {
 				horse.setColor(Color.BLACK);
 				horse.setVariant(Variant.HORSE);

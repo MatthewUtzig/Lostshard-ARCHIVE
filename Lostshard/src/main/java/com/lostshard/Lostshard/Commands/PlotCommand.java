@@ -367,14 +367,18 @@ public class PlotCommand extends LostshardCommand {
 		if (!player.isOp())
 			Output.simpleError(player,
 					"Ops may only toggle capturepoint for plots.");
-		if (plot instanceof PlotCapturePoint)
-			Output.simpleError(player,
-					"The only way to turn of capturepoint is disbanding the plot.");
-		else
+		if (plot instanceof PlotCapturePoint) {
+			Plot newPlot = new Plot(plot.getId(), plot.getName(), plot.getOwner(), plot.getLocation());
+			newPlot.setCoowners(plot.getCoowners());
+			newPlot.setFriends(plot.getFriends());
+			newPlot.setMoney(plot.getMoney());
+			ptm.getPlots().remove(plot);
+			ptm.getPlots().add(newPlot);
+			Output.positiveMessage(player, "You have turend " + plot.getName()
+			+ " into a normal plot.");
+		} else
 			Output.positiveMessage(player, "You have turend " + plot.getName()
 					+ " into a capturepoint.");
-		// ptm.getPlots().remove(plot);
-		// ptm.getPlots().add((PlotCapturePoint)plot);
 	}
 
 	/**
