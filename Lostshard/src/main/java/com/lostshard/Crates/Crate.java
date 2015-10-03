@@ -2,12 +2,16 @@ package com.lostshard.Crates;
 
 import java.util.Arrays;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.lostshard.Lostshard.Tasks.DelayedTask;
 import com.lostshard.Utils.RandomSelector;
 
 public class Crate {
@@ -44,5 +48,25 @@ public class Crate {
 
 	public RandomSelector getRs() {
 		return rs;
+	}
+	
+	public void open(Player player) {
+		Inventory w = Bukkit.createInventory(player, 9);
+		for(int i=0; i<9; i++) {
+			w.setItem(i, getItem());
+		}
+		for(int i=1; i<19; i++)
+		new DelayedTask(10*i) {
+			
+			@Override
+			public void run() {
+				for(int x=0; x<9; x++) {
+					if(x == 8)
+						w.setItem(8, getCrate());
+					else
+					w.setItem(x, w.getItem(x+1));
+				}
+			}
+		};
 	}
 }
