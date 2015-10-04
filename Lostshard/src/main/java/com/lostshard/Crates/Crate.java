@@ -55,14 +55,15 @@ public class Crate {
 		for(int i=0; i<9; i++) {
 			w.setItem(i, getItem());
 		}
+		player.openInventory(w);
 		for(int i=1; i<19; i++)
-		new DelayedTask(10*i) {
+		new DelayedTask(i) {
 			
 			@Override
 			public void run() {
 				for(int x=0; x<9; x++) {
 					if(x == 8)
-						w.setItem(8, getCrate());
+						w.setItem(8, getItem());
 					else
 					w.setItem(x, w.getItem(x+1));
 				}

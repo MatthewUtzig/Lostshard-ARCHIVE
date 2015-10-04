@@ -74,7 +74,8 @@ public class DeathHandler {
 				NPC guard = NPCManager.getManager().getByUUID(recentAttackers.get(i).getUUID());
 				if(guard != null && guard.getType().equals(NPCType.GUARD)) {
 					deathMessage = player.getDisplayName() + ChatColor.WHITE
-							+ " was executed by an Order guard.";
+							+ " was executed by an "+guard.getPlot().getName()+" guard.";
+					attackers = "";
 					break;
 				}
 				final Player p = Bukkit.getPlayer(recentAttackers.get(i)

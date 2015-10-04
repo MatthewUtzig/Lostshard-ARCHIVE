@@ -71,9 +71,9 @@ public class GuardHandler {
 		// Slaying all criminals that are in range
 		for (int i=0; i<criminals.size(); i++) {
 			UUID c = criminals.get(i);
-			tm.add(new GuardTask(guard, c, i*20+10));
+			new GuardTask(guard, c, i*20+10);
 		 }
-		tm.add(new GuardTask(guard, null, criminals.size()*20+20));
+		new GuardTask(guard, null, criminals.size()*20+20);
 	}
 	
 	public static void move(PlayerMoveEvent event) {
