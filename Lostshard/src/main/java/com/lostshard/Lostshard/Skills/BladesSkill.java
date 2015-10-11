@@ -37,15 +37,8 @@ public class BladesSkill extends Skill {
 		int additionalDamage = 0;
 
 		final int pierceAmount = 0;
-
-		if (swordsSkill >= 1000)
-			additionalDamage = 4;
-		else if (swordsSkill >= 750)
-			additionalDamage = 3;
-		else if (swordsSkill >= 500)
-			additionalDamage = 2;
-		else if (swordsSkill >= 250)
-			additionalDamage = 1;
+		
+		additionalDamage = Math.floorDiv(skill.getLvl(), 250);
 
 		if (swordsSkill >= 250) {
 			final double chanceOfEffect = (double) swordsSkill / 1000;

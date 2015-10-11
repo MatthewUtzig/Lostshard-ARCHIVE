@@ -16,7 +16,7 @@
 			<url>http://repo.citizensnpcs.co</url>
 		</repository>
 		<repository>
-			<id>votifier-repo/</id>
+			<id>votifier-repo</id>
 			<url>http://repo.howaner.de</url>
 		</repository>
 		<repository>
