@@ -46,6 +46,16 @@
 			<version>1.7.12</version>
 		</dependency>
 		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.37</version>
+		</dependency>
+		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
 			<version>1.8.8-R0.1-SNAPSHOT</version>
@@ -55,11 +65,6 @@
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.8.8-R0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>it.sauronsoftware.cron4j</groupId>

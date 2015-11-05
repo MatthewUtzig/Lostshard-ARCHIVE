@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.hibernate.annotations.GenericGenerator;
 
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
@@ -29,11 +37,17 @@ import com.lostshard.Lostshard.Utils.Utils;
  * @author Jacob Rosborg
  *
  */
+@Entity
+@Table(name="players")
 public class PseudoPlayer {
 
 	ClanManager cm = ClanManager.getManager();
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
+	@Column(name="uuid", unique=true, nullable=false, updatable=false)
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
@@ -44,43 +58,59 @@ public class PseudoPlayer {
 	private int subscribeDays = 0;
 	private boolean wasSubscribed = false;
 	private int plotCreatePoints = 0;
+	@Transient
 	private Plot testPlot = null;
 	private ChatChannel chatChannel = ChatChannel.GLOBAL;
 	private int mana = 100;
 	private int stamina = 100;
 	private int rank = 800;
+	@Transient
 	private Party party = null;
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
 	private int engageInCombatTicks = 0;
+	@Transient
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
+	@Transient
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
+	@Transient
 	private UUID lastResiver = null;
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
+	@Transient
 	private boolean update = false;
+	@Transient
 	private int maxMana = 100;
+	@Transient
 	private int maxStamina = 100;
+	@Transient
 	private boolean meditating = false;
+	@Transient
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
 	private Runebook runebook = new Runebook();
 	private SpellBook spellbook = new SpellBook();
 	private int dieLog = 0;
+	@Transient
 	private boolean friendlyFire = false;
+	@Transient
 	private Reputation reputation = new Reputation(100, 0, 0, 0);
 	private boolean isPrivate = true;
+	@Transient
 	private boolean isClaming = false;
+	@Transient
 	private GUI gui = null;
 	private boolean allowGui = true;
 	private List<UUID> ignored = new ArrayList<UUID>();
 
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
-
+	
+	@Transient
 	private Spell promptedSpell = null;
-
+	@Transient
 	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
+	@Transient
 	private PseudoScoreboard scoreboard;
 	
 	public PseudoPlayer(UUID playerUUID, int id) {
@@ -90,6 +120,7 @@ public class PseudoPlayer {
 		this.builds.add(new Build(0));
 	}
 
+	@Transient
 	public void addMoney(int money) {
 		this.money += money;
 		if (this.scoreboard != null)
@@ -97,6 +128,7 @@ public class PseudoPlayer {
 		this.update();
 	}
 
+	@Transient
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
 		if (this.scoreboard != null)
@@ -104,6 +136,7 @@ public class PseudoPlayer {
 		this.update();
 	}
 
+	@Transient
 	public void addRecentAttacker(RecentAttacker recentAttacker) {
 		boolean found = false;
 		for (final RecentAttacker rA : this.recentAttackers)
@@ -116,31 +149,38 @@ public class PseudoPlayer {
 			this.recentAttackers.add(recentAttacker);
 	}
 
+	@Transient
 	public void addScroll(Scroll scroll) {
 		this.scrolls.add(scroll);
 	}
 
+	@Transient
 	public void addSpell(Scroll scroll) {
 		this.spellbook.addSpell(scroll);
 		this.update();
 	}
 
+	@Transient
 	public void clearRecentAttackers() {
 		this.recentAttackers.clear();
 	}
 
+	@Transient
 	public void disableChatChannel(ChatChannel channel) {
 		this.disabledChatChannels.add(channel);
 	}
 
+	@Transient
 	public void enableChatChannel(ChatChannel channel) {
 		this.disabledChatChannels.remove(channel);
 	}
 
+	@Transient
 	public Bank getBank() {
 		return this.bank;
 	}
 
+	@Transient
 	public int[] getBuildIds() {
 		final int[] ints = new int[this.getBuilds().size()];
 		for (int i = 0; i < this.getBuilds().size(); i++) {
