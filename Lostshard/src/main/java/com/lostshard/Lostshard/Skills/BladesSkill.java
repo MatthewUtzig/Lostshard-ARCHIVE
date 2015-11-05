@@ -2,7 +2,6 @@ package com.lostshard.Lostshard.Skills;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -35,8 +34,6 @@ public class BladesSkill extends Skill {
 		final int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
-
-		final int pierceAmount = 0;
 		
 		additionalDamage = Math.floorDiv(skill.getLvl(), 250);
 
@@ -57,13 +54,6 @@ public class BladesSkill extends Skill {
 								+ defenderPlayer.getName() + " is bleeding!");
 					}
 				}
-		}
-
-		if (damagedEntity instanceof Player) {
-			final Player damagedPlayer = (Player) damagedEntity;
-			final Damageable damag = damagedPlayer;
-			if (damag.getHealth() > pierceAmount)
-				damagedPlayer.setHealth(damag.getHealth() - pierceAmount);
 		}
 
 		damage += additionalDamage;
