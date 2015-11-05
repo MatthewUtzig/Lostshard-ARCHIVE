@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Spells.Spells;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -37,7 +37,7 @@ public class SPL_Mark extends Spell {
 			final int numRunes = runebook.getNumRunes();
 			if (player.isOp() || pseudoPlayer.wasSubscribed() && numRunes < 32
 					|| numRunes < 8) {
-				final ArrayList<Rune> runes = runebook.getRunes();
+				final List<Rune> runes = runebook.getRunes();
 				boolean foundMatching = false;
 				for (final Rune rune : runes)
 					if (rune.getLabel().equalsIgnoreCase(this.getResponse())) {

@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -17,6 +24,7 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
@@ -37,10 +45,12 @@ import com.lostshard.Lostshard.Utils.Utils;
  * @author Jacob Rosborg
  *
  */
+@Audited
 @Entity
 @Table(name="players")
 public class PseudoPlayer {
 
+	@Transient
 	ClanManager cm = ClanManager.getManager();
 
 	@Id
@@ -51,6 +61,8 @@ public class PseudoPlayer {
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
+//	@OneToOne(cascade=CascadeType.ALL)
+	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -60,22 +72,27 @@ public class PseudoPlayer {
 	private int plotCreatePoints = 0;
 	@Transient
 	private Plot testPlot = null;
+	@Enumerated()
 	private ChatChannel chatChannel = ChatChannel.GLOBAL;
 	private int mana = 100;
 	private int stamina = 100;
 	private int rank = 800;
 	@Transient
 	private Party party = null;
+	@Transient
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
 	private int engageInCombatTicks = 0;
 	@Transient
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="player_disabled_chat_channels", joinColumns=@JoinColumn(name="player_id"))
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
+	@ElementCollection
+	@CollectionTable(name="player_titels", joinColumns=@JoinColumn(name="player_id"))
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
 	@Transient
@@ -89,8 +106,13 @@ public class PseudoPlayer {
 	@Transient
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinTable(name="player_runbooks", joinColumns=@JoinColumn(name="player_id"))
 	private Runebook runebook = new Runebook();
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinTable(name="player_spellbooks", joinColumns=@JoinColumn(name="player_id"))
 	private SpellBook spellbook = new SpellBook();
+	@Transient
 	private int dieLog = 0;
 	@Transient
 	private boolean friendlyFire = false;
@@ -102,8 +124,11 @@ public class PseudoPlayer {
 	@Transient
 	private GUI gui = null;
 	private boolean allowGui = true;
+	@ElementCollection
+	@CollectionTable(name="player_ignored", joinColumns=@JoinColumn(name="player_id"))
 	private List<UUID> ignored = new ArrayList<UUID>();
-
+	@ElementCollection
+	@CollectionTable(name="player_scrolls", joinColumns=@JoinColumn(name="player_id"))
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
 	@Transient
@@ -120,7 +145,6 @@ public class PseudoPlayer {
 		this.builds.add(new Build(0));
 	}
 
-	@Transient
 	public void addMoney(int money) {
 		this.money += money;
 		if (this.scoreboard != null)
@@ -128,7 +152,6 @@ public class PseudoPlayer {
 		this.update();
 	}
 
-	@Transient
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
 		if (this.scoreboard != null)
@@ -136,7 +159,6 @@ public class PseudoPlayer {
 		this.update();
 	}
 
-	@Transient
 	public void addRecentAttacker(RecentAttacker recentAttacker) {
 		boolean found = false;
 		for (final RecentAttacker rA : this.recentAttackers)
@@ -149,38 +171,31 @@ public class PseudoPlayer {
 			this.recentAttackers.add(recentAttacker);
 	}
 
-	@Transient
 	public void addScroll(Scroll scroll) {
 		this.scrolls.add(scroll);
 	}
 
-	@Transient
 	public void addSpell(Scroll scroll) {
 		this.spellbook.addSpell(scroll);
 		this.update();
 	}
 
-	@Transient
 	public void clearRecentAttackers() {
 		this.recentAttackers.clear();
 	}
 
-	@Transient
 	public void disableChatChannel(ChatChannel channel) {
 		this.disabledChatChannels.add(channel);
 	}
 
-	@Transient
 	public void enableChatChannel(ChatChannel channel) {
 		this.disabledChatChannels.remove(channel);
 	}
 
-	@Transient
 	public Bank getBank() {
 		return this.bank;
 	}
 
-	@Transient
 	public int[] getBuildIds() {
 		final int[] ints = new int[this.getBuilds().size()];
 		for (int i = 0; i < this.getBuilds().size(); i++) {

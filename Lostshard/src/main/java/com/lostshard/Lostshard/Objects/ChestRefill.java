@@ -2,6 +2,11 @@ package com.lostshard.Lostshard.Objects;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,9 +14,16 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.ItemStack;
+import org.hibernate.annotations.GenericGenerator;
 
+
+@Entity
+@Table(name="chestrefill")
 public class ChestRefill {
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	private ItemStack[] items;
 	private long rangeMin;

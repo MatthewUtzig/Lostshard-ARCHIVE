@@ -3,8 +3,20 @@ package com.lostshard.Lostshard.Skills;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="skills")
 public class Build {
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	private Skill mining = new MiningSkill();
 	private Skill blades = new BladesSkill();

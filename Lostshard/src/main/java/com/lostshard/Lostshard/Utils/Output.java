@@ -159,7 +159,7 @@ public class Output {
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Runebook-");
 		final Runebook runebook = pseudoPlayer.getRunebook();
-		final ArrayList<Rune> runes = runebook.getRunes();
+		final List<Rune> runes = runebook.getRunes();
 
 		int totalRunes = runes.size();
 		if (!player.isOp() && !pseudoPlayer.wasSubscribed())

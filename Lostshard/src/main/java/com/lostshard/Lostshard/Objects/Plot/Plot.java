@@ -4,10 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
+import org.hibernate.annotations.GenericGenerator;
 
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Database.Mappers.NPCMapper;
@@ -63,20 +72,29 @@ public class Plot {
 
 	}
 
+	@Transient
 	PlotManager ptm = PlotManager.getManager();
+	@Transient
 	PlayerManager pm = PlayerManager.getManager();
 
 	// String's
 	private String name;
 
 	// Int's
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	private int size = 10;
 	private int money = 0;
 	private int salePrice = 0;
 
 	// Array's
+	@ElementCollection
+	@JoinTable
 	private List<UUID> friends = new ArrayList<UUID>();
+	@OneToMany
+	@JoinColumn
 	private List<UUID> coowners = new ArrayList<UUID>();
 	// UUID
 	private UUID owner;

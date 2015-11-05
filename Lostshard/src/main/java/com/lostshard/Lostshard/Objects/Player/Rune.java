@@ -1,12 +1,28 @@
 package com.lostshard.Lostshard.Objects.Player;
 
-import org.bukkit.Location;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.bukkit.Location;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.envers.Audited;
+
+
+@Audited
+@Entity
+@Table(name="runes")
 public class Rune {
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	private int id;
+	@Transient
 	private Location location;
 	private String label;
-	private int id;
 
 	public Rune(Location location, String name, int id) {
 		super();

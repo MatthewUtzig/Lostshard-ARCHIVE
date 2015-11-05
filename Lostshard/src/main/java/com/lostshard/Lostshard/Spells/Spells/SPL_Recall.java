@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Spells.Spells;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -34,7 +34,7 @@ public class SPL_Recall extends Spell {
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 
 		final Runebook runebook = pseudoPlayer.getRunebook();
-		final ArrayList<Rune> runes = runebook.getRunes();
+		final List<Rune> runes = runebook.getRunes();
 		Rune runeFound = null;
 		int count = 0;
 		for (final Rune rune : runes) {

@@ -4,17 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.hibernate.annotations.GenericGenerator;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.Bank;
 
-public class Clan extends Group {
 
-	private int id = 0;
+
+@Entity
+@Table(name="clans")
+public class Clan extends Group {
+	
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	private int id;
 
 	// String's
 	private String name;
@@ -23,10 +41,14 @@ public class Clan extends Group {
 	private UUID owner;
 
 	// Array's
+	@ElementCollection
+	@CollectionTable(name="clan_leaders", joinColumns=@JoinColumn(name="clan_id"))
 	private List<UUID> leaders = new ArrayList<UUID>();
 
+	@OneToOne
 	private Bank bank = new Bank(null, false);
 
+	@Transient
 	private boolean update = false;
 
 	public Clan(String name, UUID owner) {

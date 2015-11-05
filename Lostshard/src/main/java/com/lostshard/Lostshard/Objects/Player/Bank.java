@@ -1,5 +1,10 @@
 package com.lostshard.Lostshard.Objects.Player;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -7,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Utils.Serializer;
 
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Table(name="banks")
 public class Bank {
 
 	private Inventory inventory;

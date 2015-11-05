@@ -173,7 +173,7 @@ public class MageryCommand extends LostshardCommand {
 							}
 							runeLabel = runeLabel.trim();
 
-							final ArrayList<Rune> runes = runebook.getRunes();
+							final List<Rune> runes = runebook.getRunes();
 							Rune foundRune = null;
 							for (final Rune rune : runes)
 								if (rune.getLabel().equalsIgnoreCase(runeLabel)) {
@@ -181,7 +181,7 @@ public class MageryCommand extends LostshardCommand {
 									break;
 								}
 							if (foundRune != null) {
-								final ArrayList<Rune> targetRunes = targetRunebook
+								final List<Rune> targetRunes = targetRunebook
 										.getRunes();
 								boolean foundMatching = false;
 								for (final Rune rune : targetRunes)
