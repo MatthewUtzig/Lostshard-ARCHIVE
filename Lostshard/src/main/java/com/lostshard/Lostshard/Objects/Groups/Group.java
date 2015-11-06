@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -15,13 +16,17 @@ import org.bukkit.entity.Player;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 
-@Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Embeddable
 public class Group {
 
+	@Transient
 	public PlayerManager pm = PlayerManager.getManager();
 
+	@ElementCollection
+	@CollectionTable
 	private List<UUID> members = new ArrayList<UUID>();
+	@ElementCollection
+	@CollectionTable
 	private List<UUID> invited = new ArrayList<UUID>();
 
 	public void addInvited(UUID invite) {

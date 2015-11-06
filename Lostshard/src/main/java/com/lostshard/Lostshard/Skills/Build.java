@@ -3,30 +3,32 @@ package com.lostshard.Lostshard.Skills;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.GenericGenerator;
-
-@Entity
-@Table(name="skills")
+@Embeddable
 public class Build {
-
-	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	
 	private int id;
+	@Transient
 	private Skill mining = new MiningSkill();
+	@Transient
 	private Skill blades = new BladesSkill();
+	@Transient
 	private Skill brawling = new BrawlingSkill();
+	@Transient
 	private Skill blackSmithy = new BlackSmithySkill();
+	@Transient
 	private Skill lumberjacking = new LumberjackingSkill();
+	@Transient
 	private Skill fishing = new FishingSkill();
+	@Transient
 	private Skill survivalism = new SurvivalismSkill();
+	@Transient
 	private Skill taming = new TamingSkill();
+	@Transient
 	private Skill magery = new MagerySkill();
+	@Transient
 	private Skill archery = new ArcherySkill();
 
 	public Build(int id) {

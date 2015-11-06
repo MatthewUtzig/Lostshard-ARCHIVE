@@ -1,9 +1,7 @@
 package com.lostshard.Lostshard.Objects.Player;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,13 +10,12 @@ import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Utils.Serializer;
 
-@Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-@Table(name="banks")
+@Embeddable
 public class Bank {
 
+	@Transient
 	private Inventory inventory;
-
+	
 	public Bank(String bankData, boolean large) {
 		super();
 		if (large)
@@ -38,7 +35,7 @@ public class Bank {
 		this.inventory.addItem(new ItemStack(Material.DIAMOND, 3));
 		this.inventory.addItem(new ItemStack(Material.MELON, 10));
 	}
-
+	
 	public Inventory getInventory() {
 		return this.inventory;
 	}

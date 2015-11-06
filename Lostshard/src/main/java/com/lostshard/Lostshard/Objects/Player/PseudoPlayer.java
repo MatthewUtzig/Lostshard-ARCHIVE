@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -61,8 +57,6 @@ public class PseudoPlayer {
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
-//	@OneToOne(cascade=CascadeType.ALL)
-	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -72,14 +66,14 @@ public class PseudoPlayer {
 	private int plotCreatePoints = 0;
 	@Transient
 	private Plot testPlot = null;
-	@Enumerated()
 	private ChatChannel chatChannel = ChatChannel.GLOBAL;
 	private int mana = 100;
 	private int stamina = 100;
 	private int rank = 800;
 	@Transient
 	private Party party = null;
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="player_builds", joinColumns=@JoinColumn(name="player_id"))
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -87,7 +81,7 @@ public class PseudoPlayer {
 	@Transient
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
 	@ElementCollection
-	@CollectionTable(name="player_disabled_chat_channels", joinColumns=@JoinColumn(name="player_id"))
+	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
@@ -106,11 +100,7 @@ public class PseudoPlayer {
 	@Transient
 	private boolean resting = false;
 	private int freeSkillPoints = 0;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinTable(name="player_runbooks", joinColumns=@JoinColumn(name="player_id"))
 	private Runebook runebook = new Runebook();
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinTable(name="player_spellbooks", joinColumns=@JoinColumn(name="player_id"))
 	private SpellBook spellbook = new SpellBook();
 	@Transient
 	private int dieLog = 0;

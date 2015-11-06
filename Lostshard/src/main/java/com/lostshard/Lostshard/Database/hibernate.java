@@ -6,10 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.lostshard.Lostshard.Objects.Groups.Clan;
+import com.lostshard.Lostshard.Objects.Player.Bank;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Player.Rune;
-import com.lostshard.Lostshard.Objects.Player.Runebook;
-import com.lostshard.Lostshard.Objects.Player.SpellBook;
 
 public class hibernate {
 
@@ -33,9 +31,8 @@ public class hibernate {
 		cfg.setProperty("hibernate.connection.password", "00101000");
 		
 		cfg.addAnnotatedClass(PseudoPlayer.class);
-		cfg.addAnnotatedClass(Rune.class);
-		cfg.addAnnotatedClass(Runebook.class);
-		cfg.addAnnotatedClass(SpellBook.class);
+		cfg.addAnnotatedClass(Clan.class);
+		cfg.addAnnotatedClass(Bank.class);
 		
 		SessionFactory sf = cfg.buildSessionFactory();
 		Session s = sf.openSession();

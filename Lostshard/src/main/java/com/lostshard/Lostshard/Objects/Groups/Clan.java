@@ -45,7 +45,6 @@ public class Clan extends Group {
 	@CollectionTable(name="clan_leaders", joinColumns=@JoinColumn(name="clan_id"))
 	private List<UUID> leaders = new ArrayList<UUID>();
 
-	@OneToOne
 	private Bank bank = new Bank(null, false);
 
 	@Transient
