@@ -11,7 +11,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.Lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Spells.Scroll;
@@ -63,7 +62,6 @@ public class ScrollGUI extends GUI {
 							return;
 						pPlayer.addSpell(scroll);
 						pPlayer.getScrolls().remove(scroll);
-						ScrollMapper.deleteScroll(scroll, pPlayer.getId());
 						pPlayer.update();
 						Output.positiveMessage(player,
 								"You have transferred " + scroll.getName() + " to your spellbook.");
@@ -74,7 +72,7 @@ public class ScrollGUI extends GUI {
 							return;
 						if (sm.useScroll(player, scroll)) {
 							pPlayer.getScrolls().remove(scroll);
-							ScrollMapper.deleteScroll(scroll, pPlayer.getId());
+							pPlayer.update();
 							forceClose();
 						}
 					}

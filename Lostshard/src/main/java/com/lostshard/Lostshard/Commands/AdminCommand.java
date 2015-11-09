@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Crates.Crate;
 import com.lostshard.Crates.CrateManager;
-import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
 import com.lostshard.Lostshard.Handlers.DamageHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -246,7 +245,7 @@ public class AdminCommand extends LostshardCommand {
 	public void test(UUID uuid, Player player) {
 		long time = System.nanoTime();
 		PseudoPlayer pPlayer;
-		pPlayer = PlayerMapper.getPlayer(uuid);
+		pPlayer = pm.getPlayerFromDB(uuid);
 		player.sendMessage("delay DB: "+Long.toString(System.nanoTime()-time));
 		player.sendMessage("money: "+pPlayer.getMoney());
 		time = System.nanoTime();

@@ -15,10 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.Database.Mappers.MessagesMapper;
-import com.lostshard.Lostshard.Database.Mappers.NPCMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.Lostshard.Events.EventManager;
 import com.lostshard.Lostshard.Events.PlotCreateEvent;
 import com.lostshard.Lostshard.Handlers.HelpHandler;
@@ -27,6 +23,7 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
+import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
@@ -150,7 +147,7 @@ public class PlotCommand extends LostshardCommand {
 
 			final Plot plot = new Plot(-1, plotName, player.getUniqueId(),
 					curLoc);
-			PlotMapper.insertPlot(plot);
+			plot.insert();
 			this.ptm.getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
 					+ plot.getName() + "\", it cost " + plotMoneyCost
@@ -350,12 +347,11 @@ public class PlotCommand extends LostshardCommand {
 			sellerPlayer.sendMessage("You have sold the plot " + plot.getName()
 					+ " to " + player.getName() + " for " + salePrice + ".");
 		else
-			MessagesMapper.insertMessages(sellerPlayer.getUniqueId(),
+			new OfflineMessage(sellerPlayer.getUniqueId(),
 					"You have sold the plot " + plot.getName() + " to "
 							+ player.getName() + " for " + salePrice + ".");
-		final List<PseudoPlayer> plist = new ArrayList<PseudoPlayer>();
-		plist.add(sellerPseudoPlayer);
-		PlayerMapper.updatePlayers(plist);
+		sellerPseudoPlayer.save();
+		
 	}
 
 	private void plotCapturePoint(Player player) {
@@ -922,7 +918,7 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.BANKER, name,
 						player.getLocation(), plot.getId());
-				NPCMapper.insertNPC(npc);
+				plot.update();
 				plot.getNpcs().add(npc);
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
@@ -971,7 +967,7 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.VENDOR, name,
 						player.getLocation(), plot.getId());
-				NPCMapper.insertNPC(npc);
+				plot.update();
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -1008,7 +1004,7 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.GUARD, name,
 						player.getLocation(), plot.getId());
-				NPCMapper.insertNPC(npc);
+				plot.update();
 				plot.getNpcs().add(npc);
 				npc.spawn();
 
@@ -1051,7 +1047,7 @@ public class PlotCommand extends LostshardCommand {
 		} else if (args[1].equalsIgnoreCase("list")) {
 			player.sendMessage(ChatColor.GOLD + "-" + plot.getName()
 					+ "'s NPCs-");
-			final ArrayList<NPC> npcs = plot.getNpcs();
+			final List<NPC> npcs = plot.getNpcs();
 			final int numOfNpcs = npcs.size();
 
 			if (numOfNpcs <= 0) {

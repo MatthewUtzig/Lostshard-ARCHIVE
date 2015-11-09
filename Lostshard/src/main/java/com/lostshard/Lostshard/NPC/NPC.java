@@ -2,18 +2,28 @@ package com.lostshard.Lostshard.NPC;
 
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.lostshard.Lostshard.Database.Mappers.NPCMapper;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
+import com.lostshard.Lostshard.Objects.CustomObjects.SerializableLocation;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 
 /**
  * @author Jacob Rosborg
  *
  */
+@Embeddable
+@Access(AccessType.PROPERTY)
 public class NPC {
 
 	PlotManager ptm = PlotManager.getManager();
@@ -26,22 +36,6 @@ public class NPC {
 	private UUID uuid = UUID.randomUUID();
 
 	/**
-	 * @param id
-	 * @param type
-	 * @param name
-	 * @param location
-	 * @param plotId
-	 */
-	public NPC(int id, NPCType type, String name, Location location, int plotId) {
-		super();
-		this.id = id;
-		this.type = type;
-		this.name = name;
-		this.location = location;
-		this.plotId = plotId;
-	}
-
-	/**
 	 * @param type
 	 * @param name
 	 * @param location
@@ -49,7 +43,6 @@ public class NPC {
 	 */
 	public NPC(NPCType type, String name, Location location, int plotId) {
 		super();
-		this.id = -1;
 		this.type = type;
 		this.name = name;
 		this.location = location;
@@ -62,7 +55,7 @@ public class NPC {
 	public void fire() {
 		final Plot plot = this.getPlot();
 		plot.getNpcs().remove(this);
-		NPCMapper.deleteNPC(this);
+		delete();
 		NPCLibManager.getManager().despawnNPC(this);
 	}
 
@@ -76,6 +69,7 @@ public class NPC {
 	/**
 	 * @return
 	 */
+	@Transient
 	public Location getLocation() {
 		return this.location;
 	}
@@ -87,6 +81,7 @@ public class NPC {
 		return this.name;
 	}
 
+	@Transient
 	public Plot getPlot() {
 		return this.ptm.getPlot(this.plotId);
 	}
@@ -169,6 +164,7 @@ public class NPC {
 		this.uuid = uuid;
 	}
 
+	@Transient
 	public String getDisplayName() {
 		return (getType().equals(NPCType.BANKER) ? "[BANKER] " : getType().equals(NPCType.GUARD) ? "[GUARD] " : getType().equals(NPCType.VENDOR) ? "[VENDOR] " : "") + getName();
 	}
@@ -177,7 +173,43 @@ public class NPC {
 		NPCLibManager.getManager().teleportNPC(this.id, location, reason);
 	}
 
+	@Transient
 	public net.citizensnpcs.api.npc.NPC getCitizensNPC() {
 		return NPCLibManager.getManager().getNPC(id);
+	}
+	
+	public SerializableLocation getSerializableLocation() {
+		return new SerializableLocation(this.location);
+	}
+	
+	public void setSerializableLocation(SerializableLocation serializableLocation) {
+		this.location = serializableLocation.getLocation();
+	}
+	
+	public void save() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.update(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void insert() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.save(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void delete() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.delete(this);
+		t.commit();
+		s.close();
 	}
 }

@@ -3,6 +3,11 @@ package com.lostshard.Lostshard.Spells.Structures;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,15 +16,27 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.lostshard.Lostshard.Database.Mappers.PermanentGateMapper;
+import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Objects.CustomObjects.SerializableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
 import com.lostshard.Lostshard.Utils.Output;
 
+@Embeddable
+@Access(AccessType.PROPERTY)
 public class Gate extends MagicStructure {
 
+
+	private Block fromBlock;
+
+	private Block toBlock;
+
+	private boolean direction;
+	
 	public static Location checkPortals(Block block, Player player) {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if (pseudoPlayer.getTimer().recentlyTeleportedTicks > 0)
@@ -54,7 +71,7 @@ public class Gate extends MagicStructure {
 					if (ms != null && ms instanceof Gate) {
 						ms.cleanUp();
 						if (ms instanceof PermanentGate)
-							PermanentGateMapper.deletePermanentGate((PermanentGate) ms);
+							((PermanentGate) ms).delete();
 					} else
 						block.setType(Material.AIR);
 				else
@@ -83,12 +100,6 @@ public class Gate extends MagicStructure {
 		}
 	}
 
-	private final Block fromBlock;
-
-	private final Block toBlock;
-
-	private boolean direction;
-
 	@SuppressWarnings("deprecation")
 	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup,
 			boolean direction) {
@@ -107,14 +118,17 @@ public class Gate extends MagicStructure {
 		this.toBlock = blocks.get(1);
 	}
 
+	@Transient
 	public Block getFromBlock() {
 		return this.fromBlock;
 	}
 
+	@Transient
 	public Block getToBlock() {
 		return this.toBlock;
 	}
 
+	@Transient
 	public boolean isDestBlock(Block block) {
 		if (this.toBlock.getLocation().equals(block.getLocation()))
 			return true;
@@ -125,6 +139,7 @@ public class Gate extends MagicStructure {
 		return this.direction;
 	}
 
+	@Transient
 	public boolean isSourceBlock(Block block) {
 		if (this.fromBlock.getLocation().equals(block.getLocation()))
 			return true;
@@ -133,5 +148,49 @@ public class Gate extends MagicStructure {
 
 	public void setDirection(boolean direction) {
 		this.direction = direction;
+	}
+	
+	public SerializableLocation getSerializbleFromLocation() {
+		return new SerializableLocation(this.fromBlock.getLocation());
+	}
+	
+	public void setSerializbleFromLocation(SerializableLocation serializableLocation) {
+		this.fromBlock = serializableLocation.getLocation().getBlock();
+	}
+	
+	public SerializableLocation getSerializbleToLocation() {
+		return new SerializableLocation(this.toBlock.getLocation());
+	}
+	
+	public void setSerializbleToLocation(SerializableLocation serializableLocation) {
+		this.toBlock = serializableLocation.getLocation().getBlock();
+	}
+	
+	public void save() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.update(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void insert() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.save(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void delete() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.delete(this);
+		t.commit();
+		s.close();
+
 	}
 }

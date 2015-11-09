@@ -1,25 +1,40 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
 import org.bukkit.Material;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
+@Embeddable
+@Access(AccessType.FIELD)
 public abstract class Skill {
 
+	@Transient
 	static PlayerManager pm = PlayerManager.getManager();
+	@Transient
 	static PlotManager ptm = PlotManager.getManager();
 
+	@Transient
 	private double baseProb = 0.2;
+	@Transient
 	private double scaleConstant = 25;
+	@Transient
 	private int minGain = 0;
+	@Transient
 	private int maxGain = 5;
+	@Transient
 	private Material mat;
-
+	@Transient
 	private String name = "none";
-
+	@Transient
 	private int lvl = 0; // 0-1000 and displayed as level/10
+	@Transient
 	private boolean locked = false;
 
 	public double getBaseProb() {

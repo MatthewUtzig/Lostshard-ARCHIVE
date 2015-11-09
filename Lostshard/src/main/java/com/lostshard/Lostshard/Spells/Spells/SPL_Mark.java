@@ -5,7 +5,6 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Database.Mappers.RuneMapper;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
@@ -45,12 +44,10 @@ public class SPL_Mark extends Spell {
 						break;
 					}
 				if (!foundMatching) {
-					final int runeId = RuneMapper.insertRune(
-							pseudoPlayer.getId(), this.getResponse(),
-							this.markLoc);
 					final Rune newRune = new Rune(this.markLoc,
-							this.getResponse(), runeId);
+							this.getResponse(), 0);
 					runebook.addRune(newRune);
+					pseudoPlayer.update();
 					Output.positiveMessage(player,
 							"You have marked a rune for " + this.getResponse()
 									+ ".");

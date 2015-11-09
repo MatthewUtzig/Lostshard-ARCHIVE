@@ -8,8 +8,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
-import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -45,9 +47,9 @@ public class PlayerManager {
 		for (final PseudoPlayer pPlayer : this.players)
 			if (pPlayer.getPlayerUUID().equals(uuid))
 				return pPlayer;
-		PseudoPlayer pPlayer = PlayerMapper.getPlayer(uuid);
+		PseudoPlayer pPlayer = getPlayerFromDB(uuid);
 		if (pPlayer == null && create)
-			pPlayer = PlayerMapper.insertPlayer(new PseudoPlayer(uuid, 1));
+			pPlayer = new PseudoPlayer(uuid);
 		return pPlayer;
 	}
 
@@ -74,7 +76,7 @@ public class PlayerManager {
 			pPlayer.getParty().sendMessage(event.getPlayer().getName() + " has left the party.");
 		}
 		System.out.println("updateing on quit");
-		PlayerMapper.updatePlayer(pPlayer);
+		pPlayer.save();
 		System.out.println("updated on quit");
 		this.players.remove(pPlayer);
 	}
@@ -86,5 +88,12 @@ public class PlayerManager {
 	public void tick(double delta, long tick) {
 		for (final PseudoPlayer pPlayer : this.players)
 			pPlayer.tick(delta, tick);
+	}
+	
+	public PseudoPlayer getPlayerFromDB(UUID uuid) {
+		Session s = Lostshard.getSession();
+		PseudoPlayer pPlayer = (PseudoPlayer) s.createCriteria(PseudoPlayer.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
+		s.close();
+		return pPlayer;
 	}
 }

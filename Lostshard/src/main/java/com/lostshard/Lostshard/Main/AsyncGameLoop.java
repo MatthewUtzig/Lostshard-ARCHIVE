@@ -1,13 +1,9 @@
 package com.lostshard.Lostshard.Main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.scheduler.BukkitRunnable;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.lostshard.Lostshard.Database.Mappers.ClanMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -23,32 +19,23 @@ public class AsyncGameLoop extends BukkitRunnable {
 	ClanManager cm = ClanManager.getManager();
 	ChestRefillManager crm = ChestRefillManager.getManager();
 	
-	public static List<PseudoPlayer> playerUpdates = new ArrayList<PseudoPlayer>();
-
-	public static List<Plot> plotUpdates = new ArrayList<Plot>();
-	public static List<Clan> clanUpdates = new ArrayList<Clan>();
-	
 	@Override
 	public void run() {
 //		long time = System.nanoTime();
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
 		for (final PseudoPlayer p : pm.getPlayers())
 			if (p.isUpdate())
-				playerUpdates.add(p);
-		if (!playerUpdates.isEmpty())
-			PlayerMapper.updatePlayers(playerUpdates);
-		playerUpdates.clear();
+				s.update(p);
 		for (final Plot p : ptm.getPlots())
 			if (p.isUpdate())
-				plotUpdates.add(p);
-		if (!plotUpdates.isEmpty())
-			PlotMapper.updatePlots(plotUpdates);
-		plotUpdates.clear();
+				s.save(p);
 		for (final Clan c : cm.getClans())
 			if (c.isUpdate())
-				clanUpdates.add(c);
-		if (!clanUpdates.isEmpty())
-			ClanMapper.updateClans(clanUpdates);
-		clanUpdates.clear();
+				s.save(c);
+		t.commit();
+		s.close();
 		if(Lostshard.isDebug()) {
 //			long delay = System.nanoTime()-time;
 //			if(delay >= 10000)

@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.lostshard.Crates.CrateManager;
 import com.lostshard.Crates.CratePlayerListener;
@@ -31,13 +33,7 @@ import com.lostshard.Lostshard.Commands.SurvivalismCommand;
 import com.lostshard.Lostshard.Commands.TamingCommand;
 import com.lostshard.Lostshard.Commands.UtilsCommand;
 import com.lostshard.Lostshard.Data.Locations;
-import com.lostshard.Lostshard.Database.DataSource;
-import com.lostshard.Lostshard.Database.Database;
-import com.lostshard.Lostshard.Database.Mappers.ChestRefillMapper;
-import com.lostshard.Lostshard.Database.Mappers.ClanMapper;
-import com.lostshard.Lostshard.Database.Mappers.PermanentGateMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlayerMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
+import com.lostshard.Lostshard.Database.Hibernate;
 import com.lostshard.Lostshard.Listener.BlockListener;
 import com.lostshard.Lostshard.Listener.EntityListener;
 import com.lostshard.Lostshard.Listener.PlayerListener;
@@ -45,15 +41,21 @@ import com.lostshard.Lostshard.Listener.ServerListener;
 import com.lostshard.Lostshard.Listener.VehicleListener;
 import com.lostshard.Lostshard.Listener.VoteListener;
 import com.lostshard.Lostshard.Listener.WorldListener;
+import com.lostshard.Lostshard.Manager.ChestRefillManager;
+import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.ConfigManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
+import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
+import com.lostshard.Lostshard.Objects.ChestRefill;
+import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.PseudoScoreboard;
+import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
+import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Utils;
-import com.lostshard.Whitelist.KeyPlayerListener;
 
 /**
  * @author Jacob Rosborg
@@ -62,6 +64,7 @@ import com.lostshard.Whitelist.KeyPlayerListener;
 public class Lostshard extends JavaPlugin {
 
 	private static final int maxPlayers = 30;
+	private static Hibernate hibernate;
 	
 	public BukkitTask getGameLoop() {
 		return gameLoop;
@@ -107,6 +110,8 @@ public class Lostshard extends JavaPlugin {
 	}
 
 	PlayerManager pm = PlayerManager.getManager();
+	PlotManager ptm = PlotManager.getManager();
+	ClanManager cm = ClanManager.getManager();
 
 	public static Logger log;
 
@@ -116,7 +121,7 @@ public class Lostshard extends JavaPlugin {
 	
 	private static Plugin plugin;
 
-	private static boolean mysqlError = true;
+	private static boolean mysqlError = false;
 
 	private static boolean debug = true;
 
@@ -125,16 +130,19 @@ public class Lostshard extends JavaPlugin {
 		for(NPC npc : NPCLibManager.getManager().getRegistry().sorted())
 			npc.despawn();
 		NPCLibManager.getManager().getRegistry().deregisterAll();
-		for (final Player p : Bukkit.getOnlinePlayers())
-		{
-			final Player player = p;
-			final PseudoPlayer pPlayer = pm.getPlayer(player);
-			PlayerMapper.updatePlayer(pPlayer);
-			pm.getPlayers().remove(pPlayer);
-		}
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		for (final PseudoPlayer p : pm.getPlayers())
+			s.update(p);
+		for (final Plot p : ptm.getPlots())
+			s.save(p);
+		for (final Clan c : cm.getClans())
+			s.save(c);
+		t.commit();
+		s.close();
 		MagicStructure.removeAll();
 		CustomSchedule.stopSchedule();
-		DataSource.getInstance().closeConnection();
 	}
 
 	@Override
@@ -157,7 +165,6 @@ public class Lostshard extends JavaPlugin {
 		if (this.getServer().getPluginManager().isPluginEnabled("votifier"))
 			new VoteListener(this);
 		new WorldListener(this);
-		new KeyPlayerListener(this);
 		new CratePlayerListener(this);
 		// Commands
 		new PlotCommand(this);
@@ -177,13 +184,10 @@ public class Lostshard extends JavaPlugin {
 		new SurvivalismCommand(this);
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
-
-		setMysqlError(!Database.testDatabaseConnection());
 		
-		PermanentGateMapper.getPermanentGates();
-		ClanMapper.getClans();
-		PlotMapper.getPlots();
-		ChestRefillMapper.getChests();
+		hibernate = new Hibernate();
+		
+		loadFromDB();
 		
 		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int)Locations.LAWFULL.getLocation().getX(), (int)Locations.LAWFULL.getLocation().getY(), (int)Locations.LAWFULL.getLocation().getZ());
 		
@@ -202,6 +206,18 @@ public class Lostshard extends JavaPlugin {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	private void loadFromDB() {
+		Session s = getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+		ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
+		PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
+		ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
+		t.commit();
+		s.close();
+	}
 	public static int getMaxPlayers() {
 		return maxPlayers;
 	}
@@ -212,5 +228,9 @@ public class Lostshard extends JavaPlugin {
 
 	public void setAsyncGameLoop(BukkitTask asyncGameLoop) {
 		this.asyncGameLoop = asyncGameLoop;
+	}
+	
+	public static Session getSession() {
+		return hibernate.getSession();
 	}
 }

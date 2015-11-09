@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Data.Locations;
-import com.lostshard.Lostshard.Database.Mappers.BuildMapper;
 import com.lostshard.Lostshard.Handlers.HelpHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -72,7 +71,7 @@ public class UtilsCommand extends LostshardCommand {
 			if (pPlayer.getBuilds().size() < id + 1) {
 				final Build build = new Build(0);
 				pPlayer.getBuilds().add(build);
-				BuildMapper.insertBuild(build, pPlayer.getId());
+				pPlayer.update();
 			}
 			pPlayer.setCurrentBuildId(id);
 			Output.positiveMessage(sender, "You have changed build to " + id

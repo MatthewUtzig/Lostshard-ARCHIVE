@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
 
 import com.lostshard.Lostshard.Manager.SpellManager;
@@ -13,6 +15,7 @@ import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Utils.Serializer;
 
 @Embeddable
+@Inheritance(strategy=InheritanceType.JOINED)
 public class SpellBook {
 
 	@Transient

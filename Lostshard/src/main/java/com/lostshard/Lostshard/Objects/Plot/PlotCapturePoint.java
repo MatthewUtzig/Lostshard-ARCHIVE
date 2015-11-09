@@ -10,7 +10,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
@@ -257,7 +256,7 @@ public class PlotCapturePoint extends Plot {
 					this.refractoryPeriod = 60 * 60;
 					final Date date = new Date();
 					this.lastCaptureDate = date.getTime();
-					PlotMapper.updatePlot(this);
+					this.save();
 				} else {
 					final int timesLeft = 3 - this.recentClaims;
 					if (this.owningClan != null)

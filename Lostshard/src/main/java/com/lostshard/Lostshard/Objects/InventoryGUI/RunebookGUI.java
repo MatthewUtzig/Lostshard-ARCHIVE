@@ -1,6 +1,5 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
-import com.lostshard.Lostshard.Database.Mappers.RuneMapper;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
@@ -66,7 +65,7 @@ public class RunebookGUI extends GUI {
 						Rune rune = r;
 
 						runebook.removeRune(rune);
-						RuneMapper.deleteRune(rune);
+						pPlayer.update();
 						RunebookGUI.this.forceClose();
 						Output.positiveMessage(player, "You have removed the rune \""
 								+ ChatColor.stripColor(item.getItemMeta().getDisplayName()) + "\" from your runebook.");

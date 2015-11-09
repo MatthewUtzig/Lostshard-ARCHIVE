@@ -14,7 +14,11 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.ItemStack;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+
+import com.lostshard.Lostshard.Main.Lostshard;
 
 
 @Entity
@@ -134,5 +138,32 @@ public class ChestRefill {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public void save() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.update(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void insert() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.save(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void delete() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.delete(this);
+		t.commit();
+		s.close();
 	}
 }

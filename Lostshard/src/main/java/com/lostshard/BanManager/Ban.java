@@ -2,23 +2,26 @@ package com.lostshard.BanManager;
 
 import java.util.UUID;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="bans")
 public class Ban {
 	
-	private final int id;
-	private final UUID player;
-	private final UUID admin;
-	private final String reason;
-	private final long time;
-	private final long duration;
-	
-	public Ban(int id, UUID player, UUID admin, String reason, long time, long duration) {
-		this.id = id;
-		this.player = player;
-		this.admin = admin;
-		this.reason = reason;
-		this.time = time;
-		this.duration = duration;
-	}
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	private int id;
+	private UUID player;
+	private UUID admin;
+	private String reason;
+	private long time;
+	private long duration;
 	
 	public Ban(UUID player, UUID admin, String reason, long time, long duration) {
 		this.player = player;
@@ -26,7 +29,6 @@ public class Ban {
 		this.reason = reason;
 		this.time = time;
 		this.duration = duration;
-		this.id = BanMapper.insertBan(this);
 	}
 
 	public int getId() {

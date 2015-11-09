@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.lostshard.Lostshard.Database.Database;
 import com.lostshard.Lostshard.Handlers.CapturepointHandler;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
@@ -26,6 +25,7 @@ public class GameLoop extends BukkitRunnable {
 	public static long tick = 0;
 	public static long lastTickTime = 0;
 
+	@SuppressWarnings("unused")
 	private final Lostshard plugin;
 
 	public GameLoop(Lostshard plugin) {
@@ -45,19 +45,15 @@ public class GameLoop extends BukkitRunnable {
 			lastTickTime = date.getTime();
 		}
 		tick++;
-		if (plugin.isMysqlError())
-			Lostshard.setMysqlError(!Database.testDatabaseConnection());
-		else {
-			this.pm.tick(delta, tick);
-			MagicStructure.tickGlobal();
-			// 5 sec loop
-			if (tick % 600 == 0)
-				this.crm.tick();
-			for (final Camp camp : SurvivalismSkill.getCamps())
-				camp.tick();
-			if (tick % 10 == 0)
-				CapturepointHandler.tick(delta);
-			tm.tick();
-		}
+		this.pm.tick(delta, tick);
+		MagicStructure.tickGlobal();
+		// 5 sec loop
+		if (tick % 600 == 0)
+			this.crm.tick();
+		for (final Camp camp : SurvivalismSkill.getCamps())
+			camp.tick();
+		if (tick % 10 == 0)
+			CapturepointHandler.tick(delta);
+		tm.tick();
 	}
 }

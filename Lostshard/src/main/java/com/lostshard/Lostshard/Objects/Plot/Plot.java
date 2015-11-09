@@ -4,22 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.Database.Mappers.NPCMapper;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
@@ -31,6 +36,10 @@ import com.lostshard.Utils.ExtraMath;
  * @author Jacob Rosborg
  *
  */
+@Audited
+@Entity
+@Table(name="plots")
+@Access(AccessType.PROPERTY)
 public class Plot {
 	
 	public enum PlotUpgrade {
@@ -72,29 +81,20 @@ public class Plot {
 
 	}
 
-	@Transient
 	PlotManager ptm = PlotManager.getManager();
-	@Transient
 	PlayerManager pm = PlayerManager.getManager();
 
 	// String's
 	private String name;
 
 	// Int's
-	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	private int size = 10;
 	private int money = 0;
 	private int salePrice = 0;
 
 	// Array's
-	@ElementCollection
-	@JoinTable
 	private List<UUID> friends = new ArrayList<UUID>();
-	@OneToMany
-	@JoinColumn
 	private List<UUID> coowners = new ArrayList<UUID>();
 	// UUID
 	private UUID owner;
@@ -114,7 +114,7 @@ public class Plot {
 	private Location location;
 
 	// NPCS
-	private ArrayList<NPC> npcs = new ArrayList<NPC>();
+	private List<NPC> npcs = new ArrayList<NPC>();
 
 	// Admin
 	private boolean allowMagic = true;
@@ -152,41 +152,48 @@ public class Plot {
 	}
 
 	public void disband() {
-		for (final NPC npc : this.npcs)
-			NPCMapper.deleteNPC(npc);
-		this.ptm.removePlot(this);
+		delete();
 	}
 
 	public void expandSize(int size) {
 		this.size += size;
 		this.update();
 	}
-
+	
+	@ElementCollection
+	@CollectionTable
 	public List<UUID> getCoowners() {
 		return this.coowners;
 	}
 
 	/**
-	 * @author Frank Oliver
+	 * @author Defman
 	 * @param toSize
 	 * @return Expand price from current size to size.
 	 */
+	@Transient
 	public int getExpandPrice(int toSize) {
 		return Variables.plotExpandPrice*(-ExtraMath.Triangular(size)+ExtraMath.Triangular(toSize)+size-toSize);
 	}
-
+	@ElementCollection
+	@CollectionTable
 	public List<UUID> getFriends() {
 		return this.friends;
 	}
 
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
 	public int getId() {
 		return this.id;
 	}
 
+	@Transient
 	public Location getLocation() {
 		return this.location;
 	}
 
+	@Transient
 	public int getMaxVendors() {
 		return this.size / 15;
 	}
@@ -199,7 +206,9 @@ public class Plot {
 		return this.name;
 	}
 
-	public ArrayList<NPC> getNpcs() {
+	@ElementCollection
+	@CollectionTable
+	public List<NPC> getNpcs() {
 		return this.npcs;
 	}
 
@@ -207,6 +216,7 @@ public class Plot {
 		return this.owner;
 	}
 
+	@Transient
 	public String getPlayerStatusOfPlotString(Player player) {
 		return this.isOwner(player) ? "You are the owner of this plot." : this
 				.isCoowner(player) ? "You are a co-owner of this plot." : this
@@ -222,14 +232,18 @@ public class Plot {
 		return this.size;
 	}
 
+	@Transient
 	public int getTax() {
 		return this.size * 10;
 	}
 
+	@ElementCollection
+	@CollectionTable
 	public List<PlotUpgrade> getUpgrades() {
 		return this.upgrades;
 	}
 
+	@Transient
 	public int getValue() {
 		int plotValue = Variables.plotExpandPrice*(-55+ExtraMath.Triangular(getSize())+10-getSize());
 		if (this.isUpgrade(PlotUpgrade.TOWN))
@@ -247,10 +261,12 @@ public class Plot {
 		return (int) Math.floor(plotValue * .75);
 	}
 
+	@Transient
 	public boolean isAllowedToBuild(Player player) {
 		return this.isAllowedToBuild(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isAllowedToBuild(UUID uuid) {
 		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
@@ -260,10 +276,12 @@ public class Plot {
 				: false;
 	}
 
+	@Transient
 	public boolean isAllowedToInteract(Player player) {
 		return this.isAllowedToInteract(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isAllowedToInteract(UUID uuid) {
 		if(!this.isPrivatePlot())
 			return true;
@@ -286,30 +304,37 @@ public class Plot {
 	}
 
 	// Coowners
+	@Transient
 	public boolean isCoowner(Player player) {
 		return this.coowners.contains(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isCoowner(UUID uuid) {
 		return this.coowners.contains(uuid);
 	}
 
+	@Transient
 	public boolean isCoownerOrAbove(Player player) {
 		return this.isCoownerOrAbove(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isCoownerOrAbove(UUID uuid) {
 		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : false;
 	}
 
+	@Transient
 	public boolean isForSale() {
 		return this.salePrice > 0 ? true : false;
 	}
 
+	@Transient
 	public boolean isFriend(Player player) {
 		return this.friends.contains(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isFriend(UUID uuid) {
 		return this.friends.contains(uuid);
 	}
@@ -318,19 +343,23 @@ public class Plot {
 		return this.friendBuild;
 	}
 
+	@Transient
 	public boolean isFriendOrAbove(Player player) {
 		return this.isFriendOrAbove(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isFriendOrAbove(UUID uuid) {
 		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : this
 				.isFriend(uuid) ? true : false;
 	}
 
+	@Transient
 	public boolean isOwner(Player player) {
 		return this.isOwner(player.getUniqueId());
 	}
 
+	@Transient
 	public boolean isOwner(UUID uuid) {
 		return uuid.equals(this.owner);
 	}
@@ -347,21 +376,14 @@ public class Plot {
 		return this.titleEntrence;
 	}
 
+	@Transient
 	public boolean isUpdate() {
 		return this.update;
 	}
 
+	@Transient
 	public boolean isUpgrade(PlotUpgrade upgrade) {
 		return this.upgrades.contains(upgrade);
-	}
-
-	// Getting next id
-	public int nextId() {
-		int nextId = 0;
-		for (final Plot p : this.ptm.getPlots())
-			if (p.getId() > nextId)
-				nextId = p.getId();
-		return nextId + 1;
 	}
 
 	public void removeCoowner(Player player) {
@@ -488,5 +510,32 @@ public class Plot {
 		for (final PlotUpgrade upgrade : this.upgrades)
 			tjson.add(upgrade.name());
 		return Serializer.serializeStringArray(tjson);
+	}
+	
+	public void save() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.update(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void insert() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.save(this);
+		t.commit();
+		s.close();
+	}
+	
+	public void delete() {
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		s.delete(this);
+		t.commit();
+		s.close();
 	}
 }

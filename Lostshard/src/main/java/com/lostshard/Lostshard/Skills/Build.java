@@ -3,32 +3,24 @@ package com.lostshard.Lostshard.Skills;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
-import javax.persistence.Transient;
 
 @Embeddable
+@Access(AccessType.FIELD)
 public class Build {
 	
 	private int id;
-	@Transient
 	private Skill mining = new MiningSkill();
-	@Transient
 	private Skill blades = new BladesSkill();
-	@Transient
 	private Skill brawling = new BrawlingSkill();
-	@Transient
 	private Skill blackSmithy = new BlackSmithySkill();
-	@Transient
 	private Skill lumberjacking = new LumberjackingSkill();
-	@Transient
 	private Skill fishing = new FishingSkill();
-	@Transient
 	private Skill survivalism = new SurvivalismSkill();
-	@Transient
 	private Skill taming = new TamingSkill();
-	@Transient
 	private Skill magery = new MagerySkill();
-	@Transient
 	private Skill archery = new ArcherySkill();
 
 	public Build(int id) {

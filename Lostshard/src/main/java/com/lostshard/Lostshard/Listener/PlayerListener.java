@@ -33,8 +33,9 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.lostshard.Lostshard.Database.Mappers.MessagesMapper;
 import com.lostshard.Lostshard.Handlers.CapturepointHandler;
 import com.lostshard.Lostshard.Handlers.ChatHandler;
 import com.lostshard.Lostshard.Handlers.DeathHandler;
@@ -46,6 +47,7 @@ import com.lostshard.Lostshard.Handlers.foodHealHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Objects.Managers;
+import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.PseudoScoreboard;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
@@ -204,17 +206,21 @@ public class PlayerListener extends LostshardListener implements Managers {
 		final PseudoPlayer pPlayer = pm.onPlayerLogin(event);
 		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
-		final List<String> msgs = MessagesMapper.getOfflineMessages(player
-				.getUniqueId());
-		for (final String msg : msgs)
-			player.sendMessage(ChatColor.BLUE + msg);
+		final List<OfflineMessage> msgs = pPlayer.getOfflineMessages();
+		Session s = Lostshard.getSession();
+		Transaction t = s.beginTransaction();
+		t.begin();
+		for (final OfflineMessage msg : msgs) {
+			player.sendMessage(ChatColor.BLUE + msg.getMessage());
+			s.update(msg);
+		}
+		t.commit();
+		s.close();
 		event.setJoinMessage(null);
 		for (final Player p : Bukkit.getOnlinePlayers())
 			if (p != player)
 				p.sendMessage(ChatColor.YELLOW + player.getName()
 						+ " joined the game");
-		if(!msgs.isEmpty())
-			MessagesMapper.deleteMessages(player.getUniqueId());
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

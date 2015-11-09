@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 
-import com.lostshard.Lostshard.Database.Mappers.ChestRefillMapper;
 import com.lostshard.Lostshard.Objects.ChestRefill;
 
 public class ChestRefillManager {
@@ -25,7 +24,7 @@ public class ChestRefillManager {
 
 	public void add(ChestRefill cr) {
 		this.chests.add(cr);
-		ChestRefillMapper.insertChest(cr);
+		cr.insert();
 	}
 
 	public ChestRefill getChest(Chest chest) {
@@ -58,7 +57,7 @@ public class ChestRefillManager {
 
 	public void remove(ChestRefill cr) {
 		this.chests.remove(cr);
-		ChestRefillMapper.deleteChest(cr);
+		cr.delete();
 	}
 
 	public void setChests(List<ChestRefill> chests) {

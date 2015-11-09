@@ -1,6 +1,10 @@
 package com.lostshard.Lostshard.Objects.Player;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -8,12 +12,14 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.Lostshard.Objects.CustomObjects.SerializableInventory;
 import com.lostshard.Lostshard.Utils.Serializer;
 
 @Embeddable
+@Inheritance(strategy=InheritanceType.JOINED)
+@Access(AccessType.PROPERTY)
 public class Bank {
 
-	@Transient
 	private Inventory inventory;
 	
 	public Bank(String bankData, boolean large) {
@@ -36,6 +42,7 @@ public class Bank {
 		this.inventory.addItem(new ItemStack(Material.MELON, 10));
 	}
 	
+	@Transient
 	public Inventory getInventory() {
 		return this.inventory;
 	}
@@ -57,4 +64,11 @@ public class Bank {
 		}
 	}
 
+	public SerializableInventory getSerializableInventory() {
+		return new SerializableInventory(this.inventory);
+	}
+
+	public void setSerializableInventory(SerializableInventory SerializableInventory) {
+		this.inventory = SerializableInventory.getInventory();
+	}
 }

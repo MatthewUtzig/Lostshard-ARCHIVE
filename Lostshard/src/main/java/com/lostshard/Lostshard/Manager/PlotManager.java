@@ -9,8 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Database.Mappers.MessagesMapper;
-import com.lostshard.Lostshard.Database.Mappers.PlotMapper;
+import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -81,7 +80,7 @@ public class PlotManager {
 
 	public void removePlot(Plot plot) {
 		this.plots.remove(plot);
-		PlotMapper.deletePlot(plot);
+		plot.delete();
 	}
 
 	public void setPlots(List<Plot> plots) {
@@ -96,10 +95,12 @@ public class PlotManager {
 				final Player player = Bukkit.getPlayer(plot.getOwner());
 				if (plot.getSize() > 1) {
 					if (player != null)
-						Output.simpleError(player, plot.getName()
+						Output.simpleError(
+								player,
+								plot.getName()
 								+ " have failed to pay tax and have shurnk.");
 					else
-						MessagesMapper.insertMessages(plot.getOwner(), plot.getName()
+						new OfflineMessage(plot.getOwner(), plot.getName()
 								+ " have failed to pay tax and have shurnk.");
 				} else {
 					plot.disband();
@@ -109,7 +110,7 @@ public class PlotManager {
 								plot.getName()
 										+ " have failed to pay tax and are now disbaneded.");
 					else
-						MessagesMapper.insertMessages(
+						new OfflineMessage(
 								plot.getOwner(),
 								plot.getName()
 										+ " have failed to pay tax and are now disbaneded.");

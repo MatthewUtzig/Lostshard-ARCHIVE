@@ -15,8 +15,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.lostshard.Lostshard.Database.Mappers.RuneMapper;
-import com.lostshard.Lostshard.Database.Mappers.ScrollMapper;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.SpellManager;
@@ -193,8 +191,7 @@ public class MageryCommand extends LostshardCommand {
 								if (!foundMatching) {
 									runebook.removeRune(foundRune);
 									targetRunebook.addRune(foundRune);
-									RuneMapper.updateRune(targetPseudoPlayer,
-											foundRune);
+									targetPseudoPlayer.update();
 									Output.positiveMessage(
 											player,
 											"You have given the rune "
@@ -244,7 +241,7 @@ public class MageryCommand extends LostshardCommand {
 								player,
 								"You have removed the rune "
 										+ foundRune.getLabel());
-						RuneMapper.deleteRune(foundRune);
+						pseudoPlayer.update();
 					} else
 						Output.simpleError(player,
 								"Could not find a rune with that label.");
@@ -267,7 +264,7 @@ public class MageryCommand extends LostshardCommand {
 					return;
 				if (this.sm.useScroll(player, scroll)) {
 					pPlayer.getScrolls().remove(scroll);
-					ScrollMapper.deleteScroll(scroll, pPlayer.getId());
+					pPlayer.update();
 				}
 			} else if (args[0].equalsIgnoreCase("give")) {
 				if (args.length < 3) {
@@ -316,8 +313,8 @@ public class MageryCommand extends LostshardCommand {
 				}
 				pPlayer.getScrolls().remove(scroll);
 				tpPlayer.getScrolls().add(scroll);
-				ScrollMapper.updateScrollOwner(scroll, tpPlayer.getId(),
-						pPlayer.getId());
+				pPlayer.update();
+				tpPlayer.update();
 				if(scroll == null) {
 					Output.simpleError(player, "Theres no scroll with the name \""+scrollName+"\".");
 					return;
@@ -338,7 +335,7 @@ public class MageryCommand extends LostshardCommand {
 				final SpellBook spellbook = pPlayer.getSpellbook();
 				if (!spellbook.containSpell(scroll)) {
 					pPlayer.addSpell(scroll);
-					ScrollMapper.deleteScroll(scroll, pPlayer.getId());
+					pPlayer.update();
 					pPlayer.update();
 					Output.positiveMessage(player, "You have transferred "
 							+ scroll.getName() + " to your spellbook.");
