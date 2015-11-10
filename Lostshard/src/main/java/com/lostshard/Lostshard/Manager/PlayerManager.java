@@ -48,8 +48,10 @@ public class PlayerManager {
 			if (pPlayer.getPlayerUUID().equals(uuid))
 				return pPlayer;
 		PseudoPlayer pPlayer = getPlayerFromDB(uuid);
-		if (pPlayer == null && create)
+		if (pPlayer == null && create) {
 			pPlayer = new PseudoPlayer(uuid);
+			pPlayer.insert();
+		}
 		return pPlayer;
 	}
 
@@ -92,7 +94,7 @@ public class PlayerManager {
 	
 	public PseudoPlayer getPlayerFromDB(UUID uuid) {
 		Session s = Lostshard.getSession();
-		PseudoPlayer pPlayer = (PseudoPlayer) s.createCriteria(PseudoPlayer.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
+		PseudoPlayer pPlayer = (PseudoPlayer) s.createCriteria(PseudoPlayer.class).add(Restrictions.eq("playerUUID", uuid)).uniqueResult();
 		s.close();
 		return pPlayer;
 	}

@@ -23,6 +23,8 @@ public class SerializableInventory {
 		for(int slot=0; slot<inventory.getContents().length; slot++) {
 			items.put(slot, new SerializableItem(inventory.getContents()[slot]));
 		}
+		this.size = inventory.getSize();
+		this.title = inventory.getTitle();
 	}
 
 	public Map<Integer, SerializableItem> getItems() {

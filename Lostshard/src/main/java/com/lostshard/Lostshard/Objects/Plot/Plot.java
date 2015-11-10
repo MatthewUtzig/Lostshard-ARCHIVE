@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Data.Variables;
@@ -62,7 +64,7 @@ public class Plot {
 			this.setName(name);
 			this.setPrice(price);
 		}
-
+		
 		public String getName() {
 			return this.name;
 		}
@@ -120,6 +122,10 @@ public class Plot {
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
 
+	public Plot() {
+		
+	}
+	
 	public Plot(int id, String name, UUID owner, Location location) {
 		super();
 		this.name = name;
@@ -162,6 +168,7 @@ public class Plot {
 	
 	@ElementCollection
 	@CollectionTable
+	@Type(type="uuid-char")
 	public List<UUID> getCoowners() {
 		return this.coowners;
 	}
@@ -177,6 +184,7 @@ public class Plot {
 	}
 	@ElementCollection
 	@CollectionTable
+	@Type(type="uuid-char")
 	public List<UUID> getFriends() {
 		return this.friends;
 	}
@@ -202,6 +210,7 @@ public class Plot {
 		return this.money;
 	}
 
+	@Column(unique=true)
 	public String getName() {
 		return this.name;
 	}
@@ -212,6 +221,7 @@ public class Plot {
 		return this.npcs;
 	}
 
+	@Type(type="uuid-char")
 	public UUID getOwner() {
 		return this.owner;
 	}
@@ -449,7 +459,7 @@ public class Plot {
 		this.update();
 	}
 
-	public void setNpcs(ArrayList<NPC> npcs) {
+	public void setNpcs(List<NPC> npcs) {
 		this.npcs = npcs;
 	}
 

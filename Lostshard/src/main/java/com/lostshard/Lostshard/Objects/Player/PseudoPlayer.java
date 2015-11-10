@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.envers.Audited;
 
@@ -58,9 +59,11 @@ public class PseudoPlayer {
 	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
 	@Column(name="uuid", unique=true, nullable=false, updatable=false)
+	@Type(type="uuid-char")
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
+	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -130,6 +133,10 @@ public class PseudoPlayer {
 	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
 	@Transient
 	private PseudoScoreboard scoreboard;
+	
+	public PseudoPlayer() {
+		
+	}
 	
 	public PseudoPlayer(UUID playerUUID) {
 		super();

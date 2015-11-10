@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,7 @@ public class Clan extends Group {
 	private String name;
 
 	// UUID
+	@Column(columnDefinition = "CHAR(32)")
 	private UUID owner;
 
 	// Array's
