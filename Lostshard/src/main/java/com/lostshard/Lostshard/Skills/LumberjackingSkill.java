@@ -2,6 +2,8 @@ package com.lostshard.Lostshard.Skills;
 
 import java.util.List;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -19,6 +21,7 @@ import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 
+@Embeddable
 public class LumberjackingSkill extends Skill {
 
 	@SuppressWarnings("deprecation")

@@ -1,5 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,6 +13,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 
+@Embeddable
 public class MiningSkill extends Skill {
 
 	public static void onBlockBreak(BlockBreakEvent event) {

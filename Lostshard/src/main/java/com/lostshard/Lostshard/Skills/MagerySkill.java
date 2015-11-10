@@ -1,9 +1,12 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.Material;
 
 import com.lostshard.Lostshard.Manager.SpellManager;
 
+@Embeddable
 public class MagerySkill extends Skill {
 
 	static SpellManager sm = SpellManager.getManager();

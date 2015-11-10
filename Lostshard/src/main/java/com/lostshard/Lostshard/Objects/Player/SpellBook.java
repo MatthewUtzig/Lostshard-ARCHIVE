@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
@@ -23,6 +25,7 @@ public class SpellBook {
 	
 	@ElementCollection
 	@CollectionTable
+	@Enumerated(EnumType.STRING)
 	private final List<Scroll> spells = new ArrayList<Scroll>();
 
 	public void addSpell(Scroll spell) {

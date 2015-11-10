@@ -22,6 +22,10 @@ public class Bank {
 
 	private Inventory inventory;
 	
+	public Bank() {
+		
+	}
+	
 	public Bank(String bankData, boolean large) {
 		super();
 		if (large)

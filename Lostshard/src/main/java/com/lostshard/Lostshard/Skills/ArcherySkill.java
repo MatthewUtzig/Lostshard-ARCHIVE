@@ -1,5 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
@@ -13,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 
+@Embeddable
 public class ArcherySkill extends Skill {
 
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {

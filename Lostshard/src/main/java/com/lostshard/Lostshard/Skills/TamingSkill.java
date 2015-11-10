@@ -1,5 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -19,6 +21,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
 
+@Embeddable
 public class TamingSkill extends Skill {
 
 	public static void callMount(Player player, PseudoPlayer pseudoPlayer) {

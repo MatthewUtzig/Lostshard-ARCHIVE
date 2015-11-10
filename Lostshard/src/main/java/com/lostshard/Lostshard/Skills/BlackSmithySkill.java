@@ -1,5 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
+import javax.persistence.Embeddable;
+
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,6 +19,7 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 
+@Embeddable
 public class BlackSmithySkill extends Skill {
 
 	public static void anvilProtect(PlayerInteractEvent event) {

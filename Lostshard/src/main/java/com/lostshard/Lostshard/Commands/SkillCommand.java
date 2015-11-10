@@ -279,11 +279,11 @@ public class SkillCommand extends LostshardCommand {
 		Player player = (Player) sender;
 		PseudoPlayer pPlayer = pm.getPlayer(player);
 		if(args.length < 1) {
-			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build(pPlayer.getCurrentBuild().getId()));
+			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build());
 			pPlayer.update();
 			Output.positiveMessage(player, "Skills wiped, but you diden chose a skill to increase.");
 		}else if(args.length < 2){
-			Build build = new Build(pPlayer.getCurrentBuild().getId());
+			Build build = new Build();
 			Skill skill = build.getSkillByName(args[0]);
 			if(skill == null) {
 				Output.simpleError(player, "You chose a invalid skill to increase.");

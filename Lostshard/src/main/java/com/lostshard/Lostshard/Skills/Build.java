@@ -11,7 +11,6 @@ import javax.persistence.Embeddable;
 @Access(AccessType.FIELD)
 public class Build {
 	
-	private int id;
 	private Skill mining = new MiningSkill();
 	private Skill blades = new BladesSkill();
 	private Skill brawling = new BrawlingSkill();
@@ -23,8 +22,7 @@ public class Build {
 	private Skill magery = new MagerySkill();
 	private Skill archery = new ArcherySkill();
 
-	public Build(int id) {
-		this.id = id;
+	public Build() {
 	}
 	
 	public Skill getArchery() {
@@ -45,10 +43,6 @@ public class Build {
 
 	public Skill getFishing() {
 		return this.fishing;
-	}
-
-	public int getId() {
-		return this.id;
 	}
 
 	public Skill getLumberjacking() {
@@ -120,10 +114,6 @@ public class Build {
 
 	public void setFishing(Skill fishing) {
 		this.fishing = fishing;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public void setLumberjacking(Skill lumberjacking) {

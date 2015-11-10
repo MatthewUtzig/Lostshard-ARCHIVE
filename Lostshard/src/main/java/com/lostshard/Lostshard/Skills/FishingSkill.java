@@ -2,6 +2,8 @@ package com.lostshard.Lostshard.Skills;
 
 import java.util.Random;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -14,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 
+@Embeddable
 public class FishingSkill extends Skill {
 
 	public static void callBoat(Player player) {

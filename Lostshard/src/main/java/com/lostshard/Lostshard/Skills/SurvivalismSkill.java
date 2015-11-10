@@ -3,6 +3,8 @@ package com.lostshard.Lostshard.Skills;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embeddable;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -42,6 +44,7 @@ import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
 import com.lostshard.Lostshard.Utils.Utils;
 
+@Embeddable
 public class SurvivalismSkill extends Skill {
 
 	public static void camp(Player player) {

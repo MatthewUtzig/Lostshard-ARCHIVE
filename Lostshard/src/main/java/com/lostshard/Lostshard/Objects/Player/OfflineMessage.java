@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Main.Lostshard;
@@ -23,6 +24,7 @@ public class OfflineMessage {
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy = "increment")
 	private int id;
+	@Type(type="uuid-char")
 	private UUID player;
 	private String message;
 	private boolean seen;

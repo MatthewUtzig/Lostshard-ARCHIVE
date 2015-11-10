@@ -8,6 +8,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -73,13 +75,15 @@ public class PseudoPlayer {
 	private int plotCreatePoints = 0;
 	@Transient
 	private Plot testPlot = null;
+	@Enumerated(EnumType.STRING)
 	private ChatChannel chatChannel = ChatChannel.GLOBAL;
 	private int mana = 100;
 	private int stamina = 100;
 	private int rank = 800;
 	@Transient
 	private Party party = null;
-	@Transient
+	@ElementCollection
+	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -88,6 +92,7 @@ public class PseudoPlayer {
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
 	@ElementCollection
 	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
+	@Enumerated(EnumType.STRING)
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
@@ -122,9 +127,11 @@ public class PseudoPlayer {
 	private boolean allowGui = true;
 	@ElementCollection
 	@CollectionTable(name="player_ignored", joinColumns=@JoinColumn(name="player_id"))
+	@Type(type="uuid-char")
 	private List<UUID> ignored = new ArrayList<UUID>();
 	@ElementCollection
 	@CollectionTable(name="player_scrolls", joinColumns=@JoinColumn(name="player_id"))
+	@Enumerated(EnumType.STRING)
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
 	@Transient
@@ -141,7 +148,7 @@ public class PseudoPlayer {
 	public PseudoPlayer(UUID playerUUID) {
 		super();
 		this.playerUUID = playerUUID;
-		this.builds.add(new Build(0));
+		this.builds.add(new Build());
 	}
 
 	public void addMoney(int money) {
@@ -193,15 +200,6 @@ public class PseudoPlayer {
 
 	public Bank getBank() {
 		return this.bank;
-	}
-
-	public int[] getBuildIds() {
-		final int[] ints = new int[this.getBuilds().size()];
-		for (int i = 0; i < this.getBuilds().size(); i++) {
-			final Build build = this.getBuilds().get(i);
-			ints[i] = build.getId();
-		}
-		return ints;
 	}
 
 	public List<Build> getBuilds() {
