@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
-import com.lostshard.Lostshard.Objects.CustomObjects.SerializableLocation;
+import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 
 /**
@@ -31,7 +31,7 @@ public class NPC {
 	private int id;
 	private NPCType type;
 	private String name;
-	private Location location;
+	private SavableLocation location;
 	private int plotId;
 	private UUID uuid = UUID.randomUUID();
 
@@ -45,7 +45,7 @@ public class NPC {
 		super();
 		this.type = type;
 		this.name = name;
-		this.location = location;
+		this.location = new SavableLocation(location);
 		this.plotId = plotId;
 	}
 
@@ -71,7 +71,7 @@ public class NPC {
 	 */
 	@Transient
 	public Location getLocation() {
-		return this.location;
+		return this.location.getLocation();
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class NPC {
 	 * @param location
 	 */
 	public void setLocation(Location location) {
-		this.location = location;
+		this.location = new SavableLocation(location);
 		this.getPlot().update();
 	}
 
@@ -178,12 +178,12 @@ public class NPC {
 		return NPCLibManager.getManager().getNPC(id);
 	}
 	
-	public SerializableLocation getSerializableLocation() {
-		return new SerializableLocation(this.location);
+	public SavableLocation getSavableLocation() {
+		return this.location;
 	}
-	
-	public void setSerializableLocation(SerializableLocation serializableLocation) {
-		this.location = serializableLocation.getLocation();
+
+	public void setSavableLocation(SavableLocation savableLocation) {
+		this.location = savableLocation;
 	}
 	
 	public void save() {

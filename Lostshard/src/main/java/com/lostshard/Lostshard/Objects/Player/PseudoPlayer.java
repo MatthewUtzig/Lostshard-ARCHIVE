@@ -24,6 +24,8 @@ import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.envers.Audited;
@@ -83,7 +85,7 @@ public class PseudoPlayer {
 	@Transient
 	private Party party = null;
 	@ElementCollection
-	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
 	private int pvpTicks = 0;
@@ -91,12 +93,14 @@ public class PseudoPlayer {
 	@Transient
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
 	@Enumerated(EnumType.STRING)
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name="player_titels", joinColumns=@JoinColumn(name="player_id"))
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
@@ -126,10 +130,12 @@ public class PseudoPlayer {
 	private GUI gui = null;
 	private boolean allowGui = true;
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name="player_ignored", joinColumns=@JoinColumn(name="player_id"))
 	@Type(type="uuid-char")
 	private List<UUID> ignored = new ArrayList<UUID>();
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name="player_scrolls", joinColumns=@JoinColumn(name="player_id"))
 	@Enumerated(EnumType.STRING)
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
@@ -535,7 +541,6 @@ public class PseudoPlayer {
 
 	public void setId(int id) {
 		this.id = id;
-		this.update();
 	}
 
 	public void setIgnored(List<UUID> ignored) {

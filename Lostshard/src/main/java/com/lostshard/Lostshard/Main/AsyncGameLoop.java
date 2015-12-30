@@ -26,14 +26,20 @@ public class AsyncGameLoop extends BukkitRunnable {
 		Transaction t = s.beginTransaction();
 		t.begin();
 		for (final PseudoPlayer p : pm.getPlayers())
-			if (p.isUpdate())
+			if (p.isUpdate()) {
 				s.update(p);
+				p.setUpdate(false);
+			}
 		for (final Plot p : ptm.getPlots())
-			if (p.isUpdate())
-				s.save(p);
+			if (p.isUpdate()) {
+				s.update(p);
+				p.setUpdate(false);
+			}
 		for (final Clan c : cm.getClans())
-			if (c.isUpdate())
-				s.save(c);
+			if (c.isUpdate()) {
+				s.update(c);
+				c.setUpdate(false);
+			}
 		t.commit();
 		s.close();
 		if(Lostshard.isDebug()) {

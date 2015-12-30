@@ -27,7 +27,6 @@ public class Variables {
 	public static final int bankRadius = 5;
 	public static final int goldIngotValue = 100;
 	// Database
-	public static String mysqlDriver;
 	public static String mysqlUrl;
 	public static String mysqlUsername;
 	public static String mysqlPassword;

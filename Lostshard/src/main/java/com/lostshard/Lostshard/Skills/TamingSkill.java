@@ -24,6 +24,10 @@ import com.lostshard.Lostshard.Utils.SpellUtils;
 @Embeddable
 public class TamingSkill extends Skill {
 
+	public TamingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void callMount(Player player, PseudoPlayer pseudoPlayer) {
 		if (pseudoPlayer.getStamina() >= 10) {
 

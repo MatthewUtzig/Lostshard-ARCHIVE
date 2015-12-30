@@ -22,6 +22,10 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class BlackSmithySkill extends Skill {
 
+	public BlackSmithySkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void anvilProtect(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)
 				&& event.getClickedBlock().getType() == Material.ANVIL) {

@@ -7,10 +7,15 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Embeddable
 public class Runebook {
 	
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+
 	@CollectionTable
 	private List<Rune> runes;
 	

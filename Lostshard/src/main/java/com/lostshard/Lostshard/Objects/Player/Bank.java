@@ -12,67 +12,40 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Objects.CustomObjects.SerializableInventory;
-import com.lostshard.Lostshard.Utils.Serializer;
+import com.lostshard.Lostshard.Objects.CustomObjects.SavableInventory;
 
 @Embeddable
 @Inheritance(strategy=InheritanceType.JOINED)
 @Access(AccessType.PROPERTY)
 public class Bank {
 
-	private Inventory inventory;
+	private SavableInventory inventory;
 	
 	public Bank() {
 		
 	}
 	
-	public Bank(String bankData, boolean large) {
-		super();
-		if (large)
-			this.inventory = Bukkit.createInventory(null, 54, "Large bank");
-		else
-			this.inventory = Bukkit.createInventory(null, 27, "Small bank");
-		this.setInventory(bankData);
+	public void setInventory(SavableInventory inventory) {
+		this.inventory = inventory;
 	}
-	
+
 	public Bank(boolean large) {
 		super();
 		if (large)
-			this.inventory = Bukkit.createInventory(null, 54, "Large bank");
+			this.setInventory(Bukkit.createInventory(null, 54, "Large bank"));
 		else
-			this.inventory = Bukkit.createInventory(null, 27, "Small bank");
-		this.inventory.addItem(new ItemStack(Material.GOLD_INGOT, 32));
-		this.inventory.addItem(new ItemStack(Material.DIAMOND, 3));
-		this.inventory.addItem(new ItemStack(Material.MELON, 10));
+			this.setInventory(Bukkit.createInventory(null, 27, "Small bank"));
+		this.getInventory().addItem(new ItemStack(Material.GOLD_INGOT, 32));
+		this.getInventory().addItem(new ItemStack(Material.DIAMOND, 3));
+		this.getInventory().addItem(new ItemStack(Material.MELON, 10));
 	}
 	
 	@Transient
 	public Inventory getInventory() {
-		return this.inventory;
-	}
-
-	public String Serialize() {
-		return Serializer.serializeItems(this.inventory.getContents());
+		return this.inventory.getInventory();
 	}
 
 	public void setInventory(Inventory inventory) {
-		this.inventory = inventory;
-	}
-
-	public void setInventory(String string) {
-		if (string != null && string != "") {
-			final ItemStack[] content = Serializer.deserializeItems(string);
-			if (content.length > this.inventory.getSize())
-				this.inventory = Bukkit.createInventory(null, 54, "Large bank");
-			this.inventory.setContents(content);
-		}
-	}
-
-	public SerializableInventory getSerializableInventory() {
-		return new SerializableInventory(this.inventory);
-	}
-
-	public void setSerializableInventory(SerializableInventory SerializableInventory) {
-		this.inventory = SerializableInventory.getInventory();
+		this.inventory = new SavableInventory(inventory);
 	}
 }

@@ -6,10 +6,17 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
 
 @Embeddable
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public class Build {
+	
+	private int id;
 	
 	private Skill mining = new MiningSkill();
 	private Skill blades = new BladesSkill();
@@ -25,79 +32,68 @@ public class Build {
 	public Build() {
 	}
 	
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	@Transient
 	public Skill getArchery() {
 		return this.archery;
 	}
 
+	@Transient
 	public Skill getBlackSmithy() {
 		return this.blackSmithy;
 	}
-
+	
+	@Transient
 	public Skill getBlades() {
 		return this.blades;
 	}
 
+	@Transient
 	public Skill getBrawling() {
 		return this.brawling;
 	}
-
+	
+	@Transient
 	public Skill getFishing() {
 		return this.fishing;
 	}
 
+	@Transient
 	public Skill getLumberjacking() {
 		return this.lumberjacking;
 	}
 
+	@Transient
 	public Skill getMagery() {
 		return this.magery;
 	}
 
+	@Transient
 	public Skill getMining() {
 		return this.mining;
 	}
 
-	public List<Skill> getSkills() {
-		final List<Skill> skills = new ArrayList<Skill>();
-		skills.add(this.mining);
-		skills.add(this.blades);
-		skills.add(this.brawling);
-		skills.add(this.blackSmithy);
-		skills.add(this.lumberjacking);
-		skills.add(this.fishing);
-		skills.add(this.survivalism);
-		skills.add(this.taming);
-		skills.add(this.magery);
-		skills.add(this.archery);
-		skills.sort((skill1, skill2) -> skill1.getName().compareTo(
-				skill2.getName()));
-		return skills;
-	}
-
+	@Transient
 	public Skill getSurvivalism() {
 		return this.survivalism;
 	}
 
+	@Transient
 	public Skill getTaming() {
 		return this.taming;
 	}
 
-	public int getTotalSkillVal() {
-		int total = 0;
-		total += this.blackSmithy.getLvl();
-		total += this.blades.getLvl();
-		total += this.brawling.getLvl();
-		total += this.fishing.getLvl();
-		total += this.lumberjacking.getLvl();
-		total += this.magery.getLvl();
-		total += this.mining.getLvl();
-		total += this.survivalism.getLvl();
-		total += this.taming.getLvl();
-		return total;
-	}
-
-	public void setArcher(Skill archery) {
-		this.archery = archery;
+	public void setArchery(Skill archery) {
+		this.archery = new ArcherySkill(archery.getLvl(), archery.isLocked());
 	}
 
 	public void setBlackSmithy(Skill blackSmithy) {
@@ -136,6 +132,40 @@ public class Build {
 		this.taming = taming;
 	}
 
+	@Transient
+	public List<Skill> getSkills() {
+		final List<Skill> skills = new ArrayList<Skill>();
+		skills.add(this.mining);
+		skills.add(this.blades);
+		skills.add(this.brawling);
+		skills.add(this.blackSmithy);
+		skills.add(this.lumberjacking);
+		skills.add(this.fishing);
+		skills.add(this.survivalism);
+		skills.add(this.taming);
+		skills.add(this.magery);
+		skills.add(this.archery);
+		skills.sort((skill1, skill2) -> skill1.getName().compareTo(
+				skill2.getName()));
+		return skills;
+	}
+	
+	@Transient
+	public int getTotalSkillVal() {
+		int total = 0;
+		total += this.blackSmithy.getLvl();
+		total += this.blades.getLvl();
+		total += this.brawling.getLvl();
+		total += this.fishing.getLvl();
+		total += this.lumberjacking.getLvl();
+		total += this.magery.getLvl();
+		total += this.mining.getLvl();
+		total += this.survivalism.getLvl();
+		total += this.taming.getLvl();
+		return total;
+	}
+	
+	@Transient
 	public Skill getSkillByName(String name) {
 		switch(name.toLowerCase()) {
 		case "mining": return this.getMining();

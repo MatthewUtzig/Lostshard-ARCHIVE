@@ -15,6 +15,10 @@ import com.lostshard.Lostshard.Utils.Output;
 
 @Embeddable
 public class MiningSkill extends Skill {
+	
+	public MiningSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
 
 	public static void onBlockBreak(BlockBreakEvent event) {
 		if (event.isCancelled())

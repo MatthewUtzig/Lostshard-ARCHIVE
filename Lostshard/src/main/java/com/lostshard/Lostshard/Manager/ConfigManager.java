@@ -25,7 +25,6 @@ public class ConfigManager {
 	public void reload() {
 		this.plugin.reloadConfig();
 		this.config = this.plugin.getConfig();
-		Variables.mysqlDriver = this.config.getString("MYSQL.driver");
 		Variables.mysqlUrl = this.config.getString("MYSQL.url");
 		Variables.mysqlUsername = this.config.getString("MYSQL.username");
 		Variables.mysqlPassword = this.config.getString("MYSQL.password");

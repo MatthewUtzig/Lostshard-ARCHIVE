@@ -32,11 +32,19 @@ public abstract class Skill {
 	private Material mat;
 	@Transient
 	private String name = "none";
-	@Transient
+	
 	private int lvl = 0; // 0-1000 and displayed as level/10
-	@Transient
 	private boolean locked = false;
 
+	public Skill() {
+		
+	}
+	
+	public Skill(int lvl, boolean locked) {
+		this.lvl = lvl;
+		this.locked = locked;
+	}
+	
 	public double getBaseProb() {
 		return this.baseProb;
 	}

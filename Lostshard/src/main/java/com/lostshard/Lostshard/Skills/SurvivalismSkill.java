@@ -46,6 +46,10 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 @Embeddable
 public class SurvivalismSkill extends Skill {
+	
+	public SurvivalismSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
 
 	public static void camp(Player player) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);

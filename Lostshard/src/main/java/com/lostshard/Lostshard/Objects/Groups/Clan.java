@@ -19,6 +19,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Main.Lostshard;
@@ -45,10 +47,11 @@ public class Clan extends Group {
 
 	// Array's
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name="clan_leaders", joinColumns=@JoinColumn(name="clan_id"))
 	private List<UUID> leaders = new ArrayList<UUID>();
 
-	private Bank bank = new Bank(null, false);
+	private Bank bank = new Bank(false);
 
 	@Transient
 	private boolean update = false;

@@ -20,7 +20,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Objects.CustomObjects.SerializableLocation;
+import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
@@ -150,20 +150,20 @@ public class Gate extends MagicStructure {
 		this.direction = direction;
 	}
 	
-	public SerializableLocation getSerializbleFromLocation() {
-		return new SerializableLocation(this.fromBlock.getLocation());
+	public SavableLocation getFromLocation() {
+		return new SavableLocation(this.fromBlock.getLocation());
 	}
 	
-	public void setSerializbleFromLocation(SerializableLocation serializableLocation) {
-		this.fromBlock = serializableLocation.getLocation().getBlock();
+	public  void setFromLocation(SavableLocation location) {
+		this.fromBlock = location.getLocation().getBlock();
 	}
 	
-	public SerializableLocation getSerializbleToLocation() {
-		return new SerializableLocation(this.toBlock.getLocation());
+	public SavableLocation getToLocation() {
+		return new SavableLocation(this.toBlock.getLocation());
 	}
 	
-	public void setSerializbleToLocation(SerializableLocation serializableLocation) {
-		this.toBlock = serializableLocation.getLocation().getBlock();
+	public  void setToLocation(SavableLocation location) {
+		this.toBlock = location.getLocation().getBlock();
 	}
 	
 	public void save() {
@@ -191,6 +191,5 @@ public class Gate extends MagicStructure {
 		s.delete(this);
 		t.commit();
 		s.close();
-
 	}
 }

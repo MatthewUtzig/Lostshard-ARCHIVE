@@ -16,6 +16,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -28,10 +30,14 @@ public class Group {
 	public PlayerManager pm = PlayerManager.getManager();
 
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
+
 	private List<UUID> members = new ArrayList<UUID>();
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
+
 	private List<UUID> invited = new ArrayList<UUID>();
 
 	public void addInvited(UUID invite) {

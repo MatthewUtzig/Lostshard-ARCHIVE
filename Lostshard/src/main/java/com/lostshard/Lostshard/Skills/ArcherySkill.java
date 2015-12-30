@@ -18,6 +18,12 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class ArcherySkill extends Skill {
 
+	
+	
+	public ArcherySkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
 		if(event.isCancelled())
 			return;

@@ -8,6 +8,10 @@ import com.lostshard.Lostshard.Manager.SpellManager;
 
 @Embeddable
 public class MagerySkill extends Skill {
+	
+	public MagerySkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
 
 	static SpellManager sm = SpellManager.getManager();
 

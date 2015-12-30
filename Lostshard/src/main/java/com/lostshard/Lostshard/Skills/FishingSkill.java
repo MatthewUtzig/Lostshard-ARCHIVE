@@ -19,6 +19,10 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class FishingSkill extends Skill {
 
+	public FishingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void callBoat(Player player) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		final Skill skill = pPlayer.getCurrentBuild().getFishing();

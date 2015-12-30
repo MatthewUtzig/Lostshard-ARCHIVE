@@ -24,6 +24,8 @@ import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 
@@ -32,6 +34,7 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
+import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Serializer;
 import com.lostshard.Utils.ExtraMath;
@@ -115,7 +118,7 @@ public class Plot {
 	private List<PlotUpgrade> upgrades = new ArrayList<PlotUpgrade>();
 
 	// Location
-	private Location location;
+	private SavableLocation location;
 
 	// NPCS
 	private List<NPC> npcs = new ArrayList<NPC>();
@@ -133,7 +136,7 @@ public class Plot {
 		this.name = name;
 		this.id = id;
 		this.owner = owner;
-		this.location = location;
+		this.location = new SavableLocation(location);
 	}
 
 	// Getters and Setters
@@ -169,6 +172,7 @@ public class Plot {
 	}
 	
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
 	@Type(type="uuid-char")
 	public List<UUID> getCoowners() {
@@ -185,6 +189,7 @@ public class Plot {
 		return Variables.plotExpandPrice*(-ExtraMath.Triangular(size)+ExtraMath.Triangular(toSize)+size-toSize);
 	}
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
 	@Type(type="uuid-char")
 	public List<UUID> getFriends() {
@@ -200,7 +205,7 @@ public class Plot {
 
 	@Transient
 	public Location getLocation() {
-		return this.location;
+		return this.location.getLocation();
 	}
 
 	@Transient
@@ -218,6 +223,8 @@ public class Plot {
 	}
 
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+
 	@CollectionTable
 	public List<NPC> getNpcs() {
 		return this.npcs;
@@ -250,6 +257,8 @@ public class Plot {
 	}
 
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+
 	@CollectionTable
 	@Enumerated(EnumType.STRING)
 	public List<PlotUpgrade> getUpgrades() {
@@ -444,11 +453,10 @@ public class Plot {
 
 	public void setId(int id) {
 		this.id = id;
-		this.update();
 	}
 
 	public void setLocation(Location location) {
-		this.location = location;
+		this.location = new SavableLocation(location);
 		this.update();
 	}
 
@@ -523,6 +531,14 @@ public class Plot {
 		for (final PlotUpgrade upgrade : this.upgrades)
 			tjson.add(upgrade.name());
 		return Serializer.serializeStringArray(tjson);
+	}
+	
+	public SavableLocation getSavableLocation() {
+		return this.location;
+	}
+	
+	public void setSavableLocation(SavableLocation savableLocation) {
+		this.location = savableLocation;
 	}
 	
 	public void save() {

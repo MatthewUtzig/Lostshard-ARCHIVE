@@ -11,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Spells.Scroll;
@@ -24,6 +26,8 @@ public class SpellBook {
 	SpellManager sm = SpellManager.getManager();
 	
 	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+
 	@CollectionTable
 	@Enumerated(EnumType.STRING)
 	private final List<Scroll> spells = new ArrayList<Scroll>();

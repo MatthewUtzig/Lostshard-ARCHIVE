@@ -7,19 +7,19 @@ import javax.persistence.Transient;
 
 import org.bukkit.Location;
 
-import com.lostshard.Lostshard.Objects.CustomObjects.SerializableLocation;
+import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
 public class Rune {
 
 	private int id;
-	private Location location;
+	private SavableLocation location;
 	private String label;
 
 	public Rune(Location location, String name, int id) {
 		super();
-		this.location = location;
+		this.location = new SavableLocation(location);
 		this.label = name;
 		this.id = id;
 	}
@@ -30,7 +30,7 @@ public class Rune {
 
 	@Transient
 	public Location getLocation() {
-		return this.location;
+		return this.location.getLocation();
 	}
 
 	public void setLabel(String label) {
@@ -38,7 +38,7 @@ public class Rune {
 	}
 
 	public void setLocation(Location location) {
-		this.location = location;
+		this.location = new SavableLocation(location);
 	}
 
 	public int getId() {
@@ -49,11 +49,11 @@ public class Rune {
 		this.id = id;
 	}
 
-	public SerializableLocation getSerializableLocation() {
-		return new SerializableLocation(this.location);
+	public SavableLocation getSavableLocation() {
+		return this.location;
 	}
 
-	public void setSerializableLocation(SerializableLocation serializableLocation) {
-		this.location = serializableLocation.getLocation();
+	public void setSavableLocation(SavableLocation savableLocation) {
+		this.location = savableLocation;
 	}
 }

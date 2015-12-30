@@ -19,6 +19,12 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class BrawlingSkill extends Skill {
 
+	
+	
+	public BrawlingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void playerDamagedEntityWithMisc(
 			EntityDamageByEntityEvent event) {
 		if (event.isCancelled())

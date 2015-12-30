@@ -19,6 +19,12 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class BladesSkill extends Skill {
 
+	
+	
+	public BladesSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public static void playerDamagedEntityWithSword(
 			EntityDamageByEntityEvent event) {
 		if (event.isCancelled())

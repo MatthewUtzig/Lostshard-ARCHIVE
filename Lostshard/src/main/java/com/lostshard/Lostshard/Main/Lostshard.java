@@ -127,9 +127,12 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		for(NPC npc : NPCLibManager.getManager().getRegistry().sorted())
+		NPCLibManager npcLibManager = NPCLibManager.getManager();
+		if (npcLibManager != null && npcLibManager.getRegistry() != null) {
+		for(NPC npc : npcLibManager.getRegistry().sorted())
 			npc.despawn();
-		NPCLibManager.getManager().getRegistry().deregisterAll();
+		npcLibManager.getRegistry().deregisterAll();
+		}
 		Session s = Lostshard.getSession();
 		Transaction t = s.beginTransaction();
 		t.begin();

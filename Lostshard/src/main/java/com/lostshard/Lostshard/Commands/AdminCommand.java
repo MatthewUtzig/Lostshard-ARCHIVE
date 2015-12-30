@@ -61,6 +61,7 @@ public class AdminCommand extends LostshardCommand {
 					ChatColor.AQUA + (msgs.length > 1 ? msgs[1] : ""));
 			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
 		}
+		sender.sendMessage(msgs);
 	}
 
 	private void inv(CommandSender sender, String[] args) {
@@ -203,10 +204,10 @@ public class AdminCommand extends LostshardCommand {
 
 	private void say(CommandSender sender, String[] args) {
 		if (args.length < 1) {
-			Output.simpleError(sender, "/broadcast (message)");
+			Output.simpleError(sender, "/say (message)");
 			return;
 		}
-		String message = StringUtils.join(args);
+		String message = StringUtils.join(args, " ");
 		Output.broadcast(message);
 	}
 

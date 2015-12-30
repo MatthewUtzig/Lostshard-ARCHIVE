@@ -24,6 +24,10 @@ import com.lostshard.Lostshard.Utils.Utils;
 @Embeddable
 public class LumberjackingSkill extends Skill {
 
+	public LumberjackingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	@SuppressWarnings("deprecation")
 	public static void blockBrokeWithAxe(BlockBreakEvent event) {
 		if (event.isCancelled())
