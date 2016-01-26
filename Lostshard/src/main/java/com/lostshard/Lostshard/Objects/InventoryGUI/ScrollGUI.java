@@ -65,6 +65,7 @@ public class ScrollGUI extends GUI {
 						pPlayer.update();
 						Output.positiveMessage(player,
 								"You have transferred " + scroll.getName() + " to your spellbook.");
+						pPlayer.setGui(new ScrollGUI(pPlayer));
 						openInventory(player);
 					} else if (click.equals(ClickType.SHIFT_LEFT)) {
 						final Scroll scroll = s;

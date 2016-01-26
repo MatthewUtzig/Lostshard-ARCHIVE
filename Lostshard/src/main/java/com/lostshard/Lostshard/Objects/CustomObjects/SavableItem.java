@@ -14,6 +14,10 @@ public class SavableItem {
 	
 	private ItemStack item;
 	
+	public SavableItem(ItemStack item) {
+		this.item = item;
+	}
+	
 	@Transient
 	public ItemStack getItem() {
 		return item;
@@ -21,10 +25,6 @@ public class SavableItem {
 
 	@Transient
 	public void setItem(ItemStack item) {
-		this.item = item;
-	}
-
-	public SavableItem(ItemStack item) {
 		this.item = item;
 	}
 	

@@ -46,9 +46,9 @@ public class SavableInventory {
 	}
 	
 	public void setContents(List<SavableItem> contents) {
-		this.inventory = Bukkit.createInventory(null, 54, getName());
+		this.inventory = Bukkit.createInventory(null, contents.size(), getName());
 		for(SavableItem i : contents) {
-			return;
+			this.inventory.addItem(i.getItemStack());
 		}
 	}
 }
