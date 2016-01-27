@@ -15,6 +15,8 @@ public class SavableItem {
 	private ItemStack item;
 	
 	public SavableItem(ItemStack item) {
+		if(item == null)
+			item = new ItemStack(Material.AIR);
 		this.item = item;
 	}
 	
@@ -65,6 +67,7 @@ public class SavableItem {
 		return;
 	}
 
+	@Transient
 	public ItemStack getItemStack() {
 		return this.item;
 	}

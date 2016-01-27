@@ -67,7 +67,6 @@ public class PseudoPlayer {
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
-	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;

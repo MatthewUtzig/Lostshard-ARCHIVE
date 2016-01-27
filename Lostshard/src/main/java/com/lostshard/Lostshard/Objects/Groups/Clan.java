@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -39,16 +37,16 @@ public class Clan extends Group {
 	private int id;
 
 	// String's
+	@Column(name = "clan_name")
 	private String name;
 
 	// UUID
-	@Column(columnDefinition = "CHAR(32)")
+	@Column(name = "owner", columnDefinition = "CHAR(32)")
 	private UUID owner;
 
 	// Array's
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable(name="clan_leaders", joinColumns=@JoinColumn(name="clan_id"))
 	private List<UUID> leaders = new ArrayList<UUID>();
 
 	private Bank bank = new Bank(false);
@@ -56,6 +54,10 @@ public class Clan extends Group {
 	@Transient
 	private boolean update = false;
 
+	public Clan() {
+		
+	}
+	
 	public Clan(String name, UUID owner) {
 		super();
 		this.name = name;

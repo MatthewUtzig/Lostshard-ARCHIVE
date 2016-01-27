@@ -36,6 +36,13 @@ public class NPC {
 	private UUID uuid = UUID.randomUUID();
 
 	/**
+	 * Default constructor
+	 */
+	public NPC() {
+		
+	}
+	
+	/**
 	 * @param type
 	 * @param name
 	 * @param location
@@ -121,7 +128,6 @@ public class NPC {
 	 */
 	public void setLocation(Location location) {
 		this.location = new SavableLocation(location);
-		this.getPlot().update();
 	}
 
 	/**
@@ -130,7 +136,6 @@ public class NPC {
 	 */
 	public void setName(String name) {
 		this.name = name;
-		this.getPlot().update();
 	}
 
 	/**
@@ -146,7 +151,6 @@ public class NPC {
 	 */
 	public void setType(NPCType type) {
 		this.type = type;
-		this.getPlot().update();
 	}
 
 	/**

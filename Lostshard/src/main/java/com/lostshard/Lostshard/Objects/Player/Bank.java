@@ -15,20 +15,16 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableInventory;
 
 @Embeddable
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Access(AccessType.PROPERTY)
 public class Bank {
 
-	private SavableInventory inventory;
+	private Inventory inventory;
 	
 	public Bank() {
 		
 	}
 	
-	public void setInventory(SavableInventory inventory) {
-		this.inventory = inventory;
-	}
-
 	public Bank(boolean large) {
 		super();
 		if (large)
@@ -42,10 +38,18 @@ public class Bank {
 	
 	@Transient
 	public Inventory getInventory() {
-		return this.inventory.getInventory();
+		return this.inventory;
 	}
 
 	public void setInventory(Inventory inventory) {
-		this.inventory = new SavableInventory(inventory);
+		this.inventory = inventory;
+	}
+	
+	public SavableInventory getSavableInventory() {
+		return new SavableInventory(this.inventory);
+	}
+	
+	public void setSavableInventory(SavableInventory savableInventory) {
+		this.inventory = savableInventory.getInventory();
 	}
 }

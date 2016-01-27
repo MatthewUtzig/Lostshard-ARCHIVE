@@ -224,7 +224,6 @@ public class Plot {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-
 	@CollectionTable
 	public List<NPC> getNpcs() {
 		return this.npcs;
