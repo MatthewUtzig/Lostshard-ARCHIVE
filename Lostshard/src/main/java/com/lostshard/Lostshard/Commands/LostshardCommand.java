@@ -26,11 +26,7 @@ public abstract class LostshardCommand implements CommandExecutor, TabCompleter 
 		return TabUtils.empty();
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command command,
-			String label, String[] args) {
-		return false;
-	}
+	public abstract boolean onCommand(CommandSender sender, Command command, String label, String[] args);
 
 
 	public Lostshard getPlugin() {

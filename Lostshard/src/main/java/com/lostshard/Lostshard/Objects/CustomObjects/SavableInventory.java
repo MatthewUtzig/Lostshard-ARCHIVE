@@ -7,6 +7,8 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -17,6 +19,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class SavableInventory {
 	
 	private String title;
@@ -75,7 +78,6 @@ public class SavableInventory {
 		return inventory;
 	}
 	
-	@Transient
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<SavableItem> getContents() {
