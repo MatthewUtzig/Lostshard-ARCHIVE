@@ -2,7 +2,7 @@ package com.lostshard.Lostshard.Skills;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.bukkit.Material;
@@ -11,7 +11,7 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
-@Embeddable
+@MappedSuperclass
 @Access(AccessType.FIELD)
 public abstract class Skill {
 

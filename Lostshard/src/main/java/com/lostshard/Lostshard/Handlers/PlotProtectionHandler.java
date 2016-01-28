@@ -107,7 +107,7 @@ public class PlotProtectionHandler {
 	public static void fromBlockToBlock(BlockFromToEvent event) {
 		if (event.isCancelled())
 			return;
-		final Plot toPlot = ptm.findPlotAt(event.getBlock().getLocation());
+		final Plot toPlot = ptm.findPlotAt(event.getToBlock().getLocation());
 
 		// Check if there are a plot.
 		if (toPlot == null)

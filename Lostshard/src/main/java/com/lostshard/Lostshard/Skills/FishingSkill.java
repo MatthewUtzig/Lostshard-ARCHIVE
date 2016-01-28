@@ -2,6 +2,8 @@ package com.lostshard.Lostshard.Skills;
 
 import java.util.Random;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
 import org.bukkit.Location;
@@ -17,6 +19,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 
 @Embeddable
+@Access(AccessType.FIELD)
 public class FishingSkill extends Skill {
 
 	public FishingSkill(int lvl, boolean locked) {

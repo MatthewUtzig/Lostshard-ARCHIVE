@@ -1,6 +1,7 @@
 package com.lostshard.Lostshard.Skills;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,7 +19,6 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class ArcherySkill extends Skill {
 
-	
 	
 	public ArcherySkill(int lvl, boolean locked) {
 		super(lvl, locked);
@@ -84,6 +84,7 @@ public class ArcherySkill extends Skill {
 		this.setMat(Material.BOW);
 	}
 
+	@Transient
 	public double getDamageBuff() {
 		return 0.004 * this.getLvl();
 	}

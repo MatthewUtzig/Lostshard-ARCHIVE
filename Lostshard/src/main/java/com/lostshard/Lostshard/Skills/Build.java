@@ -5,130 +5,157 @@ import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.GenericGenerator;
 
 
 @Embeddable
-@Access(AccessType.PROPERTY)
+@Access(AccessType.FIELD)
 public class Build {
 	
-	private int id;
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "mining_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "mining_locked"))
+	})
+	private MiningSkill mining = new MiningSkill();
 	
-	private Skill mining = new MiningSkill();
-	private Skill blades = new BladesSkill();
-	private Skill brawling = new BrawlingSkill();
-	private Skill blackSmithy = new BlackSmithySkill();
-	private Skill lumberjacking = new LumberjackingSkill();
-	private Skill fishing = new FishingSkill();
-	private Skill survivalism = new SurvivalismSkill();
-	private Skill taming = new TamingSkill();
-	private Skill magery = new MagerySkill();
-	private Skill archery = new ArcherySkill();
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "blades_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "blades_locked"))
+	})
+	private BladesSkill blades = new BladesSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "brawling_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "brawling_locked"))
+	})
+	private BrawlingSkill brawling = new BrawlingSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "blackSmithy_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "blackSmithy_locked"))
+	})
+	private BlackSmithySkill blackSmithy = new BlackSmithySkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "lumberjacking_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "lumberjacking_locked"))
+	})
+	private LumberjackingSkill lumberjacking = new LumberjackingSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "fishing_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "fishing_locked"))
+	})
+	private FishingSkill fishing = new FishingSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "survivalism_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "survivalism_locked"))
+	})
+	private SurvivalismSkill survivalism = new SurvivalismSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "taming_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "taming_locked"))
+	})
+	private TamingSkill taming = new TamingSkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "magery_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "magery_locked"))
+	})
+	private MagerySkill magery = new MagerySkill();
+	
+	@AttributeOverrides({
+		@AttributeOverride(name="lvl", column=@Column(name = "archery_level")),
+		@AttributeOverride(name="locked", column=@Column(name = "archery_locked"))
+	})
+	private ArcherySkill archery = new ArcherySkill();
 
 	public Build() {
 	}
-	
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	@Transient
-	public Skill getArchery() {
+	public ArcherySkill getArchery() {
 		return this.archery;
 	}
-
-	@Transient
-	public Skill getBlackSmithy() {
+	
+	public BlackSmithySkill getBlackSmithy() {
 		return this.blackSmithy;
 	}
 	
-	@Transient
-	public Skill getBlades() {
+	public BladesSkill getBlades() {
 		return this.blades;
 	}
-
-	@Transient
-	public Skill getBrawling() {
+	
+	public BrawlingSkill getBrawling() {
 		return this.brawling;
 	}
 	
-	@Transient
-	public Skill getFishing() {
+	public FishingSkill getFishing() {
 		return this.fishing;
 	}
-
-	@Transient
-	public Skill getLumberjacking() {
+	
+	public LumberjackingSkill getLumberjacking() {
 		return this.lumberjacking;
 	}
-
-	@Transient
-	public Skill getMagery() {
+	
+	public MagerySkill getMagery() {
 		return this.magery;
 	}
-
-	@Transient
-	public Skill getMining() {
+	
+	public MiningSkill getMining() {
 		return this.mining;
 	}
-
-	@Transient
-	public Skill getSurvivalism() {
+	
+	public SurvivalismSkill getSurvivalism() {
 		return this.survivalism;
 	}
-
-	@Transient
-	public Skill getTaming() {
+	
+	public TamingSkill getTaming() {
 		return this.taming;
 	}
 
-	public void setArchery(Skill archery) {
-		this.archery = new ArcherySkill(archery.getLvl(), archery.isLocked());
+	public void setArchery(ArcherySkill archery) {
+		this.archery = archery;
 	}
 
-	public void setBlackSmithy(Skill blackSmithy) {
+	public void setBlackSmithy(BlackSmithySkill blackSmithy) {
 		this.blackSmithy = blackSmithy;
 	}
 
-	public void setBlades(Skill blades) {
+	public void setBlades(BladesSkill blades) {
 		this.blades = blades;
 	}
 
-	public void setBrawling(Skill brawling) {
+	public void setBrawling(BrawlingSkill brawling) {
 		this.brawling = brawling;
 	}
 
-	public void setFishing(Skill fishing) {
+	public void setFishing(FishingSkill fishing) {
 		this.fishing = fishing;
 	}
 
-	public void setLumberjacking(Skill lumberjacking) {
+	public void setLumberjacking(LumberjackingSkill lumberjacking) {
 		this.lumberjacking = lumberjacking;
 	}
 
-	public void setMagery(Skill magery) {
+	public void setMagery(MagerySkill magery) {
 		this.magery = magery;
 	}
 
-	public void setMining(Skill mining) {
+	public void setMining(MiningSkill mining) {
 		this.mining = mining;
 	}
 
-	public void setSurvivalism(Skill survivalism) {
+	public void setSurvivalism(SurvivalismSkill survivalism) {
 		this.survivalism = survivalism;
 	}
 
-	public void setTaming(Skill taming) {
+	public void setTaming(TamingSkill taming) {
 		this.taming = taming;
 	}
 

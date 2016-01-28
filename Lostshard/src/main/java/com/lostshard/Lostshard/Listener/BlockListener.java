@@ -28,8 +28,6 @@ public class BlockListener extends LostshardListener {
 		super(plugin);
 	}
 
-	private Lostshard plugin;
-
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBreakHigh(BlockBreakEvent event) {
 		PlotProtectionHandler.breakeBlockInPlot(event);
@@ -81,7 +79,7 @@ public class BlockListener extends LostshardListener {
 			return;
 		final Block block = event.getBlock();
 		block.setMetadata("placed",
-				new FixedMetadataValue(plugin, true));
+				new FixedMetadataValue(this.getPlugin(), true));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

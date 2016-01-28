@@ -18,7 +18,7 @@ public class Hibernate {
 	public Hibernate() {
 		Configuration cfg = new Configuration();
 		cfg.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-		cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		cfg.setProperty("show_sql", "true");
 		cfg.setProperty("hibernate.hbm2ddl.auto", "update");
 		
