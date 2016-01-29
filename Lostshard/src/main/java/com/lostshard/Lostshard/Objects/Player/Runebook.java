@@ -3,6 +3,8 @@ package com.lostshard.Lostshard.Objects.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
@@ -11,6 +13,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Embeddable
+@Access(AccessType.FIELD)
 public class Runebook {
 	
 	@ElementCollection

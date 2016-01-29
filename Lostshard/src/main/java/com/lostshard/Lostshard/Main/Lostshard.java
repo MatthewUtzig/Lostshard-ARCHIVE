@@ -44,6 +44,7 @@ import com.lostshard.Lostshard.Listener.WorldListener;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.ConfigManager;
+import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
@@ -129,7 +130,7 @@ public class Lostshard extends JavaPlugin {
 	public void onDisable() {
 		NPCLibManager npcLibManager = NPCLibManager.getManager();
 		if (npcLibManager != null && npcLibManager.getRegistry() != null) {
-		for(NPC npc : npcLibManager.getRegistry().sorted())
+		for(NPC npc : npcLibManager.getRegistry())
 			npc.despawn();
 		npcLibManager.getRegistry().deregisterAll();
 		}
@@ -207,6 +208,8 @@ public class Lostshard extends JavaPlugin {
 			pPlayer.setScoreboard(new PseudoScoreboard(p.getUniqueId()));
 			p.setDisplayName(Utils.getDisplayName(p)+ChatColor.RESET);
 		}
+		
+		NPCManager.getManager().spawn();
 	}
 	
 	@SuppressWarnings("unchecked")

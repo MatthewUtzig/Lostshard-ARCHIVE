@@ -124,4 +124,10 @@ public class NPCManager {
 			return;
 		}
 	}
+
+	public void spawn() {
+		for(Plot plot : ptm.getPlots())
+			for(NPC npc : plot.getNpcs())
+				npc.spawn();
+	}
 }

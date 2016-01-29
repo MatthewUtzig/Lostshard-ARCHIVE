@@ -3,6 +3,8 @@ package com.lostshard.Lostshard.Objects.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
@@ -16,10 +18,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Spells.Scroll;
-import com.lostshard.Lostshard.Utils.Serializer;
 
 @Embeddable
 @Inheritance(strategy=InheritanceType.JOINED)
+@Access(AccessType.FIELD)
 public class SpellBook {
 
 	@Transient
@@ -51,12 +53,5 @@ public class SpellBook {
 			if (scroll.getPage() == pageNumber)
 				spellsOnPage.add(scroll);
 		return spellsOnPage;
-	}
-
-	public String toJson() {
-		final List<String> tjson = new ArrayList<String>();
-		for (final Scroll s : this.spells)
-			tjson.add(s.getName());
-		return Serializer.serializeStringArray(tjson);
 	}
 }

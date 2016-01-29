@@ -534,7 +534,7 @@ public class Output {
 	public static void displayTitles(Player player) {
 		player.sendMessage(ChatColor.GOLD+"-"+player.getName()+"'s Titles-");
 		PseudoPlayer pPlayer = pm.getPlayer(player);
-		for(String title : pPlayer.getTitels())
+		for(String title : pPlayer.getTitles())
 			player.sendMessage(ChatColor.YELLOW+" - "+ChatColor.WHITE+title);
 	}
 	

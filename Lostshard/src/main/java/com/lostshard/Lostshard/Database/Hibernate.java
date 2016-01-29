@@ -5,8 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.Objects.CustomObjects.SavableInventory;
-import com.lostshard.Lostshard.Objects.CustomObjects.SavableItem;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
@@ -41,9 +39,6 @@ public class Hibernate {
 		cfg.addAnnotatedClass(Plot.class);
 		cfg.addAnnotatedClass(OfflineMessage.class);
 		cfg.addAnnotatedClass(PermanentGate.class);
-		cfg.addAnnotatedClass(SavableInventory.class);
-		cfg.addAnnotatedClass(SavableItem.class);
-		
 		
 		factory = cfg.buildSessionFactory();
 	}

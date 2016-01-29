@@ -2,23 +2,18 @@ package com.lostshard.Lostshard.Objects.Player;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
-import com.lostshard.Lostshard.Objects.CustomObjects.SavableInventory;
+import com.lostshard.Lostshard.Utils.Serializer;
 
 @Embeddable
-@Inheritance(strategy=InheritanceType.JOINED)
 @Access(AccessType.PROPERTY)
 public class Bank {
 
@@ -48,13 +43,17 @@ public class Bank {
 		this.inventory = inventory;
 	}
 	
-	@OneToOne
-	@LazyCollection(LazyCollectionOption.FALSE)
-	public SavableInventory getSavableInventory() {
-		return new SavableInventory(inventory);
+	@Column(columnDefinition="text")
+	public String getBankContents() {
+		return Serializer.serializeContents(this.inventory.getContents());
 	}
 	
-	public void setSavableInventory(SavableInventory inventory) {
-		this.inventory = inventory.getInventory();
+	public void setBankContents(String contents) {
+		ItemStack[] content = Serializer.deserializeContents(contents);
+		if (content.length > 27)
+			this.setInventory(Bukkit.createInventory(null, 54, "Large bank"));
+		else
+			this.setInventory(Bukkit.createInventory(null, 27, "Small bank"));
+		this.inventory.setContents(content);
 	}
 }

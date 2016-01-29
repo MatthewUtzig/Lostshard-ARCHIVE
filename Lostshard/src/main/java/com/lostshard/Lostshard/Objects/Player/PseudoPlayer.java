@@ -63,7 +63,6 @@ public class PseudoPlayer {
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
-	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -391,7 +390,7 @@ public class PseudoPlayer {
 		return this.timer;
 	}
 
-	public List<String> getTitels() {
+	public List<String> getTitles() {
 		return this.titels;
 	}
 
@@ -637,7 +636,7 @@ public class PseudoPlayer {
 		this.scoreboard = scoreboard;
 	}
 
-	public void setScrools(List<Scroll> scrolls) {
+	public void setScrolls(List<Scroll> scrolls) {
 		this.scrolls = scrolls;
 	}
 

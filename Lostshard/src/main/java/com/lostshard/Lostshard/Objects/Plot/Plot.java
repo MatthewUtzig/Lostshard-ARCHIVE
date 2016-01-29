@@ -35,7 +35,6 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Utils.Serializer;
 import com.lostshard.Utils.ExtraMath;
 
 /**
@@ -521,13 +520,6 @@ public class Plot {
 
 	public void update() {
 		this.update = true;
-	}
-
-	public String upgradesToJson() {
-		final List<String> tjson = new ArrayList<String>();
-		for (final PlotUpgrade upgrade : this.upgrades)
-			tjson.add(upgrade.name());
-		return Serializer.serializeStringArray(tjson);
 	}
 	
 	public SavableLocation getSavableLocation() {

@@ -231,7 +231,7 @@ public class UtilsCommand extends LostshardCommand {
 					Output.simpleError(player, "Title must be less than 15 characters.");
 					return;
 				}
-				pPlayer.getTitels().add(title);
+				pPlayer.getTitles().add(title);
 				Output.positiveMessage(player, "You have given \""+title+"\" to \""+tPlayer.getName()+"\".");
 			}else if(subCmd.equalsIgnoreCase("remove") || subCmd.equalsIgnoreCase("take")) {
 				if(args.length < 2) {
@@ -246,15 +246,15 @@ public class UtilsCommand extends LostshardCommand {
 				}
 				PseudoPlayer pPlayer = pm.getPlayer(tPlayer);
 				String title = StringUtils.join(args, " ", 2, args.length);
-				if(pPlayer.getTitels().remove(title))
+				if(pPlayer.getTitles().remove(title))
 					Output.positiveMessage(player, "You have taken \""+title+"\" from \""+tPlayer.getName()+"\".");
 				else
 					Output.simpleError(player, tPlayer.getName()+" do not have such title.");
 			}else{
 				PseudoPlayer pPlayer = pm.getPlayer(player);
 				subCmd = StringUtils.join(args);
-				for(int i=0; i<pPlayer.getTitels().size(); i++) {
-					String title = pPlayer.getTitels().get(i);
+				for(int i=0; i<pPlayer.getTitles().size(); i++) {
+					String title = pPlayer.getTitles().get(i);
 					if(StringUtils.containsIgnoreCase(title.replace(" ", ""), subCmd.replace(" ", ""))) {
 						pPlayer.setCurrentTitleId(i);
 						Output.positiveMessage(player, "You have set your title to \""+title+"\"");

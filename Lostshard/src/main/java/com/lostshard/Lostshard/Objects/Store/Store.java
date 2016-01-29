@@ -41,13 +41,6 @@ public class Store {
 		return this.items;
 	}
 
-	public String getItemsAsJson() {
-		final List<String> rs = new ArrayList<String>();
-		for (final StoreItem si : this.items)
-			rs.add(si.getAsJson());
-		return Serializer.serializeStringArray(rs);
-	}
-
 	public List<StoreItem> getItemsForBuy() {
 		final List<StoreItem> rs = new ArrayList<StoreItem>();
 		for (final StoreItem item : this.items)

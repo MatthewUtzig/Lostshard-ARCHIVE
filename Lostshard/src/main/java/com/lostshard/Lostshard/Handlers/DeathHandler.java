@@ -73,8 +73,9 @@ public class DeathHandler {
 			for (int i = 0; i < numAttackers; i++) {
 				NPC guard = NPCManager.getManager().getByUUID(recentAttackers.get(i).getUUID());
 				if(guard != null && guard.getType().equals(NPCType.GUARD)) {
+					Plot plot = guard.getPlot();
 					deathMessage = player.getDisplayName() + ChatColor.WHITE
-							+ " was executed by an "+guard.getPlot().getName()+" guard.";
+							+ " was executed by a guard of "+plot.getName()+".";
 					attackers = "";
 					break;
 				}

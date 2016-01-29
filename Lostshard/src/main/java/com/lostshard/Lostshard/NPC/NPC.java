@@ -9,10 +9,7 @@ import javax.persistence.Transient;
 
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
@@ -32,7 +29,6 @@ public class NPC {
 	private NPCType type;
 	private String name;
 	private SavableLocation location;
-	private int plotId;
 	private UUID uuid = UUID.randomUUID();
 
 	/**
@@ -53,7 +49,6 @@ public class NPC {
 		this.type = type;
 		this.name = name;
 		this.location = new SavableLocation(location);
-		this.plotId = plotId;
 	}
 
 	/**
@@ -62,7 +57,6 @@ public class NPC {
 	public void fire() {
 		final Plot plot = this.getPlot();
 		plot.getNpcs().remove(this);
-		delete();
 		NPCLibManager.getManager().despawnNPC(this);
 	}
 
@@ -90,16 +84,12 @@ public class NPC {
 
 	@Transient
 	public Plot getPlot() {
-		return this.ptm.getPlot(this.plotId);
+		for(Plot p : PlotManager.getManager().getPlots())
+			if(p.getNpcs().contains(this))
+				return p;
+		return null;
 	}
-
-	/**
-	 * @return
-	 */
-	public int getPlotId() {
-		return this.plotId;
-	}
-
+	
 	/**
 	 * @return NPCType
 	 */
@@ -136,13 +126,6 @@ public class NPC {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * @param plotId
-	 */
-	public void setPlotId(int plotId) {
-		this.plotId = plotId;
 	}
 
 	/**
@@ -188,32 +171,5 @@ public class NPC {
 
 	public void setSavableLocation(SavableLocation savableLocation) {
 		this.location = savableLocation;
-	}
-	
-	public void save() {
-		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.update(this);
-		t.commit();
-		s.close();
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.save(this);
-		t.commit();
-		s.close();
-	}
-	
-	public void delete() {
-		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.delete(this);
-		t.commit();
-		s.close();
 	}
 }

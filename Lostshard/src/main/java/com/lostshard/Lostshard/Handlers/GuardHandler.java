@@ -31,6 +31,9 @@ public class GuardHandler {
 		if (pPlayer.isCriminal() || pPlayer.isMurderer())
 			return;
 		
+		if(player.hasMetadata("npc"))
+			return;
+		
 		NPC guard = null;
 		double closests = 999999;
 		for(NPC npc : plot.getNpcs()) {

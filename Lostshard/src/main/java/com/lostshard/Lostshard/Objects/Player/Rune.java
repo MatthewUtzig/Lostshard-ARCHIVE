@@ -17,6 +17,10 @@ public class Rune {
 	private SavableLocation location;
 	private String label;
 
+	public Rune() {
+		
+	}
+	
 	public Rune(Location location, String name, int id) {
 		super();
 		this.location = new SavableLocation(location);
