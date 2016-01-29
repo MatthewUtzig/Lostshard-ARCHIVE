@@ -51,7 +51,6 @@ import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.PseudoScoreboard;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.Lostshard.Skills.BlackSmithySkill;
 import com.lostshard.Lostshard.Skills.FishingSkill;
 import com.lostshard.Lostshard.Skills.SurvivalismSkill;
@@ -156,8 +155,8 @@ public class PlayerListener extends LostshardListener implements Managers {
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		DeathHandler.handleDeath(event);
 		for (final Plot plot : ptm.getPlots())
-			if (plot instanceof PlotCapturePoint)
-				((PlotCapturePoint) plot).failCaptureDied(event.getEntity());
+			if (plot.isCapturepoint())
+				plot.getCapturepointData().failCaptureDied(event.getEntity());
 	}
 
 	@EventHandler(priority = EventPriority.HIGH)

@@ -27,7 +27,6 @@ import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
-import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.TabUtils;
@@ -145,8 +144,7 @@ public class PlotCommand extends LostshardCommand {
 					plotDiamondCost.getType(), plotDiamondCost.getAmount());
 			// costs paid, create the plot
 
-			final Plot plot = new Plot(-1, plotName, player.getUniqueId(),
-					curLoc);
+			final Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
 			plot.insert();
 			this.ptm.getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
@@ -363,23 +361,13 @@ public class PlotCommand extends LostshardCommand {
 		if (!player.isOp())
 			Output.simpleError(player,
 					"Ops may only toggle capturepoint for plots.");
-		if (plot instanceof PlotCapturePoint) {
-			Plot newPlot = new Plot(plot.getId(), plot.getName(), plot.getOwner(), plot.getLocation());
-			newPlot.setCoowners(plot.getCoowners());
-			newPlot.setFriends(plot.getFriends());
-			newPlot.setMoney(plot.getMoney());
-			newPlot.setSize(plot.getSize());
-			ptm.getPlots().remove(plot);
-			ptm.getPlots().add(newPlot);
+		if (plot.isCapturepoint()) {
+			plot.setCapturepoint(false);
+			plot.setCapturepointData(null);
 			Output.positiveMessage(player, "You have turend " + plot.getName()
 			+ " into a normal plot.");
 		} else {
-			PlotCapturePoint newPlot = new PlotCapturePoint(plot.getId(), plot.getName(), plot.getOwner(), plot.getLocation());
-			newPlot.setCoowners(plot.getCoowners());
-			newPlot.setFriends(plot.getFriends());
-			newPlot.setMoney(plot.getMoney());
-			ptm.getPlots().remove(plot);
-			ptm.getPlots().add(newPlot);
+			plot.setCapturepoint(true);
 			Output.positiveMessage(player, "You have turend " + plot.getName()
 					+ " into a capturepoint.");
 		}

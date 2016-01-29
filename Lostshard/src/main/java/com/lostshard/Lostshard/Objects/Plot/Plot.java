@@ -14,7 +14,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
@@ -45,7 +44,6 @@ import com.lostshard.Utils.ExtraMath;
  */
 @Audited
 @Entity
-@Table(name="plots")
 @Access(AccessType.PROPERTY)
 public class Plot {
 	
@@ -127,14 +125,15 @@ public class Plot {
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
 
+	private boolean isCapturepoint = false;
+	private PlotCapturePoint capturepointData = null;
+	
 	public Plot() {
 		
 	}
 	
-	public Plot(int id, String name, UUID owner, Location location) {
-		super();
+	public Plot(String name, UUID owner, Location location) {
 		this.name = name;
-		this.id = id;
 		this.owner = owner;
 		this.location = new SavableLocation(location);
 	}
@@ -257,7 +256,6 @@ public class Plot {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-
 	@CollectionTable
 	@Enumerated(EnumType.STRING)
 	public List<PlotUpgrade> getUpgrades() {
@@ -565,5 +563,24 @@ public class Plot {
 		s.delete(this);
 		t.commit();
 		s.close();
+	}
+
+	@Transient
+	public PlotCapturePoint getCapturepointData() {
+		if(capturepointData == null)
+			this.capturepointData = new PlotCapturePoint(this);
+		return capturepointData;
+	}
+
+	public void setCapturepointData(PlotCapturePoint capturepoint) {
+		this.capturepointData = capturepoint;
+	}
+
+	public boolean isCapturepoint() {
+		return isCapturepoint;
+	}
+
+	public void setCapturepoint(boolean isCapturepoint) {
+		this.isCapturepoint = isCapturepoint;
 	}
 }

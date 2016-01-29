@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -14,6 +15,8 @@ import org.hibernate.criterion.Restrictions;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Utils;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class PlayerManager {
 
@@ -50,7 +53,12 @@ public class PlayerManager {
 		PseudoPlayer pPlayer = getPlayerFromDB(uuid);
 		if (pPlayer == null && create) {
 			pPlayer = new PseudoPlayer(uuid);
-			pPlayer.insert();
+			try {
+				pPlayer.insert();
+			}catch(Exception e){
+				Bukkit.getPlayer(uuid).kickPlayer(ChatColor.RED+"SERVER ERROR!\nWE ARE WORKING ON IT!");
+				e.printStackTrace();
+			}
 		}
 		return pPlayer;
 	}

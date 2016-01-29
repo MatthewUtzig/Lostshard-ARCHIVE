@@ -63,7 +63,7 @@ public class PseudoScoreboard {
 
 		this.mc.setScore(pPlayer.getMurderCounts());
 
-		this.rank.setScore(pPlayer.getRank());
+//		this.rank.setScore(pPlayer.getRank());
 
 		player.setScoreboard(this.board);
 		this.stats.setDisplaySlot(DisplaySlot.SIDEBAR);

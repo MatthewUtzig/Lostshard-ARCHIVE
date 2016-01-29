@@ -46,7 +46,6 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
-import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Title;
 
@@ -632,7 +631,7 @@ public class PlotProtectionHandler {
 		final Plot toPlot = ptm.findPlotAt(event.getTo());
 		if (fromPlot == null && toPlot != null) {
 			if (toPlot.isTitleEntrence()) {
-				if (toPlot instanceof PlotCapturePoint)
+				if (toPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10,
 							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
 							+ "Hostile territory");
@@ -652,7 +651,7 @@ public class PlotProtectionHandler {
 		} else if (toPlot == null && fromPlot != null) {
 			// must be leaving a plot
 			if (fromPlot.isTitleEntrence()) {
-				if (fromPlot instanceof PlotCapturePoint)
+				if (fromPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD
 							+ "You have left " + fromPlot.getName(),
 							ChatColor.RED + "Hostile territory");
@@ -677,7 +676,7 @@ public class PlotProtectionHandler {
 		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
 			// must be moving from one plot to another
 			if (fromPlot.isTitleEntrence()) {
-				if (toPlot instanceof PlotCapturePoint)
+				if (toPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10,
 							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
 							+ "Hostile territory");
@@ -714,7 +713,7 @@ public class PlotProtectionHandler {
 				.getLocation());
 		if (fromPlot == null && toPlot != null) {
 			if (toPlot.isTitleEntrence()) {
-				if (toPlot instanceof PlotCapturePoint)
+				if (toPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10,
 							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
 							+ "Hostile territory");
@@ -739,7 +738,7 @@ public class PlotProtectionHandler {
 		} else if (toPlot == null && fromPlot != null) {
 			// must be leaving a plot
 			if (fromPlot.isTitleEntrence()) {
-				if (fromPlot instanceof PlotCapturePoint)
+				if (fromPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD
 							+ "You have left " + fromPlot.getName(),
 							ChatColor.RED + "Hostile territory");
@@ -770,7 +769,7 @@ public class PlotProtectionHandler {
 		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
 			// must be moving from one plot to another
 			if (fromPlot.isTitleEntrence()) {
-				if (toPlot instanceof PlotCapturePoint)
+				if (toPlot.isCapturepoint())
 					Title.sendTitle(player, 10, 20, 10,
 							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
 							+ "Hostile territory");

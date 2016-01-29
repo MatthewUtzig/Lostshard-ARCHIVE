@@ -14,7 +14,6 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Capturepoint;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -32,12 +31,11 @@ public class ControlPointsCommand extends LostshardCommand {
 	}
 
 	private void claim(Player player) {
-		final Plot checkplot = this.ptm.findPlotAt(player.getLocation());
-		if (checkplot == null || !(checkplot instanceof PlotCapturePoint)) {
+		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if (plot == null || !plot.isCapturepoint()) {
 			Output.simpleError(player, "This is not a capturepoint.");
 			return;
 		}
-		final PlotCapturePoint plot = (PlotCapturePoint) checkplot;
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		final Clan clan = pPlayer.getClan();
 		if (clan == null) {
@@ -47,7 +45,7 @@ public class ControlPointsCommand extends LostshardCommand {
 
 		}
 
-		if (clan.equals(plot.getOwningClan())) {
+		if (clan.equals(plot.getCapturepointData().getOwningClan())) {
 			Output.simpleError(player,
 					"Your clan already owns " + plot.getName());
 			return;
@@ -69,24 +67,24 @@ public class ControlPointsCommand extends LostshardCommand {
 			return;
 		}
 
-		final long lastCaptureTime = plot.getLastCaptureDate();
+		final long lastCaptureTime = plot.getCapturepointData().getLastCaptureDate();
 		final Date date = new Date();
 		final long curTime = date.getTime();
 		long diff = curTime - lastCaptureTime;
 		if (diff > 1000 * 60 * 60 * 1) {
-			if (plot.isUnderAttack()) {
+			if (plot.getCapturepointData().isUnderAttack()) {
 				Output.simpleError(player, plot.getName()
 						+ " is already under attack.");
 				return;
 
 			}
-			if (clan.equals(plot.getOwningClan())) {
+			if (clan.equals(plot.getCapturepointData().getOwningClan())) {
 				Output.simpleError(player,
 						"Your clan already owns " + plot.getName());
 				return;
 
 			}
-			plot.beginCapture(player, pPlayer, clan);
+			plot.getCapturepointData().beginCapture(player, pPlayer, clan);
 		} else {
 			diff = 1000 * 60 * 60 * 1 - diff;
 			final int numHours = (int) ((double) diff / (1000 * 60 * 60));

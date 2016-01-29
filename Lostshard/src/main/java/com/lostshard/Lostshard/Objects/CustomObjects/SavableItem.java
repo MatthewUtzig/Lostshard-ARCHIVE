@@ -2,38 +2,52 @@ package com.lostshard.Lostshard.Objects.CustomObjects;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.envers.Audited;
 
-@Embeddable
+@Entity
 @Access(AccessType.PROPERTY)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Audited
 public class SavableItem {
 	
+	private int id;
 	private ItemStack item;
+	
+	public SavableItem() {
+		this.item = new ItemStack(Material.AIR);
+	}
 	
 	public SavableItem(ItemStack item) {
 		if(item == null)
 			item = new ItemStack(Material.AIR);
 		this.item = item;
 	}
-	
-	@Transient
-	public ItemStack getItem() {
-		return item;
+
+	@Id
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment", strategy = "increment")
+	public int getId() {
+		return id;
 	}
 
-	@Transient
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setItem(ItemStack item) {
 		this.item = item;
 	}
 	
-	public SavableItem() {
-		this.item = new ItemStack(Material.AIR);
-	}
-
 	public String getType() {
 		return this.item.getType().name();
 	}
@@ -41,9 +55,9 @@ public class SavableItem {
 	public void setType(String type) {
 		this.item.setType(Material.getMaterial(type));;
 	}
-
+	
 	public int getAmount() {
-		return this.item.getAmount();
+		return 42;
 	}
 
 	public void setAmount(int amount) {

@@ -9,7 +9,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -19,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Main.Lostshard;
@@ -28,7 +28,6 @@ import com.lostshard.Lostshard.Objects.Player.Bank;
 
 @Audited
 @Entity
-@Table(name="clans")
 public class Clan extends Group {
 	
 	@Id
@@ -41,14 +40,17 @@ public class Clan extends Group {
 	private String name;
 
 	// UUID
-	@Column(name = "owner", columnDefinition = "CHAR(32)")
+	@Column(name = "owner")
+	@Type(type="uuid-char")
 	private UUID owner;
 
 	// Array's
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@Type(type="uuid-char")
 	private List<UUID> leaders = new ArrayList<UUID>();
 
+	@Transient
 	private Bank bank = new Bank(false);
 
 	@Transient
@@ -81,6 +83,7 @@ public class Clan extends Group {
 		this.update();
 	}
 
+	@Transient
 	public Bank getBank() {
 		return this.bank;
 	}

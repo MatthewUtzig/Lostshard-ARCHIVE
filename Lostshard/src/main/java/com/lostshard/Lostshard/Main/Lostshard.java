@@ -139,9 +139,9 @@ public class Lostshard extends JavaPlugin {
 		for (final PseudoPlayer p : pm.getPlayers())
 			s.update(p);
 		for (final Plot p : ptm.getPlots())
-			s.save(p);
+			s.update(p);
 		for (final Clan c : cm.getClans())
-			s.save(c);
+			s.update(c);
 		t.commit();
 		s.close();
 		MagicStructure.removeAll();

@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.bukkit.Effect;
 import org.bukkit.Location;
@@ -22,7 +21,6 @@ import com.lostshard.Lostshard.Main.Lostshard;
 
 
 @Entity
-@Table(name="chestrefill")
 public class ChestRefill {
 
 	@Id

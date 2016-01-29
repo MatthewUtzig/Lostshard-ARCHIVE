@@ -29,7 +29,6 @@ import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Objects.Player.SpellBook;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
-import com.lostshard.Lostshard.Objects.Plot.PlotCapturePoint;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
 import com.lostshard.Lostshard.Spells.Scroll;
@@ -397,8 +396,8 @@ public class Output {
 				+ pseudoPlayer.getCurrentBuildId());
 		player.sendMessage(ChatColor.YELLOW + "Reputation: " + ChatColor.WHITE
 				+ pseudoPlayer.getReputation().getReputation());
-		player.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE
-				+ pseudoPlayer.getRank());
+//		player.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE
+//				+ pseudoPlayer.getRank());
 	}
 
 	public static void plotInfo(Player player, Plot plot) {
@@ -455,8 +454,8 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW
 					+ "You are not a friend of this plot.");
 
-		if (plot instanceof PlotCapturePoint) {
-			final Clan clan = ((PlotCapturePoint) plot).getOwningClan();
+		if (plot.isCapturepoint()) {
+			final Clan clan = plot.getCapturepointData().getOwningClan();
 			if (clan != null)
 				player.sendMessage(ChatColor.YELLOW + "Owning Clan: "
 						+ ChatColor.WHITE + clan.getName());

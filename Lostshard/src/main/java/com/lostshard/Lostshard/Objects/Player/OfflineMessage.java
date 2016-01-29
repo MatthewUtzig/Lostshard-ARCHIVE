@@ -5,7 +5,6 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,7 +16,6 @@ import com.lostshard.Lostshard.Main.Lostshard;
 
 @Audited
 @Entity
-@Table(name="offlinemessages")
 public class OfflineMessage {
 	
 	@Id

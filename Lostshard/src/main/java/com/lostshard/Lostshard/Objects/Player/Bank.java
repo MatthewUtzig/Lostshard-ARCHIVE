@@ -5,24 +5,27 @@ import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableInventory;
 
 @Embeddable
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
 @Access(AccessType.PROPERTY)
 public class Bank {
 
 	private Inventory inventory;
 	
 	public Bank() {
-		
+		this.setInventory(Bukkit.createInventory(null, 27, "Small bank"));
 	}
 	
 	public Bank(boolean large) {
@@ -45,11 +48,13 @@ public class Bank {
 		this.inventory = inventory;
 	}
 	
+	@OneToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
 	public SavableInventory getSavableInventory() {
-		return new SavableInventory(this.inventory);
+		return new SavableInventory(inventory);
 	}
 	
-	public void setSavableInventory(SavableInventory savableInventory) {
-		this.inventory = savableInventory.getInventory();
+	public void setSavableInventory(SavableInventory inventory) {
+		this.inventory = inventory.getInventory();
 	}
 }

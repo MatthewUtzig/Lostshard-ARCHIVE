@@ -12,6 +12,8 @@ public class InventoryGUIHandler {
 	public static void onInventoryClick(InventoryClickEvent event) {
 		final Player p = (Player) event.getWhoClicked();
 		final PseudoPlayer pP = pm.getPlayer(p);
+		if(pP == null)
+			return;
 		if (pP.getGui() != null)
 			pP.getGui().inventoryClick(event);
 	}
@@ -19,6 +21,8 @@ public class InventoryGUIHandler {
 	public static void onInventoryClose(InventoryCloseEvent event) {
 		final Player p = (Player) event.getPlayer();
 		final PseudoPlayer pP = pm.getPlayer(p);
+		if(pP == null)
+			return;
 		if (pP.getGui() != null)
 			pP.getGui().inventoryClose(event);
 	}

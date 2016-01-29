@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,8 +11,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -52,7 +49,6 @@ import com.lostshard.Lostshard.Utils.Utils;
  */
 @Audited
 @Entity
-@Table(name="players")
 public class PseudoPlayer {
 
 	@Transient
@@ -67,6 +63,7 @@ public class PseudoPlayer {
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
+	@Transient
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
 	private boolean globalChat = true;
@@ -93,14 +90,12 @@ public class PseudoPlayer {
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable(name="player_disabledchatchannels", joinColumns=@JoinColumn(name="player_id"))
 	@Enumerated(EnumType.STRING)
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable(name="player_titels", joinColumns=@JoinColumn(name="player_id"))
 	private List<String> titels = new ArrayList<String>();
 	private int currenttitle = -1;
 	@Transient
@@ -130,12 +125,10 @@ public class PseudoPlayer {
 	private boolean allowGui = true;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable(name="player_ignored", joinColumns=@JoinColumn(name="player_id"))
 	@Type(type="uuid-char")
 	private List<UUID> ignored = new ArrayList<UUID>();
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable(name="player_scrolls", joinColumns=@JoinColumn(name="player_id"))
 	@Enumerated(EnumType.STRING)
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
 	
