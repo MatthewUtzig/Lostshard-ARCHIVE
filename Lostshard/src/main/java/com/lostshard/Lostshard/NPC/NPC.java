@@ -5,10 +5,13 @@ import java.util.UUID;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
@@ -20,15 +23,18 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
  *
  */
 @Embeddable
-@Access(AccessType.PROPERTY)
+@Access(AccessType.FIELD)
 public class NPC {
 
+	@Transient
 	PlotManager ptm = PlotManager.getManager();
 
 	private int id;
+	@Enumerated(EnumType.STRING)
 	private NPCType type;
 	private String name;
 	private SavableLocation location;
+	@Type(type="uuid-char")
 	private UUID uuid = UUID.randomUUID();
 
 	/**
