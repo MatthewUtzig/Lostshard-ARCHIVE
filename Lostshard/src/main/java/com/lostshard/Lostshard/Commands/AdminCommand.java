@@ -287,9 +287,9 @@ public class AdminCommand extends LostshardCommand {
 		}
 		tpPlayer.addMoney(amount);
 		sender.sendMessage(ChatColor.GOLD + "You have paied "
-				+ targetPlayer.getName() + " " + amount + "gc.");
+				+ targetPlayer.getName() + " " + Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(targetPlayer, sender.getName()
-				+ " has given you " + amount + "gc.");
+				+ " has given you " + Utils.getDecimalFormater().format(amount) + "gc.");
 	}
 
 	private void setMurder(Player player, String[] args) {

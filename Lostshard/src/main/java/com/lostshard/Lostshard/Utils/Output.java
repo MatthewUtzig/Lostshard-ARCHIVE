@@ -226,32 +226,20 @@ public class Output {
 			gui.openInventory(player);
 			return;
 		}
-		final ArrayList<Scroll> scrolls = (ArrayList<Scroll>) pseudoPlayer
-				.getScrolls();
+		final List<Scroll> scrolls = pseudoPlayer.getScrolls();
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName()
 				+ "'s Scrolls-");
 		player.sendMessage(ChatColor.YELLOW
 				+ "(\"+\" means it is already in your spellbook)");
 		if (scrolls.size() > 0) {
-			String scrollString = "";
-			@SuppressWarnings("unchecked")
-			final List<Scroll> scrollClone = (List<Scroll>) scrolls.clone();
-			while (scrollClone.size() > 0) {
-				final int numScrollsRemaining = scrollClone.size();
-				final Scroll curSpell = scrollClone.get(0);
-				int numScrolls = 0;
-				// go through all the scrolls, remove them from the scroll list
-				for (int i = numScrollsRemaining - 1; i >= 0; i--)
-					if (scrollClone.get(i).equals(curSpell)) {
-						scrollClone.remove(i);
-						numScrolls++;
-					}
-				if (pseudoPlayer.getSpellbook().containSpell(curSpell))
-					scrollString += "+";
-				scrollString += curSpell.getSpell().getName() + " ("
-						+ numScrolls + "), ";
+			StringBuilder output = new StringBuilder();
+			for(Scroll s : scrolls) {
+				int scrollAmount = Collections.frequency(scrolls, s);
+				if(pseudoPlayer.getSpellbook().containSpell(s))
+					output.append("+");
+				output.append(s.getName()+" ("+scrollAmount+"), ");
 			}
-			player.sendMessage(scrollString);
+			player.sendMessage(output.toString());
 		} else
 			player.sendMessage(ChatColor.RED
 					+ "You do not currently have any scrolls.");
@@ -484,7 +472,7 @@ public class Output {
 					+ Utils.getDecimalFormater().format(plot.getTax()) + ChatColor.YELLOW
 					+ ", Plot Value: " + ChatColor.WHITE
 					+ Utils.getDecimalFormater().format(plot.getValue()));
-			player.sendMessage(ChatColor.GRAY+"("+(plot.getMoney() / plot.getTax())+" days worth of funds remaining.)");
+			player.sendMessage(ChatColor.GRAY+"("+Utils.getDecimalFormater().format((plot.getMoney() / plot.getTax()))+" days worth of funds remaining.)");
 			final int distanceFromCenter = (int) Math.round(Utils.distance(
 					player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE
@@ -495,7 +483,7 @@ public class Output {
 					+ distanceFromCenter);
 		} else
 			player.sendMessage(ChatColor.YELLOW + "Size: " + ChatColor.WHITE
-					+ plot.getSize());
+					+ Utils.getDecimalFormater().format(plot.getSize()));
 		// Show member lists to everyone who is at least a friend
 		if (plot.isFriendOrAbove(player)) {
 			player.sendMessage(ChatColor.YELLOW

@@ -1,16 +1,17 @@
 package com.lostshard.Lostshard.NPC.NPCLib;
 
-import java.util.UUID;
-
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
 import net.citizensnpcs.api.npc.NPCRegistry;
 import net.citizensnpcs.api.trait.trait.Equipment;
 import net.citizensnpcs.api.trait.trait.Equipment.EquipmentSlot;
 
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
@@ -44,20 +45,32 @@ public class NPCLibManager {
 		return true;
 	}
 	
-	public boolean spawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
-		if (!isEnable) return false;
-		NPC npc = registry.createNPC(EntityType.PLAYER, UUID.randomUUID(), lnpc.getId(), lnpc.getDisplayName());
+	public int spawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
+		if (!isEnable)
+			return -1;
+		NPC npc = registry.createNPC(EntityType.PLAYER, UUID.randomUUID(), generateID(), lnpc.getDisplayName());
 		npc.setProtected(true);
 		lnpc.getLocation().getWorld().loadChunk(lnpc.getLocation().getChunk());
 		npc.spawn(lnpc.getLocation());
 		setArmor(npc, lnpc.getType());
 		lnpc.getLocation().getWorld().unloadChunk(lnpc.getLocation().getChunk());
-		return true;
+		return npc.getId();
+	}
+	
+	private int generateID() {
+		int id = 0;
+		for(NPC npc : registry.sorted()) {
+			if(npc.getId() == id)
+				id++;
+			else
+				break;
+		}
+		return id;
 	}
 	
 	public boolean despawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
-		if(!isEnable) return false;
-		if(lnpc.getUuid() == null) return false;
+		if(!isEnable)
+			return false;
 		NPC npc = registry.getById(lnpc.getId());
 		npc.despawn();
 		return true;
@@ -83,6 +96,14 @@ public class NPCLibManager {
 			eq.set(EquipmentSlot.LEGGINGS, new ItemStack(Material.LEATHER_LEGGINGS));
 			eq.set(EquipmentSlot.BOOTS, new ItemStack(Material.LEATHER_BOOTS));
 		}
+	}
+	
+	public int getNPCID(Entity e) {
+		return registry.getNPC(e).getId();
+	}
+	
+	public int getNPCID(UUID uuid) {
+		return registry.getByUniqueId(uuid).getId();
 	}
 	
 	public NPCRegistry getRegistry() {

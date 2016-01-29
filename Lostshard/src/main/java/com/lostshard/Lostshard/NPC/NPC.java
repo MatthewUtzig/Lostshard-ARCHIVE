@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
@@ -29,13 +28,12 @@ public class NPC {
 	@Transient
 	PlotManager ptm = PlotManager.getManager();
 
+	@Transient
 	private int id;
 	@Enumerated(EnumType.STRING)
 	private NPCType type;
 	private String name;
 	private SavableLocation location;
-	@Type(type="uuid-char")
-	private UUID uuid = UUID.randomUUID();
 
 	/**
 	 * Default constructor
@@ -69,6 +67,7 @@ public class NPC {
 	/**
 	 * @return return npc id
 	 */
+	@Transient
 	public int getId() {
 		return this.id;
 	}
@@ -146,15 +145,7 @@ public class NPC {
 	 * Spawns NPC in
 	 */
 	public void spawn() {
-		NPCLibManager.getManager().spawnNPC(this);
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
+		this.id = NPCLibManager.getManager().spawnNPC(this);
 	}
 
 	@Transient
@@ -177,5 +168,13 @@ public class NPC {
 
 	public void setSavableLocation(SavableLocation savableLocation) {
 		this.location = savableLocation;
+	}
+	
+	public UUID getUUID() {
+		return NPCLibManager.getManager().getNPC(id).getUniqueId();
+	}
+
+	public void despawn() {
+		getCitizensNPC().destroy();
 	}
 }

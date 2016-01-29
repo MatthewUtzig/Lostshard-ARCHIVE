@@ -25,7 +25,6 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
@@ -47,7 +46,6 @@ import com.lostshard.Lostshard.Utils.Utils;
  * @author Jacob Rosborg
  *
  */
-@Audited
 @Entity
 public class PseudoPlayer {
 
@@ -705,26 +703,43 @@ public class PseudoPlayer {
 	
 	public List<OfflineMessage> getOfflineMessages() {
 		Session s = Lostshard.getSession();
-		@SuppressWarnings("unchecked")
-		List<OfflineMessage> messages = (List<OfflineMessage>) s.createCriteria(OfflineMessage.class).add(Restrictions.eq("player", playerUUID)).list();
-		return messages;
+		try {
+			@SuppressWarnings("unchecked")
+			List<OfflineMessage> messages = (List<OfflineMessage>) s.createCriteria(OfflineMessage.class).add(Restrictions.eq("player", playerUUID)).list();
+			s.close();
+			return messages;
+		} catch(Exception e) {
+			s.close();
+			e.printStackTrace();
+		}
+		return new ArrayList<OfflineMessage>();
 	}
 	
 	public void save() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.update(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void insert() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.save(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 }

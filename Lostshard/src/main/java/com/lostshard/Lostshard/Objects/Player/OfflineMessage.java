@@ -10,11 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 
-@Audited
 @Entity
 public class OfflineMessage {
 	
@@ -26,6 +24,10 @@ public class OfflineMessage {
 	private UUID player;
 	private String message;
 	private boolean seen;
+	
+	public OfflineMessage() {
+		
+	}
 	
 	public OfflineMessage(UUID player, String message) {
 		this.player = player;
@@ -67,28 +69,44 @@ public class OfflineMessage {
 
 	public void save() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.update(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void insert() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.save(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void delete() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.delete(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			s.clear();
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 }

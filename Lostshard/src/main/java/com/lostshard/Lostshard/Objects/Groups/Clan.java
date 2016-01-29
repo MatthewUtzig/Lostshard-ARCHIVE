@@ -19,14 +19,11 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.Bank;
 
 
-
-@Audited
 @Entity
 public class Clan extends Group {
 	

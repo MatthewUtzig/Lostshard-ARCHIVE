@@ -135,16 +135,21 @@ public class Lostshard extends JavaPlugin {
 		npcLibManager.getRegistry().deregisterAll();
 		}
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		for (final PseudoPlayer p : pm.getPlayers())
-			s.update(p);
-		for (final Plot p : ptm.getPlots())
-			s.update(p);
-		for (final Clan c : cm.getClans())
-			s.update(c);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			for (final PseudoPlayer p : pm.getPlayers())
+				s.update(p);
+			for (final Plot p : ptm.getPlots())
+				s.update(p);
+			for (final Clan c : cm.getClans())
+				s.update(c);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 		MagicStructure.removeAll();
 		CustomSchedule.stopSchedule();
 	}
@@ -215,14 +220,19 @@ public class Lostshard extends JavaPlugin {
 	@SuppressWarnings("unchecked")
 	private void loadFromDB() {
 		Session s = getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
-		ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
-		PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
-		ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+			ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
+			PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
+			ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	public static int getMaxPlayers() {
 		return maxPlayers;

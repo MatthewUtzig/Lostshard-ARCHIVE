@@ -40,7 +40,7 @@ public class GuardTask extends DelayedTask {
 			PseudoPlayer pPlayer = pm.getPlayer(target);
 			if((pPlayer.isMurderer() || pPlayer.isCriminal()) && target.getGameMode().equals(GameMode.SURVIVAL) && !target.isDead()) {
 				guard.teleport(target.getLocation(), TeleportCause.PLUGIN);
-				pPlayer.addRecentAttacker(new RecentAttacker(guard.getUuid(), 100));
+				pPlayer.addRecentAttacker(new RecentAttacker(guard.getUUID(), 100));
 				target.damage(0d);
 				target.setHealth(0);
 			}

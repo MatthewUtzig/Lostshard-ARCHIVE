@@ -207,14 +207,19 @@ public class PlayerListener extends LostshardListener implements Managers {
 		PlotProtectionHandler.onPlayerJoin(event);
 		final List<OfflineMessage> msgs = pPlayer.getOfflineMessages();
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		for (final OfflineMessage msg : msgs) {
-			player.sendMessage(ChatColor.BLUE + msg.getMessage());
-			s.update(msg);
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			for (final OfflineMessage msg : msgs) {
+				player.sendMessage(ChatColor.BLUE + msg.getMessage());
+				s.delete(msg);
+			}
+			t.commit();
+			s.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			s.close();
 		}
-		t.commit();
-		s.close();
 		event.setJoinMessage(null);
 		for (final Player p : Bukkit.getOnlinePlayers())
 			if (p != player)

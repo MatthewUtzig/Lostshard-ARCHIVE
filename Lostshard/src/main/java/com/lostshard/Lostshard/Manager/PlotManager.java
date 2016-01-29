@@ -98,10 +98,10 @@ public class PlotManager {
 						Output.simpleError(
 								player,
 								plot.getName()
-								+ " have failed to pay tax and have shurnk.");
+								+ " have failed to pay tax and have shrunk.");
 					else
 						new OfflineMessage(plot.getOwner(), plot.getName()
-								+ " have failed to pay tax and have shurnk.");
+								+ " have failed to pay tax and have shrunk.");
 				} else {
 					plot.disband();
 					if (player != null)

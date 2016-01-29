@@ -23,6 +23,8 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
+import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
+import com.lostshard.Lostshard.Objects.InventoryGUI.PlotGUI;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
@@ -148,7 +150,7 @@ public class PlotCommand extends LostshardCommand {
 			plot.insert();
 			this.ptm.getPlots().add(plot);
 			Output.positiveMessage(player, "You have created the plot \""
-					+ plot.getName() + "\", it cost " + plotMoneyCost
+					+ plot.getName() + "\", it cost " + Utils.getDecimalFormater().format(plotMoneyCost)
 					+ " gc and " + plotDiamondCost.getAmount() + " diamonds.");
 		} else {
 			player.sendMessage(ChatColor.DARK_RED
@@ -171,17 +173,17 @@ public class PlotCommand extends LostshardCommand {
 				return true;
 			}
 			final Player player = (Player) sender;
-//			final PseudoPlayer pPlayer = pm.getPlayer(player);
-//			if (args.length < 1) {
-//				Plot plot = ptm.findPlotAt(player.getLocation());
-//				if(plot != null) {
-//					GUI gui = new PlotGUI(pPlayer, plot);
-//					gui.openInventory(player);
-//				}else{
-//					Output.simpleError(player, "Theres no plot here, try /help plot");
-//				}
-//				return true;
-//			}
+			final PseudoPlayer pPlayer = pm.getPlayer(player);
+			if (args.length < 1) {
+				Plot plot = ptm.findPlotAt(player.getLocation());
+				if(plot != null) {
+					GUI gui = new PlotGUI(pPlayer, plot);
+					gui.openInventory(player);
+				}else{
+					Output.simpleError(player, "Theres no plot here, try /help plot");
+				}
+				return true;
+			}
 			final String plotCommand = args[0];
 			if (plotCommand.equalsIgnoreCase("help"))
 				HelpHandler.helpLandOwnership(sender, new String[0]);
@@ -454,7 +456,7 @@ public class PlotCommand extends LostshardCommand {
 		if (pPlayer.getMoney() >= amount) {
 			plot.setMoney(plot.getMoney() + amount);
 			pPlayer.setMoney(pPlayer.getMoney() - amount);
-			Output.positiveMessage(player, "You have deposited " + amount
+			Output.positiveMessage(player, "You have deposited " + Utils.getDecimalFormater().format(amount)
 					+ " gold coins into the plot fund.");
 		} else {
 			Output.simpleError(player, "You do not have that much money.");
@@ -479,12 +481,12 @@ public class PlotCommand extends LostshardCommand {
 			return;
 		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		plot.disband();
 		pPlayer.setMoney(pPlayer.getMoney() + plot.getValue());
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName()
-				+ ", and got " + plot.getValue() + " gc.");
-		plot.disband();
+				+ ", and got " + Utils.getDecimalFormater().format(plot.getValue()) + " gc.");
 	}
 
 	/**
@@ -613,9 +615,9 @@ public class PlotCommand extends LostshardCommand {
 							player,
 							"You may only expand "
 									+ plot.getName()
-									+ " "
-									+ p.getLocation().distanceSquared(
-											player.getLocation()) + ".");
+									+ " to size"
+									+ Utils.getDecimalFormater().format((int) Math.floor(p.getLocation().distanceSquared(
+											player.getLocation()))) + ".");
 				return;
 			}
 		}
@@ -782,7 +784,7 @@ public class PlotCommand extends LostshardCommand {
 				Output.simpleError(player, "No player exist whith that name.");
 				return;
 			}
-			Output.positiveMessage(player, "-" + tPlayer.getUniqueId() + "'s Plots-");
+			Output.positiveMessage(player, "-" + tPlayer.getName() + "'s Plots-");
 			for (final Plot plot : this.ptm.getPlots())
 				if (plot.getOwner().equals(tPlayer.getUniqueId()))
 					player.sendMessage(" - " + plot.getName() + " ("
@@ -845,7 +847,7 @@ public class PlotCommand extends LostshardCommand {
 			return;
 		}
 		if (args.length < 2) {
-			Output.simpleError(player, "/plot npc hire (Banker|Vendor) (name)");
+			Output.simpleError(player, "/plot npc (hire|fire|move)");
 			return;
 		}
 		if (!plot.isCoownerOrAbove(player)) {
@@ -1170,7 +1172,7 @@ public class PlotCommand extends LostshardCommand {
 		if (plotMoney < 1000) {
 			Output.simpleError(player,
 					"Not enough in the plot treasury to rename. "
-							+ Variables.plotRenamePrice + " gc.");
+							+ Utils.getDecimalFormater().format(Variables.plotRenamePrice) + " gc.");
 			return;
 		}
 		// Figure out the name that the player input
@@ -1727,7 +1729,7 @@ public class PlotCommand extends LostshardCommand {
 			if (plot.getMoney() >= amount) {
 				plot.setMoney(plot.getMoney() - amount);
 				pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
-				Output.positiveMessage(player, "You have withdrawn " + amount
+				Output.positiveMessage(player, "You have withdrawn " + Utils.getDecimalFormater().format(amount)
 						+ " gold coins from the plot fund.");
 			} else
 				Output.simpleError(player,

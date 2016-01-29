@@ -126,28 +126,44 @@ public class Group {
 	
 	public void save() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.update(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void insert() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.save(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void delete() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.delete(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			s.clear();
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 }

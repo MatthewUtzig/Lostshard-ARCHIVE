@@ -130,16 +130,16 @@ public class BankCommand extends LostshardCommand {
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 			if (pPlayer.getMoney() < amount) {
 				Output.simpleError(player, "You can't affort to pay "
-						+ targetPlayer.getName() + " " + amount + "gc.");
+						+ targetPlayer.getName() + " " + Utils.getDecimalFormater().format(amount) + "gc.");
 				return;
 			}
 			pPlayer.subtractMoney(amount);
 		}
 		tpPlayer.addMoney(amount);
 		sender.sendMessage(ChatColor.GOLD + "You have paied "
-				+ targetPlayer.getName() + " " + amount + "gc.");
+				+ targetPlayer.getName() + " " + Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(targetPlayer, sender.getName()
-				+ " has paied you " + amount + "gc.");
+				+ " has paied you " + Utils.getDecimalFormater().format(amount) + "gc.");
 	}
 
 	/**

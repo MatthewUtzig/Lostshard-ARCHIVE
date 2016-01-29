@@ -23,25 +23,42 @@ public class AsyncGameLoop extends BukkitRunnable {
 	public void run() {
 //		long time = System.nanoTime();
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		for (final PseudoPlayer p : pm.getPlayers())
-			if (p.isUpdate()) {
-				s.update(p);
-				p.setUpdate(false);
+		try{
+			Transaction t = s.beginTransaction();
+			t.begin();
+			for (final PseudoPlayer p : pm.getPlayers())
+				try {
+					if (p.isUpdate()) {
+						s.update(p);
+						p.setUpdate(false);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			for (final Plot p : ptm.getPlots())
+				try {	
+					if (p.isUpdate()) {
+						s.update(p);
+						p.setUpdate(false);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			for (final Clan c : cm.getClans())
+			try {
+				if (c.isUpdate()) {
+					s.update(c);
+					c.setUpdate(false);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		for (final Plot p : ptm.getPlots())
-			if (p.isUpdate()) {
-				s.update(p);
-				p.setUpdate(false);
-			}
-		for (final Clan c : cm.getClans())
-			if (c.isUpdate()) {
-				s.update(c);
-				c.setUpdate(false);
-			}
-		t.commit();
-		s.close();
+			t.commit();
+			s.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 		if(Lostshard.isDebug()) {
 //			long delay = System.nanoTime()-time;
 //			if(delay >= 10000)

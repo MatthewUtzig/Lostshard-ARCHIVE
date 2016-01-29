@@ -102,8 +102,14 @@ public class PlayerManager {
 	
 	public PseudoPlayer getPlayerFromDB(UUID uuid) {
 		Session s = Lostshard.getSession();
-		PseudoPlayer pPlayer = (PseudoPlayer) s.createCriteria(PseudoPlayer.class).add(Restrictions.eq("playerUUID", uuid)).uniqueResult();
-		s.close();
+		PseudoPlayer pPlayer = null;
+		try {
+			pPlayer = (PseudoPlayer) s.createCriteria(PseudoPlayer.class).add(Restrictions.eq("playerUUID", uuid)).uniqueResult();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 		return pPlayer;
 	}
 }

@@ -26,7 +26,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Main.Lostshard;
@@ -41,7 +40,6 @@ import com.lostshard.Utils.ExtraMath;
  * @author Jacob Rosborg
  *
  */
-@Audited
 @Entity
 @Access(AccessType.PROPERTY)
 public class Plot {
@@ -161,7 +159,10 @@ public class Plot {
 	}
 
 	public void disband() {
-		delete();
+		PlotManager.getManager().getPlots().remove(this);
+		this.delete();
+		for(NPC npc : getNpcs())
+			npc.despawn();
 	}
 
 	public void expandSize(int size) {
@@ -532,29 +533,45 @@ public class Plot {
 	
 	public void save() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.update(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void insert() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.save(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 	
 	public void delete() {
 		Session s = Lostshard.getSession();
-		Transaction t = s.beginTransaction();
-		t.begin();
-		s.delete(this);
-		t.commit();
-		s.close();
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			t.commit();
+			s.clear();
+			s.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	@Transient

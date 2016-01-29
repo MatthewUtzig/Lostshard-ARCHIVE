@@ -1,5 +1,8 @@
 package com.lostshard.Lostshard.Utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,11 +11,16 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.io.BukkitObjectInputStream;
+import org.bukkit.util.io.BukkitObjectOutputStream;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import com.google.gson.Gson;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class Serializer {
 
@@ -47,36 +55,85 @@ public class Serializer {
 	}
 	
 	public static String serializeItemStack(ItemStack item) {
-		if(item == null)
-			item = new ItemStack(Material.AIR);
-		return gson.toJson(item.serialize());
+		try {
+			if(item == null)
+				item = new ItemStack(Material.AIR);
+			return gson.toJson(item.serialize());
+		} catch(Exception e) {
+			return gson.toJson(new ItemStack(Material.AIR).serialize());
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	public static ItemStack deserializeItemStack(String item) {
-		if(item == null)
-			return new ItemStack(Material.AIR);
-		return ItemStack.deserialize(gson.fromJson(item, Map.class));
+		try {
+			if(item == null)
+				return new ItemStack(Material.AIR);
+			Map<String, Object> map = gson.fromJson(item, Map.class);
+			return ItemStack.deserialize(map);
+		} catch(Exception e) {
+			ItemStack result = new ItemStack(Material.COBBLESTONE);
+			result.getItemMeta().setDisplayName(ChatColor.RED+"ERROR!");
+			return result;
+		}
 	}
 	
 	public static String serializeContents(ItemStack[] items) {
+		try {
 		String[] result = new String[items.length];
-			for(int i=0; i<items.length; i++) {
-				ItemStack item = items[i];
-				if(item == null)
-					item = new ItemStack(Material.AIR);
-				result[i] = serializeItemStack(item);
-			}	
-		return gson.toJson(result);
+		for(int i=0; i<items.length; i++) {
+			ItemStack item = items[i];
+			if(item == null)
+				item = new ItemStack(Material.AIR);
+			result[i] = itemTo64(item);
+		}
+			return gson.toJson(result);
+		} catch(Exception e) {
+			return "";
+		}
 	}
 	
 	public static ItemStack[] deserializeContents(String items) {
-		String[] list = gson.fromJson(items, String[].class);
-		ItemStack[] result = new ItemStack[list.length];
-		for(int i=0; i<list.length; i++)
-			result[i] = deserializeItemStack(list[i]);
-		return result;
+		try {
+			String[] list = gson.fromJson(items, String[].class);
+			ItemStack[] result = new ItemStack[list.length];
+			for(int i=0; i<list.length; i++)
+				result[i] = itemFrom64(list[i]);
+			return result;
+		} catch(Exception e) {
+			return null;
+		}
 	}
+	
+	private static String itemTo64(ItemStack stack) throws IllegalStateException {
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            dataOutput.writeObject(stack);
+
+            // Serialize that array
+            dataOutput.close();
+            return Base64Coder.encodeLines(outputStream.toByteArray());
+        }
+        catch (Exception e) {
+            throw new IllegalStateException("Unable to save item stack.", e);
+        }
+    }
+   
+    private static ItemStack itemFrom64(String data) throws IOException {
+        try {
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
+            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+            try {
+                return (ItemStack) dataInput.readObject();
+            } finally {
+                dataInput.close();
+            }
+        }
+        catch (ClassNotFoundException e) {
+            throw new IOException("Unable to decode class type.", e);
+        }
+    }
 	
 	public static JSONParser parser = new JSONParser();
 

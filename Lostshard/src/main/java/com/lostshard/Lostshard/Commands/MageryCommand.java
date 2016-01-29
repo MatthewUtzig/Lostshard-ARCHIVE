@@ -330,6 +330,10 @@ public class MageryCommand extends LostshardCommand {
 				final String scrollName = StringUtils.join(args, "", 1,
 						args.length);
 				final Scroll scroll = Scroll.getByString(scrollName);
+				if(scroll == null) {
+					Output.simpleError(player, "There does not exist a sroll with that name.");
+					return;
+				}
 				if(haveScroll(scroll, pPlayer, player))
 					return;
 				final SpellBook spellbook = pPlayer.getSpellbook();

@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
+import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -92,7 +93,7 @@ public class NPCManager {
 	
 	public NPC getByUUID(UUID uuid) {
 		for(NPC npc : getNpcs())
-			if(npc.getUuid().equals(uuid))
+			if(npc.getId() == NPCLibManager.getManager().getNPCID(uuid))
 				return npc;
 		return null;
 	}

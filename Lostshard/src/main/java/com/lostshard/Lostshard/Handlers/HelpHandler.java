@@ -277,7 +277,7 @@ public class HelpHandler {
 
 			sender.sendMessage(ChatColor.YELLOW + "/clan create (plot name)"
 					+ ChatColor.GRAY + " - Create a clan.");
-			sender.sendMessage(ChatColor.GRAY + "-Costs 2000 gold coins.");
+			sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 gold coins.");
 			sender.sendMessage(ChatColor.YELLOW
 					+ "/clan transfer (player name)"
 					+ ChatColor.GRAY
@@ -301,7 +301,7 @@ public class HelpHandler {
 				sender.sendMessage(ChatColor.YELLOW
 						+ "/clan create (plot name)" + ChatColor.GRAY
 						+ " - Create a clan.");
-				sender.sendMessage(ChatColor.GRAY + "-Costs 2000 gold coins.");
+				sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 gold coins.");
 				sender.sendMessage(ChatColor.YELLOW
 						+ "/clan transfer (player name)"
 						+ ChatColor.GRAY
