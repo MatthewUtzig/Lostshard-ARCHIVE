@@ -42,7 +42,7 @@ public class ChatCommand extends LostshardCommand {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.CLAN);
-			Output.positiveMessage(player, "You have togglet clan chat.");
+			Output.positiveMessage(player, "You have toggled clan chat.");
 			return;
 		}
 
@@ -63,7 +63,7 @@ public class ChatCommand extends LostshardCommand {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.GLOBAL);
-			Output.positiveMessage(player, "You have togglet global chat.");
+			Output.positiveMessage(player, "You have toggled global chat.");
 			return;
 		}
 
@@ -84,7 +84,7 @@ public class ChatCommand extends LostshardCommand {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.LOCAL);
-			Output.positiveMessage(player, "You have togglet local chat.");
+			Output.positiveMessage(player, "You have toggled local chat.");
 			return;
 		}
 
@@ -102,7 +102,7 @@ public class ChatCommand extends LostshardCommand {
 		}
 		final String targetName = args[0];
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (player == null) {
+		if (player == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 			Output.simpleError(player, "player not online");
 			return;
 		}
@@ -174,7 +174,7 @@ public class ChatCommand extends LostshardCommand {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.PARTY);
-			Output.positiveMessage(player, "You have togglet party chat.");
+			Output.positiveMessage(player, "You have toggled party chat.");
 			return;
 		}
 
@@ -263,7 +263,7 @@ public class ChatCommand extends LostshardCommand {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (args.length < 1) {
 			pPlayer.setChatChannel(ChatChannel.WHISPER);
-			Output.positiveMessage(player, "You have togglet whisper chat.");
+			Output.positiveMessage(player, "You have toggled whisper chat.");
 			return;
 		}
 

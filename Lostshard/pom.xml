@@ -23,6 +23,10 @@
 			<id>confuser-repo</id>
 			<url>http://ci.frostcast.net/plugin/repository/everything</url>
 		</repository>
+		<repository>
+			<id>myplayplanet-repo</id>
+			<url>http://maven.myplayplanet.net/</url>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -78,19 +82,19 @@
 			<groupId>net.citizensnpcs</groupId>
 			<artifactId>citizensapi</artifactId>
 			<version>2.0.16-SNAPSHOT</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.vexsoftware</groupId>
 			<artifactId>votifier</artifactId>
 			<version>1.9</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>me.confuser</groupId>
 			<artifactId>BarAPI</artifactId>
 			<version>3.0</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>

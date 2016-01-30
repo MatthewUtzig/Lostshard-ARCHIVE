@@ -7,10 +7,10 @@ import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Utils.Serializer;
 
 @Embeddable
@@ -29,9 +29,7 @@ public class Bank {
 			this.setInventory(Bukkit.createInventory(null, 54, "Large bank"));
 		else
 			this.setInventory(Bukkit.createInventory(null, 27, "Small bank"));
-		this.getInventory().addItem(new ItemStack(Material.GOLD_INGOT, 32));
-		this.getInventory().addItem(new ItemStack(Material.DIAMOND, 3));
-		this.getInventory().addItem(new ItemStack(Material.MELON, 10));
+		this.getInventory().addItem(Variables.playerStartBank);
 	}
 	
 	@Transient

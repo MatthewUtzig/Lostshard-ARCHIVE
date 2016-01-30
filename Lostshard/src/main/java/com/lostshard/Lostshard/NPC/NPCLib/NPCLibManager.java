@@ -48,7 +48,9 @@ public class NPCLibManager {
 	public int spawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
 		if (!isEnable)
 			return -1;
-		NPC npc = registry.createNPC(EntityType.PLAYER, UUID.randomUUID(), generateID(), lnpc.getDisplayName());
+		int id = generateID();
+		lnpc.setId(id);
+		NPC npc = registry.createNPC(EntityType.PLAYER, lnpc.getUUID(), id , lnpc.getDisplayName());
 		npc.setProtected(true);
 		lnpc.getLocation().getWorld().loadChunk(lnpc.getLocation().getChunk());
 		npc.spawn(lnpc.getLocation());
@@ -103,7 +105,10 @@ public class NPCLibManager {
 	}
 	
 	public int getNPCID(UUID uuid) {
-		return registry.getByUniqueId(uuid).getId();
+		NPC npc = registry.getByUniqueId(uuid);
+		if(npc == null)
+			return -1;
+		return npc.getId();
 	}
 	
 	public NPCRegistry getRegistry() {

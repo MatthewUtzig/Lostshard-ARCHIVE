@@ -7,6 +7,7 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
@@ -36,6 +37,10 @@ public class GuardTask extends DelayedTask {
 			return;
 		}
 		Player target = Bukkit.getPlayer(this.target);
+		if(Lostshard.isVanished(target)) {
+			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
+			return;
+		}
 		if(ptm.findPlotAt(target.getLocation()) == guard.getPlot()) {
 			PseudoPlayer pPlayer = pm.getPlayer(target);
 			if((pPlayer.isMurderer() || pPlayer.isCriminal()) && target.getGameMode().equals(GameMode.SURVIVAL) && !target.isDead()) {

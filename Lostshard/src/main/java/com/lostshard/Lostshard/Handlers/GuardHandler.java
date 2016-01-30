@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
@@ -60,6 +61,8 @@ public class GuardHandler {
 		// criminal
 		for (final Player pCP : Bukkit.getOnlinePlayers()) {
 			if(Utils.isWithin(pCP.getLocation(), player.getLocation(), 10));
+			if(Lostshard.isVanished(pCP))
+				continue;
 			final PseudoPlayer pPCP = pm.getPlayer(pCP);
 			if (pPCP.isCriminal() || pPCP.isMurderer())
 				criminals.add(pCP.getUniqueId());

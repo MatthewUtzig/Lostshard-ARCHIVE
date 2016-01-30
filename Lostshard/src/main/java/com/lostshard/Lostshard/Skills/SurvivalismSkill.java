@@ -37,6 +37,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Camp;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
@@ -237,11 +238,9 @@ public class SurvivalismSkill extends Skill {
 				return;
 			}
 
-			final Player targetPlayer = Bukkit.getPlayer(targetName);
-			// if(targetPlayer != null && targetPlayer.isOp()) {
-			// Output.simpleError(player, "can't find "+targetName+".");
-			// return;
-			// }
+			Player targetPlayer = Bukkit.getPlayer(targetName);
+			if(targetPlayer != null && (Lostshard.isVanished(targetPlayer) && !player.isOp()))
+				targetPlayer = null;
 
 			int modCurSkill = curSkill;
 

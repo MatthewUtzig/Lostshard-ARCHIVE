@@ -75,11 +75,10 @@ public class NPCManager {
 	}
 
 	public NPC getVendor(Location location) {
-		final Plot plot = this.ptm.findPlotAt(location);
-		for (final NPC n : plot.getNpcs())
-			if (n.getType().equals(NPCType.VENDOR)
-					&& Utils.isWithin(location, n.getLocation(), 5))
-				return n;
+		for (final NPC npc : this.getVendors())
+			if (Utils.isWithin(location, npc.getLocation(),
+					Variables.bankRadius))
+				return npc;
 		return null;
 	}
 

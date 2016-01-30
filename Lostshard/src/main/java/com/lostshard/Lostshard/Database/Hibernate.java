@@ -9,6 +9,7 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 
 public class Hibernate {
@@ -39,6 +40,7 @@ public class Hibernate {
 		cfg.addAnnotatedClass(Plot.class);
 		cfg.addAnnotatedClass(OfflineMessage.class);
 		cfg.addAnnotatedClass(PermanentGate.class);
+		cfg.addAnnotatedClass(Store.class);
 		
 		factory = cfg.buildSessionFactory();
 	}

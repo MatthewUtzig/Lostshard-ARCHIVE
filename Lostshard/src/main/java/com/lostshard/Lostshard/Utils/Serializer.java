@@ -2,7 +2,6 @@ package com.lostshard.Lostshard.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,7 +104,7 @@ public class Serializer {
 		}
 	}
 	
-	private static String itemTo64(ItemStack stack) throws IllegalStateException {
+	public static String itemTo64(ItemStack stack) {
         try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
@@ -116,11 +115,12 @@ public class Serializer {
             return Base64Coder.encodeLines(outputStream.toByteArray());
         }
         catch (Exception e) {
-            throw new IllegalStateException("Unable to save item stack.", e);
+        	e.printStackTrace();
+            return "";
         }
     }
    
-    private static ItemStack itemFrom64(String data) throws IOException {
+    public static ItemStack itemFrom64(String data) {
         try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
             BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
@@ -130,8 +130,9 @@ public class Serializer {
                 dataInput.close();
             }
         }
-        catch (ClassNotFoundException e) {
-            throw new IOException("Unable to decode class type.", e);
+        catch (Exception e) {
+            e.printStackTrace();
+            return new ItemStack(Material.AIR);
         }
     }
 	

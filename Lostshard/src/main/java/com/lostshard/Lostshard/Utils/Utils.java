@@ -27,6 +27,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.Lostshard.Data.Variables;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
@@ -213,7 +214,10 @@ public class Utils {
 	}
 
 	public static Player getPlayer(String name) {
-		return Bukkit.getPlayer(name);
+		Player player = Bukkit.getPlayer(name);
+		if(Lostshard.isVanished(player))
+			return null;
+		return player;
 	}
 	
 	static PlayerManager pm = PlayerManager.getManager();

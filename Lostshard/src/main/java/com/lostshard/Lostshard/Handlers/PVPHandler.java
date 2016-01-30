@@ -78,6 +78,7 @@ public class PVPHandler {
 			((Player) defender).sendMessage(ChatColor.GRAY
 					+ ((Player) attacker).getName()
 					+ " tickled you with a feather.");
+			((Player) attacker).sendMessage(ChatColor.GRAY+"You have tickled"+((Player) defender).getName()+"with a feather.");
 			return false;
 		}
 

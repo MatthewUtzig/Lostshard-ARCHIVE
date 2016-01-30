@@ -84,11 +84,8 @@ public class Output {
 
 		final String targetName = args[0];
 		final Player p = Bukkit.getPlayer(targetName);
-		if (p != null) {
+		if (p != null || (Lostshard.isVanished(p) && !sender.isOp())) {
 			final PseudoPlayer targetPseudoPlayer = pm.getPlayer(p);
-			if (p.isOp())
-				Output.simpleError(sender, "That player is not online.");
-			else
 				Output.outputWho(sender, targetPseudoPlayer);
 		} else
 			Output.simpleError(sender, "That player is not online.");
@@ -138,7 +135,8 @@ public class Output {
 	public static void outputPlayerlist(CommandSender sender) {
 		final ArrayList<String> filteredPlayers = new ArrayList<String>();
 		for (final Player p : Bukkit.getOnlinePlayers())
-			filteredPlayers.add(Utils.getDisplayName(p));
+			if(!(Lostshard.isVanished(p) && !sender.isOp()))
+				filteredPlayers.add(Utils.getDisplayName(p));
 
 		Collections.sort(filteredPlayers, String.CASE_INSENSITIVE_ORDER);
 		String message = ChatColor.YELLOW + "Online Players ("
@@ -366,7 +364,7 @@ public class Output {
 			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE
 					+ clan.getName());
 		else
-			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE
+			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE + ChatColor.ITALIC
 					+ "none");
 	}
 

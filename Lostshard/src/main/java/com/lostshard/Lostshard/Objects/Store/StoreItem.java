@@ -1,17 +1,20 @@
 package com.lostshard.Lostshard.Objects.Store;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
 import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Utils.Serializer;
 
+@Embeddable
+@Access(AccessType.PROPERTY)
 public class StoreItem {
 
-	public static StoreItem fromJson(String string) {
-		return Serializer.gson.fromJson(string, StoreItem.class);
-	}
-
 	// Item
-	private int id = 0;
 	private ItemStack item;
 	private int salePrice = 0;
 	private int buyPrice = 0;
@@ -26,24 +29,30 @@ public class StoreItem {
 
 	private int restockAmount = 0;
 
-	public StoreItem(ItemStack item) {
-		this.item = item;
+	public StoreItem() {
+		
 	}
-
-	public String getAsJson() {
-		return Serializer.gson.toJson(this);
+	
+	public StoreItem(ItemStack item, int salePrice, int buyPrice, int stock, int maxBuyAmount) {
+		this.item = item;
+		this.salePrice = salePrice;
+		this.buyPrice = buyPrice;
+		this.stock = stock;
+		this.maxBuyAmount = maxBuyAmount;
 	}
 
 	public int getBuyPrice() {
 		return this.buyPrice;
 	}
 
-	public int getId() {
-		return this.id;
-	}
-
+	@Transient
 	public ItemStack getItem() {
 		return this.item;
+	}
+	
+	@Column(columnDefinition="text")
+	public String getSavableItem() {
+		return Serializer.itemTo64(this.item);
 	}
 
 	public int getMaxBuyAmount() {
@@ -78,12 +87,12 @@ public class StoreItem {
 		this.buyPrice = buyPrice;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public void setItem(ItemStack item) {
 		this.item = item;
+	}
+	
+	public void setSavableItem(String item) {
+		this.item = Serializer.itemFrom64(item);
 	}
 
 	public void setMaxBuyAmount(int maxBuyAmount) {

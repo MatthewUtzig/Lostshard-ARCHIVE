@@ -21,6 +21,7 @@ import com.lostshard.Lostshard.Handlers.HelpHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
+import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
@@ -29,6 +30,7 @@ import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
+import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.TabUtils;
@@ -402,7 +404,7 @@ public class PlotCommand extends LostshardCommand {
 
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
 
-		if (targetPlayer == null) {
+		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 			Output.simpleError(player,
 					"can't co-own that person, hes not online.");
 			return;
@@ -694,7 +696,7 @@ public class PlotCommand extends LostshardCommand {
 
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
 
-		if (targetPlayer == null) {
+		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 			Output.simpleError(player,
 					"can't friend that person, hes not online.");
 			return;
@@ -908,8 +910,8 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.BANKER, name,
 						player.getLocation(), plot.getId());
-				plot.update();
 				plot.getNpcs().add(npc);
+				plot.update();
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named "
 						+ name + ".");
@@ -957,8 +959,11 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.VENDOR, name,
 						player.getLocation(), plot.getId());
-				plot.update();
+				final Store store = StoreManager.getManager().createStore();
+				npc.setStore(store);
+				store.insert();
 				plot.getNpcs().add(npc);
+				plot.update();
 				npc.spawn();
 
 				Output.positiveMessage(player, "You have hired a vendor named "
@@ -994,8 +999,8 @@ public class PlotCommand extends LostshardCommand {
 
 				final NPC npc = new NPC(NPCType.GUARD, name,
 						player.getLocation(), plot.getId());
-				plot.update();
 				plot.getNpcs().add(npc);
+				plot.update();
 				npc.spawn();
 
 				Output.positiveMessage(player, "You have hired a guard named "
@@ -1524,7 +1529,7 @@ public class PlotCommand extends LostshardCommand {
 		final String targetName = args[1];
 
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (targetPlayer == null) {
+		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 			Output.simpleError(player, targetName + " not found.");
 			return;
 		}

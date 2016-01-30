@@ -21,14 +21,17 @@ public class StoreGUI extends GUI {
 			ItemStack item = si.getItem().clone();
 			ItemMeta itemMeta = item.getItemMeta();
 			List<String> lore = new ArrayList<String>();
-			if (si.getStock() > 0) {
-				itemMeta.setDisplayName(ChatColor.RED + item.getItemMeta().getDisplayName());
+			if (si.getStock() < 0) {
+				itemMeta.setDisplayName(ChatColor.RED + (item.getItemMeta().hasDisplayName() ? 
+						item.getItemMeta().getDisplayName() : item.getType().name()));
 			} else {
-				itemMeta.setDisplayName(ChatColor.GREEN + si.getItem().getItemMeta().getDisplayName());
+				itemMeta.setDisplayName(ChatColor.GREEN + (item.getItemMeta().hasDisplayName() ? 
+						item.getItemMeta().getDisplayName() : item.getType().name()));
 			}
 			lore.add("Sale price: " + (si.getSalePrice() > 0 ? Integer.valueOf(si.getSalePrice()) : "not for sale"));
 			lore.add("Buy price: " + (si.getSalePrice() > 0 ? Integer.valueOf(si.getSalePrice()) : "not for buy"));
 			lore.add("Stock: " + si.getStock());
+			lore.add("ID: "+(i+1));
 			itemMeta.setLore(lore);
 
 			item.setItemMeta(itemMeta);

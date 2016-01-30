@@ -145,6 +145,10 @@ public class SkillCommand extends LostshardCommand {
 				if (args.length >= 2 && args[1].equalsIgnoreCase("points"))
 					try {
 						final Player targetPlayer = Bukkit.getPlayer(args[2]);
+						if(targetPlayer == null) {
+							Output.simpleError(sender, args[2]+" is not online.");
+							return;
+						}
 						pPlayer = pm.getPlayer(targetPlayer);
 						final double amount = Double.parseDouble(args[3]);
 						final int amountInt = (int) (amount * 10);

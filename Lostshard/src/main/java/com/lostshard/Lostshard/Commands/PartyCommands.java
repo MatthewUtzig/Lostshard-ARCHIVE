@@ -43,7 +43,7 @@ public class PartyCommands extends LostshardCommand {
 				pseudoPlayer.setParty(party);
 			}
 			final Player invitedPlayer = Bukkit.getPlayer(split[1]);
-			if (invitedPlayer != null) {
+			if (invitedPlayer != null || (Lostshard.isVanished(invitedPlayer) && !player.isOp())) {
 				if (invitedPlayer == player) {
 					Output.simpleError(player, "You cant invite your self.");
 					return;

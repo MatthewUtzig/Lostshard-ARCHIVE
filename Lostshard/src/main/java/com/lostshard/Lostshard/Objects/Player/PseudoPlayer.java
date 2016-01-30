@@ -105,7 +105,7 @@ public class PseudoPlayer {
 	private boolean meditating = false;
 	@Transient
 	private boolean resting = false;
-	private int freeSkillPoints = 0;
+	private int freeSkillPoints = Variables.playerStartSkillPoints;
 	private Runebook runebook = new Runebook();
 	private SpellBook spellbook = new SpellBook();
 	@Transient

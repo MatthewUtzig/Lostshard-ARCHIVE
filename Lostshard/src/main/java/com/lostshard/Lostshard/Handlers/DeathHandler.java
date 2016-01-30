@@ -49,6 +49,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
@@ -81,7 +82,7 @@ public class DeathHandler {
 				}
 				final Player p = Bukkit.getPlayer(recentAttackers.get(i)
 						.getUUID());
-				if (p != null)
+				if (p != null || Lostshard.isVanished(p))
 					if (i == numAttackers - 1) {
 						if (attackers != "")
 							attackers += ChatColor.WHITE + " and "

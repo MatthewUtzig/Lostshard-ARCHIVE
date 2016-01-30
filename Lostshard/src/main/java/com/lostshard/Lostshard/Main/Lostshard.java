@@ -249,4 +249,8 @@ public class Lostshard extends JavaPlugin {
 	public static Session getSession() {
 		return hibernate.getSession();
 	}
+	
+	public static boolean isVanished(Player player) {
+		return false;
+	}
 }

@@ -1,5 +1,10 @@
 package com.lostshard.Lostshard.Commands;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -22,7 +27,7 @@ public class StoreCommand extends LostshardCommand {
 	PlayerManager pm = PlayerManager.getManager();
 
 	public StoreCommand(Lostshard plugin) {
-		super(plugin, "vendor");
+		super(plugin, "vendor", "shop");
 	}
 
 	@Override
@@ -35,6 +40,14 @@ public class StoreCommand extends LostshardCommand {
 			}
 			final Player player = (Player) sender;
 			this.vendor(player, args);
+			return true;
+		} else if(cmd.getName().equalsIgnoreCase("shop")) {
+			if (!(sender instanceof Player)) {
+				Output.mustBePlayer(sender);
+				return true;
+			}
+			final Player player = (Player) sender;
+			this.shop(player, args);
 			return true;
 		}
 		return false;
@@ -56,12 +69,12 @@ public class StoreCommand extends LostshardCommand {
 		if (subCmd.equalsIgnoreCase("help")) {
 			player.sendMessage(ChatColor.GOLD + "-Vendor help-");
 			player.sendMessage(ChatColor.YELLOW
-					+ "/vendor additem (sellprice) (buyprice)");
+					+ "/vendor (add|remove|stock|edit|clear)");
 			return;
-		} else if (subCmd.equalsIgnoreCase("additem")) {
-			if (args.length < 3) {
+		} else if (subCmd.equalsIgnoreCase("add")) {
+			if (args.length < 4) {
 				player.sendMessage(ChatColor.YELLOW
-						+ "/vendor additem (sellprice) (buyprice)");
+						+ "/vendor add (sellPrice) (buyPrice) (maxBuy)");
 				return;
 			}
 			final Store store = this.sm.getStore(player.getLocation());
@@ -72,32 +85,41 @@ public class StoreCommand extends LostshardCommand {
 			}
 			int sellPrice;
 			int buyPrice;
+			int maxBuy;
 			try {
 				sellPrice = Integer.parseInt(args[1]);
 				buyPrice = Integer.parseInt(args[2]);
+				maxBuy = Integer.parseInt(args[3]);
 			} catch (final Exception e) {
 				player.sendMessage(ChatColor.YELLOW
-						+ "/vendor additem (sellprice) (buyprice)");
+						+ "/vendor add (sellPrice) (buyPrice) (maxBuy)");
 				return;
 			}
 			if (sellPrice < 0) {
-				Output.simpleError(player, "Sell price can't be below 0.");
+				Output.simpleError(player, "Sell price can't be less 0.");
 				return;
 			}
 			if (buyPrice < 0) {
-				Output.simpleError(player, "Buy price can't be below 0.");
+				Output.simpleError(player, "Buy price can't be less 0.");
 				return;
 			}
+			if (maxBuy < 0) {
+				Output.simpleError(player, "Max buy amount can't be less 0.");
+				return;
+			}
+			
+			if (buyPrice > sellPrice) {
+				Output.simpleError(player, "Buy price can't be above sell price.");
+				return;
+			}
+			
 			final ItemStack item = player.getItemInHand();
-			final StoreItem sitem = new StoreItem(item);
-			sitem.setSalePrice(sellPrice);
-			sitem.setBuyPrice(buyPrice);
-			sitem.setStock(0);
+			final StoreItem sitem = new StoreItem(item, sellPrice, buyPrice, 0, maxBuy);
 			store.addItem(sitem);
 			Output.positiveMessage(
 					player,
 					"You have added an item to the store, right click the store with items to add them to stock or use \"/vendor addstock\".");
-		} else if (subCmd.equalsIgnoreCase("addstock")) {
+		} else if (subCmd.equalsIgnoreCase("stock")) {
 			final Store store = this.sm.getStore(player.getLocation());
 			if (store == null) {
 				Output.simpleError(player,
@@ -109,14 +131,14 @@ public class StoreCommand extends LostshardCommand {
 			if (sitem == null) {
 				Output.simpleError(
 						player,
-						"The vendor do not sell that item use \"/vendor additem (sellprice) (buyprice)\".");
+						"The vendor do not sell that item use \"/vendor add (sellprice) (buyprice) (maxBuy)\".");
 				return;
 			}
 			player.getInventory().remove(item);
 			sitem.setStock(item.getAmount());
 			Output.positiveMessage(player, "You have added " + item.getAmount()
 					+ " items to the stores stock.");
-		} else if (subCmd.equalsIgnoreCase("removeitem")) {
+		} else if (subCmd.equalsIgnoreCase("remove")) {
 			final Store store = this.sm.getStore(player.getLocation());
 			if (store == null) {
 				Output.simpleError(player,
@@ -124,23 +146,109 @@ public class StoreCommand extends LostshardCommand {
 				return;
 			}
 			if (args.length < 2) {
-				Output.simpleError(player, "/vendor removeitem (id)");
+				Output.simpleError(player, "/vendor remove (id) (amount)");
 				return;
 			}
 			int id;
+			int amount = 0;
 			try {
 				id = Integer.parseInt(args[1]);
+				if (args.length > 2)
+					amount = Integer.parseInt(args[2]);
 			} catch (final Exception e) {
-				player.sendMessage(ChatColor.YELLOW + "/vendor removeitem (id)");
+				player.sendMessage(ChatColor.YELLOW + "/vendor remove (id) (amount)");
 				return;
 			}
-			final StoreItem si = store.getStoreItem(id);
+			
+			if(amount < 0) {
+				Output.simpleError(player, "Amount can't be less 0.");
+				return;
+			}
+			
+			final StoreItem si = store.getItems().get(id-1);
 			final ItemStack item = si.getItem().clone();
-			item.setAmount(si.getStock());
-			store.removeStoreItem(si);
+			item.setAmount(si.getStock()-amount);
+			if (amount < si.getStock())
+				store.removeStoreItem(si);
+			else
+				si.setStock(si.getStock()-amount);
 			player.getWorld().dropItem(player.getLocation(), item);
 			Output.positiveMessage(player, "You have removed " + id
-					+ " item from the store.");
+					+ "'th item from the store.");
+		} else if (subCmd.equalsIgnoreCase("clear")) {
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player,
+						"You are not close enough to a vendor.");
+				return;
+			}
+			final List<StoreItem> si = store.getItems();
+			store.setItems(new ArrayList<StoreItem>());
+			for(StoreItem i : si)
+				player.getWorld().dropItem(player.getLocation(), i.getItem());
+			Output.positiveMessage(player, "You have cleared out the store");
+		} else if (subCmd.equalsIgnoreCase("edit")) {
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player,
+						"You are not close enough to a vendor.");
+				return;
+			}
+			if (args.length < 5) {
+				Output.simpleError(player, "/vendor edit (id) (sellPrice) (buyPrice) (maxBuy)");
+				return;
+			}
+			int id;
+			int sellPrice;
+			int buyPrice;
+			int maxBuy;
+			try {
+				id = Integer.parseInt(args[1]);
+				sellPrice = Integer.parseInt(args[2]);
+				buyPrice = Integer.parseInt(args[3]);
+				maxBuy = Integer.parseInt(args[4]);
+			} catch (final Exception e) {
+				player.sendMessage(ChatColor.YELLOW
+						+ "/vendor edit (id) (sellPrice) (buyPrice) (maxBuy)");
+				return;
+			}
+			if (sellPrice < 0) {
+				Output.simpleError(player, "Sell price can't be less 0.");
+				return;
+			}
+			if (buyPrice < 0) {
+				Output.simpleError(player, "Buy price can't be less 0.");
+				return;
+			}
+			if (maxBuy < 0) {
+				Output.simpleError(player, "Max buy amount can't be less 0.");
+				return;
+			}
+			
+			if (buyPrice > sellPrice) {
+				Output.simpleError(player, "Buy price can't be above sell price.");
+				return;
+			}
+			final StoreItem si = store.getItems().get(id-1);
+			si.setSalePrice(sellPrice);
+			si.setBuyPrice(buyPrice);
+			si.setMaxBuyAmount(maxBuy);
+			Output.positiveMessage(player, "You have updated " + id
+					+ "'th item from the store.");
+		}
+	}
+	
+	private void shop(Player player, String[] args) {
+		if (args.length < 1) {
+			final Store store = this.sm.getStore(player.getLocation());
+			if (store == null) {
+				Output.simpleError(player, "You are not close enough to a vendor.");
+				return;
+			}
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+			final GUI gui = new StoreGUI(pPlayer, store);
+			gui.openInventory(player);
+			return;
 		}
 	}
 }

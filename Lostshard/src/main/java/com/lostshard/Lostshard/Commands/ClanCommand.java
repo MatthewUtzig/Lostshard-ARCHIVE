@@ -471,7 +471,7 @@ public class ClanCommand extends LostshardCommand {
 												+ clan.getName());
 							} else
 								Output.simpleError(player,
-										"can't afford to create clan, cost: "
+										"Can't afford to create clan, cost: "
 												+ Utils.getDecimalFormater().format(Variables.clanCreateCost)
 												+ " gold coins.");
 						} else

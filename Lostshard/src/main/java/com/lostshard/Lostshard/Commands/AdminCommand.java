@@ -6,11 +6,13 @@ import java.util.UUID;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Crates.Crate;
 import com.lostshard.Crates.CrateManager;
@@ -177,13 +179,11 @@ public class AdminCommand extends LostshardCommand {
 				this.broadcast(sender, args);
 		else if(cmd.getName().equalsIgnoreCase("givemoney"))
 			giveMoney(sender, args);
-		else if(cmd.getName().equalsIgnoreCase("vanish")) {
-			adminVanish(sender);
-		}else if(cmd.getName().equalsIgnoreCase("item")) {
+		else if(cmd.getName().equalsIgnoreCase("item"))
 			adminItem(sender, args);
-		}else if(cmd.getName().equalsIgnoreCase("speed")) {
+		else if(cmd.getName().equalsIgnoreCase("speed"))
 			adminSpeed(sender, args);
-		}else if(cmd.getName().equalsIgnoreCase("pvp")) {
+		else if(cmd.getName().equalsIgnoreCase("pvp")) {
 			if(!(sender instanceof Player)) {
 				Output.simpleError(sender, "Only players may perform this command.");
 			}else{
@@ -211,14 +211,45 @@ public class AdminCommand extends LostshardCommand {
 		Output.broadcast(message);
 	}
 
-	private void adminVanish(CommandSender sender) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	@SuppressWarnings("deprecation")
 	private void adminItem(CommandSender sender, String[] args) {
-		// TODO Auto-generated method stub
-		
+		if(!(sender instanceof Player)) {
+			Output.mustBePlayer(sender);
+			return;
+		}
+		if(!sender.isOp()) {
+			Output.simpleError(sender, "Unknown command");
+			return;
+		}
+		try {
+			Material type;
+			try {
+				int id = Integer.parseInt(args[0]);
+				type = Material.getMaterial(id);
+			} catch(Exception e) {
+				type = Material.getMaterial(args[0]);
+			}
+			
+			if(type == null)
+				throw new Exception();
+			int amount;
+			try {
+				amount = Integer.parseInt(args[1]);
+			} catch (Exception e) {
+				amount = 1;
+			}
+			
+			Player player = (Player) sender;
+			
+			ItemStack item = new ItemStack(type, amount);
+			
+			player.getWorld().dropItem(player.getLocation(), item);
+			
+			Output.positiveMessage(player, "You were given "+item.getAmount()+" "+item.getType()+".");
+			
+		} catch (Exception e) {
+			Output.simpleError(sender, "/item (item) (amount)");
+		}
 	}
 
 	private void adminSpeed(CommandSender sender, String[] args) {

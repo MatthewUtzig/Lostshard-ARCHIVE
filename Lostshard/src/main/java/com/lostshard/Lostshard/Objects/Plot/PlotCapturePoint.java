@@ -5,33 +5,63 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Parent;
 
+import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
 
+import me.confuser.barapi.BarAPI;
+
+@Embeddable
+@Access(AccessType.FIELD)
 public class PlotCapturePoint {
 
+	@Transient
 	ClanManager cm = ClanManager.getManager();
 
 	// CapturePoint
 	private boolean capturePoint = false;
+	@ManyToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Clan owningClan = null;
 	private long lastCaptureDate = 0;
+	@Transient
 	private UUID capturingPlayer = null;
+	@Transient
 	private Clan capturingClan = null;
+	@Transient
 	private List<UUID> recentCaptureFails = new ArrayList<UUID>();
+	@Transient
 	private int claimSecRemaining = 0;
+	@Transient
 	private int timeoutSecRemaining = 0;
+	@Transient
 	private double refractoryPeriod = 0;
+	@Transient
 	private boolean capturedRecently = false;
+	@Transient
 	private int recentClaims = 0;
+	@Parent
 	private Plot plot;
+	
+	public PlotCapturePoint() {
+		
+	}
 	
 	public PlotCapturePoint(Plot plot){
 		this.plot = plot;
@@ -52,10 +82,11 @@ public class PlotCapturePoint {
 				return;
 			}
 			this.capturingPlayer = player.getUniqueId();
-			this.setClaimSecRemaining(120);
-			this.setTimeoutSecRemaining(8 * 60); // seconds
+			this.setClaimSecRemaining(Variables.claimTime);
+			this.setTimeoutSecRemaining(60*8);
 			this.capturingClan = clan;
 			pPlayer.setClaming(true);
+			BarAPI.setMessage(player, ChatColor.GREEN+"Claiming", Variables.claimTime);
 
 			if (this.getOwningClan() != null)
 				this.getOwningClan().sendMessage(
@@ -66,7 +97,7 @@ public class PlotCapturePoint {
 					+ this.plot.getName() + " for your clan!");
 			player.sendMessage(ChatColor.GOLD
 					+ "You must stay alive and within " + this.plot.getName()
-					+ " for 120 seconds.");
+					+ " for "+Variables.claimTime+" seconds.");
 		}
 	}
 
@@ -85,6 +116,7 @@ public class PlotCapturePoint {
 		this.capturingClan.sendMessage(player.getName()
 				+ " died and thus failed to claim " + this.plot.getName() + ".");
 		this.setClaimSecRemaining(0);
+		BarAPI.removeBar(player);
 		this.recentCaptureFails.add(player.getUniqueId());
 		this.capturingClan = null;
 	}
@@ -104,6 +136,7 @@ public class PlotCapturePoint {
 		this.capturingClan.sendMessage(player.getName() + " left "
 				+ this.plot.getName() + " and thus failed to claim it.");
 		this.claimSecRemaining = 0;
+		BarAPI.removeBar(player);
 		this.recentCaptureFails.add(player.getUniqueId());
 		this.capturingClan = null;
 	}
@@ -199,6 +232,14 @@ public class PlotCapturePoint {
 
 	public void setTimeoutSecRemaining(int timeoutSecRemaining) {
 		this.timeoutSecRemaining = timeoutSecRemaining;
+	}
+	
+	public Plot getPlot() {
+		return this.plot;
+	}
+	
+	public void setPlot(Plot plot) {
+		this.plot = plot;
 	}
 
 	public void tick(double delta) {

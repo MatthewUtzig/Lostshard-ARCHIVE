@@ -56,7 +56,8 @@ public class PlayerManager {
 			try {
 				pPlayer.insert();
 			}catch(Exception e){
-				Bukkit.getPlayer(uuid).kickPlayer(ChatColor.RED+"SERVER ERROR!\nWE ARE WORKING ON IT!");
+				Bukkit.getPlayer(uuid).kickPlayer(ChatColor.RED
+						+ "Something is wrong. We are working on it.");
 				e.printStackTrace();
 			}
 		}
@@ -73,7 +74,7 @@ public class PlayerManager {
 
 	public PseudoPlayer onPlayerLogin(PlayerJoinEvent event) {
 		final Player player = event.getPlayer();
-		final PseudoPlayer pPlayer = this.getPlayer(player, true);
+			final PseudoPlayer pPlayer = this.getPlayer(player, true);
 		this.players.add(pPlayer);
 		player.setDisplayName(Utils.getDisplayName(player));
 		return pPlayer;

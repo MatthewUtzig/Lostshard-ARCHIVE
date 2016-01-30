@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 
@@ -21,7 +22,9 @@ public class TabUtils {
 	public static List<String> OnlinePlayersTab(String[] args) {
 		final List<String> completions = new ArrayList<String>();
 		for (final Player option : Bukkit.getOnlinePlayers())
-			if (StringUtil.startsWithIgnoreCase(option.getName(),
+			if(Lostshard.isVanished(option))
+				continue;
+			else if (StringUtil.startsWithIgnoreCase(option.getName(),
 					args[args.length - 1]))
 				completions.add(option.getName());
 		return completions;
@@ -31,6 +34,8 @@ public class TabUtils {
 		final List<String> completions = new ArrayList<String>();
 		final List<Player> excludes = Arrays.asList(exclude);
 		for (final Player option : Bukkit.getOnlinePlayers()) {
+			if(Lostshard.isVanished(option))
+				continue;
 			if (excludes.contains(option))
 				continue;
 			if (StringUtil.startsWithIgnoreCase(option.getName(),

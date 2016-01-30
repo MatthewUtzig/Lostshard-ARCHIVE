@@ -189,6 +189,7 @@ public class Build {
 		total += this.mining.getLvl();
 		total += this.survivalism.getLvl();
 		total += this.taming.getLvl();
+		total += this.archery.getLvl();
 		return total;
 	}
 	

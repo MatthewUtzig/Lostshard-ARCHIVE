@@ -64,30 +64,11 @@ public class ScrollGUI extends GUI {
 						pPlayer.getScrolls().remove(scroll);
 						pPlayer.update();
 						
-						final int amount = Collections.frequency(scrolls, s);
-						final ItemStack newItem = new ItemStack(s.getReagentCost().get(0).getType(), amount);
-						final ItemMeta itemMeta = newItem.getItemMeta();
-						final List<String> lore = new ArrayList<String>();
-
-						if (pPlayer.getSpellbook().containSpell(s))
-							itemMeta.setDisplayName(ChatColor.GREEN + s.getName());
-						else
-							itemMeta.setDisplayName(ChatColor.RED + s.getName());
-
-						lore.add(ChatColor.GOLD + "Amount: " + amount);
-
-						lore.add(ChatColor.BLUE + "Mana cost: " + s.getManaCost());
-						lore.add("You can add the scroll to your spellbook by clicking it");
-						lore.add("You can use the scroll by shift clicking it");
-						lore.add(ChatColor.GOLD + "Commands");
-						lore.add("/scrolls use " + ChatColor.RED + "(scroll)");
-						lore.add("/scrolls give " + ChatColor.RED + "(scroll)");
-						lore.add("/scrolls spellbook " + ChatColor.RED + "(scroll)");
-						itemMeta.setLore(lore);
-
-						newItem.setItemMeta(itemMeta);
+						GUI gui = new ScrollGUI(pPlayer);
 						
-						inv.setItem(slot, newItem);
+						pPlayer.getGui().setItems(gui.getItems());
+						
+						openInventory(player);
 						
 						Output.positiveMessage(player,
 								"You have transferred " + scroll.getName() + " to your spellbook.");

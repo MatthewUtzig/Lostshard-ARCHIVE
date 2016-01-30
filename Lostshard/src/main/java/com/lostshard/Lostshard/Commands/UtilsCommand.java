@@ -136,7 +136,7 @@ public class UtilsCommand extends LostshardCommand {
 			return;
 		}
 		final Player tPlayer = Bukkit.getPlayer(args[0]);
-		if (tPlayer == null) {
+		if (tPlayer == null || (Lostshard.isVanished(tPlayer) && !sender.isOp())) {
 			Output.simpleError(player, args[0] + " is not online.");
 			return;
 		}

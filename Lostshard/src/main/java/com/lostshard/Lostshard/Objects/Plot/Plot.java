@@ -122,7 +122,6 @@ public class Plot {
 	private boolean allowMagic = true;
 	private boolean allowPvp = true;
 
-	private boolean isCapturepoint = false;
 	private PlotCapturePoint capturepointData = null;
 	
 	public Plot() {
@@ -573,8 +572,7 @@ public class Plot {
 			s.close();
 		}
 	}
-
-	@Transient
+	
 	public PlotCapturePoint getCapturepointData() {
 		if(capturepointData == null)
 			this.capturepointData = new PlotCapturePoint(this);
@@ -585,11 +583,12 @@ public class Plot {
 		this.capturepointData = capturepoint;
 	}
 
+	@Transient
 	public boolean isCapturepoint() {
-		return isCapturepoint;
+		return getCapturepointData().isCapturePoint();
 	}
 
 	public void setCapturepoint(boolean isCapturepoint) {
-		this.isCapturepoint = isCapturepoint;
+		getCapturepointData().setCapturePoint(isCapturepoint);
 	}
 }

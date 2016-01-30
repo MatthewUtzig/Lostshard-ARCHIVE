@@ -148,7 +148,7 @@ public class MageryCommand extends LostshardCommand {
 				if (args.length >= 3) {
 					final String targetName = args[1];
 					final Player targetPlayer = Bukkit.getPlayer(targetName);
-					if (targetPlayer != null) {
+					if (targetPlayer != null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 						final PseudoPlayer targetPseudoPlayer = this.pm
 								.getPlayer(targetPlayer);
 

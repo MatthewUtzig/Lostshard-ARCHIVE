@@ -105,7 +105,7 @@ public class BankCommand extends LostshardCommand {
 		final String targetName = args[0];
 
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (targetPlayer == null) {
+		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !sender.isOp())) {
 			sender.sendMessage(ChatColor.DARK_RED + targetName
 					+ " is not online.");
 			return;

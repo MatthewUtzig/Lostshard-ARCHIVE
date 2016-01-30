@@ -222,7 +222,9 @@ public class PlayerListener extends LostshardListener implements Managers {
 		}
 		event.setJoinMessage(null);
 		for (final Player p : Bukkit.getOnlinePlayers())
-			if (p != player)
+			if(Lostshard.isVanished(p))
+				continue;
+			else if (p != player)
 				p.sendMessage(ChatColor.YELLOW + player.getName()
 						+ " joined the game");
 	}

@@ -17,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.Lostshard.Handlers.ChatHandler;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.Scroll;
@@ -178,6 +179,8 @@ public class SpellManager {
 
 	public void chant(Player player, String spellWords) {
 		player.sendMessage(ChatColor.AQUA + "You chant \"" + spellWords + "\".");
+		if(Lostshard.isVanished(player))
+			return;
 		final int localRange = ChatHandler.getLocalChatRange();
 		for (final Player p : Bukkit.getOnlinePlayers())
 			if (!p.equals(player))

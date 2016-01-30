@@ -27,23 +27,15 @@ public class StoreManager {
 	private StoreManager() {
 
 	}
-
-	public Store getStore(int npcID) {
-		for (final Store s : this.stores)
-			if (s.getNpcId() == npcID)
-				return s;
-		return null;
+	
+	public Store createStore() {
+		Store store = new Store();
+		return store;
 	}
 
 	public Store getStore(Location location) {
 		final NPC npc = this.npcm.getVendor(location);
-		return this.getStore(npc);
-	}
-
-	public Store getStore(NPC npc) {
-		if (npc == null)
-			return null;
-		return this.getStore(npc.getId());
+		return npc.getStore();
 	}
 
 	public List<Store> getStores() {

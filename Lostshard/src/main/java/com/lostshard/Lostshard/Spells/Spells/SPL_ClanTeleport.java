@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Spells.Scroll;
@@ -24,7 +25,7 @@ public class SPL_ClanTeleport extends Spell {
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 		final Player targetPlayer = Bukkit.getPlayer(this.getResponse());
 
-		if (targetPlayer == null) {
+		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
 			Output.simpleError(player, "Player not found.");
 			return;
 		} else {

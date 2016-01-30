@@ -182,7 +182,7 @@ commands:
       usage: /<command>
    shop:
       description: unignores a player.
-      aliases: [buy,sell,store]
+      aliases: [store]
       usage: /<command>
    help:
       description: displays help menu.
@@ -211,9 +211,6 @@ commands:
       usage: /<command>
    meditate:
       description: Allows you to regain mana faster
-      usage: /<command>
-   vanish:
-      description: Allows admins to hide
       usage: /<command>
    item:
       description: Allows admins to give items with ezz
