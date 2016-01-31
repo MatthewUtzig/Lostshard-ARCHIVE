@@ -13,6 +13,12 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 
 public class MagicStructure {
 
+	protected static PlotManager ptm = PlotManager.getManager();
+
+	protected static PlayerManager pm = PlayerManager.getManager();
+
+	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
+
 	public static MagicStructure findMagicStuckture(Block block) {
 		for (final MagicStructure ms : magicstructures)
 			if (ms.getBlockStates().contains(block.getState()))
@@ -52,11 +58,6 @@ public class MagicStructure {
 		magicstructures.removeIf(ms -> ms.isDead);
 	}
 
-	protected static PlotManager ptm = PlotManager.getManager();
-	protected static PlayerManager pm = PlayerManager.getManager();
-
-	public static List<MagicStructure> magicstructures = new ArrayList<MagicStructure>();
-
 	private UUID creatorUUID;
 
 	private boolean isDead = false;
@@ -67,8 +68,7 @@ public class MagicStructure {
 
 	private int curTick = 0;
 
-	public MagicStructure(ArrayList<Block> blocks, UUID uuid,
-			int numTicksTillCleanup) {
+	public MagicStructure(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		for (final Block b : blocks)
 			this.blocks.add(b.getState());
 		this.setCreatorUUID(uuid);

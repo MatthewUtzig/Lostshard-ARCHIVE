@@ -13,8 +13,7 @@ public class Iceball extends MagicStructure {
 
 	private boolean leaveSnow;
 
-	public Iceball(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup,
-			boolean leaveSnow) {
+	public Iceball(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean leaveSnow) {
 		super(blocks, uuid, numTicksTillCleanup);
 		this.setLeaveSnow(leaveSnow);
 	}
@@ -25,11 +24,9 @@ public class Iceball extends MagicStructure {
 		for (int i = 0; i < this.getBlockStates().size(); i++) {
 			final BlockState b = this.getBlockStates().get(i);
 			if (b.getBlock().getState().equals(b)) {
-				final Material blockBelow = b.getWorld()
-						.getBlockAt(b.getX(), b.getY() - 1, b.getZ()).getType();
+				final Material blockBelow = b.getWorld().getBlockAt(b.getX(), b.getY() - 1, b.getZ()).getType();
 				if (this.isLeaveSnow()) {
-					if (blockBelow != Material.AIR
-							&& blockBelow != Material.SNOW)
+					if (blockBelow != Material.AIR && blockBelow != Material.SNOW)
 						b.getBlock().setType(Material.SNOW);
 					else
 						b.getBlock().setType(Material.AIR);

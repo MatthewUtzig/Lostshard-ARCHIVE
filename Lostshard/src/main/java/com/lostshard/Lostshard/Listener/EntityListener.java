@@ -7,10 +7,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
+import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
@@ -44,7 +44,8 @@ public class EntityListener extends LostshardListener implements Managers {
 
 	@EventHandler(priority = EventPriority.LOW)
 	public void monitorEntityAttackEntity(EntityDamageByEntityEvent event) {
-		if(event.getEntity().hasMetadata("NPC")) return;
+		if (event.getEntity().hasMetadata("NPC"))
+			return;
 		BladesSkill.playerDamagedEntityWithSword(event);
 		LumberjackingSkill.playerDamagedEntityWithAxe(event);
 		BrawlingSkill.playerDamagedEntityWithMisc(event);
@@ -59,34 +60,16 @@ public class EntityListener extends LostshardListener implements Managers {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEntityDamaged(EntityDamageEvent event) {
-		if(event.getEntity().hasMetadata("NPC")) return;
-		
+		if (event.getEntity().hasMetadata("NPC"))
+			return;
+
 		if (event.getCause().equals(DamageCause.FALL))
-			if (event.getEntity().getLocation().subtract(0, 1, 0).getBlock()
-					.getType() == Material.WOOL)
+			if (event.getEntity().getLocation().subtract(0, 1, 0).getBlock().getType() == Material.WOOL)
 				event.setCancelled(true);
 		SurvivalismSkill.onPlayerDamage(event);
 		DamageHandler.goldArmor(event);
 		sm.damage(event);
-		restDamage(event);
-	}
-
-	private void restDamage(EntityDamageEvent event) {
-		if(event.getEntity() instanceof Player) {
-			Player player = (Player) event.getEntity();
-			PseudoPlayer pPlayer = pm.getPlayer(player);
-			if(pPlayer.isResting() && pPlayer.isMeditating()) {
-				pPlayer.setMeditating(false);
-				pPlayer.setResting(false);
-				Output.simpleError(player, "You have been damage and stopped resting and meditating.");
-			}else if(pPlayer.isResting()) {
-				pPlayer.setResting(false);
-				Output.simpleError(player, "You have been damage and stopped resting.");
-			}else if(pPlayer.isMeditating()) {
-				pPlayer.setMeditating(false);
-				Output.simpleError(player, "You have been damage and stopped meditating.");
-			}
-		}
+		this.restDamage(event);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -103,8 +86,7 @@ public class EntityListener extends LostshardListener implements Managers {
 		final Entity defender = event.getEntity();
 		if (defender.hasMetadata("NPC"))
 			return;
-		event.setCancelled(!PVPHandler
-				.canEntityAttackEntity(attacker, defender));
+		event.setCancelled(!PVPHandler.canEntityAttackEntity(attacker, defender));
 		PVPHandler.Attack(event);
 		TamingSkill.onDamage(event);
 	}
@@ -123,13 +105,13 @@ public class EntityListener extends LostshardListener implements Managers {
 	}
 
 	@EventHandler
-	public void onMonsterSpawn(EntitySpawnEvent event) {
-		PlotProtectionHandler.onMonsterSpawn(event);
-	}
-	
-	@EventHandler
 	public void onEntityPortalCreate(EntityCreatePortalEvent event) {
 		EnderdragonHandler.onPortalCreate(event);
+	}
+
+	@EventHandler
+	public void onMonsterSpawn(EntitySpawnEvent event) {
+		PlotProtectionHandler.onMonsterSpawn(event);
 	}
 
 	@EventHandler
@@ -140,16 +122,14 @@ public class EntityListener extends LostshardListener implements Managers {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPotion(PotionSplashEvent event) {
 		for (final PotionEffect pe : event.getPotion().getEffects())
-			if (pe.getType().equals(PotionEffectType.HEAL)
-					|| pe.getType().equals(PotionEffectType.REGENERATION)
+			if (pe.getType().equals(PotionEffectType.HEAL) || pe.getType().equals(PotionEffectType.REGENERATION)
 					|| pe.getType().equals(PotionEffectType.ABSORPTION)
 					|| pe.getType().equals(PotionEffectType.DAMAGE_RESISTANCE)
 					|| pe.getType().equals(PotionEffectType.FAST_DIGGING)
 					|| pe.getType().equals(PotionEffectType.FIRE_RESISTANCE)
 					|| pe.getType().equals(PotionEffectType.HEALTH_BOOST)
 					|| pe.getType().equals(PotionEffectType.INCREASE_DAMAGE)
-					|| pe.getType().equals(PotionEffectType.INVISIBILITY)
-					|| pe.getType().equals(PotionEffectType.SPEED)
+					|| pe.getType().equals(PotionEffectType.INVISIBILITY) || pe.getType().equals(PotionEffectType.SPEED)
 					|| pe.getType().equals(PotionEffectType.WATER_BREATHING)
 					|| pe.getType().equals(PotionEffectType.NIGHT_VISION))
 				return;
@@ -159,6 +139,24 @@ public class EntityListener extends LostshardListener implements Managers {
 				if (e instanceof Player)
 					if (!PVPHandler.canEntityAttackEntity(attacker, e))
 						event.setIntensity(e, 0d);
+		}
+	}
+
+	private void restDamage(EntityDamageEvent event) {
+		if (event.getEntity() instanceof Player) {
+			final Player player = (Player) event.getEntity();
+			final PseudoPlayer pPlayer = pm.getPlayer(player);
+			if (pPlayer.isResting() && pPlayer.isMeditating()) {
+				pPlayer.setMeditating(false);
+				pPlayer.setResting(false);
+				Output.simpleError(player, "You have been damage and stopped resting and meditating.");
+			} else if (pPlayer.isResting()) {
+				pPlayer.setResting(false);
+				Output.simpleError(player, "You have been damage and stopped resting.");
+			} else if (pPlayer.isMeditating()) {
+				pPlayer.setMeditating(false);
+				Output.simpleError(player, "You have been damage and stopped meditating.");
+			}
 		}
 	}
 

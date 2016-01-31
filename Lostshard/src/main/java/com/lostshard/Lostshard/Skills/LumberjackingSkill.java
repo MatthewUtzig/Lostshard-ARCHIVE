@@ -24,10 +24,6 @@ import com.lostshard.Lostshard.Utils.Utils;
 @Embeddable
 public class LumberjackingSkill extends Skill {
 
-	public LumberjackingSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
 	@SuppressWarnings("deprecation")
 	public static void blockBrokeWithAxe(BlockBreakEvent event) {
 		if (event.isCancelled())
@@ -41,56 +37,42 @@ public class LumberjackingSkill extends Skill {
 		final int lumberSkill = skill.getLvl();
 		final double chanceToDropPlank = (double) lumberSkill / 1000;
 		byte data;
-		if (block.getType().equals(Material.LOG)
-				&& !block.hasMetadata("placed")) {
-			if (block.getData() == 1 || block.getData() == 5
-					|| block.getData() == 9 || block.getData() == 13)
+		if (block.getType().equals(Material.LOG) && !block.hasMetadata("placed")) {
+			if (block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
 				data = 1;
-			else if (block.getData() == 2 || block.getData() == 6
-					|| block.getData() == 10 || block.getData() == 14)
+			else if (block.getData() == 2 || block.getData() == 6 || block.getData() == 10 || block.getData() == 14)
 				data = 2;
-			else if (block.getData() == 3 || block.getData() == 7
-					|| block.getData() == 11 || block.getData() == 15)
+			else if (block.getData() == 3 || block.getData() == 7 || block.getData() == 11 || block.getData() == 15)
 				data = 3;
 			else
 				data = 0;
 
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 
 			skill.setBaseProb(.3);
 			skill.setScaleConstant(80);
 			final int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
-		} else if (block.getType().equals(Material.LOG_2)
-				&& !block.hasMetadata("placed")) {
-			if (block.getData() == 1 || block.getData() == 5
-					|| block.getData() == 9 || block.getData() == 13)
+		} else if (block.getType().equals(Material.LOG_2) && !block.hasMetadata("placed")) {
+			if (block.getData() == 1 || block.getData() == 5 || block.getData() == 9 || block.getData() == 13)
 				data = 5;
 			else
 				data = 4;
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 			if (Math.random() < chanceToDropPlank)
-				block.getWorld().dropItemNaturally(block.getLocation(),
-						new ItemStack(Material.WOOD, 1, data));
+				block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(Material.WOOD, 1, data));
 
 			skill.setBaseProb(.3);
 			skill.setScaleConstant(80);
@@ -99,8 +81,7 @@ public class LumberjackingSkill extends Skill {
 		}
 	}
 
-	public static void playerDamagedEntityWithAxe(
-			EntityDamageByEntityEvent event) {
+	public static void playerDamagedEntityWithAxe(EntityDamageByEntityEvent event) {
 		if (event.isCancelled())
 			return;
 		if (!(event.getEntity() instanceof LivingEntity))
@@ -129,8 +110,7 @@ public class LumberjackingSkill extends Skill {
 
 		damage += additionalDamage;
 
-		final List<Entity> nearbyEntities = damagedEntity.getNearbyEntities(3,
-				3, 3);
+		final List<Entity> nearbyEntities = damagedEntity.getNearbyEntities(3, 3, 3);
 		final double newDamage = (int) Math.ceil(damage * damagePercent);
 		for (final Entity entity : nearbyEntities) {
 			if (entity == damagedEntity)
@@ -140,12 +120,9 @@ public class LumberjackingSkill extends Skill {
 				if (cleavedEntity != null)
 					if (cleavedEntity instanceof Player) {
 						final Player p = (Player) cleavedEntity;
-						if (p != player
-								&& PVPHandler.canEntityAttackEntity(player,
-										damagedEntity)) {
+						if (p != player && PVPHandler.canEntityAttackEntity(player, damagedEntity)) {
 							// RPGEntityListener.criminalAction(p, player);
-							final double adjustedDamage = Utils
-									.adjustDamageForArmor(p, newDamage);
+							final double adjustedDamage = Utils.adjustDamageForArmor(p, newDamage);
 							cleavedEntity.damage(adjustedDamage);
 						}
 					} else
@@ -155,8 +132,7 @@ public class LumberjackingSkill extends Skill {
 
 		event.setDamage(damage);
 
-		if (damagedEntity instanceof Monster || damagedEntity instanceof Player
-				|| damagedEntity instanceof Slime)
+		if (damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
@@ -172,6 +148,10 @@ public class LumberjackingSkill extends Skill {
 		this.setBaseProb(.2);
 		this.setScaleConstant(60);
 		this.setMat(Material.IRON_AXE);
+	}
+
+	public LumberjackingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

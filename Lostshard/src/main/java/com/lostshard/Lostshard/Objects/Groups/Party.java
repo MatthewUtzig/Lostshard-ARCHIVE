@@ -15,12 +15,10 @@ public class Party extends Group {
 		for (final UUID member : this.getMembers()) {
 			final Player memberPlayer = Bukkit.getPlayer(member);
 			if (memberPlayer != null) {
-				Lostshard.log.finest(ChatColor.WHITE + "["
-						+ ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE
-						+ "] " + message);
-				memberPlayer.sendMessage(ChatColor.WHITE + "["
-						+ ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE
-						+ "] " + message);
+				Lostshard.log.finest(
+						ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE + "] " + message);
+				memberPlayer.sendMessage(
+						ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE + "] " + message);
 			}
 		}
 	}

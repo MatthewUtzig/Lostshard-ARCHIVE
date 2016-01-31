@@ -21,8 +21,7 @@ public class TamingCommand extends LostshardCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("mount")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -36,8 +35,8 @@ public class TamingCommand extends LostshardCommand {
 		return false;
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		return null;
 	}
 

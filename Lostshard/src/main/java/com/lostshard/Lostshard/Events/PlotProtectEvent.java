@@ -7,11 +7,11 @@ import org.bukkit.event.HandlerList;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 
 public class PlotProtectEvent extends Event implements Cancellable {
+	private static final HandlerList handlers = new HandlerList();
+
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
-
-	private static final HandlerList handlers = new HandlerList();
 
 	private boolean cancelled;
 	private Event protectEvent;

@@ -26,21 +26,14 @@ public class SPL_Grass extends RangedSpell {
 	public void doAction(Player player) {
 
 		final ArrayList<Block> blocks = new ArrayList<Block>();
-		for (int x = this.getFoundBlock().getX() - 2; x <= this.getFoundBlock()
-				.getX() + 2; x++)
-			for (int y = this.getFoundBlock().getY() - 2; y <= this
-					.getFoundBlock().getY() + 2; y++)
-				for (int z = this.getFoundBlock().getZ() - 2; z <= this
-						.getFoundBlock().getZ() + 2; z++) {
-					final Block blockAt = this.getFoundBlock().getWorld()
-							.getBlockAt(x, y, z);
-					if (blockAt.getType().equals(Material.DIRT)
-							|| blockAt.getType().equals(Material.SOIL)) {
-						final Block blockAbove = this.getFoundBlock()
-								.getRelative(0, 1, 0);
+		for (int x = this.getFoundBlock().getX() - 2; x <= this.getFoundBlock().getX() + 2; x++)
+			for (int y = this.getFoundBlock().getY() - 2; y <= this.getFoundBlock().getY() + 2; y++)
+				for (int z = this.getFoundBlock().getZ() - 2; z <= this.getFoundBlock().getZ() + 2; z++) {
+					final Block blockAt = this.getFoundBlock().getWorld().getBlockAt(x, y, z);
+					if (blockAt.getType().equals(Material.DIRT) || blockAt.getType().equals(Material.SOIL)) {
+						final Block blockAbove = this.getFoundBlock().getRelative(0, 1, 0);
 						if (blockAbove.getType().equals(Material.AIR))
-							if (Utils.isWithin(blockAbove.getLocation(), this
-									.getFoundBlock().getLocation(), 2))
+							if (Utils.isWithin(blockAbove.getLocation(), this.getFoundBlock().getLocation(), 2))
 								blocks.add(blockAt);
 					}
 				}

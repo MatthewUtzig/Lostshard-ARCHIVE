@@ -19,52 +19,53 @@ public class GuardTask extends DelayedTask {
 
 	private NPC guard;
 	private UUID target;
-	
+
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
-	
+
 	public GuardTask(NPC guard, UUID target, int delay) {
 		super(delay);
 		this.guard = guard;
 		this.target = target;
 		TaskManager.getManager().add(this);
 	}
-	
+
+	public NPC getGuard() {
+		return this.guard;
+	}
+
+	public UUID getTarget() {
+		return this.target;
+	}
+
 	@Override
 	public void run() {
-		if(this.target == null) {
-			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
+		if (this.target == null) {
+			this.guard.teleport(this.guard.getLocation(), TeleportCause.PLUGIN);
 			return;
 		}
-		Player target = Bukkit.getPlayer(this.target);
-		if(Lostshard.isVanished(target)) {
-			guard.teleport(guard.getLocation(), TeleportCause.PLUGIN);
+		final Player target = Bukkit.getPlayer(this.target);
+		if (Lostshard.isVanished(target)) {
+			this.guard.teleport(this.guard.getLocation(), TeleportCause.PLUGIN);
 			return;
 		}
-		if(ptm.findPlotAt(target.getLocation()) == guard.getPlot()) {
-			PseudoPlayer pPlayer = pm.getPlayer(target);
-			if((pPlayer.isMurderer() || pPlayer.isCriminal()) && target.getGameMode().equals(GameMode.SURVIVAL) && !target.isDead()) {
-				guard.teleport(target.getLocation(), TeleportCause.PLUGIN);
-				pPlayer.addRecentAttacker(new RecentAttacker(guard.getUUID(), 100));
+		if (this.ptm.findPlotAt(target.getLocation()) == this.guard.getPlot()) {
+			final PseudoPlayer pPlayer = this.pm.getPlayer(target);
+			if ((pPlayer.isMurderer() || pPlayer.isCriminal()) && target.getGameMode().equals(GameMode.SURVIVAL)
+					&& !target.isDead()) {
+				this.guard.teleport(target.getLocation(), TeleportCause.PLUGIN);
+				pPlayer.addRecentAttacker(new RecentAttacker(this.guard.getUUID(), 100));
 				target.damage(0d);
 				target.setHealth(0);
 			}
 		}
 	}
-	
+
 	public void setGuard(NPC guard) {
 		this.guard = guard;
 	}
-	
+
 	public void setTarget(UUID target) {
 		this.target = target;
-	}
-	
-	public UUID getTarget() {
-		return target;
-	}
-	
-	public NPC getGuard() {
-		return guard;
 	}
 }

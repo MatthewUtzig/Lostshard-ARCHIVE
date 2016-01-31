@@ -23,6 +23,36 @@ import net.md_5.bungee.api.ChatColor;
 
 public class Serializer {
 
+	public static JSONParser parser = new JSONParser();
+
+	public static Gson gson = new Gson();
+
+	public static ItemStack[] deserializeContents(String items) {
+		try {
+			final String[] list = gson.fromJson(items, String[].class);
+			final ItemStack[] result = new ItemStack[list.length];
+			for (int i = 0; i < list.length; i++)
+				result[i] = itemFrom64(list[i]);
+			return result;
+		} catch (final Exception e) {
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static ItemStack deserializeItemStack(String item) {
+		try {
+			if (item == null)
+				return new ItemStack(Material.AIR);
+			final Map<String, Object> map = gson.fromJson(item, Map.class);
+			return ItemStack.deserialize(map);
+		} catch (final Exception e) {
+			final ItemStack result = new ItemStack(Material.COBBLESTONE);
+			result.getItemMeta().setDisplayName(ChatColor.RED + "ERROR!");
+			return result;
+		}
+	}
+
 	public static Location deserializeLocation(String locationString) {
 		try {
 			final Object jo = parser.parse(locationString);
@@ -42,6 +72,61 @@ public class Serializer {
 		}
 	}
 
+	public static ItemStack itemFrom64(String data) {
+		try {
+			final ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
+			final BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+			try {
+				return (ItemStack) dataInput.readObject();
+			} finally {
+				dataInput.close();
+			}
+		} catch (final Exception e) {
+			e.printStackTrace();
+			return new ItemStack(Material.AIR);
+		}
+	}
+
+	public static String itemTo64(ItemStack stack) {
+		try {
+			final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			final BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+			dataOutput.writeObject(stack);
+
+			// Serialize that array
+			dataOutput.close();
+			return Base64Coder.encodeLines(outputStream.toByteArray());
+		} catch (final Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	public static String serializeContents(ItemStack[] items) {
+		try {
+			final String[] result = new String[items.length];
+			for (int i = 0; i < items.length; i++) {
+				ItemStack item = items[i];
+				if (item == null)
+					item = new ItemStack(Material.AIR);
+				result[i] = itemTo64(item);
+			}
+			return gson.toJson(result);
+		} catch (final Exception e) {
+			return "";
+		}
+	}
+
+	public static String serializeItemStack(ItemStack item) {
+		try {
+			if (item == null)
+				item = new ItemStack(Material.AIR);
+			return gson.toJson(item.serialize());
+		} catch (final Exception e) {
+			return gson.toJson(new ItemStack(Material.AIR).serialize());
+		}
+	}
+
 	public static String serializeLocation(Location location) {
 		final Map<String, Object> obj = new HashMap<String, Object>();
 		obj.put("world", location.getWorld().getName());
@@ -52,91 +137,4 @@ public class Serializer {
 		obj.put("yaw", location.getYaw());
 		return gson.toJson(obj);
 	}
-	
-	public static String serializeItemStack(ItemStack item) {
-		try {
-			if(item == null)
-				item = new ItemStack(Material.AIR);
-			return gson.toJson(item.serialize());
-		} catch(Exception e) {
-			return gson.toJson(new ItemStack(Material.AIR).serialize());
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static ItemStack deserializeItemStack(String item) {
-		try {
-			if(item == null)
-				return new ItemStack(Material.AIR);
-			Map<String, Object> map = gson.fromJson(item, Map.class);
-			return ItemStack.deserialize(map);
-		} catch(Exception e) {
-			ItemStack result = new ItemStack(Material.COBBLESTONE);
-			result.getItemMeta().setDisplayName(ChatColor.RED+"ERROR!");
-			return result;
-		}
-	}
-	
-	public static String serializeContents(ItemStack[] items) {
-		try {
-		String[] result = new String[items.length];
-		for(int i=0; i<items.length; i++) {
-			ItemStack item = items[i];
-			if(item == null)
-				item = new ItemStack(Material.AIR);
-			result[i] = itemTo64(item);
-		}
-			return gson.toJson(result);
-		} catch(Exception e) {
-			return "";
-		}
-	}
-	
-	public static ItemStack[] deserializeContents(String items) {
-		try {
-			String[] list = gson.fromJson(items, String[].class);
-			ItemStack[] result = new ItemStack[list.length];
-			for(int i=0; i<list.length; i++)
-				result[i] = itemFrom64(list[i]);
-			return result;
-		} catch(Exception e) {
-			return null;
-		}
-	}
-	
-	public static String itemTo64(ItemStack stack) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
-            dataOutput.writeObject(stack);
-
-            // Serialize that array
-            dataOutput.close();
-            return Base64Coder.encodeLines(outputStream.toByteArray());
-        }
-        catch (Exception e) {
-        	e.printStackTrace();
-            return "";
-        }
-    }
-   
-    public static ItemStack itemFrom64(String data) {
-        try {
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
-            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
-            try {
-                return (ItemStack) dataInput.readObject();
-            } finally {
-                dataInput.close();
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            return new ItemStack(Material.AIR);
-        }
-    }
-	
-	public static JSONParser parser = new JSONParser();
-
-	public static Gson gson = new Gson();
 }

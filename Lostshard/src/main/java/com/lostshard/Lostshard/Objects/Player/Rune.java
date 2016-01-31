@@ -18,14 +18,18 @@ public class Rune {
 	private String label;
 
 	public Rune() {
-		
+
 	}
-	
+
 	public Rune(Location location, String name, int id) {
 		super();
 		this.location = new SavableLocation(location);
 		this.label = name;
 		this.id = id;
+	}
+
+	public int getId() {
+		return this.id;
 	}
 
 	public String getLabel() {
@@ -37,24 +41,20 @@ public class Rune {
 		return this.location.getLocation();
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public void setLocation(Location location) {
-		this.location = new SavableLocation(location);
-	}
-
-	public int getId() {
-		return id;
+	public SavableLocation getSavableLocation() {
+		return this.location;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public SavableLocation getSavableLocation() {
-		return this.location;
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setLocation(Location location) {
+		this.location = new SavableLocation(location);
 	}
 
 	public void setSavableLocation(SavableLocation savableLocation) {

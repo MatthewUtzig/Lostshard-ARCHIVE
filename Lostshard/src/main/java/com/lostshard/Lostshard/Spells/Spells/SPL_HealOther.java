@@ -21,10 +21,8 @@ public class SPL_HealOther extends Spell {
 	@Override
 	public void doAction(Player player) {
 		if (this.foundPlayer != null) {
-			Output.positiveMessage(player, "You have healed "
-					+ this.foundPlayer.getName() + ".");
-			this.foundPlayer.setHealth(Math.min(
-					this.foundPlayer.getHealth() + 8, 20));
+			Output.positiveMessage(player, "You have healed " + this.foundPlayer.getName() + ".");
+			this.foundPlayer.setHealth(Math.min(this.foundPlayer.getHealth() + 8, 20));
 		}
 
 	}

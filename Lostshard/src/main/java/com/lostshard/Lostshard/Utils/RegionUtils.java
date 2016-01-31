@@ -7,8 +7,7 @@ import org.bukkit.Location;
 
 public class RegionUtils {
 
-	public static List<Location> getCylinder(Location pos, double radius,
-			int height) {
+	public static List<Location> getCylinder(Location pos, double radius, int height) {
 		final List<Location> rs = new ArrayList<Location>();
 
 		pos.getBlock().getLocation(pos);

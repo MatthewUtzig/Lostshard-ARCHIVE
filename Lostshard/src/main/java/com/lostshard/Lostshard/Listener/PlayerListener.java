@@ -80,9 +80,16 @@ public class PlayerListener extends LostshardListener implements Managers {
 	public void onInventoryClose(InventoryCloseEvent event) {
 		final Player player = (Player) event.getPlayer();
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		if (event.getInventory().getTitle()
-				.equals(pPlayer.getBank().getInventory().getTitle()))
+		if (event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
 			pPlayer.update();
+	}
+
+	private void onMoveBlock(PlayerMoveEvent event) {
+		if (event.getTo() != null && event.getFrom() != null
+				&& !event.getTo().getBlock().getState().equals(event.getFrom().getBlock().getState())) {
+			sm.move(event);
+			this.restAndMeditate(event);
+		}
 	}
 
 	@EventHandler
@@ -91,21 +98,16 @@ public class PlayerListener extends LostshardListener implements Managers {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (pPlayer.getPvpTicks() > 0) {
 			// Drop inventory
-			for (final ItemStack itemStack : player.getInventory()
-					.getContents()) {
+			for (final ItemStack itemStack : player.getInventory().getContents()) {
 				if (itemStack == null)
 					continue;
-				player.getWorld().dropItemNaturally(player.getLocation(),
-						itemStack);
+				player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
 			}
 			// Drop armor
-			for (final ItemStack itemStack : player.getInventory()
-					.getArmorContents()) {
-				if (itemStack == null
-						|| itemStack.getType().equals(Material.AIR))
+			for (final ItemStack itemStack : player.getInventory().getArmorContents()) {
+				if (itemStack == null || itemStack.getType().equals(Material.AIR))
 					continue;
-				player.getWorld().dropItemNaturally(player.getLocation(),
-						itemStack);
+				player.getWorld().dropItemNaturally(player.getLocation(), itemStack);
 			}
 
 			// clear the inventory
@@ -115,8 +117,7 @@ public class PlayerListener extends LostshardListener implements Managers {
 			player.getInventory().setBoots(new ItemStack(Material.AIR, 0));
 			player.getInventory().clear();
 
-			Bukkit.broadcastMessage(ChatColor.RED + player.getName()
-					+ " left the game while in combat.");
+			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " left the game while in combat.");
 			event.setQuitMessage(null);
 		}
 		pm.onPlayerQuit(event);
@@ -147,7 +148,7 @@ public class PlayerListener extends LostshardListener implements Managers {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
 		ChatHandler.onPlayerChat(event);
-		if(StringUtils.containsIgnoreCase(event.getMessage(), "guard"))
+		if (StringUtils.containsIgnoreCase(event.getMessage(), "guard"))
 			GuardHandler.Guard(event.getPlayer());
 	}
 
@@ -168,13 +169,13 @@ public class PlayerListener extends LostshardListener implements Managers {
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		foodHealHandler.foodHeal(event);
 		sm.onPlayerInteract(event);
-		
-		Player p = event.getPlayer();
-		Block b = event.getClickedBlock();
-		Action a = event.getAction();
-		if(a.equals(Action.RIGHT_CLICK_BLOCK) && b != null && b.getState() instanceof InventoryHolder) {
-			Block block = SpellUtils.blockInLOS(p, 6);
-			if(block != null && !(block.getState() instanceof InventoryHolder))
+
+		final Player p = event.getPlayer();
+		final Block b = event.getClickedBlock();
+		final Action a = event.getAction();
+		if (a.equals(Action.RIGHT_CLICK_BLOCK) && b != null && b.getState() instanceof InventoryHolder) {
+			final Block block = SpellUtils.blockInLOS(p, 6);
+			if (block != null && !(block.getState() instanceof InventoryHolder))
 				event.setCancelled(true);
 		}
 	}
@@ -183,7 +184,7 @@ public class PlayerListener extends LostshardListener implements Managers {
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
 		NPCManager.getManager().interac(event);
 	}
-	
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event) {
 		PlotProtectionHandler.onPlayerInteractEntity(event);
@@ -206,9 +207,9 @@ public class PlayerListener extends LostshardListener implements Managers {
 		pPlayer.setScoreboard(new PseudoScoreboard(player.getUniqueId()));
 		PlotProtectionHandler.onPlayerJoin(event);
 		final List<OfflineMessage> msgs = pPlayer.getOfflineMessages();
-		Session s = Lostshard.getSession();
+		final Session s = Lostshard.getSession();
 		try {
-			Transaction t = s.beginTransaction();
+			final Transaction t = s.beginTransaction();
 			t.begin();
 			for (final OfflineMessage msg : msgs) {
 				player.sendMessage(ChatColor.BLUE + msg.getMessage());
@@ -216,24 +217,22 @@ public class PlayerListener extends LostshardListener implements Managers {
 			}
 			t.commit();
 			s.close();
-		}catch(Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();
 		}
 		event.setJoinMessage(null);
 		for (final Player p : Bukkit.getOnlinePlayers())
-			if(Lostshard.isVanished(p))
+			if (Lostshard.isVanished(p))
 				continue;
 			else if (p != player)
-				p.sendMessage(ChatColor.YELLOW + player.getName()
-						+ " joined the game");
+				p.sendMessage(ChatColor.YELLOW + player.getName() + " joined the game");
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
-		if (getPlugin().isMysqlError()) {
-			event.setKickMessage(ChatColor.RED
-					+ "Something is wrong. We are working on it.");
+		if (this.getPlugin().isMysqlError()) {
+			event.setKickMessage(ChatColor.RED + "Something is wrong. We are working on it.");
 			event.setResult(Result.KICK_OTHER);
 			return;
 		}
@@ -242,37 +241,11 @@ public class PlayerListener extends LostshardListener implements Managers {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerMove(PlayerMoveEvent event) {
 		PlotProtectionHandler.onPlotEnter(event);
-		onMoveBlock(event);
+		this.onMoveBlock(event);
 		Gate.onPlayerMove(event);
 		FireWalk.onPlayerMove(event);
 		CapturepointHandler.onPlayerMove(event);
 		GuardHandler.move(event);
-	}
-
-	private void onMoveBlock(PlayerMoveEvent event) {
-		if (event.getTo() != null
-				&& event.getFrom() != null
-				&& !event.getTo().getBlock().getState()
-				.equals(event.getFrom().getBlock().getState())) {
-			sm.move(event);
-			restAndMeditate(event);
-		}
-	}
-
-	private void restAndMeditate(PlayerMoveEvent event) {
-		Player player = event.getPlayer();
-		PseudoPlayer pPlayer = pm.getPlayer(player);
-		if(pPlayer.isResting() && pPlayer.isMeditating()) {
-			pPlayer.setMeditating(false);
-			pPlayer.setResting(false);
-			Output.simpleError(player, "You have moved and stopped resting and meditating.");
-		}else if(pPlayer.isResting()) {
-			pPlayer.setResting(false);
-			Output.simpleError(player, "You have moved and stopped resting.");
-		}else if(pPlayer.isMeditating()) {
-			pPlayer.setMeditating(false);
-			Output.simpleError(player, "You have moved and stopped meditating.");
-		}
 	}
 
 	@EventHandler
@@ -293,5 +266,21 @@ public class PlayerListener extends LostshardListener implements Managers {
 	@EventHandler
 	public void onPrepareItemEnchant(PrepareItemEnchantEvent event) {
 		BlackSmithySkill.Enchanting(event);
+	}
+
+	private void restAndMeditate(PlayerMoveEvent event) {
+		final Player player = event.getPlayer();
+		final PseudoPlayer pPlayer = pm.getPlayer(player);
+		if (pPlayer.isResting() && pPlayer.isMeditating()) {
+			pPlayer.setMeditating(false);
+			pPlayer.setResting(false);
+			Output.simpleError(player, "You have moved and stopped resting and meditating.");
+		} else if (pPlayer.isResting()) {
+			pPlayer.setResting(false);
+			Output.simpleError(player, "You have moved and stopped resting.");
+		} else if (pPlayer.isMeditating()) {
+			pPlayer.setMeditating(false);
+			Output.simpleError(player, "You have moved and stopped meditating.");
+		}
 	}
 }

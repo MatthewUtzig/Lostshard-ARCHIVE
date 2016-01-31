@@ -19,13 +19,21 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public class SpellUtils {
 
+	static PlayerManager pm = PlayerManager.getManager();
+
+	public static HashSet<Material> invisibleBlocks = new HashSet<Material>(Arrays.asList(Material.AIR, Material.SNOW,
+			Material.FIRE, Material.TORCH, Material.LADDER, Material.RED_MUSHROOM, Material.RED_ROSE,
+			Material.YELLOW_FLOWER, Material.BROWN_MUSHROOM, Material.REDSTONE_WIRE, Material.WOOD_PLATE,
+			Material.STONE_PLATE, Material.PORTAL, Material.LAVA, Material.WATER, Material.STONE_BUTTON, Material.LEVER,
+			Material.CARPET, Material.IRON_PLATE, Material.GOLD_PLATE, Material.WOOD_BUTTON, Material.LONG_GRASS,
+			Material.RAILS, Material.VINE, Material.SIGN_POST, Material.WALL_SIGN, null));
+
 	public static Block blockInLOS(Player player, int range) {
 		final Block targetBlock = player.getTargetBlock(invisibleBlocks, range);
 		return targetBlock;
 	}
 
-	public static ArrayList<LivingEntity> enemiesInLOS(Player player,
-			PseudoPlayer pseudoPlayer, int range) {
+	public static ArrayList<LivingEntity> enemiesInLOS(Player player, PseudoPlayer pseudoPlayer, int range) {
 		final AimBlock aimHit = new AimBlock(player, range, .5);
 
 		final Clan clan = pseudoPlayer.getClan();
@@ -56,11 +64,9 @@ public class SpellUtils {
 					if (party.isMember(p))
 						continue;
 
-				if (Utils
-						.isWithin(player.getLocation(), p.getLocation(), range))
+				if (Utils.isWithin(player.getLocation(), p.getLocation(), range))
 					livingEntitiesInRange.add(p);
-			} else if (Utils.isWithin(player.getLocation(), lE.getLocation(),
-					range))
+			} else if (Utils.isWithin(player.getLocation(), lE.getLocation(), range))
 				livingEntitiesInRange.add(lE);
 
 		final ArrayList<LivingEntity> validTargets = new ArrayList<LivingEntity>();
@@ -78,9 +84,9 @@ public class SpellUtils {
 				return validTargets;
 		}
 	}
-	
+
 	public static Block faceBlockInLOS(Player player, int range) {
-		AimBlock aimHit = new AimBlock(player, range, .5);
+		final AimBlock aimHit = new AimBlock(player, range, .5);
 		return aimHit.getFaceBlock();
 	}
 
@@ -89,8 +95,7 @@ public class SpellUtils {
 		final Block blockAbove = blockAt.getRelative(0, 1, 0);
 		if (blockAbove == null || blockAt == null)
 			return true;
-		if (!invisibleBlocks.contains(blockAt.getType())
-				|| !invisibleBlocks.contains(blockAbove.getType())) {
+		if (!invisibleBlocks.contains(blockAt.getType()) || !invisibleBlocks.contains(blockAbove.getType())) {
 			Output.simpleError(player, "Invalid location, blocked.");
 			return false;
 		}
@@ -98,16 +103,25 @@ public class SpellUtils {
 		return true;
 	}
 
+	public static boolean lapisCheck(Location loc, Player player) {
+		for (int x = loc.getBlockX() - 3; x <= loc.getBlockX() + 3; x++)
+			for (int y = loc.getBlockY() - 3; y <= loc.getBlockY() + 3; y++)
+				for (int z = loc.getBlockZ() - 3; z <= loc.getBlockZ() + 3; z++)
+					if (loc.getWorld().getBlockAt(x, y, z).getType().equals(Material.LAPIS_BLOCK)) {
+						Output.simpleError(player, "can't teleport to a location near Lapis Lazuli blocks.");
+						return false;
+					}
+		return true;
+	}
+
 	public static Player playerInLOS(Player player, int range) {
 		final AimBlock aimHit = new AimBlock(player, range, .5);
 
-		final Collection<? extends Player> onlinePlayers = Bukkit
-				.getOnlinePlayers();
+		final Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
 		final ArrayList<Player> playersInRange = new ArrayList<Player>();
 		for (final Player p : onlinePlayers)
 			if (p != player)
-				if (Utils
-						.isWithin(player.getLocation(), p.getLocation(), range))
+				if (Utils.isWithin(player.getLocation(), p.getLocation(), range))
 					playersInRange.add(p);
 
 		if (playersInRange.size() <= 0)
@@ -125,8 +139,7 @@ public class SpellUtils {
 			if (b != null) {
 				for (final Player p : playersInRange)
 					if (Utils.isWithin(b.getLocation(), p.getLocation(), 1.5)) {
-						if (clan != null && clan.isInClan(p.getUniqueId())
-								|| party != null && party.isMember(p))
+						if (clan != null && clan.isInClan(p.getUniqueId()) || party != null && party.isMember(p))
 							return p;
 
 						if (firstNeutralFound == null)
@@ -136,31 +149,4 @@ public class SpellUtils {
 				return firstNeutralFound;
 		}
 	}
-	
-	public static boolean lapisCheck(Location loc, Player player) {
-		for (int x = loc.getBlockX() - 3; x <= loc.getBlockX() + 3; x++)
-			for (int y = loc.getBlockY() - 3; y <= loc.getBlockY() + 3; y++)
-				for (int z = loc.getBlockZ() - 3; z <= loc.getBlockZ() + 3; z++)
-					if (loc.getWorld().getBlockAt(x, y, z)
-							.getType().equals(Material.LAPIS_BLOCK)) {
-						Output.simpleError(player,
-								"can't teleport to a location near Lapis Lazuli blocks.");
-						return false;
-					}
-		return true;
-	}
-
-	static PlayerManager pm = PlayerManager.getManager();
-
-	public static HashSet<Material> invisibleBlocks = new HashSet<Material>(
-			Arrays.asList(Material.AIR, Material.SNOW, Material.FIRE,
-					Material.TORCH, Material.LADDER, Material.RED_MUSHROOM,
-					Material.RED_ROSE, Material.YELLOW_FLOWER,
-					Material.BROWN_MUSHROOM, Material.REDSTONE_WIRE,
-					Material.WOOD_PLATE, Material.STONE_PLATE, Material.PORTAL,
-					Material.LAVA, Material.WATER, Material.STONE_BUTTON,
-					Material.LEVER, Material.CARPET, Material.IRON_PLATE,
-					Material.GOLD_PLATE, Material.WOOD_BUTTON,
-					Material.LONG_GRASS, Material.RAILS, Material.VINE,
-					Material.SIGN_POST, Material.WALL_SIGN, null));
 }

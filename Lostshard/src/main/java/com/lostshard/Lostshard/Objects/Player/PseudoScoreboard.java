@@ -28,19 +28,15 @@ public class PseudoScoreboard {
 	protected Team criminal = this.board.registerNewTeam("criminal");
 	protected Team lawfull = this.board.registerNewTeam("lawfull");
 
-	protected Objective stats = this.board.registerNewObjective("stats",
-			"dummy");
+	protected Objective stats = this.board.registerNewObjective("stats", "dummy");
 
 	protected Score gc = this.stats.getScore(ChatColor.YELLOW + "Gold Coins:");
 	protected Score mana = this.stats.getScore(ChatColor.YELLOW + "Mana:");
-	protected Score stamina = this.stats
-			.getScore(ChatColor.YELLOW + "Stamina:");
+	protected Score stamina = this.stats.getScore(ChatColor.YELLOW + "Stamina:");
 	protected Score build = this.stats.getScore(ChatColor.YELLOW + "Build:");
-	protected Score mc = this.stats.getScore(ChatColor.YELLOW
-			+ "Murder Counts:");
+	protected Score mc = this.stats.getScore(ChatColor.YELLOW + "Murder Counts:");
 	protected Score rank = this.stats.getScore(ChatColor.YELLOW + "Rank:");
 
-	@SuppressWarnings("deprecation")
 	public PseudoScoreboard(UUID uuid) {
 
 		this.playerUUID = uuid;
@@ -63,7 +59,7 @@ public class PseudoScoreboard {
 
 		this.mc.setScore(pPlayer.getMurderCounts());
 
-//		this.rank.setScore(pPlayer.getRank());
+		// this.rank.setScore(pPlayer.getRank());
 
 		player.setScoreboard(this.board);
 		this.stats.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -79,24 +75,8 @@ public class PseudoScoreboard {
 		this.lawfull.setAllowFriendlyFire(true);
 		this.criminal.setAllowFriendlyFire(true);
 		this.murder.setAllowFriendlyFire(true);
-
-		for (final Player p : Bukkit.getOnlinePlayers()) {
-			final PseudoPlayer tpPlayer = pm.getPlayer(p);
-			if (tpPlayer.isMurderer())
-				this.murder.addPlayer(p);
-			else if (tpPlayer.isCriminal())
-				this.criminal.addPlayer(p);
-			else
-				this.lawfull.addPlayer(p);
-			if (tpPlayer.getScoreboard() != null) {
-				if (pPlayer.isMurderer())
-					tpPlayer.getScoreboard().murder.addPlayer(player);
-				if (pPlayer.isCriminal())
-					tpPlayer.getScoreboard().criminal.addPlayer(player);
-				else
-					tpPlayer.getScoreboard().lawfull.addPlayer(player);
-			}
-		}
+		
+		updateTeams();
 	}
 
 	public UUID getPlayerUUID() {

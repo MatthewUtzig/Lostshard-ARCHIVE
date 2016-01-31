@@ -1,11 +1,9 @@
 package com.lostshard.Lostshard.Objects.InventoryGUI;
 
-import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -13,6 +11,9 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import com.lostshard.Lostshard.Manager.PlayerManager;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public abstract class GUI {
 	PlayerManager pm = PlayerManager.getManager();
@@ -26,27 +27,31 @@ public abstract class GUI {
 		this.items = new ArrayList<GUIItem>(Arrays.asList(items));
 	}
 
-	public void setItem(int slot, GUIItem item) {
-		this.items.set(slot, item);
-	}
-
 	public void forceClose() {
 		this.player.setGui(null);
 		this.player.getOnlinePlayer().closeInventory();
 	}
 
 	public Inventory getGUI() {
-		Inventory inv = Bukkit.createInventory(null, (int) Math.max(9.0D, Math.ceil(this.items.size() / 9.0D) * 9.0D),
-				getName());
-		if ((this.items == null) || (this.items.isEmpty())) {
+		final Inventory inv = Bukkit.createInventory(null,
+				(int) Math.max(9.0D, Math.ceil(this.items.size() / 9.0D) * 9.0D), this.getName());
+		if (this.items == null || this.items.isEmpty()) {
 			return inv;
 		}
-		ItemStack[] itemStacks = new ItemStack[this.items.size()];
+		final ItemStack[] itemStacks = new ItemStack[this.items.size()];
 		for (int i = 0; i < this.items.size(); i++) {
-			itemStacks[i] = ((GUIItem) this.items.get(i)).getItemStack();
+			itemStacks[i] = this.items.get(i).getItemStack();
 		}
 		inv.setContents(itemStacks);
 		return inv;
+	}
+
+	public List<GUIItem> getItems() {
+		return this.items;
+	}
+
+	public String getName() {
+		return this.name;
 	}
 
 	public PseudoPlayer getPlayer() {
@@ -60,17 +65,17 @@ public abstract class GUI {
 		if (event.getClick() == null) {
 			return;
 		}
-		if (!getPlayer().getGui().equals(this)) {
+		if (!this.getPlayer().getGui().equals(this)) {
 			return;
 		}
 		event.setCancelled(true);
 		if (event.getSlot() >= this.items.size()) {
 			return;
 		}
-		GUIClick click = ((GUIItem) this.items.get(event.getSlot())).getClick();
-		if ((click != null) && (event.getCurrentItem() != null) && (event.getClick() != null)
-				&& (event.getWhoClicked() != null)) {
-			click.click((Player) event.getWhoClicked(), getPlayer(), event.getCurrentItem(), event.getClick(),
+		final GUIClick click = this.items.get(event.getSlot()).getClick();
+		if (click != null && event.getCurrentItem() != null && event.getClick() != null
+				&& event.getWhoClicked() != null) {
+			click.click((Player) event.getWhoClicked(), this.getPlayer(), event.getCurrentItem(), event.getClick(),
 					event.getInventory(), event.getSlot());
 		}
 	}
@@ -84,24 +89,13 @@ public abstract class GUI {
 	}
 
 	public void openInventory(Player player) {
-		player.openInventory(getGUI());
-		getPlayer().setGui(this);
+		player.openInventory(this.getGUI());
+		player.updateInventory();
+		this.getPlayer().setGui(this);
 	}
 
-	public void setPlayer(PseudoPlayer player) {
-		this.player = player;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<GUIItem> getItems() {
-		return this.items;
+	public void setItem(int slot, GUIItem item) {
+		this.items.set(slot, item);
 	}
 
 	public void setItems(GUIItem... items) {
@@ -110,5 +104,13 @@ public abstract class GUI {
 
 	public void setItems(List<GUIItem> items) {
 		this.items = items;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPlayer(PseudoPlayer player) {
+		this.player = player;
 	}
 }

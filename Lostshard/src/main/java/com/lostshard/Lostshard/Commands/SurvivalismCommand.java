@@ -20,8 +20,7 @@ public class SurvivalismCommand extends LostshardCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("track")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -43,8 +42,7 @@ public class SurvivalismCommand extends LostshardCommand {
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		return null;
 	}
 }

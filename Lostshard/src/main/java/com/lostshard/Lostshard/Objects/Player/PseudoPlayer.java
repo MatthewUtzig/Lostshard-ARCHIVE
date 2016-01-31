@@ -35,6 +35,7 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
@@ -53,11 +54,11 @@ public class PseudoPlayer {
 	ClanManager cm = ClanManager.getManager();
 
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
-	@Column(name="uuid", unique=true, nullable=false, updatable=false)
-	@Type(type="uuid-char")
+	@Column(name = "uuid", unique = true, nullable = false, updatable = false)
+	@Type(type = "uuid-char")
 	private UUID playerUUID;
 	private int money = 0;
 	private int murderCounts = 0;
@@ -98,10 +99,6 @@ public class PseudoPlayer {
 	@Transient
 	private boolean update = false;
 	@Transient
-	private int maxMana = 100;
-	@Transient
-	private int maxStamina = 100;
-	@Transient
 	private boolean meditating = false;
 	@Transient
 	private boolean resting = false;
@@ -122,24 +119,24 @@ public class PseudoPlayer {
 	private boolean allowGui = true;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private List<UUID> ignored = new ArrayList<UUID>();
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@Enumerated(EnumType.STRING)
 	private List<Scroll> scrolls = new ArrayList<Scroll>();
-	
+
 	@Transient
 	private Spell promptedSpell = null;
 	@Transient
 	private PseudoPlayerTimer timer = new PseudoPlayerTimer(this);
 	@Transient
 	private PseudoScoreboard scoreboard;
-	
+
 	public PseudoPlayer() {
-		
+
 	}
-	
+
 	public PseudoPlayer(UUID playerUUID) {
 		super();
 		this.playerUUID = playerUUID;
@@ -214,9 +211,8 @@ public class PseudoPlayer {
 
 	public String getColoredName() {
 		final OfflinePlayer player = Bukkit.getOfflinePlayer(this.playerUUID);
-		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
-				+ player.getName() : this.isCriminal() ? ChatColor.GRAY
-						+ player.getName() : ChatColor.BLUE + player.getName();
+		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED + player.getName()
+				: this.isCriminal() ? ChatColor.GRAY + player.getName() : ChatColor.BLUE + player.getName();
 	}
 
 	public int getCriminal() {
@@ -282,7 +278,7 @@ public class PseudoPlayer {
 	}
 
 	public int getMaxMana() {
-		return this.maxMana;
+		return PlotEffect.hasEffect(this.getClan(), PlotEffect.MANA) ? 110 : 100;
 	}
 
 	public int getMaxSkillValTotal() {
@@ -290,7 +286,7 @@ public class PseudoPlayer {
 	}
 
 	public int getMaxStamina() {
-		return this.maxStamina;
+		return PlotEffect.hasEffect(this.getClan(), PlotEffect.STAMINA) ? 110 : 100;
 	}
 
 	public int getMoney() {
@@ -299,6 +295,21 @@ public class PseudoPlayer {
 
 	public int getMurderCounts() {
 		return this.murderCounts;
+	}
+
+	public List<OfflineMessage> getOfflineMessages() {
+		final Session s = Lostshard.getSession();
+		try {
+			@SuppressWarnings("unchecked")
+			final List<OfflineMessage> messages = s.createCriteria(OfflineMessage.class)
+					.add(Restrictions.eq("player", this.playerUUID)).list();
+			s.close();
+			return messages;
+		} catch (final Exception e) {
+			s.close();
+			e.printStackTrace();
+		}
+		return new ArrayList<OfflineMessage>();
 	}
 
 	public Player getOnlinePlayer() {
@@ -392,6 +403,20 @@ public class PseudoPlayer {
 		return this.titels;
 	}
 
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public boolean isAllowGui() {
 		return this.allowGui;
 	}
@@ -448,6 +473,20 @@ public class PseudoPlayer {
 		this.scrolls.remove(scroll);
 	}
 
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public void setAllowGui(boolean allowGui) {
 		this.allowGui = allowGui;
 		this.update();
@@ -472,11 +511,12 @@ public class PseudoPlayer {
 
 	public void setCriminal(int criminal) {
 		this.criminal = criminal;
-		if(getOnlinePlayer() != null && scoreboard != null)
-			getOnlinePlayer().setDisplayName((this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
-					: this.isCriminal() ? ChatColor.GRAY
-							: ChatColor.BLUE)+getOnlinePlayer().getName()+ChatColor.RESET);
-		if(scoreboard != null)
+		if (this.getOnlinePlayer() != null && this.scoreboard != null)
+			this.getOnlinePlayer()
+					.setDisplayName((this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED
+							: this.isCriminal() ? ChatColor.GRAY : ChatColor.BLUE) + this.getOnlinePlayer().getName()
+							+ ChatColor.RESET);
+		if (this.scoreboard != null)
 			this.getScoreboard().updateTeams();
 		this.update();
 	}
@@ -501,8 +541,7 @@ public class PseudoPlayer {
 		this.dieLog = dieLog;
 	}
 
-	public void setDisabledChatChannels(
-			ArrayList<ChatChannel> disabledChatChannels) {
+	public void setDisabledChatChannels(ArrayList<ChatChannel> disabledChatChannels) {
 		this.disabledChatChannels = disabledChatChannels;
 	}
 
@@ -546,14 +585,6 @@ public class PseudoPlayer {
 			this.getScoreboard().updateMana(this.mana);
 	}
 
-	public void setMaxMana(int maxMana) {
-		this.maxMana = maxMana;
-	}
-
-	public void setMaxStamina(int maxStamina) {
-		this.maxStamina = maxStamina;
-	}
-
 	public void setMeditating(boolean meditating) {
 		this.meditating = meditating;
 	}
@@ -569,8 +600,8 @@ public class PseudoPlayer {
 		this.murderCounts = Math.max(0, murderCounts);
 		if (this.scoreboard != null) {
 			this.getScoreboard().updateMurderCounts(this.murderCounts);
-			if(getOnlinePlayer() != null)
-				getOnlinePlayer().setDisplayName(Utils.getDisplayName(getOnlinePlayer())+ChatColor.RESET);
+			if (this.getOnlinePlayer() != null)
+				this.getOnlinePlayer().setDisplayName(Utils.getDisplayName(this.getOnlinePlayer()) + ChatColor.RESET);
 			this.getScoreboard().updateTeams();
 		}
 		this.update();
@@ -699,47 +730,5 @@ public class PseudoPlayer {
 
 	public boolean wasSubscribed() {
 		return this.wasSubscribed;
-	}
-	
-	public List<OfflineMessage> getOfflineMessages() {
-		Session s = Lostshard.getSession();
-		try {
-			@SuppressWarnings("unchecked")
-			List<OfflineMessage> messages = (List<OfflineMessage>) s.createCriteria(OfflineMessage.class).add(Restrictions.eq("player", playerUUID)).list();
-			s.close();
-			return messages;
-		} catch(Exception e) {
-			s.close();
-			e.printStackTrace();
-		}
-		return new ArrayList<OfflineMessage>();
-	}
-	
-	public void save() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
 	}
 }

@@ -50,8 +50,7 @@ public class BankCommand extends LostshardCommand {
 		final Player player = (Player) sender;
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		for (final NPC npc : this.npcm.getBankers())
-			if (Utils.isWithin(player.getLocation(), npc.getLocation(),
-					Variables.bankRadius)) {
+			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
 				player.openInventory(pPlayer.getBank().getInventory());
 				return;
 			}
@@ -63,8 +62,8 @@ public class BankCommand extends LostshardCommand {
 
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("bank"))
 			this.bank(sender);
 		else if (cmd.getName().equalsIgnoreCase("tradegold"))
@@ -76,8 +75,8 @@ public class BankCommand extends LostshardCommand {
 		return true;
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("pay"))
 			if (args.length == 1)
 				if (sender instanceof Player)
@@ -105,9 +104,8 @@ public class BankCommand extends LostshardCommand {
 		final String targetName = args[0];
 
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (targetPlayer == null || (Lostshard.isVanished(targetPlayer) && !sender.isOp())) {
-			sender.sendMessage(ChatColor.DARK_RED + targetName
-					+ " is not online.");
+		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && !sender.isOp()) {
+			sender.sendMessage(ChatColor.DARK_RED + targetName + " is not online.");
 			return;
 		}
 		final PseudoPlayer tpPlayer = this.pm.getPlayer(targetPlayer);
@@ -119,8 +117,7 @@ public class BankCommand extends LostshardCommand {
 			return;
 		}
 		if (amount < 1)
-			sender.sendMessage(ChatColor.DARK_RED
-					+ "Amount must be greater than 0.");
+			sender.sendMessage(ChatColor.DARK_RED + "Amount must be greater than 0.");
 		if (sender instanceof Player) {
 			final Player player = (Player) sender;
 			if (player == targetPlayer) {
@@ -129,17 +126,17 @@ public class BankCommand extends LostshardCommand {
 			}
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 			if (pPlayer.getMoney() < amount) {
-				Output.simpleError(player, "You can't affort to pay "
-						+ targetPlayer.getName() + " " + Utils.getDecimalFormater().format(amount) + "gc.");
+				Output.simpleError(player, "You can't affort to pay " + targetPlayer.getName() + " "
+						+ Utils.getDecimalFormater().format(amount) + "gc.");
 				return;
 			}
 			pPlayer.subtractMoney(amount);
 		}
 		tpPlayer.addMoney(amount);
-		sender.sendMessage(ChatColor.GOLD + "You have paied "
-				+ targetPlayer.getName() + " " + Utils.getDecimalFormater().format(amount) + "gc.");
-		Output.positiveMessage(targetPlayer, sender.getName()
-				+ " has paied you " + Utils.getDecimalFormater().format(amount) + "gc.");
+		sender.sendMessage(ChatColor.GOLD + "You have paied " + targetPlayer.getName() + " "
+				+ Utils.getDecimalFormater().format(amount) + "gc.");
+		Output.positiveMessage(targetPlayer,
+				sender.getName() + " has paied you " + Utils.getDecimalFormater().format(amount) + "gc.");
 	}
 
 	/**
@@ -162,25 +159,22 @@ public class BankCommand extends LostshardCommand {
 		}
 		int amount;
 		try {
-			if(args[0].equalsIgnoreCase("all")) {
+			if (args[0].equalsIgnoreCase("all")) {
 				amount = ItemUtils.containsAmount(player.getInventory(), Material.GOLD_INGOT);
-			}else{
+			} else {
 				amount = Integer.parseInt(args[0]);
 			}
-			} catch (final Exception e) {
+		} catch (final Exception e) {
 			Output.simpleError(player, "/tradegold (amount)");
 			return;
 		}
 		if (player.getInventory().contains(Material.GOLD_INGOT, amount)) {
 			pPlayer.addMoney(amount * Variables.goldIngotValue);
-			ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT,
-					amount);
-			Output.positiveMessage(player, "You have traded " + amount
-					+ " gold ingots into " + amount * Variables.goldIngotValue
-					+ " gc.");
+			ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT, amount);
+			Output.positiveMessage(player,
+					"You have traded " + amount + " gold ingots into " + amount * Variables.goldIngotValue + " gc.");
 		} else
-			Output.simpleError(player, "You dont have " + amount
-					+ " gold ingots in your inventory.");
+			Output.simpleError(player, "You dont have " + amount + " gold ingots in your inventory.");
 	}
 
 }

@@ -36,8 +36,7 @@ public class Reputation {
 
 	public String getReputation() {
 		final double total = this.getTotal() / 40d;
-		final DecimalFormat format = new DecimalFormat("#0.0",
-				new DecimalFormatSymbols(Locale.ENGLISH));
+		final DecimalFormat format = new DecimalFormat("#0.0", new DecimalFormatSymbols(Locale.ENGLISH));
 		format.setParseIntegerOnly(false);
 		return format.format(total);
 	}

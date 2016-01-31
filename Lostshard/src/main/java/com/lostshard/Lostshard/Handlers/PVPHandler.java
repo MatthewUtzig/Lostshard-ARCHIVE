@@ -25,6 +25,10 @@ import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
  */
 public class PVPHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+
+	static PlotManager ptm = PlotManager.getManager();
+
 	public static void Attack(EntityDamageByEntityEvent event) {
 		if (event.isCancelled())
 			return;
@@ -35,16 +39,14 @@ public class PVPHandler {
 
 		if (event.getDamager() instanceof Projectile)
 			if (((Projectile) attackerEntity).getShooter() instanceof Entity)
-				attackerEntity = (Entity) ((Projectile) attackerEntity)
-						.getShooter();
+				attackerEntity = (Entity) ((Projectile) attackerEntity).getShooter();
 
 		if (!(attackerEntity instanceof Player))
 			return;
 		final Player attacker = (Player) attackerEntity;
 
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		pPlayer.addRecentAttacker(new RecentAttacker(attacker.getUniqueId(),
-				300));
+		pPlayer.addRecentAttacker(new RecentAttacker(attacker.getUniqueId(), 300));
 		criminalAction(player, attacker);
 	}
 
@@ -71,14 +73,12 @@ public class PVPHandler {
 		/**
 		 * Handling player hitting with feather.
 		 */
-		if (attacker instanceof Player
-				&& defender instanceof Player
-				&& ((Player) attacker).getItemInHand().getType()
-				.equals(Material.FEATHER)) {
-			((Player) defender).sendMessage(ChatColor.GRAY
-					+ ((Player) attacker).getName()
-					+ " tickled you with a feather.");
-			((Player) attacker).sendMessage(ChatColor.GRAY+"You have tickled"+((Player) defender).getName()+"with a feather.");
+		if (attacker instanceof Player && defender instanceof Player
+				&& ((Player) attacker).getItemInHand().getType().equals(Material.FEATHER)) {
+			((Player) defender)
+					.sendMessage(ChatColor.GRAY + ((Player) attacker).getName() + " tickled you with a feather.");
+			((Player) attacker).sendMessage(
+					ChatColor.GRAY + "You have tickled" + ((Player) defender).getName() + "with a feather.");
 			return false;
 		}
 
@@ -87,21 +87,16 @@ public class PVPHandler {
 		 */
 		if (attacker instanceof ThrownPotion)
 			for (final PotionEffect pe : ((ThrownPotion) attacker).getEffects())
-				if (pe.getType().equals(PotionEffectType.HEAL)
-						|| pe.getType().equals(PotionEffectType.REGENERATION)
+				if (pe.getType().equals(PotionEffectType.HEAL) || pe.getType().equals(PotionEffectType.REGENERATION)
 						|| pe.getType().equals(PotionEffectType.ABSORPTION)
-						|| pe.getType().equals(
-								PotionEffectType.DAMAGE_RESISTANCE)
+						|| pe.getType().equals(PotionEffectType.DAMAGE_RESISTANCE)
 						|| pe.getType().equals(PotionEffectType.FAST_DIGGING)
-						|| pe.getType()
-								.equals(PotionEffectType.FIRE_RESISTANCE)
+						|| pe.getType().equals(PotionEffectType.FIRE_RESISTANCE)
 						|| pe.getType().equals(PotionEffectType.HEALTH_BOOST)
-						|| pe.getType()
-								.equals(PotionEffectType.INCREASE_DAMAGE)
+						|| pe.getType().equals(PotionEffectType.INCREASE_DAMAGE)
 						|| pe.getType().equals(PotionEffectType.INVISIBILITY)
 						|| pe.getType().equals(PotionEffectType.SPEED)
-						|| pe.getType()
-								.equals(PotionEffectType.WATER_BREATHING)
+						|| pe.getType().equals(PotionEffectType.WATER_BREATHING)
 						|| pe.getType().equals(PotionEffectType.NIGHT_VISION))
 					return true;
 
@@ -151,8 +146,7 @@ public class PVPHandler {
 		/**
 		 * Checking if they are in same clan or not.
 		 */
-		if (pAttacker.getClan() != null && pDefender.getClan() != null
-				&& pAttacker.getClan() == pDefender.getClan())
+		if (pAttacker.getClan() != null && pDefender.getClan() != null && pAttacker.getClan() == pDefender.getClan())
 			return false;
 
 		/**
@@ -222,23 +216,16 @@ public class PVPHandler {
 		if (!pseudoPlayerDefender.isCriminal() && !notCrim) {
 			// attacked non criminal, thats a criminal action
 			if (!pseudoPlayerAttacker.isCriminal())
-				playerDamager.sendMessage(ChatColor.RED
-						+ "You have committed a criminal action");
+				playerDamager.sendMessage(ChatColor.RED + "You have committed a criminal action");
 			pseudoPlayerAttacker.setCriminal(3000);
 
 			if (!pseudoPlayerAttacker.isMurderer())
-				playerDamager.setDisplayName(ChatColor.GRAY
-						+ playerDamager.getName());
+				playerDamager.setDisplayName(ChatColor.GRAY + playerDamager.getName());
 			// SimpleScoreBoard.updatePlayers();
 		}
 
-		final RecentAttacker recentAttacker = new RecentAttacker(
-				playerDamager.getUniqueId(), 300);
+		final RecentAttacker recentAttacker = new RecentAttacker(playerDamager.getUniqueId(), 300);
 		recentAttacker.setNotCrim(notCrim);
 		pseudoPlayerDefender.addRecentAttacker(recentAttacker);
 	}
-
-	static PlayerManager pm = PlayerManager.getManager();
-
-	static PlotManager ptm = PlotManager.getManager();
 }

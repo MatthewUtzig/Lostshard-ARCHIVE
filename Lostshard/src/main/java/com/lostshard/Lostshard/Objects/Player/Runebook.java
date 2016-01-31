@@ -15,13 +15,13 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Embeddable
 @Access(AccessType.FIELD)
 public class Runebook {
-	
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 
 	@CollectionTable
-	private List<Rune> runes;
-	
+	private final List<Rune> runes;
+
 	public Runebook() {
 		this.runes = new ArrayList<Rune>();
 	}

@@ -28,19 +28,19 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class SpellManager {
 
+	static SpellManager manager = new SpellManager();
+
 	public static SpellManager getManager() {
 		return manager;
 	}
-
-	static SpellManager manager = new SpellManager();
 
 	PlayerManager pm = PlayerManager.getManager();
 
 	PlotManager ptm = PlotManager.getManager();
 
-	private double minChanceToCast = .2;
+	private final double minChanceToCast = .2;
 
-	private double minPercentChanceSkillGain = .2;
+	private final double minPercentChanceSkillGain = .2;
 
 	public void castDelayed(Player player, PseudoPlayer pPlayer, Spell spell) {
 		if (spell.getPrompt() == null) {
@@ -63,8 +63,7 @@ public class SpellManager {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 
 		if (pPlayer.getTimer().cantCastTicks > 0) {
-			Output.simpleError(player,
-					"You can't cast another spell again so soon.");
+			Output.simpleError(player, "You can't cast another spell again so soon.");
 			return false;
 		}
 
@@ -81,8 +80,7 @@ public class SpellManager {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
 			if (!plot.isAllowMagic()) {
-				Output.simpleError(player,
-						"You can't use magic in " + plot.getName() + ".");
+				Output.simpleError(player, "You can't use magic in " + plot.getName() + ".");
 				return false;
 			}
 
@@ -92,8 +90,7 @@ public class SpellManager {
 		}
 
 		if (!pPlayer.getSpellbook().containSpell(spell.getScroll())) {
-			Output.simpleError(player, "Your spellbook does not contain the "
-					+ spell.getName() + " spell.");
+			Output.simpleError(player, "Your spellbook does not contain the " + spell.getName() + " spell.");
 			return false;
 		}
 
@@ -101,19 +98,15 @@ public class SpellManager {
 
 		final Location loc = player.getLocation();
 
-		int size = 2;
-		
+		final int size = 2;
+
 		for (int x = -size; x <= size; x++)
 			for (int y = -size; y <= size; y++)
 				for (int z = -size; z <= size; z++) {
-					final Material type = player
-							.getWorld()
-							.getBlockAt(loc.getBlockX() + x,
-									loc.getBlockY() + y, loc.getBlockZ() + z)
-									.getType();
+					final Material type = player.getWorld()
+							.getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z).getType();
 					if (type == Material.LAPIS_BLOCK) {
-						Output.simpleError(player,
-								"You can't seem to cast a spell here...");
+						Output.simpleError(player, "You can't seem to cast a spell here...");
 						return false;
 					}
 				}
@@ -179,16 +172,29 @@ public class SpellManager {
 
 	public void chant(Player player, String spellWords) {
 		player.sendMessage(ChatColor.AQUA + "You chant \"" + spellWords + "\".");
-		if(Lostshard.isVanished(player))
+		if (Lostshard.isVanished(player))
 			return;
 		final int localRange = ChatHandler.getLocalChatRange();
 		for (final Player p : Bukkit.getOnlinePlayers())
 			if (!p.equals(player))
 				if (p.getWorld().equals(player.getWorld()))
-					if (Utils.isWithin(player.getLocation(), p.getLocation(),
-							localRange * 2))
-						p.sendMessage(ChatColor.AQUA + player.getName()
-								+ " chants \"" + spellWords + "\".");
+					if (Utils.isWithin(player.getLocation(), p.getLocation(), localRange * 2))
+						p.sendMessage(ChatColor.AQUA + player.getName() + " chants \"" + spellWords + "\".");
+	}
+
+	public void damage(EntityDamageEvent event) {
+		if (event.getEntity() instanceof Player) {
+			final Player player = (Player) event.getEntity();
+			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+			if (pPlayer.getPromptedSpell() != null || pPlayer.getTimer().delayedSpell != null) {
+				pPlayer.setPromptedSpell(null);
+				pPlayer.getTimer().delayedSpell = null;
+				Output.simpleError(player, "Damaged while casting a spell, it was disrupted.");
+			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
+				pPlayer.getTimer().goToSpawnTicks = 0;
+				Output.simpleError(player, "Damaged while casting, /spawn was disrupted.");
+			}
+		}
 	}
 
 	public Spell getSpellByName(String name) {
@@ -204,8 +210,7 @@ public class SpellManager {
 		if (list == null)
 			return true;
 		for (final ItemStack reagent : list)
-			if (!player.getInventory().contains(reagent.getType(),
-					reagent.getAmount()))
+			if (!player.getInventory().contains(reagent.getType(), reagent.getAmount()))
 				return false;
 		return true;
 	}
@@ -213,56 +218,41 @@ public class SpellManager {
 	public void move(PlayerMoveEvent event) {
 		final Player player = event.getPlayer();
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (pPlayer.getPromptedSpell() != null
-		|| pPlayer.getTimer().delayedSpell != null) {
+		if (pPlayer.getPromptedSpell() != null || pPlayer.getTimer().delayedSpell != null) {
 			pPlayer.setPromptedSpell(null);
 			pPlayer.getTimer().delayedSpell = null;
-			Output.simpleError(player,
-					"Moved while casting a spell, it was disrupted.");
+			Output.simpleError(player, "Moved while casting a spell, it was disrupted.");
 		} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
 			pPlayer.getTimer().goToSpawnTicks = 0;
-			Output.simpleError(player,
-					"Moved while casting, /spawn was disrupted.");
+			Output.simpleError(player, "Moved while casting, /spawn was disrupted.");
 		}
 	}
 
 	public void notEnoughMana(Player player, Spell spell) {
-		Output.simpleError(player, "You do not have enough mana to cast "
-				+ spell.getName() + ".");
+		Output.simpleError(player, "You do not have enough mana to cast " + spell.getName() + ".");
 	}
 
 	public void notEnoughReagents(Player player, List<ItemStack> list) {
-		Output.simpleError(player,
-				"You do not have the proper reagents for that spell, they are:");
+		Output.simpleError(player, "You do not have the proper reagents for that spell, they are:");
 		for (final ItemStack reagent : list)
 			Output.simpleError(player, "-" + reagent.getType().name());
 	}
 
 	public void notSkilledEnough(Player player, Spell spell) {
-		Output.simpleError(
-				player,
-				"You are not skilled enough at magery to cast "
-						+ spell.getName() + ".");
+		Output.simpleError(player, "You are not skilled enough at magery to cast " + spell.getName() + ".");
 	}
 
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		if (!(event.getAction().equals(Action.LEFT_CLICK_AIR) || event
-				.getAction().equals(Action.LEFT_CLICK_BLOCK)))
+		if (!(event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)))
 			return;
 		final Player player = event.getPlayer();
 		if (player.getItemInHand().getType().equals(Material.STICK)) {
 			final ItemStack wand = player.getItemInHand();
 			final ItemMeta wandMeta = wand.getItemMeta();
-			if (wandMeta.hasLore()
-					&& wandMeta.getLore().size() > 0
-					&& wandMeta
-					.getLore()
-					.get(0)
-					.equalsIgnoreCase(
-							"This magical wand can be used to cast a spell with only a touch of a button."))
+			if (wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0)
+					.equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button."))
 				if (wandMeta.hasDisplayName()) {
-					final Scroll scroll = Scroll.getByString(ChatColor
-							.stripColor(wandMeta.getDisplayName()));
+					final Scroll scroll = Scroll.getByString(ChatColor.stripColor(wandMeta.getDisplayName()));
 					manager.castSpell(player, scroll.getSpell());
 				}
 		}
@@ -288,15 +278,11 @@ public class SpellManager {
 		event.setCancelled(true);
 	}
 
-	public void possibleSkillGain(Player player, PseudoPlayer pseudoPlayer,
-			Spell spell) {
+	public void possibleSkillGain(Player player, PseudoPlayer pseudoPlayer, Spell spell) {
 		if (pseudoPlayer.getCurrentBuild().getMagery().isLocked())
 			return;
-		final int curSkill = pseudoPlayer.getCurrentBuild().getMagery()
-				.getLvl();
-		if (curSkill < 1000
-				&& pseudoPlayer.getCurrentBuild().getTotalSkillVal() < pseudoPlayer
-				.getMaxSkillValTotal()) {
+		final int curSkill = pseudoPlayer.getCurrentBuild().getMagery().getLvl();
+		if (curSkill < 1000 && pseudoPlayer.getCurrentBuild().getTotalSkillVal() < pseudoPlayer.getMaxSkillValTotal()) {
 			final int minMagery = spell.getMinMagery();
 			double percentChance;
 			if (curSkill < minMagery + 200) {
@@ -304,9 +290,8 @@ public class SpellManager {
 				percentChance = (double) (1000 - curSkill) / 1000;
 				// we don't want it to be TOOOO hard to gain skill
 				if (percentChance > this.minPercentChanceSkillGain) {
-					final int gain = pseudoPlayer.getCurrentBuild().getMagery()
-							.skillGain(pseudoPlayer);
-					Output.gainSkill(player, "Magery", gain, curSkill);
+					final int gain = pseudoPlayer.getCurrentBuild().getMagery().skillGain(pseudoPlayer);
+					Output.gainSkill(player, "Magery", gain, curSkill+gain);
 				}
 			}
 		}
@@ -314,33 +299,29 @@ public class SpellManager {
 
 	public void spellFizzled(Player player, Spell spell) {
 		player.sendMessage(ChatColor.DARK_GRAY + "The spell fizzles.");
-		player.getWorld().playEffect(player.getLocation(), Effect.EXTINGUISH,
-				15);
-		takeRegs(player, spell.getReagentCost());
+		player.getWorld().playEffect(player.getLocation(), Effect.EXTINGUISH, 15);
+		this.takeRegs(player, spell.getReagentCost());
 	}
 
 	public void takeRegs(Player player, List<ItemStack> list) {
 		if (list == null)
 			return;
 		for (final ItemStack reagent : list)
-			ItemUtils.removeItem(player.getInventory(), reagent.getType(),
-					reagent.getAmount());
+			ItemUtils.removeItem(player.getInventory(), reagent.getType(), reagent.getAmount());
 	}
 
 	public boolean useScroll(Player player, Scroll scroll) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
 			if (!plot.isAllowMagic()) {
-				Output.simpleError(player,
-						"You can't use magic in " + plot.getName() + ".");
+				Output.simpleError(player, "You can't use magic in " + plot.getName() + ".");
 				return false;
 			}
 
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 
 		if (pseudoPlayer.getTimer().cantCastTicks > 0) {
-			Output.simpleError(player,
-					"You can't cast another spell again so soon.");
+			Output.simpleError(player, "You can't cast another spell again so soon.");
 			return false;
 		}
 
@@ -354,16 +335,11 @@ public class SpellManager {
 		for (int x = -2; x <= 2; x++)
 			for (int y = -2; y <= 2; y++)
 				for (int z = -2; z <= 2; z++) {
-					final Material blockMat = player
-							.getWorld()
-							.getBlockAt(loc.getBlockX() + x,
-									loc.getBlockY() + y, loc.getBlockZ() + z)
-									.getType();
+					final Material blockMat = player.getWorld()
+							.getBlockAt(loc.getBlockX() + x, loc.getBlockY() + y, loc.getBlockZ() + z).getType();
 					if (blockMat == Material.LAPIS_BLOCK) {
-						Output.simpleError(player,
-								"You can't seem to cast a spell here...");
-						pseudoPlayer.getTimer().cantCastTicks = spell
-								.getCooldown();
+						Output.simpleError(player, "You can't seem to cast a spell here...");
+						pseudoPlayer.getTimer().cantCastTicks = spell.getCooldown();
 						return false;
 					}
 				}
@@ -372,8 +348,7 @@ public class SpellManager {
 			if (player.isOp() || pseudoPlayer.getMana() >= spell.getManaCost()) {
 				// chant the spell words so people know what you are doing
 				this.chant(player, spell.getSpellWords());
-				pseudoPlayer.setMana(pseudoPlayer.getMana()
-						- spell.getManaCost());
+				pseudoPlayer.setMana(pseudoPlayer.getMana() - spell.getManaCost());
 				pseudoPlayer.update();
 
 				// determine if the spell is delayed
@@ -401,23 +376,5 @@ public class SpellManager {
 			return false;
 		}
 		return true;
-	}
-
-	public void damage(EntityDamageEvent event) {
-		if(event.getEntity() instanceof Player) {
-			final Player player = (Player) event.getEntity();
-			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			if (pPlayer.getPromptedSpell() != null
-			|| pPlayer.getTimer().delayedSpell != null) {
-				pPlayer.setPromptedSpell(null);
-				pPlayer.getTimer().delayedSpell = null;
-				Output.simpleError(player,
-						"Damaged while casting a spell, it was disrupted.");
-			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
-				pPlayer.getTimer().goToSpawnTicks = 0;
-				Output.simpleError(player,
-						"Damaged while casting, /spawn was disrupted.");
-			}
-		}
 	}
 }

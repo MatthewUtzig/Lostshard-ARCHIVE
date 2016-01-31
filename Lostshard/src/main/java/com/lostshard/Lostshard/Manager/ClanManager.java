@@ -7,11 +7,11 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 
 public class ClanManager {
 
+	private static ClanManager manager = new ClanManager();
+
 	public static ClanManager getManager() {
 		return manager;
 	}
-
-	private static ClanManager manager = new ClanManager();
 
 	private List<Clan> clans = new ArrayList<Clan>();
 

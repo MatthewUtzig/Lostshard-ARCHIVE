@@ -16,14 +16,14 @@ import com.lostshard.Lostshard.Spells.MagicStructure;
 
 public class GameLoop extends BukkitRunnable {
 
+	public static long tick = 0;
+	public static long lastTickTime = 0;
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
 	ClanManager cm = ClanManager.getManager();
+
 	ChestRefillManager crm = ChestRefillManager.getManager();
 	TaskManager tm = TaskManager.getManager();
-	
-	public static long tick = 0;
-	public static long lastTickTime = 0;
 
 	@SuppressWarnings("unused")
 	private final Lostshard plugin;
@@ -34,7 +34,7 @@ public class GameLoop extends BukkitRunnable {
 
 	@Override
 	public void run() {
-		
+
 		final Date date = new Date();
 		double delta = 1;
 		if (lastTickTime == 0)
@@ -54,6 +54,6 @@ public class GameLoop extends BukkitRunnable {
 			camp.tick();
 		if (tick % 10 == 0)
 			CapturepointHandler.tick(delta);
-		tm.tick();
+		this.tm.tick();
 	}
 }

@@ -30,13 +30,6 @@ import com.lostshard.Lostshard.Utils.Output;
 @Access(AccessType.PROPERTY)
 public class Gate extends MagicStructure {
 
-
-	private Block fromBlock;
-
-	private Block toBlock;
-
-	private boolean direction;
-	
 	public static Location checkPortals(Block block, Player player) {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if (pseudoPlayer.getTimer().recentlyTeleportedTicks > 0)
@@ -75,8 +68,7 @@ public class Gate extends MagicStructure {
 					} else
 						block.setType(Material.AIR);
 				else
-					Output.simpleError(player,
-							"You can't do that here, the plot is protected.");
+					Output.simpleError(player, "You can't do that here, the plot is protected.");
 			}
 		}
 	}
@@ -88,8 +80,7 @@ public class Gate extends MagicStructure {
 				&& event.getTo().getBlock().getType().equals(Material.PORTAL)) {
 			Location targetLoc = checkPortals(event.getTo().getBlock(), player);
 			if (targetLoc != null) {
-				targetLoc = new Location(targetLoc.getWorld(),
-						targetLoc.getX() + .5, targetLoc.getY(),
+				targetLoc = new Location(targetLoc.getWorld(), targetLoc.getX() + .5, targetLoc.getY(),
 						targetLoc.getZ() + .5);
 				final Location curLoc = player.getLocation();
 				targetLoc.setPitch(curLoc.getPitch());
@@ -100,9 +91,14 @@ public class Gate extends MagicStructure {
 		}
 	}
 
+	private Block fromBlock;
+
+	private Block toBlock;
+
+	private boolean direction;
+
 	@SuppressWarnings("deprecation")
-	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup,
-			boolean direction) {
+	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
 		super(blocks, uuid, numTicksTillCleanup);
 		this.direction = direction;
 		if (!direction)
@@ -118,14 +114,51 @@ public class Gate extends MagicStructure {
 		this.toBlock = blocks.get(1);
 	}
 
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			t.commit();
+			s.clear();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	@Transient
 	public Block getFromBlock() {
 		return this.fromBlock;
 	}
 
+	public SavableLocation getFromLocation() {
+		return new SavableLocation(this.fromBlock.getLocation());
+	}
+
 	@Transient
 	public Block getToBlock() {
 		return this.toBlock;
+	}
+
+	public SavableLocation getToLocation() {
+		return new SavableLocation(this.toBlock.getLocation());
+	}
+
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	@Transient
@@ -146,66 +179,29 @@ public class Gate extends MagicStructure {
 		return false;
 	}
 
-	public void setDirection(boolean direction) {
-		this.direction = direction;
-	}
-	
-	public SavableLocation getFromLocation() {
-		return new SavableLocation(this.fromBlock.getLocation());
-	}
-	
-	public  void setFromLocation(SavableLocation location) {
-		this.fromBlock = location.getLocation().getBlock();
-	}
-	
-	public SavableLocation getToLocation() {
-		return new SavableLocation(this.toBlock.getLocation());
-	}
-	
-	public  void setToLocation(SavableLocation location) {
-		this.toBlock = location.getLocation().getBlock();
-	}
-	
 	public void save() {
-		Session s = Lostshard.getSession();
+		final Session s = Lostshard.getSession();
 		try {
-			Transaction t = s.beginTransaction();
+			final Transaction t = s.beginTransaction();
 			t.begin();
 			s.update(this);
 			t.commit();
 			s.close();
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();
 		}
 	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
+
+	public void setDirection(boolean direction) {
+		this.direction = direction;
 	}
-	
-	public void delete() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			t.commit();
-			s.clear();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
+
+	public void setFromLocation(SavableLocation location) {
+		this.fromBlock = location.getLocation().getBlock();
+	}
+
+	public void setToLocation(SavableLocation location) {
+		this.toBlock = location.getLocation().getBlock();
 	}
 }

@@ -46,23 +46,24 @@ public class SPL_Recall extends Spell {
 			}
 			count++;
 		}
-		
+
 		boolean usingSpawn = false;
-		if(runeFound == null && getResponse().equalsIgnoreCase("spawn")) {
+		if (runeFound == null && this.getResponse().equalsIgnoreCase("spawn")) {
 			runeFound = new Rune(pseudoPlayer.getSpawn(), "spawn", -1);
 			usingSpawn = true;
-		}
-		else
-			if(runeFound == null && getResponse().equalsIgnoreCase("random")) {
-				if(player.getWorld().getWorldBorder() == null || !player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
-					Output.simpleError(player, "You cannot random recall in this world.");
-					return;
-				}
-				double size = player.getWorld().getWorldBorder().getSize();
-				Location center = player.getWorld().getWorldBorder().getCenter();
-				Location randomLoc = player.getWorld().getHighestBlockAt(center.add(Math.random()*size-size/2, 60, Math.random()*size-size/2)).getLocation();
-				runeFound = new Rune(randomLoc, "random", -1);
+		} else if (runeFound == null && this.getResponse().equalsIgnoreCase("random")) {
+			if (player.getWorld().getWorldBorder() == null
+					|| !player.getWorld().getEnvironment().equals(Environment.NORMAL)) {
+				Output.simpleError(player, "You cannot random recall in this world.");
+				return;
 			}
+			final double size = player.getWorld().getWorldBorder().getSize();
+			final Location center = player.getWorld().getWorldBorder().getCenter();
+			final Location randomLoc = player.getWorld()
+					.getHighestBlockAt(center.add(Math.random() * size - size / 2, 60, Math.random() * size - size / 2))
+					.getLocation();
+			runeFound = new Rune(randomLoc, "random", -1);
+		}
 
 		if (runeFound != null) {
 			final Location runeLoc = runeFound.getLocation();
@@ -70,19 +71,14 @@ public class SPL_Recall extends Spell {
 				return;
 
 			final Plot plot = this.ptm.findPlotAt(runeLoc);
-			if (plot == null || !plot.isPrivatePlot()
-					|| plot.isFriendOrAbove(player)) {
-				final Location destLoc = new Location(runeLoc.getWorld(),
-						runeLoc.getBlockX() + .5, runeLoc.getBlockY(),
+			if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
+				final Location destLoc = new Location(runeLoc.getWorld(), runeLoc.getBlockX() + .5, runeLoc.getBlockY(),
 						runeLoc.getBlockZ() + .5);
 
 				// check for lapis below your target location
-				if (destLoc.getBlock().getRelative(0, -1, 0).getType()
-						.equals(Material.LAPIS_BLOCK)
-						|| destLoc.getBlock().getRelative(0, -2, 0).getType()
-								.equals(Material.LAPIS_BLOCK)) {
-					Output.simpleError(player,
-							"can't recall to a Lapis Lazuli block.");
+				if (destLoc.getBlock().getRelative(0, -1, 0).getType().equals(Material.LAPIS_BLOCK)
+						|| destLoc.getBlock().getRelative(0, -2, 0).getType().equals(Material.LAPIS_BLOCK)) {
+					Output.simpleError(player, "can't recall to a Lapis Lazuli block.");
 					return;
 				}
 
@@ -97,15 +93,12 @@ public class SPL_Recall extends Spell {
 				if (usingSpawn) {
 					pseudoPlayer.setMana(0);
 					pseudoPlayer.setStamina(0);
-					player.sendMessage(ChatColor.GRAY
-							+ "Teleporting without a rune has exausted you.");
+					player.sendMessage(ChatColor.GRAY + "Teleporting without a rune has exausted you.");
 				}
 			} else
-				Output.simpleError(player,
-						"can't recall to there, the plot is private.");
+				Output.simpleError(player, "can't recall to there, the plot is private.");
 		} else
-			Output.simpleError(player,
-					"You do not have a rune with that name, re-cast spell.");
+			Output.simpleError(player, "You do not have a rune with that name, re-cast spell.");
 	}
 
 	/*

@@ -16,5 +16,5 @@ public class VehicleListener extends LostshardListener {
 	public void onEntityDismount(VehicleExitEvent event) {
 		TamingSkill.onDismount(event);
 	}
-	
+
 }

@@ -43,11 +43,11 @@ import com.lostshard.Utils.ExtraMath;
 @Entity
 @Access(AccessType.PROPERTY)
 public class Plot {
-	
+
 	public enum PlotUpgrade {
 
-		TOWN("Town", 100000), DUNGEON("Dungeon", 20000), AUTOKICK("AutoKick", 10000), ARENA(
-				"Arena", 10000), NEUTRALALIGNMENT("Neutral Alignment", 4000);
+		TOWN("Town", 100000), DUNGEON("Dungeon", 20000), AUTOKICK("AutoKick", 10000), ARENA("Arena",
+				10000), NEUTRALALIGNMENT("Neutral Alignment", 4000);
 
 		public static PlotUpgrade getByName(String name) {
 			for (final PlotUpgrade upgrade : values())
@@ -64,7 +64,7 @@ public class Plot {
 			this.setName(name);
 			this.setPrice(price);
 		}
-		
+
 		public String getName() {
 			return this.name;
 		}
@@ -111,6 +111,7 @@ public class Plot {
 	private boolean titleEntrence = false;
 	// Upgrade's
 	private List<PlotUpgrade> upgrades = new ArrayList<PlotUpgrade>();
+	private List<PlotEffect> effects = new ArrayList<PlotEffect>();
 
 	// Location
 	private SavableLocation location;
@@ -123,11 +124,11 @@ public class Plot {
 	private boolean allowPvp = true;
 
 	private PlotCapturePoint capturepointData = null;
-	
+
 	public Plot() {
-		
+
 	}
-	
+
 	public Plot(String name, UUID owner, Location location) {
 		this.name = name;
 		this.owner = owner;
@@ -157,10 +158,25 @@ public class Plot {
 		this.update();
 	}
 
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			t.commit();
+			s.clear();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public void disband() {
 		PlotManager.getManager().getPlots().remove(this);
 		this.delete();
-		for(NPC npc : getNpcs())
+		for (final NPC npc : this.getNpcs())
 			npc.despawn();
 	}
 
@@ -168,11 +184,17 @@ public class Plot {
 		this.size += size;
 		this.update();
 	}
-	
+
+	public PlotCapturePoint getCapturepointData() {
+		if (this.capturepointData == null)
+			this.capturepointData = new PlotCapturePoint(this);
+		return this.capturepointData;
+	}
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	public List<UUID> getCoowners() {
 		return this.coowners;
 	}
@@ -184,19 +206,21 @@ public class Plot {
 	 */
 	@Transient
 	public int getExpandPrice(int toSize) {
-		return Variables.plotExpandPrice*(-ExtraMath.Triangular(size)+ExtraMath.Triangular(toSize)+size-toSize);
+		return Variables.plotExpandPrice
+				* (-ExtraMath.Triangular(this.size) + ExtraMath.Triangular(toSize) + this.size - toSize);
 	}
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	public List<UUID> getFriends() {
 		return this.friends;
 	}
 
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	public int getId() {
 		return this.id;
 	}
@@ -215,7 +239,7 @@ public class Plot {
 		return this.money;
 	}
 
-	@Column(unique=true)
+	@Column(unique = true)
 	public String getName() {
 		return this.name;
 	}
@@ -227,21 +251,24 @@ public class Plot {
 		return this.npcs;
 	}
 
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	public UUID getOwner() {
 		return this.owner;
 	}
 
 	@Transient
 	public String getPlayerStatusOfPlotString(Player player) {
-		return this.isOwner(player) ? "You are the owner of this plot." : this
-				.isCoowner(player) ? "You are a co-owner of this plot." : this
-				.isFriend(player) ? "You are a friend of this plot."
-				: "You are not friend of this plot.";
+		return this.isOwner(player) ? "You are the owner of this plot."
+				: this.isCoowner(player) ? "You are a co-owner of this plot."
+						: this.isFriend(player) ? "You are a friend of this plot." : "You are not friend of this plot.";
 	}
 
 	public int getSalePrice() {
 		return this.salePrice;
+	}
+
+	public SavableLocation getSavableLocation() {
+		return this.location;
 	}
 
 	public int getSize() {
@@ -263,7 +290,7 @@ public class Plot {
 
 	@Transient
 	public int getValue() {
-		int plotValue = Variables.plotExpandPrice*(-55+ExtraMath.Triangular(getSize())+10-getSize());
+		int plotValue = Variables.plotExpandPrice * (-55 + ExtraMath.Triangular(this.getSize()) + 10 - this.getSize());
 		if (this.isUpgrade(PlotUpgrade.TOWN))
 			plotValue += Variables.plotTownPrice;
 		if (this.isUpgrade(PlotUpgrade.DUNGEON))
@@ -272,11 +299,24 @@ public class Plot {
 			plotValue += Variables.plotAutoKickPrice;
 		if (this.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			plotValue += Variables.plotNeutralAlignmentPrice;
-		
-		if (this.getLocation().getWorld().getEnvironment()
-				.equals(Environment.NETHER))
+
+		if (this.getLocation().getWorld().getEnvironment().equals(Environment.NETHER))
 			return plotValue;
 		return (int) Math.floor(plotValue * .75);
+	}
+
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	@Transient
@@ -289,9 +329,8 @@ public class Plot {
 		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
-		return this.isCoownerOrAbove(uuid) ? true : this.isFriend(uuid)
-				&& this.isFriendBuild() ? true : !this.isProtected() ? true
-				: false;
+		return this.isCoownerOrAbove(uuid) ? true
+				: this.isFriend(uuid) && this.isFriendBuild() ? true : !this.isProtected() ? true : false;
 	}
 
 	@Transient
@@ -301,7 +340,7 @@ public class Plot {
 
 	@Transient
 	public boolean isAllowedToInteract(UUID uuid) {
-		if(!this.isPrivatePlot())
+		if (!this.isPrivatePlot())
 			return true;
 		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
@@ -319,6 +358,11 @@ public class Plot {
 
 	public boolean isAllowPvp() {
 		return this.allowPvp;
+	}
+
+	@Transient
+	public boolean isCapturepoint() {
+		return this.getCapturepointData().isCapturePoint();
 	}
 
 	// Coowners
@@ -368,8 +412,7 @@ public class Plot {
 
 	@Transient
 	public boolean isFriendOrAbove(UUID uuid) {
-		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : this
-				.isFriend(uuid) ? true : false;
+		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : this.isFriend(uuid) ? true : false;
 	}
 
 	@Transient
@@ -419,6 +462,20 @@ public class Plot {
 		this.update();
 	}
 
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public void setAllowExplosions(boolean allowExplosions) {
 		this.allowExplosions = allowExplosions;
 		this.update();
@@ -432,6 +489,14 @@ public class Plot {
 	public void setAllowPvp(boolean allowPvp) {
 		this.allowPvp = allowPvp;
 		this.update();
+	}
+
+	public void setCapturepoint(boolean isCapturepoint) {
+		this.getCapturepointData().setCapturePoint(isCapturepoint);
+	}
+
+	public void setCapturepointData(PlotCapturePoint capturepoint) {
+		this.capturepointData = capturepoint;
 	}
 
 	public void setCoowners(List<UUID> coowners) {
@@ -490,6 +555,10 @@ public class Plot {
 		this.update();
 	}
 
+	public void setSavableLocation(SavableLocation savableLocation) {
+		this.location = savableLocation;
+	}
+
 	public void setSize(int size) {
 		this.size = size;
 		this.update();
@@ -521,74 +590,16 @@ public class Plot {
 	public void update() {
 		this.update = true;
 	}
-	
-	public SavableLocation getSavableLocation() {
-		return this.location;
-	}
-	
-	public void setSavableLocation(SavableLocation savableLocation) {
-		this.location = savableLocation;
-	}
-	
-	public void save() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void delete() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			t.commit();
-			s.clear();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public PlotCapturePoint getCapturepointData() {
-		if(capturepointData == null)
-			this.capturepointData = new PlotCapturePoint(this);
-		return capturepointData;
+
+	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@CollectionTable
+	@Enumerated(EnumType.STRING)
+	public List<PlotEffect> getEffects() {
+		return effects;
 	}
 
-	public void setCapturepointData(PlotCapturePoint capturepoint) {
-		this.capturepointData = capturepoint;
-	}
-
-	@Transient
-	public boolean isCapturepoint() {
-		return getCapturepointData().isCapturePoint();
-	}
-
-	public void setCapturepoint(boolean isCapturepoint) {
-		getCapturepointData().setCapturePoint(isCapturepoint);
+	public void setEffects(List<PlotEffect> effects) {
+		this.effects = effects;
 	}
 }

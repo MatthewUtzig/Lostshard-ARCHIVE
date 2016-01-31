@@ -24,13 +24,12 @@ public class SPL_Flare extends Spell {
 	@Override
 	public void doAction(Player player) {
 		// Spawn the Firework, get the FireworkMeta.
-		final Firework fw = (Firework) player.getWorld().spawnEntity(
-				player.getLocation(), EntityType.FIREWORK);
+		final Firework fw = (Firework) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
 		final FireworkMeta fwm = fw.getFireworkMeta();
 
 		// Create our effect with this
-		final FireworkEffect effect = FireworkEffect.builder().flicker(true)
-				.withColor(Color.RED).with(Type.STAR).trail(true).build();
+		final FireworkEffect effect = FireworkEffect.builder().flicker(true).withColor(Color.RED).with(Type.STAR)
+				.trail(true).build();
 
 		// Then apply the effect to the meta
 		fwm.addEffect(effect);

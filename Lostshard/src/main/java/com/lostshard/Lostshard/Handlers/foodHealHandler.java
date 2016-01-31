@@ -17,32 +17,28 @@ import com.lostshard.Lostshard.Utils.Output;
 
 public class foodHealHandler {
 
+	static PlayerManager pm = PlayerManager.getManager();
+
 	public static void foodHeal(PlayerInteractEvent event) {
-		if (!(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event
-				.getAction().equals(Action.RIGHT_CLICK_BLOCK)))
+		if (!(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)))
 			return;
 		final Block blockClicked = event.getClickedBlock();
 		final Player player = event.getPlayer();
-		if (blockClicked != null
-				&& (blockClicked.getType().equals(Material.CHEST)
-						|| blockClicked.getType().equals(Material.FURNACE)
-						|| blockClicked.getType().equals(Material.STONE_BUTTON)
-						|| blockClicked.getType().equals(Material.LEVER)
-						|| blockClicked.getType().equals(Material.WOOD_DOOR) || blockClicked
-						.getType().equals(Material.TRAP_DOOR)))
+		if (blockClicked != null && (blockClicked.getType().equals(Material.CHEST)
+				|| blockClicked.getType().equals(Material.FURNACE)
+				|| blockClicked.getType().equals(Material.STONE_BUTTON) || blockClicked.getType().equals(Material.LEVER)
+				|| blockClicked.getType().equals(Material.WOOD_DOOR)
+				|| blockClicked.getType().equals(Material.TRAP_DOOR)))
 			return;
 		final ItemStack itemInHand = player.getItemInHand();
-		final FoodType foodType = FoodType.getFoodTypeByMaterial(player
-				.getItemInHand().getType());
+		final FoodType foodType = FoodType.getFoodTypeByMaterial(player.getItemInHand().getType());
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (foodType == null)
 			return;
 		final int stamCost = foodType.getStaminaCost();
 		final int curStam = pPlayer.getStamina();
 		if (curStam < stamCost) {
-			Output.simpleError(player,
-					"You do not have enough stamina to eat that, it requires "
-							+ stamCost + ".");
+			Output.simpleError(player, "You do not have enough stamina to eat that, it requires " + stamCost + ".");
 			return;
 		}
 		pPlayer.setStamina(curStam - stamCost);
@@ -51,13 +47,11 @@ public class foodHealHandler {
 		curHealth += foodType.getHealAmount();
 
 		if (foodType.getItem() == Material.PORK) {
-			final int curSkill = pPlayer.getCurrentBuild().getLumberjacking()
-					.getLvl();
+			final int curSkill = pPlayer.getCurrentBuild().getLumberjacking().getLvl();
 			if (curSkill > 500)
 				curHealth += 5;
 		} else if (foodType.getItem() == Material.COOKED_FISH) {
-			final int curSkill = pPlayer.getCurrentBuild().getFishing()
-					.getLvl();
+			final int curSkill = pPlayer.getCurrentBuild().getFishing().getLvl();
 			if (curSkill > 750)
 				curHealth += 2;
 		}
@@ -66,13 +60,11 @@ public class foodHealHandler {
 		player.setHealth(curHealth);
 
 		if (foodType.getItem() == Material.ROTTEN_FLESH)
-			player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER,
-					600, 1));
+			player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 600, 1));
 
 		int curFullness = player.getFoodLevel();
 		double modFoodLevel = foodType.getFullnessAmount();
-		final int survSkill = pPlayer.getCurrentBuild().getSurvivalism()
-				.getLvl();
+		final int survSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
 		final double multiplier = 1 + (double) survSkill / 1000;
 		modFoodLevel *= multiplier;
 
@@ -93,10 +85,7 @@ public class foodHealHandler {
 		else if (itemInHand.getType().equals(Material.MUSHROOM_SOUP))
 			itemInHand.setType(Material.BOWL);
 		else
-			player.getInventory()
-					.clear(player.getInventory().getHeldItemSlot());
+			player.getInventory().clear(player.getInventory().getHeldItemSlot());
 		event.setCancelled(true);
 	}
-
-	static PlayerManager pm = PlayerManager.getManager();
 }

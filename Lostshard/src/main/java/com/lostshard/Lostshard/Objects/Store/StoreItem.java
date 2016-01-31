@@ -30,9 +30,9 @@ public class StoreItem {
 	private int restockAmount = 0;
 
 	public StoreItem() {
-		
+
 	}
-	
+
 	public StoreItem(ItemStack item, int salePrice, int buyPrice, int stock, int maxBuyAmount) {
 		this.item = item;
 		this.salePrice = salePrice;
@@ -49,11 +49,6 @@ public class StoreItem {
 	public ItemStack getItem() {
 		return this.item;
 	}
-	
-	@Column(columnDefinition="text")
-	public String getSavableItem() {
-		return Serializer.itemTo64(this.item);
-	}
 
 	public int getMaxBuyAmount() {
 		return this.maxBuyAmount;
@@ -69,6 +64,11 @@ public class StoreItem {
 
 	public int getSalePrice() {
 		return this.salePrice;
+	}
+
+	@Column(columnDefinition = "text")
+	public String getSavableItem() {
+		return Serializer.itemTo64(this.item);
 	}
 
 	public int getStock() {
@@ -90,10 +90,6 @@ public class StoreItem {
 	public void setItem(ItemStack item) {
 		this.item = item;
 	}
-	
-	public void setSavableItem(String item) {
-		this.item = Serializer.itemFrom64(item);
-	}
 
 	public void setMaxBuyAmount(int maxBuyAmount) {
 		this.maxBuyAmount = maxBuyAmount;
@@ -111,7 +107,15 @@ public class StoreItem {
 		this.salePrice = price;
 	}
 
+	public void setSavableItem(String item) {
+		this.item = Serializer.itemFrom64(item);
+	}
+
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	
+	public boolean equals(ItemStack item) {
+		return getItem().isSimilar(item);
 	}
 }

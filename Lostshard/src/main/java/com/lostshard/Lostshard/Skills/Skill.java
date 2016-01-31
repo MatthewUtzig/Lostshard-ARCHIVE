@@ -32,19 +32,19 @@ public abstract class Skill {
 	private Material mat;
 	@Transient
 	private String name = "none";
-	
+
 	private int lvl = 0; // 0-1000 and displayed as level/10
 	private boolean locked = false;
 
 	public Skill() {
-		
+
 	}
-	
+
 	public Skill(int lvl, boolean locked) {
 		this.lvl = lvl;
 		this.locked = locked;
 	}
-	
+
 	public double getBaseProb() {
 		return this.baseProb;
 	}
@@ -114,16 +114,13 @@ public abstract class Skill {
 	public int skillGain(PseudoPlayer pPlayer) {
 		if (this.locked)
 			return 0;
-		if (pPlayer.getCurrentBuild().getTotalSkillVal() >= pPlayer
-				.getMaxSkillValTotal())
+		if (pPlayer.getCurrentBuild().getTotalSkillVal() >= pPlayer.getMaxSkillValTotal())
 			return 0;
 		if (this.lvl >= 1000)
 			return 0;
 		final double RND = Math.random();
-		int gain = RND <= this.baseProb
-				* Math.exp(-this.lvl / 10 / this.scaleConstant) ? ((Double) Math
-				.ceil(Math.random() * this.maxGain + this.minGain)).intValue()
-				: 0;
+		int gain = RND <= this.baseProb * Math.exp(-this.lvl / 10 / this.scaleConstant)
+				? ((Double) Math.ceil(Math.random() * this.maxGain + this.minGain)).intValue() : 0;
 		this.lvl += gain;
 		if (this.lvl > 1000) {
 			gain -= this.lvl - 1000;

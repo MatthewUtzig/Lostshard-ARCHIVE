@@ -16,13 +16,11 @@ public class FireWalk extends MagicStructure {
 
 	public static void onPlayerMove(PlayerMoveEvent event) {
 		final Player player = event.getPlayer();
-		if (!event.getTo().getBlock().getState()
-				.equals(event.getFrom().getBlock().getState()))
+		if (!event.getTo().getBlock().getState().equals(event.getFrom().getBlock().getState()))
 			for (final MagicStructure ms : getMagicStructures())
 				if (ms instanceof FireWalk)
 					if (ms.getCreatorUUID().equals(player.getUniqueId()))
-						if (event.getTo().getBlock().getType()
-								.equals(Material.AIR)) {
+						if (event.getTo().getBlock().getType().equals(Material.AIR)) {
 							event.getTo().getBlock().setType(Material.FIRE);
 							ms.addBlock(event.getTo().getBlock());
 						}
@@ -36,8 +34,7 @@ public class FireWalk extends MagicStructure {
 	public void lastThing() {
 		final Player player = Bukkit.getPlayer(this.getCreatorUUID());
 		if (player != null)
-			player.sendMessage(ChatColor.GRAY
-					+ "The flames on your feet have extinguished.");
+			player.sendMessage(ChatColor.GRAY + "The flames on your feet have extinguished.");
 	}
 
 }

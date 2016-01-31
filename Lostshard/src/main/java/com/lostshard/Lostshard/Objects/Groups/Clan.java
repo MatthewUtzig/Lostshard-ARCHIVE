@@ -23,13 +23,12 @@ import org.hibernate.annotations.Type;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.Bank;
 
-
 @Entity
 public class Clan extends Group {
-	
+
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
 
 	// String's
@@ -38,13 +37,13 @@ public class Clan extends Group {
 
 	// UUID
 	@Column(name = "owner")
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private UUID owner;
 
 	// Array's
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private List<UUID> leaders = new ArrayList<UUID>();
 
 	@Transient
@@ -54,9 +53,9 @@ public class Clan extends Group {
 	private boolean update = false;
 
 	public Clan() {
-		
+
 	}
-	
+
 	public Clan(String name, UUID owner) {
 		super();
 		this.name = name;
@@ -121,8 +120,7 @@ public class Clan extends Group {
 	}
 
 	public boolean isInClan(UUID uuid) {
-		if (this.getMembers().contains(uuid) || this.isLeader(uuid)
-				|| this.isOwner(uuid))
+		if (this.getMembers().contains(uuid) || this.isLeader(uuid) || this.isOwner(uuid))
 			return true;
 		return false;
 	}
@@ -175,11 +173,10 @@ public class Clan extends Group {
 		for (final UUID member : this.getMembersAndLeders()) {
 			final Player memberPlayer = Bukkit.getPlayer(member);
 			if (memberPlayer != null) {
-				Lostshard.log.finest(ChatColor.WHITE + "[" + ChatColor.GREEN
-						+ "Clan" + ChatColor.WHITE + "] " + message);
-				memberPlayer.sendMessage(ChatColor.WHITE + "["
-						+ ChatColor.GREEN + "Clan" + ChatColor.WHITE + "] "
-						+ message);
+				Lostshard.log
+						.finest(ChatColor.WHITE + "[" + ChatColor.GREEN + "Clan" + ChatColor.WHITE + "] " + message);
+				memberPlayer.sendMessage(
+						ChatColor.WHITE + "[" + ChatColor.GREEN + "Clan" + ChatColor.WHITE + "] " + message);
 			}
 		}
 	}

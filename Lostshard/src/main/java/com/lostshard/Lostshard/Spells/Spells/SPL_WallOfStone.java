@@ -25,19 +25,15 @@ public class SPL_WallOfStone extends RangedSpell {
 		// stonewall effect
 		final Location originLoc = player.getLocation();
 		originLoc.setY(originLoc.getY() + 1.5);
-		final Location targetLoc = new Location(
-				this.getFoundBlock().getWorld(),
-				this.getFoundBlock().getX() + .5,
-				this.getFoundBlock().getY() + .5,
-				this.getFoundBlock().getZ() + .5);
+		final Location targetLoc = new Location(this.getFoundBlock().getWorld(), this.getFoundBlock().getX() + .5,
+				this.getFoundBlock().getY() + .5, this.getFoundBlock().getZ() + .5);
 
 		final double slopeX = targetLoc.getX() - originLoc.getX();
 		final double slopeZ = targetLoc.getZ() - originLoc.getZ();
 		double perpSlopeX = slopeZ;
 		double perpSlopeZ = slopeX;
 
-		final double length = Math.sqrt(perpSlopeX * perpSlopeX + perpSlopeZ
-				* perpSlopeZ);
+		final double length = Math.sqrt(perpSlopeX * perpSlopeX + perpSlopeZ * perpSlopeZ);
 		perpSlopeX /= length;
 		perpSlopeZ /= length;
 
@@ -49,16 +45,11 @@ public class SPL_WallOfStone extends RangedSpell {
 			perpSlopeZ *= -1;
 
 		for (int i = -4; i < 4; i++) {
-			final Block b = this
-					.getFoundBlock()
-					.getWorld()
-					.getBlockAt(
-							(int) Math.floor(targetLoc.getX() + i * perpSlopeX),
-							(int) Math.floor(targetLoc.getY()) + 1,
-							(int) Math.floor(targetLoc.getZ() + i * perpSlopeZ));
+			final Block b = this.getFoundBlock().getWorld().getBlockAt(
+					(int) Math.floor(targetLoc.getX() + i * perpSlopeX), (int) Math.floor(targetLoc.getY()) + 1,
+					(int) Math.floor(targetLoc.getZ() + i * perpSlopeZ));
 			for (int z = 0; z < 3; z++) {
-				final Block vert = this.getFoundBlock().getWorld()
-						.getBlockAt(b.getX(), b.getY() + z, b.getZ());
+				final Block vert = this.getFoundBlock().getWorld().getBlockAt(b.getX(), b.getY() + z, b.getZ());
 				if (vert.getType().equals(Material.AIR))
 					// vert.setType(Material.STONE);
 					stonewallBlocks.add(vert);

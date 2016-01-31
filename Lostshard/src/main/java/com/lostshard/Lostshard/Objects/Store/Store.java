@@ -16,25 +16,35 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Utils.Serializer;
 
 @Entity
 public class Store {
 
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<StoreItem> items = new ArrayList<StoreItem>();
-	
+
 	public void addItem(StoreItem item) {
 		this.items.add(item);
 	}
 
-	public String getAsJson() {
-		return Serializer.gson.toJson(this.items).toString();
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			t.commit();
+			s.clear();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	public int getId() {
@@ -68,6 +78,20 @@ public class Store {
 		return null;
 	}
 
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public boolean itemsContains(ItemStack item) {
 		for (final StoreItem si : this.items)
 			if (si.equals(item))
@@ -79,54 +103,25 @@ public class Store {
 		this.items.remove(storeItem);
 	}
 
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	public void setItems(List<StoreItem> items) {
 		this.items = items;
-	}
-	
-	public void save() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void delete() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			t.commit();
-			s.clear();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
 	}
 }

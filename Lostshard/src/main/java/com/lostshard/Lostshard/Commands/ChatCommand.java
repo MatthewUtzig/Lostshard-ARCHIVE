@@ -102,7 +102,11 @@ public class ChatCommand extends LostshardCommand {
 		}
 		final String targetName = args[0];
 		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (player == null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
+		if(targetPlayer == null) {
+			Output.simpleError(player, "That player is not online.");
+			return;
+		}
+		if (player == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
 			Output.simpleError(player, "player not online");
 			return;
 		}
@@ -114,18 +118,16 @@ public class ChatCommand extends LostshardCommand {
 
 		final PseudoPlayer pPlayer = this.pm.getPlayer(targetPlayer);
 		pPlayer.setLastResiver(player.getUniqueId());
-		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
-				+ "MSG to " + targetPlayer.getName() + ChatColor.WHITE + "] "
-				+ message);
+		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + targetPlayer.getName()
+				+ ChatColor.WHITE + "] " + message);
 		if (!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE)
 				&& !pPlayer.getIgnored().contains(player.getUniqueId()))
-			targetPlayer.sendMessage(ChatColor.WHITE + "["
-					+ ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
+			targetPlayer.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
 					+ ChatColor.WHITE + "] " + message);
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (!(sender instanceof Player)) {
 			Output.mustBePlayer(sender);
 			return true;
@@ -154,8 +156,8 @@ public class ChatCommand extends LostshardCommand {
 		return true;
 	}
 
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1)
 			if (sender instanceof Player)
 				return TabUtils.OnlinePlayersTab(args, (Player) sender);
@@ -187,7 +189,7 @@ public class ChatCommand extends LostshardCommand {
 
 	private void replayChat(Player player, String[] args) {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if(pPlayer.getLastResiver() == null) {
+		if (pPlayer.getLastResiver() == null) {
 			Output.simpleError(player, "You havent received any messages.");
 			return;
 		}
@@ -195,19 +197,17 @@ public class ChatCommand extends LostshardCommand {
 		final Player to = Bukkit.getPlayer(pPlayer.getLastResiver());
 		if (to == null) {
 			Output.simpleError(player,
-					Bukkit.getOfflinePlayer(pPlayer.getLastResiver()).getName()
-							+ " is no longer online.");
+					Bukkit.getOfflinePlayer(pPlayer.getLastResiver()).getName() + " is no longer online.");
 			return;
 		}
-		final PseudoPlayer toPp = pm.getPlayer(to);
+		final PseudoPlayer toPp = this.pm.getPlayer(to);
 		toPp.setLastResiver(to.getUniqueId());
 		final String message = StringUtils.join(args, " ");
 
-		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
-				+ "MSG to " + to.getName() + ChatColor.WHITE + "] " + message);
-		to.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE
-				+ "MSG from " + player.getName() + ChatColor.WHITE + "] "
-				+ message);
+		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + to.getName() + ChatColor.WHITE
+				+ "] " + message);
+		to.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG from " + player.getName() + ChatColor.WHITE
+				+ "] " + message);
 	}
 
 	/**

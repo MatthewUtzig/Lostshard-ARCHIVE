@@ -20,8 +20,7 @@ public class ReloadCommand extends LostshardCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("lostshardreload")) {
 			this.cm.reload();
 			Output.positiveMessage(sender, "Reload complete.");
@@ -31,8 +30,7 @@ public class ReloadCommand extends LostshardCommand {
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		return null;
 	}
 

@@ -10,6 +10,8 @@ import com.lostshard.Lostshard.Objects.Store.Store;
 
 public class StoreManager {
 
+	private static StoreManager manager = new StoreManager();
+
 	public static StoreManager getManager() {
 		return manager;
 	}
@@ -18,8 +20,6 @@ public class StoreManager {
 		StoreManager.manager = manager;
 	}
 
-	private static StoreManager manager = new StoreManager();
-
 	private List<Store> stores = new ArrayList<Store>();
 
 	NPCManager npcm = NPCManager.getManager();
@@ -27,14 +27,16 @@ public class StoreManager {
 	private StoreManager() {
 
 	}
-	
+
 	public Store createStore() {
-		Store store = new Store();
+		final Store store = new Store();
 		return store;
 	}
 
 	public Store getStore(Location location) {
 		final NPC npc = this.npcm.getVendor(location);
+		if(npc == null)
+			return null;
 		return npc.getStore();
 	}
 

@@ -15,8 +15,7 @@ public class WallOfStone extends MagicStructure {
 
 	protected int solidTicks = 125;
 
-	public WallOfStone(ArrayList<Block> blocks, UUID uuid,
-			int numTicksTillCleanup) {
+	public WallOfStone(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
 		super(blocks, uuid, numTicksTillCleanup);
 	}
 
@@ -30,10 +29,8 @@ public class WallOfStone extends MagicStructure {
 				// System.out.println("removing tick");
 				final int totalBlocks = this.getBlockStates().size();
 				final int blocksPerTick = (int) Math
-						.ceil(totalBlocks
-								/ ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
-				final int curBlock = (this.getCurTick() - this.solidTicks)
-						* blocksPerTick;
+						.ceil(totalBlocks / ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
+				final int curBlock = (this.getCurTick() - this.solidTicks) * blocksPerTick;
 				int maxSize = curBlock + blocksPerTick;
 				if (curBlock + blocksPerTick >= this.getBlockStates().size())
 					maxSize = this.getBlockStates().size();
@@ -47,8 +44,7 @@ public class WallOfStone extends MagicStructure {
 			} else {
 				final int totalBlocks = this.getBlockStates().size();
 				final int blocksPerTick = (int) Math
-						.ceil(totalBlocks
-								/ ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
+						.ceil(totalBlocks / ((double) this.getNumTicksTillCleanup() - (double) this.solidTicks));
 				final int curBlock = (this.getCurTick() - 1) * blocksPerTick;
 				int maxSize = curBlock + blocksPerTick;
 				if (curBlock + blocksPerTick >= this.getBlockStates().size())

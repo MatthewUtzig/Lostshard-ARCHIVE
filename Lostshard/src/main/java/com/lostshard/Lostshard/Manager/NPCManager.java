@@ -19,11 +19,11 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class NPCManager {
 
+	private static NPCManager manager = new NPCManager();
+
 	public static NPCManager getManager() {
 		return manager;
 	}
-
-	private static NPCManager manager = new NPCManager();
 
 	PlotManager ptm = PlotManager.getManager();
 
@@ -33,8 +33,7 @@ public class NPCManager {
 
 	public NPC getBanker(Location location) {
 		for (final NPC npc : this.getBankers())
-			if (Utils.isWithin(location, npc.getLocation(),
-					Variables.bankRadius))
+			if (Utils.isWithin(location, npc.getLocation(), Variables.bankRadius))
 				return npc;
 		return null;
 	}
@@ -45,6 +44,20 @@ public class NPCManager {
 			if (npc.getType().equals(NPCType.BANKER))
 				result.add(npc);
 		return result;
+	}
+
+	public NPC getByLocation(Location loc) {
+		for (final NPC npc : this.getNpcs())
+			if (npc.getLocation().equals(loc))
+				return npc;
+		return null;
+	}
+
+	public NPC getByUUID(UUID uuid) {
+		for (final NPC npc : this.getNpcs())
+			if (npc.getId() == NPCLibManager.getManager().getNPCID(uuid))
+				return npc;
+		return null;
 	}
 
 	public List<NPC> getGuards() {
@@ -76,8 +89,7 @@ public class NPCManager {
 
 	public NPC getVendor(Location location) {
 		for (final NPC npc : this.getVendors())
-			if (Utils.isWithin(location, npc.getLocation(),
-					Variables.bankRadius))
+			if (Utils.isWithin(location, npc.getLocation(), Variables.bankRadius))
 				return npc;
 		return null;
 	}
@@ -89,45 +101,31 @@ public class NPCManager {
 				result.add(npc);
 		return result;
 	}
-	
-	public NPC getByUUID(UUID uuid) {
-		for(NPC npc : getNpcs())
-			if(npc.getId() == NPCLibManager.getManager().getNPCID(uuid))
-				return npc;
-		return null;
-	}
-	
-	public NPC getByLocation(Location loc) {
-		for(NPC npc : getNpcs())
-			if(npc.getLocation().equals(loc))
-				return npc;
-		return null;
-	}
 
 	public void interac(PlayerInteractEntityEvent event) {
-		if(!event.getRightClicked().hasMetadata("NPC"))
+		if (!event.getRightClicked().hasMetadata("NPC"))
 			return;
-		Entity e = event.getRightClicked();
-		Player player = event.getPlayer();
-		NPC npc = getByLocation(e.getLocation());
-		if(npc == null)
+		final Entity e = event.getRightClicked();
+		final Player player = event.getPlayer();
+		final NPC npc = this.getByLocation(e.getLocation());
+		if (npc == null)
 			return;
-		if(npc.getType().equals(NPCType.BANKER)) {
-			if(player.getItemInHand().getType().equals(Material.GOLD_INGOT))
-				player.performCommand("/tradegold "+player.getItemInHand().getAmount());
+		if (npc.getType().equals(NPCType.BANKER)) {
+			if (player.getItemInHand().getType().equals(Material.GOLD_INGOT))
+				player.performCommand("tradegold " + player.getItemInHand().getAmount());
 			else
 				player.performCommand("bank");
 			return;
 		}
-		if(npc.getType().equals(NPCType.VENDOR)) {
-			
+		if (npc.getType().equals(NPCType.VENDOR)) {
+
 			return;
 		}
 	}
 
 	public void spawn() {
-		for(Plot plot : ptm.getPlots())
-			for(NPC npc : plot.getNpcs())
+		for (final Plot plot : this.ptm.getPlots())
+			for (final NPC npc : plot.getNpcs())
 				npc.spawn();
 	}
 }

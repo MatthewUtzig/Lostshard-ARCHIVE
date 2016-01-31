@@ -7,11 +7,11 @@ import com.lostshard.Lostshard.Objects.Groups.Party;
 
 public class PartyManager {
 
+	private static PartyManager manager = new PartyManager();
+
 	public static PartyManager getManager() {
 		return manager;
 	}
-
-	private static PartyManager manager = new PartyManager();
 
 	private List<Party> paries = new ArrayList<Party>();
 

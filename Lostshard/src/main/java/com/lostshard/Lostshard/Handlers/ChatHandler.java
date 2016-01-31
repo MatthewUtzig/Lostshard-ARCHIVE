@@ -23,9 +23,17 @@ import com.lostshard.Lostshard.Utils.Utils;
  *
  */
 public class ChatHandler {
-	
+
 	static SpellManager sm = SpellManager.getManager();
-	
+
+	static PlayerManager pm = PlayerManager.getManager();
+
+	private static int whisperChatRange = 5;
+
+	private static int localChatRange = 10;
+
+	private static int shoutChatRange = 50;
+
 	public static void clanChat(AsyncPlayerChatEvent event) {
 		if (event.isCancelled())
 			return;
@@ -36,8 +44,7 @@ public class ChatHandler {
 			Output.simpleError(player, "You are currently not in a clan.");
 			return;
 		}
-		clan.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": "
-				+ event.getMessage());
+		clan.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": " + event.getMessage());
 	}
 
 	public static int getLocalChatRange() {
@@ -63,27 +70,22 @@ public class ChatHandler {
 		String title = pPlayer.getCurrentTitle();
 		if (title != "")
 			title += " ";
-		prefix = ChatColor.WHITE + "[" + ChatColor.YELLOW + "Global"
-				+ ChatColor.WHITE + "]" + star;
+		prefix = ChatColor.WHITE + "[" + ChatColor.YELLOW + "Global" + ChatColor.WHITE + "]" + star;
 		for (final Player p : Bukkit.getOnlinePlayers()) {
 			pPlayer = pm.getPlayer(p);
-			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)
-					&& !ignore.contains(p.getUniqueId()))
+			if (!pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL) && !ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
 		}
-		event.setFormat(prefix + " " + title + "%s" + ChatColor.WHITE
-				+ ": " + "%s");
+		event.setFormat(prefix + " " + title + "%s" + ChatColor.WHITE + ": " + "%s");
 	}
 
 	public static void localChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
-		for (final Player p : Utils.getPlayersNear(event.getPlayer(),
-				getLocalChatRange()))
+		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getLocalChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
-		event.setFormat(Utils.getDisplayColor(event.getPlayer()) + "%s"
-				+ ChatColor.WHITE + ": " + "%s");
+		event.setFormat(Utils.getDisplayColor(event.getPlayer()) + "%s" + ChatColor.WHITE + ": " + "%s");
 	}
 
 	public static void onPlayerChat(AsyncPlayerChatEvent event) {
@@ -125,8 +127,7 @@ public class ChatHandler {
 			Output.simpleError(player, "You are currently not in a party.");
 			return;
 		}
-		party.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": "
-				+ event.getMessage());
+		party.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": " + event.getMessage());
 	}
 
 	public static void setLocalChatRange(int localChatRange) {
@@ -144,8 +145,7 @@ public class ChatHandler {
 	public static void shoutChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
-		for (final Player p : Utils.getPlayersNear(event.getPlayer(),
-				getShoutChatRange()))
+		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getShoutChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
 		event.setFormat("%s" + ChatColor.WHITE + " shouts: " + "%s");
@@ -154,19 +154,10 @@ public class ChatHandler {
 	public static void whisperChat(AsyncPlayerChatEvent event, List<UUID> ignore) {
 		if (event.isCancelled())
 			return;
-		for (final Player p : Utils.getPlayersNear(event.getPlayer(),
-				getWhisperChatRange()))
+		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getWhisperChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
 		event.setFormat("%s" + ChatColor.WHITE + " whisper: " + "%s");
 	}
-
-	static PlayerManager pm = PlayerManager.getManager();
-
-	private static int whisperChatRange = 5;
-
-	private static int localChatRange = 10;
-
-	private static int shoutChatRange = 50;
 
 }

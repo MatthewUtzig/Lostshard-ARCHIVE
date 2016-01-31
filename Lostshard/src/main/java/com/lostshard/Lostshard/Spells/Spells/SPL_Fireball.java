@@ -17,8 +17,7 @@ public class SPL_Fireball extends Spell {
 	public void doAction(Player player) {
 		final Vector v = player.getLocation().getDirection();
 
-		final Fireball fb = player.getWorld().spawn(player.getEyeLocation(),
-				Fireball.class);
+		final Fireball fb = player.getWorld().spawn(player.getEyeLocation(), Fireball.class);
 		fb.setShooter(player);
 		fb.setVelocity(v);
 	}

@@ -28,10 +28,8 @@ public class Bridge extends MagicStructure {
 			else if (this.getCurTick() >= this.solidTicks) {
 				// System.out.println("removing tick");
 				final int totalBlocks = this.getBlockStates().size();
-				final int blocksPerTick = totalBlocks
-						/ (this.getNumTicksTillCleanup() - this.solidTicks);
-				final int curBlock = (this.getCurTick() - this.solidTicks)
-						* blocksPerTick;
+				final int blocksPerTick = totalBlocks / (this.getNumTicksTillCleanup() - this.solidTicks);
+				final int curBlock = (this.getCurTick() - this.solidTicks) * blocksPerTick;
 				int maxSize = curBlock + blocksPerTick;
 				if (curBlock + blocksPerTick >= this.getBlockStates().size())
 					maxSize = this.getBlockStates().size();
@@ -45,8 +43,7 @@ public class Bridge extends MagicStructure {
 				// solid ticks
 			} else {
 				final int totalBlocks = this.getBlockStates().size();
-				final int blocksPerTick = totalBlocks
-						/ (this.getNumTicksTillCleanup() - this.solidTicks);
+				final int blocksPerTick = totalBlocks / (this.getNumTicksTillCleanup() - this.solidTicks);
 				final int curBlock = (this.getCurTick() - 1) * blocksPerTick;
 				int maxSize = curBlock + blocksPerTick;
 				if (curBlock + blocksPerTick >= this.getBlockStates().size())

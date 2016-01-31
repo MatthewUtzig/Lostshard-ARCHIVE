@@ -15,8 +15,7 @@ public class FishingCommand extends LostshardCommand {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("boat")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);

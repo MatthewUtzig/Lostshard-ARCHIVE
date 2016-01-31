@@ -27,8 +27,7 @@ public class ChestRefillCommand extends LostshardCommand {
 			Output.simpleError(player, "/dc create (minMinuters) (maxMinuters)");
 			return;
 		}
-		final Block block = player
-				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
@@ -51,15 +50,13 @@ public class ChestRefillCommand extends LostshardCommand {
 		rangeMin *= 60000;
 		rangeMax *= 60000;
 
-		final ItemStack[] items = ((Chest) block.getState()).getInventory()
-				.getContents();
+		final ItemStack[] items = ((Chest) block.getState()).getInventory().getContents();
 		cr = new ChestRefill(block.getLocation(), rangeMin, rangeMax, items, 0);
 		this.cm.add(cr);
 	}
 
 	private void dcFill(Player player) {
-		final Block block = player
-				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
@@ -74,13 +71,12 @@ public class ChestRefillCommand extends LostshardCommand {
 	}
 
 	private void dcRemove(Player player) {
-		final Block block = player
-				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		final ChestRefill cr = this.cm.getChest((Chest) block);
+		final ChestRefill cr = this.cm.getChest((Chest) block.getState());
 		if (cr == null) {
 			Output.simpleError(player, "Thats not a Dungeon Chest.");
 			return;
@@ -90,22 +86,22 @@ public class ChestRefillCommand extends LostshardCommand {
 	}
 
 	private void dcSetContents(Player player) {
-		final Block block = player
-				.getTargetBlock(SpellUtils.invisibleBlocks, 5);
+		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
 			return;
 		}
-		final ChestRefill cr = this.cm.getChest((Chest) block);
+		final ChestRefill cr = this.cm.getChest((Chest) block.getState());
 		if (cr == null) {
 			Output.simpleError(player, "Thats not a Dungeon Chest.");
 			return;
 		}
 		cr.setItems(((Chest) block.getState()).getInventory().getContents());
+		cr.save();
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("dc")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -114,8 +110,7 @@ public class ChestRefillCommand extends LostshardCommand {
 			final Player player = (Player) sender;
 			if (args.length < 1) {
 				Output.positiveMessage(player, "Dungeon Chest");
-				Output.positiveMessage(player,
-						"/dc create (minMinuters) (maxMinuters)");
+				Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
 				Output.positiveMessage(player, "/dc remove");
 				Output.positiveMessage(player, "/dc setcontents");
 				Output.positiveMessage(player, "/dc fill");
@@ -132,8 +127,7 @@ public class ChestRefillCommand extends LostshardCommand {
 				this.dcFill(player);
 			else {
 				Output.positiveMessage(player, "Dungeon Chest");
-				Output.positiveMessage(player,
-						"/dc create (minMinuters) (maxMinuters)");
+				Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
 				Output.positiveMessage(player, "/dc remove");
 				Output.positiveMessage(player, "/dc setcontents");
 				Output.positiveMessage(player, "/dc fill");

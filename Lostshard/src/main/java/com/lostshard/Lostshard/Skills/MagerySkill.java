@@ -8,10 +8,6 @@ import com.lostshard.Lostshard.Manager.SpellManager;
 
 @Embeddable
 public class MagerySkill extends Skill {
-	
-	public MagerySkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
 
 	static SpellManager sm = SpellManager.getManager();
 
@@ -23,6 +19,10 @@ public class MagerySkill extends Skill {
 		this.setScaleConstant(60);
 		this.setMinGain(1);
 		this.setMaxGain(10);
+	}
+
+	public MagerySkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

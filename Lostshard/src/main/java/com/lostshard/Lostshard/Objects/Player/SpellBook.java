@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Transient;
+
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -20,13 +21,13 @@ import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Spells.Scroll;
 
 @Embeddable
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Access(AccessType.FIELD)
 public class SpellBook {
 
 	@Transient
 	SpellManager sm = SpellManager.getManager();
-	
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 

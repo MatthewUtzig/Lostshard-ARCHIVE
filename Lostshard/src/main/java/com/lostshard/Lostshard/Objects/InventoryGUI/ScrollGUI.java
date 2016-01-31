@@ -5,9 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -26,9 +24,9 @@ public class ScrollGUI extends GUI {
 		for (final Scroll s : this.getPlayer().getScrolls())
 			if (!scrolls.contains(s))
 				scrolls.add(s);
-		GUIItem[] items = new GUIItem[scrolls.size()];
+		final GUIItem[] items = new GUIItem[scrolls.size()];
 		for (int i = 0; i < scrolls.size(); i++) {
-			Scroll s = scrolls.get(i);
+			final Scroll s = scrolls.get(i);
 			final int amount = Collections.frequency(scrolls, s);
 			final ItemStack item = new ItemStack(s.getReagentCost().get(0).getType(), amount);
 			final ItemMeta itemMeta = item.getItemMeta();
@@ -51,40 +49,34 @@ public class ScrollGUI extends GUI {
 			itemMeta.setLore(lore);
 
 			item.setItemMeta(itemMeta);
-			items[i] = new GUIItem(item, new GUIClick() {
+			items[i] = new GUIItem(item, (player, pPlayer1, item1, click, inv, slot) -> {
+				if (click.equals(ClickType.LEFT)) {
+					final Scroll scroll1 = s;
+					if (pPlayer1.getSpellbook().containSpell(scroll1))
+						return;
+					pPlayer1.addSpell(scroll1);
+					pPlayer1.getScrolls().remove(scroll1);
+					pPlayer1.update();
 
-				@Override
-				public void click(Player player, PseudoPlayer pPlayer, ItemStack item, ClickType click, Inventory inv,
-						int slot) {
-					if (click.equals(ClickType.LEFT)) {
-						final Scroll scroll = s;
-						if (pPlayer.getSpellbook().containSpell(scroll))
-							return;
-						pPlayer.addSpell(scroll);
-						pPlayer.getScrolls().remove(scroll);
-						pPlayer.update();
-						
-						GUI gui = new ScrollGUI(pPlayer);
-						
-						pPlayer.getGui().setItems(gui.getItems());
-						
-						openInventory(player);
-						
-						Output.positiveMessage(player,
-								"You have transferred " + scroll.getName() + " to your spellbook.");
-					} else if (click.equals(ClickType.SHIFT_LEFT)) {
-						final Scroll scroll = s;
-						if (scroll == null || !pPlayer.getScrolls().contains(scroll))
-							return;
-						if (sm.useScroll(player, scroll)) {
-							pPlayer.getScrolls().remove(scroll);
-							pPlayer.update();
-							forceClose();
-						}
+					final GUI gui = new ScrollGUI(pPlayer1);
+
+					pPlayer1.getGui().setItems(gui.getItems());
+
+					ScrollGUI.this.openInventory(player);
+
+					Output.positiveMessage(player, "You have transferred " + scroll1.getName() + " to your spellbook.");
+				} else if (click.equals(ClickType.SHIFT_LEFT)) {
+					final Scroll scroll2 = s;
+					if (scroll2 == null || !pPlayer1.getScrolls().contains(scroll2))
+						return;
+					if (ScrollGUI.this.sm.useScroll(player, scroll2)) {
+						pPlayer1.getScrolls().remove(scroll2);
+						pPlayer1.update();
+						ScrollGUI.this.forceClose();
 					}
 				}
 			});
 		}
-		setItems(items);
+		this.setItems(items);
 	}
 }

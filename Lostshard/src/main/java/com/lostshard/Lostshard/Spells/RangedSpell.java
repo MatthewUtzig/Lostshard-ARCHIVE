@@ -55,14 +55,12 @@ public abstract class RangedSpell extends Spell {
 			return false;
 		}
 		if (this.carePlot) {
-			final Plot plot = this.ptm.findPlotAt(this.getFoundBlock()
-					.getLocation());
+			final Plot plot = this.ptm.findPlotAt(this.getFoundBlock().getLocation());
 			if (plot != null)
 				if (plot.isProtected())
 					if (!plot.isFriendOrAbove(player)) {
 						Output.simpleError(player,
-								"You can't cast " + this.getName()
-										+ " there, that plot is protected.");
+								"You can't cast " + this.getName() + " there, that plot is protected.");
 						return false;
 					}
 		}

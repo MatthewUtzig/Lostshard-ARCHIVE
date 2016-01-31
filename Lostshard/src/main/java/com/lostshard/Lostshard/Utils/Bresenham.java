@@ -3,8 +3,7 @@ package com.lostshard.Lostshard.Utils;
 import java.util.ArrayList;
 
 public class Bresenham {
-	public static ArrayList<IntPoint> bresenham3d(int x, int y, int z, int xx,
-			int yy, int zz) {
+	public static ArrayList<IntPoint> bresenham3d(int x, int y, int z, int xx, int yy, int zz) {
 		final ArrayList<IntPoint> pointList = new ArrayList<IntPoint>();
 
 		int dx = xx - x;
@@ -92,7 +91,7 @@ public class Bresenham {
 				x += step_x; // step right or left
 
 			}
-		} else if (dy > dx && dy > dz)// Height is leading the position.
+		} else if (dy > dx && dy > dz) // Height is leading the position.
 
 		{
 			// Set err_term to width*2 and decrement by the delta y.
@@ -133,7 +132,7 @@ public class Bresenham {
 				y += step_y; // step up or down.
 
 			}
-		} else if (dz > dx && dz > dy)// Depth is leading the position.
+		} else if (dz > dx && dz > dy) // Depth is leading the position.
 
 		{
 			// Set err_term to width*2 and decrement by the delta z.

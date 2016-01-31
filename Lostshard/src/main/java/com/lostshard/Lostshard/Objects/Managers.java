@@ -23,5 +23,5 @@ public interface Managers {
 	public StoreManager storem = StoreManager.getManager();
 	public TaskManager tm = TaskManager.getManager();
 	public ConfigManager cfm = ConfigManager.getManager();
-	
+
 }

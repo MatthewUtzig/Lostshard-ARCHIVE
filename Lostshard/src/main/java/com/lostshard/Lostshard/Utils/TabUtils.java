@@ -15,6 +15,8 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 
 public class TabUtils {
 
+	static PlotManager ptm = PlotManager.getManager();
+
 	public static List<String> empty() {
 		return new ArrayList<String>();
 	}
@@ -22,24 +24,22 @@ public class TabUtils {
 	public static List<String> OnlinePlayersTab(String[] args) {
 		final List<String> completions = new ArrayList<String>();
 		for (final Player option : Bukkit.getOnlinePlayers())
-			if(Lostshard.isVanished(option))
+			if (Lostshard.isVanished(option))
 				continue;
-			else if (StringUtil.startsWithIgnoreCase(option.getName(),
-					args[args.length - 1]))
+			else if (StringUtil.startsWithIgnoreCase(option.getName(), args[args.length - 1]))
 				completions.add(option.getName());
 		return completions;
 	}
 
-	public static List<String> OnlinePlayersTab(String[] args, Player...exclude) {
+	public static List<String> OnlinePlayersTab(String[] args, Player... exclude) {
 		final List<String> completions = new ArrayList<String>();
 		final List<Player> excludes = Arrays.asList(exclude);
 		for (final Player option : Bukkit.getOnlinePlayers()) {
-			if(Lostshard.isVanished(option))
+			if (Lostshard.isVanished(option))
 				continue;
 			if (excludes.contains(option))
 				continue;
-			if (StringUtil.startsWithIgnoreCase(option.getName(),
-					args[args.length - 1]))
+			if (StringUtil.startsWithIgnoreCase(option.getName(), args[args.length - 1]))
 				completions.add(option.getName());
 		}
 		return completions;
@@ -55,8 +55,7 @@ public class TabUtils {
 		for (final Player option : Bukkit.getOnlinePlayers()) {
 			if (excludes.contains(option))
 				continue;
-			if (StringUtil.startsWithIgnoreCase(option.getName(),
-					args[args.length - 1]))
+			if (StringUtil.startsWithIgnoreCase(option.getName(), args[args.length - 1]))
 				completions.add(option.getName());
 		}
 		return completions;
@@ -71,14 +70,12 @@ public class TabUtils {
 		return completions;
 	}
 
-	public static List<String> StringTab(String[] args, String...options) {
+	public static List<String> StringTab(String[] args, String... options) {
 		final List<String> completions = new ArrayList<String>();
 		for (final String option : options)
 			if (StringUtil.startsWithIgnoreCase(option, args[args.length - 1]))
 				completions.add(option);
 		return completions;
 	}
-
-	static PlotManager ptm = PlotManager.getManager();
 
 }

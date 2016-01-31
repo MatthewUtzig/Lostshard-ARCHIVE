@@ -26,16 +26,12 @@ public class SPL_Mark extends Spell {
 	@Override
 	public void doAction(Player player) {
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-		if (this.getResponse().length() > 20
-				|| this.getResponse().contains("\"")
-				|| this.getResponse().contains("'"))
-			Output.simpleError(player,
-					"Invalid characters or too long, 20 char max.");
+		if (this.getResponse().length() > 20 || this.getResponse().contains("\"") || this.getResponse().contains("'"))
+			Output.simpleError(player, "Invalid characters or too long, 20 char max.");
 		else {
 			final Runebook runebook = pseudoPlayer.getRunebook();
 			final int numRunes = runebook.getNumRunes();
-			if (player.isOp() || pseudoPlayer.wasSubscribed() && numRunes < 32
-					|| numRunes < 8) {
+			if (player.isOp() || pseudoPlayer.wasSubscribed() && numRunes < 32 || numRunes < 8) {
 				final List<Rune> runes = runebook.getRunes();
 				boolean foundMatching = false;
 				for (final Rune rune : runes)
@@ -44,19 +40,14 @@ public class SPL_Mark extends Spell {
 						break;
 					}
 				if (!foundMatching) {
-					final Rune newRune = new Rune(this.markLoc,
-							this.getResponse(), 0);
+					final Rune newRune = new Rune(this.markLoc, this.getResponse(), 0);
 					runebook.addRune(newRune);
 					pseudoPlayer.update();
-					Output.positiveMessage(player,
-							"You have marked a rune for " + this.getResponse()
-									+ ".");
+					Output.positiveMessage(player, "You have marked a rune for " + this.getResponse() + ".");
 				} else
-					Output.simpleError(player,
-							"You already have a rune with that name, re-cast the spell.");
+					Output.simpleError(player, "You already have a rune with that name, re-cast the spell.");
 			} else
-				Output.simpleError(player,
-						"Too many runes, remove one to mark a new rune.");
+				Output.simpleError(player, "Too many runes, remove one to mark a new rune.");
 		}
 	}
 
@@ -81,12 +72,10 @@ public class SPL_Mark extends Spell {
 	@Override
 	public boolean verifyCastable(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null || !plot.isPrivatePlot()
-				|| plot.isFriendOrAbove(player))
+		if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player))
 			this.setMarkLoc(player.getLocation().getBlock().getLocation());
 		else {
-			Output.simpleError(player,
-					"You can't mark a rune here, the plot is private.");
+			Output.simpleError(player, "You can't mark a rune here, the plot is private.");
 			return false;
 		}
 

@@ -18,16 +18,16 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class PartyCommands extends LostshardCommand {
 
+	static PlayerManager pm = PlayerManager.getManager();
+
 	public static void partyInfo(Player player) {
 		// Output party details
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		final Party party = pseudoPlayer.getParty();
 		if (party != null) {
 			player.sendMessage(ChatColor.GOLD + "-Your Party-");
-			final String partyMembersString = Utils.listToString(Utils
-					.UUIDArrayToUsernameArray(party.getMembers()));
-			player.sendMessage(ChatColor.YELLOW + "Party Members: "
-					+ ChatColor.WHITE + partyMembersString);
+			final String partyMembersString = Utils.listToString(Utils.UUIDArrayToUsernameArray(party.getMembers()));
+			player.sendMessage(ChatColor.YELLOW + "Party Members: " + ChatColor.WHITE + partyMembersString);
 
 		} else
 			Output.simpleError(player, "You are not currently in a party.");
@@ -43,7 +43,7 @@ public class PartyCommands extends LostshardCommand {
 				pseudoPlayer.setParty(party);
 			}
 			final Player invitedPlayer = Bukkit.getPlayer(split[1]);
-			if (invitedPlayer != null || (Lostshard.isVanished(invitedPlayer) && !player.isOp())) {
+			if (invitedPlayer != null || Lostshard.isVanished(invitedPlayer) && !player.isOp()) {
 				if (invitedPlayer == player) {
 					Output.simpleError(player, "You cant invite your self.");
 					return;
@@ -51,19 +51,20 @@ public class PartyCommands extends LostshardCommand {
 				if (!party.isMember(invitedPlayer)) {
 					if (!party.isInvited(invitedPlayer.getUniqueId())) {
 						party.addInvited(invitedPlayer.getUniqueId());
-						Utils.sendSmartTextCommand(invitedPlayer, ChatColor.GOLD+player.getName()+" has invited you to a party, Click to join.", ChatColor.LIGHT_PURPLE+"click to join the party.", "/party join "+player.getName());
-//						Output.positiveMessage(invitedPlayer, player.getName()
-//								+ " has invited you to join a party.");
-//						Output.positiveMessage(invitedPlayer,
-//								"Use /party join " + player.getName());
-						Output.positiveMessage(player, "You have invited "
-								+ invitedPlayer.getName() + " to your party.");
+						Utils.sendSmartTextCommand(invitedPlayer,
+								ChatColor.GOLD + player.getName() + " has invited you to a party, Click to join.",
+								ChatColor.LIGHT_PURPLE + "click to join the party.", "/party join " + player.getName());
+						// Output.positiveMessage(invitedPlayer,
+						// player.getName()
+						// + " has invited you to join a party.");
+						// Output.positiveMessage(invitedPlayer,
+						// "Use /party join " + player.getName());
+						Output.positiveMessage(player,
+								"You have invited " + invitedPlayer.getName() + " to your party.");
 					} else
-						Output.simpleError(player, invitedPlayer.getName()
-								+ " has already been invited to the party.");
+						Output.simpleError(player, invitedPlayer.getName() + " has already been invited to the party.");
 				} else
-					Output.simpleError(player, invitedPlayer.getName()
-							+ " is already a member of the party.");
+					Output.simpleError(player, invitedPlayer.getName() + " is already a member of the party.");
 			} else
 				Output.simpleError(player, "That player is not online.");
 		} else
@@ -77,24 +78,19 @@ public class PartyCommands extends LostshardCommand {
 			if (split.length > 1) {
 				final Player inviterPlayer = Bukkit.getPlayer(split[1]);
 				if (inviterPlayer != null) {
-					final PseudoPlayer inviterPseudoPlayer = pm
-							.getPlayer(inviterPlayer);
+					final PseudoPlayer inviterPseudoPlayer = pm.getPlayer(inviterPlayer);
 					final Party inviterParty = inviterPseudoPlayer.getParty();
 					if (inviterParty != null) {
 						if (inviterParty.isInvited(player.getUniqueId())) {
-							inviterParty.sendMessage(player.getName()
-									+ " has joined the party.");
+							inviterParty.sendMessage(player.getName() + " has joined the party.");
 							inviterParty.removeInvited(player.getUniqueId());
 							inviterParty.addMember(player.getUniqueId());
 							pseudoPlayer.setParty(inviterParty);
-							Output.positiveMessage(player, "You have joined "
-									+ inviterPlayer.getName() + "'s party.");
+							Output.positiveMessage(player, "You have joined " + inviterPlayer.getName() + "'s party.");
 						} else
-							Output.simpleError(player,
-									"You have not been invited to that party.");
+							Output.simpleError(player, "You have not been invited to that party.");
 					} else
-						Output.simpleError(player, inviterPlayer.getName()
-								+ " is not in a party.");
+						Output.simpleError(player, inviterPlayer.getName() + " is not in a party.");
 				} else
 					Output.simpleError(player, "That player is not online.");
 			} else
@@ -115,15 +111,12 @@ public class PartyCommands extends LostshardCommand {
 			Output.simpleError(player, "You are not currently in a party.");
 	}
 
-	static PlayerManager pm = PlayerManager.getManager();
-
 	public PartyCommands(Lostshard plugin) {
 		super(plugin, "party");
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("party")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -142,8 +135,7 @@ public class PartyCommands extends LostshardCommand {
 					partyInfo(player);
 				else if (secondaryCommand.equalsIgnoreCase("help")) {
 					player.sendMessage(ChatColor.GOLD + "-Party Commands-");
-					player.sendMessage(ChatColor.YELLOW
-							+ "/party invite (player name)");
+					player.sendMessage(ChatColor.YELLOW + "/party invite (player name)");
 					player.sendMessage(ChatColor.YELLOW + "/party join");
 					player.sendMessage(ChatColor.YELLOW + "/party leave");
 				}
@@ -156,11 +148,9 @@ public class PartyCommands extends LostshardCommand {
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd,
-			String string, String[] args) {
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("party") && args.length == 1)
-			return TabUtils.StringTab(args, "invite", "leave",
-					"join", "info", "help");
+			return TabUtils.StringTab(args, "invite", "leave", "join", "info", "help");
 		return TabUtils.empty();
 	}
 

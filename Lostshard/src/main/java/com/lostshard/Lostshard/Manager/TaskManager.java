@@ -3,32 +3,32 @@ package com.lostshard.Lostshard.Manager;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.lostshard.Lostshard.Tasks.DelayedTask;
 
 public class TaskManager {
 
 	private static TaskManager manager = new TaskManager();
 
-	private final List<DelayedTask> tasks = new ArrayList<DelayedTask>();
-	
-	private TaskManager() {}
-	
 	public static TaskManager getManager() {
 		return manager;
 	}
 
-	public List<DelayedTask> getTasks() {
-		return tasks;
+	private final List<DelayedTask> tasks = new ArrayList<DelayedTask>();
+
+	private TaskManager() {
 	}
-	
+
 	public void add(DelayedTask task) {
-		tasks.add(task);
+		this.tasks.add(task);
 	}
-	
+
+	public List<DelayedTask> getTasks() {
+		return this.tasks;
+	}
+
 	public void tick() {
-		for(DelayedTask dt : tasks)
+		for (final DelayedTask dt : this.tasks)
 			dt.tick();
-		tasks.removeIf(dt -> dt.remove());
+		this.tasks.removeIf(dt -> dt.remove());
 	}
 }

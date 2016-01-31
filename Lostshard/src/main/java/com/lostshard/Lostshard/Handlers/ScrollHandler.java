@@ -14,7 +14,9 @@ import com.lostshard.Lostshard.Utils.Output;
 public class ScrollHandler {
 
 	private static ScrollFactory sf = new ScrollFactory();
-	
+
+	static PlayerManager pm = PlayerManager.getManager();
+
 	public static void onEntityDeathEvent(EntityDeathEvent event) {
 		if (event.getEntity().getKiller() == null)
 			return;
@@ -34,6 +36,4 @@ public class ScrollHandler {
 			pPlayer.update();
 		}
 	}
-
-	static PlayerManager pm = PlayerManager.getManager();
 }

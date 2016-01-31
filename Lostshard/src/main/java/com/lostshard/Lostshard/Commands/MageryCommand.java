@@ -53,8 +53,7 @@ public class MageryCommand extends LostshardCommand {
 		final String scrollName = StringUtils.join(args, "", 0, args.length);
 		final Scroll scroll = Scroll.getByString(scrollName);
 		if (scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
-			Output.simpleError(player, "Your spellbook does not contain "
-					+ scrollName + ".");
+			Output.simpleError(player, "Your spellbook does not contain " + scrollName + ".");
 			return;
 		}
 		final String spellName = scroll.getName();
@@ -68,13 +67,19 @@ public class MageryCommand extends LostshardCommand {
 		wandMeta.setLore(wandLore);
 		wand.setItemMeta(wandMeta);
 		player.setItemInHand(wand);
-		Output.positiveMessage(player, "You have bound " + spellName
-				+ " to the wand.");
+		Output.positiveMessage(player, "You have bound " + spellName + " to the wand.");
+	}
+
+	private boolean haveScroll(Scroll scroll, PseudoPlayer pPlayer, Player player) {
+		if (scroll == null || !pPlayer.getScrolls().contains(scroll)) {
+			Output.simpleError(player, "You do not have a scroll of " + scroll.getName() + ".");
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("cast")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -88,8 +93,7 @@ public class MageryCommand extends LostshardCommand {
 			final Player player = (Player) sender;
 			final Spell spell = this.sm.getSpellByName(spellName);
 			if (spell == null) {
-				Output.simpleError(sender, "No spell with the name \""
-						+ spellName + "\".");
+				Output.simpleError(sender, "No spell with the name \"" + spellName + "\".");
 				return true;
 			}
 			this.sm.castSpell(player, spell);
@@ -139,8 +143,7 @@ public class MageryCommand extends LostshardCommand {
 	}
 
 	private void runebook(Player player, String[] args) {
-		if (args.length == 0 || args.length >= 11
-				&& args[1].equalsIgnoreCase("page"))
+		if (args.length == 0 || args.length >= 11 && args[1].equalsIgnoreCase("page"))
 			Output.outputRunebook(player, args);
 		else if (args.length > 0) {
 			final String secondaryCommand = args[0];
@@ -148,18 +151,14 @@ public class MageryCommand extends LostshardCommand {
 				if (args.length >= 3) {
 					final String targetName = args[1];
 					final Player targetPlayer = Bukkit.getPlayer(targetName);
-					if (targetPlayer != null || (Lostshard.isVanished(targetPlayer) && !player.isOp())) {
-						final PseudoPlayer targetPseudoPlayer = this.pm
-								.getPlayer(targetPlayer);
+					if (targetPlayer != null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
+						final PseudoPlayer targetPseudoPlayer = this.pm.getPlayer(targetPlayer);
 
-						final PseudoPlayer pseudoPlayer = this.pm
-								.getPlayer(player);
+						final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 						final Runebook runebook = pseudoPlayer.getRunebook();
-						final Runebook targetRunebook = targetPseudoPlayer
-								.getRunebook();
+						final Runebook targetRunebook = targetPseudoPlayer.getRunebook();
 						if (targetPlayer.isOp()
-								|| targetPseudoPlayer.wasSubscribed()
-								&& targetRunebook.getNumRunes() < 16
+								|| targetPseudoPlayer.wasSubscribed() && targetRunebook.getNumRunes() < 16
 								|| targetRunebook.getNumRunes() < 8) {
 
 							String runeLabel = "";
@@ -179,12 +178,10 @@ public class MageryCommand extends LostshardCommand {
 									break;
 								}
 							if (foundRune != null) {
-								final List<Rune> targetRunes = targetRunebook
-										.getRunes();
+								final List<Rune> targetRunes = targetRunebook.getRunes();
 								boolean foundMatching = false;
 								for (final Rune rune : targetRunes)
-									if (rune.getLabel().equalsIgnoreCase(
-											foundRune.getLabel())) {
+									if (rune.getLabel().equalsIgnoreCase(foundRune.getLabel())) {
 										foundMatching = true;
 										break;
 									}
@@ -192,34 +189,21 @@ public class MageryCommand extends LostshardCommand {
 									runebook.removeRune(foundRune);
 									targetRunebook.addRune(foundRune);
 									targetPseudoPlayer.update();
-									Output.positiveMessage(
-											player,
-											"You have given the rune "
-													+ foundRune.getLabel()
-													+ " to "
-													+ targetPlayer.getName());
-									Output.positiveMessage(
-											targetPlayer,
-											player.getName()
-													+ " has given you the rune "
-													+ foundRune.getLabel()
-													+ ".");
+									Output.positiveMessage(player, "You have given the rune " + foundRune.getLabel()
+											+ " to " + targetPlayer.getName());
+									Output.positiveMessage(targetPlayer,
+											player.getName() + " has given you the rune " + foundRune.getLabel() + ".");
 								} else
-									Output.simpleError(
-											player,
-											targetPlayer.getName()
-													+ " already has a rune with that label.");
+									Output.simpleError(player,
+											targetPlayer.getName() + " already has a rune with that label.");
 							} else
-								Output.simpleError(player,
-										"Could not find a rune with that label.");
+								Output.simpleError(player, "Could not find a rune with that label.");
 						} else
-							Output.simpleError(player, targetPlayer.getName()
-									+ " has too many runes.");
+							Output.simpleError(player, targetPlayer.getName() + " has too many runes.");
 					} else
 						Output.simpleError(player, "That player is not online.");
 				} else
-					Output.simpleError(player,
-							"Use /runebook give (player name) (rune name)");
+					Output.simpleError(player, "Use /runebook give (player name) (rune name)");
 			} else if (secondaryCommand.equalsIgnoreCase("remove"))
 				if (args.length >= 2) {
 
@@ -237,30 +221,23 @@ public class MageryCommand extends LostshardCommand {
 					final Rune foundRune = runebook.getRune(runeLabel);
 					if (foundRune != null) {
 						runebook.removeRune(foundRune);
-						Output.positiveMessage(
-								player,
-								"You have removed the rune "
-										+ foundRune.getLabel());
+						Output.positiveMessage(player, "You have removed the rune " + foundRune.getLabel());
 						pseudoPlayer.update();
 					} else
-						Output.simpleError(player,
-								"Could not find a rune with that label.");
+						Output.simpleError(player, "Could not find a rune with that label.");
 				} else
-					Output.simpleError(player,
-							"Use /runebook remove (rune label)");
+					Output.simpleError(player, "Use /runebook remove (rune label)");
 		}
 
 	}
 
 	private void scrolls(Player player, String[] args) {
 		if (args.length >= 2) {
-			if (args[0].equalsIgnoreCase("use")
-					|| args[0].equalsIgnoreCase("cast")) {
+			if (args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
 				final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-				final String scrollName = StringUtils.join(args, "", 1,
-						args.length);
+				final String scrollName = StringUtils.join(args, "", 1, args.length);
 				final Scroll scroll = Scroll.getByString(scrollName);
-				if(haveScroll(scroll, pPlayer, player))
+				if (this.haveScroll(scroll, pPlayer, player))
 					return;
 				if (this.sm.useScroll(player, scroll)) {
 					pPlayer.getScrolls().remove(scroll);
@@ -268,14 +245,12 @@ public class MageryCommand extends LostshardCommand {
 				}
 			} else if (args[0].equalsIgnoreCase("give")) {
 				if (args.length < 3) {
-					Output.simpleError(player,
-							"Use \"/scrolls give (player name) (spell name)\"");
+					Output.simpleError(player, "Use \"/scrolls give (player name) (spell name)\"");
 					return;
 				}
 
 				final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-				final Player targetPlayer = player.getServer().getPlayer(
-						args[1]);
+				final Player targetPlayer = player.getServer().getPlayer(args[1]);
 				if (targetPlayer == null) {
 					Output.simpleError(player, args[1] + " is not online.");
 					return;
@@ -284,85 +259,61 @@ public class MageryCommand extends LostshardCommand {
 				final PseudoPlayer tpPlayer = this.pm.getPlayer(targetPlayer);
 
 				if (!player.isOp())
-					if (!Utils.isWithin(player.getLocation(),
-							targetPlayer.getLocation(), 10)) {
+					if (!Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 10)) {
 						Output.simpleError(player,
-								"You are not close enough to give "
-										+ targetPlayer.getName() + " a scroll.");
+								"You are not close enough to give " + targetPlayer.getName() + " a scroll.");
 						return;
 					}
 
-				final String scrollName = StringUtils.join(args, "", 2,
-						args.length);
-				if(scrollName.equalsIgnoreCase("all") && player.isOp())
-				{
-					for(Scroll s : Scroll.values())
+				final String scrollName = StringUtils.join(args, "", 2, args.length);
+				if (scrollName.equalsIgnoreCase("all") && player.isOp()) {
+					for (final Scroll s : Scroll.values())
 						tpPlayer.addScroll(s);
-					Output.positiveMessage(player,
-							"You have given " + targetPlayer.getName()
-									+ " all scrolls.");
-					Output.positiveMessage(targetPlayer, player.getName()
-							+ " has given you all scrolls.");
+					Output.positiveMessage(player, "You have given " + targetPlayer.getName() + " all scrolls.");
+					Output.positiveMessage(targetPlayer, player.getName() + " has given you all scrolls.");
 					return;
 				}
 				final Scroll scroll = Scroll.getByString(scrollName);
 				if ((scroll == null || !pPlayer.getScrolls().contains(scroll)) && !(player.isOp() || scroll != null)) {
-					Output.simpleError(player, "You do not have a scroll of "
-							+ scrollName + ".");
+					Output.simpleError(player, "You do not have a scroll of " + scrollName + ".");
 					return;
 				}
 				pPlayer.getScrolls().remove(scroll);
 				tpPlayer.getScrolls().add(scroll);
 				pPlayer.update();
 				tpPlayer.update();
-				if(scroll == null) {
-					Output.simpleError(player, "Theres no scroll with the name \""+scrollName+"\".");
+				if (scroll == null) {
+					Output.simpleError(player, "Theres no scroll with the name \"" + scrollName + "\".");
 					return;
 				}
 				Output.positiveMessage(player,
-						"You have given " + targetPlayer.getName()
-								+ " a scroll of " + scroll.getName() + ".");
-				Output.positiveMessage(targetPlayer, player.getName()
-						+ " has given you a scroll of " + scroll.getName()
-						+ ".");
+						"You have given " + targetPlayer.getName() + " a scroll of " + scroll.getName() + ".");
+				Output.positiveMessage(targetPlayer,
+						player.getName() + " has given you a scroll of " + scroll.getName() + ".");
 			} else if (args[0].equalsIgnoreCase("spellbook")) {
 				final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-				final String scrollName = StringUtils.join(args, "", 1,
-						args.length);
+				final String scrollName = StringUtils.join(args, "", 1, args.length);
 				final Scroll scroll = Scroll.getByString(scrollName);
-				if(scroll == null) {
+				if (scroll == null) {
 					Output.simpleError(player, "There does not exist a sroll with that name.");
 					return;
 				}
-				if(haveScroll(scroll, pPlayer, player))
+				if (this.haveScroll(scroll, pPlayer, player))
 					return;
 				final SpellBook spellbook = pPlayer.getSpellbook();
 				if (!spellbook.containSpell(scroll)) {
 					pPlayer.addSpell(scroll);
 					pPlayer.update();
 					pPlayer.update();
-					Output.positiveMessage(player, "You have transferred "
-							+ scroll.getName() + " to your spellbook.");
+					Output.positiveMessage(player, "You have transferred " + scroll.getName() + " to your spellbook.");
 				} else
-					Output.simpleError(
-							player,
-							"Your spellbook already contains the "
-									+ scroll.getName() + " spell.");
+					Output.simpleError(player, "Your spellbook already contains the " + scroll.getName() + " spell.");
 			}
 			return;
 		} else {
 			Output.outputScrolls(player, args);
 			return;
 		}
-	}
-
-	private boolean haveScroll(Scroll scroll, PseudoPlayer pPlayer, Player player) {
-		if (scroll == null || !pPlayer.getScrolls().contains(scroll)) {
-			Output.simpleError(player, "You do not have a scroll of "
-					+ scroll.getName() + ".");
-			return true;
-		}
-		return false;
 	}
 
 	private void spellbook(Player player, String[] args) {
@@ -376,24 +327,15 @@ public class MageryCommand extends LostshardCommand {
 		}
 		final ItemStack wand = player.getItemInHand();
 		final ItemMeta wandMeta = wand.getItemMeta();
-		if (wandMeta.hasLore()
-				&& wandMeta.getLore().size() > 0
-				&& wandMeta
-						.getLore()
-						.get(0)
-						.equalsIgnoreCase(
-								"This magical wand can be used to cast a spell with only a touch of a button.")) {
+		if (wandMeta.hasLore() && wandMeta.getLore().size() > 0 && wandMeta.getLore().get(0)
+				.equalsIgnoreCase("This magical wand can be used to cast a spell with only a touch of a button.")) {
 			if (wandMeta.hasDisplayName()) {
 				wand.setItemMeta(null);
-				final String spellName = ChatColor.stripColor(wandMeta
-						.getLore().get(0));
+				final String spellName = ChatColor.stripColor(wandMeta.getLore().get(0));
 				player.setItemInHand(wand);
-				Output.positiveMessage(player,
-						"You have unbound " + spellName.toLowerCase()
-								+ " from the wand.");
+				Output.positiveMessage(player, "You have unbound " + spellName.toLowerCase() + " from the wand.");
 			} else
-				Output.simpleError(player,
-						"Thats just a simple stick you fool.");
+				Output.simpleError(player, "Thats just a simple stick you fool.");
 		} else
 			Output.simpleError(player, "Thats just a simple stick you fool.");
 	}

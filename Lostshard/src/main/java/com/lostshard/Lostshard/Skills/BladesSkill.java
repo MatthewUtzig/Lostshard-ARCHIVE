@@ -19,14 +19,7 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class BladesSkill extends Skill {
 
-	
-	
-	public BladesSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
-	public static void playerDamagedEntityWithSword(
-			EntityDamageByEntityEvent event) {
+	public static void playerDamagedEntityWithSword(EntityDamageByEntityEvent event) {
 		if (event.isCancelled())
 			return;
 		if (!(event.getDamager() instanceof Player))
@@ -43,7 +36,7 @@ public class BladesSkill extends Skill {
 		final int swordsSkill = skill.getLvl();
 		double damage = event.getDamage();
 		int additionalDamage = 0;
-		
+
 		additionalDamage = Math.floorDiv(skill.getLvl(), 250);
 
 		if (swordsSkill >= 250) {
@@ -53,14 +46,11 @@ public class BladesSkill extends Skill {
 			if (bleedChance > Math.random())
 				if (damagedEntity instanceof Player) {
 					final Player defenderPlayer = (Player) damagedEntity;
-					final PseudoPlayer defenderPseudoPlayer = pm
-							.getPlayer(defenderPlayer);
+					final PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 					if (defenderPseudoPlayer.getTimer().bleedTick <= 0) {
 						defenderPseudoPlayer.getTimer().bleedTick = 10;
-						defenderPlayer.sendMessage(ChatColor.GREEN
-								+ "You are bleeding!");
-						player.sendMessage(ChatColor.GREEN
-								+ defenderPlayer.getName() + " is bleeding!");
+						defenderPlayer.sendMessage(ChatColor.GREEN + "You are bleeding!");
+						player.sendMessage(ChatColor.GREEN + defenderPlayer.getName() + " is bleeding!");
 					}
 				}
 		}
@@ -69,13 +59,11 @@ public class BladesSkill extends Skill {
 		if (event.isApplicable(DamageModifier.BASE))
 			event.setDamage(DamageModifier.BASE, damage);
 
-		if (damagedEntity instanceof Monster || damagedEntity instanceof Player
-				|| damagedEntity instanceof Slime)
+		if (damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
-		final int gain = pPlayer.getCurrentBuild().getBlades()
-				.skillGain(pPlayer);
+		final int gain = pPlayer.getCurrentBuild().getBlades().skillGain(pPlayer);
 		Output.gainSkill(player, "Blades", gain, skill.getLvl());
 		if (gain > 0)
 			pPlayer.update();
@@ -87,6 +75,10 @@ public class BladesSkill extends Skill {
 		this.setBaseProb(.2);
 		this.setScaleConstant(60);
 		this.setMat(Material.IRON_SWORD);
+	}
+
+	public BladesSkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

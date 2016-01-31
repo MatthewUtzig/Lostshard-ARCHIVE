@@ -7,7 +7,7 @@ import org.bukkit.event.world.WorldLoadEvent;
 import com.lostshard.Lostshard.Main.Lostshard;
 
 public class WorldListener extends LostshardListener {
-	
+
 	public WorldListener(Lostshard plugin) {
 		super(plugin);
 	}

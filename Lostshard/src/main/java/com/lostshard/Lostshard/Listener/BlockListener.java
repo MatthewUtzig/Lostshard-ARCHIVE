@@ -78,8 +78,7 @@ public class BlockListener extends LostshardListener {
 		if (event.isCancelled())
 			return;
 		final Block block = event.getBlock();
-		block.setMetadata("placed",
-				new FixedMetadataValue(this.getPlugin(), true));
+		block.setMetadata("placed", new FixedMetadataValue(this.getPlugin(), true));
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

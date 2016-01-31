@@ -63,38 +63,38 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class DeathHandler {
 
-	public static void deathMessage(Player player,
-			List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
+	static PlayerManager pm = PlayerManager.getManager();
+
+	static PlotManager ptm = PlotManager.getManager();
+
+	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
+
+	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
+
+	public static void deathMessage(Player player, List<RecentAttacker> recentAttackers, PlayerDeathEvent event) {
 		final int numAttackers = recentAttackers.size();
 		final Random random = new Random();
 		if (numAttackers > 0) {
-			String deathMessage = Utils.getDisplayName(player)
-					+ ChatColor.WHITE + " was killed by";
+			String deathMessage = Utils.getDisplayName(player) + ChatColor.WHITE + " was killed by";
 			String attackers = "";
 			for (int i = 0; i < numAttackers; i++) {
-				NPC guard = NPCManager.getManager().getByUUID(recentAttackers.get(i).getUUID());
-				if(guard != null && guard.getType().equals(NPCType.GUARD)) {
-					Plot plot = guard.getPlot();
-					deathMessage = player.getDisplayName() + ChatColor.WHITE
-							+ " was executed by a guard of "+plot.getName()+".";
+				final NPC guard = NPCManager.getManager().getByUUID(recentAttackers.get(i).getUUID());
+				if (guard != null && guard.getType().equals(NPCType.GUARD)) {
+					final Plot plot = guard.getPlot();
+					deathMessage = player.getDisplayName() + ChatColor.WHITE + " was executed by a guard of "
+							+ plot.getName() + ".";
 					attackers = "";
 					break;
 				}
-				final Player p = Bukkit.getPlayer(recentAttackers.get(i)
-						.getUUID());
+				final Player p = Bukkit.getPlayer(recentAttackers.get(i).getUUID());
 				if (p != null || Lostshard.isVanished(p))
 					if (i == numAttackers - 1) {
 						if (attackers != "")
-							attackers += ChatColor.WHITE + " and "
-									+ Utils.getDisplayName(p) + ChatColor.WHITE
-									+ ".";
+							attackers += ChatColor.WHITE + " and " + Utils.getDisplayName(p) + ChatColor.WHITE + ".";
 						else
-							attackers += ChatColor.WHITE + " "
-									+ Utils.getDisplayName(p) + ChatColor.WHITE
-									+ ".";
+							attackers += ChatColor.WHITE + " " + Utils.getDisplayName(p) + ChatColor.WHITE + ".";
 					} else
-						attackers += ChatColor.WHITE + " "
-								+ Utils.getDisplayName(p);
+						attackers += ChatColor.WHITE + " " + Utils.getDisplayName(p);
 			}
 			deathMessage += attackers;
 			event.setDeathMessage(deathMessage);
@@ -145,8 +145,7 @@ public class DeathHandler {
 				if (plot != null)
 					message += " in " + plot.getName();
 				message += ".";
-			} else if (e.getCause().equals(DamageCause.FIRE)
-					|| e.getCause().equals(DamageCause.FIRE_TICK)) {
+			} else if (e.getCause().equals(DamageCause.FIRE) || e.getCause().equals(DamageCause.FIRE_TICK)) {
 				message += " burned alive";
 				if (plot != null)
 					message += " in " + plot.getName();
@@ -180,8 +179,7 @@ public class DeathHandler {
 					message += ".";
 			} else if (e.getCause().equals(DamageCause.VOID))
 				message += " fell into the abyss.";
-			else if (e.getCause().equals(DamageCause.ENTITY_ATTACK)
-					|| e instanceof EntityDamageByEntityEvent
+			else if (e.getCause().equals(DamageCause.ENTITY_ATTACK) || e instanceof EntityDamageByEntityEvent
 					&& ((EntityDamageByEntityEvent) e).getDamager() instanceof Projectile) {
 				final EntityDamageByEntityEvent eDBEE = (EntityDamageByEntityEvent) e;
 				Entity damager = eDBEE.getDamager();
@@ -239,14 +237,17 @@ public class DeathHandler {
 
 		final Random random = new Random();
 		final Entity entity = event.getEntity();
-		
+
 		// event.setDroppedExp(0);
 
 		// event.setDroppedExp(event.getDroppedExp() * 2);
 
 		// Start of Horse
-		
-		if(!(entity instanceof Player) && (entity.getLastDamageCause() == null || event.getEntity().getKiller() == null) && !(entity instanceof Creeper && entity.getLastDamageCause().getCause().equals(DamageCause.PROJECTILE))) {
+
+		if (!(entity instanceof Player)
+				&& (entity.getLastDamageCause() == null || event.getEntity().getKiller() == null)
+				&& !(entity instanceof Creeper
+						&& entity.getLastDamageCause().getCause().equals(DamageCause.PROJECTILE))) {
 			event.getDrops().clear();
 			return;
 		}
@@ -255,65 +256,39 @@ public class DeathHandler {
 			event.getDrops().clear();
 
 		// End of Horse
-		
+
 		// Start of extra drops
 		if (entity instanceof Monster)
 			if (entity instanceof Zombie)
-				entity.getLocation()
-						.getWorld()
-						.dropItemNaturally(
-								entity.getLocation(),
-								new ItemStack(Material.FEATHER, random
-										.nextInt(4) + 1));
+				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+						new ItemStack(Material.FEATHER, random.nextInt(4) + 1));
 			else if (entity instanceof Skeleton) {
-				entity.getLocation()
-						.getWorld()
-						.dropItemNaturally(entity.getLocation(),
-								new ItemStack(Material.BONE, 1));
-				entity.getLocation()
-						.getWorld()
-						.dropItemNaturally(
-								entity.getLocation(),
-								new ItemStack(Material.ARROW,
-										random.nextInt(7) + 1));
+				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+						new ItemStack(Material.BONE, 1));
+				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+						new ItemStack(Material.ARROW, random.nextInt(7) + 1));
 			} else if (entity instanceof Spider)
-				entity.getLocation()
-						.getWorld()
-						.dropItemNaturally(entity.getLocation(),
-								new ItemStack(Material.STRING, 1));
+				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+						new ItemStack(Material.STRING, 1));
 			else if (entity instanceof Creeper)
-				entity.getLocation()
-						.getWorld()
-						.dropItemNaturally(entity.getLocation(),
-								new ItemStack(Material.SULPHUR, 1));
+				entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+						new ItemStack(Material.SULPHUR, 1));
 			else if (entity instanceof Animals)
 				if (entity instanceof Pig)
-					entity.getLocation()
-							.getWorld()
-							.dropItemNaturally(entity.getLocation(),
-									new ItemStack(Material.PORK, 1));
+					entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+							new ItemStack(Material.PORK, 1));
 				else if (entity instanceof Chicken)
-					entity.getLocation()
-							.getWorld()
-							.dropItemNaturally(
-									entity.getLocation(),
-									new ItemStack(Material.FEATHER, random
-											.nextInt(5) + 1));
+					entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+							new ItemStack(Material.FEATHER, random.nextInt(5) + 1));
 				else if (entity instanceof Cow)
-					entity.getLocation()
-							.getWorld()
-							.dropItemNaturally(entity.getLocation(),
-									new ItemStack(Material.LEATHER, 2));
+					entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+							new ItemStack(Material.LEATHER, 2));
 				else if (entity instanceof Sheep)
-					entity.getLocation()
-							.getWorld()
-							.dropItemNaturally(entity.getLocation(),
-									new ItemStack(Material.WOOL, 1));
+					entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+							new ItemStack(Material.WOOL, 1));
 				else if (entity instanceof Squid)
-					entity.getLocation()
-							.getWorld()
-							.dropItemNaturally(entity.getLocation(),
-									new ItemStack(Material.INK_SACK, 1));
+					entity.getLocation().getWorld().dropItemNaturally(entity.getLocation(),
+							new ItemStack(Material.INK_SACK, 1));
 		// Survivalism
 
 		if (entity instanceof Animals)
@@ -321,11 +296,9 @@ public class DeathHandler {
 				final Entity lastAttackerEntity = lastAttackers.get(entity);
 				if (lastAttackerEntity instanceof Player) {
 					final Player attackerPlayer = (Player) lastAttackerEntity;
-					final PseudoPlayer pseudoPlayerAttacker = pm
-							.getPlayer(attackerPlayer);
+					final PseudoPlayer pseudoPlayerAttacker = pm.getPlayer(attackerPlayer);
 
-					final int survSkill = pseudoPlayerAttacker
-							.getCurrentBuild().getSurvivalism().getLvl();
+					final int survSkill = pseudoPlayerAttacker.getCurrentBuild().getSurvivalism().getLvl();
 					final double chanceToDropApple = (double) survSkill / 2000;
 					// System.out.println("CTC:" + chanceToDropApple);
 					final double rand = Math.random();
@@ -343,9 +316,9 @@ public class DeathHandler {
 						else if (entity instanceof Squid)
 							itemStack = new ItemStack(Material.INK_SACK, 1);
 						if (itemStack != null)
-							entity.getWorld().dropItemNaturally(
-									entity.getLocation(), itemStack);
-						// System.out.println("Dropping "+itemStack.getType().name());
+							entity.getWorld().dropItemNaturally(entity.getLocation(), itemStack);
+						// System.out.println("Dropping
+						// "+itemStack.getType().name());
 					}
 					// Survivalism.possibleSkillGain(attackerPlayer,
 					// pseudoPlayerAttacker);
@@ -369,31 +342,24 @@ public class DeathHandler {
 
 			final Material wep = killer.getItemInHand().getType();
 
-			if (pKiller != null && ItemUtils.isAxe(wep)
-					|| ItemUtils.isSword(wep)) {
-				final int swordsSkill = pKiller.getCurrentBuild().getBlades()
-						.getLvl();
-				final int lumberjackingSkill = pKiller.getCurrentBuild()
-						.getLumberjacking().getLvl();
+			if (pKiller != null && ItemUtils.isAxe(wep) || ItemUtils.isSword(wep)) {
+				final int swordsSkill = pKiller.getCurrentBuild().getBlades().getLvl();
+				final int lumberjackingSkill = pKiller.getCurrentBuild().getLumberjacking().getLvl();
 
 				if (swordsSkill >= 1000 || lumberjackingSkill >= 1000)
 					if (Math.random() <= .2) {
-						final ItemStack skull = new ItemStack(
-								Material.SKULL_ITEM, 1,
+						final ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1,
 								(short) SkullType.PLAYER.ordinal());
-						final SkullMeta skullMeta = (SkullMeta) skull
-								.getItemMeta();
+						final SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 						skullMeta.setOwner(player.getName());
-						skullMeta.setDisplayName(ChatColor.RESET
-								+ player.getName() + "'s Head");
+						skullMeta.setDisplayName(ChatColor.RESET + player.getName() + "'s Head");
 						skull.setItemMeta(skullMeta);
 						event.getDrops().add(skull);
 					}
 			}
 		}
 
-		System.out.println("PLAYER DEATH: " + player.getName() + " @ "
-				+ player.getLocation());
+		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
 
 		// NPCHandler.playerDied(player);
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
@@ -420,8 +386,7 @@ public class DeathHandler {
 			((Horse) player.getVehicle()).setHealth(0d);
 
 		// pseudoPlayer._clearTicks = 5;
-		final List<RecentAttacker> recentAttackers = pseudoPlayer
-				.getRecentAttackers();
+		final List<RecentAttacker> recentAttackers = pseudoPlayer.getRecentAttackers();
 
 		pseudoPlayer.getTimer().lastDeath = new Date().getTime();
 
@@ -433,40 +398,28 @@ public class DeathHandler {
 			final Player attackerPlayer = Bukkit.getPlayer(attackerUUID);
 
 			if (attackerPlayer != null) {
-				final PseudoPlayer attackerPseudo = pm
-						.getPlayer(attackerPlayer);
+				final PseudoPlayer attackerPseudo = pm.getPlayer(attackerPlayer);
 				if (!(attackerPseudo.isCriminal() && !pseudoPlayer.isCriminal()))
 					continue;
 
-				attackerPlayer.sendMessage("You have murdered "
-						+ player.getName());
+				attackerPlayer.sendMessage("You have murdered " + player.getName());
 				if (attackerPseudo != null) {
 
-					attackerPseudo.setMurderCounts(attackerPseudo
-							.getMurderCounts() + 1);
+					attackerPseudo.setMurderCounts(attackerPseudo.getMurderCounts() + 1);
 					if (attackerPseudo.isMurderer())
-						attackerPlayer.setDisplayName(ChatColor.RED
-								+ attackerPlayer.getName());
+						attackerPlayer.setDisplayName(ChatColor.RED + attackerPlayer.getName());
 				}
 			}
 		}
 		// Start of death messages
 
 		DeathHandler.deathMessage(player, recentAttackers, event);
-		
+
 		// Rank stuff
 
 		RankHandler.rank(pseudoPlayer);
-		
+
 		pseudoPlayer.clearRecentAttackers();
 	}
-
-	static PlayerManager pm = PlayerManager.getManager();
-
-	static PlotManager ptm = PlotManager.getManager();
-
-	public static HashMap<Entity, Entity> lastAttackers = new HashMap<Entity, Entity>();
-
-	public static HashSet<Entity> recentDeath = new HashSet<Entity>();
 
 }

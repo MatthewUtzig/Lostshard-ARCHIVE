@@ -8,28 +8,35 @@ import org.apache.commons.lang.StringUtils;
 public class RandomSelector {
 
 	private final List<SelectorObject> objects;
-	
+
 	public RandomSelector() {
 		this.objects = new ArrayList<SelectorObject>();
 	}
-	
+
 	public boolean add(int weight, Object object) {
-		return objects.add(new SelectorObject(weight, object));
+		return this.objects.add(new SelectorObject(weight, object));
 	}
-	
-	public double getTotalWeight() {
-		double total_weight = 0;
-		for(SelectorObject o : objects)
-			total_weight += o.getWeight();
-		return total_weight;
+
+	public String getAsString() {
+		final double tw = this.getTotalWeight();
+		final String[] strings = new String[this.objects.size()];
+		for (int i = 0; i < this.objects.size(); i++) {
+			final SelectorObject o = this.objects.get(i);
+			strings[i] = "" + tw + "/" + o.getWeight() + "=" + tw / o.getWeight();
+		}
+		return StringUtils.join(strings, ", ");
 	}
-	
+
+	public List<SelectorObject> getObjects() {
+		return this.objects;
+	}
+
 	public Object getRandomObject() {
-		double total_weight = getTotalWeight();
-		double weight = Math.random()*total_weight;
+		final double total_weight = this.getTotalWeight();
+		final double weight = Math.random() * total_weight;
 		double currentWeight = 0;
-		for(SelectorObject o : objects) {
-			if(o.getWeight()+currentWeight >= weight) {
+		for (final SelectorObject o : this.objects) {
+			if (o.getWeight() + currentWeight >= weight) {
 				return o.getObject();
 			}
 			currentWeight += o.getWeight();
@@ -37,17 +44,10 @@ public class RandomSelector {
 		return null;
 	}
 
-	public List<SelectorObject> getObjects() {
-		return objects;
-	}
-	
-	public String getAsString() {
-		double tw = getTotalWeight();
-		String[] strings = new String[objects.size()];
-		for(int i=0; i<objects.size(); i++) {
-			SelectorObject o = objects.get(i);
-			strings[i] = ""+tw+"/"+o.getWeight()+"="+(tw/o.getWeight());
-		}
-		return StringUtils.join(strings, ", ");
+	public double getTotalWeight() {
+		double total_weight = 0;
+		for (final SelectorObject o : this.objects)
+			total_weight += o.getWeight();
+		return total_weight;
 	}
 }

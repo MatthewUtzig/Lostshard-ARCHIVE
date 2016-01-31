@@ -16,11 +16,11 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 public class PlotManager {
 
+	static PlotManager manager = new PlotManager();
+
 	public static PlotManager getManager() {
 		return manager;
 	}
-
-	static PlotManager manager = new PlotManager();
 
 	private List<Plot> plots = new ArrayList<Plot>();
 
@@ -31,7 +31,7 @@ public class PlotManager {
 	 * @param location
 	 * @return
 	 *
-	 *         Find plot at location.
+	 * 		Find plot at location.
 	 */
 	public Plot findPlotAt(Location location) {
 		return this.findPlotAt(location, 0);
@@ -46,8 +46,7 @@ public class PlotManager {
 	 */
 	public Plot findPlotAt(Location location, int buffer) {
 		for (final Plot plot : this.plots)
-			if (Utils.isWithin(plot.getLocation(), location, plot.getSize()
-					+ buffer))
+			if (Utils.isWithin(plot.getLocation(), location, plot.getSize() + buffer))
 				return plot;
 			else
 				continue;
@@ -95,27 +94,25 @@ public class PlotManager {
 				final Player player = Bukkit.getPlayer(plot.getOwner());
 				if (plot.getSize() > 1) {
 					if (player != null)
-						Output.simpleError(
-								player,
-								plot.getName()
-								+ " have failed to pay tax and have shrunk.");
+						Output.simpleError(player, plot.getName() + " have failed to pay tax and have shrunk.");
 					else
-						new OfflineMessage(plot.getOwner(), plot.getName()
-								+ " have failed to pay tax and have shrunk.");
+						new OfflineMessage(plot.getOwner(),
+								plot.getName() + " have failed to pay tax and have shrunk.");
 				} else {
 					plot.disband();
 					if (player != null)
-						Output.simpleError(
-								player,
-								plot.getName()
-										+ " have failed to pay tax and are now disbaneded.");
+						Output.simpleError(player, plot.getName() + " have failed to pay tax and are now disbaneded.");
 					else
-						new OfflineMessage(
-								plot.getOwner(),
-								plot.getName()
-										+ " have failed to pay tax and are now disbaneded.");
+						new OfflineMessage(plot.getOwner(),
+								plot.getName() + " have failed to pay tax and are now disbaneded.");
 				}
 			} else
 				plot.setMoney(plot.getMoney() - plot.getTax());
+	}
+
+	public List<Plot> getCapturePoints() {
+		List<Plot> results = new ArrayList<Plot>(this.getPlots());
+		results.removeIf(p -> p.isCapturepoint());
+		return results;
 	}
 }

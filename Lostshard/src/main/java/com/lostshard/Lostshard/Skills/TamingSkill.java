@@ -24,46 +24,35 @@ import com.lostshard.Lostshard.Utils.SpellUtils;
 @Embeddable
 public class TamingSkill extends Skill {
 
-	public TamingSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
 	public static void callMount(Player player, PseudoPlayer pseudoPlayer) {
 		if (pseudoPlayer.getStamina() >= 10) {
 
-			final TamingSkill skill = (TamingSkill) pseudoPlayer
-					.getCurrentBuild().getTaming();
+			final TamingSkill skill = pseudoPlayer.getCurrentBuild().getTaming();
 			final int lvl = skill.getLvl();
 			if (lvl < 500) {
-				Output.simpleError(player,
-						"You are not skilled enough to have a mount.");
+				Output.simpleError(player, "You are not skilled enough to have a mount.");
 				return;
 			}
 
 			if (pseudoPlayer.getEngageInCombatTicks() > 0) {
-				Output.simpleError(player,
-						"You can't mount while in or shortly after combat.");
+				Output.simpleError(player, "You can't mount while in or shortly after combat.");
 				return;
 			}
 
 			if (!skill.isMount()) {
-				Output.simpleError(player,
-						"You do not have a mount you can summon.");
+				Output.simpleError(player, "You do not have a mount you can summon.");
 				return;
 			}
 			if (!(pseudoPlayer.getStamina() >= 10)) {
-				Output.simpleError(player,
-						"You do not have enough stamina to summon your pets.");
+				Output.simpleError(player, "You do not have enough stamina to summon your pets.");
 				return;
 			}
 			final Block blockFound = player.getLocation().getBlock();
 			for (int x = blockFound.getX() - 1; x <= blockFound.getX() + 1; x++)
 				for (int y = blockFound.getY(); y <= blockFound.getY() + 2; y++)
 					for (int z = blockFound.getZ() - 1; z <= blockFound.getZ() + 1; z++)
-						if (!SpellUtils.invisibleBlocks.contains(blockFound
-								.getWorld().getBlockAt(x, y, z).getType())) {
-							Output.simpleError(player,
-									"You can't summon a mount in rough terrain");
+						if (!SpellUtils.invisibleBlocks.contains(blockFound.getWorld().getBlockAt(x, y, z).getType())) {
+							Output.simpleError(player, "You can't summon a mount in rough terrain");
 							return;
 						}
 
@@ -71,8 +60,7 @@ public class TamingSkill extends Skill {
 
 			Horse horse = null;
 
-			horse = (Horse) player.getWorld().spawnEntity(player.getLocation(),
-					EntityType.HORSE);
+			horse = (Horse) player.getWorld().spawnEntity(player.getLocation(), EntityType.HORSE);
 			horse.setTamed(true);
 			horse.setOwner(player);
 			horse.setAdult();
@@ -82,20 +70,19 @@ public class TamingSkill extends Skill {
 			horse.setBreed(false);
 			horse.setMaxHealth(20);
 			horse.setHealth(20);
-//			final AttributeInstance attributes = ((EntityInsentient) ((CraftLivingEntity) horse)
-//					.getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
-//			attributes.setValue(0.2);
+			// final AttributeInstance attributes = ((EntityInsentient)
+			// ((CraftLivingEntity) horse)
+			// .getHandle()).getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
+			// attributes.setValue(0.2);
 			if (!(player.isOp() || pseudoPlayer.isSubscriber())) {
 				horse.setColor(Color.BLACK);
 				horse.setVariant(Variant.HORSE);
 				horse.setStyle(Style.BLACK_DOTS);
-				horse.getInventory().setArmor(
-						new ItemStack(Material.DIAMOND_BARDING));
+				horse.getInventory().setArmor(new ItemStack(Material.DIAMOND_BARDING));
 				horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
 			} else {
 				horse.setVariant(Variant.SKELETON_HORSE);
-				horse.getInventory().setArmor(
-						new ItemStack(Material.DIAMOND_BARDING));
+				horse.getInventory().setArmor(new ItemStack(Material.DIAMOND_BARDING));
 				horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
 			}
 			horse.setPassenger(player);
@@ -105,8 +92,7 @@ public class TamingSkill extends Skill {
 	}
 
 	public static void onDamage(EntityDamageByEntityEvent event) {
-		if (event.getEntity() instanceof Horse
-				&& ((Horse) event.getEntity()).getPassenger() != null)
+		if (event.getEntity() instanceof Horse && ((Horse) event.getEntity()).getPassenger() != null)
 			event.getEntity().remove();
 	}
 
@@ -140,8 +126,12 @@ public class TamingSkill extends Skill {
 		this.setMat(Material.IRON_BARDING);
 	}
 
+	public TamingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
+	}
+
 	public void callPets() {
-		
+
 	}
 
 	public int getDoogs() {

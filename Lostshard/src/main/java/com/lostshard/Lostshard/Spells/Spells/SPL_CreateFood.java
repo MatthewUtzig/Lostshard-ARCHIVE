@@ -40,8 +40,7 @@ public class SPL_CreateFood extends RangedSpell {
 			mat = Material.BROWN_MUSHROOM;
 			break;
 		}
-		player.getWorld().dropItem(this.getFoundBlock().getLocation(),
-				new ItemStack(mat, 1));
+		player.getWorld().dropItem(this.getFoundBlock().getLocation(), new ItemStack(mat, 1));
 
 	}
 

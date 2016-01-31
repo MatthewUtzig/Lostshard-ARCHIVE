@@ -37,17 +37,14 @@ public class SPL_Light extends RangedSpell {
 			Output.simpleError(player, "Invalid target.");
 			return false;
 		}
-		final Plot plot = this.ptm.findPlotAt(this.getFoundBlock()
-				.getLocation());
+		final Plot plot = this.ptm.findPlotAt(this.getFoundBlock().getLocation());
 		if (plot != null)
 			if (plot.isProtected())
 				if (!plot.isFriendOrAbove(player)) {
-					Output.simpleError(player,
-							"You can't cast " + this.getName()
-									+ " there, that plot is protected.");
+					Output.simpleError(player, "You can't cast " + this.getName() + " there, that plot is protected.");
 					return false;
 				}
 		return true;
 	}
-	
+
 }

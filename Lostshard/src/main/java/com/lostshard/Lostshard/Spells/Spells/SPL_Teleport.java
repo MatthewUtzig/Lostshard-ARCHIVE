@@ -25,19 +25,16 @@ public class SPL_Teleport extends RangedSpell {
 	 */
 	@Override
 	public void doAction(Player player) {
-		final Location teleportTo = new Location(player.getWorld(), this
-				.getFoundBlock().getX() + .5, (double) this.getFoundBlock()
-				.getY() + 1, this.getFoundBlock().getZ() + .5);
+		final Location teleportTo = new Location(player.getWorld(), this.getFoundBlock().getX() + .5,
+				(double) this.getFoundBlock().getY() + 1, this.getFoundBlock().getZ() + .5);
 		teleportTo.setPitch(player.getLocation().getPitch());
 		teleportTo.setYaw(player.getLocation().getYaw());
 		player.teleport(teleportTo);
 	}
 
 	private boolean isRoom(Block block) {
-		if (!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0)
-				.getType())
-				|| !SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2,
-						0).getType()))
+		if (!SpellUtils.invisibleBlocks.contains(block.getRelative(0, 1, 0).getType())
+				|| !SpellUtils.invisibleBlocks.contains(block.getRelative(0, 2, 0).getType()))
 			return false;
 		return true;
 	}
@@ -55,8 +52,8 @@ public class SPL_Teleport extends RangedSpell {
 	public boolean verifyCastable(Player player) {
 		final Block blockAt = player.getLocation().getBlock();
 		if (!blockAt.getType().equals(Material.IRON_DOOR_BLOCK)) {
-			final List<Block> lastTwoBlocks = player.getLastTwoTargetBlocks(
-					SpellUtils.invisibleBlocks, this.getRange());
+			final List<Block> lastTwoBlocks = player.getLastTwoTargetBlocks(SpellUtils.invisibleBlocks,
+					this.getRange());
 
 			if (lastTwoBlocks.size() < 2) {
 				Output.simpleError(player, "Invalid target.");
@@ -64,11 +61,9 @@ public class SPL_Teleport extends RangedSpell {
 			}
 
 			boolean ceiling = false;
-			final Block blockAboveFace = lastTwoBlocks.get(0).getRelative(0, 1,
-					0);
+			final Block blockAboveFace = lastTwoBlocks.get(0).getRelative(0, 1, 0);
 			if (!SpellUtils.invisibleBlocks.contains(blockAboveFace.getType())
-					&& SpellUtils.invisibleBlocks.contains(blockAboveFace
-							.getRelative(0, -1, 0).getType())) {
+					&& SpellUtils.invisibleBlocks.contains(blockAboveFace.getRelative(0, -1, 0).getType())) {
 				this.setFoundBlock(blockAboveFace.getRelative(0, -3, 0));
 				ceiling = true;
 			}
@@ -80,20 +75,16 @@ public class SPL_Teleport extends RangedSpell {
 				}
 
 			if (!ceiling && !wall)
-				this.setFoundBlock(SpellUtils.blockInLOS(player,
-						this.getRange()));
+				this.setFoundBlock(SpellUtils.blockInLOS(player, this.getRange()));
 
 			if (this.getFoundBlock() == null) {
 				Output.simpleError(player, "That location is too far away.");
 				return false;
 			}
 
-			if (!SpellUtils.invisibleBlocks.contains(this.getFoundBlock()
-					.getRelative(0, 1, 0).getType())
-					&& !SpellUtils.invisibleBlocks.contains(this
-							.getFoundBlock().getRelative(0, 2, 0))) {
-				Output.simpleError(player,
-						"There is not enough room to teleport there.");
+			if (!SpellUtils.invisibleBlocks.contains(this.getFoundBlock().getRelative(0, 1, 0).getType())
+					&& !SpellUtils.invisibleBlocks.contains(this.getFoundBlock().getRelative(0, 2, 0))) {
+				Output.simpleError(player, "There is not enough room to teleport there.");
 				return false;
 			}
 

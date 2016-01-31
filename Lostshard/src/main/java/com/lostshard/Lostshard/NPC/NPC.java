@@ -36,13 +36,13 @@ public class NPC {
 
 	@Transient
 	private int id;
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private UUID uuid = UUID.randomUUID();
 	@Enumerated(EnumType.STRING)
 	private NPCType type;
 	private String name;
 	private SavableLocation location;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Store store = null;
 
@@ -50,9 +50,9 @@ public class NPC {
 	 * Default constructor
 	 */
 	public NPC() {
-		
+
 	}
-	
+
 	/**
 	 * @param type
 	 * @param name
@@ -66,6 +66,10 @@ public class NPC {
 		this.location = new SavableLocation(location);
 	}
 
+	public void despawn() {
+		this.getCitizensNPC().destroy();
+	}
+
 	/**
 	 * Delete this npc
 	 */
@@ -73,6 +77,19 @@ public class NPC {
 		final Plot plot = this.getPlot();
 		plot.getNpcs().remove(this);
 		NPCLibManager.getManager().despawnNPC(this);
+	}
+
+	@Transient
+	public net.citizensnpcs.api.npc.NPC getCitizensNPC() {
+		return NPCLibManager.getManager().getNPC(this.id);
+	}
+
+	@Transient
+	public String getDisplayName() {
+		return (this.getType().equals(NPCType.BANKER) ? "[BANKER] "
+				: this.getType().equals(NPCType.GUARD) ? "[GUARD] "
+						: this.getType().equals(NPCType.VENDOR) ? "[VENDOR] " : "")
+				+ this.getName();
 	}
 
 	/**
@@ -100,17 +117,29 @@ public class NPC {
 
 	@Transient
 	public Plot getPlot() {
-		for(Plot p : PlotManager.getManager().getPlots())
-			if(p.getNpcs().contains(this))
+		for (final Plot p : PlotManager.getManager().getPlots())
+			if (p.getNpcs().contains(this))
 				return p;
 		return null;
 	}
-	
+
+	public SavableLocation getSavableLocation() {
+		return this.location;
+	}
+
+	public Store getStore() {
+		return this.store;
+	}
+
 	/**
 	 * @return NPCType
 	 */
 	public NPCType getType() {
 		return this.type;
+	}
+
+	public UUID getUUID() {
+		return this.uuid;
 	}
 
 	/**
@@ -144,12 +173,24 @@ public class NPC {
 		this.name = name;
 	}
 
+	public void setSavableLocation(SavableLocation savableLocation) {
+		this.location = savableLocation;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
 	/**
 	 * @param set
 	 *            NPCType
 	 */
 	public void setType(NPCType type) {
 		this.type = type;
+	}
+
+	public void setUUID(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	/**
@@ -159,45 +200,7 @@ public class NPC {
 		this.id = NPCLibManager.getManager().spawnNPC(this);
 	}
 
-	@Transient
-	public String getDisplayName() {
-		return (getType().equals(NPCType.BANKER) ? "[BANKER] " : getType().equals(NPCType.GUARD) ? "[GUARD] " : getType().equals(NPCType.VENDOR) ? "[VENDOR] " : "") + getName();
-	}
-
 	public void teleport(Location location, TeleportCause reason) {
 		NPCLibManager.getManager().teleportNPC(this.id, location, reason);
-	}
-
-	@Transient
-	public net.citizensnpcs.api.npc.NPC getCitizensNPC() {
-		return NPCLibManager.getManager().getNPC(id);
-	}
-	
-	public SavableLocation getSavableLocation() {
-		return this.location;
-	}
-
-	public void setSavableLocation(SavableLocation savableLocation) {
-		this.location = savableLocation;
-	}
-	
-	public UUID getUUID() {
-		return this.uuid;
-	}
-
-	public void setUUID(UUID uuid) {
-		this.uuid = uuid;
-	}
-	
-	public void despawn() {
-		getCitizensNPC().destroy();
-	}
-	
-	public Store getStore() {
-		return this.store;
-	}
-	
-	public void setStore(Store store) {
-		this.store = store;
 	}
 }

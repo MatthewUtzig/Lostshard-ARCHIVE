@@ -10,11 +10,12 @@ import com.lostshard.Lostshard.Utils.Serializer;
 
 public class ConfigManager {
 
+	static ConfigManager manager = new ConfigManager();
+
 	public static ConfigManager getManager() {
 		return manager;
 	}
 
-	static ConfigManager manager = new ConfigManager();
 	FileConfiguration config;
 
 	Lostshard plugin;
@@ -39,25 +40,18 @@ public class ConfigManager {
 		DamageHandler.arrow = this.config.getDouble("DAMAGE.arrow");
 		DamageHandler.hand = this.config.getDouble("DAMAGE.hand");
 		DamageHandler.swords = this.config.getDouble("DAMAGE.swords");
-		DamageHandler.diamondSword = this.config
-				.getDouble("DAMAGE.diamondSword");
+		DamageHandler.diamondSword = this.config.getDouble("DAMAGE.diamondSword");
 		DamageHandler.ironSword = this.config.getDouble("DAMAGE.ironSword");
 		DamageHandler.goldSword = this.config.getDouble("DAMAGE.goldSword");
 		DamageHandler.stoneSword = this.config.getDouble("DAMAGE.stoneSword");
 		DamageHandler.woodSword = this.config.getDouble("DAMAGE.woodSword");
 
-		Locations.LAWFULL
-				.setLocation(Serializer.deserializeLocation(this.config
-						.getString("LOCATIONS.lawfull")));
-		Locations.CRIMINAL.setLocation(Serializer
-				.deserializeLocation(this.config
-						.getString("LOCATIONS.criminal")));
-		Locations.BUILDCHANGLAWFULL.setLocation(Serializer
-				.deserializeLocation(this.config
-						.getString("LOCATIONS.build.lawfull")));
-		Locations.BUILDCHANGECRIMINAL.setLocation(Serializer
-				.deserializeLocation(this.config
-						.getString("LOCATIONS.build.criminal")));
+		Locations.LAWFULL.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.lawfull")));
+		Locations.CRIMINAL.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.criminal")));
+		Locations.BUILDCHANGLAWFULL
+				.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.build.lawfull")));
+		Locations.BUILDCHANGECRIMINAL
+				.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.build.criminal")));
 	}
 
 	public void setConfig(Lostshard plugin) {

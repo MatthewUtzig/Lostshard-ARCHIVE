@@ -21,10 +21,8 @@ public class SPL_FireWalk extends Spell {
 	@Override
 	public void doAction(Player player) {
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 320, 1));
-		player.addPotionEffect(new PotionEffect(
-				PotionEffectType.FIRE_RESISTANCE, 320, 1));
-		final FireWalk fireWalk = new FireWalk(new ArrayList<Block>(),
-				player.getUniqueId(), 150);
+		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 320, 1));
+		final FireWalk fireWalk = new FireWalk(new ArrayList<Block>(), player.getUniqueId(), 150);
 		final Block fireBlock = player.getLocation().getBlock();
 		if (fireBlock.getType().equals(Material.AIR)) {
 			fireBlock.setType(Material.FIRE);

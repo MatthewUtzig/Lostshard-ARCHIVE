@@ -1,17 +1,17 @@
 package com.lostshard.Lostshard.Handlers;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.Plot.Capturepoint;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Utils;
 
 public class CapturepointHandler {
+
+	static PlotManager ptm = PlotManager.getManager();
 
 	public static void onPlayerDie(PlayerDeathEvent event) {
 		final Player player = event.getEntity();
@@ -25,23 +25,16 @@ public class CapturepointHandler {
 		final Plot fromPlot = ptm.findPlotAt(event.getFrom());
 		if (fromPlot == null)
 			return;
-		if (!(fromPlot.isCapturepoint()))
+		if (!fromPlot.isCapturepoint())
 			return;
 		final Plot toPlot = ptm.findPlotAt(event.getTo());
 		if (toPlot == null)
 			return;
-		if (!(toPlot.isCapturepoint())) {
+		if (!toPlot.isCapturepoint()) {
 			fromPlot.getCapturepointData().failCaptureLeft(player);
 			return;
 		}
-		final Capturepoint cp = Capturepoint.getByName(fromPlot.getName());
-		if (cp != null) {
-			if (!Utils.isWithin(player.getLocation(), new Location(fromPlot
-					.getLocation().getWorld(), cp.getPoint().x,
-					cp.getPoint().y, cp.getPoint().z), 5))
-				fromPlot.getCapturepointData().failCaptureLeft(player);
-		} else if (!Utils.isWithin(player.getLocation(),
-				fromPlot.getLocation(), 5))
+		if (!Utils.isWithin(player.getLocation(), fromPlot.getCapturepointData().getCapZone().getLocation(), fromPlot.getCapturepointData().getRange()))
 			fromPlot.getCapturepointData().failCaptureLeft(player);
 	}
 
@@ -56,6 +49,4 @@ public class CapturepointHandler {
 			if (plot.isCapturepoint())
 				plot.getCapturepointData().tick(delta);
 	}
-
-	static PlotManager ptm = PlotManager.getManager();
 }

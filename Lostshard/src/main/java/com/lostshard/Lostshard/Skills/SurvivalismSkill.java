@@ -47,30 +47,29 @@ import com.lostshard.Lostshard.Utils.Utils;
 
 @Embeddable
 public class SurvivalismSkill extends Skill {
-	
-	public SurvivalismSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
+
+	private static final int TRACK_STAMINA_COST = 25;
+
+	private static final int CAMP_STAMINA_COST = 50;
+
+	private static ArrayList<Camp> camps = new ArrayList<Camp>();
 
 	public static void camp(Player player) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		final int curSkill = pPlayer.getCurrentBuild().getSurvivalism()
-				.getLvl();
+		final int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
 		if (curSkill < 500) {
 			Output.simpleError(player, "Not enough skill - Camping requires 50");
 			return;
 		}
 
 		if (pPlayer.getStamina() < CAMP_STAMINA_COST) {
-			Output.simpleError(player, "Not enough stamina - Camping requires "
-					+ CAMP_STAMINA_COST + ".");
+			Output.simpleError(player, "Not enough stamina - Camping requires " + CAMP_STAMINA_COST + ".");
 			return;
 		}
 
 		for (final Camp camp : camps)
 			if (camp.getCreator().equals(player.getUniqueId())) {
-				Output.simpleError(player,
-						"You may only have 1 camp active at a time.");
+				Output.simpleError(player, "You may only have 1 camp active at a time.");
 				return;
 			}
 
@@ -81,18 +80,15 @@ public class SurvivalismSkill extends Skill {
 
 		final double rand = Math.random();
 		if (rand > chanceToCast) {
-			Output.simpleError(player,
-					"You failed to successfully create a camp.");
+			Output.simpleError(player, "You failed to successfully create a camp.");
 			pPlayer.setStamina(pPlayer.getStamina() - CAMP_STAMINA_COST);
-			final int gain = pPlayer.getCurrentBuild().getSurvivalism()
-					.skillGain(pPlayer);
-			Output.gainSkill(player, "Survivalism", gain, curSkill);
+			final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
+			Output.gainSkill(player, "Survivalism", gain, pPlayer.getCurrentBuild().getSurvivalism().getLvl());
 			return;
 		}
 
 		// Place a log where you are looking
-		final Block blockAt = player.getTargetBlock(SpellUtils.invisibleBlocks,
-				10);
+		final Block blockAt = player.getTargetBlock(SpellUtils.invisibleBlocks, 10);
 		Block logFound = null;
 		Block fireFound = null;
 		if (blockAt.getRelative(0, 1, 0).getType().equals(Material.AIR)
@@ -109,26 +105,27 @@ public class SurvivalismSkill extends Skill {
 		camps.add(new Camp(player.getUniqueId(), 600, logFound, fireFound));
 		player.sendMessage(ChatColor.GOLD + "You set up a temporary camp.");
 		pPlayer.setStamina(pPlayer.getStamina() - CAMP_STAMINA_COST);
-		final int gain = pPlayer.getCurrentBuild().getSurvivalism()
-				.skillGain(pPlayer);
+		final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
 		Output.gainSkill(player, "Survivalism", gain, curSkill);
 	}
-	
+
 	public static void entityDeath(EntityDeathEvent event) {
-		Entity e = event.getEntity();
-		Entity k = e.getLastDamageCause().getEntity();
-		if(e instanceof Animals && k != null && k instanceof Player) {
-			PseudoPlayer pPlayer = pm.getPlayer((Player) k);
-			for(ItemStack i : event.getDrops())
-				i.setAmount((int) (i.getAmount()*(Math.random()*pPlayer.getCurrentBuild().getSurvivalism().getLvl()/330+1)));
-			Output.gainSkill((Player) k, "Magery", pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer), pPlayer.getCurrentBuild().getSurvivalism().getLvl());
+		final Entity e = event.getEntity();
+		final Entity k = e.getLastDamageCause().getEntity();
+		if (e instanceof Animals && k != null && k instanceof Player) {
+			final PseudoPlayer pPlayer = pm.getPlayer((Player) k);
+			for (final ItemStack i : event.getDrops())
+				i.setAmount((int) (i.getAmount()
+						* (Math.random() * pPlayer.getCurrentBuild().getSurvivalism().getLvl() / 330 + 1)));
+			Output.gainSkill((Player) k, "Magery", pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer),
+					pPlayer.getCurrentBuild().getSurvivalism().getLvl());
 		}
 	}
 
 	public static ArrayList<Camp> getCamps() {
 		return camps;
 	}
-	
+
 	public static void onHoe(PlayerInteractEvent event) {
 		if (event.isCancelled())
 			return;
@@ -139,66 +136,46 @@ public class SurvivalismSkill extends Skill {
 		final Player player = event.getPlayer();
 		if (!block.getType().equals(Material.GRASS))
 			return;
-		if (!(itemInHand.getType().equals(Material.WOOD_HOE)
-				|| itemInHand.getType().equals(Material.STONE_HOE)
-				|| itemInHand.getType().equals(Material.IRON_HOE)
-				|| itemInHand.getType().equals(Material.DIAMOND_HOE) || itemInHand
-				.getType().equals(Material.GOLD_HOE)))
+		if (!(itemInHand.getType().equals(Material.WOOD_HOE) || itemInHand.getType().equals(Material.STONE_HOE)
+				|| itemInHand.getType().equals(Material.IRON_HOE) || itemInHand.getType().equals(Material.DIAMOND_HOE)
+				|| itemInHand.getType().equals(Material.GOLD_HOE)))
 			return;
 
 		final Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot != null)
 			if (plot.isProtected())
 				if (!plot.isAllowedToBuild(player)) {
-					Output.simpleError(player,
-							"You can't do that, this plot is protected.");
+					Output.simpleError(player, "You can't do that, this plot is protected.");
 					event.setCancelled(true);
 					return;
 				}
 
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		final int curSurvSkill = pPlayer.getCurrentBuild().getSurvivalism()
-				.getLvl();
+		final int curSurvSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
 		final double percent = curSurvSkill / 1000.0;
 		final int hoeRange = (int) (3.0 * percent);
 
 		for (int x = block.getX() - hoeRange; x <= block.getX() + hoeRange; x++)
 			for (int y = block.getY() - hoeRange; y <= block.getY() + hoeRange; y++)
-				for (int z = block.getZ() - hoeRange; z <= block.getZ()
-						+ hoeRange; z++) {
+				for (int z = block.getZ() - hoeRange; z <= block.getZ() + hoeRange; z++) {
 					final Block blockAt = block.getWorld().getBlockAt(x, y, z);
-					if (Utils.isWithin(block.getLocation(),
-							blockAt.getLocation(), hoeRange))
-						if (block.getWorld().getBlockAt(x, y, z).getType()
-								.equals(Material.GRASS)) {
+					if (Utils.isWithin(block.getLocation(), blockAt.getLocation(), hoeRange))
+						if (block.getWorld().getBlockAt(x, y, z).getType().equals(Material.GRASS)) {
 							blockAt.setType(Material.SOIL);
 							final double rand = Math.random();
 							if (rand < .2)
-								blockAt.getWorld()
-										.dropItemNaturally(
-												new Location(
-														blockAt.getWorld(),
-														blockAt.getLocation()
-																.getX() + .5,
-														blockAt.getLocation()
-																.getY() + 1.5,
-														blockAt.getLocation()
-																.getZ() + .5),
-												new ItemStack(Material.SEEDS, 1));
+								blockAt.getWorld().dropItemNaturally(
+										new Location(blockAt.getWorld(), blockAt.getLocation().getX() + .5,
+												blockAt.getLocation().getY() + 1.5, blockAt.getLocation().getZ() + .5),
+										new ItemStack(Material.SEEDS, 1));
 							else if (rand < .04) {
 								final double rand2 = Math.random();
 								if (rand2 < .5)
-									blockAt.getWorld().dropItemNaturally(
-											blockAt.getLocation(),
-											new ItemStack(
-													Material.RED_MUSHROOM, 1));
+									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(),
+											new ItemStack(Material.RED_MUSHROOM, 1));
 								else
-									blockAt.getWorld()
-											.dropItemNaturally(
-													blockAt.getLocation(),
-													new ItemStack(
-															Material.BROWN_MUSHROOM,
-															1));
+									blockAt.getWorld().dropItemNaturally(blockAt.getLocation(),
+											new ItemStack(Material.BROWN_MUSHROOM, 1));
 							}
 						}
 				}
@@ -210,8 +187,7 @@ public class SurvivalismSkill extends Skill {
 				final Player player = (Player) event.getEntity();
 				final PseudoPlayer pPlayer = pm.getPlayer(player);
 				if (pPlayer.getCurrentBuild().getSurvivalism().getLvl() >= 500)
-					event.setDamage(DamageModifier.BASE,
-							event.getDamage(DamageModifier.BASE) / 2);
+					event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) / 2);
 			}
 	}
 
@@ -221,13 +197,10 @@ public class SurvivalismSkill extends Skill {
 
 	public static void track(Player player, String[] args) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		final int curSkill = pPlayer.getCurrentBuild().getSurvivalism()
-				.getLvl();
+		final int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
 		if (args.length == 1) {
 			if (pPlayer.getStamina() < TRACK_STAMINA_COST) {
-				Output.simpleError(player,
-						"Not enough stamina - Tracking requires "
-								+ TRACK_STAMINA_COST + ".");
+				Output.simpleError(player, "Not enough stamina - Tracking requires " + TRACK_STAMINA_COST + ".");
 				return;
 			}
 
@@ -239,7 +212,7 @@ public class SurvivalismSkill extends Skill {
 			}
 
 			Player targetPlayer = Bukkit.getPlayer(targetName);
-			if(targetPlayer != null && (Lostshard.isVanished(targetPlayer) && !player.isOp()))
+			if (targetPlayer != null && Lostshard.isVanished(targetPlayer) && !player.isOp())
 				targetPlayer = null;
 
 			int modCurSkill = curSkill;
@@ -293,8 +266,7 @@ public class SurvivalismSkill extends Skill {
 					trackBlaze = true;
 
 				final ArrayList<LivingEntity> lE = new ArrayList<LivingEntity>();
-				final List<LivingEntity> livingEntities = player.getWorld()
-						.getLivingEntities();
+				final List<LivingEntity> livingEntities = player.getWorld().getLivingEntities();
 				for (final LivingEntity livingEntity : livingEntities) {
 					if (trackSquid)
 						if (livingEntity instanceof Squid)
@@ -349,17 +321,13 @@ public class SurvivalismSkill extends Skill {
 				if (lE.size() > 0) {
 					if (lE.get(0) instanceof Monster)
 						if (curSkill < 250) {
-							Output.simpleError(player,
-									"You must have 25 Survivalism to track monsters.");
+							Output.simpleError(player, "You must have 25 Survivalism to track monsters.");
 							return;
 						}
 					LivingEntity closestEntity = lE.get(0);
-					double closestDist = Utils.fastDistance(
-							closestEntity.getLocation(), player.getLocation());
+					double closestDist = Utils.fastDistance(closestEntity.getLocation(), player.getLocation());
 					for (final LivingEntity livingEntity : lE) {
-						final double dist = Utils.fastDistance(
-								livingEntity.getLocation(),
-								player.getLocation());
+						final double dist = Utils.fastDistance(livingEntity.getLocation(), player.getLocation());
 						if (dist < closestDist) {
 							closestDist = dist;
 							closestEntity = livingEntity;
@@ -371,14 +339,11 @@ public class SurvivalismSkill extends Skill {
 					return;
 				}
 			} else {
-				final PseudoPlayer pseudoPlayerDefender = pm
-						.getPlayer(targetPlayer);
-				final int defSkill = pseudoPlayerDefender.getCurrentBuild()
-						.getSurvivalism().getLvl();
+				final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
+				final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
 
 				if (curSkill < 500) {
-					Output.simpleError(player,
-							"You must have 50 Survivalism to track a player.");
+					Output.simpleError(player, "You must have 50 Survivalism to track a player.");
 					return;
 				}
 				foundLivingEntity = targetPlayer;
@@ -407,131 +372,99 @@ public class SurvivalismSkill extends Skill {
 				final double rand = Math.random();
 				if (rand > chanceToCast) {
 					if (foundLivingEntity instanceof Player) {
-						Output.simpleError(player, "You see signs of "
-								+ targetName
-								+ " but you fail to follow the trail.");
-						final PseudoPlayer pseudoPlayerDefender = pm
-								.getPlayer(targetPlayer);
-						final int defSkill = pseudoPlayerDefender
-								.getCurrentBuild().getSurvivalism().getLvl();
-						if (defSkill < 1000
-								&& Utils.isWithin(player.getLocation(),
-										targetPlayer.getLocation(), 250))
-							targetPlayer
-									.sendMessage(ChatColor.GRAY
-											+ "The hairs on the back of your neck stand up...");
+						Output.simpleError(player,
+								"You see signs of " + targetName + " but you fail to follow the trail.");
+						final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
+						final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
+						if (defSkill < 1000 && Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 250))
+							targetPlayer.sendMessage(ChatColor.GRAY + "The hairs on the back of your neck stand up...");
 					} else
-						Output.simpleError(player, "You see signs of a "
-								+ targetName
-								+ " but you fail to follow the trail.");
-					pPlayer.setStamina(pPlayer.getStamina()
-							- TRACK_STAMINA_COST);
+						Output.simpleError(player,
+								"You see signs of a " + targetName + " but you fail to follow the trail.");
+					pPlayer.setStamina(pPlayer.getStamina() - TRACK_STAMINA_COST);
 					if (chanceToCast < 1.0) {
-						final int gain = pPlayer.getCurrentBuild()
-								.getSurvivalism().skillGain(pPlayer);
+						final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
 						Output.gainSkill(player, "Survivalism", gain, curSkill);
 					}
 					return;
 				}
 
-				if (foundLivingEntity.getWorld().getName()
-						.equalsIgnoreCase(player.getWorld().getName())) {
+				if (foundLivingEntity.getWorld().getName().equalsIgnoreCase(player.getWorld().getName())) {
 					if (foundLivingEntity instanceof Player) {
 						final Location targetLoc = targetPlayer.getLocation();
 						final Location playerLoc = player.getLocation();
-						final double angle = Math.atan2(targetLoc.getX()
-								- playerLoc.getX(), targetLoc.getZ()
-								- playerLoc.getZ());
+						final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
+								targetLoc.getZ() - playerLoc.getZ());
 						double angleDegrees = Math.toDegrees(angle);
 						if (angleDegrees < 0)
 							angleDegrees += 360;
 						final Location locAt = player.getLocation();
 						if (angleDegrees >= 315 || angleDegrees <= 45) {
 							locAt.setZ(locAt.getZ() + 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the South");
+							Output.positiveMessage(player, "You see tracks leading off to the South");
 						} else if (angleDegrees >= 45 && angleDegrees <= 135) {
 							locAt.setX(locAt.getX() + 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the East...");
+							Output.positiveMessage(player, "You see tracks leading off to the East...");
 						} else if (angleDegrees >= 135 && angleDegrees <= 225) {
 							locAt.setZ(locAt.getZ() - 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the North");
+							Output.positiveMessage(player, "You see tracks leading off to the North");
 						} else if (angleDegrees >= 225 && angleDegrees <= 315) {
 							locAt.setX(locAt.getX() - 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the West...");
+							Output.positiveMessage(player, "You see tracks leading off to the West...");
 						} else
 							System.out.println("Tracking Angle Problem");
 
 						if (Utils.isWithin(playerLoc, targetLoc, 200))
-							Output.positiveMessage(player,
-									"The tracks are very fresh.");
+							Output.positiveMessage(player, "The tracks are very fresh.");
 						else if (Utils.isWithin(playerLoc, targetLoc, 500))
-							Output.positiveMessage(player,
-									"The tracks are somewhat fresh.");
+							Output.positiveMessage(player, "The tracks are somewhat fresh.");
 						else if (Utils.isWithin(playerLoc, targetLoc, 1000))
-							Output.positiveMessage(player,
-									"The tracks aren't very fresh.");
+							Output.positiveMessage(player, "The tracks aren't very fresh.");
 						else
-							Output.positiveMessage(player,
-									"The tracks are very faint.");
+							Output.positiveMessage(player, "The tracks are very faint.");
 					} else {
-						final Location targetLoc = foundLivingEntity
-								.getLocation();
+						final Location targetLoc = foundLivingEntity.getLocation();
 						final Location playerLoc = player.getLocation();
-						final double angle = Math.atan2(targetLoc.getX()
-								- playerLoc.getX(), targetLoc.getZ()
-								- playerLoc.getZ());
+						final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
+								targetLoc.getZ() - playerLoc.getZ());
 						double angleDegrees = Math.toDegrees(angle);
 						if (angleDegrees < 0)
 							angleDegrees += 360;
 						final Location locAt = player.getLocation();
 						if (angleDegrees >= 315 || angleDegrees <= 45) {
 							locAt.setZ(locAt.getZ() + 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the South...");
+							Output.positiveMessage(player, "You see tracks leading off to the South...");
 						} else if (angleDegrees >= 45 && angleDegrees <= 135) {
 							locAt.setX(locAt.getX() + 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the East...");
+							Output.positiveMessage(player, "You see tracks leading off to the East...");
 						} else if (angleDegrees >= 135 && angleDegrees <= 225) {
 							locAt.setZ(locAt.getZ() - 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the North...");
+							Output.positiveMessage(player, "You see tracks leading off to the North...");
 						} else if (angleDegrees >= 225 && angleDegrees <= 315) {
 							locAt.setX(locAt.getX() - 500);
-							Output.positiveMessage(player,
-									"You see tracks leading off to the West...");
+							Output.positiveMessage(player, "You see tracks leading off to the West...");
 						} else
 							System.out.println("Tracking Angle Problem");
 
 						if (Utils.isWithin(playerLoc, targetLoc, 200))
-							Output.positiveMessage(player,
-									"The tracks are very fresh.");
+							Output.positiveMessage(player, "The tracks are very fresh.");
 						else if (Utils.isWithin(playerLoc, targetLoc, 500))
-							Output.positiveMessage(player,
-									"The tracks are somewhat fresh.");
+							Output.positiveMessage(player, "The tracks are somewhat fresh.");
 						else if (Utils.isWithin(playerLoc, targetLoc, 1000))
-							Output.positiveMessage(player,
-									"The tracks aren't very fresh.");
+							Output.positiveMessage(player, "The tracks aren't very fresh.");
 						else
-							Output.positiveMessage(player,
-									"The tracks are very faint.");
+							Output.positiveMessage(player, "The tracks are very faint.");
 					}
 				} else if (foundLivingEntity instanceof Player)
-					Output.simpleError(player, "You see signs of " + targetName
-							+ " but can't seem to follow the trail...");
+					Output.simpleError(player,
+							"You see signs of " + targetName + " but can't seem to follow the trail...");
 				else
-					Output.simpleError(player, "You see signs of a "
-							+ targetName
-							+ " but can't seem to follow the trail...");
+					Output.simpleError(player,
+							"You see signs of a " + targetName + " but can't seem to follow the trail...");
 
 				pPlayer.setStamina(pPlayer.getStamina() - TRACK_STAMINA_COST);
 				if (chanceToCast < 1.0) {
-					final int gain = pPlayer.getCurrentBuild().getSurvivalism()
-							.skillGain(pPlayer);
+					final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
 					Output.gainSkill(player, "Survivalism", gain, curSkill);
 				}
 			}
@@ -539,18 +472,16 @@ public class SurvivalismSkill extends Skill {
 			Output.simpleError(player, "Use \"/track (player name)\"");
 	}
 
-	private static final int TRACK_STAMINA_COST = 25;
-
-	private static final int CAMP_STAMINA_COST = 50;
-
-	private static ArrayList<Camp> camps = new ArrayList<Camp>();
-
 	public SurvivalismSkill() {
 		super();
 		this.setName("Survivalism");
 		this.setBaseProb(.2);
 		this.setScaleConstant(60);
 		this.setMat(Material.COMPASS);
+	}
+
+	public SurvivalismSkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

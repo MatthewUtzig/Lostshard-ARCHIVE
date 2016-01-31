@@ -15,31 +15,33 @@ import com.lostshard.Lostshard.Utils.Output;
 public class CratePlayerListener implements Listener {
 
 	CrateManager cm = CrateManager.getManager();
-	
+
 	public CratePlayerListener(Lostshard plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
-	
+
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		Action action = event.getAction();
-		Player player = event.getPlayer();
-		if((action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) && player.getItemInHand() != null) {
-			Crate crate = cm.getCrate(player.getItemInHand());
-			if(crate != null) {
+		final Action action = event.getAction();
+		final Player player = event.getPlayer();
+		if ((action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK))
+				&& player.getItemInHand() != null) {
+			final Crate crate = this.cm.getCrate(player.getItemInHand());
+			if (crate != null) {
 				player.getLocation().getWorld().playEffect(player.getLocation().add(0, 2, 0), Effect.HEART, 0);
 				player.playSound(player.getLocation(), Sound.LEVEL_UP, 1, 1);
-				ItemStack key = player.getItemInHand();
-				if(key.getAmount() < 2)
+				final ItemStack key = player.getItemInHand();
+				if (key.getAmount() < 2)
 					player.getInventory().remove(key);
 				else
-					key.setAmount(key.getAmount()-1);
-				ItemStack item = crate.getItem();
+					key.setAmount(key.getAmount() - 1);
+				final ItemStack item = crate.getItem();
 				player.getLocation().getWorld().dropItem(player.getLocation(), item);
-				Output.positiveMessage(player, "You have received "+item.getAmount()+" "+item.getType().name().toLowerCase().replace("_", " ")+"'s.");
+				Output.positiveMessage(player, "You have received " + item.getAmount() + " "
+						+ item.getType().name().toLowerCase().replace("_", " ") + "'s.");
 				event.setCancelled(true);
 			}
 		}
 	}
-	
+
 }

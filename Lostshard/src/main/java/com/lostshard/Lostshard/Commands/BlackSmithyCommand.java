@@ -18,8 +18,8 @@ public class BlackSmithyCommand extends LostshardCommand {
 		BlackSmithySkill.enhance(player);
 	}
 
-	public boolean onCommand(CommandSender sender, Command cmd, String string,
-			String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("repair")) {
 			if (!(sender instanceof Player)) {
 				Output.mustBePlayer(sender);
@@ -47,7 +47,7 @@ public class BlackSmithyCommand extends LostshardCommand {
 		}
 		return false;
 	}
-	
+
 	private void repair(Player player) {
 		BlackSmithySkill.repair(player);
 	}

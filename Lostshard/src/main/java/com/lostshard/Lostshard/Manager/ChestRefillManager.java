@@ -10,11 +10,11 @@ import com.lostshard.Lostshard.Objects.ChestRefill;
 
 public class ChestRefillManager {
 
+	private static ChestRefillManager manager = new ChestRefillManager();
+
 	public static ChestRefillManager getManager() {
 		return manager;
 	}
-
-	private static ChestRefillManager manager = new ChestRefillManager();
 
 	private List<ChestRefill> chests = new ArrayList<ChestRefill>();
 
@@ -33,17 +33,13 @@ public class ChestRefillManager {
 				return cr;
 		Chest sc = null;
 		if (chest.getBlock().getRelative(BlockFace.NORTH).getState() instanceof Chest)
-			sc = (Chest) chest.getBlock().getRelative(BlockFace.NORTH)
-					.getState();
+			sc = (Chest) chest.getBlock().getRelative(BlockFace.NORTH).getState();
 		else if (chest.getBlock().getRelative(BlockFace.SOUTH).getState() instanceof Chest)
-			sc = (Chest) chest.getBlock().getRelative(BlockFace.SOUTH)
-					.getState();
+			sc = (Chest) chest.getBlock().getRelative(BlockFace.SOUTH).getState();
 		else if (chest.getBlock().getRelative(BlockFace.WEST).getState() instanceof Chest)
-			sc = (Chest) chest.getBlock().getRelative(BlockFace.WEST)
-					.getState();
+			sc = (Chest) chest.getBlock().getRelative(BlockFace.WEST).getState();
 		else if (chest.getBlock().getRelative(BlockFace.EAST).getState() instanceof Chest)
-			sc = (Chest) chest.getBlock().getRelative(BlockFace.EAST)
-					.getState();
+			sc = (Chest) chest.getBlock().getRelative(BlockFace.EAST).getState();
 		if (sc != null)
 			for (final ChestRefill cr : this.chests)
 				if (cr.getLocation().equals(sc.getLocation()))

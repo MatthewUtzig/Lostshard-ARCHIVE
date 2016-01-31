@@ -19,14 +19,7 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class BrawlingSkill extends Skill {
 
-	
-	
-	public BrawlingSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
-	public static void playerDamagedEntityWithMisc(
-			EntityDamageByEntityEvent event) {
+	public static void playerDamagedEntityWithMisc(EntityDamageByEntityEvent event) {
 		if (event.isCancelled())
 			return;
 		if (!(event.getDamager() instanceof Player))
@@ -44,7 +37,7 @@ public class BrawlingSkill extends Skill {
 		final Entity damagedEntity = event.getEntity();
 		final int brawlingSkill = skill.getLvl();
 		double damage = event.getDamage();
-		int additionalDamage = skill.getLvl()/160;
+		final int additionalDamage = skill.getLvl() / 160;
 
 		final double chanceOfEffect = (double) brawlingSkill / 1000;
 		final double stunChance = chanceOfEffect * .25;
@@ -53,22 +46,18 @@ public class BrawlingSkill extends Skill {
 		if (stunChance > rand)
 			if (damagedEntity instanceof Player) {
 				final Player defenderPlayer = (Player) damagedEntity;
-				final PseudoPlayer defenderPseudoPlayer = pm
-						.getPlayer(defenderPlayer);
+				final PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 				if (defenderPseudoPlayer.getTimer().stunTick <= 0) {
 					defenderPseudoPlayer.getTimer().stunTick = 30;
-					defenderPlayer.sendMessage(ChatColor.GREEN
-							+ "You have been stunned!");
-					player.sendMessage(ChatColor.GREEN + "You stunned "
-							+ defenderPlayer.getName() + "!");
+					defenderPlayer.sendMessage(ChatColor.GREEN + "You have been stunned!");
+					player.sendMessage(ChatColor.GREEN + "You stunned " + defenderPlayer.getName() + "!");
 				}
 			}
 
 		if (damagedEntity instanceof Player)
 			if (brawlingSkill >= 1000) {
 				final Player defenderPlayer = (Player) damagedEntity;
-				final PseudoPlayer defenderPseudoPlayer = pm
-						.getPlayer(defenderPlayer);
+				final PseudoPlayer defenderPseudoPlayer = pm.getPlayer(defenderPlayer);
 				if (defenderPseudoPlayer.getTimer().stunTick <= 0)
 					defenderPseudoPlayer.getTimer().stunTick = 17;
 			}
@@ -76,8 +65,7 @@ public class BrawlingSkill extends Skill {
 		damage += additionalDamage;
 		event.setDamage(damage);
 
-		if (damagedEntity instanceof Monster || damagedEntity instanceof Player
-				|| damagedEntity instanceof Slime)
+		if (damagedEntity instanceof Monster || damagedEntity instanceof Player || damagedEntity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
@@ -93,6 +81,10 @@ public class BrawlingSkill extends Skill {
 		this.setBaseProb(.2);
 		this.setScaleConstant(60);
 		this.setMat(Material.PORK);
+	}
+
+	public BrawlingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

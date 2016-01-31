@@ -2,10 +2,9 @@ package com.lostshard.Lostshard.Main;
 
 import java.util.logging.Logger;
 
-import net.citizensnpcs.api.npc.NPC;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -58,6 +57,8 @@ import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Utils;
 
+import net.citizensnpcs.api.npc.NPC;
+
 /**
  * @author Jacob Rosborg
  *
@@ -66,24 +67,28 @@ public class Lostshard extends JavaPlugin {
 
 	private static final int maxPlayers = 30;
 	private static Hibernate hibernate;
-	
-	public BukkitTask getGameLoop() {
-		return gameLoop;
-	}
-	public Plugin getPlugin() {
-		return plugin;
+
+	public static Logger log;
+	private static Plugin plugin;
+
+	private static boolean mysqlError = false;
+
+	private static boolean debug = true;
+
+	public static int getMaxPlayers() {
+		return maxPlayers;
 	}
 
-	public String getVersion() {
-		return "1.0";
+	public static Session getSession() {
+		return hibernate.getSession();
 	}
 
 	public static boolean isDebug() {
 		return Lostshard.debug;
 	}
 
-	public boolean isMysqlError() {
-		return mysqlError;
+	public static boolean isVanished(Player player) {
+		return false;
 	}
 
 	public static void mysqlError() {
@@ -101,52 +106,74 @@ public class Lostshard extends JavaPlugin {
 		Lostshard.mysqlError = mysqlError;
 	}
 
-	public void setPlugin(Plugin plugin) {
-		Lostshard.plugin = plugin;
-	}
-
-	public void shutdown() {
-		for (final Player p : Bukkit.getOnlinePlayers())
-			p.kickPlayer(ChatColor.RED + "Server rebooting.");
-	}
-
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
-	ClanManager cm = ClanManager.getManager();
 
-	public static Logger log;
+	ClanManager cm = ClanManager.getManager();
 
 	private BukkitTask gameLoop;
 
 	private BukkitTask asyncGameLoop;
-	
-	private static Plugin plugin;
 
-	private static boolean mysqlError = false;
+	public BukkitTask getAsyncGameLoop() {
+		return this.asyncGameLoop;
+	}
 
-	private static boolean debug = true;
+	public BukkitTask getGameLoop() {
+		return this.gameLoop;
+	}
+
+	public Plugin getPlugin() {
+		return plugin;
+	}
+
+	public String getVersion() {
+		return "1.0";
+	}
+
+	public boolean isMysqlError() {
+		return mysqlError;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void loadFromDB() {
+		final Session s = getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+			ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
+			PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
+			ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
 
 	@Override
 	public void onDisable() {
-		NPCLibManager npcLibManager = NPCLibManager.getManager();
+		final NPCLibManager npcLibManager = NPCLibManager.getManager();
 		if (npcLibManager != null && npcLibManager.getRegistry() != null) {
-		for(NPC npc : npcLibManager.getRegistry())
-			npc.despawn();
-		npcLibManager.getRegistry().deregisterAll();
+			for (final NPC npc : npcLibManager.getRegistry())
+				npc.despawn();
+			npcLibManager.getRegistry().deregisterAll();
 		}
-		Session s = Lostshard.getSession();
+		final Session s = Lostshard.getSession();
 		try {
-			Transaction t = s.beginTransaction();
+			final Transaction t = s.beginTransaction();
 			t.begin();
-			for (final PseudoPlayer p : pm.getPlayers())
+			for (final PseudoPlayer p : this.pm.getPlayers())
 				s.update(p);
-			for (final Plot p : ptm.getPlots())
+			for (final Plot p : this.ptm.getPlots())
 				s.update(p);
-			for (final Clan c : cm.getClans())
+			for (final Clan c : this.cm.getClans())
 				s.update(c);
 			t.commit();
 			s.close();
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();
 		}
@@ -158,6 +185,8 @@ public class Lostshard extends JavaPlugin {
 	public void onEnable() {
 		ItemUtils.addChainMail();
 		Bukkit.setIdleTimeout(15);
+		Bukkit.setSpawnRadius(0);
+		Bukkit.setDefaultGameMode(GameMode.SURVIVAL);
 		this.saveDefaultConfig();
 
 		ConfigManager.getManager().setConfig(this);
@@ -193,64 +222,41 @@ public class Lostshard extends JavaPlugin {
 		new SurvivalismCommand(this);
 		new StoreCommand(this);
 		new ChestRefillCommand(this);
-		
+
 		hibernate = new Hibernate();
-		
-		loadFromDB();
-		
-		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int)Locations.LAWFULL.getLocation().getX(), (int)Locations.LAWFULL.getLocation().getY(), (int)Locations.LAWFULL.getLocation().getZ());
-		
+
+		this.loadFromDB();
+
+		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int) Locations.LAWFULL.getLocation().getX(),
+				(int) Locations.LAWFULL.getLocation().getY(), (int) Locations.LAWFULL.getLocation().getZ());
+
 		CrateManager.getManager().createCrates();
-		
+
 		// GameLoop should run last.
 		CustomSchedule.Schedule();
-		gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
-		asyncGameLoop = new AsyncGameLoop().runTaskTimerAsynchronously(this, 0L, 100L);
-		
-		for(Player p : Bukkit.getOnlinePlayers()) {
-			final PseudoPlayer pPlayer = pm.getPlayer(p);
-			pm.getPlayers().add(pPlayer);
-			pPlayer.setScoreboard(new PseudoScoreboard(p.getUniqueId()));
-			p.setDisplayName(Utils.getDisplayName(p)+ChatColor.RESET);
-		}
-		
-		NPCManager.getManager().spawn();
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void loadFromDB() {
-		Session s = getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
-			ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
-			PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
-			ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	public static int getMaxPlayers() {
-		return maxPlayers;
-	}
+		this.gameLoop = new GameLoop(this).runTaskTimer(this, 0L, 2L);
+		this.asyncGameLoop = new AsyncGameLoop().runTaskTimerAsynchronously(this, 0L, 100L);
 
-	public BukkitTask getAsyncGameLoop() {
-		return asyncGameLoop;
+		for (final Player p : Bukkit.getOnlinePlayers()) {
+			final PseudoPlayer pPlayer = this.pm.getPlayer(p);
+			this.pm.getPlayers().add(pPlayer);
+			pPlayer.setScoreboard(new PseudoScoreboard(p.getUniqueId()));
+			p.setDisplayName(Utils.getDisplayName(p) + ChatColor.RESET);
+		}
+
+		NPCManager.getManager().spawn();
 	}
 
 	public void setAsyncGameLoop(BukkitTask asyncGameLoop) {
 		this.asyncGameLoop = asyncGameLoop;
 	}
-	
-	public static Session getSession() {
-		return hibernate.getSession();
+
+	public void setPlugin(Plugin plugin) {
+		Lostshard.plugin = plugin;
 	}
-	
-	public static boolean isVanished(Player player) {
-		return false;
+
+	public void shutdown() {
+		for (final Player p : Bukkit.getOnlinePlayers())
+			p.kickPlayer(ChatColor.RED + "Server rebooting.");
 	}
 }

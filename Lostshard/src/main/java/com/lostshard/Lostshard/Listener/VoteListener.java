@@ -15,6 +15,6 @@ public class VoteListener extends LostshardListener implements Managers {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onVote(VotifierEvent event) {
-		
+
 	}
 }

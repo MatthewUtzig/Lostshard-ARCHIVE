@@ -10,8 +10,7 @@ public class Variables {
 	static ConfigManager cm = ConfigManager.getManager();
 
 	// Plot
-	public static final ItemStack plotCreateItemPrice = new ItemStack(
-			Material.DIAMOND, 1);
+	public static final ItemStack plotCreateItemPrice = new ItemStack(Material.DIAMOND, 1);
 	public static final int plotCreatePrice = 1000;
 	public static final int plotTownPrice = 100000;
 	public static final int plotDungeonPrice = 20000;
@@ -40,13 +39,10 @@ public class Variables {
 
 	public static final int clanMaxNameLeangh = 20;
 	public static final int clanCreateCost = 2000;
-	
+
 	public static final int claimTime = 90;
-	
+
 	public static final int playerStartSkillPoints = 200;
-	public static final ItemStack[] playerStartBank = new ItemStack[] {
-			new ItemStack(Material.GOLD_INGOT, 32),
-			new ItemStack(Material.DIAMOND, 3),
-			new ItemStack(Material.MELON, 10)
-	};
+	public static final ItemStack[] playerStartBank = new ItemStack[] { new ItemStack(Material.GOLD_INGOT, 32),
+			new ItemStack(Material.DIAMOND, 3), new ItemStack(Material.MELON, 10) };
 }

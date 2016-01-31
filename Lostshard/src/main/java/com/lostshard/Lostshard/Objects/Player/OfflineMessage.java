@@ -15,98 +15,98 @@ import com.lostshard.Lostshard.Main.Lostshard;
 
 @Entity
 public class OfflineMessage {
-	
+
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private UUID player;
 	private String message;
 	private boolean seen;
-	
+
 	public OfflineMessage() {
-		
+
 	}
-	
+
 	public OfflineMessage(UUID player, String message) {
 		this.player = player;
 		this.message = message;
 		this.insert();
 	}
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	
-	public UUID getPlayer() {
-		return player;
-	}
-	
-	public void setPlayer(UUID player) {
-		this.player = player;
-	}
-	
-	public boolean isSeen() {
-		return seen;
-	}
-
-	public void setSeen(boolean seen) {
-		this.seen = seen;
-	}
-
-	public void save() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
 	public void delete() {
-		Session s = Lostshard.getSession();
+		final Session s = Lostshard.getSession();
 		try {
-			Transaction t = s.beginTransaction();
+			final Transaction t = s.beginTransaction();
 			t.begin();
 			s.delete(this);
 			s.clear();
 			t.commit();
 			s.close();
-		} catch(Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();
 		}
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public String getMessage() {
+		return this.message;
+	}
+
+	public UUID getPlayer() {
+		return this.player;
+	}
+
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
+	public boolean isSeen() {
+		return this.seen;
+	}
+
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void setPlayer(UUID player) {
+		this.player = player;
+	}
+
+	public void setSeen(boolean seen) {
+		this.seen = seen;
 	}
 }

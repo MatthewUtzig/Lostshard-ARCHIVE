@@ -19,13 +19,8 @@ import com.lostshard.Lostshard.Utils.Output;
 @Embeddable
 public class ArcherySkill extends Skill {
 
-	
-	public ArcherySkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-		if(event.isCancelled())
+		if (event.isCancelled())
 			return;
 		if (!(event.getDamager() instanceof Arrow))
 			return;
@@ -41,31 +36,22 @@ public class ArcherySkill extends Skill {
 		final Skill skill = pPlayer.getCurrentBuild().getArchery();
 		final int lvl = skill.getLvl();
 
-		final double damage = skill.getLvl()/250;
+		final double damage = skill.getLvl() / 250;
 
-		if (entity instanceof Player
-				&& lvl >= 500
-				&& Math.random() < .25
-				&& ((Player) entity).getHealth() > 4
-				&& (event.getDamage(DamageModifier.ARMOR)
-						+ event.getDamage(DamageModifier.MAGIC) >= event.getDamage(DamageModifier.BASE)*.35)) {
+		if (entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4
+				&& event.getDamage(DamageModifier.ARMOR)
+						+ event.getDamage(DamageModifier.MAGIC) >= event.getDamage(DamageModifier.BASE) * .35) {
 			final Player player = (Player) event.getEntity();
-			double health = event.getDamage(DamageModifier.BASE) * .45 + damage
-					* .7;
+			double health = event.getDamage(DamageModifier.BASE) * .45 + damage * .7;
 			health = Math.max(health, 4);
 			player.setHealth(health);
 			event.setDamage(0);
-			player.sendMessage(ChatColor.GREEN
-					+ "The arrow pierces through your armor!");
-			attacker.sendMessage(ChatColor.GREEN
-					+ "Your arrow pierced through " + player.getName()
-					+ "'s armor.");
+			player.sendMessage(ChatColor.GREEN + "The arrow pierces through your armor!");
+			attacker.sendMessage(ChatColor.GREEN + "Your arrow pierced through " + player.getName() + "'s armor.");
 		} else if (event.isApplicable(DamageModifier.BASE))
-			event.setDamage(DamageModifier.BASE,
-					event.getDamage(DamageModifier.BASE) + damage);
+			event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) + damage);
 
-		if (entity instanceof Monster || entity instanceof Player
-				|| entity instanceof Slime)
+		if (entity instanceof Monster || entity instanceof Player || entity instanceof Slime)
 			skill.setBaseProb(.5);
 		else
 			skill.setBaseProb(.2);
@@ -82,6 +68,10 @@ public class ArcherySkill extends Skill {
 		this.setBaseProb(.2);
 		this.setScaleConstant(60);
 		this.setMat(Material.BOW);
+	}
+
+	public ArcherySkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Transient

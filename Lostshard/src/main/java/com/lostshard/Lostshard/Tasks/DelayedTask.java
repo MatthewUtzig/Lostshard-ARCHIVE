@@ -4,26 +4,26 @@ import com.lostshard.Lostshard.Manager.TaskManager;
 
 public abstract class DelayedTask implements Task {
 
-	private TaskManager tm = TaskManager.getManager();
-	
+	private final TaskManager tm = TaskManager.getManager();
+
 	private int delay;
-	
+
 	public DelayedTask(int delay) {
 		this.delay = delay;
-		tm.add(this);
+		this.tm.add(this);
 	}
-	
+
 	public int getDelayedTask() {
 		return this.delay;
 	}
-	
-	public void tick() {
-			delay--;
-		if(delay<=0)
-			run();
-	}
-	
+
 	public boolean remove() {
-		return delay <= 0;
+		return this.delay <= 0;
+	}
+
+	public void tick() {
+		this.delay--;
+		if (this.delay <= 0)
+			this.run();
 	}
 }

@@ -7,8 +7,8 @@ public enum Locations {
 
 	LAWFULL(new Location(Bukkit.getWorld("world"), 0, 60, 0)), CRIMINAL(
 			new Location(Bukkit.getWorld("world"), 100, 60, 0)), BUILDCHANGLAWFULL(
-			new Location(Bukkit.getWorld("world"), 0, 60, 0)), BUILDCHANGECRIMINAL(
-			new Location(Bukkit.getWorld("world"), 0, 60, 0)), ;
+					new Location(Bukkit.getWorld("world"), 0, 60, 0)), BUILDCHANGECRIMINAL(
+							new Location(Bukkit.getWorld("world"), 0, 60, 0)),;
 
 	private Location location;
 

@@ -10,11 +10,12 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 
 public class PlotCreateEvent extends Event implements Cancellable {
 
+	private static final HandlerList handlers = new HandlerList();
+
 	public static HandlerList getHandlerList() {
 		return handlers;
 	}
 
-	private static final HandlerList handlers = new HandlerList();
 	private boolean cancelled;
 	private Player player;
 	private PseudoPlayer pPlayer;
@@ -22,8 +23,7 @@ public class PlotCreateEvent extends Event implements Cancellable {
 
 	private String plotName;
 
-	public PlotCreateEvent(Player player, PseudoPlayer pPlayer,
-			Location location, String plotName) {
+	public PlotCreateEvent(Player player, PseudoPlayer pPlayer, Location location, String plotName) {
 		this.player = player;
 		this.pPlayer = pPlayer;
 		this.locatin = location;

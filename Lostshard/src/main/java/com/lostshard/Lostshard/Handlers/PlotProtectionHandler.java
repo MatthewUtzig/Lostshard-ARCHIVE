@@ -51,6 +51,10 @@ import com.lostshard.Lostshard.Utils.Title;
 
 public class PlotProtectionHandler {
 
+	static PlotManager ptm = PlotManager.getManager();
+
+	static PlayerManager pm = PlayerManager.getManager();
+
 	/**
 	 * @param event
 	 *
@@ -64,15 +68,12 @@ public class PlotProtectionHandler {
 		if (plot == null)
 			return;
 		if (!plot.isAllowedToBuild(player)) {
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
 			event.setCancelled(true);
-			Output.simpleError(player,
-					"Can't break blocks here, " + plot.getName()
-					+ " is protected.");
+			Output.simpleError(player, "Can't break blocks here, " + plot.getName() + " is protected.");
 		}
 	}
 
@@ -111,8 +112,7 @@ public class PlotProtectionHandler {
 		// Check if there are a plot.
 		if (toPlot == null)
 			return;
-		final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-				toPlot);
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, toPlot);
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
@@ -145,9 +145,7 @@ public class PlotProtectionHandler {
 			final Player player = event.getPlayer();
 			if (!plot.isAllowedToBuild(player)) {
 				event.setCancelled(true);
-				Output.simpleError(player,
-						"Can't ignite blocks here, " + plot.getName()
-						+ " is protected.");
+				Output.simpleError(player, "Can't ignite blocks here, " + plot.getName() + " is protected.");
 			}
 		} else
 			event.setCancelled(true);
@@ -165,8 +163,7 @@ public class PlotProtectionHandler {
 			final Plot plot = ptm.findPlotAt(b.getLocation());
 			if (plot == null)
 				continue;
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
@@ -191,8 +188,7 @@ public class PlotProtectionHandler {
 		final Block block = event.getBlock();
 		final Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot != null) {
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
@@ -219,8 +215,7 @@ public class PlotProtectionHandler {
 			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpleError(player, "Can't spill water or lava here, "
-					+ plot.getName() + " is protected.");
+			Output.simpleError(player, "Can't spill water or lava here, " + plot.getName() + " is protected.");
 		}
 	}
 
@@ -242,9 +237,7 @@ public class PlotProtectionHandler {
 			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpleError(player,
-					"Can't fill water or lava here, " + plot.getName()
-					+ " is protected.");
+			Output.simpleError(player, "Can't fill water or lava here, " + plot.getName() + " is protected.");
 		}
 	}
 
@@ -257,8 +250,7 @@ public class PlotProtectionHandler {
 		if (event.isCancelled())
 			return;
 		final Block block = event.getClickedBlock();
-		if (!block.getType().equals(Material.STONE_BUTTON)
-				&& !block.getType().equals(Material.LEVER))
+		if (!block.getType().equals(Material.STONE_BUTTON) && !block.getType().equals(Material.LEVER))
 			return;
 		final Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot == null)
@@ -273,8 +265,7 @@ public class PlotProtectionHandler {
 			return;
 		event.setCancelled(true);
 		final Player player = event.getPlayer();
-		Output.simpleError(player, "Can't click button in \"" + plot.getName()
-				+ "\" is protected.");
+		Output.simpleError(player, "Can't click button in \"" + plot.getName() + "\" is protected.");
 	}
 
 	public static void onEntityChangeBlock(EntityChangeBlockEvent event) {
@@ -323,8 +314,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "Can't destroy item frame here "
-							+ plot.getName() + " is protected.");
+					Output.simpleError(player, "Can't destroy item frame here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -335,9 +325,7 @@ public class PlotProtectionHandler {
 				entity.setVelocity(new Vector(0, -100, 0));
 
 				if (player != null)
-					Output.simpleError(player,
-							"Can't destroy armor stands here " + plot.getName()
-							+ " is protected.");
+					Output.simpleError(player, "Can't destroy armor stands here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -365,16 +353,14 @@ public class PlotProtectionHandler {
 		if (player != null && plot != null && plot.isAllowedToBuild(player))
 			return;
 
-		if (!(event.getCause().equals(RemoveCause.EXPLOSION) || event
-				.getCause().equals(RemoveCause.ENTITY)))
+		if (!(event.getCause().equals(RemoveCause.EXPLOSION) || event.getCause().equals(RemoveCause.ENTITY)))
 			return;
 		if (entity instanceof ItemFrame) {
 			if (plot != null) {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "Can't destroy item frame here "
-							+ plot.getName() + " is protected.");
+					Output.simpleError(player, "Can't destroy item frame here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -383,8 +369,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "Can't destroy paintings here "
-							+ plot.getName() + " is protected.");
+					Output.simpleError(player, "Can't destroy paintings here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -412,8 +397,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "Can't place item frame here "
-							+ plot.getName() + " is protected.");
+					Output.simpleError(player, "Can't place item frame here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -422,8 +406,7 @@ public class PlotProtectionHandler {
 				event.setCancelled(true);
 
 				if (player != null)
-					Output.simpleError(player, "Can't place paintings here "
-							+ plot.getName() + " is protected.");
+					Output.simpleError(player, "Can't place paintings here " + plot.getName() + " is protected.");
 
 				return;
 			}
@@ -434,8 +417,7 @@ public class PlotProtectionHandler {
 			final Plot plot = ptm.findPlotAt(event.getLocation());
 			if (plot == null)
 				return;
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
@@ -453,8 +435,8 @@ public class PlotProtectionHandler {
 		if (event.isCancelled())
 			return;
 		for (final Block block : event.getBlocks())
-			if (ptm.findPlotAt(block.getRelative(event.getDirection())
-					.getLocation()) != ptm.findPlotAt(block.getLocation())) {
+			if (ptm.findPlotAt(block.getRelative(event.getDirection()).getLocation()) != ptm
+					.findPlotAt(block.getLocation())) {
 				event.setCancelled(true);
 				return;
 			}
@@ -463,55 +445,44 @@ public class PlotProtectionHandler {
 	public static void onPlayerBedEnter(PlayerBedEnterEvent event) {
 		final Plot plot = ptm.findPlotAt(event.getBed().getLocation());
 		if (plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
-			Output.simpleError(event.getPlayer(),
-					"You are only able to set your spawn in a town.");
+			Output.simpleError(event.getPlayer(), "You are only able to set your spawn in a town.");
 			event.getPlayer().setBedSpawnLocation(null);
 		} else {
 			final PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
 			final PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
-			if (plotPlayer.isMurderer() == pPlayer.isMurderer()
-					|| plotPlayer.isMurderer() == pPlayer.isCriminal()
+			if (plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal()
 					|| plotPlayer.isCriminal() == plotPlayer.isMurderer()
 					|| plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
-				Output.positiveMessage(event.getPlayer(),
-						"You have set your spawn.");
-				event.getPlayer().setBedSpawnLocation(
-						event.getBed().getLocation());
+				Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
+				event.getPlayer().setBedSpawnLocation(event.getBed().getLocation());
 			} else
-				Output.simpleError(event.getPlayer(),
-						"You are not in the same alignment at the town owner.");
+				Output.simpleError(event.getPlayer(), "You are not in the same alignment at the town owner.");
 		}
 	}
 
 	public static void onPlayerInteract(PlayerInteractEvent event) {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			final ItemStack itemInHand = event.getPlayer().getItemInHand();
-			if (itemInHand.getType().equals(Material.WOOD_HOE)
-					|| itemInHand.getType().equals(Material.STONE_HOE)
+			if (itemInHand.getType().equals(Material.WOOD_HOE) || itemInHand.getType().equals(Material.STONE_HOE)
 					|| itemInHand.getType().equals(Material.IRON_HOE)
 					|| itemInHand.getType().equals(Material.DIAMOND_HOE)
 					|| itemInHand.getType().equals(Material.GOLD_HOE))
 				if (event.getClickedBlock().equals(Material.DIRT)) {
-					final Plot plot = ptm.findPlotAt(event.getClickedBlock()
-							.getLocation());
-					if (plot != null
-							&& !plot.isAllowedToBuild(event.getPlayer())) {
+					final Plot plot = ptm.findPlotAt(event.getClickedBlock().getLocation());
+					if (plot != null && !plot.isAllowedToBuild(event.getPlayer())) {
 						Output.simpleError(event.getPlayer(),
-								"You can't hoe soile in \"" + plot.getName()
-								+ "\" is protected.");
+								"You can't hoe soile in \"" + plot.getName() + "\" is protected.");
 						event.setCancelled(true);
 						return;
 					}
 				}
-			final Block block = event.getClickedBlock().getRelative(
-					event.getBlockFace());
+			final Block block = event.getClickedBlock().getRelative(event.getBlockFace());
 
 			final Plot plot = ptm.findPlotAt(block.getLocation());
 
 			if (plot == null)
 				return;
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
@@ -526,10 +497,7 @@ public class PlotProtectionHandler {
 					event.setCancelled(true);
 
 					if (player != null)
-						Output.simpleError(
-								player,
-								"Can't place armor stand here "
-										+ plot.getName() + " is protected.");
+						Output.simpleError(player, "Can't place armor stand here " + plot.getName() + " is protected.");
 					return;
 				}
 		}
@@ -559,7 +527,8 @@ public class PlotProtectionHandler {
 
 				// if(player != null)
 				// Output.simpleError(player,
-				// "can't interact with item frame here "+plot.getName()+" is protected.");
+				// "can't interact with item frame here "+plot.getName()+" is
+				// protected.");
 
 				return;
 			}
@@ -569,7 +538,8 @@ public class PlotProtectionHandler {
 
 				// if(player != null)
 				// Output.simpleError(player,
-				// "can't interact with armor stand here "+plot.getName()+" is protected.");
+				// "can't interact with armor stand here "+plot.getName()+" is
+				// protected.");
 
 				return;
 			}
@@ -583,14 +553,10 @@ public class PlotProtectionHandler {
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
-		if (plot != null && plot.isUpgrade(PlotUpgrade.AUTOKICK)
-				&& !plot.isFriendOrAbove(event.getPlayer())) {
-			event.getPlayer().teleport(
-					event.getPlayer().getLocation().getWorld()
-					.getHighestBlockAt(event.getPlayer().getLocation())
-					.getLocation());
-			Output.simpleError(event.getPlayer(), "You have been kicked from "
-					+ plot.getName() + ".");
+		if (plot != null && plot.isUpgrade(PlotUpgrade.AUTOKICK) && !plot.isFriendOrAbove(event.getPlayer())) {
+			event.getPlayer().teleport(event.getPlayer().getLocation().getWorld()
+					.getHighestBlockAt(event.getPlayer().getLocation()).getLocation());
+			Output.simpleError(event.getPlayer(), "You have been kicked from " + plot.getName() + ".");
 		}
 	}
 
@@ -600,8 +566,7 @@ public class PlotProtectionHandler {
 			final Plot plot = ptm.findPlotAt(event.getRespawnLocation());
 			if (plot == null)
 				return;
-			final PlotProtectEvent protectEvent = new PlotProtectEvent(event,
-					plot);
+			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
@@ -609,12 +574,11 @@ public class PlotProtectionHandler {
 			if (plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
 				event.setRespawnLocation(pPlayer.getSpawn());
-			} else if (!(plotPlayer.isMurderer() == pPlayer.isMurderer()
-					|| plotPlayer.isMurderer() == pPlayer.isCriminal()
-					|| plotPlayer.isCriminal() == plotPlayer.isMurderer() || plot
-					.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
-				Output.simpleError(event.getPlayer(),
-						"You are not in the same alignment as the town owner.");
+			} else
+				if (!(plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal()
+						|| plotPlayer.isCriminal() == plotPlayer.isMurderer()
+						|| plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
+				Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
 				event.setRespawnLocation(pPlayer.getSpawn());
 			}
 		} else
@@ -632,67 +596,55 @@ public class PlotProtectionHandler {
 		if (fromPlot == null && toPlot != null) {
 			if (toPlot.isTitleEntrence()) {
 				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10,
-							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
-							+ "Hostile territory");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
+							ChatColor.RED + "Hostile territory");
 				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
 				else {
 					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal()
-							|| owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE) + toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ toPlot.getName(),
+							"");
 				}
 			} else
 				// must be entering a plot
-				player.sendMessage(ChatColor.GRAY + "You have entered "
-						+ toPlot.getName());
+				player.sendMessage(ChatColor.GRAY + "You have entered " + toPlot.getName());
 		} else if (toPlot == null && fromPlot != null) {
 			// must be leaving a plot
 			if (fromPlot.isTitleEntrence()) {
 				if (fromPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD
-							+ "You have left " + fromPlot.getName(),
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + "You have left " + fromPlot.getName(),
 							ChatColor.RED + "Hostile territory");
 				else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ "You have left " + fromPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + "You have left " + fromPlot.getName(), "");
 				else {
-					final PseudoPlayer owner = pm
-							.getPlayer(fromPlot.getOwner());
-					Title.sendTitle(
-							player,
-							10,
-							20,
-							10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE)
-									+ "You have left " + fromPlot.getName(), "");
+					final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ "You have left " + fromPlot.getName(),
+							"");
 				}
 			} else
-				player.sendMessage(ChatColor.GRAY + "You have left "
-						+ fromPlot.getName());
+				player.sendMessage(ChatColor.GRAY + "You have left " + fromPlot.getName());
 		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
 			// must be moving from one plot to another
 			if (fromPlot.isTitleEntrence()) {
 				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10,
-							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
-							+ "Hostile territory");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
+							ChatColor.RED + "Hostile territory");
 				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
 				else {
 					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal()
-							|| owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE) + toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ toPlot.getName(),
+							"");
 				}
 			} else {
-				player.sendMessage(ChatColor.GRAY + "You have left "
-						+ fromPlot.getName() + " and entered "
-						+ toPlot.getName());
+				player.sendMessage(
+						ChatColor.GRAY + "You have left " + fromPlot.getName() + " and entered " + toPlot.getName());
 			}
 	}
 
@@ -707,89 +659,73 @@ public class PlotProtectionHandler {
 		if (event.getTo().getBlock() == event.getFrom().getBlock())
 			return;
 		final Player player = event.getPlayer();
-		final Plot fromPlot = ptm.findPlotAt(event.getFrom().getBlock()
-				.getLocation());
-		final Plot toPlot = ptm.findPlotAt(event.getTo().getBlock()
-				.getLocation());
+		final Plot fromPlot = ptm.findPlotAt(event.getFrom().getBlock().getLocation());
+		final Plot toPlot = ptm.findPlotAt(event.getTo().getBlock().getLocation());
 		if (fromPlot == null && toPlot != null) {
 			if (toPlot.isTitleEntrence()) {
 				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10,
-							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
-							+ "Hostile territory");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
+							ChatColor.RED + "Hostile territory");
 				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
 				else {
 					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal()
-							|| owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE) + toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ toPlot.getName(),
+							"");
 				}
 			} else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN
-						+ toPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + toPlot.getName());
 			else {
 				final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal()
-						|| owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-						+ toPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "",
+						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + toPlot.getName());
 			}
 		} else if (toPlot == null && fromPlot != null) {
 			// must be leaving a plot
 			if (fromPlot.isTitleEntrence()) {
 				if (fromPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD
-							+ "You have left " + fromPlot.getName(),
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + "You have left " + fromPlot.getName(),
 							ChatColor.RED + "Hostile territory");
 				else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ "You have left " + fromPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + "You have left " + fromPlot.getName(), "");
 				else {
-					final PseudoPlayer owner = pm
-							.getPlayer(fromPlot.getOwner());
-					Title.sendTitle(
-							player,
-							10,
-							20,
-							10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE)
-									+ "You have left " + fromPlot.getName(), "");
+					final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ "You have left " + fromPlot.getName(),
+							"");
 				}
 			} else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN
-						+ "You have left " + fromPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + "You have left " + fromPlot.getName());
 			else {
 				final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal()
-						|| owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-						+ "You have left " + fromPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "",
+						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + "You have left "
+								+ fromPlot.getName());
 			}
 		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
 			// must be moving from one plot to another
 			if (fromPlot.isTitleEntrence()) {
 				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10,
-							ChatColor.GOLD + toPlot.getName(), ChatColor.RED
-							+ "Hostile territory");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
+							ChatColor.RED + "Hostile territory");
 				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN
-							+ toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
 				else {
 					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10, (owner.isCriminal()
-							|| owner.isMurderer() ? ChatColor.RED
-									: ChatColor.BLUE) + toPlot.getName(), "");
+					Title.sendTitle(player, 10, 20, 10,
+							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
+									+ toPlot.getName(),
+							"");
 				}
 			} else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN
-						+ toPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + toPlot.getName());
 			else {
 				final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "", (owner.isCriminal()
-						|| owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-						+ toPlot.getName());
+				Title.sendTitle(player, 10, 20, 10, "",
+						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + toPlot.getName());
 			}
 	}
 
@@ -811,14 +747,8 @@ public class PlotProtectionHandler {
 			return;
 		if (!plot.isAllowedToBuild(player)) {
 			event.setCancelled(true);
-			Output.simpleError(player,
-					"Can't place blocks here, " + plot.getName()
-					+ " is protected.");
+			Output.simpleError(player, "Can't place blocks here, " + plot.getName() + " is protected.");
 		}
 	}
-
-	static PlotManager ptm = PlotManager.getManager();
-
-	static PlayerManager pm = PlayerManager.getManager();
 
 }

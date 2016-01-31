@@ -22,23 +22,17 @@ import com.lostshard.Lostshard.Utils.Output;
 @Access(AccessType.FIELD)
 public class FishingSkill extends Skill {
 
-	public FishingSkill(int lvl, boolean locked) {
-		super(lvl, locked);
-	}
-
 	public static void callBoat(Player player) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		final Skill skill = pPlayer.getCurrentBuild().getFishing();
 		final int lvl = skill.getLvl();
 		if (lvl < 500) {
-			Output.simpleError(player,
-					"You need 50 skill in fishing to create a boat out of thin air.");
+			Output.simpleError(player, "You need 50 skill in fishing to create a boat out of thin air.");
 			return;
 		}
 		final int curStam = pPlayer.getStamina();
 		if (curStam < 50) {
-			Output.simpleError(player,
-					"You do not have enough stamina to create a boat.");
+			Output.simpleError(player, "You do not have enough stamina to create a boat.");
 			return;
 		}
 		pPlayer.setStamina(curStam - 50);
@@ -47,27 +41,19 @@ public class FishingSkill extends Skill {
 			return;
 		}
 		boolean placedBoat = false;
-		for (int x = player.getLocation().getBlockX() - 3; x < player
-				.getLocation().getBlockX() + 3; x++) {
-			for (int y = player.getLocation().getBlockY() - 3; y < player
-					.getLocation().getBlockY() + 3; y++) {
-				for (int z = player.getLocation().getBlockZ() - 3; z < player
-						.getLocation().getBlockZ() + 3; z++) {
+		for (int x = player.getLocation().getBlockX() - 3; x < player.getLocation().getBlockX() + 3; x++) {
+			for (int y = player.getLocation().getBlockY() - 3; y < player.getLocation().getBlockY() + 3; y++) {
+				for (int z = player.getLocation().getBlockZ() - 3; z < player.getLocation().getBlockZ() + 3; z++) {
 					final Block b = player.getWorld().getBlockAt(x, y, z);
-					final Block blockAbove = player.getWorld().getBlockAt(x,
-							y + 1, z);
-					if (b != null
-							&& b.getType().equals(Material.STATIONARY_WATER)
+					final Block blockAbove = player.getWorld().getBlockAt(x, y + 1, z);
+					if (b != null && b.getType().equals(Material.STATIONARY_WATER)
 							&& blockAbove.getType().equals(Material.AIR)) {
 						Output.positiveMessage(player, "You summoned a boat.");
 						placedBoat = true;
 						final int gain = skill.skillGain(pPlayer);
-						Output.gainSkill(player, "Fishing", gain,
-								skill.getLvl());
+						Output.gainSkill(player, "Fishing", gain, skill.getLvl());
 						pPlayer.update();
-						player.getWorld().spawn(
-								new Location(b.getWorld(), b.getX() + .5,
-										b.getY() + .5, b.getZ() + .5),
+						player.getWorld().spawn(new Location(b.getWorld(), b.getX() + .5, b.getY() + .5, b.getZ() + .5),
 								Boat.class);
 						break;
 					}
@@ -82,8 +68,7 @@ public class FishingSkill extends Skill {
 		}
 
 		if (!placedBoat)
-			Output.simpleError(player,
-					"Could not find a valid location to place a boat.");
+			Output.simpleError(player, "Could not find a valid location to place a boat.");
 	}
 
 	public static ItemStack getRandomFish(int lvl) {
@@ -251,30 +236,15 @@ public class FishingSkill extends Skill {
 			final int lvl = skill.getLvl();
 			if (lvl >= 250 && Math.random() < .5) {
 				if (lvl >= 1000)
-					player.getLocation()
-							.getWorld()
-							.dropItemNaturally(player.getLocation(),
-									getRandomHighst());
+					player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomHighst());
 				else if (lvl >= 750)
-					player.getLocation()
-							.getWorld()
-							.dropItemNaturally(player.getLocation(),
-									getRandomHigh());
+					player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomHigh());
 				else if (lvl >= 500)
-					player.getLocation()
-							.getWorld()
-							.dropItemNaturally(player.getLocation(),
-									getRandomMedium());
+					player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomMedium());
 				else
-					player.getLocation()
-							.getWorld()
-							.dropItemNaturally(player.getLocation(),
-									getRandomLow());
+					player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomLow());
 			} else if (lvl >= 500)
-				player.getLocation()
-						.getWorld()
-						.dropItemNaturally(player.getLocation(),
-								getRandomFish(lvl));
+				player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomFish(lvl));
 			final int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Fishing", gain, skill.getLvl());
 			if (gain > 0)
@@ -288,6 +258,10 @@ public class FishingSkill extends Skill {
 		this.setBaseProb(.5);
 		this.setScaleConstant(80);
 		this.setMat(Material.FISHING_ROD);
+	}
+
+	public FishingSkill(int lvl, boolean locked) {
+		super(lvl, locked);
 	}
 
 	@Override

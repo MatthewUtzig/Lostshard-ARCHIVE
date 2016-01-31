@@ -23,7 +23,7 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 
 @Embeddable
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Group {
 
 	@Transient
@@ -31,12 +31,12 @@ public class Group {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private List<UUID> members = new ArrayList<UUID>();
-	
+
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type="uuid-char")
+	@Type(type = "uuid-char")
 	private List<UUID> invited = new ArrayList<UUID>();
 
 	public void addInvited(UUID invite) {
@@ -46,6 +46,21 @@ public class Group {
 
 	public void addMember(UUID member) {
 		this.members.add(member);
+	}
+
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			s.clear();
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	public List<UUID> getInvited() {
@@ -64,6 +79,20 @@ public class Group {
 				rs.add(p);
 		}
 		return rs;
+	}
+
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	public boolean isDead() {
@@ -106,6 +135,20 @@ public class Group {
 		this.members.remove(member);
 	}
 
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
 	public void sendMessage(String message) {
 		for (final UUID member : this.members) {
 			final Player memberPlayer = Bukkit.getPlayer(member);
@@ -122,48 +165,5 @@ public class Group {
 
 	public void setMembers(List<UUID> members) {
 		this.members = members;
-	}
-	
-	public void save() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void insert() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-	
-	public void delete() {
-		Session s = Lostshard.getSession();
-		try {
-			Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			s.clear();
-			t.commit();
-			s.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
 	}
 }

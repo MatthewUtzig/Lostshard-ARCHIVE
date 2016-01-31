@@ -23,8 +23,7 @@ public class SPL_ArrowBlast extends Spell {
 			spread = i * 10;
 
 			final double pitch = 90 * Math.PI / 180;
-			final double yaw = (player.getLocation().getYaw() + 90 + spread)
-					* Math.PI / 180;
+			final double yaw = (player.getLocation().getYaw() + 90 + spread) * Math.PI / 180;
 
 			final double z_axis = Math.sin(pitch);
 
@@ -33,8 +32,7 @@ public class SPL_ArrowBlast extends Spell {
 			final double z = Math.cos(pitch);
 
 			final Vector vector = new Vector(x, z, y);
-			final Arrow arrow = player.getWorld().spawnArrow(
-					player.getLocation().add(0, 1, 0), vector, (float) 0.6, 0);
+			final Arrow arrow = player.getWorld().spawnArrow(player.getLocation().add(0, 1, 0), vector, (float) 0.6, 0);
 			arrow.setShooter(player);
 			arrow.setVelocity(vector.multiply(2.5));
 		}

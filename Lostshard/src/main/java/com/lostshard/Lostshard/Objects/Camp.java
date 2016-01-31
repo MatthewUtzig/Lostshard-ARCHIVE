@@ -32,8 +32,7 @@ public class Camp {
 		for (final Player p : Bukkit.getOnlinePlayers())
 			if (Utils.isWithin(p.getLocation(), loc, this.campHealDistance))
 				if (p.getHealth() > 0 && p.getHealth() < 20) {
-					final double newHealth = Math.min(
-							Math.max(p.getHealth() + 1, 0), 20);
+					final double newHealth = Math.min(Math.max(p.getHealth() + 1, 0), 20);
 					p.setHealth(newHealth);
 				}
 	}
@@ -61,31 +60,25 @@ public class Camp {
 			if (this.ticksRemaining <= 0) {
 				final Player creatorPlayer = Bukkit.getPlayer(this.creator);
 				if (creatorPlayer != null)
-					creatorPlayer.sendMessage(ChatColor.GRAY
-							+ "Your camp fire has gone out.");
+					creatorPlayer.sendMessage(ChatColor.GRAY + "Your camp fire has gone out.");
 
 				this.fireBlock.setType(Material.AIR);
 				this.logBlock.setType(Material.AIR);
 
 				this.isDead = true;
 
-			} else if (!this.logBlock
-					.getWorld()
-					.getBlockAt(this.logBlock.getX(), this.logBlock.getY(),
-							this.logBlock.getZ()).getType()
+			} else if (!this.logBlock.getWorld()
+					.getBlockAt(this.logBlock.getX(), this.logBlock.getY(), this.logBlock.getZ()).getType()
 					.equals(Material.LOG))
 				doused = true;
-			else if (!this.fireBlock
-					.getWorld()
-					.getBlockAt(this.fireBlock.getX(), this.fireBlock.getY(),
-							this.fireBlock.getZ()).getType()
+			else if (!this.fireBlock.getWorld()
+					.getBlockAt(this.fireBlock.getX(), this.fireBlock.getY(), this.fireBlock.getZ()).getType()
 					.equals(Material.FIRE))
 				doused = true;
 			if (doused) {
 				final Player creatorPlayer = Bukkit.getPlayer(this.creator);
 				if (creatorPlayer != null)
-					creatorPlayer.sendMessage(ChatColor.GRAY
-							+ "Your camp fire has been doused.");
+					creatorPlayer.sendMessage(ChatColor.GRAY + "Your camp fire has been doused.");
 
 				this.fireBlock.setType(Material.AIR);
 				this.logBlock.setType(Material.AIR);

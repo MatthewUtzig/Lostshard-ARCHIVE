@@ -14,8 +14,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class PermanentGate extends Gate {
 
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
 
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, boolean direction) {
@@ -23,8 +23,7 @@ public class PermanentGate extends Gate {
 		this.insert();
 	}
 
-	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id,
-			boolean direction) {
+	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id, boolean direction) {
 		super(blocks, uuid, -1, direction);
 		this.id = id;
 	}

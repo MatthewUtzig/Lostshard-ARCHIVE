@@ -24,69 +24,50 @@ public class SPL_Bridge extends RangedSpell {
 
 	@Override
 	public void doAction(Player player) {
-		final IntPoint srcPoint = new IntPoint(
-				player.getLocation().getBlockX(), player.getLocation()
-						.getBlockY() - 1, player.getLocation().getBlockZ());
-		final IntPoint destPoint = new IntPoint(this.getFoundBlock().getX(),
-				this.getFoundBlock().getY(), this.getFoundBlock().getZ());
+		final IntPoint srcPoint = new IntPoint(player.getLocation().getBlockX(), player.getLocation().getBlockY() - 1,
+				player.getLocation().getBlockZ());
+		final IntPoint destPoint = new IntPoint(this.getFoundBlock().getX(), this.getFoundBlock().getY(),
+				this.getFoundBlock().getZ());
 
 		final ArrayList<Block> blocks = new ArrayList<Block>();
 
-		final ArrayList<IntPoint> intPoints = Bresenham.bresenham3d(srcPoint.x,
-				srcPoint.y, srcPoint.z, destPoint.x, destPoint.y, destPoint.z);
+		final ArrayList<IntPoint> intPoints = Bresenham.bresenham3d(srcPoint.x, srcPoint.y, srcPoint.z, destPoint.x,
+				destPoint.y, destPoint.z);
 		for (final IntPoint intPoint : intPoints) {
-			Block b = player.getWorld().getBlockAt(intPoint.x, intPoint.y,
-					intPoint.z);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			Block b = player.getWorld().getBlockAt(intPoint.x, intPoint.y, intPoint.z);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y,
-					intPoint.z);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y, intPoint.z);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y,
-					intPoint.z);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y, intPoint.z);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x, intPoint.y,
-					intPoint.z + 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x, intPoint.y, intPoint.z + 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x, intPoint.y,
-					intPoint.z - 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x, intPoint.y, intPoint.z - 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y,
-					intPoint.z + 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y, intPoint.z + 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y,
-					intPoint.z - 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x + 1, intPoint.y, intPoint.z - 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y,
-					intPoint.z - 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y, intPoint.z - 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
-			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y,
-					intPoint.z + 1);
-			if (b.getType().equals(Material.AIR)
-					|| b.getType().equals(Material.SNOW)
+			b = player.getWorld().getBlockAt(intPoint.x - 1, intPoint.y, intPoint.z + 1);
+			if (b.getType().equals(Material.AIR) || b.getType().equals(Material.SNOW)
 					|| b.getType().equals(Material.FIRE))
 				blocks.add(b);
 		}
@@ -109,12 +90,9 @@ public class SPL_Bridge extends RangedSpell {
 		}
 
 		// check for lapis below you
-		if (player.getLocation().getBlock().getRelative(0, -1, 0).getType()
-				.equals(Material.LAPIS_BLOCK)
-				|| player.getLocation().getBlock().getRelative(0, -2, 0)
-						.getType().equals(Material.LAPIS_BLOCK)) {
-			Output.simpleError(player,
-					"can't bridge from a Lapis Lazuli block.");
+		if (player.getLocation().getBlock().getRelative(0, -1, 0).getType().equals(Material.LAPIS_BLOCK)
+				|| player.getLocation().getBlock().getRelative(0, -2, 0).getType().equals(Material.LAPIS_BLOCK)) {
+			Output.simpleError(player, "can't bridge from a Lapis Lazuli block.");
 			return false;
 		}
 

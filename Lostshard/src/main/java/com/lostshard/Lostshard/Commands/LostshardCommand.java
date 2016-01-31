@@ -13,24 +13,23 @@ import com.lostshard.Lostshard.Utils.TabUtils;
 public abstract class LostshardCommand implements CommandExecutor, TabCompleter {
 
 	private final Lostshard plugin;
-	
-	public LostshardCommand(Lostshard plugin, String...commands) {
+
+	public LostshardCommand(Lostshard plugin, String... commands) {
 		this.plugin = plugin;
-		for(String cmd : commands)
-			getPlugin().getCommand((String) cmd).setExecutor(this);
+		for (final String cmd : commands)
+			this.getPlugin().getCommand(cmd).setExecutor(this);
 	}
-	
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command command,
-			String alias, String[] args) {
-		return TabUtils.empty();
-	}
-
-	public abstract boolean onCommand(CommandSender sender, Command command, String label, String[] args);
-
 
 	public Lostshard getPlugin() {
-		return plugin;
+		return this.plugin;
+	}
+
+	@Override
+	public abstract boolean onCommand(CommandSender sender, Command command, String label, String[] args);
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		return TabUtils.empty();
 	}
 
 }

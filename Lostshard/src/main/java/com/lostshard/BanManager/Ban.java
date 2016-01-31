@@ -10,17 +10,17 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Ban {
-	
+
 	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
-	private UUID player;
-	private UUID admin;
-	private String reason;
-	private long time;
-	private long duration;
-	
+	private final UUID player;
+	private final UUID admin;
+	private final String reason;
+	private final long time;
+	private final long duration;
+
 	public Ban(UUID player, UUID admin, String reason, long time, long duration) {
 		this.player = player;
 		this.admin = admin;
@@ -29,27 +29,27 @@ public class Ban {
 		this.duration = duration;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public UUID getPlayer() {
-		return player;
-	}
-
 	public UUID getAdmin() {
-		return admin;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public long getTime() {
-		return time;
+		return this.admin;
 	}
 
 	public long getDuration() {
-		return duration;
+		return this.duration;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public UUID getPlayer() {
+		return this.player;
+	}
+
+	public String getReason() {
+		return this.reason;
+	}
+
+	public long getTime() {
+		return this.time;
 	}
 }
