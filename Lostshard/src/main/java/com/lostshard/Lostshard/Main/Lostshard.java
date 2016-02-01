@@ -1,14 +1,22 @@
 package com.lostshard.Lostshard.Main;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -139,14 +147,7 @@ public class Lostshard extends JavaPlugin {
 	private void loadFromDB() {
 		final Session s = getSession();
 		try {
-			final Transaction t = s.beginTransaction();
-			try {
-				t.begin();
-				MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
-				t.commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Transaction t = s.beginTransaction();
 			try {
 				t.begin();
 				ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
@@ -155,6 +156,7 @@ public class Lostshard extends JavaPlugin {
 				e.printStackTrace();
 			}
 			try {
+				t = s.beginTransaction();
 				t.begin();
 				PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
 				t.commit();
@@ -162,17 +164,73 @@ public class Lostshard extends JavaPlugin {
 				e.printStackTrace();
 			}
 			try {
+				t = s.beginTransaction();
 				t.begin();
 				ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
 				t.commit();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			try {
+				t = s.beginTransaction();
+				t.begin();
+				MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+				t.commit();
+				Bukkit.broadcastMessage(""+MagicStructure.magicstructures.size());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			s.close();
+			loadPermanentGates();
 		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();
 		}
+	}
+	
+	@SuppressWarnings("unused")
+	public void loadPermanentGates() {
+		final Session s = getSession();
+		try {
+			String hql = "SELECT * FROM PermanentGate";
+			SQLQuery query = s.createSQLQuery(hql);
+			query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+			Map<String,Object> row = null;
+			@SuppressWarnings("unchecked")
+			List<Map<String, Object>> data = query.list();
+			for(Map<String, Object> map : data) {
+				Location from = new Location(Bukkit.getWorld((String) map.get("from_world")), 
+						(Double) map.get("from_x"), (Double) map.get("from_y"), (Double) map.get("from_z"), 
+						(Float) map.get("from_yaw"), (Float) map.get("from_pitch"));
+				
+				Location to = new Location(Bukkit.getWorld((String) map.get("to_world")), 
+						(Double) map.get("to_x"), (Double) map.get("to_y"), (Double) map.get("to_z"), 
+						(Float) map.get("to_yaw"), (Float) map.get("to_pitch"));
+				
+				boolean direction = (Boolean) map.get("direction");
+				
+				UUID uuid = UUID.fromString((String) map.get("creatorUUID"));
+				
+				int id = (Integer) map.get("id");
+				
+				final Block destBlock = to.getBlock();
+				final Block srcBlock = from.getBlock();
+				final Block extraDestBlock = to.getBlock().getRelative(0, 1, 0);
+				final Block extraSrcBlock = from.getBlock().getRelative(0, 1, 0);
+				
+				final ArrayList<Block> blocks = new ArrayList<Block>();
+				blocks.add(srcBlock);
+				blocks.add(destBlock);
+				blocks.add(extraSrcBlock);
+				blocks.add(extraDestBlock);
+				
+				new PermanentGate(id, blocks, uuid, direction);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+		s.close();
 	}
 
 	@Override

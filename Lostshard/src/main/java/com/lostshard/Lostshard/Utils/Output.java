@@ -67,7 +67,7 @@ public class Output {
 
 	public static void displayLoginMessages(Player player) {
 		player.sendMessage(ChatColor.GOLD + "Welcome to Lost Shard, www.lostshard.com for more info.");
-		player.sendMessage(ChatColor.GOLD + "Lostshard is curently in beta!");
+		player.sendMessage(ChatColor.GOLD + "Lostshard is curently in alpha!");
 		player.sendMessage(ChatColor.GOLD + "Visit wiki.lostshard.com for more info");
 		player.sendMessage(ChatColor.GOLD + "The guide has valuable information for getting started.");
 		player.sendMessage(ChatColor.GOLD + "Use /rules for rules and /help for help");

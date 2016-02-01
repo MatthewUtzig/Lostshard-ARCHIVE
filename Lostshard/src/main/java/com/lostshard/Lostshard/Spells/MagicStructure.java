@@ -4,13 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
+
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 
+@MappedSuperclass
+@Access(AccessType.FIELD)
 public class MagicStructure {
 
 	protected static PlotManager ptm = PlotManager.getManager();
@@ -58,18 +66,30 @@ public class MagicStructure {
 		magicstructures.removeIf(ms -> ms.isDead);
 	}
 
+	
+	@Type(type = "uuid-char")
 	private UUID creatorUUID;
 
+	@Transient
 	private boolean isDead = false;
 
-	private ArrayList<BlockState> blocks = new ArrayList<BlockState>();
+	@Transient
+	private List<BlockState> blocks = new ArrayList<BlockState>();
 
+	@Transient
 	private int numTicksTillCleanup;
 
+	@Transient
 	private int curTick = 0;
-
-	public MagicStructure(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup) {
-		for (final Block b : blocks)
+	
+	public MagicStructure(List<BlockState> blocks, int cleanup) {
+		this.blocks = blocks;
+		this.creatorUUID = null;
+		this.numTicksTillCleanup = cleanup;
+	}
+	
+	public MagicStructure(List<Block> blocks2, UUID uuid, int numTicksTillCleanup) {
+		for (final Block b : blocks2)
 			this.blocks.add(b.getState());
 		this.setCreatorUUID(uuid);
 		this.numTicksTillCleanup = numTicksTillCleanup;
@@ -98,7 +118,7 @@ public class MagicStructure {
 		return result;
 	}
 
-	public ArrayList<BlockState> getBlockStates() {
+	public List<BlockState> getBlockStates() {
 		return this.blocks;
 	}
 
@@ -153,6 +173,10 @@ public class MagicStructure {
 
 	public void setNumTicksTillCleanup(int numTicksTillCleanup) {
 		this.numTicksTillCleanup = numTicksTillCleanup;
+	}
+	
+	public void setBlock(Block block, int i) {
+		this.blocks.set(i, block.getState());
 	}
 
 	public void tick() {

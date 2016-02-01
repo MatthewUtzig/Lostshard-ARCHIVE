@@ -85,7 +85,7 @@ public class ChatHandler {
 		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getLocalChatRange()))
 			if (!ignore.contains(p.getUniqueId()))
 				event.getRecipients().add(p);
-		event.setFormat(Utils.getDisplayColor(event.getPlayer()) + "%s" + ChatColor.WHITE + ": " + "%s");
+		event.setFormat("%s" + ChatColor.WHITE + ": " + "%s");
 	}
 
 	public static void onPlayerChat(AsyncPlayerChatEvent event) {
@@ -127,7 +127,9 @@ public class ChatHandler {
 			Output.simpleError(player, "You are currently not in a party.");
 			return;
 		}
-		party.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": " + event.getMessage());
+		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getShoutChatRange()))
+			event.getRecipients().add(p);
+		event.setFormat(ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE + "]" + ChatColor.WHITE + " %s" + ChatColor.WHITE + ": %s");
 	}
 
 	public static void setLocalChatRange(int localChatRange) {

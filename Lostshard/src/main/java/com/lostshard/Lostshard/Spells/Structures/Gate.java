@@ -1,16 +1,21 @@
 package com.lostshard.Lostshard.Spells.Structures;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPhysicsEvent;
@@ -26,7 +31,7 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
 import com.lostshard.Lostshard.Utils.Output;
 
-@Embeddable
+@MappedSuperclass
 @Access(AccessType.PROPERTY)
 public class Gate extends MagicStructure {
 
@@ -97,8 +102,12 @@ public class Gate extends MagicStructure {
 
 	private boolean direction;
 
+	public Gate() {
+		super(Arrays.asList(new BlockState[4]), -1);
+	}
+	
 	@SuppressWarnings("deprecation")
-	public Gate(ArrayList<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
+	public Gate(List<Block> blocks, UUID uuid, int numTicksTillCleanup, boolean direction) {
 		super(blocks, uuid, numTicksTillCleanup);
 		this.direction = direction;
 		if (!direction)
@@ -134,6 +143,13 @@ public class Gate extends MagicStructure {
 		return this.fromBlock;
 	}
 
+	@AttributeOverrides({ @AttributeOverride(name = "x", column = @Column(name = "from_x") ),
+		@AttributeOverride(name = "y", column = @Column(name = "from_y") ),
+		@AttributeOverride(name = "z", column = @Column(name = "from_z") ),
+		@AttributeOverride(name = "pitch", column = @Column(name = "from_pitch") ),
+		@AttributeOverride(name = "yaw", column = @Column(name = "from_yaw") ),
+		@AttributeOverride(name = "world", column = @Column(name = "from_world") )
+	})
 	public SavableLocation getFromLocation() {
 		return new SavableLocation(this.fromBlock.getLocation());
 	}
@@ -143,6 +159,13 @@ public class Gate extends MagicStructure {
 		return this.toBlock;
 	}
 
+	@AttributeOverrides({ @AttributeOverride(name = "x", column = @Column(name = "to_x") ),
+		@AttributeOverride(name = "y", column = @Column(name = "to_y") ),
+		@AttributeOverride(name = "z", column = @Column(name = "to_z") ),
+		@AttributeOverride(name = "pitch", column = @Column(name = "to_pitch") ),
+		@AttributeOverride(name = "yaw", column = @Column(name = "to_yaw") ),
+		@AttributeOverride(name = "world", column = @Column(name = "to_world") )
+	})
 	public SavableLocation getToLocation() {
 		return new SavableLocation(this.toBlock.getLocation());
 	}
@@ -199,9 +222,17 @@ public class Gate extends MagicStructure {
 
 	public void setFromLocation(SavableLocation location) {
 		this.fromBlock = location.getLocation().getBlock();
+		this.setBlock(this.fromBlock, 0);
+		this.fromBlock.setType(Material.PORTAL);
+		this.fromBlock.getRelative(0, 1, 0).setType(Material.PORTAL);
+		this.setBlock(this.fromBlock.getRelative(0, 1, 0), 2);
 	}
 
 	public void setToLocation(SavableLocation location) {
 		this.toBlock = location.getLocation().getBlock();
+		this.toBlock.setType(Material.PORTAL);
+		this.toBlock.getRelative(0, 1, 0).setType(Material.PORTAL);
+		this.setBlock(this.toBlock, 1);
+		this.setBlock(this.toBlock.getRelative(0, 1, 0), 3);
 	}
 }

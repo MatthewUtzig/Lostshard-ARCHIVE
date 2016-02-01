@@ -78,11 +78,11 @@ public class PseudoScoreboard {
 		this.murder.setAllowFriendlyFire(true);
 		for (final PseudoPlayer pP : pm.getPlayers())
 			if (pP.isMurderer())
-				murder.addPlayer(player);
-			else if (pPlayer.isCriminal())
-				criminal.addPlayer(player);
+				murder.addPlayer(Bukkit.getPlayer(pP.getPlayerUUID()));
+			else if (pP.isCriminal())
+				criminal.addPlayer(Bukkit.getPlayer(pP.getPlayerUUID()));
 			else
-				lawfull.addPlayer(player);
+				lawfull.addPlayer(Bukkit.getPlayer(pP.getPlayerUUID()));
 		
 		updateTeams();
 	}

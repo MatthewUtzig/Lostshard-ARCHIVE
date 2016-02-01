@@ -1,8 +1,11 @@
 package com.lostshard.Lostshard.Spells.Structures;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +14,7 @@ import org.bukkit.block.Block;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Access(AccessType.FIELD)
 public class PermanentGate extends Gate {
 
 	@Id
@@ -19,16 +23,17 @@ public class PermanentGate extends Gate {
 	private int id;
 	
 	public PermanentGate() {
-		super(new ArrayList<Block>(), null, -1, false);
+		super();
+	}
+	
+	public PermanentGate(int id, List<Block> blocks, UUID uuid, boolean direction) {
+		super(blocks, uuid, -1, direction);
+		this.id = id;
 	}
 	
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, boolean direction) {
 		super(blocks, uuid, -1, direction);
 		this.insert();
-	}
-
-	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id, boolean direction) {
-		super(blocks, uuid, -1, direction);
 	}
 
 	public int getId() {
@@ -38,5 +43,4 @@ public class PermanentGate extends Gate {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 }
