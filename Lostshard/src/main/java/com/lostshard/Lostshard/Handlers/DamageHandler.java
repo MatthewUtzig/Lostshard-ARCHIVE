@@ -14,6 +14,8 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.Lostshard.Objects.Recorders.DamageRecord;
+
 public class DamageHandler {
 
 	public static double base = .9d;
@@ -32,9 +34,18 @@ public class DamageHandler {
 	public static double goldSword = 2d;
 	public static double stoneSword = 1d;
 	public static double woodSword = 1d;
+	
+	public static double axes = 1d;
+	public static double diamondAxe = 1d;
+	public static double ironAxe = 1d;
+	public static double goldAxe = 2d;
+	public static double stoneAxe = 1d;
+	public static double woodAxe = 1d;
 
 	public static List<UUID> players = new ArrayList<UUID>();
 
+	public static List<DamageRecord> records = new ArrayList<DamageRecord>();
+	
 	public static void damage(EntityDamageByEntityEvent event) {
 
 		double weapon = 1d;
@@ -50,16 +61,26 @@ public class DamageHandler {
 			if (wep == Material.AIR)
 				weapon = hand;
 			else if (wep == Material.DIAMOND_SWORD)
-				weapon = diamondSword + swords;
+				weapon = diamondSword * swords;
 			else if (wep == Material.IRON_SWORD)
-				weapon = ironSword + swords;
+				weapon = ironSword * swords;
 			else if (wep == Material.GOLD_SWORD) {
-				weapon = goldSword + swords;
+				weapon = goldSword * swords;
 				event.getEntity().getLocation().getWorld().strikeLightningEffect(event.getEntity().getLocation());
 			} else if (wep == Material.STONE_SWORD)
-				weapon = stoneSword + swords;
+				weapon = stoneSword * swords;
 			else if (wep == Material.WOOD_SWORD)
-				weapon = woodSword + swords;
+				weapon = woodSword * swords;
+			else if (wep == Material.DIAMOND_AXE)
+				weapon = diamondAxe * axes;
+			else if (wep == Material.IRON_AXE)
+				weapon = ironAxe * axes;
+			else if (wep == Material.GOLD_AXE)
+				weapon = goldAxe * axes;
+			else if (wep == Material.STONE_AXE)
+				weapon = stoneAxe * axes;
+			else if (wep == Material.WOOD_AXE)
+				weapon = woodAxe * axes;
 		}
 
 		if (event.getEntity() instanceof Player) {
@@ -69,6 +90,18 @@ public class DamageHandler {
 				player.sendMessage("Armor: " + event.getDamage(DamageModifier.ARMOR));
 				player.sendMessage("Magic: " + event.getDamage(DamageModifier.MAGIC));
 				player.sendMessage("Resistance: " + event.getDamage(DamageModifier.RESISTANCE));
+			}
+			
+			
+			if(attacker instanceof Player || (attacker instanceof Arrow && ((Arrow) attacker).getShooter() instanceof Player)) {
+				ItemStack weaponInHand;
+				if(attacker instanceof Player)
+					weaponInHand = ((Player) attacker).getItemInHand();
+				else
+					weaponInHand = ((Player) attacker).getInventory().getItem(((Player) attacker).getInventory().first(Material.BOW));
+					
+				records.add(new DamageRecord(event.getDamage(DamageModifier.BASE), event.getDamage(DamageModifier.ARMOR), event.getDamage(DamageModifier.MAGIC), 
+						event.getDamage(DamageModifier.RESISTANCE), event.getFinalDamage(), weaponInHand , player.getInventory()));
 			}
 			if (event.isApplicable(DamageModifier.BASE))
 				event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) * base * weapon);
@@ -80,7 +113,9 @@ public class DamageHandler {
 				event.setDamage(DamageModifier.RESISTANCE, event.getDamage(DamageModifier.RESISTANCE) * resistance);
 			if (event.isApplicable(DamageModifier.HARD_HAT))
 				event.setDamage(DamageModifier.HARD_HAT, event.getDamage(DamageModifier.HARD_HAT) * hardhat);
+			
 			if (players.contains(player.getUniqueId())) {
+				player.sendMessage("--------------------------");
 				player.sendMessage("Base: " + event.getDamage(DamageModifier.BASE));
 				player.sendMessage("Armor: " + event.getDamage(DamageModifier.ARMOR));
 				player.sendMessage("Magic: " + event.getDamage(DamageModifier.MAGIC));

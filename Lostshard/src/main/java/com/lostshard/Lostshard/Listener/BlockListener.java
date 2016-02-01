@@ -7,11 +7,14 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
+import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -28,6 +31,21 @@ public class BlockListener extends LostshardListener {
 		super(plugin);
 	}
 
+	@EventHandler
+	public void LeavesDecay(LeavesDecayEvent event) {
+		PlotProtectionHandler.leavesDecay(event);
+	}
+	
+	@EventHandler
+	public void BlockForm(BlockFormEvent event) {
+		PlotProtectionHandler.BlockForm(event);
+	}
+	
+	@EventHandler
+	public void BlockSrpead(BlockSpreadEvent event) {
+		PlotProtectionHandler.BlockSrpead(event);
+	}
+	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onBlockBreakHigh(BlockBreakEvent event) {
 		PlotProtectionHandler.breakeBlockInPlot(event);

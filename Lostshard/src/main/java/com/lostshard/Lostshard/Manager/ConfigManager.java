@@ -45,6 +45,12 @@ public class ConfigManager {
 		DamageHandler.goldSword = this.config.getDouble("DAMAGE.goldSword");
 		DamageHandler.stoneSword = this.config.getDouble("DAMAGE.stoneSword");
 		DamageHandler.woodSword = this.config.getDouble("DAMAGE.woodSword");
+		DamageHandler.axes = this.config.getDouble("DAMAGE.axes");
+		DamageHandler.diamondAxe = this.config.getDouble("DAMAGE.diamondAxe");
+		DamageHandler.ironSword = this.config.getDouble("DAMAGE.ironAxe");
+		DamageHandler.goldAxe = this.config.getDouble("DAMAGE.goldAxe");
+		DamageHandler.stoneAxe = this.config.getDouble("DAMAGE.stoneAxe");
+		DamageHandler.woodAxe = this.config.getDouble("DAMAGE.woodAxe");
 
 		Locations.LAWFULL.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.lawfull")));
 		Locations.CRIMINAL.setLocation(Serializer.deserializeLocation(this.config.getString("LOCATIONS.criminal")));

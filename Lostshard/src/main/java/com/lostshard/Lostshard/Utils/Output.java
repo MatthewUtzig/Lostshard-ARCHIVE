@@ -2,7 +2,9 @@ package com.lostshard.Lostshard.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -74,7 +76,7 @@ public class Output {
 		player.sendMessage(ChatColor.GOLD + "Please communicate in English when using Global Chat.");
 		player.sendMessage(ChatColor.RED + "-Combat logging drops your items on logout.");
 		Title.sendTabTitle(player, ChatColor.GOLD + "Lostshard", ChatColor.GOLD + "IP: minecraft.lostshard.com");
-		Title.sendTitle(player, 20, 30, 20, ChatColor.GOLD + "Welcome to Lostshard", ChatColor.RED + "BETA");
+		Title.sendTitle(player, 20, 30, 20, ChatColor.GOLD + "Welcome to Lostshard", ChatColor.RED + "ALPHA");
 	}
 
 	public static void displayRules(CommandSender sender) {
@@ -228,13 +230,13 @@ public class Output {
 			gui.openInventory(player);
 			return;
 		}
-		final List<Scroll> scrolls = pseudoPlayer.getScrolls();
+		final Set<Scroll> scrolls = new HashSet<>(pseudoPlayer.getScrolls());
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName() + "'s Scrolls-");
 		player.sendMessage(ChatColor.YELLOW + "(\"+\" means it is already in your spellbook)");
 		if (scrolls.size() > 0) {
 			final StringBuilder output = new StringBuilder();
 			for (final Scroll s : scrolls) {
-				final int scrollAmount = Collections.frequency(scrolls, s);
+				final int scrollAmount = Collections.frequency(pseudoPlayer.getScrolls(), s);
 				if (pseudoPlayer.getSpellbook().containSpell(s))
 					output.append("+");
 				output.append(s.getName() + " (" + scrollAmount + "), ");

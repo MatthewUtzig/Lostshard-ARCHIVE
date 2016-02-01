@@ -36,21 +36,8 @@ public class AdminCommand extends LostshardCommand {
 	 *            as plugin
 	 */
 	public AdminCommand(Lostshard plugin) {
-		super(plugin, "admin", "test", "tpplot", "tpworld", "setmurders", "tax", "broadcast", "givemoney", "speed",
+		super(plugin, "test", "tpplot", "tpworld", "setmurders", "tax", "broadcast", "givemoney", "speed",
 				"item", "pvp", "say", "inv");
-	}
-
-	private void adminInv(Player player, String[] args) {
-		if (args.length < 1) {
-			Output.simpleError(player, "/admin inv (Player)");
-			return;
-		}
-		final Player tPlayer = Utils.getPlayer(player, args, 1);
-		if (tPlayer == null) {
-			Output.simpleError(player, "Player is not online");
-			return;
-		}
-		player.openInventory(tPlayer.getInventory());
 	}
 
 	@SuppressWarnings("deprecation")
@@ -191,30 +178,7 @@ public class AdminCommand extends LostshardCommand {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("admin")) {
-			if (!sender.isOp()) {
-				Output.simpleError(sender, "Unknown command");
-				return true;
-			}
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			if (!player.isOp()) {
-				Output.simpleError(player, "Only operator may perform this command.");
-				return true;
-			}
-			if (args.length < 1) {
-				Output.simpleError(player, "/admin (subCommand)");
-				return true;
-			}
-			final String subCommand = args[0];
-			if (subCommand.equalsIgnoreCase("inv"))
-				this.adminInv(player, args);
-			else if (subCommand.equalsIgnoreCase("tpplot"))
-				this.tpPlot(player, args);
-		} else if (cmd.getName().equalsIgnoreCase("tpplot")) {
+		if (cmd.getName().equalsIgnoreCase("tpplot")) {
 			if (!sender.isOp()) {
 				Output.simpleError(sender, "Unknown command");
 				return true;
@@ -330,8 +294,8 @@ public class AdminCommand extends LostshardCommand {
 			amount = Integer.parseInt(args[1]);
 			final PseudoPlayer pPlayer = this.pm.getPlayer(tPlayer);
 			pPlayer.setMurderCounts(amount);
-			Output.positiveMessage(player, "You have set " + tPlayer.getName() + " murdercounts to " + amount + ".");
-			Output.positiveMessage(tPlayer, player.getName() + " have set your murdercounts to " + amount + ".");
+			Output.positiveMessage(player, "You have set " + tPlayer.getName() + " murdercounts to " + Utils.getDecimalFormater().format(amount) + ".");
+			Output.positiveMessage(tPlayer, player.getName() + " have set your murdercounts to " + Utils.getDecimalFormater().format(amount) + ".");
 		} catch (final Exception e) {
 			Output.simpleError(player, "/setmurders (player) (amount)");
 			return;

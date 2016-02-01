@@ -15,10 +15,13 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
+import org.bukkit.event.block.BlockFormEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -36,6 +39,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.vehicle.VehicleCreateEvent;
+import org.bukkit.event.vehicle.VehicleDestroyEvent;
+import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
@@ -75,6 +81,45 @@ public class PlotProtectionHandler {
 			event.setCancelled(true);
 			Output.simpleError(player, "Can't break blocks here, " + plot.getName() + " is protected.");
 		}
+	}
+	
+	public static void BlockForm(BlockFormEvent event) {
+		if (event.isCancelled())
+			return;
+		final Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
+		if (plot == null)
+			return;
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if (protectEvent.isCancelled())
+			return;
+		event.setCancelled(true);
+	}
+	
+	public static void BlockSrpead(BlockSpreadEvent event) {
+		if (event.isCancelled())
+			return;
+		final Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
+		if (plot == null)
+			return;
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if (protectEvent.isCancelled())
+			return;
+		event.setCancelled(true);
+	}
+	
+	public static void leavesDecay(LeavesDecayEvent event) {
+		if (event.isCancelled())
+			return;
+		final Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
+		if (plot == null)
+			return;
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if (protectEvent.isCancelled())
+			return;
+		event.setCancelled(true);
 	}
 
 	/**
@@ -310,27 +355,71 @@ public class PlotProtectionHandler {
 			return;
 
 		if (entity instanceof ItemFrame) {
-			if (plot != null) {
-				event.setCancelled(true);
+			event.setCancelled(true);
 
-				if (player != null)
-					Output.simpleError(player, "Can't destroy item frame here " + plot.getName() + " is protected.");
+			if (player != null)
+				Output.simpleError(player, "Can't destroy item frame here " + plot.getName() + " is protected.");
 
-				return;
-			}
-		} else if (entity instanceof ArmorStand)
-			if (plot != null) {
-				event.setCancelled(true); // Set velocity downwards to minimize
-				// armor stand movement
-				entity.setVelocity(new Vector(0, -100, 0));
+			return;
+		} else if (entity instanceof ArmorStand) {
+			event.setCancelled(true); // Set velocity downwards to minimize
+			// armor stand movement
+			entity.setVelocity(new Vector(0, -100, 0));
 
-				if (player != null)
-					Output.simpleError(player, "Can't destroy armor stands here " + plot.getName() + " is protected.");
+			if (player != null)
+				Output.simpleError(player, "Can't destroy armor stands here " + plot.getName() + " is protected.");
 
-				return;
-			}
+			return;
+		} 
+	}
+	
+	public static void VehicleDestroy(VehicleDestroyEvent event) {
+		final Plot plot = ptm.findPlotAt(event.getVehicle().getLocation());
+
+		if (plot == null)
+			return;
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if (protectEvent.isCancelled())
+			return;
+		Player player = null;
+		if(event.getAttacker() instanceof Player)
+			player = (Player) event.getAttacker();
+		
+		if(player != null && plot.isFriendOrAbove(player))
+			return;
+		
+		if(player != null)
+			Output.simpleError(player, "Can't destroy vehicles here " + plot.getName() + " is protected.");
+		event.setCancelled(true);
 	}
 
+	public static void VehicleCreate(VehicleCreateEvent event) {
+		
+	}
+	
+	public static void VehicleEnter(VehicleEnterEvent event) {
+		final Plot plot = ptm.findPlotAt(event.getVehicle().getLocation());
+
+		if (plot == null)
+			return;
+		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
+		EventManager.callEvent(protectEvent);
+		if (protectEvent.isCancelled())
+			return;
+		Player player = null;
+		if(event.getEntered() instanceof Player)
+			player = (Player) event.getEntered();
+		
+		if((player != null && plot.isFriendOrAbove(player)) || !plot.isPrivatePlot())
+			return;
+		
+		if(player != null)
+			Output.simpleError(player, "Can't enter vehicles here " + plot.getName() + " is protected.");
+		event.setCancelled(true);
+	}
+	
+	
 	public static void onHangingDestory(HangingBreakEvent event) {
 		final Plot plot = ptm.findPlotAt(event.getEntity().getLocation());
 

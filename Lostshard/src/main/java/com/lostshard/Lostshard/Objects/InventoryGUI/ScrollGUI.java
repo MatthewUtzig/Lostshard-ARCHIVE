@@ -2,7 +2,9 @@ package com.lostshard.Lostshard.Objects.InventoryGUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.inventory.ClickType;
@@ -20,14 +22,12 @@ public class ScrollGUI extends GUI {
 
 	public ScrollGUI(PseudoPlayer pPlayer) {
 		super("Scrolls", pPlayer);
-		final List<Scroll> scrolls = new ArrayList<Scroll>();
-		for (final Scroll s : this.getPlayer().getScrolls())
-			if (!scrolls.contains(s))
-				scrolls.add(s);
+		final Set<Scroll> scrolls = new HashSet<>(pPlayer.getScrolls());
 		final GUIItem[] items = new GUIItem[scrolls.size()];
-		for (int i = 0; i < scrolls.size(); i++) {
-			final Scroll s = scrolls.get(i);
-			final int amount = Collections.frequency(scrolls, s);
+		int i = 0;
+		for (Scroll s : scrolls) {
+			
+			final int amount = Collections.frequency(pPlayer.getScrolls(), s);
 			final ItemStack item = new ItemStack(s.getReagentCost().get(0).getType(), amount);
 			final ItemMeta itemMeta = item.getItemMeta();
 			final List<String> lore = new ArrayList<String>();
@@ -76,6 +76,7 @@ public class ScrollGUI extends GUI {
 					}
 				}
 			});
+			i++;
 		}
 		this.setItems(items);
 	}

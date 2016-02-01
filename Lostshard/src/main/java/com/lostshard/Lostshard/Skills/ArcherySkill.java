@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Slime;
@@ -21,6 +22,8 @@ public class ArcherySkill extends Skill {
 
 	public static void EntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
 		if (event.isCancelled())
+			return;
+		if(!(event.getEntity() instanceof LivingEntity))
 			return;
 		if (!(event.getDamager() instanceof Arrow))
 			return;
@@ -39,15 +42,19 @@ public class ArcherySkill extends Skill {
 		final double damage = skill.getLvl() / 250;
 
 		if (entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4
-				&& event.getDamage(DamageModifier.ARMOR)
-						+ event.getDamage(DamageModifier.MAGIC) >= event.getDamage(DamageModifier.BASE) * .35) {
+				&& Math.abs(event.getDamage(DamageModifier.ARMOR)
+						+ event.getDamage(DamageModifier.MAGIC)) >= event.getDamage(DamageModifier.BASE) * .35) {
+			
 			final Player player = (Player) event.getEntity();
-			double health = event.getDamage(DamageModifier.BASE) * .45 + damage * .7;
+			double health = player.getHealth() - (event.getDamage(DamageModifier.BASE) * .90 + damage * .6);
 			health = Math.max(health, 4);
-			player.setHealth(health);
-			event.setDamage(0);
-			player.sendMessage(ChatColor.GREEN + "The arrow pierces through your armor!");
-			attacker.sendMessage(ChatColor.GREEN + "Your arrow pierced through " + player.getName() + "'s armor.");
+			if(health < event.getFinalDamage()) {
+				
+				player.setHealth(health);
+				event.setDamage(0);
+				player.sendMessage(ChatColor.GREEN + "The arrow pierces through your armor!");
+				attacker.sendMessage(ChatColor.GREEN + "Your arrow pierced through " + player.getName() + "'s armor.");
+			}
 		} else if (event.isApplicable(DamageModifier.BASE))
 			event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) + damage);
 

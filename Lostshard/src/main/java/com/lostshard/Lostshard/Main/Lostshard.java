@@ -235,6 +235,9 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
+//		for(Player p : Bukkit.getOnlinePlayers()) {
+//			p.kickPlayer("Server restart!");
+//		}
 		final NPCLibManager npcLibManager = NPCLibManager.getManager();
 		if (npcLibManager != null && npcLibManager.getRegistry() != null) {
 			for (final NPC npc : npcLibManager.getRegistry())

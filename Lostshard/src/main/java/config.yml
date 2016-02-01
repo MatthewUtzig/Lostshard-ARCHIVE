@@ -17,6 +17,12 @@ DAMAGE:
   goldSword: 2
   stoneSword: 1
   woodSword: 1
+  axes: 1
+  diamondAxe: 1
+  ironAxe: 1
+  goldAxe: 2
+  stoneAxe: 1
+  woodAxe: 1
 GENERAL:
   motd: ""
 LOCATIONS:

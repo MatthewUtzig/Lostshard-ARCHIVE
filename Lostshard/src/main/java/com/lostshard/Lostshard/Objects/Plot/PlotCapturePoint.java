@@ -7,6 +7,9 @@ import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
@@ -61,7 +64,13 @@ public class PlotCapturePoint {
 	private Plot plot;
 	@Transient
 	private int range = 5;
-	@Transient
+	@AttributeOverrides({ @AttributeOverride(name = "x", column = @Column(name = "cap_x") ),
+		@AttributeOverride(name = "y", column = @Column(name = "cap_y") ),
+		@AttributeOverride(name = "z", column = @Column(name = "cap_z") ),
+		@AttributeOverride(name = "pitch", column = @Column(name = "cap_pitch") ),
+		@AttributeOverride(name = "yaw", column = @Column(name = "cap_yaw") ),
+		@AttributeOverride(name = "world", column = @Column(name = "cap_world") )
+	})
 	private SavableLocation capZone;
 
 	public PlotCapturePoint() {

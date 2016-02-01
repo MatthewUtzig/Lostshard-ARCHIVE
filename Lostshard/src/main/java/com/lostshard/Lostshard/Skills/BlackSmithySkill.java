@@ -241,7 +241,7 @@ public class BlackSmithySkill extends Skill {
 			final ItemMeta meta = item.getItemMeta();
 			meta.addEnchant(Enchantment.ARROW_DAMAGE, costAmount - 1, true);
 			item.setItemMeta(meta);
-			Output.positiveMessage(player, "You have powerd " + item.getType().name().toLowerCase().replace("_", " ")
+			Output.positiveMessage(player, "You have powered " + item.getType().name().toLowerCase().replace("_", " ")
 					+ " to lvl " + (costAmount - 1));
 		} else if (isArmor) {
 			costAmount = item.getItemMeta().getEnchantLevel(Enchantment.PROTECTION_ENVIRONMENTAL) + 2;
@@ -414,10 +414,10 @@ public class BlackSmithySkill extends Skill {
 	public BlackSmithySkill() {
 		super();
 		this.setName("Blacksmithy");
-		this.setBaseProb(.2);
+		this.setBaseProb(1);
 		this.setScaleConstant(30);
-		this.setMaxGain(15);
-		this.setMinGain(5);
+		this.setMaxGain(12);
+		this.setMinGain(8);
 		this.setMat(Material.ANVIL);
 	}
 

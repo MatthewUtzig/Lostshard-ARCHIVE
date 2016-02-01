@@ -24,9 +24,9 @@ public class PseudoScoreboard {
 
 	private UUID playerUUID;
 
-	protected Team murder = this.board.registerNewTeam("murder");
-	protected Team criminal = this.board.registerNewTeam("criminal");
-	protected Team lawfull = this.board.registerNewTeam("lawfull");
+	protected Team murder = this.board.registerNewTeam("Murder");
+	protected Team criminal = this.board.registerNewTeam("Criminal");
+	protected Team lawfull = this.board.registerNewTeam("Lawfull");
 
 	protected Objective stats = this.board.registerNewObjective("stats", "dummy");
 

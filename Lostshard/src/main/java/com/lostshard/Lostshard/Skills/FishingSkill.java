@@ -260,9 +260,9 @@ public class FishingSkill extends Skill {
 		super();
 		this.setName("Fishing");
 		this.setBaseProb(1);
-		this.setMaxGain(70);
-		this.setMinGain(30);
-		this.setScaleConstant(50);
+		this.setMaxGain(30);
+		this.setMinGain(10);
+		this.setScaleConstant(45);
 		this.setMat(Material.FISHING_ROD);
 	}
 

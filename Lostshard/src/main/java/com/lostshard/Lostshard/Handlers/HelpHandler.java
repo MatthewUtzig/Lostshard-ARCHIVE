@@ -67,7 +67,7 @@ public class HelpHandler {
 				// section 3 page 3
 				bookMeta.addPage(ChatColor.DARK_PURPLE
 						+ "In order to change the gold coin balance of your plot you can use the commands"
-						+ ChatColor.GOLD + "/plot desposit (Amount)" + ChatColor.DARK_PURPLE + " &" + ChatColor.GOLD
+						+ ChatColor.GOLD + "/plot deposit (Amount)" + ChatColor.DARK_PURPLE + " &" + ChatColor.GOLD
 						+ " /plot withdraw (amount) \n");
 
 				// section 4 page 3

@@ -294,22 +294,22 @@ public class PlotCommand extends LostshardCommand {
 				player.sendMessage(ChatColor.YELLOW + "- " + pe.name().toLowerCase());
 			return;
 		}
-		PlotUpgrade upgrade = PlotUpgrade.getByName(args[1].toUpperCase());
+		PlotEffect upgrade = PlotEffect.valueOf(args[1].toUpperCase());
 		if(upgrade == null) {
-			Output.simpleError(player, "Theres no upgrade with that name");
+			Output.simpleError(player, "Theres no effect with that name");
 			return;
 		}
 		if(plot.getUpgrades().contains(upgrade)) {
 			if(args.length > 2 && args[2].equalsIgnoreCase("remove")) {
-				plot.removeUpgrade(upgrade);
-				Output.positiveMessage(player, "Have removed the upgrade "+upgrade.name().toLowerCase()+" from the plot "+plot.getName()+".");
+				plot.getUpgrades().remove(upgrade);
+				Output.positiveMessage(player, "Have removed the effect "+upgrade.name().toLowerCase()+" from the plot "+plot.getName()+".");
 			}else
 				Output.simpleError(player, "The plot already have this effect");
 			return;
 		}	
 		
-		plot.getUpgrades().add(upgrade);
-		Output.positiveMessage(player, "Have added the upgrade "+upgrade.name().toLowerCase()+" to the plot "+plot.getName()+".");
+		plot.getEffects().add(upgrade);
+		Output.positiveMessage(player, "Have added the effect "+upgrade.name().toLowerCase()+" to the plot "+plot.getName()+".");
 	}
 
 	@Override
