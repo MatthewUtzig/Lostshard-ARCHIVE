@@ -37,7 +37,7 @@ public class AdminCommand extends LostshardCommand {
 	 */
 	public AdminCommand(Lostshard plugin) {
 		super(plugin, "admin", "test", "tpplot", "tpworld", "setmurders", "tax", "broadcast", "givemoney", "speed",
-				"item", "pvp", "say");
+				"item", "pvp", "say", "inv");
 	}
 
 	private void adminInv(Player player, String[] args) {
@@ -105,13 +105,17 @@ public class AdminCommand extends LostshardCommand {
 		}
 		final Player player = (Player) sender;
 		if (args.length < 1) {
-			player.setFlySpeed(1f);
+			player.setFlySpeed(0.1f);
 			Output.positiveMessage(player, "You have reset your speed.");
 		} else {
 			try {
 				final float speed = Float.parseFloat(args[0]);
+				if(speed > 1 || speed < 0) {
+					Output.simpleError(player, "Speed must be between 0 and 1.");
+					return;	
+				}
 				player.setFlySpeed(speed);
-				Output.positiveMessage(player, "");
+				Output.positiveMessage(player, "You have sat your speed to "+speed+".");
 			} catch (final Exception e) {
 				Output.simpleError(player, "/speed (speed)");
 			}

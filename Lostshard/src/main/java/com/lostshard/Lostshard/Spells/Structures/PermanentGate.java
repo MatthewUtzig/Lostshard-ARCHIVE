@@ -17,7 +17,11 @@ public class PermanentGate extends Gate {
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
-
+	
+	public PermanentGate() {
+		super(new ArrayList<Block>(), null, -1, false);
+	}
+	
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, boolean direction) {
 		super(blocks, uuid, -1, direction);
 		this.insert();
@@ -25,7 +29,6 @@ public class PermanentGate extends Gate {
 
 	public PermanentGate(ArrayList<Block> blocks, UUID uuid, int id, boolean direction) {
 		super(blocks, uuid, -1, direction);
-		this.id = id;
 	}
 
 	public int getId() {
@@ -35,4 +38,5 @@ public class PermanentGate extends Gate {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 }

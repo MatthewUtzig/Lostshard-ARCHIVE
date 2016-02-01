@@ -140,12 +140,34 @@ public class Lostshard extends JavaPlugin {
 		final Session s = getSession();
 		try {
 			final Transaction t = s.beginTransaction();
-			t.begin();
-			MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
-			ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
-			PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
-			ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
-			t.commit();
+			try {
+				t.begin();
+				MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				t.begin();
+				ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				t.begin();
+				PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				t.begin();
+				ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			s.close();
 		} catch (final Exception e) {
 			e.printStackTrace();

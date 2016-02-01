@@ -37,6 +37,7 @@ public class PseudoScoreboard {
 	protected Score mc = this.stats.getScore(ChatColor.YELLOW + "Murder Counts:");
 	protected Score rank = this.stats.getScore(ChatColor.YELLOW + "Rank:");
 
+	@SuppressWarnings("deprecation")
 	public PseudoScoreboard(UUID uuid) {
 
 		this.playerUUID = uuid;
@@ -75,6 +76,13 @@ public class PseudoScoreboard {
 		this.lawfull.setAllowFriendlyFire(true);
 		this.criminal.setAllowFriendlyFire(true);
 		this.murder.setAllowFriendlyFire(true);
+		for (final PseudoPlayer pP : pm.getPlayers())
+			if (pP.isMurderer())
+				murder.addPlayer(player);
+			else if (pPlayer.isCriminal())
+				criminal.addPlayer(player);
+			else
+				lawfull.addPlayer(player);
 		
 		updateTeams();
 	}
@@ -117,8 +125,9 @@ public class PseudoScoreboard {
 		final Player player = Bukkit.getPlayer(this.playerUUID);
 		if (pPlayer.isMurderer()) {
 			for (final PseudoPlayer pP : pm.getPlayers())
-				if (pP.getScoreboard() != null)
+				if (pP.getScoreboard() != null) {
 					pP.getScoreboard().murder.addPlayer(player);
+				}
 		} else if (pPlayer.isCriminal()) {
 			for (final PseudoPlayer pP : pm.getPlayers())
 				if (pP.getScoreboard() != null)

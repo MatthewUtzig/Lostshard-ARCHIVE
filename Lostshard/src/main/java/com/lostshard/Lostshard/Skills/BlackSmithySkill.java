@@ -393,7 +393,7 @@ public class BlackSmithySkill extends Skill {
 					"You can't smelt " + item.getType().name().toLowerCase().replace("_", " ") + ".");
 			return;
 		}
-		if (ItemUtils.isArmor(cost))
+		if (ItemUtils.isArmor(item))
 			amount = 3;
 		player.getInventory().setItemInHand(null);
 		if (pPlayer.getStamina() < SMELT_STAMINA_COST) {

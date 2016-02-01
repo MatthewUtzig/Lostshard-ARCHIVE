@@ -80,7 +80,7 @@ public class FishingSkill extends Skill {
 	public static ItemStack getRandomHigh() {
 		final Random ran = new Random();
 		if (Math.random() < .75)
-			switch (ran.nextInt(3)) {
+			switch (ran.nextInt(5)) {
 			case 0:
 			case 1:
 				return new ItemStack(Material.IRON_INGOT);
@@ -92,7 +92,7 @@ public class FishingSkill extends Skill {
 				return new ItemStack(Material.IRON_INGOT);
 			}
 		else
-			switch (ran.nextInt(9)) {
+			switch (ran.nextInt(10)) {
 			case 0:
 			case 1:
 			case 2:
@@ -114,7 +114,7 @@ public class FishingSkill extends Skill {
 	public static ItemStack getRandomHighst() {
 		final Random ran = new Random();
 		if (Math.random() < .15)
-			switch (ran.nextInt(10)) {
+			switch (ran.nextInt(12)) {
 			case 0:
 				return new ItemStack(Material.RECORD_10);
 			case 1:
@@ -135,11 +135,13 @@ public class FishingSkill extends Skill {
 				return new ItemStack(Material.RECORD_8);
 			case 9:
 				return new ItemStack(Material.RECORD_9);
-			default:
+			case 10:
 				return new ItemStack(Material.RECORD_10);
+			default:
+				return new ItemStack(Material.DRAGON_EGG);	
 			}
 		else
-			switch (ran.nextInt(8)) {
+			switch (ran.nextInt(10)) {
 			case 0:
 			case 1:
 			case 2:
@@ -151,6 +153,8 @@ public class FishingSkill extends Skill {
 				return new ItemStack(Material.IRON_BLOCK);
 			case 7:
 				return new ItemStack(Material.DIAMOND_BLOCK);
+			case 8:
+				return new ItemStack(Material.DIAMOND_BLOCK);
 			default:
 				return new ItemStack(Material.GOLD_BLOCK);
 			}
@@ -159,7 +163,7 @@ public class FishingSkill extends Skill {
 	public static ItemStack getRandomLow() {
 		final Random ran = new Random();
 		if (Math.random() < .33)
-			switch (ran.nextInt(2)) {
+			switch (ran.nextInt(4)) {
 			case 0:
 			case 1:
 				return new ItemStack(Material.IRON_INGOT);
@@ -169,7 +173,7 @@ public class FishingSkill extends Skill {
 				return new ItemStack(Material.IRON_INGOT);
 			}
 		else
-			switch (ran.nextInt(7)) {
+			switch (ran.nextInt(9)) {
 			case 0:
 				return new ItemStack(Material.WOOD_AXE);
 			case 1:
@@ -194,7 +198,7 @@ public class FishingSkill extends Skill {
 	public static ItemStack getRandomMedium() {
 		final Random ran = new Random();
 		if (Math.random() < .33)
-			switch (ran.nextInt(3)) {
+			switch (ran.nextInt(4)) {
 			case 0:
 				return new ItemStack(Material.IRON_INGOT);
 			case 1:
@@ -206,7 +210,7 @@ public class FishingSkill extends Skill {
 				return new ItemStack(Material.IRON_INGOT);
 			}
 		else
-			switch (ran.nextInt(7)) {
+			switch (ran.nextInt(9)) {
 			case 0:
 				return new ItemStack(Material.WOOD_AXE);
 			case 1:
@@ -255,8 +259,10 @@ public class FishingSkill extends Skill {
 	public FishingSkill() {
 		super();
 		this.setName("Fishing");
-		this.setBaseProb(.5);
-		this.setScaleConstant(80);
+		this.setBaseProb(1);
+		this.setMaxGain(70);
+		this.setMinGain(30);
+		this.setScaleConstant(50);
 		this.setMat(Material.FISHING_ROD);
 	}
 

@@ -56,9 +56,11 @@ public class GuardHandler {
 			return;
 
 		for (final DelayedTask dt : TaskManager.getManager().getTasks())
-			if (dt instanceof GuardTask)
-				if (((GuardTask) dt).getTarget().equals(player.getUniqueId()))
+			if (dt instanceof GuardTask) {
+				GuardTask gt = (GuardTask) dt;
+				if (player != null && gt != null && gt.getTarget() != null && gt.getTarget().equals(player.getUniqueId()))
 					return;
+			}
 
 		// Finding the nearest guard, on the same plot.
 		// Check if the plot is guarded
