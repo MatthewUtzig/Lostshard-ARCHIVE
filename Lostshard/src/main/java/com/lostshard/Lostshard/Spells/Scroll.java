@@ -203,7 +203,7 @@ public enum Scroll {
 																																																																																																																	Material.SULPHUR),
 																																																																																																															new ItemStack(
 																																																																																																																	Material.REDSTONE) }), CREATEFOOD(
-																																																																																																																			"Createfood",
+																																																																																																																			"Create Food",
 																																																																																																																			"Magickus Delicious",
 																																																																																																																			2,
 																																																																																																																			10,

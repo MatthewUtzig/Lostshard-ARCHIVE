@@ -32,6 +32,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
@@ -135,6 +136,7 @@ public class PlotCommand extends LostshardCommand {
 			if (!player.isOp())
 				curMoney -= plotMoneyCost;
 			pseudoPlayer.setMoney(curMoney);
+			new GoldRecord(plotMoneyCost, "plot create", player.getUniqueId(), null);
 			pseudoPlayer.setPlotCreatePoints(pseudoPlayer.getPlotCreatePoints() + 7);
 			// debited money successfully, now remove the proper amount of
 			// diamonds
@@ -374,6 +376,8 @@ public class PlotCommand extends LostshardCommand {
 		plot.setSalePrice(0);
 		plot.getCoowners().clear();
 		plot.getFriends().clear();
+		
+		new GoldRecord(salePrice, "plot buy", player.getUniqueId(), lastOwner);
 
 		Output.positiveMessage(player, "You have purchased the plot " + plot.getName() + " from "
 				+ Bukkit.getOfflinePlayer(lastOwner).getName() + " for " + salePrice + ".");
@@ -490,6 +494,7 @@ public class PlotCommand extends LostshardCommand {
 			pPlayer.setMoney(pPlayer.getMoney() - amount);
 			Output.positiveMessage(player, "You have deposited " + Utils.getDecimalFormater().format(amount)
 					+ " gold coins into the plot fund.");
+			new GoldRecord(amount, "plot deposit", player.getUniqueId(), null);
 		} else {
 			Output.simpleError(player, "You do not have that much money.");
 			return;
@@ -512,8 +517,10 @@ public class PlotCommand extends LostshardCommand {
 			return;
 		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		int value = plot.getValue();
 		plot.disband();
-		pPlayer.setMoney(pPlayer.getMoney() + plot.getValue());
+		pPlayer.setMoney(pPlayer.getMoney() + value);
+		new GoldRecord(value, "plot disband", null, player.getUniqueId());
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName() + ", and got "
@@ -566,7 +573,9 @@ public class PlotCommand extends LostshardCommand {
 
 				if (plot.isUpgrade(upgrade)) {
 					plot.removeUpgrade(upgrade);
-					plot.setMoney((int) Math.floor(upgrade.getPrice() * .75));
+					int amount = (int) Math.floor(upgrade.getPrice() * .75);
+					plot.setMoney(amount);
+					new GoldRecord(amount, "plot downgrade", null, null);
 					Output.positiveMessage(player,
 							plot.getName() + " downgrade from a " + upgrade.getName() + " to a normal plot.");
 					if (upgrade.equals(PlotUpgrade.TOWN) && plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
@@ -643,6 +652,7 @@ public class PlotCommand extends LostshardCommand {
 		if (plotMoney >= expansionCost) {
 			// we are good to go
 			plot.setMoney(plot.getMoney() - expansionCost);
+			new GoldRecord(expansionCost, "plot expand", null, null);
 			plot.setSize(plot.getSize() + amount);
 			Output.positiveMessage(player, "You have expanded the plot to size " + plot.getSize() + ".");
 		} else
@@ -1159,6 +1169,7 @@ public class PlotCommand extends LostshardCommand {
 			}
 		// We are good to go
 		plot.setMoney(plot.getMoney() - Variables.plotRenamePrice);
+		new GoldRecord(Variables.plotRenamePrice, "plot rename", null, null);
 		plot.setName(plotName);
 		Output.positiveMessage(player, "You have renamed the plot to " + plotName + ".");
 	}
@@ -1610,6 +1621,7 @@ public class PlotCommand extends LostshardCommand {
 					}
 					plot.addUpgrade(upgrade);
 					plot.setMoney(plot.getMoney() - upgrade.getPrice());
+					new GoldRecord(upgrade.getPrice(), "plot upgrade", null, null);
 					Output.positiveMessage(player, plot.getName() + " upgraded to " + upgrade.getName() + ".");
 				} else
 					Output.simpleError(player, "Not enough money in plot funds. ("
@@ -1651,6 +1663,7 @@ public class PlotCommand extends LostshardCommand {
 			if (plot.getMoney() >= amount) {
 				plot.setMoney(plot.getMoney() - amount);
 				pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
+				new GoldRecord(amount, "plot withdraw", null, player.getUniqueId());
 				Output.positiveMessage(player, "You have withdrawn " + Utils.getDecimalFormater().format(amount)
 						+ " gold coins from the plot fund.");
 			} else

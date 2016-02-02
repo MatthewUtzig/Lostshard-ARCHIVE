@@ -43,8 +43,6 @@ public class DamageHandler {
 	public static double woodAxe = 1d;
 
 	public static List<UUID> players = new ArrayList<UUID>();
-
-	public static List<DamageRecord> records = new ArrayList<DamageRecord>();
 	
 	public static void damage(EntityDamageByEntityEvent event) {
 
@@ -98,10 +96,10 @@ public class DamageHandler {
 				if(attacker instanceof Player)
 					weaponInHand = ((Player) attacker).getItemInHand();
 				else
-					weaponInHand = ((Player) attacker).getInventory().getItem(((Player) attacker).getInventory().first(Material.BOW));
+					weaponInHand = ((Player) ((Arrow) attacker).getShooter()).getInventory().getItem(((Player) attacker).getInventory().first(Material.BOW));
 					
-				records.add(new DamageRecord(event.getDamage(DamageModifier.BASE), event.getDamage(DamageModifier.ARMOR), event.getDamage(DamageModifier.MAGIC), 
-						event.getDamage(DamageModifier.RESISTANCE), event.getFinalDamage(), weaponInHand , player.getInventory()));
+				new DamageRecord(event.getDamage(DamageModifier.BASE), event.getDamage(DamageModifier.ARMOR), event.getDamage(DamageModifier.MAGIC), 
+						event.getDamage(DamageModifier.RESISTANCE), event.getFinalDamage(), weaponInHand , player.getInventory());
 			}
 			if (event.isApplicable(DamageModifier.BASE))
 				event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) * base * weapon);

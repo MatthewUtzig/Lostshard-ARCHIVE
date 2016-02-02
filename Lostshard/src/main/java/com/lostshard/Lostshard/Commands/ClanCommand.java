@@ -16,6 +16,7 @@ import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.TabUtils;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -378,6 +379,7 @@ public class ClanCommand extends LostshardCommand {
 							final int curMoney = pseudoPlayer.getMoney();
 							if (curMoney >= Variables.clanCreateCost) {
 								pseudoPlayer.setMoney(pseudoPlayer.getMoney() - Variables.clanCreateCost);
+								new GoldRecord(Variables.clanCreateCost, "Clan create", player.getUniqueId(), null);
 								final Clan clan = new Clan(clanName, player.getUniqueId());
 								this.cm.getClans().add(clan);
 								clan.insert();

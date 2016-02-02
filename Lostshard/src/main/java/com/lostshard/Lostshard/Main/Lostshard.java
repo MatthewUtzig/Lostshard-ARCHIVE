@@ -309,7 +309,7 @@ public class Lostshard extends JavaPlugin {
 		hibernate = new Hibernate();
 
 		this.loadFromDB();
-
+		
 		Locations.LAWFULL.getLocation().getWorld().setSpawnLocation((int) Locations.LAWFULL.getLocation().getX(),
 				(int) Locations.LAWFULL.getLocation().getY(), (int) Locations.LAWFULL.getLocation().getZ());
 

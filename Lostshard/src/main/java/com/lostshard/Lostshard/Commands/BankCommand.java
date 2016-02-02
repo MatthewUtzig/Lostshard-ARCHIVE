@@ -1,6 +1,7 @@
 package com.lostshard.Lostshard.Commands;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,6 +16,7 @@ import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.TabUtils;
@@ -133,10 +135,12 @@ public class BankCommand extends LostshardCommand {
 			pPlayer.subtractMoney(amount);
 		}
 		tpPlayer.addMoney(amount);
-		sender.sendMessage(ChatColor.GOLD + "You have paied " + targetPlayer.getName() + " "
+		sender.sendMessage(ChatColor.GOLD + "You have paid " + targetPlayer.getName() + " "
 				+ Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(targetPlayer,
-				sender.getName() + " has paied you " + Utils.getDecimalFormater().format(amount) + "gc.");
+				sender.getName() + " has paid you " + Utils.getDecimalFormater().format(amount) + "gc.");
+		UUID uuid = sender instanceof Player ? ((Player) sender).getUniqueId() : null;
+		new GoldRecord(amount, "/pay", uuid , targetPlayer.getUniqueId());
 	}
 
 	/**

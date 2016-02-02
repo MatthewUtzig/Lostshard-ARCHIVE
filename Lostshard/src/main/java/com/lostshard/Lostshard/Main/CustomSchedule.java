@@ -25,9 +25,11 @@ public class CustomSchedule {
 	public static void Schedule() {
 		s.schedule("0 */4 * * *", () -> EnderdragonHandler.resetDrake());
 		s.start();
-		tax.schedule("0 0 * * *", () -> ptm.tax());
+		tax.schedule("0 0 * * *", () -> {
+			ptm.tax();
+			pm.plotPoints();
+			});
 		tax.start();
-		lottery.start();
 		serviceMessage.schedule("30 */2 * * *", () -> {
 			for (final Player p : Bukkit.getOnlinePlayers()) {
 				final PseudoPlayer pseudoPlayer = pm.getPlayer(p);

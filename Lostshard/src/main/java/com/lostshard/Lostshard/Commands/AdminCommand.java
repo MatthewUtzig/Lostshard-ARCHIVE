@@ -22,6 +22,7 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Title;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -156,6 +157,8 @@ public class AdminCommand extends LostshardCommand {
 				+ Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(targetPlayer,
 				sender.getName() + " has given you " + Utils.getDecimalFormater().format(amount) + "gc.");
+		UUID uuid = sender instanceof Player ? ((Player) sender).getUniqueId() : null;
+		new GoldRecord(amount, "/givemoney", uuid, targetPlayer.getUniqueId());
 	}
 
 	private void inv(CommandSender sender, String[] args) {

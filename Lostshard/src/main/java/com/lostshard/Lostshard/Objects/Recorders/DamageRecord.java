@@ -1,28 +1,17 @@
 package com.lostshard.Lostshard.Objects.Recorders;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.google.gson.Gson;
 
 @Entity
-public class DamageRecord {
-
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	private int id;
-	private Date date;
+public class DamageRecord extends Record {
 	
 	private double base;
 	private double armor;
@@ -77,7 +66,6 @@ public class DamageRecord {
 		this.magic = magic;
 		this.resistance = resistance;
 		this.finaldmg = finaldmg;
-		this.date = new Date();
 		
 		Gson gson = new Gson();
 		if(weapon != null) {
@@ -154,13 +142,11 @@ public class DamageRecord {
 	 * @param leggingsEnchants
 	 * @param bootsEnchants
 	 */
-	public DamageRecord(int id, Date date, double base, double armor, double magic, double resistance, double finaldmg,
+	public DamageRecord(double base, double armor, double magic, double resistance, double finaldmg,
 			Material weaponType, String enchants, Material helmet, Material chestplate, Material leggings,
 			Material boots, String helmetEnchants, String chestplateEnchants, String leggingsEnchants,
 			String bootsEnchants) {
 		super();
-		this.id = id;
-		this.date = date;
 		this.base = base;
 		this.armor = armor;
 		this.magic = magic;
@@ -176,34 +162,6 @@ public class DamageRecord {
 		this.chestplateEnchants = chestplateEnchants;
 		this.leggingsEnchants = leggingsEnchants;
 		this.bootsEnchants = bootsEnchants;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return this.id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return this.date;
-	}
-
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	/**

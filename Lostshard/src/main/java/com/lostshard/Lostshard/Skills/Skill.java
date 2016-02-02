@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Recorders.SkillGainRecord;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
@@ -126,6 +127,9 @@ public abstract class Skill {
 			gain -= this.lvl - 1000;
 			this.lvl = 1000;
 		}
+		
+		new SkillGainRecord(this.getName(), Math.max(0, this.getLvl()-gain), gain, this.getLvl());
+		
 		return gain;
 	}
 }

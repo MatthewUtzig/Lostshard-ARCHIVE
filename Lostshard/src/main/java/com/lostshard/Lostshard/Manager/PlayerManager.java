@@ -14,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Recorders.UsernameUUIDRecord;
 import com.lostshard.Lostshard.Utils.Utils;
 
 import net.md_5.bungee.api.ChatColor;
@@ -90,6 +91,7 @@ public class PlayerManager {
 		final PseudoPlayer pPlayer = this.getPlayer(player, true);
 		this.players.add(pPlayer);
 		player.setDisplayName(Utils.getDisplayName(player));
+		new UsernameUUIDRecord(event.getPlayer().getUniqueId(), event.getPlayer().getName());
 		return pPlayer;
 	}
 
@@ -112,5 +114,16 @@ public class PlayerManager {
 	public void tick(double delta, long tick) {
 		for (final PseudoPlayer pPlayer : this.players)
 			pPlayer.tick(delta, tick);
+	}
+
+	public void plotPoints() {
+		for(PseudoPlayer p : this.players) {
+			p.setPlotCreatePoints(p.getPlotCreatePoints()-1);
+		}
+		try {
+			//Do it in the db as well =)
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

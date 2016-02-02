@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -106,8 +107,10 @@ public class PlotManager {
 						new OfflineMessage(plot.getOwner(),
 								plot.getName() + " have failed to pay tax and are now disbaneded.");
 				}
-			} else
+			} else {
 				plot.setMoney(plot.getMoney() - plot.getTax());
+				new GoldRecord(plot.getTax(), "plot tax", null, null);
+			}
 	}
 
 	public List<Plot> getCapturePoints() {
