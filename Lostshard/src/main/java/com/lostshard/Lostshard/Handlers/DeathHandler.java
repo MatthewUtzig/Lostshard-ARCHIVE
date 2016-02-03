@@ -58,6 +58,7 @@ import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
+import com.lostshard.Lostshard.Objects.Recorders.DeathRecord;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -420,6 +421,8 @@ public class DeathHandler {
 		RankHandler.rank(pseudoPlayer);
 
 		pseudoPlayer.clearRecentAttackers();
+		
+		new DeathRecord(player.getUniqueId());
 	}
 
 }

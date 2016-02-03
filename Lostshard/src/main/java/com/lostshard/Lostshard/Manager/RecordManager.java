@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Manager;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.lostshard.Lostshard.Objects.Recorders.Record;
@@ -12,7 +12,7 @@ public class RecordManager {
 		return manager;
 	}
 
-	private List<Record> records = new ArrayList<Record>();
+	private List<Record> records = new LinkedList<Record>();
 
 	public RecordManager() {
 	}

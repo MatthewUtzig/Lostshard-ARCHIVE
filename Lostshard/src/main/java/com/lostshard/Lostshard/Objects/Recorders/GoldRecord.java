@@ -2,13 +2,24 @@ package com.lostshard.Lostshard.Objects.Recorders;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import org.hibernate.annotations.Type;
+
+@Entity
 public class GoldRecord extends Record {
 
 	private int amount;
 	
+	@Column(name="cause")
 	private String cause;
 	
+	@Type(type = "uuid-char")
+	@Column(name="from_player")
 	private UUID from;
+	@Type(type = "uuid-char")
+	@Column(name="to_player")
 	private UUID to;
 	
 	/**
@@ -19,6 +30,7 @@ public class GoldRecord extends Record {
 	public GoldRecord(int amount, String cause, UUID from, UUID to) {
 		super();
 		this.amount = amount;
+		this.cause = cause;
 		this.from = from;
 		this.to = to;
 	}

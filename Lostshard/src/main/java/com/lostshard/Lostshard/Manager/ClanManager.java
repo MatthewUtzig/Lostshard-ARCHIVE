@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Manager;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.lostshard.Lostshard.Objects.Groups.Clan;
@@ -13,7 +13,7 @@ public class ClanManager {
 		return manager;
 	}
 
-	private List<Clan> clans = new ArrayList<Clan>();
+	private List<Clan> clans = new LinkedList<Clan>();
 
 	private ClanManager() {
 

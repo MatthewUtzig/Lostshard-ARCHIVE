@@ -35,9 +35,13 @@ public class ItemUtils {
 	}
 
 	public static int containsAmount(Inventory inventory, Material mat) {
+		if(mat == null)
+			return 0;
+		if(inventory == null)
+			return 0;
 		int amount = 0;
 		for (final ItemStack i : inventory.getContents())
-			if (i.getType().equals(mat))
+			if (i != null && i.getType().equals(mat))
 				amount += i.getAmount();
 		return amount;
 	}

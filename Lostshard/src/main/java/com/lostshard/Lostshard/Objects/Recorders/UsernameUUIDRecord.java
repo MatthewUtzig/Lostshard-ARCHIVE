@@ -2,8 +2,14 @@ package com.lostshard.Lostshard.Objects.Recorders;
 
 import java.util.UUID;
 
+import javax.persistence.Entity;
+
+import org.hibernate.annotations.Type;
+
+@Entity
 public class UsernameUUIDRecord extends Record {
 
+	@Type(type = "uuid-char")
 	private UUID uuid;
 	private String username;
 	

@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Manager;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -23,7 +23,7 @@ public class PlotManager {
 		return manager;
 	}
 
-	private List<Plot> plots = new ArrayList<Plot>();
+	private List<Plot> plots = new LinkedList<Plot>();
 
 	public PlotManager() {
 	}
@@ -114,8 +114,8 @@ public class PlotManager {
 	}
 
 	public List<Plot> getCapturePoints() {
-		List<Plot> results = new ArrayList<Plot>(this.getPlots());
-		results.removeIf(p -> p.isCapturepoint());
+		List<Plot> results = new LinkedList<Plot>(this.getPlots());
+		results.removeIf(p -> !p.isCapturepoint());
 		return results;
 	}
 }

@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Manager;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.lostshard.Lostshard.Objects.Groups.Party;
@@ -13,7 +13,7 @@ public class PartyManager {
 		return manager;
 	}
 
-	private List<Party> paries = new ArrayList<Party>();
+	private List<Party> paries = new LinkedList<Party>();
 
 	private PartyManager() {
 

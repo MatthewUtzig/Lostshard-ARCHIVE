@@ -10,7 +10,12 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Recorders.ConnectionRecord;
 import com.lostshard.Lostshard.Objects.Recorders.DamageRecord;
+import com.lostshard.Lostshard.Objects.Recorders.DeathRecord;
+import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
+import com.lostshard.Lostshard.Objects.Recorders.SkillGainRecord;
+import com.lostshard.Lostshard.Objects.Recorders.UsernameUUIDRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 
@@ -44,6 +49,11 @@ public class Hibernate {
 		cfg.addAnnotatedClass(Store.class);
 		cfg.addAnnotatedClass(ChestRefill.class);
 		cfg.addAnnotatedClass(DamageRecord.class);
+		cfg.addAnnotatedClass(ConnectionRecord.class);
+		cfg.addAnnotatedClass(UsernameUUIDRecord.class);
+		cfg.addAnnotatedClass(SkillGainRecord.class);
+		cfg.addAnnotatedClass(GoldRecord.class);
+		cfg.addAnnotatedClass(DeathRecord.class);
 		
 
 		factory = cfg.buildSessionFactory();

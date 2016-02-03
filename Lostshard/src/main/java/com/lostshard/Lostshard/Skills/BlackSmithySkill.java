@@ -293,7 +293,7 @@ public class BlackSmithySkill extends Skill {
 		}
 		Material cost = null;
 		boolean cangain = false;
-		final int costAmount = 1;
+		int costAmount = 1;
 		if (ItemUtils.isDiamond(item)) {
 			cost = Material.DIAMOND;
 			cangain = true;
@@ -310,6 +310,11 @@ public class BlackSmithySkill extends Skill {
 				cangain = true;
 		} else if (ItemUtils.isWood(item)) {
 			cost = Material.WOOD;
+			if (lvl < 250)
+				cangain = true;
+		} else if (item.equals(Material.BOW)) {
+			cost = Material.STRING;
+			costAmount = 3;
 			if (lvl < 250)
 				cangain = true;
 		}

@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Manager;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,11 +9,15 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Recorders.ConnectionRecord;
 import com.lostshard.Lostshard.Objects.Recorders.UsernameUUIDRecord;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -27,7 +31,7 @@ public class PlayerManager {
 		return manager;
 	}
 
-	private List<PseudoPlayer> players = new ArrayList<PseudoPlayer>();
+	private List<PseudoPlayer> players = new LinkedList<PseudoPlayer>();
 
 	public PseudoPlayer getPlayer(OfflinePlayer player) {
 		return this.getPlayer(player.getUniqueId());
@@ -91,7 +95,8 @@ public class PlayerManager {
 		final PseudoPlayer pPlayer = this.getPlayer(player, true);
 		this.players.add(pPlayer);
 		player.setDisplayName(Utils.getDisplayName(player));
-		new UsernameUUIDRecord(event.getPlayer().getUniqueId(), event.getPlayer().getName());
+		new UsernameUUIDRecord(player.getUniqueId(), event.getPlayer().getName());
+		new ConnectionRecord(player.getUniqueId(), player.getAddress().getAddress().getHostAddress());
 		return pPlayer;
 	}
 
@@ -101,10 +106,25 @@ public class PlayerManager {
 			pPlayer.getParty().removeMember(event.getPlayer().getUniqueId());
 			pPlayer.getParty().sendMessage(event.getPlayer().getName() + " has left the party.");
 		}
-		System.out.println("updateing on quit");
 		pPlayer.save();
-		System.out.println("updated on quit");
 		this.players.remove(pPlayer);
+		
+		Session s = Lostshard.getSession();
+		
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			
+			SQLQuery q = s.createSQLQuery("UPDATE ConnectionRecord SET left_date = NOW() WHERE player='"+event.getPlayer().getUniqueId().toString()+"' ORDER BY id DESC LIMIT 1");
+			
+			q.executeUpdate();
+			
+			t.commit();
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
 	public void setPlayers(List<PseudoPlayer> players) {
@@ -120,9 +140,15 @@ public class PlayerManager {
 		for(PseudoPlayer p : this.players) {
 			p.setPlotCreatePoints(p.getPlotCreatePoints()-1);
 		}
+		Session s = Lostshard.getSession();
 		try {
-			//Do it in the db as well =)
+			Transaction t = s.beginTransaction();
+			Query q = s.createQuery("UPDATE PseudoPlayer p SET p.plotCreatePoints = p.plotCreatePoints-1 WHERE p.plotCreatePoints > 0");
+			q.executeUpdate();
+			t.commit();
+			s.close();
 		} catch (Exception e) {
+			s.close();
 			e.printStackTrace();
 		}
 	}

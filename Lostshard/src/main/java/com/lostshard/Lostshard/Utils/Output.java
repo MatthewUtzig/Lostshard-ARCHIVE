@@ -53,7 +53,6 @@ public class Output {
 		for (final Player p : Bukkit.getOnlinePlayers()) {
 			if (p.getLocation().distance(location) <= range)
 				p.sendMessage(ChatColor.GREEN + message);
-			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
 			players++;
 		}
 		return players;

@@ -1,5 +1,8 @@
 package com.lostshard.Lostshard.Objects.Recorders;
 
+import javax.persistence.Entity;
+
+@Entity
 public class SkillGainRecord extends Record {
 
 	private String skill;

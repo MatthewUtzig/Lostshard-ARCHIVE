@@ -234,8 +234,10 @@ public class AdminCommand extends LostshardCommand {
 			if (!sender.isOp()) {
 				Output.simpleError(sender, "Unknown command");
 				return true;
-			} else
+			} else {
 				this.ptm.tax();
+				this.pm.plotPoints();
+			}
 		else if (cmd.getName().equalsIgnoreCase("inv"))
 			if (!sender.isOp()) {
 				Output.simpleError(sender, "Unknown command");

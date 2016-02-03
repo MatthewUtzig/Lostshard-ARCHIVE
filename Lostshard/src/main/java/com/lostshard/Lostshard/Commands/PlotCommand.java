@@ -12,7 +12,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Events.EventManager;
@@ -67,23 +66,22 @@ public class PlotCommand extends LostshardCommand {
 		final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
 		int plotsThisWeek = 0;
 		if (plotCreatePoints > 0)
-			plotsThisWeek = plotCreatePoints / 7;
+			plotsThisWeek = (int) Math.ceil(plotCreatePoints / 7);
 
 		if (player.isOp())
 			plotsThisWeek = 0;
 
 		int plotMoneyCost = Variables.plotCreatePrice;
-		final ItemStack plotDiamondCost = Variables.plotCreateItemPrice;
+		int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
 		// for each owned plot, double the price
-		for (int i = 0; i < plotsThisWeek; i++) {
-			plotMoneyCost *= 2;
-			plotDiamondCost.setAmount(plotDiamondCost.getAmount() * 2);
-		}
+		// for each owned plot, double the price
+		plotMoneyCost *= Math.pow(2, plotsThisWeek);
+		plotDiamondCost *= Math.pow(2, plotsThisWeek);
 		// make sure the player has enough money and diamonds
 		if (!player.isOp() && !(curMoney >= plotMoneyCost
-				&& player.getInventory().containsAtLeast(plotDiamondCost, plotDiamondCost.getAmount()))) {
+				&& ItemUtils.containsAmount(player.getInventory(), Variables.plotCreateItemPrice.getType()) >= plotDiamondCost)) {
 			Output.simpleError(player, "can't afford to create a plot, cost: " + plotMoneyCost + " gold & "
-					+ plotDiamondCost.getAmount() + " diamonds.");
+					+ plotDiamondCost + " diamonds.");
 			return;
 		}
 		// verify that this plot wouldn't intersect with an existing plot
@@ -140,7 +138,7 @@ public class PlotCommand extends LostshardCommand {
 			pseudoPlayer.setPlotCreatePoints(pseudoPlayer.getPlotCreatePoints() + 7);
 			// debited money successfully, now remove the proper amount of
 			// diamonds
-			ItemUtils.removeItem(player.getInventory(), plotDiamondCost.getType(), plotDiamondCost.getAmount());
+			ItemUtils.removeItem(player.getInventory(), Variables.plotCreateItemPrice.getType(), plotDiamondCost);
 			// costs paid, create the plot
 
 			final Plot plot = new Plot(plotName, player.getUniqueId(), curLoc);
@@ -149,7 +147,7 @@ public class PlotCommand extends LostshardCommand {
 			Output.positiveMessage(player,
 					"You have created the plot \"" + plot.getName() + "\", it cost "
 							+ Utils.getDecimalFormater().format(plotMoneyCost) + " gc and "
-							+ plotDiamondCost.getAmount() + " diamonds.");
+							+ plotDiamondCost + " diamonds.");
 		} else {
 			player.sendMessage(ChatColor.DARK_RED + "can't create a plot there, too close to the following plots:");
 			int maxDisplay = 6;
@@ -1317,14 +1315,12 @@ public class PlotCommand extends LostshardCommand {
 			final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
 			int plotsThisWeek = 0;
 			if (plotCreatePoints > 0)
-				plotsThisWeek = plotCreatePoints / 7;
+				plotsThisWeek = (int) Math.ceil(plotCreatePoints / 7);
 			int plotMoneyCost = Variables.plotCreatePrice;
 			int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
 			// for each owned plot, double the price
-			for (int i = 0; i < plotsThisWeek; i++) {
-				plotMoneyCost *= 2;
-				plotDiamondCost *= 2;
-			}
+			plotMoneyCost *= Math.pow(2, plotsThisWeek);
+			plotDiamondCost *= Math.pow(2, plotsThisWeek);
 
 			player.sendMessage(ChatColor.YELLOW + "It would cost " + plotMoneyCost + " gc and " + plotDiamondCost
 					+ " diamonds to create a size 10 plot here.");
@@ -1401,18 +1397,15 @@ public class PlotCommand extends LostshardCommand {
 
 		final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
 		int plotsThisWeek = 0;
-		if (plotCreatePoints > 0) {
-			plotsThisWeek = plotCreatePoints / 7;
-		}
+		if (plotCreatePoints > 0)
+			plotsThisWeek = (int) Math.ceil(plotCreatePoints / 7);
 		int plotMoneyCost = Variables.plotCreatePrice;
 		int plotDiamondCost = Variables.plotCreateItemPrice.getAmount();
 		// for each owned plot, double the price
-		for (int i = 0; i < plotsThisWeek; i++) {
-			plotMoneyCost *= 2;
-			plotDiamondCost *= 2;
-		}
+		plotMoneyCost *= Math.pow(2, plotsThisWeek);
+		plotDiamondCost *= Math.pow(2, plotsThisWeek);
 
-		player.sendMessage(ChatColor.YELLOW + "It would cost $" + plotMoneyCost + " and " + plotDiamondCost
+		player.sendMessage(ChatColor.YELLOW + "It would cost " + plotMoneyCost + "gc and " + plotDiamondCost
 				+ " diamonds to create a size 10 plot here.");
 		return;
 	}
