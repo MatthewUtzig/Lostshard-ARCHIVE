@@ -9,9 +9,9 @@ import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.RecordManager;
-import com.lostshard.Lostshard.Objects.Groups.Clan;
-import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
+//import com.lostshard.Lostshard.Objects.Groups.Clan;
+//import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+//import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recorders.Record;
 
 public class AsyncGameLoop extends BukkitRunnable {
@@ -27,45 +27,45 @@ public class AsyncGameLoop extends BukkitRunnable {
 		final Session s = Lostshard.getSession();
 		try {
 			Transaction t;
-			try {
-				t = s.beginTransaction();
-				t.begin();
-				for (final PseudoPlayer p : this.pm.getPlayers()) {
-					if (p.isUpdate()) {
-						s.update(p);
-						p.setUpdate(false);
-					}
-				}
-				t.commit();
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				t = s.beginTransaction();
-				t.begin();
-				for (final Plot p : this.ptm.getPlots()) {
-						if (p.isUpdate()) {
-							s.update(p);
-							p.setUpdate(false);
-						}
-				}
-				t.commit();
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				t = s.beginTransaction();
-				t.begin();
-				for (final Clan c : this.cm.getClans()) {
-						if (c.isUpdate()) {
-							s.update(c);
-							c.setUpdate(false);
-						}
-				}
-				t.commit();
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
+//			try {
+//				t = s.beginTransaction();
+//				t.begin();
+//				for (final PseudoPlayer p : this.pm.getPlayers()) {
+//					if (p.isUpdate()) {
+//						s.update(p);
+//						p.setUpdate(false);
+//					}
+//				}
+//				t.commit();
+//			} catch (final Exception e) {
+//				e.printStackTrace();
+//			}
+//			try {
+//				t = s.beginTransaction();
+//				t.begin();
+//				for (final Plot p : this.ptm.getPlots()) {
+//						if (p.isUpdate()) {
+//							s.update(p);
+//							p.setUpdate(false);
+//						}
+//				}
+//				t.commit();
+//			} catch (final Exception e) {
+//				e.printStackTrace();
+//			}
+//			try {
+//				t = s.beginTransaction();
+//				t.begin();
+//				for (final Clan c : this.cm.getClans()) {
+//						if (c.isUpdate()) {
+//							s.update(c);
+//							c.setUpdate(false);
+//						}
+//				}
+//				t.commit();
+//			} catch (final Exception e) {
+//				e.printStackTrace();
+//			}
 			try {
 				t = s.beginTransaction();
 				t.begin();

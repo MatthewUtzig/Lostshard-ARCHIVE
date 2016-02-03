@@ -72,8 +72,10 @@ public class ArcherySkill extends Skill {
 	public ArcherySkill() {
 		super();
 		this.setName("Archery");
-		this.setBaseProb(.2);
-		this.setScaleConstant(60);
+		this.setBaseProb(1);
+		this.setScaleConstant(50);
+		this.setMinGain(5);
+		this.setMinGain(15);
 		this.setMat(Material.BOW);
 	}
 

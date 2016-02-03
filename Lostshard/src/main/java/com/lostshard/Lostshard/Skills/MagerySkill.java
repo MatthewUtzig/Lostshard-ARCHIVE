@@ -15,8 +15,8 @@ public class MagerySkill extends Skill {
 		super();
 		this.setName("Magery");
 		this.setMat(Material.STICK);
-		this.setBaseProb(2);
-		this.setScaleConstant(60);
+		this.setBaseProb(1);
+		this.setScaleConstant(40);
 		this.setMinGain(1);
 		this.setMaxGain(10);
 	}

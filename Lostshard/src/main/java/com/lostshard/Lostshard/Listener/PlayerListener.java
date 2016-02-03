@@ -7,12 +7,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -24,6 +26,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -91,6 +94,8 @@ public class PlayerListener extends LostshardListener implements Managers {
 			this.restAndMeditate(event);
 		}
 	}
+	
+	
 
 	@EventHandler
 	public void onPlayeQuit(PlayerQuitEvent event) {
@@ -120,9 +125,14 @@ public class PlayerListener extends LostshardListener implements Managers {
 			Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " left the game while in combat.");
 			event.setQuitMessage(null);
 		}
-		pm.onPlayerQuit(event);
+		pm.onPlayerQuit(event.getPlayer());
 		TamingSkill.onLave(event);
 		CapturepointHandler.onPlayerQuit(event);
+	}
+	
+	@EventHandler
+	public void onPlayerKick(PlayerKickEvent event) {
+//		pm.onPlayerQuit(event.getPlayer());
 	}
 
 	@EventHandler
@@ -197,6 +207,12 @@ public class PlayerListener extends LostshardListener implements Managers {
 		Gate.onPlayerInteractEvent(event);
 		BlackSmithySkill.anvilProtect(event);
 		SurvivalismSkill.onHoe(event);
+	}
+	
+	@EventHandler
+	public void EnderPearlThrow(ProjectileLaunchEvent event) {
+		if(event.getEntity() instanceof EnderPearl)
+			event.setCancelled(true);
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

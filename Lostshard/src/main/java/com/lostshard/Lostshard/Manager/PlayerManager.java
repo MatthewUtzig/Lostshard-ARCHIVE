@@ -8,7 +8,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -100,11 +99,11 @@ public class PlayerManager {
 		return pPlayer;
 	}
 
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		final PseudoPlayer pPlayer = this.getPlayer(event.getPlayer());
+	public void onPlayerQuit(Player player) {
+		final PseudoPlayer pPlayer = this.getPlayer(player);
 		if (pPlayer.getParty() != null) {
-			pPlayer.getParty().removeMember(event.getPlayer().getUniqueId());
-			pPlayer.getParty().sendMessage(event.getPlayer().getName() + " has left the party.");
+			pPlayer.getParty().removeMember(player.getUniqueId());
+			pPlayer.getParty().sendMessage(player.getName() + " has left the party.");
 		}
 		pPlayer.save();
 		this.players.remove(pPlayer);
@@ -115,7 +114,7 @@ public class PlayerManager {
 			Transaction t = s.beginTransaction();
 			t.begin();
 			
-			SQLQuery q = s.createSQLQuery("UPDATE ConnectionRecord SET left_date = NOW() WHERE player='"+event.getPlayer().getUniqueId().toString()+"' ORDER BY id DESC LIMIT 1");
+			SQLQuery q = s.createSQLQuery("UPDATE ConnectionRecord SET left_date = NOW() WHERE player='"+player.getUniqueId().toString()+"' ORDER BY id DESC LIMIT 1");
 			
 			q.executeUpdate();
 			
@@ -143,7 +142,9 @@ public class PlayerManager {
 		Session s = Lostshard.getSession();
 		try {
 			Transaction t = s.beginTransaction();
-			Query q = s.createQuery("UPDATE PseudoPlayer p SET p.plotCreatePoints = p.plotCreatePoints-1 WHERE p.plotCreatePoints > 0");
+			Query q = s.createQuery("UPDATE PseudoPlayer p SET p.plotCreatePoints = p.plotCreatePoints-1 WHERE p.plotCreatePoints > 0;");
+			q.executeUpdate();
+			q = s.createQuery("UPDATE PseudoPlayer p SET p.murderCounts = p.murderCounts-1 WHERE p.murderCounts > 0 AND p.murderCounts < 20");
 			q.executeUpdate();
 			t.commit();
 			s.close();

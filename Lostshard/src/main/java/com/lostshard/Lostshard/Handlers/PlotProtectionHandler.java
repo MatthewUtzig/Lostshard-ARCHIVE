@@ -52,6 +52,7 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
+import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Title;
 
@@ -73,7 +74,7 @@ public class PlotProtectionHandler {
 		final Plot plot = ptm.findPlotAt(event.getBlock().getLocation());
 		if (plot == null)
 			return;
-		if (!plot.isAllowedToBuild(player)) {
+		if (!plot.isAllowedToBuild(player) || (ItemUtils.isRedstone(event.getBlock().getType()) && !plot.isCoownerOrAbove(player))) {
 			final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
@@ -834,7 +835,7 @@ public class PlotProtectionHandler {
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
-		if (!plot.isAllowedToBuild(player)) {
+		if (!plot.isAllowedToBuild(player) || (ItemUtils.isRedstone(event.getBlock().getType()) && !plot.isCoownerOrAbove(player))) {
 			event.setCancelled(true);
 			Output.simpleError(player, "Can't place blocks here, " + plot.getName() + " is protected.");
 		}

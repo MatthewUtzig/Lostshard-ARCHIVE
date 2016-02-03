@@ -26,7 +26,7 @@ public abstract class Skill {
 	@Transient
 	private double scaleConstant = 25;
 	@Transient
-	private int minGain = 0;
+	private int minGain = 1;
 	@Transient
 	private int maxGain = 5;
 	@Transient

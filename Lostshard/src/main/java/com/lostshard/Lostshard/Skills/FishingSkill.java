@@ -262,7 +262,7 @@ public class FishingSkill extends Skill {
 		this.setBaseProb(1);
 		this.setMaxGain(30);
 		this.setMinGain(10);
-		this.setScaleConstant(45);
+		this.setScaleConstant(40);
 		this.setMat(Material.FISHING_ROD);
 	}
 

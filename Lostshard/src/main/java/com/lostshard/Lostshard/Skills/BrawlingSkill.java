@@ -78,8 +78,10 @@ public class BrawlingSkill extends Skill {
 	public BrawlingSkill() {
 		super();
 		this.setName("Brawling");
-		this.setBaseProb(.2);
-		this.setScaleConstant(60);
+		this.setBaseProb(1);
+		this.setScaleConstant(35);
+		this.setMaxGain(15);
+		this.setMinGain(5);
 		this.setMat(Material.PORK);
 	}
 

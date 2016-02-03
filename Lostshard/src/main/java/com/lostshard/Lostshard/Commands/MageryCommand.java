@@ -71,10 +71,9 @@ public class MageryCommand extends LostshardCommand {
 	}
 
 	private boolean haveScroll(Scroll scroll, PseudoPlayer pPlayer, Player player) {
-		if (scroll == null || !pPlayer.getScrolls().contains(scroll)) {
-			Output.simpleError(player, "You do not have a scroll of " + scroll.getName() + ".");
+		if (scroll != null && pPlayer.getScrolls().contains(scroll))
 			return true;
-		}
+		Output.simpleError(player, "You do not have a scroll of " + scroll.getName() + ".");
 		return false;
 	}
 
@@ -237,7 +236,7 @@ public class MageryCommand extends LostshardCommand {
 				final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 				final String scrollName = StringUtils.join(args, "", 1, args.length);
 				final Scroll scroll = Scroll.getByString(scrollName);
-				if (this.haveScroll(scroll, pPlayer, player))
+				if (!this.haveScroll(scroll, pPlayer, player))
 					return;
 				if (this.sm.useScroll(player, scroll)) {
 					pPlayer.getScrolls().remove(scroll);
@@ -298,7 +297,7 @@ public class MageryCommand extends LostshardCommand {
 					Output.simpleError(player, "There does not exist a sroll with that name.");
 					return;
 				}
-				if (this.haveScroll(scroll, pPlayer, player))
+				if (!this.haveScroll(scroll, pPlayer, player))
 					return;
 				final SpellBook spellbook = pPlayer.getSpellbook();
 				if (!spellbook.containSpell(scroll)) {

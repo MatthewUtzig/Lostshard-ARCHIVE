@@ -145,8 +145,10 @@ public class LumberjackingSkill extends Skill {
 	public LumberjackingSkill() {
 		super();
 		this.setName("Lumberjacking");
-		this.setBaseProb(.2);
-		this.setScaleConstant(60);
+		this.setBaseProb(0.4);
+		this.setScaleConstant(50);
+		this.setMaxGain(10);
+		this.setMinGain(1);
 		this.setMat(Material.IRON_AXE);
 	}
 

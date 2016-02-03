@@ -86,12 +86,10 @@ public class SkillCommand extends LostshardCommand {
 					}
 					final int curSkill = skill.getLvl();
 					int newSkill = curSkill + amountInt;
-					int dif = 0;
-					if (newSkill > 1000) {
-						dif = newSkill - 1000;
-						newSkill = 1000;
-					}
-					amountInt -= dif;
+					newSkill = Math.min(1000, newSkill);
+					
+					amountInt = newSkill-curSkill ;
+					
 					pPlayer.setFreeSkillPoints(pPlayer.getFreeSkillPoints() - amountInt);
 					skill.setLvl(newSkill);
 					Output.positiveMessage(player, "You have increased your " + skill.getName() + ".");

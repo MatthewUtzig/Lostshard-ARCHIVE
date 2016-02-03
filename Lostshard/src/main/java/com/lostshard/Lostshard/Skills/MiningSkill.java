@@ -92,8 +92,10 @@ public class MiningSkill extends Skill {
 	public MiningSkill() {
 		super();
 		this.setName("Mining");
-		this.setScaleConstant(37);
+		this.setScaleConstant(28);
 		this.setBaseProb(.2);
+		this.setMinGain(1);
+		this.setMaxGain(10);
 		this.setMat(Material.IRON_PICKAXE);
 	}
 

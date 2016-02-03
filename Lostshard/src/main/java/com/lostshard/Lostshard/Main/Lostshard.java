@@ -235,16 +235,38 @@ public class Lostshard extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-//		for(Player p : Bukkit.getOnlinePlayers()) {
-//			p.kickPlayer("Server restart!");
-//		}
+		
+		Session s = Lostshard.getSession();
+		
+		try {
+			Transaction t = s.beginTransaction();
+			t.begin();
+			
+			for(Player p : Bukkit.getOnlinePlayers()) {
+			
+				SQLQuery q = s.createSQLQuery("UPDATE ConnectionRecord SET left_date = NOW() WHERE player='"+p.getUniqueId().toString()+"' ORDER BY id DESC LIMIT 1");
+				q.executeUpdate();
+				
+				s.update(pm.getPlayer(p));
+				
+				p.kickPlayer(ChatColor.RED+"Server restart!");
+			}
+			
+			
+			t.commit();
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+		
 		final NPCLibManager npcLibManager = NPCLibManager.getManager();
 		if (npcLibManager != null && npcLibManager.getRegistry() != null) {
 			for (final NPC npc : npcLibManager.getRegistry())
 				npc.despawn();
 			npcLibManager.getRegistry().deregisterAll();
 		}
-		final Session s = Lostshard.getSession();
+		s = Lostshard.getSession();
 		try {
 			final Transaction t = s.beginTransaction();
 			t.begin();

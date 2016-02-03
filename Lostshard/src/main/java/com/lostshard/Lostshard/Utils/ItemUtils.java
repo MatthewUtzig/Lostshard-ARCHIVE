@@ -265,4 +265,11 @@ public class ItemUtils {
 				}
 			}
 	}
+
+	public static boolean isRedstone(Material type) {
+		return type.equals(Material.REDSTONE) || type.equals(Material.REDSTONE_BLOCK) ||
+				type.equals(Material.REDSTONE_COMPARATOR) || type.equals(Material.REDSTONE_COMPARATOR_OFF) ||
+				type.equals(Material.REDSTONE_COMPARATOR_ON) || type.equals(Material.REDSTONE_TORCH_OFF) ||
+				type.equals(Material.REDSTONE_TORCH_OFF);
+	}
 }

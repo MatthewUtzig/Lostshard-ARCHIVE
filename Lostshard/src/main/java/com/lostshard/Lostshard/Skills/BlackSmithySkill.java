@@ -420,8 +420,8 @@ public class BlackSmithySkill extends Skill {
 		super();
 		this.setName("Blacksmithy");
 		this.setBaseProb(1);
-		this.setScaleConstant(30);
-		this.setMaxGain(12);
+		this.setScaleConstant(50);
+		this.setMaxGain(22);
 		this.setMinGain(8);
 		this.setMat(Material.ANVIL);
 	}
