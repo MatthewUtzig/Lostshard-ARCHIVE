@@ -113,7 +113,7 @@ public class FishingSkill extends Skill {
 
 	public static ItemStack getRandomHighst() {
 		final Random ran = new Random();
-		if (Math.random() < .15)
+		if (Math.random() < .01)
 			switch (ran.nextInt(12)) {
 			case 0:
 				return new ItemStack(Material.RECORD_10);
@@ -191,7 +191,7 @@ public class FishingSkill extends Skill {
 			case 7:
 				return new ItemStack(Material.STICK);
 			default:
-				return new ItemStack(Material.STICK);
+				return new ItemStack(Material.TRIPWIRE_HOOK);
 			}
 	}
 

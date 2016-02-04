@@ -31,6 +31,8 @@ public class PlayerManager {
 	}
 
 	private List<PseudoPlayer> players = new LinkedList<PseudoPlayer>();
+	
+	private List<UUID> criminals = new LinkedList<UUID>();
 
 	public PseudoPlayer getPlayer(OfflinePlayer player) {
 		return this.getPlayer(player.getUniqueId());
@@ -79,6 +81,7 @@ public class PlayerManager {
 					.uniqueResult();
 			s.close();
 		} catch (final Exception e) {
+			Bukkit.getPlayer(uuid).kickPlayer(ChatColor.RED + "Something is wrong. We are working on it.");
 			e.printStackTrace();
 			s.close();
 		}
@@ -152,5 +155,19 @@ public class PlayerManager {
 			s.close();
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return the criminals
+	 */
+	public List<UUID> getCriminals() {
+		return criminals;
+	}
+
+	/**
+	 * @param criminals the criminals to set
+	 */
+	public void setCriminals(List<UUID> criminals) {
+		this.criminals = criminals;
 	}
 }

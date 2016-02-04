@@ -22,6 +22,8 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
+import com.lostshard.Lostshard.Spells.Spells.SPL_ClearSky;
+import com.lostshard.Lostshard.Spells.Spells.SPL_Day;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -193,6 +195,10 @@ public class SpellManager {
 			} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
 				pPlayer.getTimer().goToSpawnTicks = 0;
 				Output.simpleError(player, "Damaged while casting, /spawn was disrupted.");
+			} else if (SPL_ClearSky.casting.removeIf(u -> player.getUniqueId().equals(u))) {
+				Output.simpleError(player, "Moved while casting a Clear Sky, it was disrupted.");
+			} else if (SPL_Day.casting.removeIf(u -> player.getUniqueId().equals(u))) {
+				Output.simpleError(player, "Moved while casting a Day, it was disrupted.");
 			}
 		}
 	}
@@ -225,6 +231,10 @@ public class SpellManager {
 		} else if (pPlayer.getTimer().goToSpawnTicks > 0) {
 			pPlayer.getTimer().goToSpawnTicks = 0;
 			Output.simpleError(player, "Moved while casting, /spawn was disrupted.");
+		} else if (SPL_ClearSky.casting.removeIf(u -> player.getUniqueId().equals(u))) {
+			Output.simpleError(player, "Moved while casting a Clear Sky, it was disrupted.");
+		} else if (SPL_Day.casting.removeIf(u -> player.getUniqueId().equals(u))) {
+			Output.simpleError(player, "Moved while casting a Day, it was disrupted.");
 		}
 	}
 

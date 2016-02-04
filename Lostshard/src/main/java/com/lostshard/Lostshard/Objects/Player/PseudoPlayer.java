@@ -30,6 +30,7 @@ import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.ClanManager;
+import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
@@ -82,7 +83,9 @@ public class PseudoPlayer {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Build> builds = new ArrayList<Build>();
 	private int currentBuild = 0;
+	@Transient
 	private int pvpTicks = 0;
+	@Transient
 	private int engageInCombatTicks = 0;
 	@Transient
 	private List<RecentAttacker> recentAttackers = new ArrayList<RecentAttacker>();
@@ -518,6 +521,10 @@ public class PseudoPlayer {
 							+ ChatColor.RESET);
 		if (this.scoreboard != null)
 			this.getScoreboard().updateTeams();
+		if(this.criminal > 0)
+			PlayerManager.getManager().getCriminals().add(playerUUID);
+		else if(this.criminal <= 0)
+			PlayerManager.getManager().getCriminals().remove(playerUUID);
 		this.update();
 	}
 
@@ -604,6 +611,10 @@ public class PseudoPlayer {
 				this.getOnlinePlayer().setDisplayName(Utils.getDisplayName(this.getOnlinePlayer()) + ChatColor.RESET);
 			this.getScoreboard().updateTeams();
 		}
+		if(this.murderCounts > 0)
+			PlayerManager.getManager().getCriminals().add(playerUUID);
+		else if(this.murderCounts <= 0)
+			PlayerManager.getManager().getCriminals().remove(playerUUID);
 		this.update();
 	}
 

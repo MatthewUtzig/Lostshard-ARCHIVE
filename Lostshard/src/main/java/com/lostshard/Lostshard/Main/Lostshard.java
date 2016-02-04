@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -173,10 +174,9 @@ public class Lostshard extends JavaPlugin {
 			}
 			try {
 				t = s.beginTransaction();
-				t.begin();
-				MagicStructure.getMagicStructures().addAll(s.createCriteria(PermanentGate.class).list());
+				Query q = s.createQuery("SELECT playerUUID FROM PseudoPlayer WHERE criminal > 0 OR murderCounts > 0");
+				pm.setCriminals(q.list());
 				t.commit();
-				Bukkit.broadcastMessage(""+MagicStructure.magicstructures.size());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

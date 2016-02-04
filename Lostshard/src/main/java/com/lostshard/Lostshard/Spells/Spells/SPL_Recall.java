@@ -60,7 +60,7 @@ public class SPL_Recall extends Spell {
 			final double size = player.getWorld().getWorldBorder().getSize();
 			final Location center = player.getWorld().getWorldBorder().getCenter();
 			final Location randomLoc = player.getWorld()
-					.getHighestBlockAt(center.add(Math.random() * size - size / 2, 60, Math.random() * size - size / 2))
+					.getHighestBlockAt(center.add(Math.random() * size - size / 2, 240, Math.random() * size - size / 2))
 					.getLocation();
 			runeFound = new Rune(randomLoc, "random", -1);
 		}

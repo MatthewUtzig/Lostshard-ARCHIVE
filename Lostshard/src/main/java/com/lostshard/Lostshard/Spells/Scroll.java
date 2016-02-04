@@ -10,7 +10,9 @@ import com.lostshard.Lostshard.Spells.Spells.SPL_ArrowBlast;
 import com.lostshard.Lostshard.Spells.Spells.SPL_Bridge;
 import com.lostshard.Lostshard.Spells.Spells.SPL_Chronoport;
 import com.lostshard.Lostshard.Spells.Spells.SPL_ClanTeleport;
+import com.lostshard.Lostshard.Spells.Spells.SPL_ClearSky;
 import com.lostshard.Lostshard.Spells.Spells.SPL_CreateFood;
+import com.lostshard.Lostshard.Spells.Spells.SPL_Day;
 import com.lostshard.Lostshard.Spells.Spells.SPL_DetectHidden;
 import com.lostshard.Lostshard.Spells.Spells.SPL_FireWalk;
 import com.lostshard.Lostshard.Spells.Spells.SPL_Fireball;
@@ -37,247 +39,37 @@ import com.lostshard.Lostshard.Spells.Spells.SPL_Teleport;
 import com.lostshard.Lostshard.Spells.Spells.SPL_WallOfStone;
 
 public enum Scroll {
-	MARK("Mark", "Runus Markius", 4, 10, 20, 20,
-			new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), TELEPORT("Teleport",
-					"Nearius Porticus", 3, 20, 10, 0,
-					new ItemStack[] { new ItemStack(Material.FEATHER) }), RECALL("Recall", "Runus Teleporticus", 4, 30,
-							20, 20, new ItemStack[] { new ItemStack(Material.FEATHER) }), PERMANENTGATETRAVEL(
-									"Permanent Gate Travel", "Gatius Permenatus", 8, 100, 20, 20,
-									new ItemStack[] { new ItemStack(Material.OBSIDIAN), new ItemStack(Material.STRING),
-											new ItemStack(Material.REDSTONE) }), GATETRAVEL("Gate Travel",
-													"Gatius Teleportus", 7, 50, 20, 20,
-													new ItemStack[] { new ItemStack(Material.STRING),
-															new ItemStack(Material.REDSTONE) }), FLARE("Flare",
-																	"Beforius Flarius", 1, 0, 0, 10,
-																	new ItemStack[] { new ItemStack(
-																			Material.SULPHUR) }), SLOWFIELD(
-																					"Slow Field", "Webicus Fieldicus",
-																					5, 15, 20, 0,
-																					new ItemStack[] { new ItemStack(
-																							Material.STRING) }), GRASS(
-																									"Grass",
-																									"Grassius Maximus",
-																									1, 5, 20, 0,
-																									new ItemStack[] {
-																											new ItemStack(
-																													Material.SEEDS) }), ICEBALL(
-																															"Ice Ball",
-																															"Freezius Ballicus",
-																															5,
-																															25,
-																															20,
-																															0,
-																															new ItemStack[] {
-																																	new ItemStack(
-																																			Material.STRING) }), ARROWBLAST(
-																																					"Arrow Blast",
-																																					"Blastius Projectilus",
-																																					3,
-																																					20,
-																																					20,
-																																					0,
-																																					new ItemStack[] {
-																																							new ItemStack(
-																																									Material.ARROW),
-																																							new ItemStack(
-																																									Material.SULPHUR) }), CLANTELEPORT(
-																																											"Clan Teleport",
-																																											"Arg Matius Teleportus",
-																																											7,
-																																											50,
-																																											20,
-																																											20,
-																																											new ItemStack[] {
-																																													new ItemStack(
-																																															Material.FEATHER),
-																																													new ItemStack(
-																																															Material.REDSTONE) }), LIGHT(
-																																																	"Light",
-																																																	"Lightus Flingicus",
-																																																	2,
-																																																	10,
-																																																	20,
-																																																	0,
-																																																	new ItemStack[] {
-																																																			new ItemStack(
-																																																					Material.SUGAR_CANE) }), HEALSELF(
-																																																							"Heal Self",
-																																																							"Selfishius Healicus",
-																																																							6,
-																																																							35,
-																																																							20,
-																																																							0,
-																																																							new ItemStack[] {
-																																																									new ItemStack(
-																																																											Material.STRING),
-																																																									new ItemStack(
-																																																											Material.REDSTONE) }), HEALOTHER(
-																																																													"Heal Other",
-																																																													"Buddius Healicus",
-																																																													6,
-																																																													20,
-																																																													20,
-																																																													0,
-																																																													new ItemStack[] {
-																																																															new ItemStack(
-																																																																	Material.STRING),
-																																																															new ItemStack(
-																																																																	Material.SEEDS) }), LIGHTNING(
-																																																																			"Lightning",
-																																																																			"Zeusius Similaricus",
-																																																																			7,
-																																																																			15,
-																																																																			20,
-																																																																			0,
-																																																																			new ItemStack[] {
-																																																																					new ItemStack(
-																																																																							Material.STRING),
-																																																																					new ItemStack(
-																																																																							Material.REDSTONE) }), FIREFIELD(
-																																																																									"Fire Field",
-																																																																									"Charmanderous Fieldicus",
-																																																																									5,
-																																																																									20,
-																																																																									20,
-																																																																									0,
-																																																																									new ItemStack[] {
-																																																																											new ItemStack(
-																																																																													Material.SULPHUR) }), SUMMONANIMAL(
-																																																																															"Summon Animal",
-																																																																															"Magickus Bambicus",
-																																																																															5,
-																																																																															40,
-																																																																															20,
-																																																																															0,
-																																																																															new ItemStack[] {
-																																																																																	new ItemStack(
-																																																																																			Material.FEATHER),
-																																																																																	new ItemStack(
-																																																																																			Material.REDSTONE) }), SUMMONMONSTER(
-																																																																																					"Summon Monster",
-																																																																																					"Magickus Tradjicus",
-																																																																																					8,
-																																																																																					60,
-																																																																																					20,
-																																																																																					0,
-																																																																																					new ItemStack[] {
-																																																																																							new ItemStack(
-																																																																																									Material.BONE),
-																																																																																							new ItemStack(
-																																																																																									Material.REDSTONE) }), BRIDGE(
-																																																																																											"Bridge",
-																																																																																											"An Bridgius",
-																																																																																											4,
-																																																																																											20,
-																																																																																											10,
-																																																																																											0,
-																																																																																											new ItemStack[] {
-																																																																																													new ItemStack(
-																																																																																															Material.SUGAR_CANE) }), FLOWERS(
-																																																																																																	"Flowers",
-																																																																																																	"Flowerus Erupticus",
-																																																																																																	1,
-																																																																																																	5,
-																																																																																																	20,
-																																																																																																	0,
-																																																																																																	new ItemStack[] {
-																																																																																																			new ItemStack(
-																																																																																																					Material.SEEDS) }), FIREBALL(
-																																																																																																							"Fireball",
-																																																																																																							"Charmanderous Ballicus",
-																																																																																																							7,
-																																																																																																							10,
-																																																																																																							5,
-																																																																																																							0,
-																																																																																																							new ItemStack[] {
-																																																																																																									new ItemStack(
-																																																																																																											Material.SULPHUR) }), FIREWALK(
-																																																																																																													"Fire Walk",
-																																																																																																													"Charmanderous Feetius",
-																																																																																																													6,
-																																																																																																													25,
-																																																																																																													20,
-																																																																																																													0,
-																																																																																																													new ItemStack[] {
-																																																																																																															new ItemStack(
-																																																																																																																	Material.SULPHUR),
-																																																																																																															new ItemStack(
-																																																																																																																	Material.REDSTONE) }), CREATEFOOD(
-																																																																																																																			"Create Food",
-																																																																																																																			"Magickus Delicious",
-																																																																																																																			2,
-																																																																																																																			10,
-																																																																																																																			5,
-																																																																																																																			0,
-																																																																																																																			new ItemStack[] {
-																																																																																																																					new ItemStack(
-																																																																																																																							Material.SEEDS) }), DETECTHIDDEN(
-																																																																																																																									"Detect Hidden",
-																																																																																																																									"Sneakthiefius Discoverus",
-																																																																																																																									5,
-																																																																																																																									50,
-																																																																																																																									20,
-																																																																																																																									0,
-																																																																																																																									new ItemStack[] {
-																																																																																																																											new ItemStack(
-																																																																																																																													Material.FEATHER),
-																																																																																																																											new ItemStack(
-																																																																																																																													Material.REDSTONE) }), STONESKIN(
-																																																																																																																															"Stone Skin",
-																																																																																																																															"Rockius Polymorhpus",
-																																																																																																																															7,
-																																																																																																																															50,
-																																																																																																																															20,
-																																																																																																																															0,
-																																																																																																																															new ItemStack[] {
-																																																																																																																																	new ItemStack(
-																																																																																																																																			Material.STONE),
-																																																																																																																																	new ItemStack(
-																																																																																																																																			Material.REDSTONE) }), MOONJUMP(
-																																																																																																																																					"Moon Jump",
-																																																																																																																																					"Hypnoticus Astronauticus",
-																																																																																																																																					8,
-																																																																																																																																					30,
-																																																																																																																																					20,
-																																																																																																																																					0,
-																																																																																																																																					new ItemStack[] {
-																																																																																																																																							new ItemStack(
-																																																																																																																																									Material.FEATHER),
-																																																																																																																																							new ItemStack(
-																																																																																																																																									Material.REDSTONE) }), CHRONOPORT(
-																																																																																																																																											"Chronoport",
-																																																																																																																																											"Rubberus Bandius",
-																																																																																																																																											5,
-																																																																																																																																											25,
-																																																																																																																																											20,
-																																																																																																																																											0,
-																																																																																																																																											new ItemStack[] {
-																																																																																																																																													new ItemStack(
-																																																																																																																																															Material.FEATHER),
-																																																																																																																																													new ItemStack(
-																																																																																																																																															Material.REDSTONE) }), FORCEPUSH(
-																																																																																																																																																	"Force Push",
-																																																																																																																																																	"Fus Ro Dah!",
-																																																																																																																																																	6,
-																																																																																																																																																	15,
-																																																																																																																																																	20,
-																																																																																																																																																	0,
-																																																																																																																																																	new ItemStack[] {
-																																																																																																																																																			new ItemStack(
-																																																																																																																																																					Material.FEATHER),
-																																																																																																																																																			new ItemStack(
-																																																																																																																																																					Material.REDSTONE) }), WALLOFSTONE(
-																																																																																																																																																							"Wall of Stone",
-																																																																																																																																																							"Blockus Rockius",
-																																																																																																																																																							4,
-																																																																																																																																																							15,
-																																																																																																																																																							20,
-																																																																																																																																																							0,
-																																																																																																																																																							new ItemStack[] {
-																																																																																																																																																									new ItemStack(
-																																																																																																																																																											Material.STONE),
-																																																																																																																																																									new ItemStack(
-																																																																																																																																																											Material.REDSTONE) });
+	MARK("Mark", "Runus Markius", 4, 10, 20, 20, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	TELEPORT("Teleport", "Nearius Porticus", 3, 20, 10, 0, new ItemStack[] { new ItemStack(Material.FEATHER) }), 
+	RECALL("Recall", "Runus Teleporticus", 4, 30, 20, 20, new ItemStack[] { new ItemStack(Material.FEATHER) }),
+	PERMANENTGATETRAVEL("Permanent Gate Travel", "Gatius Permenatus", 8, 100, 20, 20, new ItemStack[] { new ItemStack(Material.OBSIDIAN), new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE) }),
+	GATETRAVEL("Gate Travel", "Gatius Teleportus", 7, 50, 20, 20, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE) }), 
+	FLARE("Flare", "Beforius Flarius", 1, 0, 0, 10, new ItemStack[] { new ItemStack(Material.SULPHUR) }), 
+	SLOWFIELD("Slow Field", "Webicus Fieldicus", 5, 15, 20, 0, new ItemStack[] { new ItemStack( Material.STRING) }), 
+	GRASS("Grass", "Grassius Maximus", 1, 5, 20, 0, new ItemStack[] {new ItemStack(Material.SEEDS) }), 
+	ICEBALL("Ice Ball", "Freezius Ballicus", 5, 25, 20, 0, new ItemStack[] { new ItemStack(Material.STRING) }), 
+	ARROWBLAST("Arrow Blast", "Blastius Projectilus", 3, 20, 20, 0, new ItemStack[] { new ItemStack(Material.ARROW), new ItemStack(Material.SULPHUR) }), 
+	CLANTELEPORT("Clan Teleport", "Arg Matius Teleportus", 7, 50, 20, 20, new ItemStack[] {new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	LIGHT("Light", "Lightus Flingicus", 2, 10, 20, 0, new ItemStack[] { new ItemStack(Material.SUGAR_CANE) }),
+	HEALSELF("Heal Self", "Selfishius Healicus", 6, 35, 20, 0, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE) }), 
+	HEALOTHER("Heal Other", "Buddius Healicus", 6, 20, 20, 0, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.SEEDS) }), 
+	LIGHTNING("Lightning", "Zeusius Similaricus", 7, 15, 20, 0, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.REDSTONE) }), 
+	FIREFIELD("Fire Field", "Charmanderous Fieldicus", 5, 20, 20, 0, new ItemStack[] { new ItemStack(Material.SULPHUR) }), 
+	SUMMONANIMAL("Summon Animal","Magickus Bambicus", 5, 40, 20, 0, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	SUMMONMONSTER("Summon Monster", "Magickus Tradjicus", 8, 60, 20, 0, new ItemStack[] { new ItemStack(Material.BONE), new ItemStack(Material.REDSTONE) }),
+	BRIDGE("Bridge", "An Bridgius", 4, 20, 10, 0, new ItemStack[] { new ItemStack( Material.SUGAR_CANE) }), 
+	FLOWERS("Flowers", "Flowerus Erupticus", 1, 5, 20, 0, new ItemStack[] { new ItemStack(Material.SEEDS) }), 
+	FIREBALL("Fireball", "Charmanderous Ballicus", 7, 10, 5, 0, new ItemStack[] { new ItemStack(Material.SULPHUR) }),
+	FIREWALK("Fire Walk", "Charmanderous Feetius", 6, 25, 20, 0, new ItemStack[] { new ItemStack(Material.SULPHUR), new ItemStack(Material.REDSTONE) }), 
+	CREATEFOOD("Create Food", "Magickus Delicious", 2, 10, 5, 0, new ItemStack[] { new ItemStack(Material.SEEDS) }), 
+	DETECTHIDDEN("Detect Hidden", "Sneakthiefius Discoverus", 5, 50, 20, 0, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	STONESKIN("Stone Skin", "Rockius Polymorhpus", 7, 50, 20, 0, new ItemStack[] { new ItemStack(Material.STONE), new ItemStack(Material.REDSTONE) }), 
+	MOONJUMP("Moon Jump", "Hypnoticus Astronauticus", 8, 30, 20, 0, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	CHRONOPORT("Chronoport", "Rubberus Bandius", 5, 25, 20, 0, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	FORCEPUSH("Force Push", "Fus Ro Dah!", 6, 15, 20, 0, new ItemStack[] { new ItemStack(Material.FEATHER), new ItemStack(Material.REDSTONE) }), 
+	WALLOFSTONE("Wall of Stone", "Blockus Rockius", 4, 15, 20, 0, new ItemStack[] { new ItemStack(Material.STONE), new ItemStack(Material.REDSTONE) }),
+	DAY("Day", "Morningus Erupticus", 8, 0, 20, 0, new ItemStack[] { new ItemStack(Material.GLOWSTONE_DUST), new ItemStack(Material.REDSTONE) }),
+	CLEARSKY("Clear Sky", "Precipitous Quititus", 8, 0, 20, 0, new ItemStack[] { new ItemStack(Material.SEEDS), new ItemStack(Material.REDSTONE) });
 
 	public static Scroll getByString(String string) {
 		for (final Scroll st : values())
@@ -414,6 +206,10 @@ public enum Scroll {
 			return new SPL_Forcepush(this);
 		case WALLOFSTONE:
 			return new SPL_WallOfStone(this);
+		case CLEARSKY:
+			return new SPL_ClearSky(this);
+		case DAY:
+			return new SPL_Day(this);
 		default:
 			return null;
 		}
