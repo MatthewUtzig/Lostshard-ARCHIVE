@@ -79,6 +79,7 @@ public class PlayerManager {
 					.uniqueResult();
 			s.close();
 		} catch (final Exception e) {
+			Bukkit.getPlayer(uuid).kickPlayer(ChatColor.RED + "Something is wrong. We are working on it.");
 			e.printStackTrace();
 			s.close();
 		}

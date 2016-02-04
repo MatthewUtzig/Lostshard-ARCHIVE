@@ -95,9 +95,10 @@ public class DamageHandler {
 				ItemStack weaponInHand;
 				if(attacker instanceof Player)
 					weaponInHand = ((Player) attacker).getItemInHand();
-				else
-					weaponInHand = ((Player) ((Arrow) attacker).getShooter()).getInventory().getItem(((Player) attacker).getInventory().first(Material.BOW));
-					
+				else {
+					Player playerAttacker = ((Player) ((Arrow) attacker).getShooter());
+					weaponInHand = playerAttacker.getInventory().getItem(playerAttacker.getInventory().first(Material.BOW));
+				}
 				new DamageRecord(event.getDamage(DamageModifier.BASE), event.getDamage(DamageModifier.ARMOR), event.getDamage(DamageModifier.MAGIC), 
 						event.getDamage(DamageModifier.RESISTANCE), event.getFinalDamage(), weaponInHand , player.getInventory());
 			}
