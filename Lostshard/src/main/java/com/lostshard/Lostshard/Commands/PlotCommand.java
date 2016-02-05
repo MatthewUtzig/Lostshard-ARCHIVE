@@ -255,6 +255,10 @@ public class PlotCommand extends LostshardCommand {
 
 	private void plotSetCapzone(Player player, String[] args) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -278,6 +282,10 @@ public class PlotCommand extends LostshardCommand {
 
 	private void plotEffect(Player player, String[] args) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
@@ -288,10 +296,10 @@ public class PlotCommand extends LostshardCommand {
 				if(plot.getEffects().contains(pe))
 					continue;
 				else
-					player.sendMessage(ChatColor.YELLOW + "- " + pe.name().toLowerCase());
+					player.sendMessage(ChatColor.YELLOW + "- " + StringUtils.capitalize(pe.name().toLowerCase()));
 			player.sendMessage(ChatColor.GOLD+"-" + plot.getName() + "'s Effects-");
 			for(PlotEffect pe : plot.getEffects())
-				player.sendMessage(ChatColor.YELLOW + "- " + pe.name().toLowerCase());
+				player.sendMessage(ChatColor.YELLOW + "- " + StringUtils.capitalize(pe.name().toLowerCase()));
 			return;
 		}
 		PlotEffect upgrade = PlotEffect.valueOf(args[1].toUpperCase());
@@ -394,12 +402,14 @@ public class PlotCommand extends LostshardCommand {
 
 	private void plotCapturePoint(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle capturepoint for plots.");
 		if (plot.isCapturepoint()) {
 			plot.setCapturepoint(false);
 			plot.setCapturepointData(null);
@@ -819,12 +829,14 @@ public class PlotCommand extends LostshardCommand {
 	 */
 	private void plotMagicToggle(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle magic for plots.");
 		if (plot.isAllowMagic()) {
 			Output.positiveMessage(player, "You have turned off magic for " + plot.getName() + ".");
 			plot.setAllowMagic(false);
@@ -1099,12 +1111,14 @@ public class PlotCommand extends LostshardCommand {
 	 */
 	private void plotPvpToggle(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle pvp for plots.");
 		if (plot.isAllowPvp()) {
 			Output.positiveMessage(player, "You have turned off pvp for " + plot.getName() + ".");
 			plot.setAllowPvp(false);
@@ -1433,12 +1447,14 @@ public class PlotCommand extends LostshardCommand {
 
 	private void plotTitle(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		if(!player.isOp()) {
+			Output.simpleError(player, "Use \"/plot help\" for commands.");
+			return;
+		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle magic for plots.");
 		if (plot.isTitleEntrence()) {
 			Output.positiveMessage(player, "You have turned off title for " + plot.getName() + ".");
 			plot.setTitleEntrence(false);

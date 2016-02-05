@@ -9,6 +9,7 @@ public enum PlotEffect {
 	VENDOR,
 	STAMINA,
 	MANA,
+	SHIRINE
 	;
 
 	public static boolean hasEffect(Clan clan, PlotEffect effect) {

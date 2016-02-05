@@ -86,7 +86,7 @@ public class CrateManager {
 	
 	public Crate getCrateByName(String name) {
 		for(Crate c : getCrates())
-			if(StringUtils.startsWithIgnoreCase(c.getName(), name))
+			if(StringUtils.startsWithIgnoreCase(ChatColor.stripColor(c.getName()), name))
 				return c;	
 		return null;
 	}

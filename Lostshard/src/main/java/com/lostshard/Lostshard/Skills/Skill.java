@@ -127,9 +127,8 @@ public abstract class Skill {
 			gain -= this.lvl - 1000;
 			this.lvl = 1000;
 		}
-		
-		new SkillGainRecord(this.getName(), Math.max(0, this.getLvl()-gain), gain, this.getLvl());
-		
+		if(gain > 0)
+			new SkillGainRecord(this.getName(), Math.max(0, this.getLvl()-gain), gain, this.getLvl());
 		return gain;
 	}
 }

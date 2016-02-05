@@ -45,8 +45,6 @@ public class PVPHandler {
 			return;
 		final Player attacker = (Player) attackerEntity;
 
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		pPlayer.addRecentAttacker(new RecentAttacker(attacker.getUniqueId(), 300));
 		criminalAction(player, attacker);
 	}
 
@@ -221,7 +219,6 @@ public class PVPHandler {
 
 			if (!pseudoPlayerAttacker.isMurderer())
 				playerDamager.setDisplayName(ChatColor.GRAY + playerDamager.getName());
-			// SimpleScoreBoard.updatePlayers();
 		}
 
 		final RecentAttacker recentAttacker = new RecentAttacker(playerDamager.getUniqueId(), 300);
