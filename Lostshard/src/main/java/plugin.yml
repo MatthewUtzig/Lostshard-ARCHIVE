@@ -225,3 +225,6 @@ commands:
    say:
       description: Changes the say command
       usage: /<command> (message)
+   crate:
+      description: gives player crate
+      usage: /<command> (crate) (player)

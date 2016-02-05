@@ -36,6 +36,9 @@ import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
 import com.lostshard.Lostshard.Spells.Scroll;
 
+import me.olivervscreeper.networkutilities.Message;
+import me.olivervscreeper.networkutilities.MessageDisplay;
+
 public class Output {
 
 	static PlayerManager pm = PlayerManager.getManager();
@@ -74,8 +77,10 @@ public class Output {
 		player.sendMessage(ChatColor.GOLD + "Use /rules for rules and /help for help");
 		player.sendMessage(ChatColor.GOLD + "Please communicate in English when using Global Chat.");
 		player.sendMessage(ChatColor.RED + "-Combat logging drops your items on logout.");
-		Title.sendTabTitle(player, ChatColor.GOLD + "Lostshard", ChatColor.GOLD + "IP: minecraft.lostshard.com");
-		Title.sendTitle(player, 20, 30, 20, ChatColor.GOLD + "Welcome to Lostshard", ChatColor.RED + "ALPHA");
+		Message m = new Message(Message.BLANK);
+		m.addRecipient(player);
+		m.send(ChatColor.GOLD + "Welcome to Lostshard", MessageDisplay.TITLE);
+		m.send(ChatColor.RED + "ALPHA", MessageDisplay.SUBTITLE);
 	}
 
 	public static void displayRules(CommandSender sender) {
@@ -235,7 +240,8 @@ public class Output {
 		if (scrolls.size() > 0) {
 			final StringBuilder output = new StringBuilder();
 			for (final Scroll s : scrolls) {
-				final int scrollAmount = Collections.frequency(pseudoPlayer.getScrolls(), s);
+				int scrollAmount = 1;
+				scrollAmount = Collections.frequency(pseudoPlayer.getScrolls(), s);
 				if (pseudoPlayer.getSpellbook().containSpell(s))
 					output.append("+");
 				output.append(s.getName() + " (" + scrollAmount + "), ");
@@ -338,7 +344,7 @@ public class Output {
 		else if (whoPseudoPlayer.isCriminal())
 			sender.sendMessage(ChatColor.RED + "This player is a criminal.");
 		sender.sendMessage(ChatColor.YELLOW + "Murder Counts: " + ChatColor.WHITE + whoPseudoPlayer.getMurderCounts());
-		sender.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE + whoPseudoPlayer.getRank());
+//		sender.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE + whoPseudoPlayer.getRank());
 		final Clan clan = whoPseudoPlayer.getClan();
 		if (clan != null)
 			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE + clan.getName());
@@ -373,10 +379,9 @@ public class Output {
 		else
 			infoText += ChatColor.YELLOW + "Status: " + ChatColor.WHITE + "Public";
 		infoText += ChatColor.YELLOW + ", ";
-		final PseudoPlayer owner = pm.getPlayer(plot.getOwner());
 		if (plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.WHITE + "Neutral";
-		else if (owner.isMurderer() || owner.isCriminal())
+		else if (pm.isCriminal(plot.getOwner()))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.RED + "Criminal";
 		else
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.BLUE + "Lawful";

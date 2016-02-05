@@ -362,20 +362,9 @@ public class DeathHandler {
 
 		System.out.println("PLAYER DEATH: " + player.getName() + " @ " + player.getLocation());
 
-		// NPCHandler.playerDied(player);
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if (pseudoPlayer == null)
 			return;
-
-		// if(pseudoPlayer._claiming) {
-		// ArrayList<Plot> controlPoints = PlotHandler.getControlPoints();
-		// for(Plot cP : controlPoints) {
-		// if(cP.isUnderAttack() &&
-		// cP._capturingPlayerName.equals(player.getName())) {
-		// cP.failCaptureDied(player);
-		// }
-		// }
-		// }
 
 		pseudoPlayer.getTimer().bleedTick = 0;
 		pseudoPlayer.getTimer().spawnTicks = 0;

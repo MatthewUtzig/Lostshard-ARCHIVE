@@ -117,13 +117,14 @@ public class ChatCommand extends LostshardCommand {
 		final String message = StringUtils.join(args, " ", 1, args.length);
 
 		final PseudoPlayer pPlayer = this.pm.getPlayer(targetPlayer);
-		pPlayer.setLastResiver(player.getUniqueId());
 		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + targetPlayer.getName()
 				+ ChatColor.WHITE + "] " + message);
 		if (!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE)
-				&& !pPlayer.getIgnored().contains(player.getUniqueId()))
+				&& !pPlayer.getIgnored().contains(player.getUniqueId())) {
 			targetPlayer.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
 					+ ChatColor.WHITE + "] " + message);
+			pm.getPlayer(targetPlayer).setLastResiver(player.getUniqueId());
+		}
 	}
 
 	@Override
@@ -148,7 +149,7 @@ public class ChatCommand extends LostshardCommand {
 		else if (cmd.getName().equalsIgnoreCase("msg"))
 			this.msgChat(player, args);
 		else if (cmd.getName().equalsIgnoreCase("reply"))
-			this.replayChat(player, args);
+			this.replyChat(player, args);
 		else if (cmd.getName().equalsIgnoreCase("toggleglobal"))
 			this.toggleGlobalChat(player);
 		else if (cmd.getName().equalsIgnoreCase("togglemsg"))
@@ -187,7 +188,7 @@ public class ChatCommand extends LostshardCommand {
 		pPlayer.setChatChannel(curChannel);
 	}
 
-	private void replayChat(Player player, String[] args) {
+	private void replyChat(Player player, String[] args) {
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		if (pPlayer.getLastResiver() == null) {
 			Output.simpleError(player, "You havent received any messages.");
@@ -201,7 +202,7 @@ public class ChatCommand extends LostshardCommand {
 			return;
 		}
 		final PseudoPlayer toPp = this.pm.getPlayer(to);
-		toPp.setLastResiver(to.getUniqueId());
+		toPp.setLastResiver(player.getUniqueId());
 		final String message = StringUtils.join(args, " ");
 
 		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + to.getName() + ChatColor.WHITE

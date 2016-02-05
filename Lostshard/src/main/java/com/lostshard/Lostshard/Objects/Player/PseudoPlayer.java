@@ -217,12 +217,21 @@ public class PseudoPlayer {
 		return this.getMurderCounts() >= Variables.murderPoint ? ChatColor.RED + player.getName()
 				: this.isCriminal() ? ChatColor.GRAY + player.getName() : ChatColor.BLUE + player.getName();
 	}
+	
+	public boolean isLawfull() {
+		return !(isCriminal() || isMurderer());
+	}
 
 	public int getCriminal() {
 		return this.criminal;
 	}
 
 	public Build getCurrentBuild() {
+		if(this.getBuilds().isEmpty()) {
+			this.getBuilds().add(new Build());
+			this.currentBuild = 0;
+		}else if(this.currentBuild > this.getBuilds().size()-1)
+			this.currentBuild = 0;
 		return this.getBuilds().get(this.currentBuild);
 	}
 

@@ -18,7 +18,7 @@ import com.lostshard.Lostshard.Utils.Output;
 public class foodHealHandler {
 
 	static PlayerManager pm = PlayerManager.getManager();
-
+	
 	public static void foodHeal(PlayerInteractEvent event) {
 		if (!(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)))
 			return;

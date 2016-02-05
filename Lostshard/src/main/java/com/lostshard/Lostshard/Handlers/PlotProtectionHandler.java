@@ -54,7 +54,9 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
-import com.lostshard.Lostshard.Utils.Title;
+
+import me.olivervscreeper.networkutilities.Message;
+import me.olivervscreeper.networkutilities.MessageDisplay;
 
 public class PlotProtectionHandler {
 
@@ -296,13 +298,33 @@ public class PlotProtectionHandler {
 		if (event.isCancelled())
 			return;
 		final Block block = event.getClickedBlock();
-		if (!block.getType().equals(Material.STONE_BUTTON) && !block.getType().equals(Material.LEVER))
+		if (!block.getType().equals(Material.STONE_BUTTON) && !block.getType().equals(Material.LEVER) && 
+				!block.getType().equals(Material.DRAGON_EGG))
 			return;
 		final Plot plot = ptm.findPlotAt(block.getLocation());
-		if (plot == null)
+		if (plot == null) {
+			if (block.getType().equals(Material.DRAGON_EGG)) {
+				block.breakNaturally();
+				event.setCancelled(true);
+			}
 			return;
+		}
 		final PlotProtectEvent protectEvent = new PlotProtectEvent(event, plot);
 		EventManager.callEvent(protectEvent);
+		final Player player = event.getPlayer();
+		if(block.getType().equals(Material.DRAGON_EGG)) {
+			event.setCancelled(true);
+			if (protectEvent.isCancelled() ) {
+				block.breakNaturally();
+				return;
+			}
+			if (!plot.isAllowedToBuild(player)) {
+				Output.simpleError(player, "Can't interact with dragon egg, \"" + plot.getName() + "\" is protected.");
+				return;
+			}
+			block.breakNaturally();
+			return;
+		}
 		if (protectEvent.isCancelled())
 			return;
 		if (!plot.isPrivatePlot())
@@ -310,8 +332,10 @@ public class PlotProtectionHandler {
 		if (plot.isAllowedToInteract(event.getPlayer()))
 			return;
 		event.setCancelled(true);
-		final Player player = event.getPlayer();
-		Output.simpleError(player, "Can't click button in \"" + plot.getName() + "\" is protected.");
+		if(block.getType().equals(Material.STONE_BUTTON))
+			Output.simpleError(player, "Can't click button, \"" + plot.getName() + "\" is protected.");
+		else if(block.getType().equals(Material.LEVER))
+			Output.simpleError(player, "Can't click lever, \"" + plot.getName() + "\" is protected.");
 	}
 
 	public static void onEntityChangeBlock(EntityChangeBlockEvent event) {
@@ -539,10 +563,7 @@ public class PlotProtectionHandler {
 			event.getPlayer().setBedSpawnLocation(null);
 		} else {
 			final PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
-			final PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
-			if (plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal()
-					|| plotPlayer.isCriminal() == plotPlayer.isMurderer()
-					|| plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
+			if (pm.isCriminal(plot.getOwner()) == !pPlayer.isLawfull() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
 				Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
 				event.getPlayer().setBedSpawnLocation(event.getBed().getLocation());
 			} else
@@ -660,16 +681,13 @@ public class PlotProtectionHandler {
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
-			final PseudoPlayer plotPlayer = pm.getPlayer(plot.getOwner());
 			if (plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
 				event.setRespawnLocation(pPlayer.getSpawn());
 			} else
-				if (!(plotPlayer.isMurderer() == pPlayer.isMurderer() || plotPlayer.isMurderer() == pPlayer.isCriminal()
-						|| plotPlayer.isCriminal() == plotPlayer.isMurderer()
-						|| plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
-				Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
-				event.setRespawnLocation(pPlayer.getSpawn());
+				if (!(pm.isCriminal(plot.getOwner()) != pPlayer.isLawfull() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
+					Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
+					event.setRespawnLocation(pPlayer.getSpawn());
 			}
 		} else
 			event.setRespawnLocation(pPlayer.getSpawn());
@@ -683,59 +701,48 @@ public class PlotProtectionHandler {
 		final Player player = event.getPlayer();
 		final Plot fromPlot = ptm.findPlotAt(event.getFrom());
 		final Plot toPlot = ptm.findPlotAt(event.getTo());
-		if (fromPlot == null && toPlot != null) {
-			if (toPlot.isTitleEntrence()) {
-				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ toPlot.getName(),
-							"");
-				}
-			} else
-				// must be entering a plot
-				player.sendMessage(ChatColor.GRAY + "You have entered " + toPlot.getName());
-		} else if (toPlot == null && fromPlot != null) {
-			// must be leaving a plot
-			if (fromPlot.isTitleEntrence()) {
-				if (fromPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + "You have left " + fromPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + "You have left " + fromPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ "You have left " + fromPlot.getName(),
-							"");
-				}
-			} else
-				player.sendMessage(ChatColor.GRAY + "You have left " + fromPlot.getName());
-		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
-			// must be moving from one plot to another
-			if (fromPlot.isTitleEntrence()) {
-				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ toPlot.getName(),
-							"");
-				}
+		
+		if (toPlot == fromPlot)
+			return;
+		
+		Message m = new Message(Message.BLANK);
+		
+		m.addRecipient(player);
+		
+		
+		// Left a Plot
+		if(fromPlot != null && toPlot == null) {
+			if(fromPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD + "You have left "+fromPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (fromPlot.isTitleEntrence()){
+				m.send(fromPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
-				player.sendMessage(
-						ChatColor.GRAY + "You have left " + fromPlot.getName() + " and entered " + toPlot.getName());
-			}
+				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		} 
+		// Entered a Plot
+		else if(fromPlot == null && toPlot != null) {
+			if(toPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (toPlot.isTitleEntrence()){
+				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
+			} else {
+				m.send(ChatColor.YELLOW+"You have entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		}
+		// Left a Plot and entered a Plot
+		else if(fromPlot != null && toPlot != null) {
+			if(fromPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (toPlot.isTitleEntrence()){
+				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
+			} else {
+				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\" and entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		}
 	}
 
 	/**
@@ -751,72 +758,47 @@ public class PlotProtectionHandler {
 		final Player player = event.getPlayer();
 		final Plot fromPlot = ptm.findPlotAt(event.getFrom().getBlock().getLocation());
 		final Plot toPlot = ptm.findPlotAt(event.getTo().getBlock().getLocation());
-		if (fromPlot == null && toPlot != null) {
-			if (toPlot.isTitleEntrence()) {
-				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ toPlot.getName(),
-							"");
-				}
-			} else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + toPlot.getName());
-			else {
-				final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "",
-						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + toPlot.getName());
-			}
-		} else if (toPlot == null && fromPlot != null) {
-			// must be leaving a plot
-			if (fromPlot.isTitleEntrence()) {
-				if (fromPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + "You have left " + fromPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + "You have left " + fromPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ "You have left " + fromPlot.getName(),
-							"");
-				}
-			} else if (fromPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + "You have left " + fromPlot.getName());
-			else {
-				final PseudoPlayer owner = pm.getPlayer(fromPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "",
-						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + "You have left "
-								+ fromPlot.getName());
-			}
-		} else if (fromPlot != null && toPlot != null && fromPlot != toPlot)
-			// must be moving from one plot to another
-			if (fromPlot.isTitleEntrence()) {
-				if (toPlot.isCapturepoint())
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GOLD + toPlot.getName(),
-							ChatColor.RED + "Hostile territory");
-				else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-					Title.sendTitle(player, 10, 20, 10, ChatColor.GREEN + toPlot.getName(), "");
-				else {
-					final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-					Title.sendTitle(player, 10, 20, 10,
-							(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE)
-									+ toPlot.getName(),
-							"");
-				}
-			} else if (toPlot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
-				Title.sendTitle(player, 10, 20, 10, "", ChatColor.GREEN + toPlot.getName());
-			else {
-				final PseudoPlayer owner = pm.getPlayer(toPlot.getOwner());
-				Title.sendTitle(player, 10, 20, 10, "",
-						(owner.isCriminal() || owner.isMurderer() ? ChatColor.RED : ChatColor.BLUE) + toPlot.getName());
-			}
+		if (toPlot == fromPlot)
+			return;
+		
+		Message m = new Message(Message.BLANK);
+		
+		m.addRecipient(player);
+		
+		
+		// Left a Plot
+		if(fromPlot != null && toPlot == null) {
+			if(fromPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD + "You have left "+fromPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (fromPlot.isTitleEntrence()){
+				m.send(fromPlot.getDisplayName(), MessageDisplay.TITLE);
+			} else {
+				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		} 
+		// Entered a Plot
+		else if(fromPlot == null && toPlot != null) {
+			if(toPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (toPlot.isTitleEntrence()){
+				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
+			} else {
+				m.send(ChatColor.YELLOW+"You have entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		}
+		// Left a Plot and entered a Plot
+		else if(fromPlot != null && toPlot != null) {
+			if(toPlot.isCapturepoint()) {
+				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
+				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
+			} else if (toPlot.isTitleEntrence()){
+				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
+			} else {
+				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\" and entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
+			}	
+		}
 	}
 
 	/**

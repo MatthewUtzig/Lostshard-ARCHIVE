@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -22,8 +20,7 @@ import org.hibernate.annotations.Type;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 
-@Embeddable
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@MappedSuperclass
 public class Group {
 
 	@Transient

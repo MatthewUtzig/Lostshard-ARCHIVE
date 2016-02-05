@@ -53,7 +53,7 @@ public class PartyCommands extends LostshardCommand {
 						party.addInvited(invitedPlayer.getUniqueId());
 						Utils.sendSmartTextCommand(invitedPlayer,
 								ChatColor.GOLD + player.getName() + " has invited you to a party, Click to join.",
-								ChatColor.LIGHT_PURPLE + "click to join the party.", "/party join " + player.getName());
+								ChatColor.LIGHT_PURPLE + "Click to join the party.", "/party join " + player.getName());
 						// Output.positiveMessage(invitedPlayer,
 						// player.getName()
 						// + " has invited you to join a party.");
@@ -82,6 +82,10 @@ public class PartyCommands extends LostshardCommand {
 					final Party inviterParty = inviterPseudoPlayer.getParty();
 					if (inviterParty != null) {
 						if (inviterParty.isInvited(player.getUniqueId())) {
+							if (inviterParty.getMembers().size() >= 8) {
+								Output.simpleError(player, "The party is full, max clan size is 8.");
+								return;
+							}
 							inviterParty.sendMessage(player.getName() + " has joined the party.");
 							inviterParty.removeInvited(player.getUniqueId());
 							inviterParty.addMember(player.getUniqueId());

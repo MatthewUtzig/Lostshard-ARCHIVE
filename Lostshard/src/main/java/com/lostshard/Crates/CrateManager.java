@@ -3,6 +3,7 @@ package com.lostshard.Crates;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -81,5 +82,12 @@ public class CrateManager {
 
 	public List<Crate> getCrates() {
 		return this.crates;
+	}
+	
+	public Crate getCrateByName(String name) {
+		for(Crate c : getCrates())
+			if(StringUtils.startsWithIgnoreCase(c.getName(), name))
+				return c;	
+		return null;
 	}
 }

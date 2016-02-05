@@ -25,7 +25,7 @@ public class SPL_ClanTeleport extends Spell {
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 		final Player targetPlayer = Bukkit.getPlayer(this.getResponse());
 
-		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
+		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && player.isOp()) {
 			Output.simpleError(player, "Player not found.");
 			return;
 		} else {

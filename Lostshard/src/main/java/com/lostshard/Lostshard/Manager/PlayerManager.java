@@ -1,7 +1,9 @@
 package com.lostshard.Lostshard.Manager;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -32,7 +34,7 @@ public class PlayerManager {
 
 	private List<PseudoPlayer> players = new LinkedList<PseudoPlayer>();
 	
-	private List<UUID> criminals = new LinkedList<UUID>();
+	private Set<UUID> criminals = new HashSet<UUID>();
 
 	public PseudoPlayer getPlayer(OfflinePlayer player) {
 		return this.getPlayer(player.getUniqueId());
@@ -150,7 +152,18 @@ public class PlayerManager {
 			q = s.createQuery("UPDATE PseudoPlayer p SET p.murderCounts = p.murderCounts-1 WHERE p.murderCounts > 0 AND p.murderCounts < 20");
 			q.executeUpdate();
 			t.commit();
-			s.close();
+			
+			try {
+				t = s.beginTransaction();
+				q = s.createQuery("SELECT p.playerUUID FROM PseudoPlayer p WHERE p.criminal > 0 OR p.murderCounts >= 5");
+				@SuppressWarnings("unchecked")
+				List<UUID> results = q.list();
+				setCriminals(results);
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		} catch (Exception e) {
 			s.close();
 			e.printStackTrace();
@@ -160,14 +173,27 @@ public class PlayerManager {
 	/**
 	 * @return the criminals
 	 */
-	public List<UUID> getCriminals() {
+	public Set<UUID> getCriminals() {
 		return criminals;
 	}
 
 	/**
 	 * @param criminals the criminals to set
 	 */
-	public void setCriminals(List<UUID> criminals) {
+	public void setCriminals(Set<UUID> criminals) {
 		this.criminals = criminals;
+	}
+	
+	/**
+	 * @param criminals the criminals to set
+	 */
+	public void setCriminals(List<UUID> criminals) {
+		this.criminals = new HashSet<UUID>(criminals);
+	}
+
+	public boolean isCriminal(UUID uuid) {
+		if(criminals.contains(uuid))
+			return true;
+		return false;
 	}
 }

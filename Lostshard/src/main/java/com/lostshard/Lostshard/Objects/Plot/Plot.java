@@ -36,6 +36,8 @@ import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Utils.ExtraMath;
 
+import net.md_5.bungee.api.ChatColor;
+
 /**
  * @author Jacob Rosborg
  *
@@ -589,6 +591,17 @@ public class Plot {
 
 	public void update() {
 		this.update = true;
+	}
+	
+	@Transient
+	public boolean isLawfull() {
+		return !pm.isCriminal(owner);
+	}
+	
+	@Transient
+	public String getDisplayName() {
+		return (isUpgrade(PlotUpgrade.NEUTRALALIGNMENT) ? ChatColor.GREEN : 
+			!isLawfull() ? ChatColor.RED : ChatColor.BLUE) + this.name;
 	}
 
 	@ElementCollection

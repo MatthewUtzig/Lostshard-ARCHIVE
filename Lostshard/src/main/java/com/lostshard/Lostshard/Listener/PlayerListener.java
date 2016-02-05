@@ -81,10 +81,7 @@ public class PlayerListener extends LostshardListener implements Managers {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClose(InventoryCloseEvent event) {
-		final Player player = (Player) event.getPlayer();
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		if (event.getInventory().getTitle().equals(pPlayer.getBank().getInventory().getTitle()))
-			pPlayer.update();
+		
 	}
 
 	private void onMoveBlock(PlayerMoveEvent event) {

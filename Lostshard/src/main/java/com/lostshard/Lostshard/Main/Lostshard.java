@@ -150,6 +150,16 @@ public class Lostshard extends JavaPlugin {
 		try {
 			Transaction t = s.beginTransaction();
 			try {
+				t = s.beginTransaction();
+				Query q = s.createQuery("SELECT p.playerUUID FROM PseudoPlayer p WHERE p.criminal > 0 OR p.murderCounts >= 5");
+				List<UUID> results = q.list();
+				pm.setCriminals(results);
+				t.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				t = s.beginTransaction();
 				t.begin();
 				ClanManager.getManager().setClans(s.createCriteria(Clan.class).list());
 				t.commit();
@@ -168,14 +178,6 @@ public class Lostshard extends JavaPlugin {
 				t = s.beginTransaction();
 				t.begin();
 				ChestRefillManager.getManager().setChests(s.createCriteria(ChestRefill.class).list());
-				t.commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				t = s.beginTransaction();
-				Query q = s.createQuery("SELECT playerUUID FROM PseudoPlayer WHERE criminal > 0 OR murderCounts > 0");
-				pm.setCriminals(q.list());
 				t.commit();
 			} catch (Exception e) {
 				e.printStackTrace();

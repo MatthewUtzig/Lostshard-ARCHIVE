@@ -1,6 +1,8 @@
 package com.lostshard.Lostshard.Commands;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
@@ -24,8 +26,10 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
-import com.lostshard.Lostshard.Utils.Title;
 import com.lostshard.Lostshard.Utils.Utils;
+
+import me.olivervscreeper.networkutilities.Message;
+import me.olivervscreeper.networkutilities.MessageDisplay;
 
 public class AdminCommand extends LostshardCommand {
 
@@ -38,7 +42,7 @@ public class AdminCommand extends LostshardCommand {
 	 */
 	public AdminCommand(Lostshard plugin) {
 		super(plugin, "test", "tpplot", "tpworld", "setmurders", "tax", "broadcast", "givemoney", "speed",
-				"item", "pvp", "say", "inv");
+				"item", "pvp", "say", "inv", "crate");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -116,11 +120,10 @@ public class AdminCommand extends LostshardCommand {
 			return;
 		}
 		final String[] msgs = StringUtils.join(args, " ").split(";");
-		for (final Player p : Bukkit.getOnlinePlayers()) {
-			Title.sendTitle(p, 15, 25, 15, ChatColor.GREEN + msgs[0],
-					ChatColor.AQUA + (msgs.length > 1 ? msgs[1] : ""));
-			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
-		}
+			Message m = new Message(Message.BLANK);
+			m.addRecipients(Bukkit.getOnlinePlayers());
+			m.send(ChatColor.GREEN + msgs[0], MessageDisplay.TITLE, Sound.ANVIL_LAND);
+			m.send(ChatColor.AQUA+(msgs.length > 1 ? ChatColor.AQUA+msgs[1] : ""), MessageDisplay.SUBTITLE);
 		sender.sendMessage(msgs);
 	}
 
@@ -208,15 +211,32 @@ public class AdminCommand extends LostshardCommand {
 				Output.simpleError(sender, "Unknown command");
 				return true;
 			}
-			final Player player = (Player) sender;
+			
+			return true;
+		} else if(cmd.getName().equalsIgnoreCase("crate")) {
+			if (!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			final CrateManager cm = CrateManager.getManager();
-			Crate crate = cm.getCrates().get(0);
-			player.getWorld().dropItem(player.getLocation(), crate.getCrate());
+			if (args.length < 3) {
+				Output.simpleError(sender, "/crate (player) (crate)");
+				List<String> crates = new ArrayList<String>(cm.getCrates().size());
+				for(Crate c : cm.getCrates())
+					crates.add(c.getName());
+				Output.positiveMessage(sender, StringUtils.join(crates, ", "));
+				return true;
+			}
+			Player target = Bukkit.getPlayer(args[0]);
+			if(target == null) {
+				Output.simpleError(sender, args[0]+" is not online.");
+				return true;
+			}
+			String createName = StringUtils.join(args, " ");
+			Crate crate = cm.getCrateByName(createName);
+			target.getWorld().dropItem(target.getLocation(), crate.getCrate());
 
-			crate = cm.getCrates().get(1);
-			player.getWorld().dropItem(player.getLocation(), crate.getCrate());
-
-			Output.positiveMessage(player, "You got a crate");
+			Output.positiveMessage(target, "You was given the crate \""+crate.getName()+"\".");
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {
 			if (!sender.isOp()) {
@@ -257,13 +277,17 @@ public class AdminCommand extends LostshardCommand {
 		else if (cmd.getName().equalsIgnoreCase("speed"))
 			this.adminSpeed(sender, args);
 		else if (cmd.getName().equalsIgnoreCase("pvp")) {
+			if(!sender.isOp()) {
+				Output.simpleError(sender, "Unknown command");
+				return true;
+			}
 			if (!(sender instanceof Player)) {
 				Output.simpleError(sender, "Only players may perform this command.");
 			} else {
 				final Player player = (Player) sender;
 				if (DamageHandler.players.contains(player.getUniqueId())) {
 					DamageHandler.players.remove(((Player) sender).getUniqueId());
-					Output.positiveMessage(sender, "You can no lonmger see all damage.");
+					Output.positiveMessage(sender, "You can no longer see all damage.");
 				} else {
 					DamageHandler.players.add(((Player) sender).getUniqueId());
 					Output.positiveMessage(sender, "You can now see all damage.");

@@ -19,10 +19,12 @@ public class Crate {
 	private final int id;
 	private final ItemStack crate;
 	private final RandomSelector rs;
+	private String name;
 
 	public Crate(int id, String name, String[] lore, RandomSelector rs) {
 		super();
 		this.id = id;
+		this.setName(name);
 		this.crate = new ItemStack(Material.CHEST);
 		final ItemMeta crate_meta = this.crate.getItemMeta();
 		crate_meta.setDisplayName(name);
@@ -69,5 +71,19 @@ public class Crate {
 					}
 				}
 			};
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 }
