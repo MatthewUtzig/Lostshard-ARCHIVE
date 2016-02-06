@@ -2,6 +2,6 @@ package com.lostshard.Lostshard.NPC;
 
 public enum NPCType {
 
-	GUARD, BANKER, VENDOR;
+	GUARD, BANKER, VENDOR, BOUNTYMASTER;
 
 }

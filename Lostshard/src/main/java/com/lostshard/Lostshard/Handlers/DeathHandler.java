@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -408,10 +409,16 @@ public class DeathHandler {
 		// Rank stuff
 
 		RankHandler.rank(pseudoPlayer);
-
+		
+		Set<UUID> uuids = new HashSet<UUID>(recentAttackers.size());
+		
+		for(RecentAttacker a : recentAttackers)
+			uuids.add(a.getUUID());
+		
+		new DeathRecord(player.getUniqueId(), uuids);
+		
 		pseudoPlayer.clearRecentAttackers();
 		
-		new DeathRecord(player.getUniqueId());
 	}
 
 }

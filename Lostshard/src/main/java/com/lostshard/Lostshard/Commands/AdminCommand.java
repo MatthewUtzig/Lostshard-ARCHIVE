@@ -219,12 +219,12 @@ public class AdminCommand extends LostshardCommand {
 				return true;
 			}
 			final CrateManager cm = CrateManager.getManager();
-			if (args.length < 3) {
+			if (args.length < 2) {
 				Output.simpleError(sender, "/crate (player) (crate)");
 				List<String> crates = new ArrayList<String>(cm.getCrates().size());
 				for(Crate c : cm.getCrates())
 					crates.add(c.getName());
-				Output.positiveMessage(sender, StringUtils.join(crates, ", "));
+				sender.sendMessage(ChatColor.YELLOW+StringUtils.join(crates, ", "));
 				return true;
 			}
 			Player target = Bukkit.getPlayer(args[0]);
@@ -232,10 +232,14 @@ public class AdminCommand extends LostshardCommand {
 				Output.simpleError(sender, args[0]+" is not online.");
 				return true;
 			}
-			String createName = StringUtils.join(args, " ");
+			String createName = StringUtils.join(args, " ", 1, args.length);
 			Crate crate = cm.getCrateByName(createName);
+			if(crate == null) {
+				Output.simpleError(sender, "Theres no crate with the name \""+createName+"\".");
+				return true;
+			}
 			target.getWorld().dropItem(target.getLocation(), crate.getCrate());
-
+			Output.positiveMessage(sender, "You gave \""+target.getName()+"\" the crate \""+crate.getName()+"\".");
 			Output.positiveMessage(target, "You was given the crate \""+crate.getName()+"\".");
 			return true;
 		} else if (cmd.getName().equalsIgnoreCase("setmurders")) {

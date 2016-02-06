@@ -577,8 +577,6 @@ public class PlotCommand {
 	@Command(aliases = { "magic" }, desc = "Toggles magic for a plot")
 	@Require("lostshard.plot.admin")
 	public void plotMagicToggle(@Sender Player player, @Sender Plot plot) {
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle magic for plots.");
 		if (plot.isAllowMagic()) {
 			Output.positiveMessage(player, "You have turned off magic for " + plot.getName() + ".");
 			plot.setAllowMagic(false);
@@ -1116,8 +1114,6 @@ public class PlotCommand {
 			Output.plotNotIn(player);
 			return;
 		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle magic for plots.");
 		if (plot.isTitleEntrence()) {
 			Output.positiveMessage(player, "You have turned off title for " + plot.getName() + ".");
 			plot.setTitleEntrence(false);
