@@ -312,7 +312,7 @@ public class BlackSmithySkill extends Skill {
 			cost = Material.WOOD;
 			if (lvl < 250)
 				cangain = true;
-		} else if (item.equals(Material.BOW)) {
+		} else if (item.getType().equals(Material.BOW)) {
 			cost = Material.STRING;
 			costAmount = 3;
 			if (lvl < 250)

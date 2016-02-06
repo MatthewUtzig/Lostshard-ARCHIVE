@@ -2,6 +2,7 @@ package com.lostshard.Lostshard.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,16 @@ public class TabUtils {
 
 	public static List<String> empty() {
 		return new ArrayList<String>();
+	}
+	
+	public static List<String> OnlinePlayers(String arg) {
+		final List<String> completions = new LinkedList<String>();
+		for (final Player option : Bukkit.getOnlinePlayers())
+			if (Lostshard.isVanished(option))
+				continue;
+			else if (StringUtil.startsWithIgnoreCase(option.getName(), arg))
+				completions.add(option.getName());
+		return completions;
 	}
 
 	public static List<String> OnlinePlayersTab(String[] args) {
@@ -76,6 +87,15 @@ public class TabUtils {
 			if (StringUtil.startsWithIgnoreCase(option, args[args.length - 1]))
 				completions.add(option);
 		return completions;
+	}
+
+	public static List<String> Plots() {
+		List<Plot> plots = ptm.getPlots();
+		List<String> results = new ArrayList<String>(plots.size());
+		for(Plot p : plots) {
+			results.add(p.getName());
+		}
+		return results;
 	}
 
 }

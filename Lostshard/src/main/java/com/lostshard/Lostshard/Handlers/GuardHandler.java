@@ -42,7 +42,7 @@ public class GuardHandler {
 			return;
 
 		NPC guard = null;
-		final double closests = 999999;
+		final int closests = 100;
 		for (final NPC npc : plot.getNpcs()) {
 			if (npc.getType().equals(NPCType.GUARD)
 					&& Utils.fastDistance(npc.getLocation(), player.getLocation()) < closests)
@@ -100,7 +100,7 @@ public class GuardHandler {
 			if (plot == null)
 				return;
 			NPC guard = null;
-			final double closests = 26;
+			final int closests = 49;
 			for (final NPC npc : plot.getNpcs()) {
 				if (npc.getType().equals(NPCType.GUARD)
 						&& Utils.fastDistance(npc.getLocation(), player.getLocation()) < closests)

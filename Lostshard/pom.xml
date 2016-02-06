@@ -8,6 +8,10 @@
 	<description>Lostshard a minecraft server.</description>
 	<repositories>
 		<repository>
+		  <id>maven.sk89q.com</id>
+		  <url>http://maven.sk89q.com/repo/</url>
+		</repository>
+		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
@@ -96,6 +100,13 @@
 			<version>3.0</version>
 			<scope>provided</scope>
 		</dependency>
+	    <dependency>
+	        <groupId>com.sk89q.intake</groupId>
+	        <artifactId>intake</artifactId>
+	        <version>4.2-SNAPSHOT</version>
+	        <scope>compile</scope>
+	        <type>jar</type>
+    	</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -17,15 +15,14 @@ import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Events.EventManager;
 import com.lostshard.Lostshard.Events.PlotCreateEvent;
 import com.lostshard.Lostshard.Handlers.HelpHandler;
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
-import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
-import com.lostshard.Lostshard.Objects.InventoryGUI.PlotGUI;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
@@ -35,35 +32,42 @@ import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
-import com.lostshard.Lostshard.Utils.TabUtils;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.Require;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Range;
+import com.sk89q.intake.parametric.annotation.Switch;
+import com.sk89q.intake.parametric.annotation.Text;
 
 /**
  * @author Jacob Emil Ulvedal Rosborg
  *
  */
-public class PlotCommand extends LostshardCommand {
+public class PlotCommand {
 
 	PlayerManager pm = PlayerManager.getManager();
 	PlotManager ptm = PlotManager.getManager();
 
-	public PlotCommand(Lostshard plugin) {
-		super(plugin, "plot");
+	
+	@Command(aliases = {"help", ""}, desc = "Shows a help menu", usage="(page)")
+	public void help(CommandSender sender, @Optional(value = "1") int page) {
+		HelpHandler.helpLandOwnership(sender, page);
 	}
-
+	
 	/**
 	 * @param player
 	 * @param args
 	 *
 	 *            Create plot at player.
 	 */
-	private void createPlot(Player player, String[] args) {
-		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-
-		int curMoney = pseudoPlayer.getMoney();
+	@Command(aliases = { "create" }, desc = "creates a plot", usage = "<name>", 
+			help = "Creats a plot with a given name, it cost 1000 gc and a diamond, this cost increase for every plot you create with in a week.")
+	public void createPlot(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text String plotName) {
+		int curMoney = pPlayer.getMoney();
 
 		// get recently purchased plots
-		final int plotCreatePoints = pseudoPlayer.getPlotCreatePoints();
+		final int plotCreatePoints = pPlayer.getPlotCreatePoints();
 		int plotsThisWeek = 0;
 		if (plotCreatePoints > 0)
 			plotsThisWeek = (int) Math.ceil(plotCreatePoints / 7);
@@ -86,7 +90,6 @@ public class PlotCommand extends LostshardCommand {
 		}
 		// verify that this plot wouldn't intersect with an existing plot
 		final ArrayList<Plot> intersectingRegions = new ArrayList<Plot>();
-		final String plotName = StringUtils.join(args, " ", 1, args.length);
 
 		final int nameLength = plotName.length();
 		if (nameLength < 1) {
@@ -120,7 +123,7 @@ public class PlotCommand extends LostshardCommand {
 		}
 
 		if (intersectingRegions.size() == 0) {
-			final PlotCreateEvent event = new PlotCreateEvent(player, pseudoPlayer, player.getLocation(), plotName);
+			final PlotCreateEvent event = new PlotCreateEvent(player, pPlayer, player.getLocation(), plotName);
 			EventManager.callEvent(event);
 
 			if (event.isCancelled()) {
@@ -133,9 +136,9 @@ public class PlotCommand extends LostshardCommand {
 			// first, remove the money/diamonds
 			if (!player.isOp())
 				curMoney -= plotMoneyCost;
-			pseudoPlayer.setMoney(curMoney);
+			pPlayer.setMoney(curMoney);
 			new GoldRecord(plotMoneyCost, "plot create", player.getUniqueId(), null);
-			pseudoPlayer.setPlotCreatePoints(pseudoPlayer.getPlotCreatePoints() + 7);
+			pPlayer.setPlotCreatePoints(pPlayer.getPlotCreatePoints() + 7);
 			// debited money successfully, now remove the proper amount of
 			// diamonds
 			ItemUtils.removeItem(player.getInventory(), Variables.plotCreateItemPrice.getType(), plotDiamondCost);
@@ -158,131 +161,22 @@ public class PlotCommand extends LostshardCommand {
 		}
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("plot")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			if (args.length < 1) {
-				final Plot plot = this.ptm.findPlotAt(player.getLocation());
-				if (plot != null) {
-					final GUI gui = new PlotGUI(pPlayer, plot);
-					gui.openInventory(player);
-				} else {
-					Output.simpleError(player, "Theres no plot here, try /help plot");
-				}
-				return true;
-			}
-			final String plotCommand = args[0];
-			if (plotCommand.equalsIgnoreCase("help"))
-				HelpHandler.helpLandOwnership(sender, new String[0]);
-			else if (plotCommand.equalsIgnoreCase("create"))
-				this.createPlot(player, args);
-			else if (plotCommand.equalsIgnoreCase("survey"))
-				this.plotSurvey(player);
-			else if (plotCommand.equalsIgnoreCase("info"))
-				this.plotInfo(player);
-			else if (plotCommand.equalsIgnoreCase("friend"))
-				this.plotFriend(player, args);
-			else if (plotCommand.equalsIgnoreCase("co-own") || plotCommand.equalsIgnoreCase("coown")
-					|| plotCommand.equalsIgnoreCase("co-owner") || plotCommand.equalsIgnoreCase("coowner"))
-				this.plotCoOwn(player, args);
-			else if (plotCommand.equalsIgnoreCase("unfriend"))
-				this.plotUnFriend(player, args);
-			else if (plotCommand.equalsIgnoreCase("protect"))
-				this.plotProtect(player);
-			else if (plotCommand.equalsIgnoreCase("private"))
-				this.plotPrivate(player);
-			else if (plotCommand.equalsIgnoreCase("public"))
-				this.plotPublic(player);
-			else if (plotCommand.equalsIgnoreCase("expand"))
-				this.plotExpand(player, args);
-			else if (plotCommand.equalsIgnoreCase("deposit"))
-				this.plotDeposit(player, args);
-			else if (plotCommand.equalsIgnoreCase("withdraw"))
-				this.plotWithdraw(player, args);
-			else if (plotCommand.equalsIgnoreCase("test"))
-				this.plotTestToggle(player);
-			else if (plotCommand.equalsIgnoreCase("disband"))
-				this.plotDisband(player);
-			else if (plotCommand.equalsIgnoreCase("list"))
-				this.plotList(player, args);
-			else if (plotCommand.equalsIgnoreCase("upgrade") || plotCommand.equalsIgnoreCase("upgrades"))
-				this.plotUpgrade(player, args);
-			else if (plotCommand.equalsIgnoreCase("downgrade"))
-				this.plotDowngrade(player, args);
-			else if (plotCommand.equalsIgnoreCase("transfer"))
-				this.plotTransfer(player, args);
-			else if (plotCommand.equalsIgnoreCase("shrink"))
-				this.plotShrink(player, args);
-			else if (plotCommand.equalsIgnoreCase("rename"))
-				this.plotRename(player, args);
-			else if (plotCommand.equalsIgnoreCase("friendbuild"))
-				this.plotFriendBuildToggle(player);
-			else if (plotCommand.equalsIgnoreCase("npc"))
-				this.plotNPC(player, args);
-			else if (plotCommand.equalsIgnoreCase("sell"))
-				this.plotSell(player, args);
-			else if (plotCommand.equalsIgnoreCase("buy"))
-				this.plotBuy(player);
-			else if (plotCommand.equalsIgnoreCase("unsell") || plotCommand.equalsIgnoreCase("unlist")
-					|| plotCommand.equalsIgnoreCase("un-sell"))
-				this.plotUnSell(player);
-			else if (plotCommand.equalsIgnoreCase("explosion"))
-				this.plotExplosionToggle(player);
-			else if (plotCommand.equalsIgnoreCase("pvp") && player.isOp())
-				this.plotPvpToggle(player);
-			else if (plotCommand.equalsIgnoreCase("magic") && player.isOp())
-				this.plotMagicToggle(player);
-			else if (plotCommand.equalsIgnoreCase("capturepoint") && player.isOp())
-				this.plotCapturePoint(player);
-			else if (plotCommand.equalsIgnoreCase("title") && player.isOp())
-				this.plotTitle(player);
-			else if (plotCommand.equalsIgnoreCase("effect") && player.isOp())
-				this.plotEffect(player, args);
-			else if (plotCommand.equalsIgnoreCase("setcapzone") && player.isOp())
-				this.plotSetCapzone(player, args);
-			else
-				Output.simpleError(player, "Use \"/plot help\" for commands.");
-			return true;
-		}
-		return false;
-	}
-
-	private void plotSetCapzone(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "setcapzone" }, desc = "Sets the location and range for capzone")
+	@Require("plot.admin")
+	public void plotSetCapzone(@Sender Player player, @Sender Plot plot, @Optional(value="5") int range) {
 		if(!plot.isCapturepoint()) {
 			Output.simpleError(player, "This plot is not a capturepoint");
 			return;
 		}
-		int range;
-		try {
-			range = Integer.parseInt(args[1]);
-			plot.getCapturepointData().setCapZone(new SavableLocation(player.getLocation()));
-			plot.getCapturepointData().setRange(range);
-			Output.positiveMessage(player, "Plot cap position and range have been set.");
-		} catch (Exception e) {
-			Output.simpleError(player, "/plot setcapzone (range)");
-			return;
-		}
-			
+		plot.getCapturepointData().setCapZone(new SavableLocation(player.getLocation()));
+		plot.getCapturepointData().setRange(range);
+		Output.positiveMessage(player, "Plot cap position and range have been set.");			
 	}
 
-	private void plotEffect(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-		if(args.length < 2) {
+	@Command(aliases = { "effect" }, desc = "Addes effects to plot")
+	@Require("lostshard.plot.admin")
+	public void plotEffect(@Sender Player player, @Sender Plot plot, @Optional PlotEffect effect, @Switch('r') boolean remove) {
+		if(effect == null) {
 			player.sendMessage(ChatColor.GOLD + "-Effects Available-");
 			for(PlotEffect pe : PlotEffect.values())
 				if(plot.getEffects().contains(pe))
@@ -294,48 +188,17 @@ public class PlotCommand extends LostshardCommand {
 				player.sendMessage(ChatColor.YELLOW + "- " + pe.name().toLowerCase());
 			return;
 		}
-		PlotEffect upgrade = PlotEffect.valueOf(args[1].toUpperCase());
-		if(upgrade == null) {
-			Output.simpleError(player, "Theres no effect with that name");
-			return;
-		}
-		if(plot.getUpgrades().contains(upgrade)) {
-			if(args.length > 2 && args[2].equalsIgnoreCase("remove")) {
-				plot.getUpgrades().remove(upgrade);
-				Output.positiveMessage(player, "Have removed the effect "+upgrade.name().toLowerCase()+" from the plot "+plot.getName()+".");
+		if(plot.getUpgrades().contains(effect)) {
+			if(remove) {
+				plot.getUpgrades().remove(effect);
+				Output.positiveMessage(player, "Have removed the effect "+effect.name().toLowerCase()+" from the plot "+plot.getName()+".");
 			}else
 				Output.simpleError(player, "The plot already have this effect");
 			return;
 		}	
 		
-		plot.getEffects().add(upgrade);
-		Output.positiveMessage(player, "Have added the effect "+upgrade.name().toLowerCase()+" to the plot "+plot.getName()+".");
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("plot"))
-			if (args.length == 1)
-				return TabUtils.StringTab(args,
-						new String[] { "info", "create", "deposit", "expand", "rename", "coowner", "unfriend", "shrink",
-								"withdraw", "friendbuild", "sell", "unsell", "buy", "list", "protect", "unprotect",
-								"private", "public", "explosion", "upgrade", "downgrade", "friend", "npc" });
-			else if (args.length == 2 && (args[0].equalsIgnoreCase("upgrade") || args[0].equalsIgnoreCase("upgrades")
-					|| args[0].equalsIgnoreCase("downgrade") || args[0].equalsIgnoreCase("downgrades")))
-				return TabUtils.StringTab(args, new String[] { "town", "dungeon", "autokick", "neutral" });
-			else if (args.length >= 2 && args[0].equalsIgnoreCase("npc")) {
-				if (args.length == 2)
-					return TabUtils.StringTab(args, new String[] { "hire", "fire", "move" });
-				else if (args.length == 3 && args[1].equalsIgnoreCase("hire"))
-					return TabUtils.StringTab(args, new String[] { "banker", "vendor" });
-			} else
-				if (args.length == 2 && (args[1].equalsIgnoreCase("coowner") || args[1].equalsIgnoreCase("friend"))) {
-				if (sender instanceof Player)
-					return TabUtils.PlotFriend((Player) sender, args);
-			} else if (args.length == 2 && args[1].equalsIgnoreCase("unfriend"))
-				if (sender instanceof Player)
-					return TabUtils.PlotUnfriend((Player) sender, args);
-		return TabUtils.empty();
+		plot.getEffects().add(effect);
+		Output.positiveMessage(player, "Have added the effect "+effect.name().toLowerCase()+" to the plot "+plot.getName()+".");
 	}
 
 	/**
@@ -343,13 +206,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Buy plot at player.
 	 */
-	private void plotBuy(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-
+	@Command(aliases = {"buy"}, desc = "Buys the plot if its for sale")
+	public void plotBuy(@Sender Player player, @Sender Plot plot) {
 		final int salePrice = plot.getSalePrice();
 		if (salePrice <= 0) {
 			Output.simpleError(player, "This plot is not for sale.");
@@ -392,14 +250,9 @@ public class PlotCommand extends LostshardCommand {
 
 	}
 
-	private void plotCapturePoint(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle capturepoint for plots.");
+	@Command(aliases = { "capturepoint" }, desc = "Toggles plot capturepoint")
+	@Require("lostshard.plot.admin")
+	public void plotCapturePoint(@Sender Player player, @Sender Plot plot) {
 		if (plot.isCapturepoint()) {
 			plot.setCapturepoint(false);
 			plot.setCapturepointData(null);
@@ -419,29 +272,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Co-owner player of plot at player.
 	 */
-	private void plotCoOwn(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-
-		if (args.length < 2) {
-			Output.simpleError(player, "/plot co-owner (player)");
-			return;
-		}
-
-		final String targetName = args[1];
-
+	@Command(aliases = { "co-owner", "coown", "co", "coowner" }, desc = "Makes a given player co-owner of the plot", usage ="<player>")
+	public void plotCoOwn(@Sender Player player, @Sender Plot plot, @Vanish Player targetPlayer) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may co-owner players.");
-			return;
-		}
-
-		final Player targetPlayer = Bukkit.getPlayer(targetName);
-
-		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
-			Output.simpleError(player, "can't co-own that person, hes not online.");
 			return;
 		}
 
@@ -469,21 +303,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Deposit money into plot found at player.
 	 */
-	private void plotDeposit(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "deposit" }, desc = "Deposit a given amount of gold coins into the plot", usage ="<amount>")
+	public void plotDeposit(@Sender Player player, @Sender Plot plot, @Range(min=0) int amount) {
 		if (!plot.isFriendOrAbove(player)) {
 			Output.simpleError(player, "Only friends may deposit money into " + plot.getName() + ".");
-			return;
-		}
-		int amount;
-		try {
-			amount = Integer.parseInt(args[1]);
-		} catch (final Exception e) {
-			Output.notNumber(player);
 			return;
 		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
@@ -504,17 +327,12 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Disband plot at player.
 	 */
-	private void plotDisband(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "disband" }, desc = "Disbands a plot")
+	public void plotDisband(@Sender Player player, @Sender PseudoPlayer pPlayer, @Sender Plot plot) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		int value = plot.getValue();
 		plot.disband();
 		pPlayer.setMoney(pPlayer.getMoney() + value);
@@ -531,44 +349,26 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Downgrade plot at player.
 	 */
-	private void plotDowngrade(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "downgrade" }, desc = "Downgrade a plot from a given upgrade", usage ="<upgrade>")
+	public void plotDowngrade(@Sender Player player, @Sender Plot plot, @Optional PlotUpgrade upgrade) {
 		if (plot.isOwner(player)) {
 
-			if (args.length < 2) {
+			if (upgrade == null) {
 				Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
 
 				if (plot.getUpgrades().size() == 0)
 					Output.simpleError(player, plot.getName() + " has not been upgraded.");
 				else
-					for (final PlotUpgrade upgrade : plot.getUpgrades())
-						player.sendMessage(ChatColor.YELLOW + "- " + upgrade.getName() + " ("
-								+ Utils.getDecimalFormater().format(upgrade.getPrice()) + " gc)");
-				Output.positiveMessage(player, "-Plot Upgrades Available-");
-				for (final PlotUpgrade upgrade : PlotUpgrade.values()) {
-					if (plot.isUpgrade(upgrade))
-						continue;
-					player.sendMessage(ChatColor.YELLOW + "- " + upgrade.getName());
-				}
-			} else if (args.length >= 2) {
-
-				final PlotUpgrade upgrade = PlotUpgrade.getByName(StringUtils.join(args, " ", 1, args.length));
-
-				if (upgrade == null) {
-					Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
-					for (final PlotUpgrade u : PlotUpgrade.values()) {
-						if (plot.isUpgrade(u))
-							continue;
+					for (final PlotUpgrade u : plot.getUpgrades())
 						player.sendMessage(ChatColor.YELLOW + "- " + u.getName() + " ("
 								+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
-					}
-					return;
+				Output.positiveMessage(player, "-Plot Upgrades Available-");
+				for (final PlotUpgrade u : PlotUpgrade.values()) {
+					if (plot.isUpgrade(u))
+						continue;
+					player.sendMessage(ChatColor.YELLOW + "- " + u.getName());
 				}
-
+			} else {
 				if (plot.isUpgrade(upgrade)) {
 					plot.removeUpgrade(upgrade);
 					int amount = (int) Math.floor(upgrade.getPrice() * .75);
@@ -580,8 +380,12 @@ public class PlotCommand extends LostshardCommand {
 						plot.removeUpgrade(PlotUpgrade.NEUTRALALIGNMENT);
 						plot.setMoney(plot.getMoney() + (int) Math.floor(PlotUpgrade.NEUTRALALIGNMENT.getPrice() * 75));
 					}
+					if(upgrade.equals(PlotUpgrade.TOWN))
+						for(NPC n : plot.getNpcs())
+							if(n.getType().equals(NPCType.BANKER))
+								n.fire();
 				} else
-					Output.simpleError(player, plot.getName() + " is not a town.");
+					Output.simpleError(player, plot.getName() + " does not have the upgrade \""+upgrade.getName()+"\"");
 			}
 		} else
 			Output.simpleError(player, "Only the owner may downgrade the plot.");
@@ -593,26 +397,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Expand plot to given size.
 	 */
-	private void plotExpand(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "expand" }, desc = "Expands the plot with a given amount", usage ="(amount)")
+	public void plotExpand(@Sender Player player, @Sender Plot plot, @Optional(value = {"1"}) @Range(min=1)int amount) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owner may expand the plot.");
-			return;
-		}
-		int amount = 1;
-		if (args.length >= 2)
-			try {
-				amount = Integer.parseInt(args[1]);
-			} catch (final Exception e) {
-				Output.simpleError(player, "Invalid amount. /plot expand (amount)");
-				return;
-			}
-		if (amount < 1) {
-			Output.simpleError(player, "Expand size must be greater than 0.");
 			return;
 		}
 		// see if we would expand into an existing region
@@ -663,12 +451,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggle explosions for plot at player.
 	 */
-	private void plotExplosionToggle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "explosion", "explosions", "toggleexplosion" , "toggleexplosions" }, desc = "Toggles explosions")
+	public void plotExplosionToggle(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owners may toggle explosions.");
 			return;
@@ -688,29 +472,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Friend player of plot at player.
 	 */
-	private void plotFriend(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-
-		if (args.length < 2) {
-			Output.simpleError(player, "/plot friend (player)");
-			return;
-		}
-
+	@Command(aliases = { "friend" }, desc = "Makes a given player friend of the plot", usage ="<player>")
+	public void plotFriend(@Sender Player player, @Sender Plot plot, @Vanish Player targetPlayer) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owner may friend players.");
-			return;
-		}
-
-		final String targetName = args[1];
-
-		final Player targetPlayer = Bukkit.getPlayer(targetName);
-
-		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
-			Output.simpleError(player, "can't friend that person, hes not online.");
 			return;
 		}
 
@@ -741,12 +506,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggle friendbuild for plot at player.
 	 */
-	private void plotFriendBuildToggle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "friendbuild" }, desc = "Toggles friendbuild")
+	public void plotFriendBuildToggle(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owner may toggle friendbuild.");
 			return;
@@ -767,12 +528,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Display info for plot at player.
 	 */
-	private void plotInfo(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "info" }, desc = "Shows information about the plot")
+	public void plotInfo(@Sender Player player, @Sender Plot plot) {
 		Output.plotInfo(player, plot);
 	}
 
@@ -782,10 +539,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            List plots for player.
 	 */
-	@SuppressWarnings("deprecation")
-	private void plotList(Player player, String[] args) {
-		if (args.length >= 2 && player.isOp()) {
-			final String name = args[1];
+	@Command(aliases = { "list" }, desc = "Shows a list of your plots")
+	public void plotList(@Sender Player player, @Optional String name) {
+		if (name != null && player.isOp()) {
+			@SuppressWarnings("deprecation")
 			final OfflinePlayer tPlayer = Bukkit.getOfflinePlayer(name);
 			if (tPlayer == null) {
 				Output.simpleError(player, "No player exist whith that name.");
@@ -817,12 +574,9 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggles magic for plot at player
 	 */
-	private void plotMagicToggle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "magic" }, desc = "Toggles magic for a plot")
+	@Require("lostshard.plot.admin")
+	public void plotMagicToggle(@Sender Player player, @Sender Plot plot) {
 		if (!player.isOp())
 			Output.simpleError(player, "Ops may only toggle magic for plots.");
 		if (plot.isAllowMagic()) {
@@ -840,14 +594,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Manage npc's for plot at player.
 	 */
-	private void plotNPC(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
-		if (args.length < 2) {
-			Output.simpleError(player, "/plot npc (hire|fire|move)");
+	@Command(aliases = { "npc" }, desc = "npc commands for plot", usage ="<hire|fire|move>")
+	public void plotNPC(@Sender Player player, @Sender Plot plot, @Optional String subCmd, @Optional String type, @Optional String name) {
+		if (subCmd == null) {
+			Output.simpleError(player, "/plot npc <hire|fire|move>");
 			return;
 		}
 		if (!plot.isCoownerOrAbove(player)) {
@@ -855,18 +605,16 @@ public class PlotCommand extends LostshardCommand {
 			return;
 		}
 
-		if (args[1].equalsIgnoreCase("hire")) {
-			if (args.length < 4) {
-				Output.simpleError(player, "/plot npc hire (Banker|Vendor) (name)");
+		if (subCmd.equalsIgnoreCase("hire")) {
+			if (type == null || name == null) {
+				Output.simpleError(player, "/plot npc hire <Banker|Vendor> <name>");
 				return;
 			}
-			String name;
-			if (args[2].equalsIgnoreCase("banker")) {
+			if (type.equalsIgnoreCase("banker")) {
 				if (!plot.isUpgrade(PlotUpgrade.TOWN)) {
 					Output.simpleError(player, "You can only place a banker in a town.");
 					return;
 				}
-				name = args[3];
 				name.trim();
 				if (name.length() > 7) {
 					Output.simpleError(player, "Banker name must be 7 characters or less.");
@@ -902,8 +650,7 @@ public class PlotCommand extends LostshardCommand {
 				plot.update();
 				npc.spawn();
 				Output.positiveMessage(player, "You have hired a banker named " + name + ".");
-			} else if (args[2].equalsIgnoreCase("vendor")) {
-				name = args[3];
+			} else if (type.equalsIgnoreCase("vendor")) {
 				name.trim();
 				if (name.length() > 7) {
 					Output.simpleError(player, "Vendor name must be 7 characters or less.");
@@ -945,8 +692,7 @@ public class PlotCommand extends LostshardCommand {
 				npc.spawn();
 
 				Output.positiveMessage(player, "You have hired a vendor named " + name + ".");
-			} else if (args[2].equalsIgnoreCase("guard") && player.isOp()) {
-				name = args[3];
+			} else if (type.equalsIgnoreCase("guard") && player.isOp()) {
 				name.trim();
 				if (name.length() > 7) {
 					Output.simpleError(player, "Guard name must be 7 characters or less.");
@@ -976,37 +722,34 @@ public class PlotCommand extends LostshardCommand {
 
 				Output.positiveMessage(player, "You have hired a guard named " + name + ".");
 			}
-		} else if (args[1].equalsIgnoreCase("move")) {
-			if (args.length < 3) {
+		} else if (subCmd.equalsIgnoreCase("move")) {
+			if (name == null) {
 				Output.simpleError(player, "Use /plot npc move (npc name)");
 				return;
 			}
 
-			String npcName = args[2];
-			npcName = npcName.trim();
+			name = name.trim();
 
 			for (final NPC npc : plot.getNpcs())
-				if (npc.getName().equalsIgnoreCase(npcName)) {
+				if (npc.getName().equalsIgnoreCase(name)) {
 					npc.setLocation(player.getLocation());
 					npc.move(player.getLocation());
-					Output.positiveMessage(player, "You have moved " + npcName + ".");
+					Output.positiveMessage(player, "You have moved " + name + ".");
 					return;
 				}
-			Output.simpleError(player, "can't find an NPC named " + npcName + " on this plot.");
-		} else if (args[1].equalsIgnoreCase("fire")) {
-			if (args.length < 3) {
+			Output.simpleError(player, "can't find an NPC named " + name + " on this plot.");
+		} else if (subCmd.equalsIgnoreCase("fire")) {
+			if (name == null) {
 				Output.simpleError(player, "/plot npc fire (name)");
 				return;
 			}
-			final String name = args[2];
-
 			for (final NPC npc : plot.getNpcs())
 				if (npc.getName().equalsIgnoreCase(name)) {
 					npc.fire();
 					Output.positiveMessage(player, "You have fired " + npc.getName() + ".");
 					return;
 				}
-		} else if (args[1].equalsIgnoreCase("list")) {
+		} else if (subCmd.equalsIgnoreCase("list")) {
 			player.sendMessage(ChatColor.GOLD + "-" + plot.getName() + "'s NPCs-");
 			final List<NPC> npcs = plot.getNpcs();
 			final int numOfNpcs = npcs.size();
@@ -1019,7 +762,6 @@ public class PlotCommand extends LostshardCommand {
 				player.sendMessage(ChatColor.YELLOW + npc.getName() + " (" + npc.getType().toString() + ")");
 			return;
 		}
-		HelpHandler.helpLandOwnership(player, args);
 	}
 
 	/**
@@ -1027,12 +769,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Make plot private at player.
 	 */
-	private void plotPrivate(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "private" }, desc = "Sets the plot to private")
+	public void plotPrivate(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may make the plot private.");
 			return;
@@ -1050,12 +788,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggle protection for plot at player.
 	 */
-	private void plotProtect(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "protect" }, desc = "Toggles protection for a plot")
+	public void plotProtect(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may toggle protection.");
 			return;
@@ -1074,12 +808,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Make plot public at player.
 	 */
-	private void plotPublic(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "public" }, desc = "Sets the plot to public")
+	public void plotPublic(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may make the plot public.");
 			return;
@@ -1097,12 +827,9 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggle pvp for plot at player.
 	 */
-	private void plotPvpToggle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "pvp" }, desc = "Toggles pvp for the plot")
+	@Require("losthard.plot.admin")
+	public void plotPvpToggle(@Sender Player player, @Sender Plot plot) {
 		if (!player.isOp())
 			Output.simpleError(player, "Ops may only toggle pvp for plots.");
 		if (plot.isAllowPvp()) {
@@ -1120,12 +847,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Rename plot at player.
 	 */
-	private void plotRename(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "rename" }, desc = "Renames the plot", usage ="<name>")
+	public void plotRename(@Sender Player player, @Sender Plot plot, @Text String plotName) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may rename the plot.");
 			return;
@@ -1138,13 +861,6 @@ public class PlotCommand extends LostshardCommand {
 			return;
 		}
 		// Figure out the name that the player input
-		final int splitNameLength = args.length;
-		String plotName = "";
-		for (int i = 1; i < splitNameLength; i++) {
-			plotName += args[i];
-			if (i < splitNameLength - 1)
-				plotName += " ";
-		}
 
 		plotName = plotName.trim();
 
@@ -1178,40 +894,20 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Sell plot at player.
 	 */
-	private void plotSell(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "sell" }, desc = "Puts the plot on the plot market", usage ="<price>")
+	public void plotSell(@Sender Player player, @Sender Plot plot, @Range(min=1, max=9999999) int price) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may sell the plot.");
 			return;
 		}
-		if (args.length < 2) {
-			player.sendMessage(ChatColor.GRAY + "Use /plot sell (amount)");
-			return;
-		}
-		int amount = 0;
-		try {
-			amount = Integer.parseInt(args[1]);
-		} catch (final Exception e) {
-			player.sendMessage(ChatColor.GRAY + "Use /plot sell (amount)");
-			return;
-		}
 
-		if (amount < 1) {
+		if (price < 1) {
 			Output.simpleError(player, "Invalid price, must be 1 or greater");
 			return;
 		}
 
-		if (amount > 9999999) {
-			Output.simpleError(player, "Max sale price is 9999999");
-			return;
-		}
-
-		plot.setSalePrice(amount);
-		Output.positiveMessage(player, "You have set this plot for sale at " + amount + " gc.");
+		plot.setSalePrice(price);
+		Output.positiveMessage(player, "You have set this plot for sale at " + price + " gc.");
 	}
 
 	/**
@@ -1220,29 +916,10 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Shrink plot at player
 	 */
-	private void plotShrink(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "shrink" }, desc = "Shrinks the plot with a given amount", usage ="(amount)")
+	public void plotShrink(@Sender Player player, @Sender Plot plot, @Optional(value="1") @Range(min=1) int amount) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may shrink the plot.");
-			return;
-		}
-
-		if (args.length < 2) {
-			player.sendMessage(ChatColor.GRAY + "/plot shrink (amount) will shrink the plot");
-			return;
-		}
-		int amount = -1;
-		try {
-			amount = Integer.parseInt(args[1]);
-		} catch (final Exception e) {
-		}
-
-		if (amount < 1) {
-			Output.simpleError(player, "can't shrink less than 1 block.");
 			return;
 		}
 
@@ -1260,7 +937,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Survey nearby plots of player.
 	 */
-	private void plotSurvey(Player player) {
+	@Command(aliases = { "survey" }, desc = "Survey the nearby plots")
+	public void plotSurvey(@Sender Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		final List<Plot> plots = this.ptm.getPlots();
 		final int numPlots = plots.size();
@@ -1276,7 +954,7 @@ public class PlotCommand extends LostshardCommand {
 
 		// Determine the max range
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-		final int miningSkill = 0; // pseudoPlayer.getSkill("mining");
+		final int miningSkill = pseudoPlayer.getCurrentBuild().getMining().getLvl();
 		final double percent = (double) miningSkill / 1000;
 		final int range = (int) Math.ceil(200 * percent) + 100;
 
@@ -1415,23 +1093,24 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Toggle test for player and plot.
 	 */
-	private void plotTestToggle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-		if (pseudoPlayer.getTestPlot() != null) {
-			Output.positiveMessage(player, "You are no longer testing " + pseudoPlayer.getTestPlot().getName() + ".");
-			pseudoPlayer.setTestPlot(null);
+	@Command(aliases = { "test" }, desc = "Toggles plot test")
+	public void plotTestToggle(@Sender Player player, @Sender PseudoPlayer pPlayer, @Sender Plot plot) {
+		if (pPlayer.getTestPlot() != null) {
+			Output.positiveMessage(player, "You are no longer testing " + pPlayer.getTestPlot().getName() + ".");
+			pPlayer.setTestPlot(null);
 			return;
 		}
 		if (plot == null) {
 			Output.plotNotIn(player);
 			return;
 		}
-		pseudoPlayer.setTestPlot(plot);
+		pPlayer.setTestPlot(plot);
 		Output.positiveMessage(player, "You are now testing " + plot.getName() + ".");
 	}
 
-	private void plotTitle(Player player) {
+	@Command(aliases = { "title" }, desc = "Toggles plot title")
+	@Require("lostshard.plot.admin")
+	public void plotTitle(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot == null) {
 			Output.plotNotIn(player);
@@ -1454,38 +1133,21 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Transfer plot at player to target player.
 	 */
-	private void plotTransfer(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "transfer" }, desc = "Transfer the ownership of a plot to another player", usage ="<player>")
+	public void plotTransfer(@Sender Player player, @Sender Plot plot, @Vanish Player target) {
 		if (!plot.isOwner(player) && !player.isOp()) {
 			Output.simpleError(player, "Only the owner may transfer the plot.");
 			return;
 		}
-		if (args.length < 2) {// someone just typed /plot transfer
-			player.sendMessage(ChatColor.GRAY + "/plot transfer (player name) will transfer the plot");
-			player.sendMessage(ChatColor.GRAY + "to the player named.");
-			return;
-		}
-
-		final String targetName = args[1];
-
-		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if (targetPlayer == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
-			Output.simpleError(player, targetName + " not found.");
-			return;
-		}
-		if (plot.getOwner().equals(targetPlayer.getUniqueId())) {
+		if (plot.getOwner().equals(target.getUniqueId())) {
 			Output.simpleError(player, "You can't transfer your plot to yourself.");
 			return;
 		}
-		plot.removeCoowner(targetPlayer);
-		plot.removeFriend(targetPlayer);
-		plot.setOwner(targetPlayer.getUniqueId());
-		Output.positiveMessage(player, "Transferred plot \"" + plot.getName() + "\" to " + targetPlayer.getName());
-		Output.positiveMessage(targetPlayer, player.getName() + " transferred plot \"" + plot.getName() + "\" to you.");
+		plot.removeCoowner(target);
+		plot.removeFriend(target);
+		plot.setOwner(target.getUniqueId());
+		Output.positiveMessage(player, "Transferred plot \"" + plot.getName() + "\" to " + target.getName());
+		Output.positiveMessage(target, player.getName() + " transferred plot \"" + plot.getName() + "\" to you.");
 	}
 
 	/**
@@ -1494,48 +1156,41 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Unfriend player of plot at player.
 	 */
-	private void plotUnFriend(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "unfriend" }, desc = "Unfriends a give player from the plot", usage ="<player>")
+	public void plotUnFriend(@Sender Player player, @Sender Plot plot, OfflinePlayer target) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owners may unfriend players from this plot.");
 			return;
 		}
-
-		final String targetName = args[1];
-		@SuppressWarnings("deprecation")
-		final OfflinePlayer targetPlayer = Bukkit.getOfflinePlayer(targetName);
-		if (targetPlayer == player) {
+		
+		if (target == player) {
 			Output.simpleError(player, "You may not unfriend yourself.");
 			return;
 		}
 
-		if (!plot.isFriendOrAbove(targetPlayer.getUniqueId())) {
-			Output.simpleError(player, targetPlayer.getName() + " is not a friend or co-owner of this plot.");
+		if (!plot.isFriendOrAbove(target.getUniqueId())) {
+			Output.simpleError(player, target.getName() + " is not a friend or co-owner of this plot.");
 			return;
 		}
 
-		if (plot.getCoowners().contains(targetPlayer.getUniqueId())
+		if (plot.getCoowners().contains(target.getUniqueId())
 				&& plot.getCoowners().contains(player.getUniqueId())) {
 			Output.simpleError(player, "Only the owner may unfriend a co-owner.");
 			return;
 		}
 
-		if (plot.getCoowners().contains(targetPlayer.getUniqueId())) {
-			Output.positiveMessage(player, targetPlayer.getName() + " is no longer a friend of this plot.");
-			if (targetPlayer.isOnline())
-				Output.positiveMessage(targetPlayer.getPlayer(),
+		if (plot.getCoowners().contains(target.getUniqueId())) {
+			Output.positiveMessage(player, target.getName() + " is no longer a friend of this plot.");
+			if (target.isOnline())
+				Output.positiveMessage(target.getPlayer(),
 						"You are no longer a friend of " + plot.getName() + ".");
-			plot.getCoowners().remove(targetPlayer.getUniqueId());
+			plot.getCoowners().remove(target.getUniqueId());
 		} else {
-			Output.positiveMessage(player, targetPlayer.getName() + " is no longer a friend of this plot.");
-			if (targetPlayer.isOnline())
-				Output.positiveMessage(targetPlayer.getPlayer(),
+			Output.positiveMessage(player, target.getName() + " is no longer a friend of this plot.");
+			if (target.isOnline())
+				Output.positiveMessage(target.getPlayer(),
 						"You are no longer a friend of " + plot.getName() + ".");
-			plot.getFriends().remove(targetPlayer.getUniqueId());
+			plot.getFriends().remove(target.getUniqueId());
 		}
 	}
 
@@ -1544,12 +1199,8 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Take plot of the market.
 	 */
-	private void plotUnSell(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "unsell" }, desc = "Takes the plot off the market")
+	public void plotUnSell(@Sender Player player, @Sender Plot plot) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may remove the plot from the market.");
 			return;
@@ -1564,47 +1215,30 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Upgrade plot at player.
 	 */
-	private void plotUpgrade(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "upgrade" }, desc = "Upgrade the plot to the given upgrade", usage ="<upgrade>")
+	public void plotUpgrade(@Sender Player player, @Sender Plot plot, @Optional PlotUpgrade upgrade) {
 
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner and co-owners may upgrade the plot.");
 			return;
 		}
 
-		if (args.length < 2) {
+		if (upgrade == null) {
 			Output.positiveMessage(player, plot.getName() + "'s Upgrades:");
 
 			if (plot.getUpgrades().size() == 0)
 				Output.simpleError(player, plot.getName() + " has not been upgraded.");
 			else
-				for (final PlotUpgrade upgrade : plot.getUpgrades())
-					player.sendMessage(ChatColor.YELLOW + "- " + upgrade.getName());
+				for (final PlotUpgrade u : plot.getUpgrades())
+					player.sendMessage(ChatColor.YELLOW + "- " + u.getName());
 			Output.positiveMessage(player, "-Plot Upgrades Available-");
-			for (final PlotUpgrade upgrade : PlotUpgrade.values()) {
-				if (plot.isUpgrade(upgrade))
+			for (final PlotUpgrade u : PlotUpgrade.values()) {
+				if (plot.isUpgrade(u))
 					continue;
-				player.sendMessage(ChatColor.YELLOW + "- " + upgrade.getName() + " ("
-						+ Utils.getDecimalFormater().format(upgrade.getPrice()) + " gc)");
+				player.sendMessage(ChatColor.YELLOW + "- " + u.getName() + " ("
+						+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
 			}
-		} else if (args.length >= 2) {
-
-			final PlotUpgrade upgrade = PlotUpgrade.getByName(StringUtils.join(args, " ", 1, args.length));
-
-			if (upgrade == null) {
-				Output.positiveMessage(player, "-Plot Upgrades Available-");
-				for (final PlotUpgrade u : PlotUpgrade.values()) {
-					if (plot.isUpgrade(u))
-						continue;
-					player.sendMessage(ChatColor.YELLOW + "- " + u.getName() + " ("
-							+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
-				}
-				return;
-			}
+		} else {
 
 			if (!plot.isUpgrade(upgrade)) {
 				if (plot.getMoney() >= upgrade.getPrice()) {
@@ -1630,39 +1264,21 @@ public class PlotCommand extends LostshardCommand {
 	 *
 	 *            Withdraw money from plot founds at player.
 	 */
-	private void plotWithdraw(Player player, String[] args) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	@Command(aliases = { "withdraw" }, desc = "Withdraws money from a plot", usage ="<amount>")
+	public void plotWithdraw(@Sender Player player, @Sender Plot plot, @Range(min=1) int amount) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner or co-owners may withdraw from the plot funds.");
 			return;
 		}
-		if (args.length < 2) {
-			Output.simpleError(player, "/plot withdraw (amount) to withdraw founds from plot.");
-			return;
-		}
-		int amount = -1;
-		try {
-			amount = Integer.parseInt(args[1]);
-		} catch (final Exception e) {
-			Output.simpleError(player, ".");
-			return;
-		}
-		if (amount > 0) {
-			final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-			if (plot.getMoney() >= amount) {
-				plot.setMoney(plot.getMoney() - amount);
-				pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
-				new GoldRecord(amount, "plot withdraw", null, player.getUniqueId());
-				Output.positiveMessage(player, "You have withdrawn " + Utils.getDecimalFormater().format(amount)
-						+ " gold coins from the plot fund.");
-			} else
-				Output.simpleError(player, "The plot does not have that many gold coins.");
+		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
+		if (plot.getMoney() >= amount) {
+			plot.setMoney(plot.getMoney() - amount);
+			pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
+			new GoldRecord(amount, "plot withdraw", null, player.getUniqueId());
+			Output.positiveMessage(player, "You have withdrawn " + Utils.getDecimalFormater().format(amount)
+					+ " gold coins from the plot fund.");
 		} else
-			Output.simpleError(player, "Invalid amount.");
+			Output.simpleError(player, "The plot does not contain enough gold coins.");
 	}
 
 }

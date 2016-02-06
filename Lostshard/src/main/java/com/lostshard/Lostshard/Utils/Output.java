@@ -61,10 +61,10 @@ public class Output {
 		return players;
 	}
 
-	public static void capturePointsInfo(Player player) {
-		player.sendMessage(ChatColor.GOLD + "-Control Points-");
+	public static void capturePointsInfo(CommandSender sender) {
+		sender.sendMessage(ChatColor.GOLD + "-Control Points-");
 		for(Plot p : PlotManager.getManager().getCapturePoints()) {
-			player.sendMessage(ChatColor.YELLOW + p.getName()+": "+p.getLocation().getBlockX() + ", " +
+			sender.sendMessage(ChatColor.YELLOW + p.getName()+": "+p.getLocation().getBlockX() + ", " +
 		p.getLocation().getBlockY() + ", " + p.getLocation().getBlockZ() );	
 		}
 	}

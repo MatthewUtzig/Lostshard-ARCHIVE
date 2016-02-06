@@ -213,7 +213,7 @@ public class PVPHandler {
 				return;
 
 		// Determine if a criminal action has taken place
-		if (!pseudoPlayerDefender.isCriminal() && !notCrim) {
+		if (pseudoPlayerDefender.isLawfull() && !notCrim) {
 			// attacked non criminal, thats a criminal action
 			if (!pseudoPlayerAttacker.isCriminal())
 				playerDamager.sendMessage(ChatColor.RED + "You have committed a criminal action");

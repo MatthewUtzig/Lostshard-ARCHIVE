@@ -44,7 +44,9 @@ public class ChatHandler {
 			Output.simpleError(player, "You are currently not in a clan.");
 			return;
 		}
-		clan.sendMessage(Utils.getDisplayName(player) + ChatColor.WHITE + ": " + event.getMessage());
+		for (final Player p : pPlayer.getClan().getOnlineMembers())
+			event.getRecipients().add(p);
+		event.setFormat(ChatColor.WHITE + "[" + ChatColor.GREEN + "Clan" + ChatColor.WHITE + "]" + ChatColor.WHITE + " %s" + ChatColor.WHITE + ": %s");
 	}
 
 	public static int getLocalChatRange() {
@@ -127,7 +129,7 @@ public class ChatHandler {
 			Output.simpleError(player, "You are currently not in a party.");
 			return;
 		}
-		for (final Player p : Utils.getPlayersNear(event.getPlayer(), getShoutChatRange()))
+		for (final Player p : pPlayer.getParty().getOnlineMembers())
 			event.getRecipients().add(p);
 		event.setFormat(ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE + "Party" + ChatColor.WHITE + "]" + ChatColor.WHITE + " %s" + ChatColor.WHITE + ": %s");
 	}

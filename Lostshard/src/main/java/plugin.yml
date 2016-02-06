@@ -228,3 +228,6 @@ commands:
    crate:
       description: gives player crate
       usage: /<command> (crate) (player)
+   cmdtest:
+      description: gives player crate
+      usage: /<command> (crate) (player)

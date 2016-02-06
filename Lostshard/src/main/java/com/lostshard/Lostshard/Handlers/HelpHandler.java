@@ -264,9 +264,15 @@ public class HelpHandler {
 			if (topic.equalsIgnoreCase("chat"))
 				helpChat(sender);
 			else if (topic.equalsIgnoreCase("land") || topic.equalsIgnoreCase("plot")
-					|| topic.equalsIgnoreCase("plots"))
-				helpLandOwnership(sender, split);
-			else if (topic.equalsIgnoreCase("money"))
+					|| topic.equalsIgnoreCase("plots")) {
+				int page;
+				try {
+					page = Integer.parseInt(split[1]);
+				}catch (Exception e) {
+					page = 0;
+				}
+				helpLandOwnership(sender, page);
+			} else if (topic.equalsIgnoreCase("money"))
 				helpMoney(sender);
 			else if (topic.equalsIgnoreCase("skills"))
 				helpSkills(sender);
@@ -355,8 +361,8 @@ public class HelpHandler {
 				ChatColor.YELLOW + "/whois (player name)" + ChatColor.GRAY + " - Displays a player's status.");
 	}
 
-	public static void helpLandOwnership(CommandSender sender, String[] split) {
-		if (split.length < 2) {
+	public static void helpLandOwnership(CommandSender sender, int page) {
+		if (page == 0) {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY
@@ -370,8 +376,7 @@ public class HelpHandler {
 					ChatColor.YELLOW + "/plot survey" + ChatColor.GRAY + " Helps finding a place for a plot.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot info" + ChatColor.GRAY + " Information about current plot.");
 		} else {
-			final String page = split[1];
-			if (page.equalsIgnoreCase("1")) {
+			if (page == 1) {
 				sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 				sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help land (page)\"");
 				sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY
@@ -386,7 +391,7 @@ public class HelpHandler {
 						ChatColor.YELLOW + "/plot survey" + ChatColor.GRAY + " Helps finding a place for a plot.");
 				sender.sendMessage(
 						ChatColor.YELLOW + "/plot info" + ChatColor.GRAY + " Information about current plot.");
-			} else if (page.equalsIgnoreCase("2")) {
+			} else if (page == 2) {
 				sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 				sender.sendMessage(ChatColor.GOLD + "Page 2 of 3, use \"/help land (page)\"");
 
@@ -402,7 +407,7 @@ public class HelpHandler {
 						+ " - Deposits or withdraws plot funds.");
 				sender.sendMessage(ChatColor.YELLOW + "/plot expand" + ChatColor.GRAY + " - Expands your plot.");
 				sender.sendMessage(ChatColor.GRAY + "-Costs plot size times 100, so size 11 to 12 would cost 110.");
-			} else if (page.equalsIgnoreCase("3")) {
+			} else if (page == 2) {
 				sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 				sender.sendMessage(ChatColor.GOLD + "Page 3 of 3, use \"/help land (page)\"");
 

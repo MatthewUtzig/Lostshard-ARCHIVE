@@ -16,7 +16,7 @@ public class SPL_ClanTeleport extends Spell {
 
 	public SPL_ClanTeleport(Scroll scroll) {
 		super(scroll);
-		this.setPrompt("Who would you like to toeleport to?");
+		this.setPrompt("Who would you like to teleport to?");
 	}
 
 	@Override

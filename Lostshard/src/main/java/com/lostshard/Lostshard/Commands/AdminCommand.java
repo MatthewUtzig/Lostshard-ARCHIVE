@@ -376,5 +376,4 @@ public class AdminCommand extends LostshardCommand {
 		player.teleport(world.getSpawnLocation());
 		Output.positiveMessage(player, "Found world, \"" + world.getName() + "\"");
 	}
-
 }

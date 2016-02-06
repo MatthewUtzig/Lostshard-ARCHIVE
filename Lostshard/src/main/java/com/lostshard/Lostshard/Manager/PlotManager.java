@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
@@ -89,8 +90,10 @@ public class PlotManager {
 
 	public void tax() {
 		Bukkit.broadcastMessage(ChatColor.GREEN + "Tax have been collected.");
-		for (final Plot plot : this.plots)
-			if (plot.getMoney() < plot.getTax()) {
+		for (final Plot plot : this.plots) 
+			if(!plot.getLocation().getWorld().getWorldType().equals(WorldType.NORMAL))
+				continue;
+			else if (plot.getMoney() < plot.getTax()) {
 				plot.setSize(plot.getSize() - 1);
 				final Player player = Bukkit.getPlayer(plot.getOwner());
 				if (plot.getSize() > 1) {

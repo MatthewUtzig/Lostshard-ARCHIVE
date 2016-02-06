@@ -13,6 +13,7 @@ import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 
 public class GuardTask extends DelayedTask {
@@ -49,7 +50,12 @@ public class GuardTask extends DelayedTask {
 			this.guard.teleport(this.guard.getLocation(), TeleportCause.PLUGIN);
 			return;
 		}
-		if (this.ptm.findPlotAt(target.getLocation()) == this.guard.getPlot()) {
+		Plot plot = this.ptm.findPlotAt(target.getLocation());
+		if(plot == null) {
+			this.guard.teleport(this.guard.getLocation(), TeleportCause.PLUGIN);
+			return;
+		}
+		if (plot == this.guard.getPlot()) {
 			final PseudoPlayer pPlayer = this.pm.getPlayer(target);
 			if ((pPlayer.isMurderer() || pPlayer.isCriminal()) && target.getGameMode().equals(GameMode.SURVIVAL)
 					&& !target.isDead()) {

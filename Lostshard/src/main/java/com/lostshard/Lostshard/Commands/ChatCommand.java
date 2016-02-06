@@ -1,36 +1,26 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
-import com.lostshard.Lostshard.Utils.TabUtils;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Text;
 
 /**
  * @author Jacob Rosborg
  *
  */
-public class ChatCommand extends LostshardCommand {
+public class ChatCommand {
 
 	PlayerManager pm = PlayerManager.getManager();
-
-	/**
-	 * @param Lostshard
-	 *            as JavaPlugin
-	 */
-	public ChatCommand(Lostshard plugin) {
-		super(plugin, "global", "shout", "local", "whisper", "c", "p", "msg", "reply", "toggleglobal", "togglemsg");
-	}
 
 	/**
 	 * @param player
@@ -38,18 +28,20 @@ public class ChatCommand extends LostshardCommand {
 	 *
 	 *            Output clan chat for player.
 	 */
-	private void clanChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"c"}, 
+			desc = "Toggles or sends a message in the clan channel",
+			help = "Toggles or sends a message in the clan channel",
+			usage = "c (message)")
+	public void clanChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.CLAN);
 			Output.positiveMessage(player, "You have toggled clan chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.CLAN);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -59,18 +51,20 @@ public class ChatCommand extends LostshardCommand {
 	 *
 	 *            Output global chat for player.
 	 */
-	private void globalChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"global", "g"}, 
+			desc = "Toggles or sends a message in the global channel",
+			help = "Toggles or sends a message in the global channel",
+			usage = "global (message)")
+	public void globalChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have toggled global chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.GLOBAL);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -80,116 +74,76 @@ public class ChatCommand extends LostshardCommand {
 	 *
 	 *            Output local chat for player.
 	 */
-	private void localChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"local", "l"}, 
+			desc = "Toggles or sends a message in the local channel",
+			help = "Toggles or sends a message in the local channel",
+			usage = "local (message)")
+	public void localChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.LOCAL);
 			Output.positiveMessage(player, "You have toggled local chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.LOCAL);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 
-	private void msgChat(Player player, String[] args) {
-		if (args.length < 2) {
-			Output.simpleError(player, "/msg (Player) (message)");
-			return;
-		}
-		final String targetName = args[0];
-		final Player targetPlayer = Bukkit.getPlayer(targetName);
-		if(targetPlayer == null) {
-			Output.simpleError(player, "That player is not online.");
-			return;
-		}
-		if (player == null || Lostshard.isVanished(targetPlayer) && !player.isOp()) {
-			Output.simpleError(player, "player not online");
-			return;
-		}
-		if (player == targetPlayer) {
+	
+	@Command(aliases = {"msg"}, 
+			desc = "Send private messages to players",
+			help = "Send private messages to players",
+			usage = "msg <player> <message>",
+			min = 3)
+	public void msgChat(@Sender Player player, @Vanish Player target, @Optional @Text String message) {
+		if (player == target) {
 			Output.simpleError(player, "You can't msg your self.");
 			return;
 		}
-		final String message = StringUtils.join(args, " ", 1, args.length);
 
-		final PseudoPlayer pPlayer = this.pm.getPlayer(targetPlayer);
-		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + targetPlayer.getName()
+		final PseudoPlayer pPlayer = this.pm.getPlayer(target);
+		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + target.getName()
 				+ ChatColor.WHITE + "] " + message);
 		if (!pPlayer.getDisabledChatChannels().contains(ChatChannel.PRIVATE)
 				&& !pPlayer.getIgnored().contains(player.getUniqueId())) {
-			targetPlayer.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
+			target.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG from " + player.getName()
 					+ ChatColor.WHITE + "] " + message);
-			pm.getPlayer(targetPlayer).setLastResiver(player.getUniqueId());
+			pm.getPlayer(target).setLastResiver(player.getUniqueId());
 		}
 	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return true;
-		}
-		final Player player = (Player) sender;
-		if (cmd.getName().equalsIgnoreCase("global"))
-			this.globalChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("shout"))
-			this.shoutChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("local"))
-			this.localChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("whisper"))
-			this.whisperChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("c"))
-			this.clanChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("p"))
-			this.partyChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("msg"))
-			this.msgChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("reply"))
-			this.replyChat(player, args);
-		else if (cmd.getName().equalsIgnoreCase("toggleglobal"))
-			this.toggleGlobalChat(player);
-		else if (cmd.getName().equalsIgnoreCase("togglemsg"))
-			this.toggleMsgChat(player);
-		return true;
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("msg") && args.length == 1)
-			if (sender instanceof Player)
-				return TabUtils.OnlinePlayersTab(args, (Player) sender);
-			else
-				return TabUtils.OnlinePlayersTab(args);
-		return TabUtils.empty();
-	}
-
+	
 	/**
 	 * @param player
 	 * @param args
 	 *
 	 *            Output party chat for player.
 	 */
-	private void partyChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"p"}, 
+			desc = "Toggles or sends a message in the party channel",
+			help = "Toggles or sends a message in the party channel",
+			usage = "p (message)")
+	public void partyChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.PARTY);
 			Output.positiveMessage(player, "You have toggled party chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.PARTY);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 
-	private void replyChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+	
+	@Command(aliases = {"reply", "r"}, 
+			desc = "Reply's to private messages",
+			help = "Reply's to last received private messages",
+			usage = "reply <message>",
+			min = 3)
+	public void replyChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (pPlayer.getLastResiver() == null) {
 			Output.simpleError(player, "You havent received any messages.");
 			return;
@@ -203,7 +157,6 @@ public class ChatCommand extends LostshardCommand {
 		}
 		final PseudoPlayer toPp = this.pm.getPlayer(to);
 		toPp.setLastResiver(player.getUniqueId());
-		final String message = StringUtils.join(args, " ");
 
 		player.sendMessage(ChatColor.WHITE + "[" + ChatColor.LIGHT_PURPLE + "MSG to " + to.getName() + ChatColor.WHITE
 				+ "] " + message);
@@ -217,23 +170,29 @@ public class ChatCommand extends LostshardCommand {
 	 *
 	 *            Output shout chat for player.
 	 */
-	private void shoutChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"shout", "s"}, 
+			desc = "Toggles or sends a message in the shout channel",
+			help = "Toggles or sends a message in the shout channel",
+			usage = "shout (message)")
+	public void shoutChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.SHOUT);
 			Output.positiveMessage(player, "You have toggled shout chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.SHOUT);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 
-	private void toggleGlobalChat(Player player) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+	@Command(aliases = {"toggleglobal", "toggleglobalchat"}, 
+			desc = "Toggles where the global chat should be visible",
+			help = "Toggles where the global chat should be visible",
+			usage = "toggleglobal",
+			max = 1)
+	public void toggleGlobalChat(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		if (pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
 			pPlayer.enableChatChannel(ChatChannel.GLOBAL);
 			Output.positiveMessage(player, "You have enabled Global Chat.");
@@ -243,8 +202,12 @@ public class ChatCommand extends LostshardCommand {
 		}
 	}
 
-	private void toggleMsgChat(Player player) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+	@Command(aliases = {"togglemsg", "toggleprivatechat", "toggleprivate"}, 
+			desc = "Toggles where the private chat should be visible",
+			help = "Toggles where the private chat should be visible",
+			usage = "togglemsg",
+			max = 1)
+	public void toggleMsgChat(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		if (pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
 			pPlayer.enableChatChannel(ChatChannel.PRIVATE);
 			Output.positiveMessage(player, "You have enabled Private Chat.");
@@ -260,18 +223,20 @@ public class ChatCommand extends LostshardCommand {
 	 *
 	 *            Output whisper chat for player.
 	 */
-	private void whisperChat(Player player, String[] args) {
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (args.length < 1) {
+	@Command(aliases = {"whisper", "w"}, 
+			desc = "Toggles or sends a message in the whisper channel",
+			help = "Toggles or sends a message in the whisper channel",
+			usage = "shout (message)")
+	public void whisperChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
+		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.WHISPER);
 			Output.positiveMessage(player, "You have toggled whisper chat.");
 			return;
 		}
 
-		final String msg = StringUtils.join(args, " ");
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.WHISPER);
-		player.chat(msg);
+		player.chat(message);
 		pPlayer.setChatChannel(curChannel);
 	}
 

@@ -2,39 +2,29 @@ package com.lostshard.Lostshard.Commands;
 
 import java.util.Date;
 
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.sk89q.intake.Command;
 
 /**
  * @author Jacob Rosborg
  *
  */
-public class ControlPointsCommand extends LostshardCommand {
-
-	PlotManager ptm = PlotManager.getManager();
-	PlayerManager pm = PlayerManager.getManager();
-
-	public ControlPointsCommand(Lostshard plugin) {
-		super(plugin, "capturepoints", "claim");
-	}
-
-	private void claim(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null || !plot.isCapturepoint()) {
+public class ControlPointsCommand {
+	
+	@Command(aliases = { "claim" }, desc = "Claims the capturepoint")
+	public void claim(@Sender Player player, @Sender PseudoPlayer pPlayer, @Sender Plot plot) {
+		if (!plot.isCapturepoint()) {
 			Output.simpleError(player, "This is not a capturepoint.");
 			return;
 		}
-		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		final Clan clan = pPlayer.getClan();
 		if (clan == null) {
 			Output.simpleError(player, "You may only claim " + plot.getName() + " if you are in a clan.");
@@ -82,25 +72,8 @@ public class ControlPointsCommand extends LostshardCommand {
 		return;
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("capturepoints")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			Output.capturePointsInfo(player);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("claim")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.claim(player);
-			return true;
-		}
-		return false;
+	@Command(aliases = { "capturepoints" }, desc = "Shows a list of all capturepoints")
+	public void listCapturepoints(CommandSender sender) {
+		Output.capturePointsInfo(sender);
 	}
 }
