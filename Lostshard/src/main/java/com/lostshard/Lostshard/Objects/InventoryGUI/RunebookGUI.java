@@ -21,7 +21,7 @@ public class RunebookGUI extends GUI {
 		final List<Rune> runes = new ArrayList<Rune>();
 		runes.add(new Rune(null, "random", -1));
 		runes.add(new Rune(this.getPlayer().getSpawn(), "spawn", -1));
-		runes.addAll(this.getPlayer().getRunebook().getRunes());
+		runes.addAll(this.getPlayer().getRunebook());
 		final GUIItem[] items = new GUIItem[runes.size()];
 		for (int i = 0; i < runes.size(); i++) {
 			final Rune r = runes.get(i);
@@ -62,7 +62,7 @@ public class RunebookGUI extends GUI {
 					final Runebook runebook = pPlayer1.getRunebook();
 					final Rune rune = r;
 
-					runebook.removeRune(rune);
+					runebook.remove(rune);
 					pPlayer1.update();
 					RunebookGUI.this.forceClose();
 					Output.positiveMessage(player, "You have removed the rune \""

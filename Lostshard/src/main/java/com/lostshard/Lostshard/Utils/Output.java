@@ -15,6 +15,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.FluentIterable;
 import com.lostshard.Lostshard.Handlers.ChatHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -96,9 +98,9 @@ public class Output {
 			sender.sendMessage(ChatColor.DARK_RED + "You must be a player to perform this command.");
 	}
 
-	public static void displayTitles(Player player) {
-		player.sendMessage(ChatColor.GOLD + "-" + player.getName() + "'s Titles-");
-		final PseudoPlayer pPlayer = pm.getPlayer(player);
+	public static void displayTitles(Player player, Player target) {
+		player.sendMessage(ChatColor.GOLD + "-" + target.getName() + "'s Titles-");
+		final PseudoPlayer pPlayer = pm.getPlayer(target);
 		for (final String title : pPlayer.getTitles())
 			player.sendMessage(ChatColor.YELLOW + " - " + ChatColor.WHITE + title);
 	}
@@ -133,10 +135,10 @@ public class Output {
 				+ Bukkit.getOfflinePlayer(clan.getOwner()).getName());
 
 		player.sendMessage(ChatColor.YELLOW + "Clan Leaders: " + ChatColor.WHITE
-				+ Utils.listToString(Utils.UUIDArrayToUsernameArray(clan.getLeaders())));
+				+ Joiner.on(", ").join(clan.getLeaders().usernames()));
 
 		player.sendMessage(ChatColor.YELLOW + "Clan Members: " + ChatColor.WHITE
-				+ Utils.listToString(Utils.UUIDArrayToUsernameArray(clan.getMembers())));
+				+ Joiner.on(", ").join(clan.getMembers().usernames()));
 	}
 
 	public static void outputPlayerlist(CommandSender sender) {
@@ -161,9 +163,8 @@ public class Output {
 		}
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName() + "'s Runebook-");
 		final Runebook runebook = pseudoPlayer.getRunebook();
-		final List<Rune> runes = runebook.getRunes();
 
-		int totalRunes = runes.size();
+		int totalRunes = runebook.size();
 		if (!player.isOp() && !pseudoPlayer.wasSubscribed())
 			if (totalRunes > 8)
 				totalRunes = 8;
@@ -177,43 +178,18 @@ public class Output {
 					+ " of 16 runes used) [ Use /runebook page (#) ]");
 		else
 			player.sendMessage(ChatColor.YELLOW + "Pg 1 of " + numPages + " (" + totalRunes + " of 8 runes used)");
-
-		if (split.length >= 2 && split[1].equalsIgnoreCase("page") && totalRunes > 0) {
-			int page = 0;
-			try {
-				page = Integer.parseInt(split[2]);
-			} catch (final Exception e) {
-				page = -1;
-			}
-
-			if (page < 0 || page > numPages) {
-				Output.simpleError(player, "Invalid page.");
-				return;
-			}
-			// valid page
-
-			final int startingRune = (page - 1) * 8;
-			int finalRune = (page - 1) * 8 + 7;
-			if (finalRune >= totalRunes)
-				finalRune = totalRunes - 1;
-
-			// output
-			for (int i = startingRune; i <= finalRune; i++) {
-				final Location loc = runes.get(i).getLocation();
-				player.sendMessage("- " + runes.get(i).getLabel() + " (" + loc.getBlockX() + "," + loc.getBlockY() + ","
-						+ loc.getBlockZ() + ")");
-			}
-		} else if (runes.size() > 0) {
-			int numToDisplay = totalRunes;
-			if (numToDisplay >= 8)
-				numToDisplay = 8;
-			for (int i = 0; i < numToDisplay; i++) {
-				final Location loc = runes.get(i).getLocation();
-				player.sendMessage("- " + runes.get(i).getLabel() + " (" + loc.getBlockX() + "," + loc.getBlockY() + ","
-						+ loc.getBlockZ() + ")");
-			}
-		} else
-			player.sendMessage(ChatColor.RED + "You do not have any runes.");
+		
+		if(runebook.size() <= 0) {
+			Output.simpleError(player, "You do not have any runes.");
+			return;
+		}
+		
+		for(Rune r : FluentIterable.from(runebook).skip(numPages*8).limit(8).toList()) {
+			final Location loc = r.getLocation();
+			player.sendMessage("- " + r.getLabel() + " (" + loc.getBlockX() + "," + loc.getBlockY() + ","
+					+ loc.getBlockZ() + ")");
+		}
+		
 	}
 
 	public static void outputScrolls(Player player, String[] args) {
@@ -231,7 +207,7 @@ public class Output {
 			for (final Scroll s : scrolls) {
 				int scrollAmount = 1;
 				scrollAmount = Collections.frequency(pseudoPlayer.getScrolls(), s);
-				if (pseudoPlayer.getSpellbook().containSpell(s))
+				if (pseudoPlayer.getSpellbook().contains(s))
 					output.append("+");
 				output.append(s.getName() + " (" + scrollAmount + "), ");
 			}

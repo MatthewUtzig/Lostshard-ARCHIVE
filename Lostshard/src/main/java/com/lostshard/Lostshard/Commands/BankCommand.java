@@ -38,9 +38,7 @@ public class BankCommand {
 	 */
 	@Command(aliases={"bank"}, 
 			desc = "Opens your bank", 
-			help="Opens a your bank inventory while close to a banker", 
-			usage="", 
-			max=1)
+			help="Opens a your bank inventory while close to a banker")
 	public void bank(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		for (final NPC npc : this.npcm.getBankers())
 			if (Utils.isWithin(player.getLocation(), npc.getLocation(), Variables.bankRadius)) {
@@ -61,8 +59,7 @@ public class BankCommand {
 	@Command(aliases={"pay"}, 
 			desc = "Sends money to antoher player", 
 			help="Sends a money to another online player", 
-			usage="<player> <amount>", 
-			max=3)
+			usage="<player> <amount>")
 	public void pay(CommandSender sender, @Vanish Player targetPlayer, @Range(min=1) int amount) {
 		if (amount < 1)
 			sender.sendMessage(ChatColor.DARK_RED + "Amount must be greater than 0.");
@@ -99,8 +96,7 @@ public class BankCommand {
 	@Command(aliases={"tradegold"}, 
 			desc = "Trade gold ingots into gold coins", 
 			help="Trade gold ingots at a bank into gold coins, at a rate of 100 gold coins to 1 gold ingot", 
-			usage="<amount>", 
-			max=2)
+			usage="<amount>")
 	public void tradegold(@Sender Player player, @Sender PseudoPlayer pPlayer, @Range(min=1) int amount) {
 		final NPC npc = this.npcm.getBanker(player.getLocation());
 		if (npc == null) {

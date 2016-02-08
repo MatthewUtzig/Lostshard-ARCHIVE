@@ -43,7 +43,7 @@ public class MageryCommand {
 		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
 		final Scroll scroll = Scroll.getByString(scrollName);
-		if (scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
+		if (scroll == null || !pPlayer.getSpellbook().contains(scroll)) {
 			Output.simpleError(player, "Your spellbook does not contain " + scrollName + ".");
 			return;
 		}
@@ -99,8 +99,8 @@ public class MageryCommand {
 						final Runebook runebook = pseudoPlayer.getRunebook();
 						final Runebook targetRunebook = targetPseudoPlayer.getRunebook();
 						if (targetPlayer.isOp()
-								|| targetPseudoPlayer.wasSubscribed() && targetRunebook.getNumRunes() < 16
-								|| targetRunebook.getNumRunes() < 8) {
+								|| targetPseudoPlayer.wasSubscribed() && targetRunebook.size() < 16
+								|| targetRunebook.size() < 8) {
 
 							String runeLabel = "";
 							final int splitLength = args.length;
@@ -111,7 +111,7 @@ public class MageryCommand {
 							}
 							runeLabel = runeLabel.trim();
 
-							final List<Rune> runes = runebook.getRunes();
+							final Runebook runes = runebook;
 							Rune foundRune = null;
 							for (final Rune rune : runes)
 								if (rune.getLabel().equalsIgnoreCase(runeLabel)) {
@@ -119,7 +119,7 @@ public class MageryCommand {
 									break;
 								}
 							if (foundRune != null) {
-								final List<Rune> targetRunes = targetRunebook.getRunes();
+								final Runebook targetRunes = targetRunebook;
 								boolean foundMatching = false;
 								for (final Rune rune : targetRunes)
 									if (rune.getLabel().equalsIgnoreCase(foundRune.getLabel())) {
@@ -127,8 +127,8 @@ public class MageryCommand {
 										break;
 									}
 								if (!foundMatching) {
-									runebook.removeRune(foundRune);
-									targetRunebook.addRune(foundRune);
+									runebook.remove(foundRune);
+									targetRunebook.add(foundRune);
 									targetPseudoPlayer.update();
 									Output.positiveMessage(player, "You have given the rune " + foundRune.getLabel()
 											+ " to " + targetPlayer.getName());
@@ -159,9 +159,9 @@ public class MageryCommand {
 
 					final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 					final Runebook runebook = pseudoPlayer.getRunebook();
-					final Rune foundRune = runebook.getRune(runeLabel);
+					final Rune foundRune = runebook.get(runeLabel);
 					if (foundRune != null) {
-						runebook.removeRune(foundRune);
+						runebook.remove(foundRune);
 						Output.positiveMessage(player, "You have removed the rune " + foundRune.getLabel());
 						pseudoPlayer.update();
 					} else
@@ -249,8 +249,8 @@ public class MageryCommand {
 				if (!this.haveScroll(scroll, pPlayer, player))
 					return;
 				final SpellBook spellbook = pPlayer.getSpellbook();
-				if (!spellbook.containSpell(scroll)) {
-					pPlayer.addSpell(scroll);
+				if (!spellbook.contains(scroll)) {
+					spellbook.add(scroll);
 					pPlayer.update();
 					pPlayer.update();
 					Output.positiveMessage(player, "You have transferred " + scroll.getName() + " to your spellbook.");

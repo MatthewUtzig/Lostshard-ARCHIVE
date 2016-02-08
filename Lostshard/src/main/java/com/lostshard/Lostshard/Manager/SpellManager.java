@@ -96,7 +96,7 @@ public class SpellManager {
 			return false;
 		}
 
-		if (!pPlayer.getSpellbook().containSpell(spell.getScroll())) {
+		if (!pPlayer.getSpellbook().contains(spell.getScroll())) {
 			Output.simpleError(player, "Your spellbook does not contain the " + spell.getName() + " spell.");
 			return false;
 		}

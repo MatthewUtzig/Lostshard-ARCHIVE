@@ -39,6 +39,7 @@ import com.sk89q.intake.parametric.annotation.Optional;
 import com.sk89q.intake.parametric.annotation.Range;
 import com.sk89q.intake.parametric.annotation.Switch;
 import com.sk89q.intake.parametric.annotation.Text;
+import com.sk89q.intake.parametric.annotation.Validate;
 
 /**
  * @author Jacob Emil Ulvedal Rosborg
@@ -63,7 +64,7 @@ public class PlotCommand {
 	 */
 	@Command(aliases = { "create" }, desc = "creates a plot", usage = "<name>", 
 			help = "Creats a plot with a given name, it cost 1000 gc and a diamond, this cost increase for every plot you create with in a week.")
-	public void createPlot(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text String plotName) {
+	public void createPlot(@Sender Player player, @Sender PseudoPlayer pPlayer, @Validate(regex="\\w{2,"+Variables.plotMaxNameLength+"}") @Text String plotName) {
 		int curMoney = pPlayer.getMoney();
 
 		// get recently purchased plots
@@ -96,10 +97,7 @@ public class PlotCommand {
 			Output.simpleError(player, "/plot create (name)");
 			return;
 		}
-		if (nameLength > Variables.plotMaxNameLength) {
-			Output.simpleError(player, "Plot name is invalid or too long, limit is 20 characters.");
-			return;
-		}
+		
 		// find intersecting regions and check names to make sure there isn't a
 		// region with that name already
 		final Location curLoc = player.getLocation().getBlock().getLocation();
@@ -1166,7 +1164,7 @@ public class PlotCommand {
 			return;
 		}
 
-		if (plot.getCoowners().contains(target.getUniqueId())
+		if (plot.isCoowner(target.getUniqueId())
 				&& plot.getCoowners().contains(player.getUniqueId())) {
 			Output.simpleError(player, "Only the owner may unfriend a co-owner.");
 			return;

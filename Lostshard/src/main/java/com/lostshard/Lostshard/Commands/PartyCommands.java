@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.google.common.base.Joiner;
 import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -24,7 +25,7 @@ public class PartyCommands {
 		final Party party = pPlayer.getParty();
 		if (party != null) {
 			player.sendMessage(ChatColor.GOLD + "-Your Party-");
-			final String partyMembersString = Utils.listToString(Utils.UUIDArrayToUsernameArray(party.getMembers()));
+			final String partyMembersString = Joiner.on(", ").join(party.getMembers().usernames());
 			player.sendMessage(ChatColor.YELLOW + "Party Members: " + ChatColor.WHITE + partyMembersString);
 
 		} else
@@ -75,7 +76,7 @@ public class PartyCommands {
 						return;
 					}
 					inviterParty.sendMessage(player.getName() + " has joined the party.");
-					inviterParty.removeInvited(player.getUniqueId());
+					inviterParty.getInvited().remove(player);
 					inviterParty.addMember(player.getUniqueId());
 					pPlayer.setParty(inviterParty);
 					Output.positiveMessage(player, "You have joined " + inviterPlayer.getName() + "'s party.");

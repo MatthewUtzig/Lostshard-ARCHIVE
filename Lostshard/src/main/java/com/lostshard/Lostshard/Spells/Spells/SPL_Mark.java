@@ -1,7 +1,5 @@
 package com.lostshard.Lostshard.Spells.Spells;
 
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -30,18 +28,17 @@ public class SPL_Mark extends Spell {
 			Output.simpleError(player, "Invalid characters or too long, 20 char max.");
 		else {
 			final Runebook runebook = pseudoPlayer.getRunebook();
-			final int numRunes = runebook.getNumRunes();
+			final int numRunes = runebook.size();
 			if (player.isOp() || pseudoPlayer.wasSubscribed() && numRunes < 32 || numRunes < 8) {
-				final List<Rune> runes = runebook.getRunes();
 				boolean foundMatching = false;
-				for (final Rune rune : runes)
+				for (final Rune rune : runebook)
 					if (rune.getLabel().equalsIgnoreCase(this.getResponse())) {
 						foundMatching = true;
 						break;
 					}
 				if (!foundMatching) {
 					final Rune newRune = new Rune(this.markLoc, this.getResponse(), 0);
-					runebook.addRune(newRune);
+					runebook.add(newRune);
 					pseudoPlayer.update();
 					Output.positiveMessage(player, "You have marked a rune for " + this.getResponse() + ".");
 				} else

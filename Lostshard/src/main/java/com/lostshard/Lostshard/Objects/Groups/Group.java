@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
@@ -13,12 +12,10 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
+import com.lostshard.Lostshard.Objects.PlayerListSet;
 
 @MappedSuperclass
 public class Group {
@@ -26,15 +23,9 @@ public class Group {
 	@Transient
 	public PlayerManager pm = PlayerManager.getManager();
 
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
-	private List<UUID> members = new ArrayList<UUID>();
-
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
-	private List<UUID> invited = new ArrayList<UUID>();
+	private PlayerListSet members = new PlayerListSet();
+	
+	private PlayerListSet invited = new PlayerListSet();
 
 	public void addInvited(UUID invite) {
 		if (!this.invited.contains(invite))
@@ -60,11 +51,11 @@ public class Group {
 		}
 	}
 
-	public List<UUID> getInvited() {
+	public PlayerListSet getInvited() {
 		return this.invited;
 	}
 
-	public List<UUID> getMembers() {
+	public PlayerListSet getMembers() {
 		return this.members;
 	}
 
@@ -121,13 +112,6 @@ public class Group {
 		return false;
 	}
 
-	public void removeInvited(UUID invite) {
-		final int numInvitedNames = this.invited.size();
-		for (int i = numInvitedNames - 1; i >= 0; i--)
-			if (this.invited.get(i).equals(invite))
-				this.invited.remove(i);
-	}
-
 	public void removeMember(UUID member) {
 		this.members.remove(member);
 	}
@@ -156,11 +140,11 @@ public class Group {
 		}
 	}
 
-	public void setInvited(List<UUID> invited) {
+	public void setInvited(PlayerListSet invited) {
 		this.invited = invited;
 	}
 
-	public void setMembers(List<UUID> members) {
+	public void setMembers(PlayerListSet members) {
 		this.members = members;
 	}
 }

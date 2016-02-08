@@ -95,9 +95,7 @@ public class PseudoPlayer {
 	private List<ChatChannel> disabledChatChannels = new ArrayList<ChatChannel>();
 	@Transient
 	private UUID lastResiver = null;
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<String> titels = new ArrayList<String>();
+	private Titles titels = new Titles();
 	private int currenttitle = -1;
 	@Transient
 	private boolean update = false;
@@ -174,11 +172,6 @@ public class PseudoPlayer {
 
 	public void addScroll(Scroll scroll) {
 		this.scrolls.add(scroll);
-	}
-
-	public void addSpell(Scroll scroll) {
-		this.spellbook.addSpell(scroll);
-		this.update();
 	}
 
 	public void clearRecentAttackers() {
@@ -411,7 +404,7 @@ public class PseudoPlayer {
 		return this.timer;
 	}
 
-	public List<String> getTitles() {
+	public Titles getTitles() {
 		return this.titels;
 	}
 
@@ -710,11 +703,6 @@ public class PseudoPlayer {
 
 	public void setTimer(PseudoPlayerTimer timer) {
 		this.timer = timer;
-	}
-
-	public void setTitels(List<String> titels) {
-		this.titels = titels;
-		this.update();
 	}
 
 	public void setUpdate(boolean update) {

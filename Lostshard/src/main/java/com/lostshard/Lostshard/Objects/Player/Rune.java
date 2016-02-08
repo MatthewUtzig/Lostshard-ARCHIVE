@@ -60,4 +60,12 @@ public class Rune {
 	public void setSavableLocation(SavableLocation savableLocation) {
 		this.location = savableLocation;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Rune)
+		return label.equalsIgnoreCase(((Rune) obj).getLabel());
+		else
+			return super.equals(obj);
+	}
 }

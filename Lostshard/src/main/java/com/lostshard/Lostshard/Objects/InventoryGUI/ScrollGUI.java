@@ -32,7 +32,7 @@ public class ScrollGUI extends GUI {
 			final ItemMeta itemMeta = item.getItemMeta();
 			final List<String> lore = new ArrayList<String>();
 
-			if (this.getPlayer().getSpellbook().containSpell(s))
+			if (this.getPlayer().getSpellbook().contains(s))
 				itemMeta.setDisplayName(ChatColor.GREEN + s.getName());
 			else
 				itemMeta.setDisplayName(ChatColor.RED + s.getName());
@@ -52,9 +52,9 @@ public class ScrollGUI extends GUI {
 			items[i] = new GUIItem(item, (player, pPlayer1, item1, click, inv, slot) -> {
 				if (click.equals(ClickType.LEFT)) {
 					final Scroll scroll1 = s;
-					if (pPlayer1.getSpellbook().containSpell(scroll1))
+					if (pPlayer1.getSpellbook().contains(scroll1))
 						return;
-					pPlayer1.addSpell(scroll1);
+					pPlayer1.getSpellbook().add(scroll1);
 					pPlayer1.getScrolls().remove(scroll1);
 					pPlayer1.update();
 

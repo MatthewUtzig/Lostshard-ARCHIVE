@@ -30,42 +30,53 @@ public class ClanCommand {
 	@Command(aliases = { "demote" }, desc = "Demotes a player from leader to member", usage = "<player>")
 	public void clanDemote(@Sender Player player, @Sender PseudoPlayer pPlayer, OfflinePlayer target) {
 		final Clan clan = pPlayer.getClan();
-		if (clan != null) {
-			if (clan.isOwner(player.getUniqueId())) {
-				if(clan.isMember(target)) {
-					if (clan.isLeader(target.getUniqueId())) {
-						clan.demoteLeader(target.getUniqueId());
-						clan.addMember(target.getUniqueId());
-						if (target.isOnline())
-							Output.positiveMessage(target.getPlayer(),
-									"You have been demoted to a normal member in your clan.");
-						Output.positiveMessage(player,
-								"You have demoted " + target.getName() + " to a normal member in your clan.");
-					} else
-						Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
-				} else
-					Output.simpleError(player, "The player "+target.getName()+" is not a member of your clan.");
-			} else
-				Output.simpleError(player, "Only a clan owner may demote clan members.");
-		} else
+		if(clan == null) {
 			Output.simpleError(player, "You are not currently in a clan.");
+			return;
+		}
+		
+		if(!clan.isOwner(player)) {
+			Output.simpleError(player, "Only a clan owner may demote clan members.");
+			return;
+		}
+		
+		if(!clan.isMember(target)) {
+			Output.simpleError(player, "The player "+target.getName()+" is not a member of your clan.");
+			return;
+		}
+		
+		if (!clan.isLeader(target.getUniqueId())) {
+			Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
+			return;
+		}
+		clan.demoteLeader(target.getUniqueId());
+		clan.addMember(target.getUniqueId());
+		if (target.isOnline())
+			Output.positiveMessage(target.getPlayer(),
+					"You have been demoted to a normal member in your clan.");
+		Output.positiveMessage(player,
+				"You have demoted " + target.getName() + " to a normal member in your clan.");	
 	}
 
 	@Command(aliases = { "disband" }, desc = "Disbands the current clan")
 	public void clanDisband(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		final Clan clan = pPlayer.getClan();
-		if (clan != null) {
-			if (clan.isOwner(player)) {
-				final List<Player> onlineMembers = clan.getOnlineMembers();
-				for (final Player p : onlineMembers)
-					// inform them the clan is gone
-					Output.simpleError(p, "Your clan has been disbanded.");
-				clan.delete();
-				this.cm.getClans().remove(clan);
-			} else
-				Output.simpleError(player, "Only the clan owner may disband the clan.");
-		} else
+		
+		if(clan == null) {
 			Output.simpleError(player, "You are not currently in a clan.");
+			return;
+		}
+		
+		if(!clan.isOwner(player)) {
+			Output.simpleError(player, "Only the clan owner may disband the clan.");
+			return;
+		}
+		final List<Player> onlineMembers = clan.getOnlineMembers();
+		for (final Player p : onlineMembers)
+			// inform them the clan is gone
+			Output.simpleError(p, "Your clan has been disbanded.");
+		clan.delete();
+		this.cm.getClans().remove(clan);
 	}
 
 	@Command(aliases = { "info" }, desc = "Displays info about your current clan")
@@ -149,17 +160,17 @@ public class ClanCommand {
 						&& !clanFound.isMember(player.getUniqueId())) {
 					final Clan currentClan = pPlayer.getClan();
 					if (currentClan != null) {
-						currentClan.removeInvited(player.getUniqueId());
-						currentClan.demoteLeader(player.getUniqueId());
-						currentClan.removeMember(player.getUniqueId());
+						currentClan.getInvited().remove(player);
+						currentClan.getLeaders().remove(player);
+						currentClan.getMembers().remove(player);
 					}
 					clanFound.sendMessage(player.getName() + " has joined the clan.");
 					clanFound.addMember(player.getUniqueId());
-					clanFound.removeInvited(player.getUniqueId());
+					clanFound.getInvited().remove(player);
 					Output.positiveMessage(player, "You have joined the " + clanFound.getName() + " clan.");
 				} else {
 					Output.simpleError(player, "You are already a member of this clan.");
-					clanFound.removeInvited(player.getUniqueId());
+					clanFound.getInvited().remove(player);
 				}
 			} else
 				Output.simpleError(player, "You have not been invited to that clan.");
@@ -277,7 +288,7 @@ public class ClanCommand {
 			if (clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
 				if (target.getUniqueId().equals(player.getUniqueId()))
 					if (clan.isInvited(target.getUniqueId())) {
-						clan.removeInvited(target.getUniqueId());
+						clan.getMembers().remove(target);
 						final Player targetPlayer = target.getPlayer();
 						if (targetPlayer != null)
 							Output.simpleError(targetPlayer,

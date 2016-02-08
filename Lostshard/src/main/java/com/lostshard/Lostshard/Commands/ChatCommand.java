@@ -1,8 +1,11 @@
 package com.lostshard.Lostshard.Commands;
 
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Intake.Vanish;
@@ -28,6 +31,7 @@ public class ChatCommand {
 	 *
 	 *            Output clan chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"c"}, 
 			desc = "Toggles or sends a message in the clan channel",
 			help = "Toggles or sends a message in the clan channel",
@@ -41,7 +45,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.CLAN);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -51,6 +55,7 @@ public class ChatCommand {
 	 *
 	 *            Output global chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"global", "g"}, 
 			desc = "Toggles or sends a message in the global channel",
 			help = "Toggles or sends a message in the global channel",
@@ -64,7 +69,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.GLOBAL);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -74,6 +79,7 @@ public class ChatCommand {
 	 *
 	 *            Output local chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"local", "l"}, 
 			desc = "Toggles or sends a message in the local channel",
 			help = "Toggles or sends a message in the local channel",
@@ -87,7 +93,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.LOCAL);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -120,6 +126,7 @@ public class ChatCommand {
 	 *
 	 *            Output party chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"p"}, 
 			desc = "Toggles or sends a message in the party channel",
 			help = "Toggles or sends a message in the party channel",
@@ -133,7 +140,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.PARTY);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -170,6 +177,7 @@ public class ChatCommand {
 	 *
 	 *            Output shout chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"shout", "s"}, 
 			desc = "Toggles or sends a message in the shout channel",
 			help = "Toggles or sends a message in the shout channel",
@@ -183,7 +191,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.SHOUT);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 
@@ -221,6 +229,7 @@ public class ChatCommand {
 	 *
 	 *            Output whisper chat for player.
 	 */
+	@SuppressWarnings("unchecked")
 	@Command(aliases = {"whisper", "w"}, 
 			desc = "Toggles or sends a message in the whisper channel",
 			help = "Toggles or sends a message in the whisper channel",
@@ -234,7 +243,7 @@ public class ChatCommand {
 
 		final ChatChannel curChannel = pPlayer.getChatChannel();
 		pPlayer.setChatChannel(ChatChannel.WHISPER);
-		player.chat(message);
+		Bukkit.getPluginManager().callEvent(new AsyncPlayerChatEvent(true, player, message, (Set<Player>) Bukkit.getOnlinePlayers()));
 		pPlayer.setChatChannel(curChannel);
 	}
 

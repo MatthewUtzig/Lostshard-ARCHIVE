@@ -1,6 +1,5 @@
 package com.lostshard.Lostshard.Commands;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +16,6 @@ import com.lostshard.Lostshard.Utils.Utils;
 import com.sk89q.intake.Command;
 import com.sk89q.intake.parametric.annotation.Optional;
 import com.sk89q.intake.parametric.annotation.Range;
-import com.sk89q.intake.parametric.annotation.Text;
 
 public class UtilsCommand {
 
@@ -141,68 +139,6 @@ public class UtilsCommand {
 					"can't go to spawn, " + seconds / 60 + " minutes, " + seconds % 60 + " seconds remaining.");
 		}
 	}
-
-	@Command(aliases = { "title"}, desc = "Selects a title")
-	public void title(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text @Optional String string) {
-		String[] args = string.split(" ");
-		if (args.length > 0) {
-			String subCmd = args[0];
-			if (subCmd.equalsIgnoreCase("none") || subCmd.equalsIgnoreCase("null")) {
-				pPlayer.setCurrentTitleId(-1);
-				Output.positiveMessage(player, "You have disabled your title");
-			} else if (subCmd.equalsIgnoreCase("give") && player.isOp()) {
-				if (!(args.length > 2)) {
-					Output.simpleError(player, "/title give (player) (title)");
-					return;
-				}
-				final String name = args[1];
-				final Player tPlayer = Utils.getPlayer(name);
-				if (tPlayer == null) {
-					Output.simpleError(player, name + " is not online.");
-					return;
-				}
-				final PseudoPlayer tpPlayer = this.pm.getPlayer(tPlayer);
-				final String title = StringUtils.join(args, " ", 2, args.length);
-				if (title.length() > 15) {
-					Output.simpleError(player, "Title must be less than 15 characters.");
-					return;
-				}
-				tpPlayer.getTitles().add(title);
-				Output.positiveMessage(player, "You have given \"" + title + "\" to \"" + tPlayer.getName() + "\".");
-			} else if (subCmd.equalsIgnoreCase("remove") || subCmd.equalsIgnoreCase("take") && player.isOp()) {
-				if (args.length < 2) {
-					Output.simpleError(player, "/title take (player) (title)");
-					return;
-				}
-				final String name = args[1];
-				final Player tPlayer = Utils.getPlayer(name);
-				if (tPlayer == null) {
-					Output.simpleError(player, name + " is not online.");
-					return;
-				}
-				final PseudoPlayer tpPlayer = this.pm.getPlayer(tPlayer);
-				final String title = StringUtils.join(args, " ", 2, args.length);
-				if (tpPlayer.getTitles().remove(title))
-					Output.positiveMessage(player,
-							"You have taken \"" + title + "\" from \"" + tPlayer.getName() + "\".");
-				else
-					Output.simpleError(player, tPlayer.getName() + " do not have such title.");
-			} else {
-				subCmd = StringUtils.join(args);
-				for (int i = 0; i < pPlayer.getTitles().size(); i++) {
-					final String title = pPlayer.getTitles().get(i);
-					if (StringUtils.containsIgnoreCase(title.replace(" ", ""), subCmd.replace(" ", ""))) {
-						pPlayer.setCurrentTitleId(i);
-						Output.positiveMessage(player, "You have set your title to \"" + title + "\"");
-						return;
-					}
-				}
-				Output.simpleError(player, "You have no such title.");
-			}
-		} else {
-			Output.displayTitles(player);
-		}
-	}
 	
 	@Command(aliases = { "who", "playerlist", "list"}, desc = "List all online players")
 	public void who(CommandSender sender) {
@@ -225,9 +161,8 @@ public class UtilsCommand {
 	}
 	
 	@Command(aliases = { "help"}, desc = "List all online players", usage = "<command> <page>")
-	public void help(CommandSender sender, @Optional(value="") @Text String arg) {
-		String[] args = arg.split(" ");
-		HelpHandler.handle(sender, args);
+	public void help(CommandSender sender, @Optional String topic, @Optional @Range(min=1) int page) {
+		HelpHandler.handle(sender, topic, page);
 	}
 	
 	@Command(aliases = { "unignore"}, desc = "unignores player", usage="<player>")

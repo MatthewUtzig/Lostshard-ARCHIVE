@@ -26,6 +26,7 @@ import com.lostshard.Lostshard.Commands.SkillCommand;
 import com.lostshard.Lostshard.Commands.StoreCommand;
 import com.lostshard.Lostshard.Commands.SurvivalismCommand;
 import com.lostshard.Lostshard.Commands.TamingCommand;
+import com.lostshard.Lostshard.Commands.TitleCommand;
 import com.lostshard.Lostshard.Commands.UtilsCommand;
 import com.lostshard.Lostshard.Intake.Modules.OfflinePlayerModule;
 import com.lostshard.Lostshard.Intake.Modules.PlayerModule;
@@ -83,6 +84,9 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
         .registerMethods(new StoreCommand())
         .registerMethods(new SkillCommand())
         .registerMethods(new MageryCommand())
+        .group("titles")
+        	.registerMethods(new TitleCommand())
+        	.parent()
         .group("clan")
         	.registerMethods(new ClanCommand())
         	.parent()

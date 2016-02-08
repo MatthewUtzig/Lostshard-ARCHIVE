@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,11 +15,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Objects.PlayerListSet;
 import com.lostshard.Lostshard.Objects.Player.Bank;
 
 @Entity
@@ -39,12 +37,8 @@ public class Clan extends Group {
 	@Column(name = "owner")
 	@Type(type = "uuid-char")
 	private UUID owner;
-
-	// Array's
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
-	private List<UUID> leaders = new ArrayList<UUID>();
+	
+	private PlayerListSet leaders = new PlayerListSet();
 
 	@Transient
 	private Bank bank = new Bank(false);
@@ -88,7 +82,7 @@ public class Clan extends Group {
 		return this.id;
 	}
 
-	public List<UUID> getLeaders() {
+	public PlayerListSet getLeaders() {
 		return this.leaders;
 	}
 
@@ -146,25 +140,8 @@ public class Clan extends Group {
 	}
 
 	public void promoteMember(UUID uuid) {
+		this.getMembers().remove(uuid);
 		this.leaders.add(uuid);
-		this.update();
-	}
-
-	@Override
-	public void removeInvited(UUID invite) {
-		final int numInvitedNames = this.getInvited().size();
-		for (int i = numInvitedNames - 1; i >= 0; i--)
-			if (this.getInvited().get(i).equals(invite))
-				this.getInvited().remove(i);
-		this.update();
-	}
-
-	@Override
-	public void removeMember(UUID member) {
-		final int numPartyMemberNames = this.getMembers().size();
-		for (int i = numPartyMemberNames - 1; i >= 0; i--)
-			if (this.getMembers().get(i).equals(member))
-				this.getMembers().remove(i);
 		this.update();
 	}
 
@@ -189,7 +166,7 @@ public class Clan extends Group {
 		this.id = id;
 	}
 
-	public void setLeaders(List<UUID> leaders) {
+	public void setLeaders(PlayerListSet leaders) {
 		this.leaders = leaders;
 	}
 

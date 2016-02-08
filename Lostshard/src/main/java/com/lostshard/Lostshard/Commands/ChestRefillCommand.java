@@ -33,7 +33,11 @@ public class ChestRefillCommand  {
 			Output.simpleError(player, "Thats already a Dungeon Chest.");
 			return;
 		}
-
+		
+		if(min > max) {
+			Output.simpleError(player, "Max time cannot be less than min time.");
+			return;
+		}
 		min *= 60000;
 		max *= 60000;
 

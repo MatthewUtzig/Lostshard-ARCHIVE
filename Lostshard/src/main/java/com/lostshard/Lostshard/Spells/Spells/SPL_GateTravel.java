@@ -1,7 +1,6 @@
 package com.lostshard.Lostshard.Spells.Spells;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -34,11 +33,10 @@ public class SPL_GateTravel extends Spell {
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 
 		final Runebook runebook = pseudoPlayer.getRunebook();
-		final List<Rune> runes = runebook.getRunes();
 		Rune runeFound = null;
 
 		int count = 0;
-		for (final Rune rune : runes) {
+		for (final Rune rune : runebook) {
 			if (!player.isOp() && !pseudoPlayer.wasSubscribed() && count >= 8)
 				break;
 			if (rune.getLabel().equalsIgnoreCase(this.getResponse())) {

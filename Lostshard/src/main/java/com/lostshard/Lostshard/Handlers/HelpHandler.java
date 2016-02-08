@@ -9,8 +9,8 @@ import org.bukkit.inventory.meta.BookMeta;
 
 public class HelpHandler {
 
-	public static void handle(CommandSender sender, String[] split) {
-		if (split.length < 1) {
+	public static void handle(CommandSender sender, String topic, int page) {
+		if (page == 0) {
 			if (sender instanceof Player) {
 				final ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
 				final BookMeta bookMeta = (BookMeta) book.getItemMeta();
@@ -259,18 +259,10 @@ public class HelpHandler {
 			sender.sendMessage(ChatColor.YELLOW + "Topics:" + ChatColor.GRAY
 					+ " chat, land, money, scrolls, clan, party, karma, misc");
 		} else {
-			final String topic = split[0];
-
 			if (topic.equalsIgnoreCase("chat"))
-				helpChat(sender);
+				helpChat(sender, page);
 			else if (topic.equalsIgnoreCase("land") || topic.equalsIgnoreCase("plot")
 					|| topic.equalsIgnoreCase("plots")) {
-				int page;
-				try {
-					page = Integer.parseInt(split[1]);
-				}catch (Exception e) {
-					page = 0;
-				}
 				helpLandOwnership(sender, page);
 			} else if (topic.equalsIgnoreCase("money"))
 				helpMoney(sender);
@@ -279,12 +271,6 @@ public class HelpHandler {
 			else if (topic.equalsIgnoreCase("scrolls"))
 				helpScrolls(sender);
 			else if (topic.equalsIgnoreCase("clan")) {
-				int page;
-				try {
-					page = Integer.parseInt(split[1]);
-				}catch (Exception e) {
-					page = 0;
-				}
 				helpClan(sender, page);
 			}
 			else if (topic.equalsIgnoreCase("party"))
@@ -296,11 +282,11 @@ public class HelpHandler {
 		}
 	}
 
-	public static void helpChat(CommandSender sender) {
+	public static void helpChat(CommandSender sender, int page) {
 		sender.sendMessage(ChatColor.GOLD + "-Chat Help-");
 		sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY + " Default chat is global.");
 		sender.sendMessage(
-				ChatColor.YELLOW + "/l (message)" + ChatColor.GRAY + " - Global chat, talks in global chat.");
+				ChatColor.YELLOW + "/g (message)" + ChatColor.GRAY + " - Global chat, talks in a ranged chat.");
 		sender.sendMessage(
 				ChatColor.YELLOW + "/l (message)" + ChatColor.GRAY + " - Local chat, talks to nearby players.");
 		sender.sendMessage(ChatColor.YELLOW + "/s (message)" + ChatColor.GRAY + " - Shouts a message");

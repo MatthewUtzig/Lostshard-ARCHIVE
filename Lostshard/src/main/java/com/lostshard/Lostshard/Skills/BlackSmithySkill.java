@@ -317,6 +317,11 @@ public class BlackSmithySkill extends Skill {
 			costAmount = 3;
 			if (lvl < 250)
 				cangain = true;
+		} else if (item.getType().equals(Material.FISHING_ROD)) {
+			cost = Material.STRING;
+			costAmount = 3;
+			if (lvl < 250)
+				cangain = true;
 		}
 
 		if (cost == null) {
