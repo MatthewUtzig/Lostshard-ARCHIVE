@@ -1,30 +1,16 @@
 package com.lostshard.Lostshard.Commands;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Skills.FishingSkill;
-import com.lostshard.Lostshard.Utils.Output;
+import com.sk89q.intake.Command;
 
-public class FishingCommand extends LostshardCommand {
+public class FishingCommand {
 
-	public FishingCommand(Lostshard plugin) {
-		super(plugin, "boat");
-	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("boat")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			FishingSkill.callBoat(player);
-			return true;
-		}
-		return false;
+	
+	@Command(aliases = { "boat" }, desc = "Calls a boat to your side")
+	public void boat(@Sender Player player) {
+		FishingSkill.callBoat(player);
 	}
 }

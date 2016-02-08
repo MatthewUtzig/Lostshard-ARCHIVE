@@ -1,233 +1,273 @@
 name: Lostshard
 main: com.lostshard.Lostshard.Main.Lostshard
-version: 0.2
 softdepend: [Citizens]
+version: 0.2
 commands:
-   bank:
-      description: Access your bank inventory at the local bank.
-      usage: /<command>
-   tradegold:
-      description: trade 1 gold ingot to 100gc at a bank.
-      usage: /<command> (amount)
-   pay:
-      description: pay a player money.
-      usage: /<command> (player) (amount)
-   plot:
-      description: Plot commands.
-      usage: /<command> (subCommand)
-   claim:
-      description: Claim a capturepoint.
-      usage: /<command>
-   capturepoints:
-      description: Get a list of all capturepoints and position.
-      usage: /<command>
-   global:
-      description: Selects the global chat.
-      aliases: [g]
-      usage: /<command>
-   shout:
-      description: Selects the shout chat.
-      aliases: [s]
-      usage: /<command>
-   local:
-      description: Selects the local chat.
-      aliases: [l]
-      usage: /<command>
-   whisper:
-      description: Selects the whisper chat.
-      aliases: [w]
-      usage: /<command>
-   p:
-      description: Selects the whisper chat.
-      usage: /<command>
-   c:
-      description: Selects the whisper chat.
-      usage: /<command>
-   msg:
-      description: Send a private message to a player.
-      aliases: [m]
-      usage: /<command> (Player) (Message)
-   toggleglobal:
-      description: Toggle global chat.
-      aliases: [toggleglobalchat]
-      usage: /<command>
-   togglemsg:
-      description: Toggle private chat.
-      aliases: [toggleprivatechat,togglemsgchat]
-      usage: /<command>
-   reply:
-      description: Replay on a private message.
-      aliases: [r]
-      usage: /<command> (Message)
-   stats:
-      description: Output player stats.
-      usage: /<command>
-   who:
-      description: Output player list.
-      aliases: [list,players,playerlist]
-      usage: /<command>
-   whois:
-      description: Output whois.
-      usage: /<command>
-   spawn:
-      description: Teleports to town after 10sec have a 3 houre .
-      usage: /<command>
-   resetspawn:
-      description: Resets your spawn.
-      usage: /<command>
-   rules:
-      description: Output rules.
-      aliases: [modt]
-      usage: /<command>
-   test:
-      description: test.
-      usage: /<command>
-   admin:
-      description: admin.
-      usage: /<command>
-   build:
-      description: Change build.
-      usage: /<command>
-   skills:
-      description: Skills.
-      usage: /<command>
-   clan:
-      description: Clan.
-      usage: /<command>
-   cast:
-      description: cast.
-      usage: /<command>
-   scrolls:
-      description: cast.
-      usage: /<command>
-   party:
-      description: cast.
-      usage: /<command>
-   lostshardreload:
-      description: reload lostshard config.
-      usage: /<command>
-   tpplot:
-      description: tp to a plot.
-      usage: /<command>
-   tpworld:
-      description: tp to a world.
-      usage: /<command>
-   boat:
-      description: spawns a boat if lvl 50 in fishing or above.
-      usage: /<command>
-   runebook:
-      description: Displays your runebook.
-      usage: /<command>
-   spellbook:
-      description: Displays your spellbook.
-      usage: /<command>
-   private:
-      description: set you to private.
-      usage: /<command>
-   public:
-      description: Set you to public.
-      usage: /<command>
-   bind:
-      description: creates a wand.
-      usage: /<command>
-   unbind:
-      description: removes a wand.
-      usage: /<command>
-   setmurders:
-      description: set a players murder counts.
-      usage: /<command> (player) (amount)
-   kill:
-      description: Kill.
-      usage: /<command>
-   smelt:
-      description: smelt stuff.
-      usage: /<command>
-   repair:
-      description: repair stuff.
-      usage: /<command>
-   enhance:
-      description: enhance stuff.
-      usage: /<command>
-   mount:
-      description: Mount horse.
-      usage: /<command>
-   camp:
-      description: Spawns a camp.
-      usage: /<command>
-   track:
-      description: Tracks an entity.
-      usage: /<command>
-   tax:
-      description: Makes plots pay tax.
-      usage: /<command>
-   gui:
-      description: toggles gui.
-      usage: /<command>
-   ff:
-      description: toggles friendly fire.
-      usage: /<command>
-   inv:
-      description: shows a players inventory.
-      usage: /<command> (player)
-   ignore:
-      description: ignores a player.
-      aliases: [mute]
-      usage: /<command> (player)
-   unignore:
-      description: unignores a player.
-      aliases: [unmute]
-      usage: /<command> (player)
-   vendor:
-      description: unignores a player.
-      usage: /<command>
-   shop:
-      description: unignores a player.
-      aliases: [store]
-      usage: /<command>
-   help:
-      description: displays help menu.
-      usage: /<command>
-   broadcast:
-      description: broadcast a global title.
-      usage: /<command> (message)
-   dc:
-      description: Dungeon chest.
-      usage: /<command> (minRefill) (maxRefill)
-   lottery:
-      description: Commit to the lottery
-      usage: /<command> (amount)
-   givemoney:
-      description: Gives a player money
-      usage: /<command> (player) (amount)
-   title:
-      description: Displays all titles and allows you to use sub commands for activating title
-      aliases: [titles]
-      usage: /<command> (title)
-   resetallskills:
-      description: Resetallskills allows you to reset all your skills and increase one skill to 50
-      usage: /<command> (skill)
-   rest:
-      description: Allows you to regain stamina faster
-      usage: /<command>
-   meditate:
-      description: Allows you to regain mana faster
-      usage: /<command>
-   item:
-      description: Allows admins to give items with ezz
-      aliases: [i]
-      usage: /<command>
-   speed:
-      description: Allows admins to set there gamemode speed.
-      usage: /<command>
-   pvp:
-      description: Allows ez testing of pvp
-      usage: /<command>
-   say:
-      description: Changes the say command
-      usage: /<command> (message)
-   crate:
-      description: gives player crate
-      usage: /<command> (crate) (player)
-   cmdtest:
-      description: gives player crate
-      usage: /<command> (crate) (player)
+  msg:
+    aliases: [msg]
+    usage: /msg <player> <message>
+    description: Send private messages to players
+  setmurders:
+    aliases: [setmurders]
+    usage: /setmurders <player> <amount>
+    description: Set murders counts for a player
+  togglemsg:
+    aliases: [togglemsg, toggleprivatechat, toggleprivate]
+    usage: /togglemsg
+    description: Toggles where the private chat should be visible
+  rules:
+    aliases: [rules]
+    usage: /rules
+    description: List all online players
+  toggleglobal:
+    aliases: [toggleglobal, toggleglobalchat]
+    usage: /toggleglobal
+    description: Toggles where the global chat should be visible
+  tpplot:
+    aliases: [tpplot]
+    usage: /tpplot <plot>
+    description: Teleports you to a given plot
+  scrolls:
+    aliases: [scrolls]
+    usage: /scrolls <subcmd>
+    description: Shows you your runebook
+  skills:
+    aliases: [skills]
+    usage: /skills <subcommand>
+    description: Skill commands
+  resetallskills:
+    aliases: [resetallskills]
+    usage: /resetallskills <skill>
+    description: Resets all your skills and increase on to level 50
+  cast:
+    aliases: [cast]
+    usage: /cast <spell>
+    description: Casts a spell
+  bank:
+    aliases: [bank]
+    usage: /bank
+    description: Opens your bank
+  spellbook:
+    aliases: [spellbook]
+    usage: /spellbook <subcmd>
+    description: Shows you your spellbook
+  bind:
+    aliases: [bind]
+    usage: /bind <spell>
+    description: Turns a stick into a magical wand which is bound to a spell
+  smelt:
+    aliases: [smelt]
+    usage: /smelt
+    description: Smelts the tool in your hand into resources
+  stats:
+    aliases: [stats]
+    usage: /stats
+    description: List all online players
+  claim:
+    aliases: [claim]
+    usage: /claim
+    description: Claims the capturepoint
+  reply:
+    aliases: [reply, r]
+    usage: /reply <message>
+    description: Reply's to private messages
+  item:
+    aliases: [item, i]
+    usage: /item <item> (amount)
+    description: Gives you an item
+  tpworld:
+    aliases: [tpworld]
+    usage: /tpworld <world>
+    description: Teleports you to a given world
+  test:
+    aliases: [test]
+    usage: /test
+    description: Fast test command
+  resetspawn:
+    aliases: [resetspawn]
+    usage: /resetspawn
+    description: Resets your spawn location
+  pay:
+    aliases: [pay]
+    usage: /pay <player> <amount>
+    description: Sends money to antoher player
+  tax:
+    aliases: [tax]
+    usage: /tax
+    description: Collect taxes
+  pvp:
+    aliases: [pvp]
+    usage: /pvp
+    description: Toggles whether to show damage results
+  tradegold:
+    aliases: [tradegold]
+    usage: /tradegold <amount>
+    description: Trade gold ingots into gold coins
+  mount:
+    aliases: [mount]
+    usage: /mount
+    description: Summons mount
+  camp:
+    aliases: [camp]
+    usage: /camp
+    description: Summons a camp fire
+  unbind:
+    aliases: [unbind]
+    usage: /unbind <spell>
+    description: Turns a wand into a regular stick
+  capturepoints:
+    aliases: [capturepoints]
+    usage: /capturepoints
+    description: Shows a list of all capturepoints
+  gui:
+    aliases: [gui]
+    usage: /gui
+    description: Toggles gui
+  party:
+    aliases: [party]
+    usage: /party subcommand ...
+    description: null
+  who:
+    aliases: [who, playerlist, list]
+    usage: /who
+    description: List all online players
+  broadcast:
+    aliases: [broadcast]
+    usage: /broadcast <message>
+    description: Broad cast a given message
+  ff:
+    aliases: [ff]
+    usage: /ff
+    description: Toggles friendly fire
+  repair:
+    aliases: [repair]
+    usage: /repair
+    description: Repairs the tool in your hand
+  private:
+    aliases: [private]
+    usage: /private
+    description: Sets you to private
+  shop:
+    aliases: [shop]
+    usage: /shop
+    description: Opens the shop window
+  lostshardreload:
+    aliases: [lostshardreload]
+    usage: /lostshardreload
+    description: Reloads the lostshard config
+  unignore:
+    aliases: [unignore]
+    usage: /unignore <player>
+    description: unignores player
+  global:
+    aliases: [global, g]
+    usage: /global (message)
+    description: Toggles or sends a message in the global channel
+  title:
+    aliases: [title]
+    usage: /title text
+    description: Selects a title
+  local:
+    aliases: [local, l]
+    usage: /local (message)
+    description: Toggles or sends a message in the local channel
+  speed:
+    aliases: [speed]
+    usage: /speed <speed>
+    description: Sets your fly speed
+  runebook:
+    aliases: [runebook]
+    usage: /runebook <subcmd>
+    description: Shows you your runebook
+  public:
+    aliases: [public]
+    usage: /public
+    description: Sets you to public
+  plot:
+    aliases: [plot]
+    usage: /plot subcommand ...
+    description: null
+  whois:
+    aliases: [whois]
+    usage: /whois <player>
+    description: List all online players
+  vendor:
+    aliases: [vendor]
+    usage: /vendor <subcommand>
+    description: Vendor commands
+  ignore:
+    aliases: [ignore]
+    usage: /ignore <player>
+    description: ignores a given player
+  track:
+    aliases: [track]
+    usage: /track <player|monster>
+    description: Tracks players or monsters
+  shout:
+    aliases: [shout, s]
+    usage: /shout (message)
+    description: Toggles or sends a message in the shout channel
+  enhance:
+    aliases: [enhance]
+    usage: /enhance
+    description: Enhance the tool in your hand
+  givemoney:
+    aliases: [givemoney]
+    usage: /givemoney <player> <amount>
+    description: Gives a given player a given amount of money
+  rest:
+    aliases: [rest]
+    usage: /rest
+    description: Regens stamina faster
+  c:
+    aliases: [c]
+    usage: /c (message)
+    description: Toggles or sends a message in the clan channel
+  say:
+    aliases: [say]
+    usage: /say <message>
+    description: Broadcast a message
+  meditate:
+    aliases: [meditate]
+    usage: /meditate
+    description: Regen mana faster
+  kill:
+    aliases: [kill]
+    usage: /kill
+    description: Kills your self
+  boat:
+    aliases: [boat]
+    usage: /boat
+    description: Calls a boat to your side
+  inv:
+    aliases: [inv]
+    usage: /inv <player>
+    description: Opens a given players inventory
+  p:
+    aliases: [p]
+    usage: /p (message)
+    description: Toggles or sends a message in the party channel
+  help:
+    aliases: [help]
+    usage: /help <command> <page>
+    description: List all online players
+  spawn:
+    aliases: [spawn]
+    usage: /spawn
+    description: Spawn
+  build:
+    aliases: [build]
+    usage: /build <build>
+    description: Change your build
+  clan:
+    aliases: [clan]
+    usage: /clan subcommand ...
+    description: null
+  whisper:
+    aliases: [whisper, w]
+    usage: /whisper (message)
+    description: Toggles or sends a message in the whisper channel
+  dc:
+    aliases: [dc]
+    usage: /dc subcommand ...
+    description: null

@@ -278,8 +278,15 @@ public class HelpHandler {
 				helpSkills(sender);
 			else if (topic.equalsIgnoreCase("scrolls"))
 				helpScrolls(sender);
-			else if (topic.equalsIgnoreCase("clan"))
-				helpClan(sender, split);
+			else if (topic.equalsIgnoreCase("clan")) {
+				int page;
+				try {
+					page = Integer.parseInt(split[1]);
+				}catch (Exception e) {
+					page = 0;
+				}
+				helpClan(sender, page);
+			}
 			else if (topic.equalsIgnoreCase("party"))
 				helpParty(sender);
 			else if (topic.equalsIgnoreCase("karma"))
@@ -301,14 +308,14 @@ public class HelpHandler {
 		sender.sendMessage(ChatColor.YELLOW + "/msg (player name) (message)" + ChatColor.GRAY + " - Private message");
 	}
 
-	public static void helpClan(CommandSender sender, String[] split) {
-		if (split.length < 2) {
+	public static void helpClan(CommandSender sender, int page) {
+		if (page == 0) {
 			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 1 of 2, use \"/help clan (page)\"");
 			sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY
 					+ " Clans are permanent player groups. You can only be in one clan at a time.");
 
-			sender.sendMessage(ChatColor.YELLOW + "/clan create (plot name)" + ChatColor.GRAY + " - Create a clan.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan create (clan name)" + ChatColor.GRAY + " - Create a clan.");
 			sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 gold coins.");
 			sender.sendMessage(ChatColor.YELLOW + "/clan transfer (player name)" + ChatColor.GRAY
 					+ " - Transfers ownership of a         clan to another player.");
@@ -317,8 +324,7 @@ public class HelpHandler {
 			sender.sendMessage(
 					ChatColor.YELLOW + "/clan uninvite (player name)" + ChatColor.GRAY + " - Uninvites a player.");
 		} else {
-			final String page = split[1];
-			if (page.equalsIgnoreCase("1")) {
+			if (page == 1) {
 				sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 				sender.sendMessage(ChatColor.GOLD + "Page 1 of 2, use \"/help clan (page)\"");
 				sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY
@@ -333,7 +339,7 @@ public class HelpHandler {
 						+ " - Invites a player to your clan.");
 				sender.sendMessage(
 						ChatColor.YELLOW + "/clan uninvite (player name)" + ChatColor.GRAY + " - Uninvites a player.");
-			} else if (page.equalsIgnoreCase("2")) {
+			} else if (page == 2) {
 				sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 				sender.sendMessage(ChatColor.YELLOW + "Page 2 of 2, use \"/help land (page)\"");
 
@@ -344,7 +350,7 @@ public class HelpHandler {
 				sender.sendMessage(ChatColor.YELLOW + "/clan kick (player name)" + ChatColor.GRAY
 						+ " - Kicks a player from your clan.");
 				sender.sendMessage(ChatColor.YELLOW + "/clan leave" + ChatColor.GRAY + " - Leaves your clan.");
-				sender.sendMessage(ChatColor.YELLOW + "/clan dsiband" + ChatColor.GRAY + " - Disbands your clan.");
+				sender.sendMessage(ChatColor.YELLOW + "/clan disband" + ChatColor.GRAY + " - Disbands your clan.");
 				sender.sendMessage(
 						ChatColor.YELLOW + "/clan info" + ChatColor.GRAY + " - Displays information about your clan.");
 				sender.sendMessage(

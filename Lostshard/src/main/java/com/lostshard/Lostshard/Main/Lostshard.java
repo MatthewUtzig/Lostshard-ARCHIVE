@@ -23,19 +23,6 @@ import org.hibernate.Transaction;
 
 import com.lostshard.Crates.CrateManager;
 import com.lostshard.Crates.CratePlayerListener;
-import com.lostshard.Lostshard.Commands.AdminCommand;
-import com.lostshard.Lostshard.Commands.BlackSmithyCommand;
-import com.lostshard.Lostshard.Commands.ChestRefillCommand;
-import com.lostshard.Lostshard.Commands.ClanCommand;
-import com.lostshard.Lostshard.Commands.FishingCommand;
-import com.lostshard.Lostshard.Commands.MageryCommand;
-import com.lostshard.Lostshard.Commands.PartyCommands;
-import com.lostshard.Lostshard.Commands.ReloadCommand;
-import com.lostshard.Lostshard.Commands.SkillCommand;
-import com.lostshard.Lostshard.Commands.StoreCommand;
-import com.lostshard.Lostshard.Commands.SurvivalismCommand;
-import com.lostshard.Lostshard.Commands.TamingCommand;
-import com.lostshard.Lostshard.Commands.UtilsCommand;
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Database.Hibernate;
 import com.lostshard.Lostshard.Intake.IntakeManager;
@@ -309,22 +296,8 @@ public class Lostshard extends JavaPlugin {
 		new WorldListener(this);
 		new CratePlayerListener(this);
 		// Commands
-		new IntakeManager(this);
-		new UtilsCommand(this);
-		new AdminCommand(this);
-		new SkillCommand(this);
-		new ClanCommand(this);
-		new MageryCommand(this);
-		new PartyCommands(this);
-		new ReloadCommand(this);
-		new FishingCommand(this);
-		new BlackSmithyCommand(this);
-		new TamingCommand(this);
-		new SurvivalismCommand(this);
-		new StoreCommand(this);
-		new ChestRefillCommand(this);
-		
-		new IntakeManager(this);
+		IntakeManager intake = new IntakeManager();
+		intake.setCommandExecutors(this);
 
 		hibernate = new Hibernate();
 

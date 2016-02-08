@@ -90,6 +90,11 @@ public class SpellManager {
 			Output.simpleError(player, "You are already casting a spell.");
 			return false;
 		}
+		
+		if(spell == null) {
+			Output.simpleError(player, "There do not exists a spell witht that name.");
+			return false;
+		}
 
 		if (!pPlayer.getSpellbook().containSpell(spell.getScroll())) {
 			Output.simpleError(player, "Your spellbook does not contain the " + spell.getName() + " spell.");

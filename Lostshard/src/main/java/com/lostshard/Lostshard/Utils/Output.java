@@ -103,20 +103,9 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW + " - " + ChatColor.WHITE + title);
 	}
 
-	public static void displayWho(CommandSender sender, String[] args) {
-		if (args.length < 1) {
-			Output.simpleError(sender, "Invalid syntax, use /whois (player name)");
-			return;
-		}
-
-		final String targetName = args[0];
-		final Player p = Bukkit.getPlayer(targetName);
-		if (p != null || Lostshard.isVanished(p) && !sender.isOp()) {
-			final PseudoPlayer targetPseudoPlayer = pm.getPlayer(p);
-			Output.outputWho(sender, targetPseudoPlayer);
-		} else
-			Output.simpleError(sender, "That player is not online.");
-		return;
+	public static void displayWho(CommandSender sender, Player target) {
+		final PseudoPlayer targetPseudoPlayer = pm.getPlayer(target);
+		Output.outputWho(sender, targetPseudoPlayer);
 	}
 
 	public static void gainSkill(Player player, String skillName, int gainAmount, int totalSkill) {

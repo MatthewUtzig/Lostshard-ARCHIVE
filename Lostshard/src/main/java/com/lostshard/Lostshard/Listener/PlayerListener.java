@@ -38,7 +38,9 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
+import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Handlers.CapturepointHandler;
 import com.lostshard.Lostshard.Handlers.ChatHandler;
 import com.lostshard.Lostshard.Handlers.DeathHandler;
@@ -269,6 +271,17 @@ public class PlayerListener extends LostshardListener implements Managers {
 	@EventHandler
 	public void onPlayerSpawn(PlayerRespawnEvent event) {
 		PlotProtectionHandler.onPlayerSpawn(event);
+		event.getPlayer().setNoDamageTicks(100);
+	}
+	
+	@EventHandler
+	public void onPlayerSpawnLocationEvent(PlayerSpawnLocationEvent event) {
+		Player player = event.getPlayer();
+		if(!player.hasPlayedBefore()) {
+			event.setSpawnLocation(Locations.LAWFULL.getLocation());
+		}else{
+			player.setNoDamageTicks(0);
+		}
 	}
 
 	@EventHandler

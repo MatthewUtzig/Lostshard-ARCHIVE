@@ -1,48 +1,23 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.List;
-
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Manager.PlayerManager;
+import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Skills.SurvivalismSkill;
-import com.lostshard.Lostshard.Utils.Output;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.parametric.annotation.Text;
 
-public class SurvivalismCommand extends LostshardCommand {
-
-	PlayerManager pm = PlayerManager.getManager();
-
-	public SurvivalismCommand(Lostshard plugin) {
-		super(plugin, "track", "camp");
+public class SurvivalismCommand {
+	
+	@Command(aliases = { "track" }, desc = "Tracks players or monsters", usage = "<player|monster>")
+	public void track(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text String arg) {
+		String[] args = arg.split(" ");
+		SurvivalismSkill.track(player, args);
 	}
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("track")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			SurvivalismSkill.track(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("camp")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			SurvivalismSkill.camp(player);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
-		return null;
+	@Command(aliases = { "camp" }, desc = "Summons a camp fire")
+	public void camp(@Sender Player player, @Sender PseudoPlayer pPlayer) {
+		SurvivalismSkill.camp(player);
 	}
 }

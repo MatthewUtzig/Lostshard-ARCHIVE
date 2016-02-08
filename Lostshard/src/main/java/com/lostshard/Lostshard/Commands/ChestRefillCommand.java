@@ -3,30 +3,26 @@ package com.lostshard.Lostshard.Commands;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Objects.ChestRefill;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.Require;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Range;
 
-public class ChestRefillCommand extends LostshardCommand {
+public class ChestRefillCommand  {
 
 	ChestRefillManager cm = ChestRefillManager.getManager();
 
-	public ChestRefillCommand(Lostshard plugin) {
-		super(plugin, "dc");
-	}
-
-	private void dcCreate(Player player, String[] args) {
-		if (args.length < 3) {
-			Output.simpleError(player, "/dc create (minMinuters) (maxMinuters)");
-			return;
-		}
+	@Command(aliases = { "create" }, desc = "Creates a dungeon chest", usage = "<minMinuters> <maxMinuters>")
+	@Require("lostshard.admin.dc.create")
+	public void create(@Sender Player player, @Range(min=1) int min, @Range(min=1) int max) {
 		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
@@ -37,25 +33,18 @@ public class ChestRefillCommand extends LostshardCommand {
 			Output.simpleError(player, "Thats already a Dungeon Chest.");
 			return;
 		}
-		long rangeMin;
-		long rangeMax;
-		try {
-			rangeMin = Integer.parseInt(args[1]);
-			rangeMax = Integer.parseInt(args[2]);
-		} catch (final Exception e) {
-			Output.simpleError(player, "/dc create (minMinuters) (maxMinuters)");
-			return;
-		}
 
-		rangeMin *= 60000;
-		rangeMax *= 60000;
+		min *= 60000;
+		max *= 60000;
 
 		final ItemStack[] items = ((Chest) block.getState()).getInventory().getContents();
-		cr = new ChestRefill(block.getLocation(), rangeMin, rangeMax, items, 0);
+		cr = new ChestRefill(block.getLocation(), min, max, items, 0);
 		this.cm.add(cr);
 	}
 
-	private void dcFill(Player player) {
+	@Command(aliases = { "fill" }, desc = "Filles a dungeon chest")
+	@Require("lostshard.admin.dc.fill")
+	public void dcFill(@Sender Player player) {
 		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
@@ -70,7 +59,9 @@ public class ChestRefillCommand extends LostshardCommand {
 		Output.positiveMessage(player, "You have refilled the Dungeon Chest.");
 	}
 
-	private void dcRemove(Player player) {
+	@Command(aliases = { "remove" }, desc = "Deletes a dungeon chest")
+	@Require("lostshard.admin.dc.remove")
+	public void dcRemove(@Sender Player player) {
 		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
@@ -85,7 +76,9 @@ public class ChestRefillCommand extends LostshardCommand {
 		Output.positiveMessage(player, "You have removed the Dungeon Chest.");
 	}
 
-	private void dcSetContents(Player player) {
+	@Command(aliases = { "setcontents" }, desc = "Set contents of a dungeon chest")
+	@Require("lostshard.admin.dc.setcontents")
+	public void dcSetContents(@Sender Player player) {
 		final Block block = player.getTargetBlock(SpellUtils.invisibleBlocks, 5);
 		if (!block.getState().getType().equals(Material.CHEST)) {
 			Output.simpleError(player, "Invalid target.");
@@ -99,42 +92,14 @@ public class ChestRefillCommand extends LostshardCommand {
 		cr.setItems(((Chest) block.getState()).getInventory().getContents());
 		cr.save();
 	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("dc")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			if (args.length < 1) {
-				Output.positiveMessage(player, "Dungeon Chest");
-				Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
-				Output.positiveMessage(player, "/dc remove");
-				Output.positiveMessage(player, "/dc setcontents");
-				Output.positiveMessage(player, "/dc fill");
-				return true;
-			}
-			final String subCmd = args[0];
-			if (subCmd.equalsIgnoreCase("create"))
-				this.dcCreate(player, args);
-			else if (subCmd.equalsIgnoreCase("remove"))
-				this.dcRemove(player);
-			else if (subCmd.equalsIgnoreCase("setContents"))
-				this.dcSetContents(player);
-			else if (subCmd.equalsIgnoreCase("fill"))
-				this.dcFill(player);
-			else {
-				Output.positiveMessage(player, "Dungeon Chest");
-				Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
-				Output.positiveMessage(player, "/dc remove");
-				Output.positiveMessage(player, "/dc setcontents");
-				Output.positiveMessage(player, "/dc fill");
-				return true;
-			}
-			return true;
-		}
-		return false;
+	
+	@Command(aliases = { "", "help" }, desc = "Dungeon chest help", usage = "<page>")
+	@Require("lostshard.admin.dc")
+	public void dc(@Sender Player player, @Optional(value ="1") @Range(min=0) int page) {
+		Output.positiveMessage(player, "Dungeon Chest");
+		Output.positiveMessage(player, "/dc create (minMinuters) (maxMinuters)");
+		Output.positiveMessage(player, "/dc remove");
+		Output.positiveMessage(player, "/dc setcontents");
+		Output.positiveMessage(player, "/dc fill");
 	}
 }

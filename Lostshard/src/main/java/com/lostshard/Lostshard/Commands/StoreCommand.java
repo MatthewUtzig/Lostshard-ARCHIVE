@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
@@ -19,53 +17,32 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Objects.Store.StoreItem;
 import com.lostshard.Lostshard.Utils.Output;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Text;
 
-public class StoreCommand extends LostshardCommand {
+public class StoreCommand {
 
 	StoreManager sm = StoreManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
 
-	public StoreCommand(Lostshard plugin) {
-		super(plugin, "vendor", "shop");
-	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("vendor")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.vendor(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("shop")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.shop(player, args);
-			return true;
-		}
-		return false;
-	}
-
-	private void shop(Player player, String[] args) {
-		if (args.length < 1) {
-			final Store store = this.sm.getStore(player.getLocation());
-			if (store == null) {
-				Output.simpleError(player, "You are not close enough to a vendor.");
-				return;
-			}
-			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			final GUI gui = new StoreGUI(pPlayer, store);
-			gui.openInventory(player);
+	@Command(aliases = { "shop" }, desc = "Opens the shop window")
+	public void shop(@Sender Player player) {
+		final Store store = this.sm.getStore(player.getLocation());
+		if (store == null) {
+			Output.simpleError(player, "You are not close enough to a vendor.");
 			return;
 		}
+		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
+		final GUI gui = new StoreGUI(pPlayer, store);
+		gui.openInventory(player);
+		return;
 	}
-
-	private void vendor(Player player, String[] args) {
+	
+	
+	@Command(aliases = { "vendor" }, desc = "Vendor commands", usage = "<subcommand>")
+	public void vendor(@Sender Player player, @Text @Optional(value="") String arg) {
+		String[] args = arg.split(" ");
 		if (args.length < 1) {
 			final Store store = this.sm.getStore(player.getLocation());
 			if (store == null) {
@@ -80,7 +57,7 @@ public class StoreCommand extends LostshardCommand {
 		final String subCmd = args[0];
 		if (subCmd.equalsIgnoreCase("help")) {
 			player.sendMessage(ChatColor.GOLD + "-Vendor help-");
-			player.sendMessage(ChatColor.YELLOW + "/vendor (add|remove|stock|edit|clear)");
+			player.sendMessage(ChatColor.YELLOW + "/vendor <add|remove|stock|edit|clear>");
 			return;
 		} else if (subCmd.equalsIgnoreCase("add")) {
 			if (args.length < 4) {

@@ -7,14 +7,13 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.SpellManager;
@@ -26,31 +25,23 @@ import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Text;
 
-public class MageryCommand extends LostshardCommand {
+public class MageryCommand {
 
 	PlayerManager pm = PlayerManager.getManager();
 	SpellManager sm = SpellManager.getManager();
 
-	/**
-	 * @param Lostshard
-	 *            as plugin
-	 */
-	public MageryCommand(Lostshard plugin) {
-		super(plugin, "cast", "scrolls", "runebook", "spellbook", "bind", "unbind");
-	}
-
-	private void bind(Player player, String[] args) {
+	
+	@Command(aliases = { "bind" }, desc = "Turns a stick into a magical wand which is bound to a spell", usage = "<spell>")
+	public void bind(@Sender Player player, @Text String scrollName) {
 		if (!player.getItemInHand().getType().equals(Material.STICK)) {
 			Output.simpleError(player, "You can only bind spells to sticks.");
 			return;
 		}
-		if (args.length < 1) {
-			Output.simpleError(player, "/bind (spell)");
-			return;
-		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		final String scrollName = StringUtils.join(args, "", 0, args.length);
 		final Scroll scroll = Scroll.getByString(scrollName);
 		if (scroll == null || !pPlayer.getSpellbook().containSpell(scroll)) {
 			Output.simpleError(player, "Your spellbook does not contain " + scrollName + ".");
@@ -70,78 +61,29 @@ public class MageryCommand extends LostshardCommand {
 		Output.positiveMessage(player, "You have bound " + spellName + " to the wand.");
 	}
 
-	private boolean haveScroll(Scroll scroll, PseudoPlayer pPlayer, Player player) {
+	public boolean haveScroll(Scroll scroll, PseudoPlayer pPlayer, Player player) {
 		if (scroll != null && pPlayer.getScrolls().contains(scroll))
 			return true;
-		Output.simpleError(player, "You do not have a scroll of " + scroll.getName() + ".");
+		if(scroll == null)
+			Output.simpleError(player, "There do not exist a scroll with the name.");
+		else
+			Output.simpleError(player, "You do not have a scroll of " + scroll.getName() + ".");
 		return false;
 	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("cast")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			if (args.length < 1) {
-				Output.simpleError(sender, "/cast (spell)");
-				return true;
-			}
-			final String spellName = StringUtils.join(args, " ");
-			final Player player = (Player) sender;
-			final Spell spell = this.sm.getSpellByName(spellName);
-			if (spell == null) {
-				Output.simpleError(sender, "No spell with the name \"" + spellName + "\".");
-				return true;
-			}
-			this.sm.castSpell(player, spell);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("scrolls")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.scrolls(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("runebook")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.runebook(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("spellbook")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.spellbook(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("bind")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.bind(player, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("unbind")) {
-			if (!(sender instanceof Player)) {
-				Output.mustBePlayer(sender);
-				return true;
-			}
-			final Player player = (Player) sender;
-			this.unbind(player);
-			return true;
+	
+	
+	@Command(aliases = { "cast" }, desc = "Casts a spell", usage = "<spell>")
+	public void cast(@Sender Player player, @Text String spellName) {
+		final Spell spell = this.sm.getSpellByName(spellName);
+		if (spell == null) {
+			Output.simpleError(player, "No spell with the name \"" + spellName + "\".");
 		}
-		return false;
+		this.sm.castSpell(player, spell);
 	}
-
-	private void runebook(Player player, String[] args) {
+	
+	@Command(aliases = { "runebook" }, desc = "Shows you your runebook", usage = "<subcmd>")
+	public void runebook(@Sender Player player, @Text @Optional(value="") String arg) {
+		String[] args = arg.split(" ");
 		if (args.length == 0 || args.length >= 11 && args[1].equalsIgnoreCase("page"))
 			Output.outputRunebook(player, args);
 		else if (args.length > 0) {
@@ -230,7 +172,9 @@ public class MageryCommand extends LostshardCommand {
 
 	}
 
-	private void scrolls(Player player, String[] args) {
+	@Command(aliases = { "scrolls" }, desc = "Shows you your runebook", usage = "<subcmd>")
+	public void scrolls(@Sender Player player, @Text @Optional(value="") String arg) {
+		String[] args = arg.split(" ");
 		if (args.length >= 2) {
 			if (args[0].equalsIgnoreCase("use") || args[0].equalsIgnoreCase("cast")) {
 				final PseudoPlayer pPlayer = this.pm.getPlayer(player);
@@ -252,6 +196,11 @@ public class MageryCommand extends LostshardCommand {
 				final Player targetPlayer = player.getServer().getPlayer(args[1]);
 				if (targetPlayer == null) {
 					Output.simpleError(player, args[1] + " is not online.");
+					return;
+				}
+				
+				if(player == targetPlayer) {
+					Output.simpleError(player, "You cannot give your self a scroll.");
 					return;
 				}
 
@@ -315,11 +264,14 @@ public class MageryCommand extends LostshardCommand {
 		}
 	}
 
-	private void spellbook(Player player, String[] args) {
+	@Command(aliases = { "spellbook" }, desc = "Shows you your spellbook", usage = "<subcmd>")
+	public void spellbook(@Sender Player player, @Text @Optional(value="") String arg) {
+		String[] args = arg.split(" ");
 		Output.outputSpellbook(player, args);
 	}
 
-	private void unbind(Player player) {
+	@Command(aliases = { "unbind" }, desc = "Turns a wand into a regular stick", usage = "<spell>")
+	public void unbind(@Sender Player player) {
 		if (!player.getItemInHand().getType().equals(Material.STICK)) {
 			Output.simpleError(player, "You can only bind spells to sticks.");
 			return;

@@ -48,6 +48,8 @@ public class SPL_Recall extends Spell {
 		}
 
 		boolean usingSpawn = false;
+		if(this.getResponse() == null)
+			return;
 		if (runeFound == null && this.getResponse().equalsIgnoreCase("spawn")) {
 			runeFound = new Rune(pseudoPlayer.getSpawn(), "spawn", -1);
 			usingSpawn = true;

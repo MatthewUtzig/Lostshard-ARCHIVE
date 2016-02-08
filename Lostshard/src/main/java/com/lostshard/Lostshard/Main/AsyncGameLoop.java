@@ -67,17 +67,17 @@ public class AsyncGameLoop extends BukkitRunnable {
 //				e.printStackTrace();
 //			}
 			try {
-				t = s.beginTransaction();
-				t.begin();
-					for (final Record r : RecordManager.getManager().getRecords()) {
-						s.save(r);
-					}
-				t.commit();
+				for (final Record r : RecordManager.getManager().getRecords()) {
+					t = s.beginTransaction();
+					t.begin();
+					s.save(r);
+					t.commit();
+				}
 				} catch (final Exception e) {
 					e.printStackTrace();
 				}
-			RecordManager.getManager().getRecords().clear();
-			s.close();
+				RecordManager.getManager().getRecords().clear();
+				s.close();
 		} catch (final Exception e) {
 			e.printStackTrace();
 			s.close();

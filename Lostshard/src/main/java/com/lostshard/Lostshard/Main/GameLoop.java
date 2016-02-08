@@ -1,6 +1,7 @@
 package com.lostshard.Lostshard.Main;
 
 import java.util.Date;
+import java.util.Iterator;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -50,8 +51,13 @@ public class GameLoop extends BukkitRunnable {
 		// 5 sec loop
 		if (tick % 600 == 0)
 			this.crm.tick();
-		for (final Camp camp : SurvivalismSkill.getCamps())
+		Iterator<Camp> camps = SurvivalismSkill.getCamps().iterator();
+		while(camps.hasNext()) {
+			Camp camp = camps.next();
 			camp.tick();
+			if(camp.isDead)
+				camps.remove();
+		}
 		if (tick % 10 == 0)
 			CapturepointHandler.tick(delta);
 		this.tm.tick();

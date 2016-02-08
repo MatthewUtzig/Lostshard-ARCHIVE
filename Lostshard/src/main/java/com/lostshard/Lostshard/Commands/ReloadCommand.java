@@ -1,37 +1,20 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.List;
-
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.ConfigManager;
 import com.lostshard.Lostshard.Utils.Output;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.Require;
 
-public class ReloadCommand extends LostshardCommand {
+public class ReloadCommand {
 
 	ConfigManager cm = ConfigManager.getManager();
 
-	Lostshard plugin;
-
-	public ReloadCommand(Lostshard plugin) {
-		super(plugin, "lostshardreload");
+	@Command(aliases = { "lostshardreload" }, desc = "Reloads the lostshard config")
+	@Require("losthsard.reload")
+	public void reload(CommandSender sender) {
+		this.cm.reload();
+		Output.positiveMessage(sender, "Reload complete.");
 	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("lostshardreload")) {
-			this.cm.reload();
-			Output.positiveMessage(sender, "Reload complete.");
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String string, String[] args) {
-		return null;
-	}
-
 }

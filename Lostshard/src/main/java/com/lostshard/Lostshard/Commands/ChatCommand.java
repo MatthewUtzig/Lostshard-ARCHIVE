@@ -31,7 +31,7 @@ public class ChatCommand {
 	@Command(aliases = {"c"}, 
 			desc = "Toggles or sends a message in the clan channel",
 			help = "Toggles or sends a message in the clan channel",
-			usage = "c (message)")
+			usage = "(message)")
 	public void clanChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.CLAN);
@@ -54,7 +54,7 @@ public class ChatCommand {
 	@Command(aliases = {"global", "g"}, 
 			desc = "Toggles or sends a message in the global channel",
 			help = "Toggles or sends a message in the global channel",
-			usage = "global (message)")
+			usage = "(message)")
 	public void globalChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.GLOBAL);
@@ -77,7 +77,7 @@ public class ChatCommand {
 	@Command(aliases = {"local", "l"}, 
 			desc = "Toggles or sends a message in the local channel",
 			help = "Toggles or sends a message in the local channel",
-			usage = "local (message)")
+			usage = "(message)")
 	public void localChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.LOCAL);
@@ -95,7 +95,7 @@ public class ChatCommand {
 	@Command(aliases = {"msg"}, 
 			desc = "Send private messages to players",
 			help = "Send private messages to players",
-			usage = "msg <player> <message>",
+			usage = "<player> <message>",
 			min = 3)
 	public void msgChat(@Sender Player player, @Vanish Player target, @Optional @Text String message) {
 		if (player == target) {
@@ -123,7 +123,7 @@ public class ChatCommand {
 	@Command(aliases = {"p"}, 
 			desc = "Toggles or sends a message in the party channel",
 			help = "Toggles or sends a message in the party channel",
-			usage = "p (message)")
+			usage = "(message)")
 	public void partyChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.PARTY);
@@ -141,7 +141,7 @@ public class ChatCommand {
 	@Command(aliases = {"reply", "r"}, 
 			desc = "Reply's to private messages",
 			help = "Reply's to last received private messages",
-			usage = "reply <message>",
+			usage = "<message>",
 			min = 3)
 	public void replyChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (pPlayer.getLastResiver() == null) {
@@ -173,7 +173,7 @@ public class ChatCommand {
 	@Command(aliases = {"shout", "s"}, 
 			desc = "Toggles or sends a message in the shout channel",
 			help = "Toggles or sends a message in the shout channel",
-			usage = "shout (message)")
+			usage = "(message)")
 	public void shoutChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.SHOUT);
@@ -190,7 +190,6 @@ public class ChatCommand {
 	@Command(aliases = {"toggleglobal", "toggleglobalchat"}, 
 			desc = "Toggles where the global chat should be visible",
 			help = "Toggles where the global chat should be visible",
-			usage = "toggleglobal",
 			max = 1)
 	public void toggleGlobalChat(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		if (pPlayer.isChatChannelDisabled(ChatChannel.GLOBAL)) {
@@ -205,7 +204,6 @@ public class ChatCommand {
 	@Command(aliases = {"togglemsg", "toggleprivatechat", "toggleprivate"}, 
 			desc = "Toggles where the private chat should be visible",
 			help = "Toggles where the private chat should be visible",
-			usage = "togglemsg",
 			max = 1)
 	public void toggleMsgChat(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		if (pPlayer.isChatChannelDisabled(ChatChannel.PRIVATE)) {
@@ -226,7 +224,7 @@ public class ChatCommand {
 	@Command(aliases = {"whisper", "w"}, 
 			desc = "Toggles or sends a message in the whisper channel",
 			help = "Toggles or sends a message in the whisper channel",
-			usage = "shout (message)")
+			usage = "(message)")
 	public void whisperChat(@Sender Player player, @Sender PseudoPlayer pPlayer, @Optional @Text String message) {
 		if (message == null) {
 			pPlayer.setChatChannel(ChatChannel.WHISPER);

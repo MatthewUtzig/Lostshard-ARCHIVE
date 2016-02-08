@@ -79,7 +79,7 @@ public class Camp {
 				final Player creatorPlayer = Bukkit.getPlayer(this.creator);
 				if (creatorPlayer != null)
 					creatorPlayer.sendMessage(ChatColor.GRAY + "Your camp fire has been doused.");
-
+				
 				this.fireBlock.setType(Material.AIR);
 				this.logBlock.setType(Material.AIR);
 				this.isDead = true;

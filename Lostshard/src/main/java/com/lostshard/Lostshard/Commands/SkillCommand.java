@@ -1,32 +1,26 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
+import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
 import com.lostshard.Lostshard.Utils.Output;
-import com.lostshard.Lostshard.Utils.TabUtils;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.sk89q.intake.Command;
+import com.sk89q.intake.parametric.annotation.Optional;
+import com.sk89q.intake.parametric.annotation.Text;
 
-public class SkillCommand extends LostshardCommand {
+public class SkillCommand {
 
 	static PlayerManager pm = PlayerManager.getManager();
-
-	public static void skills(CommandSender sender, String[] args) {
-		if (!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		final Player player = (Player) sender;
-		PseudoPlayer pPlayer = pm.getPlayer(player);
+	
+	@Command(aliases = { "skills" }, desc = "Skill commands", usage = "<subcommand>")
+	public void skills(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text @Optional(value="") String arg) {
+		String[] args = arg.split(" ");
 		if (args.length == 0) {
 			Output.outputSkills(player);
 			return;
@@ -129,7 +123,7 @@ public class SkillCommand extends LostshardCommand {
 					try {
 						final Player targetPlayer = Bukkit.getPlayer(args[2]);
 						if (targetPlayer == null) {
-							Output.simpleError(sender, args[2] + " is not online.");
+							Output.simpleError(player, args[2] + " is not online.");
 							return;
 						}
 						pPlayer = pm.getPlayer(targetPlayer);
@@ -189,78 +183,30 @@ public class SkillCommand extends LostshardCommand {
 		return;
 	}
 
-	/**
-	 * @param Lostshard
-	 *            as plugin
-	 */
-	public SkillCommand(Lostshard plugin) {
-		super(plugin, "skills", "resetallskills", "rest", "meditate");
-	}
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("skills")) {
-			skills(sender, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("resetallskills")) {
-			this.resetallskills(sender, args);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("rest")) {
-			this.playerRest(sender);
-			return true;
-		} else if (cmd.getName().equalsIgnoreCase("meditate")) {
-			this.playerMeditate(sender);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		if (args.length == 0)
-			return TabUtils.StringTab(args, "reduce", "lock", "unlock", "increase");
-		else if (args.length == 1 && args[0].equalsIgnoreCase("lock"))
-			return TabUtils.StringTab(args, "Skill1", "Skill2", "Skill3", "Tell Defman that he forgot something.");
-		else
-			return TabUtils.empty();
-	}
-
-	private void playerMeditate(CommandSender sender) {
-		if (!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		final Player player = (Player) sender;
+	@Command(aliases = { "meditate" }, desc = "Regen mana faster")
+	public void playerMeditate(@Sender Player player) {
 		Output.positiveMessage(player, "You begin meditating...");
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setMeditating(true);
 	}
 
-	private void playerRest(CommandSender sender) {
-		if (!(sender instanceof Player)) {
-			Output.mustBePlayer(sender);
-			return;
-		}
-		final Player player = (Player) sender;
+	@Command(aliases = { "rest" }, desc = "Regens stamina faster")
+	public void playerRest(@Sender Player player) {
 		Output.positiveMessage(player, "You begin resting...");
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		pPlayer.setResting(true);
 	}
 
-	private void resetallskills(CommandSender sender, String[] args) {
-		if (!(sender instanceof Player)) {
-			Output.simpleError(sender, "Only players may perform this command.");
-			return;
-		}
-		final Player player = (Player) sender;
+	@Command(aliases = { "resetallskills" }, desc = "Resets all your skills and increase on to level 50", usage = "<skill>")
+	public void resetallskills(@Sender Player player, @Optional String name) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
-		if (args.length < 1) {
+		if (name == null) {
 			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build());
 			pPlayer.update();
 			Output.positiveMessage(player, "Skills wiped, but you diden chose a skill to increase.");
-		} else if (args.length < 2) {
+		} else {
 			final Build build = new Build();
-			final Skill skill = build.getSkillByName(args[0]);
+			final Skill skill = build.getSkillByName(name);
 			if (skill == null) {
 				Output.simpleError(player, "You chose a invalid skill to increase.");
 				return;

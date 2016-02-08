@@ -272,7 +272,7 @@ public class PlotCommand {
 	 *
 	 *            Co-owner player of plot at player.
 	 */
-	@Command(aliases = { "co-owner", "coown", "co", "coowner" }, desc = "Makes a given player co-owner of the plot", usage ="<player>")
+	@Command(aliases = { "co-owner", "coown", "co", "coowner", "co-own" }, desc = "Makes a given player co-owner of the plot", usage ="<player>")
 	public void plotCoOwn(@Sender Player player, @Sender Plot plot, @Vanish Player targetPlayer) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may co-owner players.");
@@ -333,7 +333,8 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
-		int value = plot.getValue();
+		int value = plot.getMoney();
+		value += plot.getValue();
 		plot.disband();
 		pPlayer.setMoney(pPlayer.getMoney() + value);
 		new GoldRecord(value, "plot disband", null, player.getUniqueId());
@@ -721,12 +722,12 @@ public class PlotCommand {
 				Output.positiveMessage(player, "You have hired a guard named " + name + ".");
 			}
 		} else if (subCmd.equalsIgnoreCase("move")) {
-			if (name == null) {
+			if (type == null) {
 				Output.simpleError(player, "Use /plot npc move (npc name)");
 				return;
 			}
 
-			name = name.trim();
+			name = type.trim();
 
 			for (final NPC npc : plot.getNpcs())
 				if (npc.getName().equalsIgnoreCase(name)) {
@@ -737,10 +738,11 @@ public class PlotCommand {
 				}
 			Output.simpleError(player, "can't find an NPC named " + name + " on this plot.");
 		} else if (subCmd.equalsIgnoreCase("fire")) {
-			if (name == null) {
+			if (type == null) {
 				Output.simpleError(player, "/plot npc fire (name)");
 				return;
 			}
+			name = type.trim();
 			for (final NPC npc : plot.getNpcs())
 				if (npc.getName().equalsIgnoreCase(name)) {
 					npc.fire();
@@ -937,7 +939,7 @@ public class PlotCommand {
 	 */
 	@Command(aliases = { "survey" }, desc = "Survey the nearby plots")
 	public void plotSurvey(@Sender Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
+		Plot plot = ptm.findPlotAt(player.getLocation());
 		final List<Plot> plots = this.ptm.getPlots();
 		final int numPlots = plots.size();
 
@@ -1108,12 +1110,7 @@ public class PlotCommand {
 
 	@Command(aliases = { "title" }, desc = "Toggles plot title")
 	@Require("lostshard.plot.admin")
-	public void plotTitle(Player player) {
-		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
+	public void plotTitle(@Sender Player player, @Sender Plot plot) {
 		if (plot.isTitleEntrence()) {
 			Output.positiveMessage(player, "You have turned off title for " + plot.getName() + ".");
 			plot.setTitleEntrence(false);

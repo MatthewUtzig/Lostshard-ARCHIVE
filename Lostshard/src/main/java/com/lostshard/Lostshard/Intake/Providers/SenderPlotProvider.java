@@ -13,6 +13,7 @@ import com.sk89q.intake.argument.ArgumentException;
 import com.sk89q.intake.argument.CommandArgs;
 import com.sk89q.intake.parametric.Provider;
 import com.sk89q.intake.parametric.ProvisionException;
+import com.sk89q.intake.parametric.annotation.Optional;
 
 public class SenderPlotProvider implements Provider<Plot> {
 
@@ -26,6 +27,8 @@ public class SenderPlotProvider implements Provider<Plot> {
 			
 			if(plot != null)
 				return plot;
+			else if(modifers.contains(Optional.class))
+				return null;
 			throw new ProvisionException("You are not currently in a plot.");
 		} else
 			throw new ProvisionException("Only players may perform this command.");

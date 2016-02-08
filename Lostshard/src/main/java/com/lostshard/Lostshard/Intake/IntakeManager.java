@@ -10,10 +10,23 @@ import org.bukkit.command.TabCompleter;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
+import com.lostshard.Lostshard.Commands.AdminCommand;
 import com.lostshard.Lostshard.Commands.BankCommand;
+import com.lostshard.Lostshard.Commands.BlackSmithyCommand;
 import com.lostshard.Lostshard.Commands.ChatCommand;
+import com.lostshard.Lostshard.Commands.ChestRefillCommand;
+import com.lostshard.Lostshard.Commands.ClanCommand;
 import com.lostshard.Lostshard.Commands.ControlPointsCommand;
+import com.lostshard.Lostshard.Commands.FishingCommand;
+import com.lostshard.Lostshard.Commands.MageryCommand;
+import com.lostshard.Lostshard.Commands.PartyCommands;
 import com.lostshard.Lostshard.Commands.PlotCommand;
+import com.lostshard.Lostshard.Commands.ReloadCommand;
+import com.lostshard.Lostshard.Commands.SkillCommand;
+import com.lostshard.Lostshard.Commands.StoreCommand;
+import com.lostshard.Lostshard.Commands.SurvivalismCommand;
+import com.lostshard.Lostshard.Commands.TamingCommand;
+import com.lostshard.Lostshard.Commands.UtilsCommand;
 import com.lostshard.Lostshard.Intake.Modules.OfflinePlayerModule;
 import com.lostshard.Lostshard.Intake.Modules.PlayerModule;
 import com.lostshard.Lostshard.Intake.Modules.PlotModule;
@@ -39,13 +52,9 @@ import com.sk89q.intake.parametric.provider.PrimitivesModule;
 import com.sk89q.intake.util.auth.AuthorizationException;
 
 public class IntakeManager implements CommandExecutor, TabCompleter {
-
-	private final Lostshard plugin;
-	
 	private final Dispatcher dispatcher;
 	
-	public IntakeManager(Lostshard plugin) {
-		this.plugin = plugin;
+	public IntakeManager() {
 		Injector injector = Intake.createInjector();
 		injector.install(new PrimitivesModule());
         injector.install(new PlayerModule());
@@ -62,16 +71,37 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
         .builder(builder)
         .commands()
         .registerMethods(new BankCommand())
+        .registerMethods(new TamingCommand())
+        .registerMethods(new AdminCommand())
+        .registerMethods(new SurvivalismCommand())
+        .registerMethods(new UtilsCommand())
         .registerMethods(new ChatCommand())
         .registerMethods(new ControlPointsCommand())
+        .registerMethods(new ReloadCommand())
+        .registerMethods(new FishingCommand())
+        .registerMethods(new BlackSmithyCommand())
+        .registerMethods(new StoreCommand())
+        .registerMethods(new SkillCommand())
+        .registerMethods(new MageryCommand())
+        .group("clan")
+        	.registerMethods(new ClanCommand())
+        	.parent()
+        .group("dc")
+        	.registerMethods(new ChestRefillCommand())
+        	.parent()
+        .group("party")
+        	.registerMethods(new PartyCommands())
+        	.parent()
         .group("plot")
         	.registerMethods(new PlotCommand())
         	.parent()
         .graph()
         .getDispatcher();
-        
-        for(CommandMapping c : dispatcher.getCommands())
-        	this.plugin.getCommand(c.getPrimaryAlias()).setExecutor(this);
+	}
+	
+	public void setCommandExecutors(Lostshard lostshard) {
+		for(CommandMapping c : dispatcher.getCommands())
+        	lostshard.getCommand(c.getPrimaryAlias()).setExecutor(this);
 	}
 	
 	@Override
@@ -124,19 +154,11 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
 		}
 		return ImmutableList.of();
 	}
-	
+
 	/**
 	 * @return the dispatcher
 	 */
 	public Dispatcher getDispatcher() {
-		return dispatcher;
+		return this.dispatcher;
 	}
-
-	/**
-	 * @return the plugin
-	 */
-	public Lostshard getPlugin() {
-		return plugin;
-	}
-
 }
