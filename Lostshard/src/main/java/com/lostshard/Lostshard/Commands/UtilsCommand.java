@@ -146,12 +146,13 @@ public class UtilsCommand {
 
 	@Command(aliases = { "whois"}, desc = "List all online players", usage = "<player>")
 	public void whois(CommandSender sender, @Vanish Player target) {
-		Output.displayWho(sender, target);
+		PseudoPlayer tpPlayer = pm.getPlayer(target);
+		Output.outputWho(sender, tpPlayer);
 	}
 	
 	@Command(aliases = { "stats"}, desc = "List all online players")
 	public void stats(@Sender Player player) {
-		Output.displayStats(player);
+		Output.playerStats(player);
 	}
 	
 	@Command(aliases = { "rules"}, desc = "List all online players")

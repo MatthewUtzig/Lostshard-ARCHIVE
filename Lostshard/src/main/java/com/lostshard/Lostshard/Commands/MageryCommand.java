@@ -84,9 +84,15 @@ public class MageryCommand {
 	@Command(aliases = { "runebook" }, desc = "Shows you your runebook", usage = "<subcmd>")
 	public void runebook(@Sender Player player, @Text @Optional(value="") String arg) {
 		String[] args = arg.split(" ");
-		if (args.length == 0 || args.length >= 11 && args[1].equalsIgnoreCase("page"))
-			Output.outputRunebook(player, args);
-		else if (args.length > 0) {
+		if (args.length == 0 || args.length >= 2 && args[0].equalsIgnoreCase("page")) {
+			int page;
+			try {
+				page = Integer.parseInt(args[1]);
+			} catch (Exception e) {
+				page = 0;
+			}
+			Output.outputRunebook(player, page);
+		} else if (args.length > 0) {
 			final String secondaryCommand = args[0];
 			if (secondaryCommand.equalsIgnoreCase("give")) {
 				if (args.length >= 3) {

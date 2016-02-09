@@ -2,6 +2,7 @@ package com.lostshard.Lostshard.Commands;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -27,6 +28,7 @@ import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
@@ -276,15 +278,14 @@ public class PlotCommand {
 			return;
 		}
 
-		if (plot.isFriend(targetPlayer))
-			plot.getFriends().remove(targetPlayer.getUniqueId());
+		plot.getFriends().remove(targetPlayer.getUniqueId());
 
-		if (plot.isCoowner(targetPlayer)) {
+		if (plot.getCoowners().contains(targetPlayer)) {
 			Output.simpleError(player, "They are already a friend of the plot.");
 			return;
 		}
 
-		plot.addCoowner(targetPlayer);
+		plot.getCoowners().add(targetPlayer);
 		Output.positiveMessage(player, targetPlayer.getName() + " is now a co-owner of this plot.");
 		Output.positiveMessage(targetPlayer, "You are now a co-owner of " + plot.getName() + ".");
 	}
@@ -302,12 +303,10 @@ public class PlotCommand {
 			return;
 		}
 		final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-		if (pPlayer.getMoney() >= amount) {
-			plot.setMoney(plot.getMoney() + amount);
-			pPlayer.setMoney(pPlayer.getMoney() - amount);
+		if (pPlayer.getWallet().contains(amount)) {
+			plot.getWallet().add(pPlayer.getWallet(), amount, "Plot deposit");
 			Output.positiveMessage(player, "You have deposited " + Utils.getDecimalFormater().format(amount)
 					+ " gold coins into the plot fund.");
-			new GoldRecord(amount, "plot deposit", player.getUniqueId(), null);
 		} else {
 			Output.simpleError(player, "You do not have that much money.");
 			return;
@@ -325,11 +324,10 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner may disband " + plot.getName() + ".");
 			return;
 		}
-		int value = plot.getMoney();
-		value += plot.getValue();
+		int value = plot.getValue();
 		plot.disband();
-		pPlayer.setMoney(pPlayer.getMoney() + value);
-		new GoldRecord(value, "plot disband", null, player.getUniqueId());
+		pPlayer.getWallet().add(plot.getWallet(), plot.getWallet().intValue(), "Plot disband - founds");
+		pPlayer.getWallet().add(plot.getWallet(), value, "Plot disband - value");
 		// Output positive message that plot has bin disbanded and the value of
 		// the plot.
 		Output.positiveMessage(player, "You have disbanded " + plot.getName() + ", and got "
@@ -357,21 +355,20 @@ public class PlotCommand {
 								+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
 				Output.positiveMessage(player, "-Plot Upgrades Available-");
 				for (final PlotUpgrade u : PlotUpgrade.values()) {
-					if (plot.isUpgrade(u))
+					if (plot.getUpgrades().contains(u))
 						continue;
 					player.sendMessage(ChatColor.YELLOW + "- " + u.getName());
 				}
 			} else {
-				if (plot.isUpgrade(upgrade)) {
-					plot.removeUpgrade(upgrade);
+				if (plot.getUpgrades().contains(upgrade)) {
+					plot.getUpgrades().remove(upgrade);
 					int amount = (int) Math.floor(upgrade.getPrice() * .75);
-					plot.setMoney(amount);
-					new GoldRecord(amount, "plot downgrade", null, null);
+					plot.getWallet().add(plot.getWallet(), amount, "Plot downgrade");
 					Output.positiveMessage(player,
 							plot.getName() + " downgrade from a " + upgrade.getName() + " to a normal plot.");
-					if (upgrade.equals(PlotUpgrade.TOWN) && plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
-						plot.removeUpgrade(PlotUpgrade.NEUTRALALIGNMENT);
-						plot.setMoney(plot.getMoney() + (int) Math.floor(PlotUpgrade.NEUTRALALIGNMENT.getPrice() * 75));
+					if (upgrade.equals(PlotUpgrade.TOWN) && plot.getUpgrades().contains(PlotUpgrade.NEUTRALALIGNMENT)) {
+						plot.getUpgrades().contains(PlotUpgrade.NEUTRALALIGNMENT);
+						plot.getWallet().add(plot.getWallet(), (int) Math.floor(PlotUpgrade.NEUTRALALIGNMENT.getPrice() * 75), "Plot downgrade - neutralalignment");
 					}
 					if(upgrade.equals(PlotUpgrade.TOWN))
 						for(NPC n : plot.getNpcs())
@@ -406,7 +403,7 @@ public class PlotCommand {
 			int sphereOfInfluence;
 			if (p.isCoownerOrAbove(player))
 				sphereOfInfluence = p.getSize();
-			else if (p.isUpgrade(PlotUpgrade.TOWN))
+			else if (p.getUpgrades().contains(PlotUpgrade.TOWN))
 				sphereOfInfluence = p.getSize() * 2;
 			else
 				sphereOfInfluence = (int) Math.ceil(p.getSize() * 1.5);
@@ -426,12 +423,10 @@ public class PlotCommand {
 		}
 
 		// verify that we can afford the expansion
-		final int plotMoney = plot.getMoney();
 		final int expansionCost = plot.getExpandPrice(plot.getSize() + amount);
-		if (plotMoney >= expansionCost) {
+		if (plot.getWallet().contains(expansionCost)) {
 			// we are good to go
-			plot.setMoney(plot.getMoney() - expansionCost);
-			new GoldRecord(expansionCost, "plot expand", null, null);
+			plot.getWallet().subtract(null, expansionCost, "Plot expand");
 			plot.setSize(plot.getSize() + amount);
 			Output.positiveMessage(player, "You have expanded the plot to size " + plot.getSize() + ".");
 		} else
@@ -450,11 +445,11 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner and co-owners may toggle explosions.");
 			return;
 		}
-		if (plot.isAllowExplosions()) {
-			plot.setAllowExplosions(false);
+		if (plot.getToggleables().contains(PlotToggleable.EXPLOSIONS)) {
+			plot.getToggleables().remove(PlotToggleable.EXPLOSIONS);
 			Output.positiveMessage(player, "You have disabled explosions on your plot.");
 		} else {
-			plot.setAllowExplosions(true);
+			plot.getToggleables().add(PlotToggleable.EXPLOSIONS);
 			Output.positiveMessage(player, "You have enabled explosions on your plot.");
 		}
 	}
@@ -477,19 +472,19 @@ public class PlotCommand {
 			return;
 		}
 
-		if (plot.isCoowner(targetPlayer) && !plot.isOwner(player)) {
+		if (plot.getCoowners().contains(targetPlayer) && !plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may friend co-owners.");
 			return;
 		}
 
-		if (plot.isFriend(targetPlayer)) {
+		if (plot.getFriends().contains(targetPlayer)) {
 			Output.simpleError(player, "They are already a friend of the plot.");
 			return;
 		}
 
-		if (plot.isCoowner(targetPlayer))
+		if (plot.getCoowners().contains(targetPlayer))
 			plot.getCoowners().remove(targetPlayer.getUniqueId());
-		plot.addFriend(targetPlayer);
+		plot.getFriends().add(targetPlayer);
 		Output.positiveMessage(player, targetPlayer.getName() + " is now a friend of this plot.");
 		Output.positiveMessage(targetPlayer, "You are now a friend of " + plot.getName() + ".");
 	}
@@ -505,12 +500,12 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner and co-owner may toggle friendbuild.");
 			return;
 		}
-		if (!plot.isFriendBuild()) {
-			plot.setFriendBuild(true);
+		if (!plot.getToggleables().contains(PlotToggleable.FRIENDBUILD)) {
+			plot.getToggleables().add(PlotToggleable.FRIENDBUILD);
 			Output.positiveMessage(player, "You have turned on friend build for " + plot.getName() + ".");
 			return;
 		} else {
-			plot.setFriendBuild(false);
+			plot.getToggleables().remove(PlotToggleable.FRIENDBUILD);
 			Output.positiveMessage(player, "You have turned off friend build for " + plot.getName() + ".");
 			return;
 		}
@@ -570,12 +565,10 @@ public class PlotCommand {
 	@Command(aliases = { "magic" }, desc = "Toggles magic for a plot")
 	@Require("lostshard.plot.admin")
 	public void plotMagicToggle(@Sender Player player, @Sender Plot plot) {
-		if (plot.isAllowMagic()) {
+		if (plot.getToggleables().add(PlotToggleable.NOMAGIC)) {
 			Output.positiveMessage(player, "You have turned off magic for " + plot.getName() + ".");
-			plot.setAllowMagic(false);
-		} else {
+		} else if(plot.getToggleables().remove(PlotToggleable.NOMAGIC)) {
 			Output.positiveMessage(player, "You have turned on magic for " + plot.getName() + ".");
-			plot.setAllowMagic(true);
 		}
 	}
 
@@ -602,7 +595,7 @@ public class PlotCommand {
 				return;
 			}
 			if (type.equalsIgnoreCase("banker")) {
-				if (!plot.isUpgrade(PlotUpgrade.TOWN)) {
+				if (!plot.getUpgrades().contains(PlotUpgrade.TOWN)) {
 					Output.simpleError(player, "You can only place a banker in a town.");
 					return;
 				}
@@ -767,11 +760,10 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner may make the plot private.");
 			return;
 		}
-		if (plot.isPrivatePlot())
-			Output.simpleError(player, "The plot is already private.");
-		else {
-			plot.setPrivatePlot(true);
+		if (plot.getToggleables().add(PlotToggleable.PRIVATE))
 			Output.positiveMessage(player, "You have made the plot private.");
+		else {
+			Output.simpleError(player, "The plot is already private.");
 		}
 	}
 
@@ -786,11 +778,9 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner may toggle protection.");
 			return;
 		}
-		if (plot.isProtected()) {
-			plot.setProtected(false);
+		if (plot.getToggleables().remove(PlotToggleable.PROTECTION)) {
 			Output.positiveMessage(player, "You have turned off protection for " + plot.getName() + ".");
 		} else {
-			plot.setProtected(true);
 			Output.positiveMessage(player, "You have turned on protection for " + plot.getName() + ".");
 		}
 	}
@@ -806,11 +796,10 @@ public class PlotCommand {
 			Output.simpleError(player, "Only the owner may make the plot public.");
 			return;
 		}
-		if (!plot.isPrivatePlot())
-			Output.simpleError(player, "The plot is already public.");
-		else {
-			plot.setPrivatePlot(false);
+		if (plot.getToggleables().remove(PlotToggleable.PRIVATE))
 			Output.positiveMessage(player, "You have made the plot public.");
+		else {
+			Output.simpleError(player, "The plot is already public.");
 		}
 	}
 
@@ -822,14 +811,10 @@ public class PlotCommand {
 	@Command(aliases = { "pvp" }, desc = "Toggles pvp for the plot")
 	@Require("losthard.plot.admin")
 	public void plotPvpToggle(@Sender Player player, @Sender Plot plot) {
-		if (!player.isOp())
-			Output.simpleError(player, "Ops may only toggle pvp for plots.");
-		if (plot.isAllowPvp()) {
+		if (plot.getToggleables().add(PlotToggleable.NOPVP)) {
 			Output.positiveMessage(player, "You have turned off pvp for " + plot.getName() + ".");
-			plot.setAllowPvp(false);
 		} else {
 			Output.positiveMessage(player, "You have turned on pvp for " + plot.getName() + ".");
-			plot.setAllowPvp(true);
 		}
 	}
 
@@ -840,14 +825,13 @@ public class PlotCommand {
 	 *            Rename plot at player.
 	 */
 	@Command(aliases = { "rename" }, desc = "Renames the plot", usage ="<name>")
-	public void plotRename(@Sender Player player, @Sender Plot plot, @Text String plotName) {
+	public void plotRename(@Sender Player player, @Sender Plot plot, @Validate(regex="\\w{2,"+Variables.plotMaxNameLength+"}") @Text String plotName) {
 		if (!plot.isOwner(player)) {
 			Output.simpleError(player, "Only the owner may rename the plot.");
 			return;
 		}
 		// Verify that we can afford the rename.
-		final int plotMoney = plot.getMoney();
-		if (plotMoney < 1000) {
+		if (plot.getWallet().contains(Variables.plotRenamePrice)) {
 			Output.simpleError(player, "Not enough in the plot treasury to rename. "
 					+ Utils.getDecimalFormater().format(Variables.plotRenamePrice) + " gc.");
 			return;
@@ -874,8 +858,7 @@ public class PlotCommand {
 				return;
 			}
 		// We are good to go
-		plot.setMoney(plot.getMoney() - Variables.plotRenamePrice);
-		new GoldRecord(Variables.plotRenamePrice, "plot rename", null, null);
+		plot.getWallet().subtract(null, Variables.plotRenamePrice, "Plot rename");
 		plot.setName(plotName);
 		Output.positiveMessage(player, "You have renamed the plot to " + plotName + ".");
 	}
@@ -932,11 +915,10 @@ public class PlotCommand {
 	@Command(aliases = { "survey" }, desc = "Survey the nearby plots")
 	public void plotSurvey(@Sender Player player) {
 		Plot plot = ptm.findPlotAt(player.getLocation());
-		final List<Plot> plots = this.ptm.getPlots();
-		final int numPlots = plots.size();
+		final Set<Plot> plots = this.ptm.getPlots();
 
 		// First, determine if we are currently in a plot
-		if (plot != null && !plot.isCoowner(player)) {
+		if (plot != null && !plot.getCoowners().contains(player)) {
 			Output.positiveMessage(player, "-Plot Survey Results-");
 			player.sendMessage(
 					ChatColor.YELLOW + "You " + ChatColor.RED + "can't" + ChatColor.YELLOW + " create a plot here.");
@@ -956,8 +938,7 @@ public class PlotCommand {
 		// If we are not in a plot, determine if there are any plots within
 		// range
 		final ArrayList<Plot> plotsInRange = new ArrayList<Plot>();
-		for (int i = 0; i < numPlots; i++) {
-			final Plot p = plots.get(i);
+		for (Plot p : plots) {
 			if (!p.getLocation().getWorld().equals(player.getWorld()))
 				continue;
 			if (plot != null && p.getName().equalsIgnoreCase(plot.getName()))
@@ -965,7 +946,7 @@ public class PlotCommand {
 			int border;
 			if (p.isCoownerOrAbove(player))
 				border = p.getSize();
-			else if (p.isUpgrade(PlotUpgrade.TOWN))
+			else if (p.getUpgrades().contains(PlotUpgrade.TOWN))
 				border = p.getSize() * 2;
 			else
 				border = (int) Math.ceil(p.getSize() * 1.5);
@@ -1092,10 +1073,6 @@ public class PlotCommand {
 			pPlayer.setTestPlot(null);
 			return;
 		}
-		if (plot == null) {
-			Output.plotNotIn(player);
-			return;
-		}
 		pPlayer.setTestPlot(plot);
 		Output.positiveMessage(player, "You are now testing " + plot.getName() + ".");
 	}
@@ -1103,12 +1080,12 @@ public class PlotCommand {
 	@Command(aliases = { "title" }, desc = "Toggles plot title")
 	@Require("lostshard.plot.admin")
 	public void plotTitle(@Sender Player player, @Sender Plot plot) {
-		if (plot.isTitleEntrence()) {
+		if (plot.getToggleables().contains(PlotToggleable.TITLE)) {
 			Output.positiveMessage(player, "You have turned off title for " + plot.getName() + ".");
-			plot.setTitleEntrence(false);
+			plot.getToggleables().remove(PlotToggleable.TITLE);
 		} else {
 			Output.positiveMessage(player, "You have turned on title for " + plot.getName() + ".");
-			plot.setTitleEntrence(true);
+			plot.getToggleables().add(PlotToggleable.TITLE);
 		}
 	}
 
@@ -1128,8 +1105,8 @@ public class PlotCommand {
 			Output.simpleError(player, "You can't transfer your plot to yourself.");
 			return;
 		}
-		plot.removeCoowner(target);
-		plot.removeFriend(target);
+		plot.getCoowners().remove(target);
+		plot.getFriends().remove(target);
 		plot.setOwner(target.getUniqueId());
 		Output.positiveMessage(player, "Transferred plot \"" + plot.getName() + "\" to " + target.getName());
 		Output.positiveMessage(target, player.getName() + " transferred plot \"" + plot.getName() + "\" to you.");
@@ -1158,7 +1135,7 @@ public class PlotCommand {
 			return;
 		}
 
-		if (plot.isCoowner(target.getUniqueId())
+		if (plot.getCoowners().contains(target)
 				&& plot.getCoowners().contains(player.getUniqueId())) {
 			Output.simpleError(player, "Only the owner may unfriend a co-owner.");
 			return;
@@ -1218,22 +1195,21 @@ public class PlotCommand {
 					player.sendMessage(ChatColor.YELLOW + "- " + u.getName());
 			Output.positiveMessage(player, "-Plot Upgrades Available-");
 			for (final PlotUpgrade u : PlotUpgrade.values()) {
-				if (plot.isUpgrade(u))
+				if (plot.getUpgrades().contains(u))
 					continue;
 				player.sendMessage(ChatColor.YELLOW + "- " + u.getName() + " ("
 						+ Utils.getDecimalFormater().format(u.getPrice()) + " gc)");
 			}
 		} else {
 
-			if (!plot.isUpgrade(upgrade)) {
-				if (plot.getMoney() >= upgrade.getPrice()) {
-					if (upgrade.equals(PlotUpgrade.NEUTRALALIGNMENT) && !plot.isUpgrade(PlotUpgrade.TOWN)) {
+			if (!plot.getUpgrades().contains(upgrade)) {
+				if (plot.getWallet().contains(upgrade.getPrice())) {
+					if (upgrade.equals(PlotUpgrade.NEUTRALALIGNMENT) && !plot.getUpgrades().contains(PlotUpgrade.TOWN)) {
 						Output.simpleError(player, "must be a town to purchase this upgrade.");
 						return;
 					}
-					plot.addUpgrade(upgrade);
-					plot.setMoney(plot.getMoney() - upgrade.getPrice());
-					new GoldRecord(upgrade.getPrice(), "plot upgrade", null, null);
+					plot.getWallet().subtract(null, upgrade.getPrice(), "Plot upgrade");
+					plot.getUpgrades().add(upgrade);
 					Output.positiveMessage(player, plot.getName() + " upgraded to " + upgrade.getName() + ".");
 				} else
 					Output.simpleError(player, "Not enough money in plot funds. ("
@@ -1250,16 +1226,12 @@ public class PlotCommand {
 	 *            Withdraw money from plot founds at player.
 	 */
 	@Command(aliases = { "withdraw" }, desc = "Withdraws money from a plot", usage ="<amount>")
-	public void plotWithdraw(@Sender Player player, @Sender Plot plot, @Range(min=1) int amount) {
+	public void plotWithdraw(@Sender Player player, @Sender PseudoPlayer pPlayer, @Sender Plot plot, @Range(min=1) int amount) {
 		if (!plot.isCoownerOrAbove(player)) {
 			Output.simpleError(player, "Only the owner or co-owners may withdraw from the plot funds.");
 			return;
 		}
-		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
-		if (plot.getMoney() >= amount) {
-			plot.setMoney(plot.getMoney() - amount);
-			pseudoPlayer.setMoney(pseudoPlayer.getMoney() + amount);
-			new GoldRecord(amount, "plot withdraw", null, player.getUniqueId());
+		if (plot.getWallet().subtract(pPlayer.getWallet(), amount, "Plot withdraw")) {
 			Output.positiveMessage(player, "You have withdrawn " + Utils.getDecimalFormater().format(amount)
 					+ " gold coins from the plot fund.");
 		} else

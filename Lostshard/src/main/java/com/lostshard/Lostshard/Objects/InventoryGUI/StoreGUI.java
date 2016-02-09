@@ -35,8 +35,8 @@ public class StoreGUI extends GUI {
 
 			itemStack.setItemMeta(itemMeta);
 			items[i] = new GUIItem(itemStack, (player, pPlayer, item, click, inv, slot) -> {
-				if(pPlayer.getMoney() >= si.getSalePrice() && si.getStock() > si.getItem().getAmount()) {
-					pPlayer.setMoney(pPlayer.getMoney()-si.getSalePrice());
+				if(pPlayer.getWallet().contains(si.getSalePrice()) && si.getStock() > si.getItem().getAmount()) {
+					pPlayer.getWallet().subtract(null, si.getSalePrice(), "Vendor buy");
 					si.setStock(si.getStock()-si.getItem().getAmount());
 					player.getWorld().dropItem(player.getLocation(), si.getItem());
 				}

@@ -4,7 +4,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Utils.Output;
 
 public abstract class WorldEvent implements Listener {
@@ -22,9 +21,7 @@ public abstract class WorldEvent implements Listener {
 	private boolean active;
 	private boolean paused;
 
-	private final Lostshard plugin;
-
-	public WorldEvent(Lostshard plugin, String name, Location location, int range, String title, long start,
+	public WorldEvent(String name, Location location, int range, String title, long start,
 			long stop) {
 		this.name = name;
 		this.title = title;
@@ -34,12 +31,9 @@ public abstract class WorldEvent implements Listener {
 
 		this.start = start;
 		this.stop = stop;
-		this.plugin = plugin;
 
 		this.setPaused(false);
 		this.setActive(false);
-
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
 	public int broadcast(String message) {
@@ -55,7 +49,7 @@ public abstract class WorldEvent implements Listener {
 		return true;
 	}
 
-	public abstract boolean create(Player player, String[] args);
+	public abstract boolean create(Player player);
 
 	public abstract boolean finish();
 
@@ -67,10 +61,6 @@ public abstract class WorldEvent implements Listener {
 
 	public String getName() {
 		return this.name;
-	}
-
-	public Lostshard getPlugin() {
-		return this.plugin;
 	}
 
 	public int getRange() {

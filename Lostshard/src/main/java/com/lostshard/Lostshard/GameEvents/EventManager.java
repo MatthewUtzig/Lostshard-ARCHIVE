@@ -23,15 +23,15 @@ public class EventManager {
 		this.setEvents(new ArrayList<WorldEvent>());
 	}
 
-	public WorldEvent createEvent(Lostshard plugin, String name, Player player, int size, String title, long start,
-			long stop, String[] args) {
+	public WorldEvent createEvent(String name, Player player, int size, String title, long start,
+			long stop) {
 		WorldEvent event = null;
 
 		if (name.equalsIgnoreCase("ghast"))
-			event = new GhastEvent(plugin, player.getLocation(), size, title, start, stop);
+			event = new GhastEvent(player.getLocation(), size, title, start, stop);
 
 		if (event != null) {
-			event.create(player, args);
+			event.create(player);
 			this.events.add(event);
 		}
 		return event;

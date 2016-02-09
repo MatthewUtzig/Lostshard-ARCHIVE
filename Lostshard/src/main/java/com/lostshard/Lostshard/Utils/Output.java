@@ -2,11 +2,11 @@ package com.lostshard.Lostshard.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -49,7 +49,7 @@ public class Output {
 	public static int broadcast(String message) {
 		for (final Player p : Bukkit.getOnlinePlayers()) {
 			p.sendMessage(ChatColor.GREEN + message);
-			p.playSound(p.getLocation(), Sound.ARROW_HIT, 1, 1);
+			p.playSound(p.getLocation(), Sound.ANVIL_LAND, 1, 1);
 		}
 		return Bukkit.getOnlinePlayers().size();
 	}
@@ -66,10 +66,9 @@ public class Output {
 
 	public static void capturePointsInfo(CommandSender sender) {
 		sender.sendMessage(ChatColor.GOLD + "-Control Points-");
-		for(Plot p : PlotManager.getManager().getCapturePoints()) {
+		for(Plot p : PlotManager.getManager().getCapturePoints())
 			sender.sendMessage(ChatColor.YELLOW + p.getName()+": "+p.getLocation().getBlockX() + ", " +
 		p.getLocation().getBlockY() + ", " + p.getLocation().getBlockZ() );	
-		}
 	}
 
 	public static void displayLoginMessages(Player player) {
@@ -92,13 +91,6 @@ public class Output {
 		sender.sendMessage(ChatColor.YELLOW + "Long Version: http://wiki.lostshard.com/index.php?title=Rules");
 	}
 
-	public static void displayStats(CommandSender sender) {
-		if (sender instanceof Player)
-			Output.playerStats((Player) sender);
-		else
-			sender.sendMessage(ChatColor.DARK_RED + "You must be a player to perform this command.");
-	}
-
 	public static void displayTitles(Player player, Player target) {
 		player.sendMessage(ChatColor.GOLD + "-" + target.getName() + "'s Titles-");
 		final PseudoPlayer pPlayer = pm.getPlayer(target);
@@ -106,28 +98,11 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW + " - " + ChatColor.WHITE + title);
 	}
 
-	public static void displayWho(CommandSender sender, Player target) {
-		final PseudoPlayer targetPseudoPlayer = pm.getPlayer(target);
-		Output.outputWho(sender, targetPseudoPlayer);
-	}
-
 	public static void gainSkill(Player player, String skillName, int gainAmount, int totalSkill) {
 		if (gainAmount <= 0)
 			return;
 		player.sendMessage(ChatColor.GOLD + "You have gained " + Utils.scaledIntToString(gainAmount) + " " + skillName
 				+ ", it is now " + Utils.scaledIntToString(totalSkill) + ".");
-	}
-
-	public static void help(CommandSender sender) {
-
-	}
-
-	public static void mustBePlayer(CommandSender sender) {
-		sender.sendMessage(ChatColor.RED + "Only players may perform this command!");
-	}
-
-	public static void notNumber(Player player) {
-		simpleError(player, "Need to be a number.");
 	}
 
 	public static void outputClanInfo(Player player, Clan clan) {
@@ -143,19 +118,18 @@ public class Output {
 	}
 
 	public static void outputPlayerlist(CommandSender sender) {
-		final ArrayList<String> filteredPlayers = new ArrayList<String>();
+		final List<String> filteredPlayers = new LinkedList<>();
 		for (final Player p : Bukkit.getOnlinePlayers())
-			if (!(Lostshard.isVanished(p) && !sender.isOp()))
+			if (!Lostshard.isVanished(p))
 				filteredPlayers.add(Utils.getDisplayName(p));
 
 		Collections.sort(filteredPlayers, String.CASE_INSENSITIVE_ORDER);
-		String message = ChatColor.YELLOW + "Online Players (" + filteredPlayers.size() + "/"
-				+ Lostshard.getMaxPlayers() + "):" + ChatColor.WHITE + " ";
-		message += StringUtils.join(filteredPlayers, ChatColor.RESET + ", ");
-		sender.sendMessage(message);
+		sender.sendMessage(ChatColor.YELLOW + "Online Players (" + filteredPlayers.size() + "/"
+				+ Lostshard.getMaxPlayers() + ")");
+		sender.sendMessage(Joiner.on(", ").join(filteredPlayers));
 	}
 
-	public static void outputRunebook(Player player, String[] split) {
+	public static void outputRunebook(Player player, int page) {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if (pseudoPlayer.isAllowGui()) {
 			final GUI gui = new RunebookGUI(pseudoPlayer);
@@ -166,10 +140,7 @@ public class Output {
 		final Runebook runebook = pseudoPlayer.getRunebook();
 
 		int totalRunes = runebook.size();
-		if (!player.isOp() && !pseudoPlayer.wasSubscribed())
-			if (totalRunes > 8)
-				totalRunes = 8;
-		final int numPages = (totalRunes - 1) / 8 + 1;
+		final int numPages = (int) Math.floor(totalRunes/8) + 1;
 
 		if (player.isOp())
 			player.sendMessage(ChatColor.YELLOW + "Pg 1 of " + numPages + " (" + totalRunes
@@ -200,7 +171,7 @@ public class Output {
 			gui.openInventory(player);
 			return;
 		}
-		final Set<Scroll> scrolls = new HashSet<>(pseudoPlayer.getScrolls());
+		final Set<Scroll> scrolls = new LinkedHashSet<>(pseudoPlayer.getScrolls());
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName() + "'s Scrolls-");
 		player.sendMessage(ChatColor.YELLOW + "(\"+\" means it is already in your spellbook)");
 		if (scrolls.size() > 0) {
@@ -239,51 +210,42 @@ public class Output {
 						ChatColor.YELLOW + s.getName() + ": " + ChatColor.WHITE + Utils.scaledIntToString(s.getLvl()));
 	}
 
-	public static void outputSpellbook(Player player, String[] args) {
+	public static void outputSpellbook(Player player, int page) {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		final SpellBook spellbook = pseudoPlayer.getSpellbook();
-		if (args.length == 2) {
-			final String secondaryCommand = args[0];
-			if (secondaryCommand.equalsIgnoreCase("page")) {
-				int pageNumber;
-				try {
-					pageNumber = Integer.parseInt(args[1]);
-				} catch (final Exception e) {
-					pageNumber = -1;
-				}
-				if (pseudoPlayer.isAllowGui()) {
-					final GUI gui = new SpellbookPageGUI(pseudoPlayer, pageNumber);
-					gui.openInventory(player);
-					return;
-				}
-				if (pageNumber >= 1 && pageNumber <= 9) {
-					player.sendMessage(
-							ChatColor.GOLD + "-" + player.getName() + "'s Spellbook [Page " + pageNumber + "]-");
-					int minMagery = (pageNumber - 1) * 12;
-					if (pageNumber == 9)
-						minMagery = 100;
-					player.sendMessage(ChatColor.YELLOW + "-Minimum Magery: " + minMagery);
-					player.sendMessage(ChatColor.YELLOW + "Spell Name - (Reagent Cost)");
-					final ArrayList<Scroll> spellsOnPage = spellbook.getSpellsOnPage(pageNumber);
-					if (spellsOnPage.size() > 0)
-						for (final Scroll scroll : spellsOnPage) {
-							final List<ItemStack> reagents = scroll.getReagentCost();
-							String reagentString = "(";
-							final int numReagents = reagents.size();
-							for (int i = 0; i < numReagents; i++) {
-								reagentString += reagents.get(i).getType().name();
-								if (i < numReagents - 1)
-									reagentString += ",";
-							}
-							reagentString += ")";
-							player.sendMessage(
-									ChatColor.YELLOW + scroll.getName() + ChatColor.WHITE + " - " + reagentString);
-						}
-					else
-						player.sendMessage(ChatColor.RED + "You don't have any spells on this page.");
-				} else
-					simpleError(player, "That page doesn't exist, use 1-9");
+		if (page != 0) {
+			if (pseudoPlayer.isAllowGui()) {
+				final GUI gui = new SpellbookPageGUI(pseudoPlayer, page);
+				gui.openInventory(player);
+				return;
 			}
+			if (page >= 1 && page <= 9) {
+				player.sendMessage(
+						ChatColor.GOLD + "-" + player.getName() + "'s Spellbook [Page " + page + "]-");
+				int minMagery = (page - 1) * 12;
+				if (page == 9)
+					minMagery = 100;
+				player.sendMessage(ChatColor.YELLOW + "-Minimum Magery: " + minMagery);
+				player.sendMessage(ChatColor.YELLOW + "Spell Name - (Reagent Cost)");
+				final ArrayList<Scroll> spellsOnPage = spellbook.getSpellsOnPage(page);
+				if (spellsOnPage.size() > 0)
+					for (final Scroll scroll : spellsOnPage) {
+						final List<ItemStack> reagents = scroll.getReagentCost();
+						String reagentString = "(";
+						final int numReagents = reagents.size();
+						for (int i = 0; i < numReagents; i++) {
+							reagentString += reagents.get(i).getType().name();
+							if (i < numReagents - 1)
+								reagentString += ",";
+						}
+						reagentString += ")";
+						player.sendMessage(
+								ChatColor.YELLOW + scroll.getName() + ChatColor.WHITE + " - " + reagentString);
+					}
+				else
+					player.sendMessage(ChatColor.RED + "You don't have any spells on this page.");
+			} else
+				simpleError(player, "That page doesn't exist, use 1-9");
 		} else {
 			if (pseudoPlayer.isAllowGui()) {
 				final GUI gui = new SpellbookGUI(pseudoPlayer);
@@ -310,7 +272,6 @@ public class Output {
 		else if (whoPseudoPlayer.isCriminal())
 			sender.sendMessage(ChatColor.RED + "This player is a criminal.");
 		sender.sendMessage(ChatColor.YELLOW + "Murder Counts: " + ChatColor.WHITE + whoPseudoPlayer.getMurderCounts());
-//		sender.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE + whoPseudoPlayer.getRank());
 		final Clan clan = whoPseudoPlayer.getClan();
 		if (clan != null)
 			sender.sendMessage(ChatColor.YELLOW + "Clan: " + ChatColor.WHITE + clan.getName());
@@ -326,10 +287,6 @@ public class Output {
 		player.sendMessage(ChatColor.YELLOW + "Mana: " + ChatColor.WHITE + pseudoPlayer.getMana() + "/" + pseudoPlayer.getMaxMana());
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE + pseudoPlayer.getStamina() + "/" + pseudoPlayer.getMaxStamina());
 		player.sendMessage(ChatColor.YELLOW + "Build: " + ChatColor.WHITE + pseudoPlayer.getCurrentBuildId());
-//		player.sendMessage(
-//				ChatColor.YELLOW + "Reputation: " + ChatColor.WHITE + pseudoPlayer.getReputation().getReputation());
-//		// player.sendMessage(ChatColor.YELLOW + "Rank: " + ChatColor.WHITE
-		// + pseudoPlayer.getRank());
 	}
 
 	public static void plotInfo(Player player, Plot plot) {
@@ -404,10 +361,6 @@ public class Output {
 			player.sendMessage(ChatColor.YELLOW + "Friends: " + ChatColor.WHITE
 					+ Joiner.on(", ").join(plot.getFriends().usernames()));
 		}
-	}
-
-	public static void plotNotIn(Player player) {
-		simpleError(player, "You are not currently in a plot.");
 	}
 
 	public static void positiveMessage(CommandSender sender, String message) {

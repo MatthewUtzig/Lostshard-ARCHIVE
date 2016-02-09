@@ -17,18 +17,13 @@ public class GhastEvent extends WorldEvent {
 	private int timeout;
 	private List<LivingEntity> ghasts;
 
-	public GhastEvent(Lostshard plugin, Location location, int size, String title, long start, long stop) {
-		super(plugin, "Ghast attack", location, size, title, start, stop);
+	public GhastEvent(Location location, int size, String title, long start, long stop) {
+		super("Ghast attack", location, size, title, start, stop);
 		this.ghasts = new ArrayList<LivingEntity>();
 	}
 
 	@Override
-	public boolean create(Player player, String[] args) {
-		try {
-
-		} catch (final Exception e) {
-			return false;
-		}
+	public boolean create(Player player) {
 		return true;
 	}
 
