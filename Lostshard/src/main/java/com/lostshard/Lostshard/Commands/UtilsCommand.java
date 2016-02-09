@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Data.Locations;
-import com.lostshard.Lostshard.Handlers.HelpHandler;
 import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -146,7 +145,7 @@ public class UtilsCommand {
 	}
 
 	@Command(aliases = { "whois"}, desc = "List all online players", usage = "<player>")
-	public void whois(CommandSender sender, @Sender @Vanish Player target) {
+	public void whois(CommandSender sender, @Vanish Player target) {
 		Output.displayWho(sender, target);
 	}
 	
@@ -158,11 +157,6 @@ public class UtilsCommand {
 	@Command(aliases = { "rules"}, desc = "List all online players")
 	public void rules(CommandSender sender) {
 		Output.displayRules(sender);
-	}
-	
-	@Command(aliases = { "help"}, desc = "List all online players", usage = "<command> <page>")
-	public void help(CommandSender sender, @Optional String topic, @Optional @Range(min=1) int page) {
-		HelpHandler.handle(sender, topic, page);
 	}
 	
 	@Command(aliases = { "unignore"}, desc = "unignores player", usage="<player>")

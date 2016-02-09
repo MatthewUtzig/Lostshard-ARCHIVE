@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -90,7 +91,7 @@ public class TabUtils {
 	}
 
 	public static List<String> Plots() {
-		List<Plot> plots = ptm.getPlots();
+		Set<Plot> plots = ptm.getPlots();
 		List<String> results = new ArrayList<String>(plots.size());
 		for(Plot p : plots) {
 			results.add(p.getName());

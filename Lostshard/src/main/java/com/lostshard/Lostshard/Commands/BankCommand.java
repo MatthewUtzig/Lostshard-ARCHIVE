@@ -1,7 +1,5 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.UUID;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -14,8 +12,8 @@ import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.NPC.NPC;
+import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -63,6 +61,8 @@ public class BankCommand {
 	public void pay(CommandSender sender, @Vanish Player targetPlayer, @Range(min=1) int amount) {
 		if (amount < 1)
 			sender.sendMessage(ChatColor.DARK_RED + "Amount must be greater than 0.");
+		Wallet from = null;
+		final PseudoPlayer tpPlayer = this.pm.getPlayer(targetPlayer);
 		if (sender instanceof Player) {
 			final Player player = (Player) sender;
 			if (player == targetPlayer) {
@@ -70,21 +70,18 @@ public class BankCommand {
 				return;
 			}
 			final PseudoPlayer pPlayer = this.pm.getPlayer(player);
-			if (pPlayer.getMoney() < amount) {
+			if (!pPlayer.getWallet().contains(amount)) {
 				Output.simpleError(player, "You can't affort to pay " + targetPlayer.getName() + " "
 						+ Utils.getDecimalFormater().format(amount) + "gc.");
 				return;
 			}
-			pPlayer.subtractMoney(amount);
+			pPlayer.getWallet().subtract(tpPlayer.getWallet(), amount, "payment");
 		}
-		final PseudoPlayer tpPlayer = this.pm.getPlayer(targetPlayer);
-		tpPlayer.addMoney(amount);
+		tpPlayer.getWallet().add(from, amount, "payment");
 		sender.sendMessage(ChatColor.GOLD + "You have paid " + targetPlayer.getName() + " "
 				+ Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(targetPlayer,
 				sender.getName() + " has paid you " + Utils.getDecimalFormater().format(amount) + "gc.");
-		UUID uuid = sender instanceof Player ? ((Player) sender).getUniqueId() : null;
-		new GoldRecord(amount, "/pay", uuid , targetPlayer.getUniqueId());
 	}
 
 	/**
@@ -104,7 +101,7 @@ public class BankCommand {
 			return;
 		}
 		if (player.getInventory().contains(Material.GOLD_INGOT, amount)) {
-			pPlayer.addMoney(amount * Variables.goldIngotValue);
+			pPlayer.getWallet().add(null, amount * Variables.goldIngotValue, "tradegold");
 			ItemUtils.removeItem(player.getInventory(), Material.GOLD_INGOT, amount);
 			Output.positiveMessage(player,
 					"You have traded " + amount + " gold ingots into " + amount * Variables.goldIngotValue + " gc.");

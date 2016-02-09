@@ -33,6 +33,7 @@ import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Objects.Player.SpellBook;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
@@ -321,7 +322,7 @@ public class Output {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		player.sendMessage(ChatColor.GOLD + "-" + player.getName() + "'s Statistics-");
 		player.sendMessage(ChatColor.YELLOW + "Gold Coins: " + ChatColor.WHITE
-				+ Utils.getDecimalFormater().format(pseudoPlayer.getMoney()));
+				+ pseudoPlayer.getWallet());
 		player.sendMessage(ChatColor.YELLOW + "Mana: " + ChatColor.WHITE + pseudoPlayer.getMana() + "/" + pseudoPlayer.getMaxMana());
 		player.sendMessage(ChatColor.YELLOW + "Stamina: " + ChatColor.WHITE + pseudoPlayer.getStamina() + "/" + pseudoPlayer.getMaxStamina());
 		player.sendMessage(ChatColor.YELLOW + "Build: " + ChatColor.WHITE + pseudoPlayer.getCurrentBuildId());
@@ -334,17 +335,17 @@ public class Output {
 	public static void plotInfo(Player player, Plot plot) {
 		player.sendMessage(ChatColor.GOLD + "-" + plot.getName() + "'s Plot Info-");
 		String infoText = "";
-		if (plot.isProtected())
+		if (plot.getToggleables().contains(PlotToggleable.PROTECTION))
 			infoText += ChatColor.YELLOW + "Protected: " + ChatColor.WHITE + "Yes";
 		else
 			infoText += ChatColor.YELLOW + "Protected: " + ChatColor.WHITE + "No";
 		infoText += ChatColor.YELLOW + ", ";
-		if (plot.isPrivatePlot())
+		if (plot.getToggleables().contains(PlotToggleable.PRIVATE))
 			infoText += ChatColor.YELLOW + "Status: " + ChatColor.WHITE + "Private";
 		else
 			infoText += ChatColor.YELLOW + "Status: " + ChatColor.WHITE + "Public";
 		infoText += ChatColor.YELLOW + ", ";
-		if (plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+		if (plot.getUpgrades().contains(PlotUpgrade.NEUTRALALIGNMENT))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.WHITE + "Neutral";
 		else if (pm.isCriminal(plot.getOwner()))
 			infoText += ChatColor.YELLOW + "Alignment: " + ChatColor.RED + "Criminal";
@@ -353,7 +354,7 @@ public class Output {
 		player.sendMessage(infoText);
 
 		infoText = "";
-		if (plot.isAllowExplosions())
+		if (plot.getToggleables().contains(PlotToggleable.EXPLOSIONS))
 			infoText += ChatColor.YELLOW + "Allow Explosions: " + ChatColor.WHITE + "Yes";
 		else
 			infoText += ChatColor.YELLOW + "Allow Explosions: " + ChatColor.WHITE + "No";
@@ -361,15 +362,8 @@ public class Output {
 		player.sendMessage(infoText);
 
 		// Display your position in the plot
-		if (plot.isOwner(player))
-			player.sendMessage(ChatColor.YELLOW + "You are the owner of this plot.");
-		else if (plot.isCoowner(player))
-			player.sendMessage(ChatColor.YELLOW + "You are a co-owner of this plot.");
-		else if (plot.isFriend(player))
-			player.sendMessage(ChatColor.YELLOW + "You are a friend of this plot.");
-		else
-			player.sendMessage(ChatColor.YELLOW + "You are not a friend of this plot.");
-
+		plot.getPlayerStatusOfPlotString(player);
+		
 		if (plot.isCapturepoint()) {
 			final Clan clan = plot.getCapturepointData().getOwningClan();
 			if (clan != null)
@@ -390,11 +384,11 @@ public class Output {
 		// Only show the owner/co-owner the amount of money in the region bank
 		if (plot.isCoownerOrAbove(player)) {
 			player.sendMessage(ChatColor.YELLOW + "Size: " + ChatColor.WHITE + plot.getSize() + ChatColor.YELLOW
-					+ ", Funds: " + ChatColor.WHITE + Utils.getDecimalFormater().format(plot.getMoney())
+					+ ", Funds: " + ChatColor.WHITE + plot.getWallet()
 					+ ChatColor.YELLOW + ", Tax: " + ChatColor.WHITE + Utils.getDecimalFormater().format(plot.getTax())
 					+ ChatColor.YELLOW + ", Plot Value: " + ChatColor.WHITE
 					+ Utils.getDecimalFormater().format(plot.getValue()));
-			player.sendMessage(ChatColor.GRAY + "(" + Utils.getDecimalFormater().format(plot.getMoney() / plot.getTax())
+			player.sendMessage(ChatColor.GRAY + "(" + Utils.getDecimalFormater().format(plot.getWallet().intValue() / plot.getTax())
 					+ " days worth of funds remaining.)");
 			final int distanceFromCenter = (int) Math.round(Utils.distance(player.getLocation(), plot.getLocation()));
 			player.sendMessage(ChatColor.YELLOW + "Center: " + ChatColor.WHITE + "(" + plot.getLocation().getBlockX()
@@ -406,9 +400,9 @@ public class Output {
 		// Show member lists to everyone who is at least a friend
 		if (plot.isFriendOrAbove(player)) {
 			player.sendMessage(ChatColor.YELLOW + "Co-Owners: " + ChatColor.WHITE
-					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getCoowners())));
+					+ Joiner.on(", ").join(plot.getCoowners().usernames()));
 			player.sendMessage(ChatColor.YELLOW + "Friends: " + ChatColor.WHITE
-					+ Utils.listToString(Utils.UUIDArrayToUsernameArray(plot.getFriends())));
+					+ Joiner.on(", ").join(plot.getFriends().usernames()));
 		}
 	}
 

@@ -1,0 +1,546 @@
+name: Lostshard
+main: com.lostshard.Lostshard.Main.Lostshard
+softdepend: [Citizens]
+version: 0.2
+commands:
+  msg:
+    aliases: [msg]
+    usage: /msg <player> <message>
+    description: Send private messages to players
+  setmurders:
+    aliases: [setmurders]
+    usage: /setmurders <player> <amount>
+    description: Set murders counts for a player
+  togglemsg:
+    aliases: [togglemsg, toggleprivatechat, toggleprivate]
+    usage: /togglemsg
+    description: Toggles where the private chat should be visible
+  rules:
+    aliases: [rules]
+    usage: /rules
+    description: List all online players
+  toggleglobal:
+    aliases: [toggleglobal, toggleglobalchat]
+    usage: /toggleglobal
+    description: Toggles where the global chat should be visible
+  tpplot:
+    aliases: [tpplot]
+    usage: /tpplot <plot>
+    description: Teleports you to a given plot
+  scrolls:
+    aliases: [scrolls]
+    usage: /scrolls <subcmd>
+    description: Shows you your runebook
+  resetallskills:
+    aliases: [resetallskills]
+    usage: /resetallskills <skill>
+    description: Resets all your skills and increase on to level 50
+  skills:
+    aliases: [skills]
+    usage: /skills <subcommand>
+    description: Skill commands
+  cast:
+    aliases: [cast]
+    usage: /cast <spell>
+    description: Casts a spell
+  bank:
+    aliases: [bank]
+    usage: /bank
+    description: Opens your bank
+  spellbook:
+    aliases: [spellbook]
+    usage: /spellbook <subcmd>
+    description: Shows you your spellbook
+  bind:
+    aliases: [bind]
+    usage: /bind <spell>
+    description: Turns a stick into a magical wand which is bound to a spell
+  smelt:
+    aliases: [smelt]
+    usage: /smelt
+    description: Smelts the tool in your hand into resources
+  stats:
+    aliases: [stats]
+    usage: /stats
+    description: List all online players
+  claim:
+    aliases: [claim]
+    usage: /claim
+    description: Claims the capturepoint
+  reply:
+    aliases: [reply, r]
+    usage: /reply <message>
+    description: Reply's to private messages
+  item:
+    aliases: [item, i]
+    usage: /item <item> (amount)
+    description: Gives you an item
+  tpworld:
+    aliases: [tpworld]
+    usage: /tpworld <world>
+    description: Teleports you to a given world
+  test:
+    aliases: [test]
+    usage: /test
+    description: Fast test command
+  resetspawn:
+    aliases: [resetspawn]
+    usage: /resetspawn
+    description: Resets your spawn location
+  pay:
+    aliases: [pay]
+    usage: /pay <player> <amount>
+    description: Sends money to antoher player
+  tax:
+    aliases: [tax]
+    usage: /tax
+    description: Collect taxes
+  pvp:
+    aliases: [pvp]
+    usage: /pvp
+    description: Toggles whether to show damage results
+  tradegold:
+    aliases: [tradegold]
+    usage: /tradegold <amount>
+    description: Trade gold ingots into gold coins
+  mount:
+    aliases: [mount]
+    usage: /mount
+    description: Summons mount
+  camp:
+    aliases: [camp]
+    usage: /camp
+    description: Summons a camp fire
+  unbind:
+    aliases: [unbind]
+    usage: /unbind <spell>
+    description: Turns a wand into a regular stick
+  capturepoints:
+    aliases: [capturepoints]
+    usage: /capturepoints
+    description: Shows a list of all capturepoints
+  gui:
+    aliases: [gui]
+    usage: /gui
+    description: Toggles gui
+  party:
+    aliases: [party]
+    usage: /party subcommand ...
+    description: null
+  who:
+    aliases: [who, playerlist, list]
+    usage: /who
+    description: List all online players
+  broadcast:
+    aliases: [broadcast]
+    usage: /broadcast <message>
+    description: Broad cast a given message
+  ff:
+    aliases: [ff]
+    usage: /ff
+    description: Toggles friendly fire
+  repair:
+    aliases: [repair]
+    usage: /repair
+    description: Repairs the tool in your hand
+  private:
+    aliases: [private]
+    usage: /private
+    description: Sets you to private
+  shop:
+    aliases: [shop]
+    usage: /shop
+    description: Opens the shop window
+  lostshardreload:
+    aliases: [lostshardreload]
+    usage: /lostshardreload
+    description: Reloads the lostshard config
+  unignore:
+    aliases: [unignore]
+    usage: /unignore <player>
+    description: unignores player
+  global:
+    aliases: [global, g]
+    usage: /global (message)
+    description: Toggles or sends a message in the global channel
+  title:
+    aliases: [title]
+    usage: /title text
+    description: Selects a title
+  local:
+    aliases: [local, l]
+    usage: /local (message)
+    description: Toggles or sends a message in the local channel
+  speed:
+    aliases: [speed]
+    usage: /speed <speed>
+    description: Sets your fly speed
+  runebook:
+    aliases: [runebook]
+    usage: /runebook <subcmd>
+    description: Shows you your runebook
+  public:
+    aliases: [public]
+    usage: /public
+    description: Sets you to public
+  plot:
+    aliases: [plot]
+    usage: /plot subcommand ...
+    description: null
+  whois:
+    aliases: [whois]
+    usage: /whois <player>
+    description: List all online players
+  vendor:
+    aliases: [vendor]
+    usage: /vendor <subcommand>
+    description: Vendor commands
+  ignore:
+    aliases: [ignore]
+    usage: /ignore <player>
+    description: ignores a given player
+  track:
+    aliases: [track]
+    usage: /track <player|monster>
+    description: Tracks players or monsters
+  shout:
+    aliases: [shout, s]
+    usage: /shout (message)
+    description: Toggles or sends a message in the shout channel
+  enhance:
+    aliases: [enhance]
+    usage: /enhance
+    description: Enhance the tool in your hand
+  givemoney:
+    aliases: [givemoney]
+    usage: /givemoney <player> <amount>
+    description: Gives a given player a given amount of money
+  rest:
+    aliases: [rest]
+    usage: /rest
+    description: Regens stamina faster
+  c:
+    aliases: [c]
+    usage: /c (message)
+    description: Toggles or sends a message in the clan channel
+  say:
+    aliases: [say]
+    usage: /say <message>
+    description: Broadcast a message
+  meditate:
+    aliases: [meditate]
+    usage: /meditate
+    description: Regen mana faster
+  kill:
+    aliases: [kill]
+    usage: /kill
+    description: Kills your self
+  boat:
+    aliases: [boat]
+    usage: /boat
+    description: Calls a boat to your side
+  inv:
+    aliases: [inv]
+    usage: /inv <player>
+    description: Opens a given players inventory
+  p:
+    aliases: [p]
+    usage: /p (message)
+    description: Toggles or sends a message in the party channel
+  help:
+    aliases: [help]
+    usage: /help <command> <page>
+    description: List all online players
+  spawn:
+    aliases: [spawn]
+    usage: /spawn
+    description: Spawn
+  build:
+    aliases: [build]
+    usage: /build <build>
+    description: Change your build
+  clan:
+    aliases: [clan]
+    usage: /clan subcommand ...
+    description: null
+  whisper:
+    aliases: [whisper, w]
+    usage: /whisper (message)
+    description: Toggles or sends a message in the whisper channel
+  dc:
+    aliases: [dc]
+    usage: /dc subcommand ...
+    description: null
+name: Lostshard
+main: com.lostshard.Lostshard.Main.Lostshard
+softdepend: [Citizens]
+version: 0.2
+commands:
+  msg:
+    aliases: [msg]
+    usage: /msg <player> <message>
+    description: Send private messages to players
+  setmurders:
+    aliases: [setmurders]
+    usage: /setmurders <player> <amount>
+    description: Set murders counts for a player
+  togglemsg:
+    aliases: [togglemsg, toggleprivatechat, toggleprivate]
+    usage: /togglemsg
+    description: Toggles where the private chat should be visible
+  rules:
+    aliases: [rules]
+    usage: /rules
+    description: List all online players
+  toggleglobal:
+    aliases: [toggleglobal, toggleglobalchat]
+    usage: /toggleglobal
+    description: Toggles where the global chat should be visible
+  tpplot:
+    aliases: [tpplot]
+    usage: /tpplot <plot>
+    description: Teleports you to a given plot
+  scrolls:
+    aliases: [scrolls]
+    usage: /scrolls <subcmd>
+    description: Shows you your runebook
+  resetallskills:
+    aliases: [resetallskills]
+    usage: /resetallskills <skill>
+    description: Resets all your skills and increase on to level 50
+  skills:
+    aliases: [skills]
+    usage: /skills <subcommand>
+    description: Skill commands
+  cast:
+    aliases: [cast]
+    usage: /cast <spell>
+    description: Casts a spell
+  bank:
+    aliases: [bank]
+    usage: /bank
+    description: Opens your bank
+  spellbook:
+    aliases: [spellbook]
+    usage: /spellbook <subcmd>
+    description: Shows you your spellbook
+  bind:
+    aliases: [bind]
+    usage: /bind <spell>
+    description: Turns a stick into a magical wand which is bound to a spell
+  smelt:
+    aliases: [smelt]
+    usage: /smelt
+    description: Smelts the tool in your hand into resources
+  stats:
+    aliases: [stats]
+    usage: /stats
+    description: List all online players
+  claim:
+    aliases: [claim]
+    usage: /claim
+    description: Claims the capturepoint
+  reply:
+    aliases: [reply, r]
+    usage: /reply <message>
+    description: Reply's to private messages
+  item:
+    aliases: [item, i]
+    usage: /item <item> (amount)
+    description: Gives you an item
+  tpworld:
+    aliases: [tpworld]
+    usage: /tpworld <world>
+    description: Teleports you to a given world
+  test:
+    aliases: [test]
+    usage: /test
+    description: Fast test command
+  resetspawn:
+    aliases: [resetspawn]
+    usage: /resetspawn
+    description: Resets your spawn location
+  pay:
+    aliases: [pay]
+    usage: /pay <player> <amount>
+    description: Sends money to antoher player
+  tax:
+    aliases: [tax]
+    usage: /tax
+    description: Collect taxes
+  pvp:
+    aliases: [pvp]
+    usage: /pvp
+    description: Toggles whether to show damage results
+  tradegold:
+    aliases: [tradegold]
+    usage: /tradegold <amount>
+    description: Trade gold ingots into gold coins
+  mount:
+    aliases: [mount]
+    usage: /mount
+    description: Summons mount
+  camp:
+    aliases: [camp]
+    usage: /camp
+    description: Summons a camp fire
+  unbind:
+    aliases: [unbind]
+    usage: /unbind <spell>
+    description: Turns a wand into a regular stick
+  capturepoints:
+    aliases: [capturepoints]
+    usage: /capturepoints
+    description: Shows a list of all capturepoints
+  gui:
+    aliases: [gui]
+    usage: /gui
+    description: Toggles gui
+  party:
+    aliases: [party]
+    usage: /party subcommand ...
+    description: null
+  who:
+    aliases: [who, playerlist, list]
+    usage: /who
+    description: List all online players
+  broadcast:
+    aliases: [broadcast]
+    usage: /broadcast <message>
+    description: Broad cast a given message
+  ff:
+    aliases: [ff]
+    usage: /ff
+    description: Toggles friendly fire
+  repair:
+    aliases: [repair]
+    usage: /repair
+    description: Repairs the tool in your hand
+  private:
+    aliases: [private]
+    usage: /private
+    description: Sets you to private
+  shop:
+    aliases: [shop]
+    usage: /shop
+    description: Opens the shop window
+  lostshardreload:
+    aliases: [lostshardreload]
+    usage: /lostshardreload
+    description: Reloads the lostshard config
+  unignore:
+    aliases: [unignore]
+    usage: /unignore <player>
+    description: unignores player
+  global:
+    aliases: [global, g]
+    usage: /global (message)
+    description: Toggles or sends a message in the global channel
+  title:
+    aliases: [title]
+    usage: /title text
+    description: Selects a title
+  local:
+    aliases: [local, l]
+    usage: /local (message)
+    description: Toggles or sends a message in the local channel
+  speed:
+    aliases: [speed]
+    usage: /speed <speed>
+    description: Sets your fly speed
+  runebook:
+    aliases: [runebook]
+    usage: /runebook <subcmd>
+    description: Shows you your runebook
+  public:
+    aliases: [public]
+    usage: /public
+    description: Sets you to public
+  plot:
+    aliases: [plot]
+    usage: /plot subcommand ...
+    description: null
+  whois:
+    aliases: [whois]
+    usage: /whois <player>
+    description: List all online players
+  vendor:
+    aliases: [vendor]
+    usage: /vendor <subcommand>
+    description: Vendor commands
+  ignore:
+    aliases: [ignore]
+    usage: /ignore <player>
+    description: ignores a given player
+  track:
+    aliases: [track]
+    usage: /track <player|monster>
+    description: Tracks players or monsters
+  shout:
+    aliases: [shout, s]
+    usage: /shout (message)
+    description: Toggles or sends a message in the shout channel
+  enhance:
+    aliases: [enhance]
+    usage: /enhance
+    description: Enhance the tool in your hand
+  givemoney:
+    aliases: [givemoney]
+    usage: /givemoney <player> <amount>
+    description: Gives a given player a given amount of money
+  rest:
+    aliases: [rest]
+    usage: /rest
+    description: Regens stamina faster
+  c:
+    aliases: [c]
+    usage: /c (message)
+    description: Toggles or sends a message in the clan channel
+  say:
+    aliases: [say]
+    usage: /say <message>
+    description: Broadcast a message
+  meditate:
+    aliases: [meditate]
+    usage: /meditate
+    description: Regen mana faster
+  kill:
+    aliases: [kill]
+    usage: /kill
+    description: Kills your self
+  boat:
+    aliases: [boat]
+    usage: /boat
+    description: Calls a boat to your side
+  inv:
+    aliases: [inv]
+    usage: /inv <player>
+    description: Opens a given players inventory
+  p:
+    aliases: [p]
+    usage: /p (message)
+    description: Toggles or sends a message in the party channel
+  help:
+    aliases: [help]
+    usage: /help <command> <page>
+    description: List all online players
+  spawn:
+    aliases: [spawn]
+    usage: /spawn
+    description: Spawn
+  build:
+    aliases: [build]
+    usage: /build <build>
+    description: Change your build
+  clan:
+    aliases: [clan]
+    usage: /clan subcommand ...
+    description: null
+  whisper:
+    aliases: [whisper, w]
+    usage: /whisper (message)
+    description: Toggles or sends a message in the whisper channel
+  dc:
+    aliases: [dc]
+    usage: /dc subcommand ...
+    description: null

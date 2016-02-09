@@ -32,11 +32,12 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
+import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
@@ -61,7 +62,7 @@ public class PseudoPlayer {
 	@Column(name = "uuid", unique = true, nullable = false, updatable = false)
 	@Type(type = "uuid-char")
 	private UUID playerUUID;
-	private int money = 0;
+	private Wallet wallet = new Wallet();
 	private int murderCounts = 0;
 	private Bank bank = new Bank(this.wasSubscribed());
 	private int criminal = 0;
@@ -144,13 +145,6 @@ public class PseudoPlayer {
 		this.builds.add(new Build());
 	}
 
-	public void addMoney(int money) {
-		this.money += money;
-		if (this.scoreboard != null)
-			this.getScoreboard().updateMoney(this.money);
-		this.update();
-	}
-
 	public void addMurderCounts(int murderCounts) {
 		this.murderCounts += murderCounts;
 		if (this.scoreboard != null)
@@ -200,7 +194,7 @@ public class PseudoPlayer {
 
 	public Clan getClan() {
 		for (final Clan c : this.cm.getClans())
-			if (c.isInClan(this.playerUUID))
+			if (c.inClan(this.playerUUID))
 				return c;
 		return null;
 	}
@@ -292,10 +286,6 @@ public class PseudoPlayer {
 
 	public int getMaxStamina() {
 		return PlotEffect.hasEffect(this.getClan(), PlotEffect.STAMINA) ? 110 : 100;
-	}
-
-	public int getMoney() {
-		return this.money;
 	}
 
 	public int getMurderCounts() {
@@ -598,13 +588,6 @@ public class PseudoPlayer {
 		this.meditating = meditating;
 	}
 
-	public void setMoney(int money) {
-		this.money = Math.max(0, money);
-		if (this.scoreboard != null)
-			this.getScoreboard().updateMoney(this.money);
-		this.update();
-	}
-
 	public void setMurderCounts(int murderCounts) {
 		this.murderCounts = Math.max(0, murderCounts);
 		if (this.scoreboard != null) {
@@ -714,13 +697,6 @@ public class PseudoPlayer {
 		this.update();
 	}
 
-	public void subtractMoney(int money) {
-		this.money -= money;
-		if (this.scoreboard != null)
-			this.getScoreboard().updateMoney(this.money);
-		this.update();
-	}
-
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
 		if (this.scoreboard != null)
@@ -738,5 +714,19 @@ public class PseudoPlayer {
 
 	public boolean wasSubscribed() {
 		return this.wasSubscribed;
+	}
+
+	/**
+	 * @return the wallet
+	 */
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	/**
+	 * @param wallet the wallet to set
+	 */
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
 	}
 }

@@ -20,6 +20,7 @@ import com.lostshard.Lostshard.Handlers.ChatHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Spells.Spells.SPL_ClearSky;
@@ -81,7 +82,7 @@ public class SpellManager {
 
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
-			if (!plot.isAllowMagic()) {
+			if (plot.getToggleables().contains(PlotToggleable.NOMAGIC)) {
 				Output.simpleError(player, "You can't use magic in " + plot.getName() + ".");
 				return false;
 			}
@@ -328,7 +329,7 @@ public class SpellManager {
 	public boolean useScroll(Player player, Scroll scroll) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
 		if (plot != null)
-			if (!plot.isAllowMagic()) {
+			if (plot.getToggleables().contains(PlotToggleable.NOMAGIC)) {
 				Output.simpleError(player, "You can't use magic in " + plot.getName() + ".");
 				return false;
 			}

@@ -17,6 +17,7 @@ import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 
@@ -116,14 +117,14 @@ public class PVPHandler {
 		 * Checking if the defender is standing in a none PVP plot.
 		 */
 		final Plot plotAtDefender = ptm.findPlotAt(defender.getLocation());
-		if (plotAtDefender != null && !plotAtDefender.isAllowPvp())
+		if (plotAtDefender != null && !plotAtDefender.getToggleables().contains(PlotToggleable.NOPVP))
 			return false;
 
 		/**
 		 * Checking if the attacker is standing a none PVP plot.
 		 */
 		final Plot plotAtAttacker = ptm.findPlotAt(attacker.getLocation());
-		if (plotAtAttacker != null && !plotAtAttacker.isAllowPvp())
+		if (plotAtAttacker != null && !plotAtAttacker.getToggleables().contains(PlotToggleable.NOPVP))
 			return false;
 
 		/**
@@ -189,7 +190,7 @@ public class PVPHandler {
 		if (plot != null) {
 			if (plot.isCapturepoint())
 				notCrim = true;
-			if (plot.isUpgrade(PlotUpgrade.ARENA))
+			if (plot.getUpgrades().contains(PlotUpgrade.ARENA))
 				notCrim = true;
 			// and the attacker is a member of the plot
 			if (plot.isFriendOrAbove(playerDamager))
@@ -207,7 +208,7 @@ public class PVPHandler {
 				return;
 		final Clan clan = pseudoPlayerDefender.getClan();
 		if (clan != null)
-			if (clan.isInClan(playerDamager.getUniqueId()))
+			if (clan.inClan(playerDamager.getUniqueId()))
 				return;
 
 		// Determine if a criminal action has taken place

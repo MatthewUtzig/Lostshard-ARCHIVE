@@ -1,7 +1,9 @@
 package com.lostshard.Lostshard.Manager;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -12,7 +14,6 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 
@@ -24,7 +25,7 @@ public class PlotManager {
 		return manager;
 	}
 
-	private List<Plot> plots = new LinkedList<Plot>();
+	private Set<Plot> plots = new LinkedHashSet<>();
 
 	public PlotManager() {
 	}
@@ -75,7 +76,7 @@ public class PlotManager {
 		return null;
 	}
 
-	public List<Plot> getPlots() {
+	public Set<Plot> getPlots() {
 		return this.plots;
 	}
 
@@ -84,7 +85,7 @@ public class PlotManager {
 		plot.delete();
 	}
 
-	public void setPlots(List<Plot> plots) {
+	public void setPlots(Set<Plot> plots) {
 		this.plots = plots;
 	}
 
@@ -93,7 +94,7 @@ public class PlotManager {
 		for (final Plot plot : this.plots) 
 			if(!plot.getLocation().getWorld().getWorldType().equals(WorldType.NORMAL))
 				continue;
-			else if (plot.getMoney() < plot.getTax()) {
+			else if (!plot.getWallet().contains(plot.getTax())) {
 				plot.setSize(plot.getSize() - 1);
 				final Player player = Bukkit.getPlayer(plot.getOwner());
 				if (plot.getSize() > 1) {
@@ -111,8 +112,7 @@ public class PlotManager {
 								plot.getName() + " have failed to pay tax and are now disbaneded.");
 				}
 			} else {
-				plot.setMoney(plot.getMoney() - plot.getTax());
-				new GoldRecord(plot.getTax(), "plot tax", null, null);
+				plot.getWallet().subtract(null, plot.getTax(), "Plot tax");
 			}
 	}
 

@@ -6,7 +6,7 @@ import com.lostshard.Lostshard.Intake.Providers.PlotProvider;
 import com.lostshard.Lostshard.Intake.Providers.PlotUpgradeProvider;
 import com.lostshard.Lostshard.Intake.Providers.SenderPlotProvider;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.sk89q.intake.parametric.AbstractModule;
 

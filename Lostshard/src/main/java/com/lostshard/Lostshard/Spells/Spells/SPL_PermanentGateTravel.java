@@ -53,7 +53,7 @@ public class SPL_PermanentGateTravel extends Spell {
 
 		final Location runeLoc = runeFound.getLocation();
 		final Plot plot = this.ptm.findPlotAt(runeLoc);
-		if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
+		if (plot == null || plot.isFriendOrAbove(player)) {
 
 			if (!SpellUtils.isValidRuneLocation(player, player.getLocation())) {
 				Output.simpleError(player, "Your current location is blocked.");

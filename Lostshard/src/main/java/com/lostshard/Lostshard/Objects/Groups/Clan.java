@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +16,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+import com.google.common.collect.ImmutableSet;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.PlayerListSet;
 import com.lostshard.Lostshard.Objects.Player.Bank;
@@ -38,13 +43,11 @@ public class Clan extends Group {
 	@Type(type = "uuid-char")
 	private UUID owner;
 	
+	@AttributeOverrides({ @AttributeOverride(name = "leaders", column = @Column(name = "invited") )})
 	private PlayerListSet leaders = new PlayerListSet();
 
 	@Transient
 	private Bank bank = new Bank(false);
-
-	@Transient
-	private boolean update = false;
 
 	public Clan() {
 
@@ -54,23 +57,6 @@ public class Clan extends Group {
 		super();
 		this.name = name;
 		this.owner = owner;
-	}
-
-	@Override
-	public void addInvited(UUID invite) {
-		this.getInvited().add(invite);
-		this.update();
-	}
-
-	@Override
-	public void addMember(UUID member) {
-		this.getMembers().add(member);
-		this.update();
-	}
-
-	public void demoteLeader(UUID uuid) {
-		this.leaders.remove(uuid);
-		this.update();
 	}
 
 	@Transient
@@ -86,12 +72,8 @@ public class Clan extends Group {
 		return this.leaders;
 	}
 
-	public ArrayList<UUID> getMembersAndLeders() {
-		final ArrayList<UUID> result = new ArrayList<UUID>();
-		result.addAll(this.getMembers());
-		result.addAll(this.leaders);
-		result.add(this.owner);
-		return result;
+	public ImmutableSet<UUID> getMembersAndLeders() {
+		return ImmutableSet.<UUID>builder().addAll(getMembers()).addAll(getLeaders()).build();
 	}
 
 	public String getName() {
@@ -113,14 +95,22 @@ public class Clan extends Group {
 		return this.owner;
 	}
 
-	public boolean isInClan(UUID uuid) {
+	public boolean inClan(UUID uuid) {
 		if (this.getMembers().contains(uuid) || this.isLeader(uuid) || this.isOwner(uuid))
 			return true;
 		return false;
 	}
-
+	
 	public boolean isLeader(UUID uuid) {
 		return this.leaders.contains(uuid);
+	}
+	
+	public boolean isLeader(Player player) {
+		return this.leaders.contains(player);
+	}
+	
+	public boolean isLeader(OfflinePlayer player) {
+		return this.leaders.contains(player);
 	}
 
 	public boolean isOwner(OfflinePlayer player) {
@@ -133,16 +123,6 @@ public class Clan extends Group {
 
 	public boolean isOwner(UUID owner) {
 		return this.owner.equals(owner);
-	}
-
-	public boolean isUpdate() {
-		return this.update;
-	}
-
-	public void promoteMember(UUID uuid) {
-		this.getMembers().remove(uuid);
-		this.leaders.add(uuid);
-		this.update();
 	}
 
 	@Override
@@ -176,14 +156,56 @@ public class Clan extends Group {
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
-		this.update();
+	}
+	
+	public void setOwner(Player owner) {
+		this.owner = owner.getUniqueId();
+	}
+	
+	public void setOwner(OfflinePlayer owner) {
+		this.owner = owner.getUniqueId();
 	}
 
-	public void setUpdate(boolean update) {
-		this.update = update;
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 
-	public void update() {
-		this.setUpdate(true);
+	public void save() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+	
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			s.clear();
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 }

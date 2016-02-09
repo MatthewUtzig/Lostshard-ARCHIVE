@@ -37,7 +37,7 @@ public class PartyCommands {
 		Party party = pPlayer.getParty();
 		if (party == null) {
 			party = new Party();
-			party.addMember(player.getUniqueId());
+			party.getMembers().add(player);
 			pPlayer.setParty(party);
 		}
 		if (invite == player) {
@@ -77,7 +77,7 @@ public class PartyCommands {
 					}
 					inviterParty.sendMessage(player.getName() + " has joined the party.");
 					inviterParty.getInvited().remove(player);
-					inviterParty.addMember(player.getUniqueId());
+					inviterParty.getMembers().add(player);
 					pPlayer.setParty(inviterParty);
 					Output.positiveMessage(player, "You have joined " + inviterPlayer.getName() + "'s party.");
 				} else
@@ -92,7 +92,7 @@ public class PartyCommands {
 	public void partyLeave(@Sender Player player, @Sender PseudoPlayer pPlayer) {
 		final Party party = pPlayer.getParty();
 		if (party != null) {
-			party.removeMember(player.getUniqueId());
+			party.getMembers().remove(player);
 			pPlayer.setParty(null);
 			party.sendMessage(player.getName() + " has left the party.");
 			Output.positiveMessage(player, "You have left the party.");

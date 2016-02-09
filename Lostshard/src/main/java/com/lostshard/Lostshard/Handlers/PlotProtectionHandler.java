@@ -51,6 +51,7 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
@@ -140,7 +141,7 @@ public class PlotProtectionHandler {
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
-		if (plot == null || !plot.isProtected())
+		if (plot == null || !plot.getToggleables().contains(PlotToggleable.PROTECTION))
 			return;
 		else
 			event.setCancelled(true);
@@ -165,7 +166,7 @@ public class PlotProtectionHandler {
 		if (protectEvent.isCancelled())
 			return;
 		// Check if the plot is protected
-		if (!toPlot.isProtected())
+		if (!toPlot.getToggleables().contains(PlotToggleable.PROTECTION))
 			return;
 		final Plot fromPlot = ptm.findPlotAt(event.getBlock().getLocation());
 		// Check if its flowing from the same plot to same plot.
@@ -215,7 +216,7 @@ public class PlotProtectionHandler {
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
-			if (!plot.isAllowExplosions()) {
+			if (!plot.getToggleables().contains(PlotToggleable.EXPLOSIONS)) {
 				event.setCancelled(true);
 				pro = true;
 				break;
@@ -240,7 +241,7 @@ public class PlotProtectionHandler {
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
-			if (plot.isProtected())
+			if (plot.getToggleables().contains(PlotToggleable.PROTECTION))
 				event.setCancelled(true);
 		}
 	}
@@ -327,7 +328,7 @@ public class PlotProtectionHandler {
 		}
 		if (protectEvent.isCancelled())
 			return;
-		if (!plot.isPrivatePlot())
+		if (!plot.getToggleables().contains(PlotToggleable.PRIVATE))
 			return;
 		if (plot.isAllowedToInteract(event.getPlayer()))
 			return;
@@ -347,7 +348,7 @@ public class PlotProtectionHandler {
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
-		if (plot.isAllowExplosions())
+		if (plot.getToggleables().contains(PlotToggleable.EXPLOSIONS))
 			return;
 		event.setCancelled(true);
 	}
@@ -436,7 +437,7 @@ public class PlotProtectionHandler {
 		if(event.getEntered() instanceof Player)
 			player = (Player) event.getEntered();
 		
-		if((player != null && plot.isFriendOrAbove(player)) || !plot.isPrivatePlot())
+		if((player != null && plot.isFriendOrAbove(player)) || !plot.getToggleables().contains(PlotToggleable.PRIVATE))
 			return;
 		
 		if(player != null)
@@ -535,7 +536,7 @@ public class PlotProtectionHandler {
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
-			if (!plot.isUpgrade(PlotUpgrade.DUNGEON))
+			if (!plot.getUpgrades().contains(PlotUpgrade.DUNGEON))
 				event.setCancelled(true);
 		}
 	}
@@ -558,12 +559,12 @@ public class PlotProtectionHandler {
 
 	public static void onPlayerBedEnter(PlayerBedEnterEvent event) {
 		final Plot plot = ptm.findPlotAt(event.getBed().getLocation());
-		if (plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
+		if (plot == null || !plot.getUpgrades().contains(PlotUpgrade.TOWN)) {
 			Output.simpleError(event.getPlayer(), "You are only able to set your spawn in a town.");
 			event.getPlayer().setBedSpawnLocation(null);
 		} else {
 			final PseudoPlayer pPlayer = pm.getPlayer(event.getPlayer());
-			if (pm.isCriminal(plot.getOwner()) == !pPlayer.isLawfull() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT)) {
+			if (pm.isCriminal(plot.getOwner()) == !pPlayer.isLawfull() || plot.getUpgrades().contains(PlotUpgrade.NEUTRALALIGNMENT)) {
 				Output.positiveMessage(event.getPlayer(), "You have set your spawn.");
 				event.getPlayer().setBedSpawnLocation(event.getBed().getLocation());
 			} else
@@ -664,7 +665,7 @@ public class PlotProtectionHandler {
 		EventManager.callEvent(protectEvent);
 		if (protectEvent.isCancelled())
 			return;
-		if (plot != null && plot.isUpgrade(PlotUpgrade.AUTOKICK) && !plot.isFriendOrAbove(event.getPlayer())) {
+		if (plot != null && plot.getUpgrades().contains(PlotUpgrade.AUTOKICK) && !plot.isFriendOrAbove(event.getPlayer())) {
 			event.getPlayer().teleport(event.getPlayer().getLocation().getWorld()
 					.getHighestBlockAt(event.getPlayer().getLocation()).getLocation());
 			Output.simpleError(event.getPlayer(), "You have been kicked from " + plot.getName() + ".");
@@ -681,11 +682,11 @@ public class PlotProtectionHandler {
 			EventManager.callEvent(protectEvent);
 			if (protectEvent.isCancelled())
 				return;
-			if (plot == null || !plot.isUpgrade(PlotUpgrade.TOWN)) {
+			if (plot == null || !plot.getUpgrades().contains(PlotUpgrade.TOWN)) {
 				event.getPlayer().setBedSpawnLocation(null);
 				event.setRespawnLocation(pPlayer.getSpawn());
 			} else
-				if (!(pm.isCriminal(plot.getOwner()) != pPlayer.isLawfull() || plot.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))) {
+				if (!(pm.isCriminal(plot.getOwner()) != pPlayer.isLawfull() || plot.getUpgrades().contains(PlotUpgrade.NEUTRALALIGNMENT))) {
 					Output.simpleError(event.getPlayer(), "You are not in the same alignment as the town owner.");
 					event.setRespawnLocation(pPlayer.getSpawn());
 			}
@@ -715,7 +716,7 @@ public class PlotProtectionHandler {
 			if(fromPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD + "You have left "+fromPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (fromPlot.isTitleEntrence()){
+			} else if (fromPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(fromPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
@@ -726,7 +727,7 @@ public class PlotProtectionHandler {
 			if(toPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (toPlot.isTitleEntrence()){
+			} else if (toPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
@@ -737,7 +738,7 @@ public class PlotProtectionHandler {
 			if(fromPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (toPlot.isTitleEntrence()){
+			} else if (toPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\" and entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
@@ -771,7 +772,7 @@ public class PlotProtectionHandler {
 			if(fromPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD + "You have left "+fromPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (fromPlot.isTitleEntrence()){
+			} else if (fromPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(fromPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
@@ -782,7 +783,7 @@ public class PlotProtectionHandler {
 			if(toPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (toPlot.isTitleEntrence()){
+			} else if (toPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);
@@ -793,7 +794,7 @@ public class PlotProtectionHandler {
 			if(toPlot.isCapturepoint()) {
 				m.send(ChatColor.GOLD+toPlot.getName(), MessageDisplay.TITLE);
 				m.send(ChatColor.RED + "Hostile territory", MessageDisplay.SUBTITLE);
-			} else if (toPlot.isTitleEntrence()){
+			} else if (toPlot.getToggleables().contains(PlotToggleable.TITLE)){
 				m.send(toPlot.getDisplayName(), MessageDisplay.TITLE);
 			} else {
 				m.send(ChatColor.YELLOW+"You have left \""+fromPlot.getDisplayName()+ChatColor.YELLOW+"\" and entered \""+toPlot.getDisplayName()+ChatColor.YELLOW+ChatColor.YELLOW+"\"", MessageDisplay.ACTIONBAR);

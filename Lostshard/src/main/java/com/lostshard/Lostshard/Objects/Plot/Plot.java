@@ -1,12 +1,13 @@
 package com.lostshard.Lostshard.Objects.Plot;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,26 +18,25 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
+import com.lostshard.Lostshard.Objects.PlayerListSet;
+import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
+import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Utils.ExtraMath;
-
-import net.md_5.bungee.api.ChatColor;
 
 /**
  * @author Jacob Rosborg
@@ -84,6 +84,48 @@ public class Plot {
 		}
 
 	}
+	
+	public enum PlotEffect {
+
+		BLACKSMITH,
+		VENDOR,
+		STAMINA,
+		MANA,
+		SHIRINE
+		;
+
+		public static boolean hasEffect(Clan clan, PlotEffect effect) {
+			for (Plot p : PlotManager.getManager().getCapturePoints())
+				if(p.getCapturepointData().getOwningClan() == null)
+					continue;
+				else if(p.getCapturepointData().getOwningClan().equals(clan) && p.getEffects().contains(effect))
+					return true;
+			return false;
+		}
+	}
+	
+	public enum PlotToggleable {
+		
+		PROTECTION(false),
+		EXPLOSIONS(false),
+		PRIVATE(false),
+		FRIENDBUILD(false),
+		TITLE(true),
+		NOPVP(true),
+		NOMAGIC(true),
+		;
+		
+		private final boolean admin;
+		
+		private PlotToggleable(boolean admin) {
+			this.admin = admin;
+		}
+		
+		public boolean isAdmin() {
+			return admin;
+		}
+		
+	}
 
 	PlotManager ptm = PlotManager.getManager();
 	PlayerManager pm = PlayerManager.getManager();
@@ -94,36 +136,25 @@ public class Plot {
 	// Int's
 	private int id;
 	private int size = 10;
-	private int money = 0;
+	private final Wallet wallet = new Wallet();
 	private int salePrice = 0;
 
 	// Array's
-	private List<UUID> friends = new ArrayList<UUID>();
-	private List<UUID> coowners = new ArrayList<UUID>();
+	private PlayerListSet friends = new PlayerListSet();
+	private PlayerListSet coowners = new PlayerListSet();
 	// UUID
 	private UUID owner;
-
-	// Boolean's
-	private boolean protection = true;
-
-	private boolean allowExplosions = false;
-	private boolean privatePlot = true;
-	private boolean friendBuild = false;
-	private boolean update = false;
-	private boolean titleEntrence = false;
+	
 	// Upgrade's
-	private List<PlotUpgrade> upgrades = new ArrayList<PlotUpgrade>();
-	private List<PlotEffect> effects = new ArrayList<PlotEffect>();
-
+	private Set<PlotUpgrade> upgrades = new HashSet<>();
+	private Set<PlotEffect> effects = new HashSet<>();
+	private Set<PlotToggleable> toggleables = new HashSet<>();
+	
 	// Location
 	private SavableLocation location;
 
 	// NPCS
 	private List<NPC> npcs = new ArrayList<NPC>();
-
-	// Admin
-	private boolean allowMagic = true;
-	private boolean allowPvp = true;
 
 	private PlotCapturePoint capturepointData = null;
 
@@ -135,70 +166,20 @@ public class Plot {
 		this.name = name;
 		this.owner = owner;
 		this.location = new SavableLocation(location);
-	}
-
-	// Getters and Setters
-
-	public void addCoowner(Player player) {
-		this.coowners.add(player.getUniqueId());
-		this.update();
-	}
-
-	// Friends
-	public void addFriend(Player player) {
-		this.friends.add(player.getUniqueId());
-		this.update();
-	}
-
-	public void addMoney(int money) {
-		this.money += money;
-		this.update();
-	}
-
-	public void addUpgrade(PlotUpgrade upgrade) {
-		this.upgrades.add(upgrade);
-		this.update();
-	}
-
-	public void delete() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			t.commit();
-			s.clear();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
+		this.toggleables.add(PlotToggleable.PROTECTION);
+		this.toggleables.add(PlotToggleable.PRIVATE);
 	}
 
 	public void disband() {
 		PlotManager.getManager().getPlots().remove(this);
-		this.delete();
 		for (final NPC npc : this.getNpcs())
 			npc.despawn();
-	}
-
-	public void expandSize(int size) {
-		this.size += size;
-		this.update();
 	}
 
 	public PlotCapturePoint getCapturepointData() {
 		if (this.capturepointData == null)
 			this.capturepointData = new PlotCapturePoint(this);
 		return this.capturepointData;
-	}
-
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable
-	@Type(type = "uuid-char")
-	public List<UUID> getCoowners() {
-		return this.coowners;
 	}
 
 	/**
@@ -210,14 +191,6 @@ public class Plot {
 	public int getExpandPrice(int toSize) {
 		return Variables.plotExpandPrice
 				* (-ExtraMath.Triangular(this.size) + ExtraMath.Triangular(toSize) + this.size - toSize);
-	}
-
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable
-	@Type(type = "uuid-char")
-	public List<UUID> getFriends() {
-		return this.friends;
 	}
 
 	@Id
@@ -237,10 +210,6 @@ public class Plot {
 		return this.size / 15;
 	}
 
-	public int getMoney() {
-		return this.money;
-	}
-
 	@Column(unique = true)
 	public String getName() {
 		return this.name;
@@ -248,7 +217,6 @@ public class Plot {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable
 	public List<NPC> getNpcs() {
 		return this.npcs;
 	}
@@ -261,20 +229,12 @@ public class Plot {
 	@Transient
 	public String getPlayerStatusOfPlotString(Player player) {
 		return this.isOwner(player) ? "You are the owner of this plot."
-				: this.isCoowner(player) ? "You are a co-owner of this plot."
-						: this.isFriend(player) ? "You are a friend of this plot." : "You are not friend of this plot.";
-	}
-
-	public int getSalePrice() {
-		return this.salePrice;
+				: this.coowners.contains(player) ? "You are a co-owner of this plot."
+						: this.friends.contains(player) ? "You are a friend of this plot." : "You are not friend of this plot.";
 	}
 
 	public SavableLocation getSavableLocation() {
 		return this.location;
-	}
-
-	public int getSize() {
-		return this.size;
 	}
 
 	@Transient
@@ -284,41 +244,26 @@ public class Plot {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable
 	@Enumerated(EnumType.STRING)
-	public List<PlotUpgrade> getUpgrades() {
+	public Set<PlotUpgrade> getUpgrades() {
 		return this.upgrades;
 	}
 
 	@Transient
 	public int getValue() {
 		int plotValue = Variables.plotExpandPrice * (-55 + ExtraMath.Triangular(this.getSize()) + 10 - this.getSize());
-		if (this.isUpgrade(PlotUpgrade.TOWN))
+		if (this.upgrades.contains(PlotUpgrade.TOWN))
 			plotValue += Variables.plotTownPrice;
-		if (this.isUpgrade(PlotUpgrade.DUNGEON))
+		if (this.upgrades.contains(PlotUpgrade.DUNGEON))
 			plotValue += Variables.plotDungeonPrice;
-		if (this.isUpgrade(PlotUpgrade.AUTOKICK))
+		if (this.upgrades.contains(PlotUpgrade.AUTOKICK))
 			plotValue += Variables.plotAutoKickPrice;
-		if (this.isUpgrade(PlotUpgrade.NEUTRALALIGNMENT))
+		if (this.upgrades.contains(PlotUpgrade.NEUTRALALIGNMENT))
 			plotValue += Variables.plotNeutralAlignmentPrice;
 
 		if (this.getLocation().getWorld().getEnvironment().equals(Environment.NETHER))
 			return plotValue;
 		return (int) Math.floor(plotValue * .75);
-	}
-
-	public void insert() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
 	}
 
 	@Transient
@@ -332,7 +277,7 @@ public class Plot {
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
 			return false;
 		return this.isCoownerOrAbove(uuid) ? true
-				: this.isFriend(uuid) && this.isFriendBuild() ? true : !this.isProtected() ? true : false;
+				: this.friends.contains(uuid) && this.toggleables.contains(PlotToggleable.FRIENDBUILD) ? true : !this.toggleables.contains(PlotToggleable.PROTECTION) ? true : false;
 	}
 
 	@Transient
@@ -342,7 +287,7 @@ public class Plot {
 
 	@Transient
 	public boolean isAllowedToInteract(UUID uuid) {
-		if (!this.isPrivatePlot())
+		if (!this.toggleables.contains(PlotToggleable.PRIVATE))
 			return true;
 		final PseudoPlayer pPlayer = PlayerManager.getManager().getPlayer(uuid);
 		if (pPlayer.getTestPlot() != null && pPlayer.getTestPlot() == this)
@@ -350,32 +295,9 @@ public class Plot {
 		return this.isFriendOrAbove(uuid) ? true : false;
 	}
 
-	public boolean isAllowExplosions() {
-		return this.allowExplosions;
-	}
-
-	public boolean isAllowMagic() {
-		return this.allowMagic;
-	}
-
-	public boolean isAllowPvp() {
-		return this.allowPvp;
-	}
-
 	@Transient
 	public boolean isCapturepoint() {
 		return this.getCapturepointData().isCapturePoint();
-	}
-
-	// Coowners
-	@Transient
-	public boolean isCoowner(Player player) {
-		return this.coowners.contains(player.getUniqueId());
-	}
-
-	@Transient
-	public boolean isCoowner(UUID uuid) {
-		return this.coowners.contains(uuid);
 	}
 
 	@Transient
@@ -385,26 +307,12 @@ public class Plot {
 
 	@Transient
 	public boolean isCoownerOrAbove(UUID uuid) {
-		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : false;
+		return this.isOwner(uuid) ? true : this.coowners.contains(uuid) ? true : false;
 	}
 
 	@Transient
 	public boolean isForSale() {
 		return this.salePrice > 0 ? true : false;
-	}
-
-	@Transient
-	public boolean isFriend(Player player) {
-		return this.friends.contains(player.getUniqueId());
-	}
-
-	@Transient
-	public boolean isFriend(UUID uuid) {
-		return this.friends.contains(uuid);
-	}
-
-	public boolean isFriendBuild() {
-		return this.friendBuild;
 	}
 
 	@Transient
@@ -414,7 +322,7 @@ public class Plot {
 
 	@Transient
 	public boolean isFriendOrAbove(UUID uuid) {
-		return this.isOwner(uuid) ? true : this.isCoowner(uuid) ? true : this.isFriend(uuid) ? true : false;
+		return this.isOwner(uuid) ? true : this.coowners.contains(uuid) ? true : this.friends.contains(uuid) ? true : false;
 	}
 
 	@Transient
@@ -427,72 +335,7 @@ public class Plot {
 		return uuid.equals(this.owner);
 	}
 
-	public boolean isPrivatePlot() {
-		return this.privatePlot;
-	}
-
-	public boolean isProtected() {
-		return this.protection;
-	}
-
-	public boolean isTitleEntrence() {
-		return this.titleEntrence;
-	}
-
 	@Transient
-	public boolean isUpdate() {
-		return this.update;
-	}
-
-	@Transient
-	public boolean isUpgrade(PlotUpgrade upgrade) {
-		return this.upgrades.contains(upgrade);
-	}
-
-	public void removeCoowner(Player player) {
-		this.coowners.remove(player.getUniqueId());
-		this.update();
-	}
-
-	public void removeFriend(Player player) {
-		this.friends.remove(player.getUniqueId());
-		this.update();
-	}
-
-	public void removeUpgrade(PlotUpgrade upgrade) {
-		this.upgrades.remove(upgrade);
-		this.update();
-	}
-
-	public void save() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-
-	public void setAllowExplosions(boolean allowExplosions) {
-		this.allowExplosions = allowExplosions;
-		this.update();
-	}
-
-	public void setAllowMagic(boolean allowMagic) {
-		this.allowMagic = allowMagic;
-		this.update();
-	}
-
-	public void setAllowPvp(boolean allowPvp) {
-		this.allowPvp = allowPvp;
-		this.update();
-	}
-
 	public void setCapturepoint(boolean isCapturepoint) {
 		this.getCapturepointData().setCapturePoint(isCapturepoint);
 	}
@@ -501,36 +344,16 @@ public class Plot {
 		this.capturepointData = capturepoint;
 	}
 
-	public void setCoowners(List<UUID> coowners) {
-		this.coowners = coowners;
-	}
-
-	public void setFriendBuild(boolean friendBuild) {
-		this.friendBuild = friendBuild;
-		this.update();
-	}
-
-	public void setFriends(List<UUID> friends) {
-		this.friends = friends;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	public void setLocation(Location location) {
 		this.location = new SavableLocation(location);
-		this.update();
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
-		this.update();
 	}
 
 	public void setName(String name) {
 		this.name = name;
-		this.update();
 	}
 
 	public void setNpcs(List<NPC> npcs) {
@@ -539,22 +362,10 @@ public class Plot {
 
 	public void setOwner(UUID owner) {
 		this.owner = owner;
-		this.update();
-	}
-
-	public void setPrivatePlot(boolean privatePlot) {
-		this.privatePlot = privatePlot;
-		this.update();
-	}
-
-	public void setProtected(boolean protection) {
-		this.protection = protection;
-		this.update();
 	}
 
 	public void setSalePrice(int salePrice) {
 		this.salePrice = salePrice;
-		this.update();
 	}
 
 	public void setSavableLocation(SavableLocation savableLocation) {
@@ -563,34 +374,10 @@ public class Plot {
 
 	public void setSize(int size) {
 		this.size = size;
-		this.update();
 	}
 
-	public void setTitleEntrence(boolean titleEntrence) {
-		this.titleEntrence = titleEntrence;
-		this.update();
-	}
-
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
-	public void setUpgrades(List<PlotUpgrade> upgrades) {
+	public void setUpgrades(Set<PlotUpgrade> upgrades) {
 		this.upgrades = upgrades;
-	}
-
-	public void shrinkSize(int size) {
-		this.size -= size;
-		this.update();
-	}
-
-	public void subtractMoney(int money) {
-		this.money -= money;
-		this.update();
-	}
-
-	public void update() {
-		this.update = true;
 	}
 	
 	@Transient
@@ -600,19 +387,88 @@ public class Plot {
 	
 	@Transient
 	public String getDisplayName() {
-		return (isUpgrade(PlotUpgrade.NEUTRALALIGNMENT) ? ChatColor.GREEN : 
+		return (this.upgrades.contains(PlotUpgrade.NEUTRALALIGNMENT) ? ChatColor.GREEN : 
 			!isLawfull() ? ChatColor.RED : ChatColor.BLUE) + this.name;
 	}
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@CollectionTable
 	@Enumerated(EnumType.STRING)
-	public List<PlotEffect> getEffects() {
+	public Set<PlotEffect> getEffects() {
 		return effects;
 	}
 
-	public void setEffects(List<PlotEffect> effects) {
+	public void setEffects(Set<PlotEffect> effects) {
 		this.effects = effects;
+	}
+
+	/**
+	 * @return the wallet
+	 */
+	public Wallet getWallet() {
+		return this.wallet;
+	}
+
+	/**
+	 * @return the friends
+	 */
+	public PlayerListSet getFriends() {
+		return this.friends;
+	}
+
+	/**
+	 * @param friends the friends to set
+	 */
+	public void setFriends(PlayerListSet friends) {
+		this.friends = friends;
+	}
+
+	/**
+	 * @return the coowners
+	 */
+	public PlayerListSet getCoowners() {
+		return this.coowners;
+	}
+
+	/**
+	 * @param coowners the coowners to set
+	 */
+	public void setCoowners(PlayerListSet coowners) {
+		this.coowners = coowners;
+	}
+
+	/**
+	 * @return the toggleables
+	 */
+	public Set<PlotToggleable> getToggleables() {
+		return this.toggleables;
+	}
+
+	/**
+	 * @param toggleables the toggleables to set
+	 */
+	public void setToggleables(Set<PlotToggleable> toggleables) {
+		this.toggleables = toggleables;
+	}
+
+	/**
+	 * @return the size
+	 */
+	public int getSize() {
+		return this.size;
+	}
+
+	/**
+	 * @return the salePrice
+	 */
+	public int getSalePrice() {
+		return this.salePrice;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(SavableLocation location) {
+		this.location = location;
 	}
 }

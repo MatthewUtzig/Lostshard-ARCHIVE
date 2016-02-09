@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -23,32 +24,15 @@ public class Group {
 	@Transient
 	public PlayerManager pm = PlayerManager.getManager();
 
+	@AttributeOverrides({ @AttributeOverride(name = "members", column = @Column(name = "invited") )})
 	private PlayerListSet members = new PlayerListSet();
 	
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "invited") )})
 	private PlayerListSet invited = new PlayerListSet();
 
 	public void addInvited(UUID invite) {
 		if (!this.invited.contains(invite))
 			this.invited.add(invite);
-	}
-
-	public void addMember(UUID member) {
-		this.members.add(member);
-	}
-
-	public void delete() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.delete(this);
-			s.clear();
-			t.commit();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
 	}
 
 	public PlayerListSet getInvited() {
@@ -68,21 +52,7 @@ public class Group {
 		}
 		return rs;
 	}
-
-	public void insert() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.save(this);
-			t.commit();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
-	}
-
+	
 	public boolean isDead() {
 		for (final UUID member : this.members)
 			if (Bukkit.getPlayer(member) == null)
@@ -107,27 +77,7 @@ public class Group {
 	}
 
 	public boolean isMember(UUID member) {
-		if (this.members.contains(member))
-			return true;
-		return false;
-	}
-
-	public void removeMember(UUID member) {
-		this.members.remove(member);
-	}
-
-	public void save() {
-		final Session s = Lostshard.getSession();
-		try {
-			final Transaction t = s.beginTransaction();
-			t.begin();
-			s.update(this);
-			t.commit();
-			s.close();
-		} catch (final Exception e) {
-			e.printStackTrace();
-			s.close();
-		}
+		return this.members.contains(member);
 	}
 
 	public void sendMessage(String message) {

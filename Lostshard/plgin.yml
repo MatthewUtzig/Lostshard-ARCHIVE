@@ -1,0 +1,170 @@
+name: Lostshard
+main: com.lostshard.Lostshard.Main.Lostshard
+version: 0.2
+softdepend: [Citizens]
+commands:
+   speed:
+      description: Sets your fly speed
+      usage: /speed <speed>
+   item:
+      description: Gives you an item
+      usage: /item <item> (amount)
+   broadcast:
+      description: Broad cast a given message
+      usage: /broadcast <message>
+   shout:
+      description: Toggles or sends a message in the shout channel
+      usage: /shout (message)
+   tpworld:
+      description: Teleports you to a given world
+      usage: /tpworld string
+   test:
+      description: Fast test command
+      usage: /test 
+   camp:
+      description: Summons a camp fire
+      usage: /camp 
+   who:
+      description: List all online players
+      usage: /who 
+   stats:
+      description: List all online players
+      usage: /stats 
+   party:
+      description: null
+      usage: /party subcommand ...
+   local:
+      description: Toggles or sends a message in the local channel
+      usage: /local (message)
+   track:
+      description: Tracks players or monsters
+      usage: /track <player|monster>
+   kill:
+      description: Kills your self
+      usage: /kill 
+   enhance:
+      description: Enhance the tool in your hand
+      usage: /enhance 
+   c:
+      description: Toggles or sends a message in the clan channel
+      usage: /c (message)
+   msg:
+      description: Send private messages to players
+      usage: /msg <player> <message>
+   ff:
+      description: Toggles friendly fire
+      usage: /ff 
+   help:
+      description: List all online players
+      usage: /help <command> <page>
+   global:
+      description: Toggles or sends a message in the global channel
+      usage: /global (message)
+   plot:
+      description: null
+      usage: /plot subcommand ...
+   mount:
+      description: Summons mount
+      usage: /mount 
+   givemoney:
+      description: Gives a given player a given amount of money
+      usage: /givemoney <player> <amount>
+   private:
+      description: Sets you to private
+      usage: /private 
+   whisper:
+      description: Toggles or sends a message in the whisper channel
+      usage: /whisper (message)
+   ignore:
+      description: ignores a given player
+      usage: /ignore <player>
+   setmurders:
+      description: Set murders counts for a player
+      usage: /setmurders <player> <amount>
+   public:
+      description: Sets you to public
+      usage: /public 
+   title:
+      description: Selects a title
+      usage: /title text
+   tradegold:
+      description: Trade gold ingots into gold coins
+      usage: /tradegold <amount>
+   lostshardreload:
+      description: Reloads the lostshard config
+      usage: /lostshardreload 
+   build:
+      description: Change your build
+      usage: /build <build>
+   claim:
+      description: Claims the capturepoint
+      usage: /claim 
+   inv:
+      description: Opens a given players inventory
+      usage: /inv <player>
+   pay:
+      description: Sends money to antoher player
+      usage: /pay <player> <amount>
+   gui:
+      description: Toggles gui
+      usage: /gui 
+   capturepoints:
+      description: Shows a list of all capturepoints
+      usage: /capturepoints 
+   reply:
+      description: Reply's to private messages
+      usage: /reply <message>
+   rules:
+      description: List all online players
+      usage: /rules 
+   toggleglobal:
+      description: Toggles where the global chat should be visible
+      usage: /toggleglobal 
+   unignore:
+      description: unignores player
+      usage: /unignore <player>
+   bank:
+      description: Opens your bank
+      usage: /bank 
+   repair:
+      description: Repairs the tool in your hand
+      usage: /repair 
+   clan:
+      description: null
+      usage: /clan subcommand ...
+   tax:
+      description: Collect taxes
+      usage: /tax 
+   boat:
+      description: Calls a boat to your side
+      usage: /boat 
+   say:
+      description: Broadcast a message
+      usage: /say <message>
+   resetspawn:
+      description: Resets your spawn location
+      usage: /resetspawn 
+   smelt:
+      description: Smelts the tool in your hand into resources
+      usage: /smelt 
+   p:
+      description: Toggles or sends a message in the party channel
+      usage: /p (message)
+   dc:
+      description: null
+      usage: /dc subcommand ...
+   spawn:
+      description: Spawn
+      usage: /spawn 
+   tpplot:
+      description: Teleports you to a given plot
+      usage: /tpplot <plot>
+   togglemsg:
+      description: Toggles where the private chat should be visible
+      usage: /togglemsg 
+   whois:
+      description: List all online players
+      usage: /whois <player>
+   pvp:
+      description: Toggles whether to show damage results
+      usage: /pvp 

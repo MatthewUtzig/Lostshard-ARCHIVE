@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 

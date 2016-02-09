@@ -14,13 +14,13 @@ import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 import com.sk89q.intake.Command;
 import com.sk89q.intake.parametric.annotation.Optional;
 import com.sk89q.intake.parametric.annotation.Range;
 import com.sk89q.intake.parametric.annotation.Text;
+import com.sk89q.intake.parametric.annotation.Validate;
 
 public class ClanCommand {
 
@@ -49,8 +49,8 @@ public class ClanCommand {
 			Output.simpleError(player, "Only a leader may be demoted, you may kick any member.");
 			return;
 		}
-		clan.demoteLeader(target.getUniqueId());
-		clan.addMember(target.getUniqueId());
+		clan.getLeaders().remove(target);
+		clan.getMembers().add(target);
 		if (target.isOnline())
 			Output.positiveMessage(target.getPlayer(),
 					"You have been demoted to a normal member in your clan.");
@@ -165,7 +165,7 @@ public class ClanCommand {
 						currentClan.getMembers().remove(player);
 					}
 					clanFound.sendMessage(player.getName() + " has joined the clan.");
-					clanFound.addMember(player.getUniqueId());
+					clanFound.getMembers().add(player);
 					clanFound.getInvited().remove(player);
 					Output.positiveMessage(player, "You have joined the " + clanFound.getName() + " clan.");
 				} else {
@@ -184,10 +184,10 @@ public class ClanCommand {
 		if (clan != null) {
 			if (clan.isOwner(player.getUniqueId()) || clan.isLeader(player.getUniqueId())) {
 				if (!target.getUniqueId().equals(player.getUniqueId())) {
-					if (clan.isInClan(target.getUniqueId())) {
+					if (clan.inClan(target.getUniqueId())) {
 						if (!clan.isLeader(player.getUniqueId()) && clan.isOwner(player.getUniqueId())) {
-							clan.demoteLeader(target.getUniqueId());
-							clan.removeMember(target.getUniqueId());
+							clan.getLeaders().remove(target);
+							clan.getMembers().remove(target);
 							if (target.isOnline())
 								Output.simpleError(target.getPlayer(),
 										"You have been kicked from " + clan.getName() + ".");
@@ -210,8 +210,7 @@ public class ClanCommand {
 		final Clan clan = pPlayer.getClan();
 		if (clan != null) {
 			if (!clan.isOwner(player.getUniqueId())) {
-				clan.removeMember(player.getUniqueId());
-				clan.demoteLeader(player.getUniqueId());
+				clan.getMembers().remove(player);
 				clan.sendMessage(player.getName() + " has left the clan.");
 				Output.positiveMessage(player, "You have left the " + clan.getName() + " clan.");
 			} else {
@@ -235,8 +234,8 @@ public class ClanCommand {
 								Output.positiveMessage(target.getPlayer(),
 										"You have been promoted to a leader in your clan.");
 							}
-							clan.removeMember(target.getUniqueId());
-							clan.promoteMember(target.getUniqueId());
+							clan.getMembers().remove(target);
+							clan.getLeaders().add(target);
 							Output.positiveMessage(player,
 									"You have promoted " + target.getName() + " to leader in your clan.");
 						} else
@@ -260,11 +259,10 @@ public class ClanCommand {
 					if (clan.isLeader(target.getUniqueId())
 							|| clan.isMember(target.getUniqueId())) {
 						// player transferring to is online
-						clan.removeMember(target.getUniqueId());
-						clan.demoteLeader(target.getUniqueId());
-						clan.setOwner(target.getUniqueId());
-						clan.addMember(player.getUniqueId());
-						clan.promoteMember(player.getUniqueId());
+						clan.getMembers().remove(target);
+						clan.getLeaders().remove(target);
+						clan.setOwner(target);
+						clan.getLeaders().add(player.getUniqueId());
 						Output.positiveMessage(player, "You have transferred ownership of " + clan.getName());
 						Output.positiveMessage(player,
 								"to " + target.getName() + ", you are now a clan leader.");
@@ -304,44 +302,41 @@ public class ClanCommand {
 	}
 
 	@Command(aliases = { "create" }, desc = "Creates a clan with a given name", usage="<name>")
-	public void createClan(@Sender Player player, @Sender PseudoPlayer pPlayer, @Text String clanName) {
-		if (pPlayer.getClan() == null) {
-			clanName = clanName.trim();
-
-			if (!clanName.contains("\"")) {
-				boolean nameExists = false;
-				for (final Clan c : this.cm.getClans())
-					if (c.getName().equalsIgnoreCase(clanName)) {
-						nameExists = true;
-						break;
-					}
-
-				if (!nameExists) {
-					if (clanName.length() <= Variables.clanMaxNameLeangh) {
-						final int curMoney = pPlayer.getMoney();
-						if (curMoney >= Variables.clanCreateCost) {
-							pPlayer.setMoney(pPlayer.getMoney() - Variables.clanCreateCost);
-							new GoldRecord(Variables.clanCreateCost, "Clan create", player.getUniqueId(), null);
-							final Clan clan = new Clan(clanName, player.getUniqueId());
-							this.cm.getClans().add(clan);
-							clan.insert();
-							Output.positiveMessage(player, "You have created the clan " + clan.getName());
-						} else
-							Output.simpleError(player, "Can't afford to create clan, cost: "
-									+ Utils.getDecimalFormater().format(Variables.clanCreateCost) + " gold coins.");
-					} else
-						Output.simpleError(player, "Clan name too long, 20 characters max.");
-				} else
-					Output.simpleError(player, "A clan with that name already exists.");
-			} else
-				Output.simpleError(player, "can't use \" in clan name.");
-		} else
+	public void createClan(@Sender Player player, @Sender PseudoPlayer pPlayer, @Validate(regex="\\w{2, }") @Text String clanName) {
+		if (pPlayer.getClan() != null) {
 			Output.simpleError(player, "You must leave your current clan to create a new one.");
+			return;
+		}
+		clanName = clanName.trim();
+
+		boolean nameExists = false;
+		for (final Clan c : this.cm.getClans())
+			if (c.getName().equalsIgnoreCase(clanName)) {
+				nameExists = true;
+				break;
+			}
+
+		if (nameExists) {
+			Output.simpleError(player, "A clan with that name already exists.");
+			return;
+		}
+		
+		if (!pPlayer.getWallet().contains(Variables.clanCreateCost)) {
+			Output.simpleError(player, "Can't afford to create clan, cost: "
+					+ Utils.getDecimalFormater().format(Variables.clanCreateCost) + " gold coins.");
+			return;
+		}
+		
+		pPlayer.getWallet().subtract(null, Variables.clanCreateCost, "the creation of the clan\""+clanName+"\"");
+		final Clan clan = new Clan(clanName, player.getUniqueId());
+		this.cm.getClans().add(clan);
+		clan.insert();
+			Output.positiveMessage(player, "You have created the clan " + clan.getName());
 	}
 
 	public Clan findClanByPlayer(Player player) {
 		for (final Clan clan : this.cm.getClans())
-			if (clan.isInClan(player.getUniqueId()))
+			if (clan.inClan(player.getUniqueId()))
 				return clan;
 		return null;
 	}

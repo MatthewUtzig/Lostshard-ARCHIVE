@@ -226,7 +226,6 @@ public class PlotCapturePoint {
 
 	public void setOwningClan(Clan owningClan) {
 		this.owningClan = owningClan;
-		this.plot.update();
 	}
 
 	public void setPlot(Plot plot) {

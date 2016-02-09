@@ -26,9 +26,8 @@ import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
@@ -65,8 +64,6 @@ public class PlotCommand {
 	@Command(aliases = { "create" }, desc = "creates a plot", usage = "<name>", 
 			help = "Creats a plot with a given name, it cost 1000 gc and a diamond, this cost increase for every plot you create with in a week.")
 	public void createPlot(@Sender Player player, @Sender PseudoPlayer pPlayer, @Validate(regex="\\w{2,"+Variables.plotMaxNameLength+"}") @Text String plotName) {
-		int curMoney = pPlayer.getMoney();
-
 		// get recently purchased plots
 		final int plotCreatePoints = pPlayer.getPlotCreatePoints();
 		int plotsThisWeek = 0;
@@ -83,8 +80,8 @@ public class PlotCommand {
 		plotMoneyCost *= Math.pow(2, plotsThisWeek);
 		plotDiamondCost *= Math.pow(2, plotsThisWeek);
 		// make sure the player has enough money and diamonds
-		if (!player.isOp() && !(curMoney >= plotMoneyCost
-				&& ItemUtils.containsAmount(player.getInventory(), Variables.plotCreateItemPrice.getType()) >= plotDiamondCost)) {
+		if (!player.isOp() && !pPlayer.getWallet().contains(plotMoneyCost)
+				&& ItemUtils.containsAmount(player.getInventory(), Variables.plotCreateItemPrice.getType()) >= plotDiamondCost) {
 			Output.simpleError(player, "can't afford to create a plot, cost: " + plotMoneyCost + " gold & "
 					+ plotDiamondCost + " diamonds.");
 			return;
@@ -111,7 +108,7 @@ public class PlotCommand {
 			int sphereOfInfluence;
 			if (plot.isCoownerOrAbove(player))
 				sphereOfInfluence = plot.getSize();
-			else if (plot.isUpgrade(PlotUpgrade.TOWN))
+			else if (plot.getUpgrades().contains(PlotUpgrade.TOWN))
 				sphereOfInfluence = plot.getSize() * 2;
 			else
 				sphereOfInfluence = (int) Math.ceil(plot.getSize() * 1.5);
@@ -133,9 +130,8 @@ public class PlotCommand {
 			// to go
 			// first, remove the money/diamonds
 			if (!player.isOp())
-				curMoney -= plotMoneyCost;
-			pPlayer.setMoney(curMoney);
-			new GoldRecord(plotMoneyCost, "plot create", player.getUniqueId(), null);
+				pPlayer.getWallet().subtract(null, plotMoneyCost, "Plot creation");
+
 			pPlayer.setPlotCreatePoints(pPlayer.getPlotCreatePoints() + 7);
 			// debited money successfully, now remove the proper amount of
 			// diamonds
@@ -214,7 +210,7 @@ public class PlotCommand {
 
 		final PseudoPlayer pseudoPlayer = this.pm.getPlayer(player);
 
-		if (pseudoPlayer.getMoney() < salePrice) {
+		if (pseudoPlayer.getWallet().contains(salePrice)) {
 			Output.simpleError(player, "can't afford to buy plot, cost: " + salePrice + ".");
 			return;
 		}
@@ -224,20 +220,18 @@ public class PlotCommand {
 			return;
 		}
 
-		pseudoPlayer.setMoney(pseudoPlayer.getMoney() - salePrice);
 		final UUID lastOwner = plot.getOwner();
+		final Player sellerPlayer = Bukkit.getPlayer(lastOwner);
+		final PseudoPlayer sellerPseudoPlayer = this.pm.getPlayer(sellerPlayer);
+		
+		pseudoPlayer.getWallet().subtract(sellerPseudoPlayer.getWallet(), salePrice, "Plot sale");
 		plot.setOwner(player.getUniqueId());
 		plot.setSalePrice(0);
 		plot.getCoowners().clear();
 		plot.getFriends().clear();
 		
-		new GoldRecord(salePrice, "plot buy", player.getUniqueId(), lastOwner);
-
 		Output.positiveMessage(player, "You have purchased the plot " + plot.getName() + " from "
 				+ Bukkit.getOfflinePlayer(lastOwner).getName() + " for " + salePrice + ".");
-		final Player sellerPlayer = Bukkit.getPlayer(lastOwner);
-		final PseudoPlayer sellerPseudoPlayer = this.pm.getPlayer(sellerPlayer);
-		sellerPseudoPlayer.setMoney(sellerPseudoPlayer.getMoney() + salePrice);
 		if (sellerPlayer.isOnline())
 			sellerPlayer.sendMessage(
 					"You have sold the plot " + plot.getName() + " to " + player.getName() + " for " + salePrice + ".");

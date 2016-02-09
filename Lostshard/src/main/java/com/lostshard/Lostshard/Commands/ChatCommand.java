@@ -98,7 +98,7 @@ public class ChatCommand {
 	}
 
 	
-	@Command(aliases = {"msg"}, 
+	@Command(aliases = {"msg", "m"}, 
 			desc = "Send private messages to players",
 			help = "Send private messages to players",
 			usage = "<player> <message>",

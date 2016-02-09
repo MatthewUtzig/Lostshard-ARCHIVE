@@ -58,7 +58,7 @@ public class SpellUtils {
 				if (p == player)
 					continue;
 				if (clan != null)
-					if (clan.isInClan(p.getUniqueId()))
+					if (clan.inClan(p.getUniqueId()))
 						continue;
 				if (party != null)
 					if (party.isMember(p))
@@ -139,7 +139,7 @@ public class SpellUtils {
 			if (b != null) {
 				for (final Player p : playersInRange)
 					if (Utils.isWithin(b.getLocation(), p.getLocation(), 1.5)) {
-						if (clan != null && clan.isInClan(p.getUniqueId()) || party != null && party.isMember(p))
+						if (clan != null && clan.inClan(p.getUniqueId()) || party != null && party.isMember(p))
 							return p;
 
 						if (firstNeutralFound == null)

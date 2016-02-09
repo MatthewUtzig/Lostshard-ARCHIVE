@@ -41,6 +41,7 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Camp;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -143,7 +144,7 @@ public class SurvivalismSkill extends Skill {
 
 		final Plot plot = ptm.findPlotAt(block.getLocation());
 		if (plot != null)
-			if (plot.isProtected())
+			if (plot.getToggleables().contains(PlotToggleable.PROTECTION))
 				if (!plot.isAllowedToBuild(player)) {
 					Output.simpleError(player, "You can't do that, this plot is protected.");
 					event.setCancelled(true);

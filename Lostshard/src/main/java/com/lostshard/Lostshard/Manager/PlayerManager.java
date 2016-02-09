@@ -107,7 +107,7 @@ public class PlayerManager {
 	public void onPlayerQuit(Player player) {
 		final PseudoPlayer pPlayer = this.getPlayer(player);
 		if (pPlayer.getParty() != null) {
-			pPlayer.getParty().removeMember(player.getUniqueId());
+			pPlayer.getParty().getMembers().remove(player);
 			pPlayer.getParty().sendMessage(player.getName() + " has left the party.");
 		}
 		pPlayer.save();

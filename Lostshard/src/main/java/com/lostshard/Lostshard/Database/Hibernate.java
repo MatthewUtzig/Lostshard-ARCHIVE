@@ -13,7 +13,6 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recorders.ConnectionRecord;
 import com.lostshard.Lostshard.Objects.Recorders.DamageRecord;
 import com.lostshard.Lostshard.Objects.Recorders.DeathRecord;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Objects.Recorders.SkillGainRecord;
 import com.lostshard.Lostshard.Objects.Recorders.UsernameUUIDRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
@@ -52,7 +51,6 @@ public class Hibernate {
 		cfg.addAnnotatedClass(ConnectionRecord.class);
 		cfg.addAnnotatedClass(UsernameUUIDRecord.class);
 		cfg.addAnnotatedClass(SkillGainRecord.class);
-		cfg.addAnnotatedClass(GoldRecord.class);
 		cfg.addAnnotatedClass(DeathRecord.class);
 		
 

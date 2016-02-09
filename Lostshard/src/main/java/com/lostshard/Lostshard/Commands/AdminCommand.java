@@ -1,7 +1,5 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.UUID;
-
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +16,6 @@ import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Recorders.GoldRecord;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
 import com.sk89q.intake.Command;
@@ -85,13 +82,11 @@ public class AdminCommand {
 	@Require("lostshard.admin.givemoney")
 	public void giveMoney(CommandSender sender, Player target, @Range(min=1) int amount) {
 		final PseudoPlayer tpPlayer = this.pm.getPlayer(target);
-		tpPlayer.addMoney(amount);
+		tpPlayer.getWallet().add(null, amount, "From admin!");
 		sender.sendMessage(ChatColor.GOLD + "You have paied " + target.getName() + " "
 				+ Utils.getDecimalFormater().format(amount) + "gc.");
 		Output.positiveMessage(target,
 				sender.getName() + " has given you " + Utils.getDecimalFormater().format(amount) + "gc.");
-		UUID uuid = sender instanceof Player ? ((Player) sender).getUniqueId() : null;
-		new GoldRecord(amount, "/givemoney", uuid, target.getUniqueId());
 	}
 
 	@Command(aliases = { "inv" }, desc = "Opens a given players inventory", usage = "<player>")

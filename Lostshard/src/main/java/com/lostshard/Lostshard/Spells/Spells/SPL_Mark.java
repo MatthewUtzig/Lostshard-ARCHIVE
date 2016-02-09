@@ -7,6 +7,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Utils.Output;
@@ -69,7 +70,7 @@ public class SPL_Mark extends Spell {
 	@Override
 	public boolean verifyCastable(Player player) {
 		final Plot plot = this.ptm.findPlotAt(player.getLocation());
-		if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player))
+		if (plot == null || !plot.getToggleables().contains(PlotToggleable.PRIVATE) || plot.isFriendOrAbove(player))
 			this.setMarkLoc(player.getLocation().getBlock().getLocation());
 		else {
 			Output.simpleError(player, "You can't mark a rune here, the plot is private.");

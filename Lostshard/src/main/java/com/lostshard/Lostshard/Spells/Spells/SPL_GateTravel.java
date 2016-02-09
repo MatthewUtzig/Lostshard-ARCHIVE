@@ -11,6 +11,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Spells.Structures.Gate;
@@ -53,7 +54,7 @@ public class SPL_GateTravel extends Spell {
 
 		final Location runeLoc = runeFound.getLocation();
 		final Plot plot = this.ptm.findPlotAt(runeLoc);
-		if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
+		if (plot == null || !plot.getToggleables().contains(PlotToggleable.PRIVATE) || plot.isFriendOrAbove(player)) {
 
 			if (!SpellUtils.isValidRuneLocation(player, player.getLocation()))
 				// Output.simpleError(player,

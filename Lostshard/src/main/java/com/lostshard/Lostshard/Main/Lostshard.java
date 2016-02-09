@@ -1,6 +1,7 @@
 package com.lostshard.Lostshard.Main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -153,7 +154,7 @@ public class Lostshard extends JavaPlugin {
 			try {
 				t = s.beginTransaction();
 				t.begin();
-				PlotManager.getManager().setPlots(s.createCriteria(Plot.class).list());
+				PlotManager.getManager().setPlots(new HashSet<>(s.createCriteria(Plot.class).list()));
 				t.commit();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.lostshard.Lostshard.Objects.Plot.PlotEffect;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.sk89q.intake.argument.ArgumentException;
 import com.sk89q.intake.argument.ArgumentParseException;
 import com.sk89q.intake.argument.CommandArgs;

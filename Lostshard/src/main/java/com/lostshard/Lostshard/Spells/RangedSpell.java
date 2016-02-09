@@ -5,6 +5,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
 
@@ -57,7 +58,7 @@ public abstract class RangedSpell extends Spell {
 		if (this.carePlot) {
 			final Plot plot = this.ptm.findPlotAt(this.getFoundBlock().getLocation());
 			if (plot != null)
-				if (plot.isProtected())
+				if (plot.getToggleables().contains(PlotToggleable.PROTECTION))
 					if (!plot.isFriendOrAbove(player)) {
 						Output.simpleError(player,
 								"You can't cast " + this.getName() + " there, that plot is protected.");

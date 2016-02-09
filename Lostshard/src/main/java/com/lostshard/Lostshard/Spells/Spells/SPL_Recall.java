@@ -10,6 +10,7 @@ import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
 import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Utils.Output;
@@ -70,7 +71,7 @@ public class SPL_Recall extends Spell {
 				return;
 
 			final Plot plot = this.ptm.findPlotAt(runeLoc);
-			if (plot == null || !plot.isPrivatePlot() || plot.isFriendOrAbove(player)) {
+			if (plot == null || !plot.getToggleables().contains(PlotToggleable.PRIVATE) || plot.isFriendOrAbove(player)) {
 				final Location destLoc = new Location(runeLoc.getWorld(), runeLoc.getBlockX() + .5, runeLoc.getBlockY(),
 						runeLoc.getBlockZ() + .5);
 
