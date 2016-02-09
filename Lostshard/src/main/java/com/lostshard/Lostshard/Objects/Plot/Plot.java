@@ -22,12 +22,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Player;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Data.Variables;
+import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPC;
@@ -470,5 +473,48 @@ public class Plot {
 	 */
 	public void setLocation(SavableLocation location) {
 		this.location = location;
+	}
+	
+	public void insert() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.save(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+
+	public void update() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.update(this);
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
+	}
+	
+	public void delete() {
+		final Session s = Lostshard.getSession();
+		try {
+			final Transaction t = s.beginTransaction();
+			t.begin();
+			s.delete(this);
+			s.clear();
+			t.commit();
+			s.close();
+		} catch (final Exception e) {
+			e.printStackTrace();
+			s.close();
+		}
 	}
 }

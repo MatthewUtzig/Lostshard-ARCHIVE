@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Main.Lostshard;
-
 public class EventManager {
 
 	private final static EventManager manager = new EventManager();

@@ -75,7 +75,6 @@ public class BankCommand {
 						+ Utils.getDecimalFormater().format(amount) + "gc.");
 				return;
 			}
-			pPlayer.getWallet().subtract(tpPlayer.getWallet(), amount, "payment");
 		}
 		tpPlayer.getWallet().add(from, amount, "payment");
 		sender.sendMessage(ChatColor.GOLD + "You have paid " + targetPlayer.getName() + " "

@@ -7,35 +7,35 @@ import com.sk89q.intake.Command;
 public class HelpCommand {
 
 	@Command(aliases = { "" }, desc = "Help")
-	public void help(CommandSender sender) {
+	public void help(CommandSender sender, int page) {
 		
 	}
 	
-	public void land(CommandSender sender) {
+	public void land(CommandSender sender, int page) {
 		
 	}
 	
-	public void groups(CommandSender sender) {
+	public void groups(CommandSender sender, int page) {
 		
 	}
 	
-	public void clan(CommandSender sender) {
+	public void clan(CommandSender sender, int page) {
 		
 	}
 	
-	public void party(CommandSender sender) {
+	public void party(CommandSender sender, int page) {
 		
 	}
 	
-	public void skills(CommandSender sender) {
+	public void skills(CommandSender sender, int page) {
 		
 	}
 	
-	public void magery(CommandSender sender) {
+	public void magery(CommandSender sender, int page) {
 		
 	}
 	
-	public void karma(CommandSender sender) {
+	public void karma(CommandSender sender, int page) {
 		
 	}
 	

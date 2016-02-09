@@ -271,9 +271,8 @@ public class MageryCommand {
 	}
 
 	@Command(aliases = { "spellbook" }, desc = "Shows you your spellbook", usage = "<subcmd>")
-	public void spellbook(@Sender Player player, @Text @Optional(value="") String arg) {
-		String[] args = arg.split(" ");
-		Output.outputSpellbook(player, args);
+	public void spellbook(@Sender Player player, @Optional int page) {
+		Output.outputSpellbook(player, page);
 	}
 
 	@Command(aliases = { "unbind" }, desc = "Turns a wand into a regular stick", usage = "<spell>")
