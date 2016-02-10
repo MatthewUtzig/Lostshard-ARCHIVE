@@ -10,24 +10,24 @@ import com.sk89q.intake.parametric.annotation.Range;
 public class HelpCommand {
 
 	@Command(aliases = { "" }, desc = "Shows all the help commands")
-	public void help(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 1) int page) {
-		if (page == 1) {
-			sender.sendMessage(ChatColor.GOLD + "All help commands:");
-			sender.sendMessage(ChatColor.YELLOW + "/help plot");
-			sender.sendMessage(ChatColor.YELLOW + "/help clan");
-			sender.sendMessage(ChatColor.YELLOW + "/help party");
-			sender.sendMessage(ChatColor.YELLOW + "/help skills");
-			sender.sendMessage(ChatColor.YELLOW + "/help magery");
-			sender.sendMessage(ChatColor.YELLOW + "/help karma");
-			
-		}
+	public void help(CommandSender sender) {
+		sender.sendMessage(ChatColor.GOLD + "All help commands:");
+		sender.sendMessage(ChatColor.YELLOW + "/help plot");
+		sender.sendMessage(ChatColor.YELLOW + "/help clan");
+		sender.sendMessage(ChatColor.YELLOW + "/help party");
+		sender.sendMessage(ChatColor.YELLOW + "/help skills");
+		sender.sendMessage(ChatColor.YELLOW + "/help magery");
+		sender.sendMessage(ChatColor.YELLOW + "/help karma");
 	}
 	
 	@Command(aliases = { "land", "plot", "plots" }, desc = "Tells you how to create and use plots.")
 	public void land(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 8) int page) {
-		if (page == 1) { 
-			sender.sendMessage(ChatColor.GOLD + "-Plot Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 1 of 8, use \"/help land (page)\"");
+			
+		sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
+		sender.sendMessage(ChatColor.GOLD + "Page " + page + " of 8, use \"/help land (page)\"");
+			
+		switch(page) {
+		case 1:
 			sender.sendMessage(ChatColor.GOLD + "Info:" + ChatColor.GRAY
 					+ " You can protect your base, house, items, etc. from other players by creating a plot.");
 			sender.sendMessage(ChatColor.GRAY + "-In a plot normal players cannot press stone buttons or break blocks;");
@@ -37,11 +37,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "Tax:" + ChatColor.GRAY + " Each real life day tax is taken from your plot.");	
 			sender.sendMessage(ChatColor.GRAY + "-tax = 10 * (the size of your plot)");
 			sender.sendMessage(ChatColor.GRAY + "-If you fail to pay your tax, your plot will be shrunk by one block");
-							
-			
-		} else if (page == 2) { 
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 2 of 8, use \"/help land (page)\"");	
+			break;	
+		case 2:	
 			sender.sendMessage(ChatColor.GOLD + "Commands:");
 			sender.sendMessage(ChatColor.YELLOW + "/plot create (plot name)" + ChatColor.GRAY + " - This creates a plot");
 			sender.sendMessage(ChatColor.GRAY + "-This costs 1000 YELLOW and 1 diamond for the first plot.");
@@ -50,11 +47,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.YELLOW + "/plot survey" + ChatColor.GRAY + " - tells you how large you could make a plot in a given area");
 			sender.sendMessage(ChatColor.GRAY + "-You must be outside of a plot when executing this command.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot info" + ChatColor.GRAY + " - gives info about a plot");
-		
-		} else if (page == 3) {
-			
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 3 of 8, use \"/help land (page)\"");
+			break;
+		case 3:
 			sender.sendMessage(ChatColor.GOLD + "Owner Commands:");
 			sender.sendMessage(ChatColor.YELLOW + "-the owner gets access to all co-owner and friend commands.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot co-own (player)");
@@ -64,10 +58,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GRAY + "-Gives a player the ability to use all friend commands(shown below)");
 			sender.sendMessage(ChatColor.GRAY + "-They can't break blocks, but they can use stone buttons.");
 			sender.sendMessage(ChatColor.GRAY + "-Co-owners can also use this command.");
-					
-		} else if (page == 4) {
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 4 of 8, use \"/help land (page)\"");
+			break;
+		case 4:
 			sender.sendMessage(ChatColor.GOLD + "Owner Commands continued:");
 			sender.sendMessage(ChatColor.YELLOW + "/plot disband" + ChatColor.GRAY + " - Deletes the plot you are standing on.");
 			sender.sendMessage(ChatColor.GRAY + "-This gives you all the YELLOW in the plot");
@@ -75,9 +67,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GRAY + "-This will remove you from the plot.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot protect/unprotect" + ChatColor.GRAY + " - protects/unprotects a plot.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot list" + ChatColor.GRAY + " - List all your current plots.");
-		} else if (page == 5) {
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 5 of 8, use \"/help land (page)\"");
+			break;
+		case 5:
 			sender.sendMessage(ChatColor.GOLD + "Co-owner commands:");
 			sender.sendMessage(ChatColor.YELLOW + "/plot withdraw/deposit");
 			sender.sendMessage(ChatColor.GRAY + "-Allows you to add or remove YELLOW from your plot.");
@@ -86,11 +77,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GRAY + "-Shrinking costs nothing.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot upgrade (upgrade)" + ChatColor.GRAY + " - Allows you to buy plot upgrades for gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-upgrades are on pages 7 and 8.");
-			
-			
-		} else if (page == 6) {
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 6 of 8, use \"/help land (page)\"");
+			break;
+		case 6:
 			sender.sendMessage(ChatColor.GOLD + "Co-owner commands continued:");
 			sender.sendMessage(ChatColor.YELLOW + "/plot test" + ChatColor.GRAY + " - Toggles whether you are testing a plot.");
 			sender.sendMessage(ChatColor.GRAY + "-Testing a plot prevents you from breaking blocks and using stone buttons.");
@@ -100,11 +88,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "Friends:");
 			sender.sendMessage(ChatColor.YELLOW + "/plot deposit" + ChatColor.GRAY + " - Friends can donate gold to the plot, ");
 			sender.sendMessage(ChatColor.GRAY + "-but they can't withdraw.");
-			
-	
-		} else if (page == 7) {
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 7 of 8, use \"/help land (page)\"");
+			break;
+		case 7:
 			sender.sendMessage(ChatColor.GOLD + "Plot upgrades:");
 			sender.sendMessage(ChatColor.YELLOW + "Town:" + ChatColor.GRAY + " Costs 100,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows any player to set their spawn with a bed in your plot.");
@@ -116,39 +101,34 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GRAY + "-Allows both criminals and non-crimals to set spawn in a bed.");
 			sender.sendMessage(ChatColor.YELLOW + "AutoKick:" + ChatColor.GRAY + " Costs 5,000 gold coins. ");
 			sender.sendMessage(ChatColor.GRAY + "-When a player relogs in your plot they are sent out of it.");
-			
-		} else if (page == 8) {
-			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 8 of 8, use \"/help land (page)\"");
+			break;
+		case 8:
 			sender.sendMessage(ChatColor.GOLD + "Plot upgrades Continued:");
 			sender.sendMessage(ChatColor.YELLOW + "Dungeon:" + ChatColor.GRAY + " Costs 10,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows hostile mobs to spawn in your plot.");
 			sender.sendMessage(ChatColor.YELLOW + "/plot downgrade (upgrade)" + ChatColor.GRAY + " -removes a plot upgrade.");
+			break;
 		}
-	
 	}
 	
 	@Command(aliases = { "clan", "clans" }, desc = "Tells you how to create and manage clans.")
 	public void clan(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 3) int page) {
-		
-		if (page == 1) {
-			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help clan (page)\"");
+		sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
+		sender.sendMessage(ChatColor.GOLD + "Page " + page + " of 3, use \"/help clan (page)\"");
+		switch(page) {
+		case 1:
 			sender.sendMessage(ChatColor.GOLD + "Info:" + ChatColor.GRAY + " Unlike parties, Clans are permanent player groups.");
 			sender.sendMessage(ChatColor.GRAY + "A clan is required to capture hostility. This can be done by doing /claim while in hostility.");
 			sender.sendMessage(ChatColor.GRAY + "Capturing hostility will reward you with 5 free gold ingots from the vender.");
 			sender.sendMessage(ChatColor.GRAY + "You can also teleport to your clanmates by casting Clan Teleport.");
-		} else {
-			if (page == 2) {
-			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help clan (page)\"");
+			break;
+		case 2:
 			sender.sendMessage(ChatColor.YELLOW + "/clan create (plot name)" + ChatColor.GRAY + " - Create a clan.");
 			sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 YELLOW coins.");
 			sender.sendMessage(ChatColor.YELLOW + "/clan transfer (player name)" + ChatColor.GRAY + "  Gives your clan to another player.");
 			sender.sendMessage(ChatColor.YELLOW + "/clan [invite/uninvite] (player name)" + ChatColor.GRAY+ "  Invites/uninvites a player to your clan.");
-		} else if (page == 3) {
-			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
-			sender.sendMessage(ChatColor.GOLD + "Page 3 of 3, use \"/help land (page)\"");
+			break;
+		case 3:
 			sender.sendMessage(ChatColor.YELLOW + "/clan promote (player name)" + ChatColor.GRAY  + " - Promotes a member to leader. This can only be used by the owner.");
 			sender.sendMessage(ChatColor.GRAY + "-Leaders can use most commands and can kick players from the clan.");
 			sender.sendMessage(ChatColor.YELLOW + "/clan demote (player name)" + ChatColor.GRAY + " - Demotes a clan leader back to member.");
@@ -158,13 +138,12 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.YELLOW + "/clan info" + ChatColor.GRAY + " - Displays information about your clan. Leaders and owners get more information.");
 			sender.sendMessage(ChatColor.YELLOW + "/c (message)" + ChatColor.GRAY + " - Send a chat message to your clan.");
 			sender.sendMessage(ChatColor.YELLOW + "/c" + ChatColor.GRAY + " - Makes all future messages in clan chat. Use /g to get back.");
-			}
+			break;
 		}	
 	}
 	
 	@Command(aliases = { "party", "parties", "partys" }, desc = "Tells you what parties are.")
-	public void party(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 1) int page) {
-		
+	public void party(CommandSender sender) {
 			sender.sendMessage(ChatColor.GOLD + "-Party Help-");
 			sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY + " Unlike clans, a party is a temporary player group. You can only be in one party at a time.");
 			sender.sendMessage(ChatColor.GRAY + "-You cannot damage party member; however, if both players toggle friendly fire with /ff they can damage each other.");

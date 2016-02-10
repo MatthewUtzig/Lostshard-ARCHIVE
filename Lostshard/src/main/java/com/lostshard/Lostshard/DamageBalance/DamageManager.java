@@ -40,7 +40,8 @@ public class DamageManager {
 		
 		enchantmentModifier = Math.min(1, enchantmentModifier);
 		
-		double enchantmentReduction = event.getDamage(DamageModifier.BASE)*enchantmentModifier;
+		double enchantmentReduction = event.getDamage(DamageModifier.BASE);
+		enchantmentReduction *= enchantmentModifier;
 		
 		/*
 		 * If true damage, remove all damage modification but the base damage.
