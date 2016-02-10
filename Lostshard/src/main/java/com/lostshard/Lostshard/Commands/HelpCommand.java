@@ -115,11 +115,8 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "Dungeon:" + ChatColor.GRAY + " Costs 10,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows hostile mobs to spawn in your plot.");
 			sender.sendMessage(ChatColor.GOLD + "/plot downgrade (upgrade)" + ChatColor.GRAY + " removes a plot upgrade.");
-	}
+		}
 	
-	@Command(aliases = { "" }, desc = "Help")
-	public void groups(CommandSender sender, @Optional int page) {
-		
 	}
 	
 	@Command(aliases = { "" }, desc = "Help")
