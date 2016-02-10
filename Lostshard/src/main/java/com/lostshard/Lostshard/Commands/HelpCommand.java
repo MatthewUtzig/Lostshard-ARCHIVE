@@ -9,7 +9,7 @@ import com.sk89q.intake.parametric.annotation.Range;
 
 public class HelpCommand {
 
-	@Command(aliases = { "" }, desc = "Shows all the help commands")
+	@Command(aliases = { "", "help" }, desc = "Shows all the help commands")
 	public void help(CommandSender sender) {
 		sender.sendMessage(ChatColor.GOLD + "All help commands:");
 		sender.sendMessage(ChatColor.YELLOW + "/help plot");
@@ -113,8 +113,10 @@ public class HelpCommand {
 	
 	@Command(aliases = { "clan", "clans" }, desc = "Tells you how to create and manage clans.")
 	public void clan(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 3) int page) {
+		
 		sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 		sender.sendMessage(ChatColor.GOLD + "Page " + page + " of 3, use \"/help clan (page)\"");
+		
 		switch(page) {
 		case 1:
 			sender.sendMessage(ChatColor.GOLD + "Info:" + ChatColor.GRAY + " Unlike parties, Clans are permanent player groups.");
@@ -144,15 +146,15 @@ public class HelpCommand {
 	
 	@Command(aliases = { "party", "parties", "partys" }, desc = "Tells you what parties are.")
 	public void party(CommandSender sender) {
-			sender.sendMessage(ChatColor.GOLD + "-Party Help-");
-			sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY + " Unlike clans, a party is a temporary player group. You can only be in one party at a time.");
-			sender.sendMessage(ChatColor.GRAY + "-You cannot damage party member; however, if both players toggle friendly fire with /ff they can damage each other.");
-			sender.sendMessage(ChatColor.GRAY + "-When you leave the game you are automatically removed from your party.");
-			sender.sendMessage(ChatColor.GOLD + "Commands:");
-			sender.sendMessage(ChatColor.YELLOW + "/party join (player name)" + ChatColor.GRAY + " - Join a player's party if you have been invited by that player.");
-			sender.sendMessage(ChatColor.YELLOW + "/party invite (player name)" + ChatColor.GRAY + " - Invites a player to your party. Anyone in a party can invite people.");
-			sender.sendMessage(ChatColor.YELLOW + "/party leave" + ChatColor.GRAY + " - Leaves your party.");
-			sender.sendMessage(ChatColor.YELLOW + "/party info" + ChatColor.GRAY + " - Displays who is in your current party.");
+		sender.sendMessage(ChatColor.GOLD + "-Party Help-");
+		sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY + " Unlike clans, a party is a temporary player group. You can only be in one party at a time.");
+		sender.sendMessage(ChatColor.GRAY + "-You cannot damage party member; however, if both players toggle friendly fire with /ff they can damage each other.");
+		sender.sendMessage(ChatColor.GRAY + "-When you leave the game you are automatically removed from your party.");
+		sender.sendMessage(ChatColor.GOLD + "Commands:");
+		sender.sendMessage(ChatColor.YELLOW + "/party join (player name)" + ChatColor.GRAY + " - Join a player's party if you have been invited by that player.");
+		sender.sendMessage(ChatColor.YELLOW + "/party invite (player name)" + ChatColor.GRAY + " - Invites a player to your party. Anyone in a party can invite people.");
+		sender.sendMessage(ChatColor.YELLOW + "/party leave" + ChatColor.GRAY + " - Leaves your party.");
+		sender.sendMessage(ChatColor.YELLOW + "/party info" + ChatColor.GRAY + " - Displays who is in your current party.");
 	}
 	
 	@Command(aliases = { "" }, desc = "Help")
