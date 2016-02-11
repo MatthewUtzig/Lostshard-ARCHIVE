@@ -56,7 +56,6 @@ public class ScrollGUI extends GUI {
 						return;
 					pPlayer1.getSpellbook().add(scroll1);
 					pPlayer1.getScrolls().remove(scroll1);
-					pPlayer1.update();
 
 					final GUI gui = new ScrollGUI(pPlayer1);
 
@@ -71,7 +70,6 @@ public class ScrollGUI extends GUI {
 						return;
 					if (ScrollGUI.this.sm.useScroll(player, scroll2)) {
 						pPlayer1.getScrolls().remove(scroll2);
-						pPlayer1.update();
 						ScrollGUI.this.forceClose();
 					}
 				}

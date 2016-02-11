@@ -35,6 +35,13 @@ public class Runebook implements Set<Rune>{
 	public boolean contains(Object o) {
 		return runes.contains(o);
 	}
+	
+	public boolean contains(String label) {
+		for(Rune r : runes)
+			if(r.getLabel().equalsIgnoreCase(label))
+				return true;
+		return false;
+	}
 
 	@Override
 	public Iterator<Rune> iterator() {

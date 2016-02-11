@@ -65,8 +65,6 @@ public class ArcherySkill extends Skill {
 
 		final int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
-		if (gain > 0)
-			pPlayer.update();
 	}
 
 	public ArcherySkill() {

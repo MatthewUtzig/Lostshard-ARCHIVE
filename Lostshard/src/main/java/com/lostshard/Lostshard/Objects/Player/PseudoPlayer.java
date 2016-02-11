@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +14,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -32,6 +36,7 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
+import com.lostshard.Lostshard.Objects.PlayerListSet;
 import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
@@ -62,6 +67,8 @@ public class PseudoPlayer {
 	@Column(name = "uuid", unique = true, nullable = false, updatable = false)
 	@Type(type = "uuid-char")
 	private UUID playerUUID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Wallet wallet = new Wallet();
 	private int murderCounts = 0;
 	private Bank bank = new Bank(this.wasSubscribed());
@@ -99,8 +106,6 @@ public class PseudoPlayer {
 	private Titles titels = new Titles();
 	private int currenttitle = -1;
 	@Transient
-	private boolean update = false;
-	@Transient
 	private boolean meditating = false;
 	@Transient
 	private boolean resting = false;
@@ -121,8 +126,8 @@ public class PseudoPlayer {
 	private boolean allowGui = true;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
-	private List<UUID> ignored = new ArrayList<UUID>();
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "ignored") )})
+	private PlayerListSet ignored = new PlayerListSet();
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@Enumerated(EnumType.STRING)
@@ -149,7 +154,6 @@ public class PseudoPlayer {
 		this.murderCounts += murderCounts;
 		if (this.scoreboard != null)
 			this.getScoreboard().updateMurderCounts(this.murderCounts);
-		this.update();
 	}
 
 	public void addRecentAttacker(RecentAttacker recentAttacker) {
@@ -264,7 +268,7 @@ public class PseudoPlayer {
 		return this.id;
 	}
 
-	public List<UUID> getIgnored() {
+	public PlayerListSet getIgnored() {
 		return this.ignored;
 	}
 
@@ -460,10 +464,6 @@ public class PseudoPlayer {
 		return this.subscribeDays > 0;
 	}
 
-	public boolean isUpdate() {
-		return this.update;
-	}
-
 	public void removeScroll(Scroll scroll) {
 		this.scrolls.remove(scroll);
 	}
@@ -484,7 +484,6 @@ public class PseudoPlayer {
 
 	public void setAllowGui(boolean allowGui) {
 		this.allowGui = allowGui;
-		this.update();
 	}
 
 	public void setBank(Bank bank) {
@@ -497,7 +496,6 @@ public class PseudoPlayer {
 
 	public void setChatChannel(ChatChannel chatChannel) {
 		this.chatChannel = chatChannel;
-		this.update();
 	}
 
 	public void setClaming(boolean isClaming) {
@@ -517,7 +515,6 @@ public class PseudoPlayer {
 			PlayerManager.getManager().getCriminals().add(playerUUID);
 		else if(this.criminal <= 0)
 			PlayerManager.getManager().getCriminals().remove(playerUUID);
-		this.update();
 	}
 
 	public void setCurrentBuild(Build build) {
@@ -528,12 +525,10 @@ public class PseudoPlayer {
 		this.currentBuild = Math.max(0, currentBuild);
 		if (this.scoreboard != null)
 			this.getScoreboard().updateBuild(this.currentBuild);
-		this.update();
 	}
 
 	public void setCurrentTitleId(int currenttitle) {
 		this.currenttitle = currenttitle;
-		this.update();
 	}
 
 	public void setDieLog(int dieLog) {
@@ -550,7 +545,6 @@ public class PseudoPlayer {
 
 	public void setFreeSkillPoints(int freeSkillPoints) {
 		this.freeSkillPoints = freeSkillPoints;
-		this.update();
 	}
 
 	public void setFriendlyFire(boolean friendlyFire) {
@@ -559,7 +553,6 @@ public class PseudoPlayer {
 
 	public void setGlobalChat(boolean global) {
 		this.globalChat = global;
-		this.update();
 	}
 
 	public void setGui(GUI gui) {
@@ -570,7 +563,7 @@ public class PseudoPlayer {
 		this.id = id;
 	}
 
-	public void setIgnored(List<UUID> ignored) {
+	public void setIgnored(PlayerListSet ignored) {
 		this.ignored = ignored;
 	}
 
@@ -600,7 +593,6 @@ public class PseudoPlayer {
 			PlayerManager.getManager().getCriminals().add(playerUUID);
 		else if(this.murderCounts <= 0)
 			PlayerManager.getManager().getCriminals().remove(playerUUID);
-		this.update();
 	}
 
 	public void setParty(Party party) {
@@ -609,12 +601,10 @@ public class PseudoPlayer {
 
 	public void setPlayerUUID(UUID playerUUID) {
 		this.playerUUID = playerUUID;
-		this.update();
 	}
 
 	public void setPlotCreatePoints(int plotCreatePoints) {
 		this.plotCreatePoints = plotCreatePoints;
-		this.update();
 	}
 
 	public void setPrivate(boolean isPrivate) {
@@ -623,7 +613,6 @@ public class PseudoPlayer {
 
 	public void setPrivateChat(boolean privateChat) {
 		this.privateChat = privateChat;
-		this.update();
 	}
 
 	public void setPromptedSpell(Spell promptedSpell) {
@@ -638,7 +627,6 @@ public class PseudoPlayer {
 		this.rank = Math.max(0, rank);
 		if (this.scoreboard != null)
 			this.getScoreboard().updateRank(this.rank);
-		this.update();
 	}
 
 	public void setRecentAttackers(ArrayList<RecentAttacker> recentAttackers) {
@@ -677,7 +665,6 @@ public class PseudoPlayer {
 
 	public void setSubscribeDays(int subscribe) {
 		this.subscribeDays = subscribe;
-		this.update();
 	}
 
 	public void setTestPlot(Plot testPlot) {
@@ -688,28 +675,18 @@ public class PseudoPlayer {
 		this.timer = timer;
 	}
 
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
 	public void setWasSubscribed(boolean wasSubscribed) {
 		this.wasSubscribed = wasSubscribed;
-		this.update();
 	}
 
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
 		if (this.scoreboard != null)
 			this.getScoreboard().updateMurderCounts(murderCounts);
-		this.update();
 	}
 
 	public void tick(double delta, long tick) {
 		this.timer.tick(delta, tick);
-	}
-
-	public void update() {
-		this.update = true;
 	}
 
 	public boolean wasSubscribed() {

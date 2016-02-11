@@ -63,7 +63,6 @@ public class RunebookGUI extends GUI {
 					final Rune rune = r;
 
 					runebook.remove(rune);
-					pPlayer1.update();
 					RunebookGUI.this.forceClose();
 					Output.positiveMessage(player, "You have removed the rune \""
 							+ ChatColor.stripColor(item1.getItemMeta().getDisplayName()) + "\" from your runebook.");

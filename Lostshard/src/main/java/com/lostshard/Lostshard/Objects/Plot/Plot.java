@@ -1,8 +1,7 @@
 package com.lostshard.Lostshard.Objects.Plot;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -10,6 +9,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,6 +17,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
@@ -141,6 +142,8 @@ public class Plot {
 	// Int's
 	private int id;
 	private int size = 10;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private final Wallet wallet = new Wallet();
 	private int salePrice = 0;
 
@@ -159,7 +162,7 @@ public class Plot {
 	private SavableLocation location;
 
 	// NPCS
-	private List<NPC> npcs = new ArrayList<NPC>();
+	private Set<NPC> npcs = new LinkedHashSet<NPC>();
 
 	private PlotCapturePoint capturepointData = null;
 
@@ -222,7 +225,7 @@ public class Plot {
 
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	public List<NPC> getNpcs() {
+	public Set<NPC> getNpcs() {
 		return this.npcs;
 	}
 
@@ -361,7 +364,7 @@ public class Plot {
 		this.name = name;
 	}
 
-	public void setNpcs(List<NPC> npcs) {
+	public void setNpcs(Set<NPC> npcs) {
 		this.npcs = npcs;
 	}
 

@@ -73,7 +73,7 @@ public enum Scroll {
 
 	public static Scroll getByString(String string) {
 		for (final Scroll st : values())
-			if (st.name().equalsIgnoreCase(string.trim().replace(" ", "")))
+			if (st.getName().equalsIgnoreCase(string))
 				return st;
 		return null;
 	}

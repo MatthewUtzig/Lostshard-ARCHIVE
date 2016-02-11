@@ -196,281 +196,278 @@ public class SurvivalismSkill extends Skill {
 		SurvivalismSkill.camps = camps;
 	}
 
-	public static void track(Player player, String[] args) {
+	public static void track(Player player, String arg) {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		final int curSkill = pPlayer.getCurrentBuild().getSurvivalism().getLvl();
-		if (args.length == 1) {
-			if (pPlayer.getStamina() < TRACK_STAMINA_COST) {
-				Output.simpleError(player, "Not enough stamina - Tracking requires " + TRACK_STAMINA_COST + ".");
-				return;
-			}
+		if (pPlayer.getStamina() < TRACK_STAMINA_COST) {
+			Output.simpleError(player, "Not enough stamina - Tracking requires " + TRACK_STAMINA_COST + ".");
+			return;
+		}
 
-			final String targetName = args[0];
+		final String targetName = arg;
 
-			if (targetName.equalsIgnoreCase(player.getName())) {
-				Output.simpleError(player, "You can't track yourself.");
-				return;
-			}
+		if (targetName.equalsIgnoreCase(player.getName())) {
+			Output.simpleError(player, "You can't track yourself.");
+			return;
+		}
 
-			Player targetPlayer = Bukkit.getPlayer(targetName);
-			if (targetPlayer != null && Lostshard.isVanished(targetPlayer) && !player.isOp())
-				targetPlayer = null;
+		Player targetPlayer = Bukkit.getPlayer(targetName);
+		if (targetPlayer != null && Lostshard.isVanished(targetPlayer) && !player.isOp())
+			targetPlayer = null;
 
-			int modCurSkill = curSkill;
+		int modCurSkill = curSkill;
 
-			LivingEntity foundLivingEntity = null;
-			if (targetPlayer == null) {
-				// not a player
-				boolean trackZombie = false;
-				boolean trackSkeleton = false;
-				boolean trackCreeper = false;
-				boolean trackSpider = false;
-				boolean trackGhast = false;
-				boolean trackSheep = false;
-				boolean trackSquid = false;
-				boolean trackChicken = false;
-				boolean trackSlime = false;
-				boolean trackPig = false;
-				boolean trackCow = false;
-				boolean trackWolf = false;
-				boolean trackOcelot = false;
-				boolean trackBlaze = false;
+		LivingEntity foundLivingEntity = null;
+		if (targetPlayer == null) {
+			// not a player
+			boolean trackZombie = false;
+			boolean trackSkeleton = false;
+			boolean trackCreeper = false;
+			boolean trackSpider = false;
+			boolean trackGhast = false;
+			boolean trackSheep = false;
+			boolean trackSquid = false;
+			boolean trackChicken = false;
+			boolean trackSlime = false;
+			boolean trackPig = false;
+			boolean trackCow = false;
+			boolean trackWolf = false;
+			boolean trackOcelot = false;
+			boolean trackBlaze = false;
 
-				if (targetName.equalsIgnoreCase("zombie"))
-					trackZombie = true;
-				if (targetName.equalsIgnoreCase("skeleton"))
-					trackSkeleton = true;
-				if (targetName.equalsIgnoreCase("creeper"))
-					trackCreeper = true;
-				if (targetName.equalsIgnoreCase("spider"))
-					trackSpider = true;
-				if (targetName.equalsIgnoreCase("ghast"))
-					trackGhast = true;
-				if (targetName.equalsIgnoreCase("sheep"))
-					trackSheep = true;
-				if (targetName.equalsIgnoreCase("squid"))
-					trackSquid = true;
-				if (targetName.equalsIgnoreCase("chicken"))
-					trackChicken = true;
-				if (targetName.equalsIgnoreCase("slime"))
-					trackSlime = true;
-				if (targetName.equalsIgnoreCase("pig"))
-					trackPig = true;
-				if (targetName.equalsIgnoreCase("cow"))
-					trackCow = true;
-				if (targetName.equalsIgnoreCase("wolf"))
-					trackWolf = true;
+			if (targetName.equalsIgnoreCase("zombie"))
+				trackZombie = true;
+			if (targetName.equalsIgnoreCase("skeleton"))
+				trackSkeleton = true;
+			if (targetName.equalsIgnoreCase("creeper"))
+				trackCreeper = true;
+			if (targetName.equalsIgnoreCase("spider"))
+				trackSpider = true;
+			if (targetName.equalsIgnoreCase("ghast"))
+				trackGhast = true;
+			if (targetName.equalsIgnoreCase("sheep"))
+				trackSheep = true;
+			if (targetName.equalsIgnoreCase("squid"))
+				trackSquid = true;
+			if (targetName.equalsIgnoreCase("chicken"))
+				trackChicken = true;
+			if (targetName.equalsIgnoreCase("slime"))
+				trackSlime = true;
+			if (targetName.equalsIgnoreCase("pig"))
+				trackPig = true;
+			if (targetName.equalsIgnoreCase("cow"))
+				trackCow = true;
+			if (targetName.equalsIgnoreCase("wolf"))
+				trackWolf = true;
 
-				if (targetName.equalsIgnoreCase("ocelot"))
-					trackOcelot = true;
-				if (targetName.equalsIgnoreCase("blaze"))
-					trackBlaze = true;
+			if (targetName.equalsIgnoreCase("ocelot"))
+				trackOcelot = true;
+			if (targetName.equalsIgnoreCase("blaze"))
+				trackBlaze = true;
 
-				final ArrayList<LivingEntity> lE = new ArrayList<LivingEntity>();
-				final List<LivingEntity> livingEntities = player.getWorld().getLivingEntities();
-				for (final LivingEntity livingEntity : livingEntities) {
+			final ArrayList<LivingEntity> lE = new ArrayList<LivingEntity>();
+			final List<LivingEntity> livingEntities = player.getWorld().getLivingEntities();
+			for (final LivingEntity livingEntity : livingEntities) {
+				if (trackSquid)
+					if (livingEntity instanceof Squid)
+						lE.add(livingEntity);
+				if (trackWolf)
+					if (livingEntity instanceof Wolf)
+						lE.add(livingEntity);
+				if (livingEntity instanceof Animals) {
+					if (trackSheep)
+						if (livingEntity instanceof Sheep)
+							lE.add(livingEntity);
 					if (trackSquid)
 						if (livingEntity instanceof Squid)
 							lE.add(livingEntity);
-					if (trackWolf)
-						if (livingEntity instanceof Wolf)
+					if (trackChicken)
+						if (livingEntity instanceof Chicken)
 							lE.add(livingEntity);
-					if (livingEntity instanceof Animals) {
-						if (trackSheep)
-							if (livingEntity instanceof Sheep)
-								lE.add(livingEntity);
-						if (trackSquid)
-							if (livingEntity instanceof Squid)
-								lE.add(livingEntity);
-						if (trackChicken)
-							if (livingEntity instanceof Chicken)
-								lE.add(livingEntity);
-						if (trackPig)
-							if (livingEntity instanceof Pig)
-								lE.add(livingEntity);
-						if (trackCow)
-							if (livingEntity instanceof Cow)
-								lE.add(livingEntity);
-						if (trackOcelot)
-							if (livingEntity instanceof Ocelot)
-								lE.add(livingEntity);
-					} else if (livingEntity instanceof Monster) {
-						if (trackZombie)
-							if (livingEntity instanceof Zombie)
-								lE.add(livingEntity);
-						if (trackSkeleton)
-							if (livingEntity instanceof Skeleton)
-								lE.add(livingEntity);
-						if (trackCreeper)
-							if (livingEntity instanceof Creeper)
-								lE.add(livingEntity);
-						if (trackSpider)
-							if (livingEntity instanceof Spider)
-								lE.add(livingEntity);
-						if (trackGhast)
-							if (livingEntity instanceof Ghast)
-								lE.add(livingEntity);
-						if (trackSlime)
-							if (livingEntity instanceof Slime)
-								lE.add(livingEntity);
-						if (trackBlaze)
-							if (livingEntity instanceof Blaze)
-								lE.add(livingEntity);
-					}
+					if (trackPig)
+						if (livingEntity instanceof Pig)
+							lE.add(livingEntity);
+					if (trackCow)
+						if (livingEntity instanceof Cow)
+							lE.add(livingEntity);
+					if (trackOcelot)
+						if (livingEntity instanceof Ocelot)
+							lE.add(livingEntity);
+				} else if (livingEntity instanceof Monster) {
+					if (trackZombie)
+						if (livingEntity instanceof Zombie)
+							lE.add(livingEntity);
+					if (trackSkeleton)
+						if (livingEntity instanceof Skeleton)
+							lE.add(livingEntity);
+					if (trackCreeper)
+						if (livingEntity instanceof Creeper)
+							lE.add(livingEntity);
+					if (trackSpider)
+						if (livingEntity instanceof Spider)
+							lE.add(livingEntity);
+					if (trackGhast)
+						if (livingEntity instanceof Ghast)
+							lE.add(livingEntity);
+					if (trackSlime)
+						if (livingEntity instanceof Slime)
+							lE.add(livingEntity);
+					if (trackBlaze)
+						if (livingEntity instanceof Blaze)
+							lE.add(livingEntity);
 				}
-
-				if (lE.size() > 0) {
-					if (lE.get(0) instanceof Monster)
-						if (curSkill < 250) {
-							Output.simpleError(player, "You must have 25 Survivalism to track monsters.");
-							return;
-						}
-					LivingEntity closestEntity = lE.get(0);
-					double closestDist = Utils.fastDistance(closestEntity.getLocation(), player.getLocation());
-					for (final LivingEntity livingEntity : lE) {
-						final double dist = Utils.fastDistance(livingEntity.getLocation(), player.getLocation());
-						if (dist < closestDist) {
-							closestDist = dist;
-							closestEntity = livingEntity;
-						}
-					}
-					foundLivingEntity = closestEntity;
-				} else {
-					Output.simpleError(player, "can't find " + targetName + ".");
-					return;
-				}
-			} else {
-				final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
-				final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
-
-				if (curSkill < 500) {
-					Output.simpleError(player, "You must have 50 Survivalism to track a player.");
-					return;
-				}
-				foundLivingEntity = targetPlayer;
-				// if(false) {
-				// Output.simpleError(player,
-				// "That player is too new, can't track them.");
-				// return;
-				// }
-				modCurSkill -= defSkill;
 			}
 
-			if (foundLivingEntity != null) {
-				double chanceToCast;
-
-				if (foundLivingEntity instanceof Animals)
-					chanceToCast = (double) modCurSkill / 300;
-				else if (foundLivingEntity instanceof Monster)
-					chanceToCast = (double) modCurSkill / 600;
-				else if (foundLivingEntity instanceof Player)
-					chanceToCast = (double) modCurSkill / 1000;
-				else
-					chanceToCast = 0;
-				chanceToCast *= .70;
-				chanceToCast += .30;
-
-				final double rand = Math.random();
-				if (rand > chanceToCast) {
-					if (foundLivingEntity instanceof Player) {
-						Output.simpleError(player,
-								"You see signs of " + targetName + " but you fail to follow the trail.");
-						final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
-						final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
-						if (defSkill < 1000 && Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 250))
-							targetPlayer.sendMessage(ChatColor.GRAY + "The hairs on the back of your neck stand up...");
-					} else
-						Output.simpleError(player,
-								"You see signs of a " + targetName + " but you fail to follow the trail.");
-					pPlayer.setStamina(pPlayer.getStamina() - TRACK_STAMINA_COST);
-					if (chanceToCast < 1.0) {
-						final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
-						Output.gainSkill(player, "Survivalism", gain, curSkill);
+			if (lE.size() > 0) {
+				if (lE.get(0) instanceof Monster)
+					if (curSkill < 250) {
+						Output.simpleError(player, "You must have 25 Survivalism to track monsters.");
+						return;
 					}
-					return;
+				LivingEntity closestEntity = lE.get(0);
+				double closestDist = Utils.fastDistance(closestEntity.getLocation(), player.getLocation());
+				for (final LivingEntity livingEntity : lE) {
+					final double dist = Utils.fastDistance(livingEntity.getLocation(), player.getLocation());
+					if (dist < closestDist) {
+						closestDist = dist;
+						closestEntity = livingEntity;
+					}
 				}
+				foundLivingEntity = closestEntity;
+			} else {
+				Output.simpleError(player, "can't find " + targetName + ".");
+				return;
+			}
+		} else {
+			final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
+			final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
 
-				if (foundLivingEntity.getWorld().getName().equalsIgnoreCase(player.getWorld().getName())) {
-					if (foundLivingEntity instanceof Player) {
-						final Location targetLoc = targetPlayer.getLocation();
-						final Location playerLoc = player.getLocation();
-						final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
-								targetLoc.getZ() - playerLoc.getZ());
-						double angleDegrees = Math.toDegrees(angle);
-						if (angleDegrees < 0)
-							angleDegrees += 360;
-						final Location locAt = player.getLocation();
-						if (angleDegrees >= 315 || angleDegrees <= 45) {
-							locAt.setZ(locAt.getZ() + 500);
-							Output.positiveMessage(player, "You see tracks leading off to the South");
-						} else if (angleDegrees >= 45 && angleDegrees <= 135) {
-							locAt.setX(locAt.getX() + 500);
-							Output.positiveMessage(player, "You see tracks leading off to the East...");
-						} else if (angleDegrees >= 135 && angleDegrees <= 225) {
-							locAt.setZ(locAt.getZ() - 500);
-							Output.positiveMessage(player, "You see tracks leading off to the North");
-						} else if (angleDegrees >= 225 && angleDegrees <= 315) {
-							locAt.setX(locAt.getX() - 500);
-							Output.positiveMessage(player, "You see tracks leading off to the West...");
-						} else
-							System.out.println("Tracking Angle Problem");
+			if (curSkill < 500) {
+				Output.simpleError(player, "You must have 50 Survivalism to track a player.");
+				return;
+			}
+			foundLivingEntity = targetPlayer;
+			// if(false) {
+			// Output.simpleError(player,
+			// "That player is too new, can't track them.");
+			// return;
+			// }
+			modCurSkill -= defSkill;
+		}
 
-						if (Utils.isWithin(playerLoc, targetLoc, 200))
-							Output.positiveMessage(player, "The tracks are very fresh.");
-						else if (Utils.isWithin(playerLoc, targetLoc, 500))
-							Output.positiveMessage(player, "The tracks are somewhat fresh.");
-						else if (Utils.isWithin(playerLoc, targetLoc, 1000))
-							Output.positiveMessage(player, "The tracks aren't very fresh.");
-						else
-							Output.positiveMessage(player, "The tracks are very faint.");
-					} else {
-						final Location targetLoc = foundLivingEntity.getLocation();
-						final Location playerLoc = player.getLocation();
-						final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
-								targetLoc.getZ() - playerLoc.getZ());
-						double angleDegrees = Math.toDegrees(angle);
-						if (angleDegrees < 0)
-							angleDegrees += 360;
-						final Location locAt = player.getLocation();
-						if (angleDegrees >= 315 || angleDegrees <= 45) {
-							locAt.setZ(locAt.getZ() + 500);
-							Output.positiveMessage(player, "You see tracks leading off to the South...");
-						} else if (angleDegrees >= 45 && angleDegrees <= 135) {
-							locAt.setX(locAt.getX() + 500);
-							Output.positiveMessage(player, "You see tracks leading off to the East...");
-						} else if (angleDegrees >= 135 && angleDegrees <= 225) {
-							locAt.setZ(locAt.getZ() - 500);
-							Output.positiveMessage(player, "You see tracks leading off to the North...");
-						} else if (angleDegrees >= 225 && angleDegrees <= 315) {
-							locAt.setX(locAt.getX() - 500);
-							Output.positiveMessage(player, "You see tracks leading off to the West...");
-						} else
-							System.out.println("Tracking Angle Problem");
+		if (foundLivingEntity != null) {
+			double chanceToCast;
 
-						if (Utils.isWithin(playerLoc, targetLoc, 200))
-							Output.positiveMessage(player, "The tracks are very fresh.");
-						else if (Utils.isWithin(playerLoc, targetLoc, 500))
-							Output.positiveMessage(player, "The tracks are somewhat fresh.");
-						else if (Utils.isWithin(playerLoc, targetLoc, 1000))
-							Output.positiveMessage(player, "The tracks aren't very fresh.");
-						else
-							Output.positiveMessage(player, "The tracks are very faint.");
-					}
-				} else if (foundLivingEntity instanceof Player)
+			if (foundLivingEntity instanceof Animals)
+				chanceToCast = (double) modCurSkill / 300;
+			else if (foundLivingEntity instanceof Monster)
+				chanceToCast = (double) modCurSkill / 600;
+			else if (foundLivingEntity instanceof Player)
+				chanceToCast = (double) modCurSkill / 1000;
+			else
+				chanceToCast = 0;
+			chanceToCast *= .70;
+			chanceToCast += .30;
+
+			final double rand = Math.random();
+			if (rand > chanceToCast) {
+				if (foundLivingEntity instanceof Player) {
 					Output.simpleError(player,
-							"You see signs of " + targetName + " but can't seem to follow the trail...");
-				else
+							"You see signs of " + targetName + " but you fail to follow the trail.");
+					final PseudoPlayer pseudoPlayerDefender = pm.getPlayer(targetPlayer);
+					final int defSkill = pseudoPlayerDefender.getCurrentBuild().getSurvivalism().getLvl();
+					if (defSkill < 1000 && Utils.isWithin(player.getLocation(), targetPlayer.getLocation(), 250))
+						targetPlayer.sendMessage(ChatColor.GRAY + "The hairs on the back of your neck stand up...");
+				} else
 					Output.simpleError(player,
-							"You see signs of a " + targetName + " but can't seem to follow the trail...");
-
+							"You see signs of a " + targetName + " but you fail to follow the trail.");
 				pPlayer.setStamina(pPlayer.getStamina() - TRACK_STAMINA_COST);
 				if (chanceToCast < 1.0) {
 					final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
 					Output.gainSkill(player, "Survivalism", gain, curSkill);
 				}
+				return;
 			}
-		} else
-			Output.simpleError(player, "Use \"/track (player name)\"");
+
+			if (foundLivingEntity.getWorld().getName().equalsIgnoreCase(player.getWorld().getName())) {
+				if (foundLivingEntity instanceof Player) {
+					final Location targetLoc = targetPlayer.getLocation();
+					final Location playerLoc = player.getLocation();
+					final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
+							targetLoc.getZ() - playerLoc.getZ());
+					double angleDegrees = Math.toDegrees(angle);
+					if (angleDegrees < 0)
+						angleDegrees += 360;
+					final Location locAt = player.getLocation();
+					if (angleDegrees >= 315 || angleDegrees <= 45) {
+						locAt.setZ(locAt.getZ() + 500);
+						Output.positiveMessage(player, "You see tracks leading off to the South");
+					} else if (angleDegrees >= 45 && angleDegrees <= 135) {
+						locAt.setX(locAt.getX() + 500);
+						Output.positiveMessage(player, "You see tracks leading off to the East...");
+					} else if (angleDegrees >= 135 && angleDegrees <= 225) {
+						locAt.setZ(locAt.getZ() - 500);
+						Output.positiveMessage(player, "You see tracks leading off to the North");
+					} else if (angleDegrees >= 225 && angleDegrees <= 315) {
+						locAt.setX(locAt.getX() - 500);
+						Output.positiveMessage(player, "You see tracks leading off to the West...");
+					} else
+						System.out.println("Tracking Angle Problem");
+
+					if (Utils.isWithin(playerLoc, targetLoc, 200))
+						Output.positiveMessage(player, "The tracks are very fresh.");
+					else if (Utils.isWithin(playerLoc, targetLoc, 500))
+						Output.positiveMessage(player, "The tracks are somewhat fresh.");
+					else if (Utils.isWithin(playerLoc, targetLoc, 1000))
+						Output.positiveMessage(player, "The tracks aren't very fresh.");
+					else
+						Output.positiveMessage(player, "The tracks are very faint.");
+				} else {
+					final Location targetLoc = foundLivingEntity.getLocation();
+					final Location playerLoc = player.getLocation();
+					final double angle = Math.atan2(targetLoc.getX() - playerLoc.getX(),
+							targetLoc.getZ() - playerLoc.getZ());
+					double angleDegrees = Math.toDegrees(angle);
+					if (angleDegrees < 0)
+						angleDegrees += 360;
+					final Location locAt = player.getLocation();
+					if (angleDegrees >= 315 || angleDegrees <= 45) {
+						locAt.setZ(locAt.getZ() + 500);
+						Output.positiveMessage(player, "You see tracks leading off to the South...");
+					} else if (angleDegrees >= 45 && angleDegrees <= 135) {
+						locAt.setX(locAt.getX() + 500);
+						Output.positiveMessage(player, "You see tracks leading off to the East...");
+					} else if (angleDegrees >= 135 && angleDegrees <= 225) {
+						locAt.setZ(locAt.getZ() - 500);
+						Output.positiveMessage(player, "You see tracks leading off to the North...");
+					} else if (angleDegrees >= 225 && angleDegrees <= 315) {
+						locAt.setX(locAt.getX() - 500);
+						Output.positiveMessage(player, "You see tracks leading off to the West...");
+					} else
+						System.out.println("Tracking Angle Problem");
+
+					if (Utils.isWithin(playerLoc, targetLoc, 200))
+						Output.positiveMessage(player, "The tracks are very fresh.");
+					else if (Utils.isWithin(playerLoc, targetLoc, 500))
+						Output.positiveMessage(player, "The tracks are somewhat fresh.");
+					else if (Utils.isWithin(playerLoc, targetLoc, 1000))
+						Output.positiveMessage(player, "The tracks aren't very fresh.");
+					else
+						Output.positiveMessage(player, "The tracks are very faint.");
+				}
+			} else if (foundLivingEntity instanceof Player)
+				Output.simpleError(player,
+						"You see signs of " + targetName + " but can't seem to follow the trail...");
+			else
+				Output.simpleError(player,
+						"You see signs of a " + targetName + " but can't seem to follow the trail...");
+
+			pPlayer.setStamina(pPlayer.getStamina() - TRACK_STAMINA_COST);
+			if (chanceToCast < 1.0) {
+				final int gain = pPlayer.getCurrentBuild().getSurvivalism().skillGain(pPlayer);
+				Output.gainSkill(player, "Survivalism", gain, curSkill);
+			}
+		}
 	}
 
 	public SurvivalismSkill() {
