@@ -164,7 +164,7 @@ public class Output {
 		
 	}
 
-	public static void outputScrolls(Player player, String[] args) {
+	public static void outputScrolls(Player player) {
 		final PseudoPlayer pseudoPlayer = pm.getPlayer(player);
 		if (pseudoPlayer.isAllowGui()) {
 			final GUI gui = new ScrollGUI(pseudoPlayer);

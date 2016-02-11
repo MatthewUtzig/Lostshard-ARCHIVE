@@ -358,8 +358,6 @@ public class BlackSmithySkill extends Skill {
 		if (cangain) {
 			final int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Blacksmithy", gain, skill.getLvl());
-			if (gain > 0)
-				pPlayer.update();
 		}
 	}
 

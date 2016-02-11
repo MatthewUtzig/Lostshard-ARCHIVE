@@ -33,7 +33,6 @@ public class ScrollHandler {
 			pPlayer.addScroll(scroll);
 			Output.positiveMessage(player, "The " + type.name().toLowerCase().replace("_", " ")
 					+ " dropped a scroll of " + scroll.getName() + ".");
-			pPlayer.update();
 		}
 	}
 }

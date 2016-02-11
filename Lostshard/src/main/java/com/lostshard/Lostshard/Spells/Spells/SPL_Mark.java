@@ -40,7 +40,6 @@ public class SPL_Mark extends Spell {
 				if (!foundMatching) {
 					final Rune newRune = new Rune(this.markLoc, this.getResponse(), 0);
 					runebook.add(newRune);
-					pseudoPlayer.update();
 					Output.positiveMessage(player, "You have marked a rune for " + this.getResponse() + ".");
 				} else
 					Output.simpleError(player, "You already have a rune with that name, re-cast the spell.");

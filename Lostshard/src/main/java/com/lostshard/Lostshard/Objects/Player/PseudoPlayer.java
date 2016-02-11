@@ -99,8 +99,6 @@ public class PseudoPlayer {
 	private Titles titels = new Titles();
 	private int currenttitle = -1;
 	@Transient
-	private boolean update = false;
-	@Transient
 	private boolean meditating = false;
 	@Transient
 	private boolean resting = false;
@@ -149,7 +147,6 @@ public class PseudoPlayer {
 		this.murderCounts += murderCounts;
 		if (this.scoreboard != null)
 			this.getScoreboard().updateMurderCounts(this.murderCounts);
-		this.update();
 	}
 
 	public void addRecentAttacker(RecentAttacker recentAttacker) {
@@ -460,10 +457,6 @@ public class PseudoPlayer {
 		return this.subscribeDays > 0;
 	}
 
-	public boolean isUpdate() {
-		return this.update;
-	}
-
 	public void removeScroll(Scroll scroll) {
 		this.scrolls.remove(scroll);
 	}
@@ -484,7 +477,6 @@ public class PseudoPlayer {
 
 	public void setAllowGui(boolean allowGui) {
 		this.allowGui = allowGui;
-		this.update();
 	}
 
 	public void setBank(Bank bank) {
@@ -497,7 +489,6 @@ public class PseudoPlayer {
 
 	public void setChatChannel(ChatChannel chatChannel) {
 		this.chatChannel = chatChannel;
-		this.update();
 	}
 
 	public void setClaming(boolean isClaming) {
@@ -517,7 +508,6 @@ public class PseudoPlayer {
 			PlayerManager.getManager().getCriminals().add(playerUUID);
 		else if(this.criminal <= 0)
 			PlayerManager.getManager().getCriminals().remove(playerUUID);
-		this.update();
 	}
 
 	public void setCurrentBuild(Build build) {
@@ -528,12 +518,10 @@ public class PseudoPlayer {
 		this.currentBuild = Math.max(0, currentBuild);
 		if (this.scoreboard != null)
 			this.getScoreboard().updateBuild(this.currentBuild);
-		this.update();
 	}
 
 	public void setCurrentTitleId(int currenttitle) {
 		this.currenttitle = currenttitle;
-		this.update();
 	}
 
 	public void setDieLog(int dieLog) {
@@ -550,7 +538,6 @@ public class PseudoPlayer {
 
 	public void setFreeSkillPoints(int freeSkillPoints) {
 		this.freeSkillPoints = freeSkillPoints;
-		this.update();
 	}
 
 	public void setFriendlyFire(boolean friendlyFire) {
@@ -559,7 +546,6 @@ public class PseudoPlayer {
 
 	public void setGlobalChat(boolean global) {
 		this.globalChat = global;
-		this.update();
 	}
 
 	public void setGui(GUI gui) {
@@ -600,7 +586,6 @@ public class PseudoPlayer {
 			PlayerManager.getManager().getCriminals().add(playerUUID);
 		else if(this.murderCounts <= 0)
 			PlayerManager.getManager().getCriminals().remove(playerUUID);
-		this.update();
 	}
 
 	public void setParty(Party party) {
@@ -609,12 +594,10 @@ public class PseudoPlayer {
 
 	public void setPlayerUUID(UUID playerUUID) {
 		this.playerUUID = playerUUID;
-		this.update();
 	}
 
 	public void setPlotCreatePoints(int plotCreatePoints) {
 		this.plotCreatePoints = plotCreatePoints;
-		this.update();
 	}
 
 	public void setPrivate(boolean isPrivate) {
@@ -623,7 +606,6 @@ public class PseudoPlayer {
 
 	public void setPrivateChat(boolean privateChat) {
 		this.privateChat = privateChat;
-		this.update();
 	}
 
 	public void setPromptedSpell(Spell promptedSpell) {
@@ -638,7 +620,6 @@ public class PseudoPlayer {
 		this.rank = Math.max(0, rank);
 		if (this.scoreboard != null)
 			this.getScoreboard().updateRank(this.rank);
-		this.update();
 	}
 
 	public void setRecentAttackers(ArrayList<RecentAttacker> recentAttackers) {
@@ -677,7 +658,6 @@ public class PseudoPlayer {
 
 	public void setSubscribeDays(int subscribe) {
 		this.subscribeDays = subscribe;
-		this.update();
 	}
 
 	public void setTestPlot(Plot testPlot) {
@@ -688,28 +668,18 @@ public class PseudoPlayer {
 		this.timer = timer;
 	}
 
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
 	public void setWasSubscribed(boolean wasSubscribed) {
 		this.wasSubscribed = wasSubscribed;
-		this.update();
 	}
 
 	public void subtractMurderCounts(int murderCounts) {
 		this.murderCounts -= murderCounts;
 		if (this.scoreboard != null)
 			this.getScoreboard().updateMurderCounts(murderCounts);
-		this.update();
 	}
 
 	public void tick(double delta, long tick) {
 		this.timer.tick(delta, tick);
-	}
-
-	public void update() {
-		this.update = true;
 	}
 
 	public boolean wasSubscribed() {

@@ -23,7 +23,9 @@ import com.lostshard.Lostshard.Commands.PartyCommands;
 import com.lostshard.Lostshard.Commands.PlotCommand;
 import com.lostshard.Lostshard.Commands.PlotNPCCommand;
 import com.lostshard.Lostshard.Commands.ReloadCommand;
-import com.lostshard.Lostshard.Commands.SkillCommand;
+import com.lostshard.Lostshard.Commands.RuneBookCommand;
+import com.lostshard.Lostshard.Commands.ScrollsCommand;
+import com.lostshard.Lostshard.Commands.SkillsCommand;
 import com.lostshard.Lostshard.Commands.StoreCommand;
 import com.lostshard.Lostshard.Commands.SurvivalismCommand;
 import com.lostshard.Lostshard.Commands.TamingCommand;
@@ -83,8 +85,17 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
         .registerMethods(new FishingCommand())
         .registerMethods(new BlackSmithyCommand())
         .registerMethods(new StoreCommand())
-        .registerMethods(new SkillCommand())
+        .registerMethods(new SkillsCommand())
         .registerMethods(new MageryCommand())
+        .group("runebook")
+        	.registerMethods(new RuneBookCommand())
+        	.parent()
+        .group("spellbook")
+        	.registerMethods(new SkillsCommand())
+        	.parent()
+        .group("scrolls")
+        	.registerMethods(new ScrollsCommand())
+        	.parent()
         .group("titles")
         	.registerMethods(new TitleCommand())
         	.parent()

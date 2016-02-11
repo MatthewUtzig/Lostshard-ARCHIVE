@@ -33,7 +33,6 @@ public class UtilsCommand {
 		if (pPlayer.getBuilds().size() < id + 1) {
 			final Build build = new Build();
 			pPlayer.getBuilds().add(build);
-			pPlayer.update();
 		}
 		pPlayer.setCurrentBuildId(id);
 		Output.positiveMessage(player, "You have changed build to " + id + ".");

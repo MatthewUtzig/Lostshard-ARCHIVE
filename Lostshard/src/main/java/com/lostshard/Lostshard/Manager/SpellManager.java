@@ -365,7 +365,6 @@ public class SpellManager {
 				// chant the spell words so people know what you are doing
 				this.chant(player, spell.getSpellWords());
 				pseudoPlayer.setMana(pseudoPlayer.getMana() - spell.getManaCost());
-				pseudoPlayer.update();
 
 				// determine if the spell is delayed
 				final int castingDelay = spell.getCastingDelay();

@@ -50,9 +50,6 @@ public class MiningSkill extends Skill {
 			final int gain = pPlayer.getCurrentBuild().getMining().skillGain(pPlayer);
 			Output.gainSkill(player, "Mining", gain, pPlayer.getCurrentBuild().getMining().getLvl());
 
-			if (gain > 0)
-				pPlayer.update();
-
 			final double chanceOfDrop = miningdropprob * percent;
 
 			if (Math.random() < chanceOfDrop) {

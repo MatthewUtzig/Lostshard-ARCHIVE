@@ -138,8 +138,6 @@ public class LumberjackingSkill extends Skill {
 			skill.setBaseProb(.2);
 		final int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(player, "Lumberjacking", gain, skill.getLvl());
-		if (gain > 0)
-			pPlayer.update();
 	}
 
 	public LumberjackingSkill() {

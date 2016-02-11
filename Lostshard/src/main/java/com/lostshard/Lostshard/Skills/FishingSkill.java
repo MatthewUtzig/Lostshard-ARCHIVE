@@ -52,7 +52,6 @@ public class FishingSkill extends Skill {
 						placedBoat = true;
 						final int gain = skill.skillGain(pPlayer);
 						Output.gainSkill(player, "Fishing", gain, skill.getLvl());
-						pPlayer.update();
 						player.getWorld().spawn(new Location(b.getWorld(), b.getX() + .5, b.getY() + .5, b.getZ() + .5),
 								Boat.class);
 						break;
@@ -251,8 +250,6 @@ public class FishingSkill extends Skill {
 				player.getLocation().getWorld().dropItemNaturally(player.getLocation(), getRandomFish(lvl));
 			final int gain = skill.skillGain(pPlayer);
 			Output.gainSkill(player, "Fishing", gain, skill.getLvl());
-			if (gain > 0)
-				pPlayer.update();
 		}
 	}
 
