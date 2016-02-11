@@ -13,12 +13,12 @@ public class HelpCommand {
 	public void help(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 1) int page) {
 		if (page == 1) {
 			sender.sendMessage(ChatColor.GOLD + "All help commands:");
-			sender.sendMessage(ChatColor.GOLD + "/help plot");
-			sender.sendMessage(ChatColor.GOLD + "/help clan");
-			sender.sendMessage(ChatColor.GOLD + "/help party");
-			sender.sendMessage(ChatColor.GOLD + "/help skills");
-			sender.sendMessage(ChatColor.GOLD + "/help magery");
-			sender.sendMessage(ChatColor.GOLD + "/help karma");
+			sender.sendMessage(ChatColor.YELLOW + "/help plot");
+			sender.sendMessage(ChatColor.YELLOW + "/help clan");
+			sender.sendMessage(ChatColor.YELLOW + "/help party");
+			sender.sendMessage(ChatColor.YELLOW + "/help skills");
+			sender.sendMessage(ChatColor.YELLOW + "/help magery");
+			sender.sendMessage(ChatColor.YELLOW + "/help karma");
 			
 		}
 	}
@@ -43,47 +43,48 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 2 of 8, use \"/help land (page)\"");	
 			sender.sendMessage(ChatColor.GOLD + "Commands:");
-			sender.sendMessage(ChatColor.GRAY + "/plot create (plot name)" + ChatColor.GRAY + " - This creates a plot");
-			sender.sendMessage(ChatColor.GRAY + "-This costs 1000 gold and 1 diamond for the first plot.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot create (plot name)" + ChatColor.GRAY + " - This creates a plot");
+			sender.sendMessage(ChatColor.GRAY + "-This costs 1000 YELLOW and 1 diamond for the first plot.");
 			sender.sendMessage(ChatColor.GRAY + "-The price inceases for the more plots you create.");			
 			sender.sendMessage(ChatColor.GRAY + "-The plot starts with a 10 block radius, which can be increased later.");
-			sender.sendMessage(ChatColor.GRAY + "/plot survey" + ChatColor.GRAY + " - tells you how large you could make a plot in a given area");
+			sender.sendMessage(ChatColor.YELLOW + "/plot survey" + ChatColor.GRAY + " - tells you how large you could make a plot in a given area");
 			sender.sendMessage(ChatColor.GRAY + "-You must be outside of a plot when executing this command.");
-			sender.sendMessage(ChatColor.GRAY + "/plot info" + ChatColor.GRAY + " - gives info about a plot");
+			sender.sendMessage(ChatColor.YELLOW + "/plot info" + ChatColor.GRAY + " - gives info about a plot");
 		
 		} else if (page == 3) {
 			
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 3 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Owner Commands:");
-			sender.sendMessage(ChatColor.GOLD + "-the owner gets access to all co-owner and friend commands.");
-			sender.sendMessage(ChatColor.GOLD + "/plot co-own (player)");
+			sender.sendMessage(ChatColor.YELLOW + "-the owner gets access to all co-owner and friend commands.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot co-own (player)");
 			sender.sendMessage(ChatColor.GRAY + "-Gives a player the ability to use all co-owner and friend commands (shown below),");
 			sender.sendMessage(ChatColor.GRAY + "-the ability to break blocks, and the ability to use stone buttons.");
-			sender.sendMessage(ChatColor.GOLD + "/plot friend (player)");
+			sender.sendMessage(ChatColor.YELLOW + "/plot friend (player)");
 			sender.sendMessage(ChatColor.GRAY + "-Gives a player the ability to use all friend commands(shown below)");
-			sender.sendMessage(ChatColor.GRAY + "-They can't break blocks, but they can use stone buttons."); 
+			sender.sendMessage(ChatColor.GRAY + "-They can't break blocks, but they can use stone buttons.");
+			sender.sendMessage(ChatColor.GRAY + "-Co-owners can also use this command.");
 					
 		} else if (page == 4) {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 4 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Owner Commands continued:");
-			sender.sendMessage(ChatColor.GOLD + "/plot disband" + ChatColor.GRAY + " - Deletes the plot you are standing on.");
-			sender.sendMessage(ChatColor.GRAY + "-This gives you all the gold in the plot");
-			sender.sendMessage(ChatColor.GOLD + "/plot transfer (player)" + ChatColor.GRAY + " - Gives owner to someone else." );
+			sender.sendMessage(ChatColor.YELLOW + "/plot disband" + ChatColor.GRAY + " - Deletes the plot you are standing on.");
+			sender.sendMessage(ChatColor.GRAY + "-This gives you all the YELLOW in the plot");
+			sender.sendMessage(ChatColor.YELLOW + "/plot transfer (player)" + ChatColor.GRAY + " - Gives owner to someone else." );
 			sender.sendMessage(ChatColor.GRAY + "-This will remove you from the plot.");
-			sender.sendMessage(ChatColor.GOLD + "/plot protect/unprotect" + ChatColor.GRAY + " - protects/unprotects a plot.");
-			sender.sendMessage(ChatColor.GOLD + "/plot list" + ChatColor.GRAY + " - List all your current plots.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot protect/unprotect" + ChatColor.GRAY + " - protects/unprotects a plot.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot list" + ChatColor.GRAY + " - List all your current plots.");
 		} else if (page == 5) {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 5 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Co-owner commands:");
-			sender.sendMessage(ChatColor.GOLD + "/plot withdraw/deposit");
-			sender.sendMessage(ChatColor.GRAY + "-Allows you to add or remove gold from your plot.");
-			sender.sendMessage(ChatColor.GOLD + "/plot expand/shrink" + ChatColor.GRAY + " - Increase/decrease the plot size by 1 block.");
-			sender.sendMessage(ChatColor.GRAY + "-Expanding costs gold, which increases the bigger your plot is.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot withdraw/deposit");
+			sender.sendMessage(ChatColor.GRAY + "-Allows you to add or remove YELLOW from your plot.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot expand/shrink" + ChatColor.GRAY + " - Increase/decrease the plot size by 1 block.");
+			sender.sendMessage(ChatColor.GRAY + "-Expanding costs YELLOW, which increases the bigger your plot is.");
 			sender.sendMessage(ChatColor.GRAY + "-Shrinking costs nothing.");
-			sender.sendMessage(ChatColor.GOLD + "/plot upgrade (upgrade)" + ChatColor.GRAY + " - Allows you to buy plot upgrades for gold coins.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot upgrade (upgrade)" + ChatColor.GRAY + " - Allows you to buy plot upgrades for gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-upgrades are on pages 7 and 8.");
 			
 			
@@ -91,13 +92,13 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 6 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Co-owner commands continued:");
-			sender.sendMessage(ChatColor.GOLD + "/plot test" + ChatColor.GRAY + " - Toggles whether you are testing a plot.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot test" + ChatColor.GRAY + " - Toggles whether you are testing a plot.");
 			sender.sendMessage(ChatColor.GRAY + "-Testing a plot prevents you from breaking blocks and using stone buttons.");
 			sender.sendMessage(ChatColor.GRAY + "-Friends can also test, but this only removes the ability to press stone buttons.");
-			sender.sendMessage(ChatColor.GOLD + "/plot friend/unfriend" + ChatColor.GRAY + " - Promote a player to friend or.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot friend/unfriend" + ChatColor.GRAY + " - Promote a player to friend or.");
 			sender.sendMessage(ChatColor.GRAY + "-demote a player to a non-member.");
 			sender.sendMessage(ChatColor.GOLD + "Friends:");
-			sender.sendMessage(ChatColor.GOLD + "/plot deposit" + ChatColor.GRAY + " - Friends can donate gold to the plot, ");
+			sender.sendMessage(ChatColor.YELLOW + "/plot deposit" + ChatColor.GRAY + " - Friends can donate gold to the plot, ");
 			sender.sendMessage(ChatColor.GRAY + "-but they can't withdraw.");
 			
 	
@@ -105,24 +106,24 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 7 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Plot upgrades:");
-			sender.sendMessage(ChatColor.GOLD + "Town:" + ChatColor.GRAY + " Costs 100,000 gold coins.");
+			sender.sendMessage(ChatColor.YELLOW + "Town:" + ChatColor.GRAY + " Costs 100,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows any player to set their spawn with a bed in your plot.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows the ability to spawn a banker or a vender in your plot ");
 			sender.sendMessage(ChatColor.GRAY + "-with /plot npc hire [banker/vender] (name).");
 			sender.sendMessage(ChatColor.GRAY + "-To move a npc: /plot npc move (name).");
 			sender.sendMessage(ChatColor.GRAY + "-To remove a npc: /plot npc fire (name).");
-			sender.sendMessage(ChatColor.GOLD + "Neutral Alignment:" + ChatColor.GRAY + " Costs 2,000 gold coins.");
+			sender.sendMessage(ChatColor.YELLOW + "Neutral Alignment:" + ChatColor.GRAY + " Costs 2,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows both criminals and non-crimals to set spawn in a bed.");
-			sender.sendMessage(ChatColor.GOLD + "AutoKick:" + ChatColor.GRAY + " Costs 5,000 gold coins. ");
+			sender.sendMessage(ChatColor.YELLOW + "AutoKick:" + ChatColor.GRAY + " Costs 5,000 gold coins. ");
 			sender.sendMessage(ChatColor.GRAY + "-When a player relogs in your plot they are sent out of it.");
 			
 		} else if (page == 8) {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 8 of 8, use \"/help land (page)\"");
 			sender.sendMessage(ChatColor.GOLD + "Plot upgrades Continued:");
-			sender.sendMessage(ChatColor.GOLD + "Dungeon:" + ChatColor.GRAY + " Costs 10,000 gold coins.");
+			sender.sendMessage(ChatColor.YELLOW + "Dungeon:" + ChatColor.GRAY + " Costs 10,000 gold coins.");
 			sender.sendMessage(ChatColor.GRAY + "-Allows hostile mobs to spawn in your plot.");
-			sender.sendMessage(ChatColor.GOLD + "/plot downgrade (upgrade)" + ChatColor.GRAY + " -removes a plot upgrade.");
+			sender.sendMessage(ChatColor.YELLOW + "/plot downgrade (upgrade)" + ChatColor.GRAY + " -removes a plot upgrade.");
 		}
 	
 	}
@@ -133,38 +134,46 @@ public class HelpCommand {
 		if (page == 1) {
 			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help clan (page)\"");
-			sender.sendMessage(ChatColor.GOLD + "Info:" + ChatColor.GRAY
-					+ " Unlike parties, Clans are permanent player groups. You can only be in one clan at a time.");
+			sender.sendMessage(ChatColor.GOLD + "Info:" + ChatColor.GRAY + " Unlike parties, Clans are permanent player groups.");
 			sender.sendMessage(ChatColor.GRAY + "A clan is required to capture hostility. This can be done by doing /claim while in hostility.");
+			sender.sendMessage(ChatColor.GRAY + "Capturing hostility will reward you with 5 free gold ingots from the vender.");
 			sender.sendMessage(ChatColor.GRAY + "You can also teleport to your clanmates by casting Clan Teleport.");
 		} else {
 			if (page == 2) {
 			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 1 of 3, use \"/help clan (page)\"");
-			sender.sendMessage(ChatColor.GOLD + "/clan create (plot name)" + ChatColor.GRAY + " - Create a clan.");
-			sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 gold coins.");
-			sender.sendMessage(ChatColor.GOLD + "/clan transfer (player name)" + ChatColor.GRAY + "  Gives your clan to another player.");
-			sender.sendMessage(ChatColor.GOLD + "/clan [invite/uninvite] (player name)" + ChatColor.GRAY+ "  Invites/uninvites a player to your clan.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan create (plot name)" + ChatColor.GRAY + " - Create a clan.");
+			sender.sendMessage(ChatColor.GRAY + "-Costs 2,000 YELLOW coins.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan transfer (player name)" + ChatColor.GRAY + "  Gives your clan to another player.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan [invite/uninvite] (player name)" + ChatColor.GRAY+ "  Invites/uninvites a player to your clan.");
 		} else if (page == 3) {
 			sender.sendMessage(ChatColor.GOLD + "-Clan Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 3 of 3, use \"/help land (page)\"");
-
-			sender.sendMessage(ChatColor.GOLD + "/clan promote (player name)" + ChatColor.GRAY  + " - Promotes a member to leader. This can only be used by the owner.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan promote (player name)" + ChatColor.GRAY  + " - Promotes a member to leader. This can only be used by the owner.");
 			sender.sendMessage(ChatColor.GRAY + "-Leaders can use most commands and can kick players from the clan.");
-			sender.sendMessage(ChatColor.GOLD + "/clan demote (player name)" + ChatColor.GRAY + " - Demotes a clan leader back to member.");
-			sender.sendMessage(ChatColor.GOLD + "/clan kick (player name)" + ChatColor.GRAY + " - Kicks a player from your clan.");
-			sender.sendMessage(ChatColor.GOLD + "/clan leave" + ChatColor.GRAY + " - Leaves your clan. You can't be the owner");
-			sender.sendMessage(ChatColor.GOLD + "/clan disband" + ChatColor.GRAY + " - Disbands your clan. This can be used by owner only.");
-			sender.sendMessage(ChatColor.GOLD + "/clan info" + ChatColor.GRAY + " - Displays information about your clan. Leaders and owners get more information.");
-			sender.sendMessage(ChatColor.GOLD + "/c (message)" + ChatColor.GRAY + " - Send a chat message to your clan.");
-			sender.sendMessage(ChatColor.GOLD + "/c" + ChatColor.GRAY + " - Makes all future messages in clan chat. Use /g to get back.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan demote (player name)" + ChatColor.GRAY + " - Demotes a clan leader back to member.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan kick (player name)" + ChatColor.GRAY + " - Kicks a player from your clan.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan leave" + ChatColor.GRAY + " - Leaves your clan. You can't be the owner");
+			sender.sendMessage(ChatColor.YELLOW + "/clan disband" + ChatColor.GRAY + " - Disbands your clan. This can be used by owner only.");
+			sender.sendMessage(ChatColor.YELLOW + "/clan info" + ChatColor.GRAY + " - Displays information about your clan. Leaders and owners get more information.");
+			sender.sendMessage(ChatColor.YELLOW + "/c (message)" + ChatColor.GRAY + " - Send a chat message to your clan.");
+			sender.sendMessage(ChatColor.YELLOW + "/c" + ChatColor.GRAY + " - Makes all future messages in clan chat. Use /g to get back.");
 			}
 		}	
 	}
 	
-	@Command(aliases = { "" }, desc = "Help")
-	public void party(CommandSender sender, int page) {
+	@Command(aliases = { "party", "parties", "partys" }, desc = "Tells you what parties are.")
+	public void party(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 1) int page) {
 		
+			sender.sendMessage(ChatColor.GOLD + "-Party Help-");
+			sender.sendMessage(ChatColor.YELLOW + "Info:" + ChatColor.GRAY + " Unlike clans, a party is a temporary player group. You can only be in one party at a time.");
+			sender.sendMessage(ChatColor.GRAY + "-You cannot damage party member; however, if both players toggle friendly fire with /ff they can damage each other.");
+			sender.sendMessage(ChatColor.GRAY + "-When you leave the game you are automatically removed from your party.");
+			sender.sendMessage(ChatColor.GOLD + "Commands:");
+			sender.sendMessage(ChatColor.YELLOW + "/party join (player name)" + ChatColor.GRAY + " - Join a player's party if you have been invited by that player.");
+			sender.sendMessage(ChatColor.YELLOW + "/party invite (player name)" + ChatColor.GRAY + " - Invites a player to your party. Anyone in a party can invite people.");
+			sender.sendMessage(ChatColor.YELLOW + "/party leave" + ChatColor.GRAY + " - Leaves your party.");
+			sender.sendMessage(ChatColor.YELLOW + "/party info" + ChatColor.GRAY + " - Displays who is in your current party.");
 	}
 	
 	@Command(aliases = { "" }, desc = "Help")
