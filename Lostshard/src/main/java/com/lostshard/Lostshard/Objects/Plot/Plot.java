@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -415,6 +417,7 @@ public class Plot {
 	/**
 	 * @return the friends
 	 */
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "friends") )})
 	public PlayerListSet getFriends() {
 		return this.friends;
 	}
@@ -429,6 +432,7 @@ public class Plot {
 	/**
 	 * @return the coowners
 	 */
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "coowners") )})
 	public PlayerListSet getCoowners() {
 		return this.coowners;
 	}

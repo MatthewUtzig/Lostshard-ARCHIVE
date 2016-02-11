@@ -4,7 +4,7 @@ softdepend: [Citizens]
 version: 0.2
 commands:
   msg:
-    aliases: [msg]
+    aliases: [msg, m]
     usage: /msg <player> <message>
     description: Send private messages to players
   setmurders:
@@ -19,14 +19,14 @@ commands:
     aliases: [rules]
     usage: /rules
     description: List all online players
-  toggleglobal:
-    aliases: [toggleglobal, toggleglobalchat]
-    usage: /toggleglobal
-    description: Toggles where the global chat should be visible
   tpplot:
     aliases: [tpplot]
     usage: /tpplot <plot>
     description: Teleports you to a given plot
+  toggleglobal:
+    aliases: [toggleglobal, toggleglobalchat]
+    usage: /toggleglobal
+    description: Toggles where the global chat should be visible
   scrolls:
     aliases: [scrolls]
     usage: /scrolls <subcmd>
@@ -75,14 +75,14 @@ commands:
     aliases: [item, i]
     usage: /item <item> (amount)
     description: Gives you an item
-  tpworld:
-    aliases: [tpworld]
-    usage: /tpworld <world>
-    description: Teleports you to a given world
   test:
     aliases: [test]
     usage: /test
     description: Fast test command
+  tpworld:
+    aliases: [tpworld]
+    usage: /tpworld <world>
+    description: Teleports you to a given world
   resetspawn:
     aliases: [resetspawn]
     usage: /resetspawn
@@ -131,14 +131,14 @@ commands:
     aliases: [who, playerlist, list]
     usage: /who
     description: List all online players
-  broadcast:
-    aliases: [broadcast]
-    usage: /broadcast <message>
-    description: Broad cast a given message
   ff:
     aliases: [ff]
     usage: /ff
     description: Toggles friendly fire
+  broadcast:
+    aliases: [broadcast]
+    usage: /broadcast <message>
+    description: Broad cast a given message
   repair:
     aliases: [repair]
     usage: /repair
@@ -163,18 +163,14 @@ commands:
     aliases: [global, g]
     usage: /global (message)
     description: Toggles or sends a message in the global channel
-  title:
-    aliases: [title]
-    usage: /title text
-    description: Selects a title
-  local:
-    aliases: [local, l]
-    usage: /local (message)
-    description: Toggles or sends a message in the local channel
   speed:
     aliases: [speed]
     usage: /speed <speed>
     description: Sets your fly speed
+  local:
+    aliases: [local, l]
+    usage: /local (message)
+    description: Toggles or sends a message in the local channel
   runebook:
     aliases: [runebook]
     usage: /runebook <subcmd>
@@ -183,14 +179,14 @@ commands:
     aliases: [public]
     usage: /public
     description: Sets you to public
-  plot:
-    aliases: [plot]
-    usage: /plot subcommand ...
-    description: null
   whois:
     aliases: [whois]
     usage: /whois <player>
     description: List all online players
+  plot:
+    aliases: [plot]
+    usage: /plot subcommand ...
+    description: null
   vendor:
     aliases: [vendor]
     usage: /vendor <subcommand>
@@ -207,14 +203,14 @@ commands:
     aliases: [shout, s]
     usage: /shout (message)
     description: Toggles or sends a message in the shout channel
-  enhance:
-    aliases: [enhance]
-    usage: /enhance
-    description: Enhance the tool in your hand
   givemoney:
     aliases: [givemoney]
     usage: /givemoney <player> <amount>
     description: Gives a given player a given amount of money
+  enhance:
+    aliases: [enhance]
+    usage: /enhance
+    description: Enhance the tool in your hand
   rest:
     aliases: [rest]
     usage: /rest
@@ -227,14 +223,18 @@ commands:
     aliases: [say]
     usage: /say <message>
     description: Broadcast a message
-  meditate:
-    aliases: [meditate]
-    usage: /meditate
-    description: Regen mana faster
+  titles:
+    aliases: [titles]
+    usage: /titles subcommand ...
+    description: null
   kill:
     aliases: [kill]
     usage: /kill
     description: Kills your self
+  meditate:
+    aliases: [meditate]
+    usage: /meditate
+    description: Regen mana faster
   boat:
     aliases: [boat]
     usage: /boat
@@ -247,10 +247,6 @@ commands:
     aliases: [p]
     usage: /p (message)
     description: Toggles or sends a message in the party channel
-  help:
-    aliases: [help]
-    usage: /help <command> <page>
-    description: List all online players
   spawn:
     aliases: [spawn]
     usage: /spawn

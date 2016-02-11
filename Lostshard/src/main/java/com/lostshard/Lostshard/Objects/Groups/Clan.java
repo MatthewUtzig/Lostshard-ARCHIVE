@@ -43,7 +43,7 @@ public class Clan extends Group {
 	@Type(type = "uuid-char")
 	private UUID owner;
 	
-	@AttributeOverrides({ @AttributeOverride(name = "leaders", column = @Column(name = "invited") )})
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "leaders") )})
 	private PlayerListSet leaders = new PlayerListSet();
 
 	@Transient

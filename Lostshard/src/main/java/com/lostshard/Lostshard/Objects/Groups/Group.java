@@ -24,7 +24,7 @@ public class Group {
 	@Transient
 	public PlayerManager pm = PlayerManager.getManager();
 
-	@AttributeOverrides({ @AttributeOverride(name = "members", column = @Column(name = "invited") )})
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "members") )})
 	private PlayerListSet members = new PlayerListSet();
 	
 	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "invited") )})
