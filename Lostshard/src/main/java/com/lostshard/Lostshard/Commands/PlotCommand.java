@@ -1,7 +1,6 @@
 package com.lostshard.Lostshard.Commands;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,7 +19,6 @@ import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
@@ -30,7 +28,6 @@ import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
-import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
@@ -569,183 +566,6 @@ public class PlotCommand {
 			Output.positiveMessage(player, "You have turned off magic for " + plot.getName() + ".");
 		} else if(plot.getToggleables().remove(PlotToggleable.NOMAGIC)) {
 			Output.positiveMessage(player, "You have turned on magic for " + plot.getName() + ".");
-		}
-	}
-
-	/**
-	 * @param player
-	 * @param args
-	 *
-	 *            Manage npc's for plot at player.
-	 */
-	@Command(aliases = { "npc" }, desc = "npc commands for plot", usage ="<hire|fire|move>")
-	public void plotNPC(@Sender Player player, @Sender Plot plot, @Optional String subCmd, @Optional String type, @Optional String name) {
-		if (subCmd == null) {
-			Output.simpleError(player, "/plot npc <hire|fire|move>");
-			return;
-		}
-		if (!plot.isCoownerOrAbove(player)) {
-			Output.simpleError(player, "Only the owner and co-owner may manage plot NPCs");
-			return;
-		}
-
-		if (subCmd.equalsIgnoreCase("hire")) {
-			if (type == null || name == null) {
-				Output.simpleError(player, "/plot npc hire <Banker|Vendor> <name>");
-				return;
-			}
-			if (type.equalsIgnoreCase("banker")) {
-				if (!plot.getUpgrades().contains(PlotUpgrade.TOWN)) {
-					Output.simpleError(player, "You can only place a banker in a town.");
-					return;
-				}
-				name.trim();
-				if (name.length() > 7) {
-					Output.simpleError(player, "Banker name must be 7 characters or less.");
-					return;
-				}
-
-				if (name.length() < 2) {
-					Output.simpleError(player, "Banker name must be more 1 character or more.");
-					return;
-				}
-
-				if (name.contains("\"") || name.contains("'") || name.contains(" ")) {
-					Output.simpleError(player, "can't use \" or spaces in NPC names.");
-					return;
-				}
-
-				Plot npcPlot = null;
-
-				for (final NPC npc : plot.getNpcs()) {
-					if (npc.getName().equalsIgnoreCase(name)) {
-						Output.simpleError(player, "An NPC with that name already exists.");
-						return;
-					}
-					npcPlot = this.ptm.findPlotAt(npc.getLocation());
-					if (npcPlot == plot && !player.isOp()) {
-						Output.simpleError(player, "You may only have 1 banker per plot.");
-						return;
-					}
-				}
-
-				final NPC npc = new NPC(NPCType.BANKER, name, player.getLocation(), plot.getId());
-				plot.getNpcs().add(npc);
-				plot.update();
-				npc.spawn();
-				Output.positiveMessage(player, "You have hired a banker named " + name + ".");
-			} else if (type.equalsIgnoreCase("vendor")) {
-				name.trim();
-				if (name.length() > 7) {
-					Output.simpleError(player, "Vendor name must be 7 characters or less.");
-					return;
-				}
-
-				if (name.length() < 2) {
-					Output.simpleError(player, "Vendor name must be more 1 character or more.");
-					return;
-				}
-
-				if (name.contains("\"") || name.contains("'") || name.contains(" ")) {
-					Output.simpleError(player, "can't use \" or spaces in NPC names.");
-					return;
-				}
-
-				int currentAmountOfVendors = 1;
-
-				for (final NPC npc : plot.getNpcs()) {
-					if (npc.getName().equalsIgnoreCase(name)) {
-						Output.simpleError(player, "An NPC with that name already exists.");
-						return;
-					}
-					if (npc.getType().equals(NPCType.VENDOR))
-						currentAmountOfVendors++;
-				}
-
-				if (currentAmountOfVendors < plot.getMaxVendors() && !player.isOp()) {
-					Output.simpleError(player, "You may only have " + plot.getMaxVendors() + " vendors in your plot.");
-					return;
-				}
-
-				final NPC npc = new NPC(NPCType.VENDOR, name, player.getLocation(), plot.getId());
-				final Store store = StoreManager.getManager().createStore();
-				npc.setStore(store);
-				store.insert();
-				plot.getNpcs().add(npc);
-				plot.update();
-				npc.spawn();
-
-				Output.positiveMessage(player, "You have hired a vendor named " + name + ".");
-			} else if (type.equalsIgnoreCase("guard") && player.isOp()) {
-				name.trim();
-				if (name.length() > 7) {
-					Output.simpleError(player, "Guard name must be 7 characters or less.");
-					return;
-				}
-
-				if (name.length() < 2) {
-					Output.simpleError(player, "Guard name must be more 1 character or more.");
-					return;
-				}
-
-				if (name.contains("\"") || name.contains("'") || name.contains(" ")) {
-					Output.simpleError(player, "can't use \" or spaces in NPC names.");
-					return;
-				}
-
-				for (final NPC npc : plot.getNpcs())
-					if (npc.getName().equalsIgnoreCase(name)) {
-						Output.simpleError(player, "An NPC with that name already exists.");
-						return;
-					}
-
-				final NPC npc = new NPC(NPCType.GUARD, name, player.getLocation(), plot.getId());
-				plot.getNpcs().add(npc);
-				plot.update();
-				npc.spawn();
-
-				Output.positiveMessage(player, "You have hired a guard named " + name + ".");
-			}
-		} else if (subCmd.equalsIgnoreCase("move")) {
-			if (type == null) {
-				Output.simpleError(player, "Use /plot npc move (npc name)");
-				return;
-			}
-
-			name = type.trim();
-
-			for (final NPC npc : plot.getNpcs())
-				if (npc.getName().equalsIgnoreCase(name)) {
-					npc.setLocation(player.getLocation());
-					npc.move(player.getLocation());
-					Output.positiveMessage(player, "You have moved " + name + ".");
-					return;
-				}
-			Output.simpleError(player, "can't find an NPC named " + name + " on this plot.");
-		} else if (subCmd.equalsIgnoreCase("fire")) {
-			if (type == null) {
-				Output.simpleError(player, "/plot npc fire (name)");
-				return;
-			}
-			name = type.trim();
-			for (final NPC npc : plot.getNpcs())
-				if (npc.getName().equalsIgnoreCase(name)) {
-					npc.fire();
-					Output.positiveMessage(player, "You have fired " + npc.getName() + ".");
-					return;
-				}
-		} else if (subCmd.equalsIgnoreCase("list")) {
-			player.sendMessage(ChatColor.GOLD + "-" + plot.getName() + "'s NPCs-");
-			final List<NPC> npcs = plot.getNpcs();
-			final int numOfNpcs = npcs.size();
-
-			if (numOfNpcs <= 0) {
-				player.sendMessage(ChatColor.RED + "No NPCs");
-				return;
-			}
-			for (final NPC npc : npcs)
-				player.sendMessage(ChatColor.YELLOW + npc.getName() + " (" + npc.getType().toString() + ")");
-			return;
 		}
 	}
 

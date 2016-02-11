@@ -21,6 +21,7 @@ import com.lostshard.Lostshard.Commands.FishingCommand;
 import com.lostshard.Lostshard.Commands.MageryCommand;
 import com.lostshard.Lostshard.Commands.PartyCommands;
 import com.lostshard.Lostshard.Commands.PlotCommand;
+import com.lostshard.Lostshard.Commands.PlotNPCCommand;
 import com.lostshard.Lostshard.Commands.ReloadCommand;
 import com.lostshard.Lostshard.Commands.SkillCommand;
 import com.lostshard.Lostshard.Commands.StoreCommand;
@@ -98,6 +99,8 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
         	.parent()
         .group("plot")
         	.registerMethods(new PlotCommand())
+        	.group("npc")
+        		.registerMethods(new PlotNPCCommand())
         	.parent()
         .graph()
         .getDispatcher();
