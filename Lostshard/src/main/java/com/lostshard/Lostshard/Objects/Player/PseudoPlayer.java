@@ -124,8 +124,6 @@ public class PseudoPlayer {
 	@Transient
 	private GUI gui = null;
 	private boolean allowGui = true;
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
 	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "ignored") )})
 	private PlayerListSet ignored = new PlayerListSet();
 	@ElementCollection

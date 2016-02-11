@@ -90,7 +90,7 @@ public class IntakeManager implements CommandExecutor, TabCompleter {
         .group("runebook")
         	.registerMethods(new RuneBookCommand())
         	.parent()
-        .group("spellbook")
+        .group("skills")
         	.registerMethods(new SkillsCommand())
         	.parent()
         .group("scrolls")

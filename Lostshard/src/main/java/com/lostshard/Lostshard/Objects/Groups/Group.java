@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
@@ -24,10 +25,14 @@ public class Group {
 	@Transient
 	public PlayerManager pm = PlayerManager.getManager();
 
-	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "members") )})
+	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@Type(type = "uuid-char")
 	private PlayerListSet members = new PlayerListSet();
 	
-	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "invited") )})
+	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@Type(type = "uuid-char")
 	private PlayerListSet invited = new PlayerListSet();
 
 	public void addInvited(UUID invite) {

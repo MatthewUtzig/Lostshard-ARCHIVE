@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,6 +18,8 @@ import org.bukkit.entity.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import com.google.common.collect.ImmutableSet;
@@ -43,7 +44,9 @@ public class Clan extends Group {
 	@Type(type = "uuid-char")
 	private UUID owner;
 	
-	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "leaders") )})
+	@ElementCollection
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@Type(type = "uuid-char")
 	private PlayerListSet leaders = new PlayerListSet();
 
 	@Transient

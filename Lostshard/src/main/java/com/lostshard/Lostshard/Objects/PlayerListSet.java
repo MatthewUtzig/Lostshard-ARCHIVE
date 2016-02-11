@@ -6,20 +6,12 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.ElementCollection;
-
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
 
 public class PlayerListSet implements Set<UUID>  {
-
-	@ElementCollection
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
+	
 	private Set<UUID> players = new HashSet<UUID>();
 	
 	@Override
