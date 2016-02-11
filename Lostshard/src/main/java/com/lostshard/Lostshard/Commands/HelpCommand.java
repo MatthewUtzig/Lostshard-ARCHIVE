@@ -9,9 +9,18 @@ import com.sk89q.intake.parametric.annotation.Range;
 
 public class HelpCommand {
 
-	@Command(aliases = { "" }, desc = "")
-	public void help(CommandSender sender, int page) {
-		
+	@Command(aliases = { "" }, desc = "Shows all the help commands")
+	public void help(CommandSender sender, @Optional(value = "1") @Range(min = 1, max = 1) int page) {
+		if (page == 1) {
+			sender.sendMessage(ChatColor.GOLD + "All help commands:");
+			sender.sendMessage(ChatColor.GOLD + "/help plot");
+			sender.sendMessage(ChatColor.GOLD + "/help clan");
+			sender.sendMessage(ChatColor.GOLD + "/help party");
+			sender.sendMessage(ChatColor.GOLD + "/help skills");
+			sender.sendMessage(ChatColor.GOLD + "/help magery");
+			sender.sendMessage(ChatColor.GOLD + "/help karma");
+			
+		}
 	}
 	
 	@Command(aliases = { "land", "plot", "plots" }, desc = "Tells you how to create and use plots.")
@@ -55,7 +64,6 @@ public class HelpCommand {
 			sender.sendMessage(ChatColor.GRAY + "-Gives a player the ability to use all friend commands(shown below)");
 			sender.sendMessage(ChatColor.GRAY + "-They can't break blocks, but they can use stone buttons."); 
 					
-			
 		} else if (page == 4) {
 			sender.sendMessage(ChatColor.GOLD + "-Land Ownership Help-");
 			sender.sendMessage(ChatColor.GOLD + "Page 4 of 8, use \"/help land (page)\"");
