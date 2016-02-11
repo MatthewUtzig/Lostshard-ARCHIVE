@@ -1,6 +1,6 @@
 package com.lostshard.Lostshard.Commands;
 
-import java.util.List;
+import java.util.Set;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -24,7 +24,7 @@ public class PlotNPCCommand {
 	@Command(aliases = { "list" }, desc = "")
 	public void list(@Sender Player player, @Sender Plot plot) {
 		player.sendMessage(ChatColor.GOLD + "-" + plot.getName() + "'s NPCs-");
-		final List<NPC> npcs = plot.getNpcs();
+		final Set<NPC> npcs = plot.getNpcs();
 		final int numOfNpcs = npcs.size();
 
 		if (numOfNpcs <= 0) {

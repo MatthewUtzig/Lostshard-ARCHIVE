@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +14,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.bukkit.Bukkit;
@@ -32,6 +36,7 @@ import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
+import com.lostshard.Lostshard.Objects.PlayerListSet;
 import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
@@ -62,6 +67,8 @@ public class PseudoPlayer {
 	@Column(name = "uuid", unique = true, nullable = false, updatable = false)
 	@Type(type = "uuid-char")
 	private UUID playerUUID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Wallet wallet = new Wallet();
 	private int murderCounts = 0;
 	private Bank bank = new Bank(this.wasSubscribed());
@@ -119,8 +126,8 @@ public class PseudoPlayer {
 	private boolean allowGui = true;
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@Type(type = "uuid-char")
-	private List<UUID> ignored = new ArrayList<UUID>();
+	@AttributeOverrides({ @AttributeOverride(name = "players", column = @Column(name = "ignored") )})
+	private PlayerListSet ignored = new PlayerListSet();
 	@ElementCollection
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@Enumerated(EnumType.STRING)
@@ -261,7 +268,7 @@ public class PseudoPlayer {
 		return this.id;
 	}
 
-	public List<UUID> getIgnored() {
+	public PlayerListSet getIgnored() {
 		return this.ignored;
 	}
 
@@ -556,7 +563,7 @@ public class PseudoPlayer {
 		this.id = id;
 	}
 
-	public void setIgnored(List<UUID> ignored) {
+	public void setIgnored(PlayerListSet ignored) {
 		this.ignored = ignored;
 	}
 

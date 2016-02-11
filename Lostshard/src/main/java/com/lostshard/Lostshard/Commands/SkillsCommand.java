@@ -59,7 +59,7 @@ public class SkillsCommand {
 		Output.positiveMessage(player, "You have increased your " + skill.getName() + ".");
 	}
 	
-	public void decrease(@Sender Player player, @Sender PseudoPlayer pPlayer, String skillName, @Optional @Range(min=1, max=100) int amount) {
+	public void decrees(@Sender Player player, @Sender PseudoPlayer pPlayer, String skillName, @Optional @Range(min=1, max=100) int amount) {
 		if(amount == 0) {
 			Output.positiveMessage(player, "You have " + Utils.getDecimalFormater().format(pPlayer.getFreeSkillPoints()) +" free skill points.");
 			return;

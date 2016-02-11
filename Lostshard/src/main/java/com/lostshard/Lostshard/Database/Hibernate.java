@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Objects.ChestRefill;
+import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
@@ -41,6 +42,7 @@ public class Hibernate {
 		cfg.setProperty("hibernate.connection.password", Variables.mysqlPassword);
 
 		cfg.addAnnotatedClass(PseudoPlayer.class);
+		cfg.addAnnotatedClass(Wallet.class);
 		cfg.addAnnotatedClass(Clan.class);
 		cfg.addAnnotatedClass(Plot.class);
 		cfg.addAnnotatedClass(OfflineMessage.class);

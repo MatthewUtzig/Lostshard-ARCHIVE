@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.google.common.base.Joiner;
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Intake.Vanish;
@@ -70,7 +71,7 @@ public class UtilsCommand {
 				Output.simpleError(player, "You are currently not ignoring any players.");
 			else
 				player.sendMessage(
-						ChatColor.YELLOW + Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+						ChatColor.YELLOW + Joiner.on(", ").join(pPlayer.getIgnored()));
 			return;
 		}
 		if (player == tPlayer) {
@@ -167,7 +168,7 @@ public class UtilsCommand {
 				Output.simpleError(player, "You are currently not ignoring any players.");
 			else
 				player.sendMessage(
-						ChatColor.YELLOW + Utils.listToString(Utils.UUIDArrayToUsernameArray(pPlayer.getIgnored())));
+						ChatColor.YELLOW + Joiner.on(", ").join(pPlayer.getIgnored().usernames()));
 			return;
 		}
 		if (!pPlayer.getIgnored().contains(target.getUniqueId())) {

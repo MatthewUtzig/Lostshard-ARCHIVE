@@ -3,7 +3,11 @@ package com.lostshard.Lostshard.Objects;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 
 import com.lostshard.Lostshard.Utils.Utils;
@@ -16,7 +20,11 @@ public class Wallet extends Number implements Comparable<Wallet> {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private final int id;
+	@Type(type = "uuid-char")
 	private final UUID uuid;
 
 	@Audited
