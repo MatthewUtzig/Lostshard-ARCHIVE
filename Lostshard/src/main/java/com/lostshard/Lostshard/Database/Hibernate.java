@@ -4,13 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.lostshard.Economy.Wallet;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Objects.ChestRefill;
-import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recorders.ConnectionRecord;
 import com.lostshard.Lostshard.Objects.Recorders.DamageRecord;
 import com.lostshard.Lostshard.Objects.Recorders.DeathRecord;
@@ -18,6 +17,7 @@ import com.lostshard.Lostshard.Objects.Recorders.SkillGainRecord;
 import com.lostshard.Lostshard.Objects.Recorders.UsernameUUIDRecord;
 import com.lostshard.Lostshard.Objects.Store.Store;
 import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
+import com.lostshard.Plots.Models.Plot;
 
 public class Hibernate {
 

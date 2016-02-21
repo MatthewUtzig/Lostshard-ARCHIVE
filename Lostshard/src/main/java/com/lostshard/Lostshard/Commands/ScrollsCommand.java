@@ -2,7 +2,7 @@ package com.lostshard.Lostshard.Commands;
 
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;

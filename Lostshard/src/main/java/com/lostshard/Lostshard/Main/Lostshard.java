@@ -22,11 +22,11 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.lostshard.CommandManager.IntakeManager;
 import com.lostshard.Crates.CrateManager;
 import com.lostshard.Crates.CratePlayerListener;
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Database.Hibernate;
-import com.lostshard.Lostshard.Intake.IntakeManager;
 import com.lostshard.Lostshard.Listener.BlockListener;
 import com.lostshard.Lostshard.Listener.EntityListener;
 import com.lostshard.Lostshard.Listener.PlayerListener;
@@ -39,17 +39,17 @@ import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.ConfigManager;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
 import com.lostshard.Lostshard.Objects.ChestRefill;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.PseudoScoreboard;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
 import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 import net.citizensnpcs.api.npc.NPC;
 

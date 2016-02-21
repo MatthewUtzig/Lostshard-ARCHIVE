@@ -40,11 +40,11 @@ import org.bukkit.inventory.ItemStack;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Camp;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotToggleable;
 
 @Embeddable
 public class SurvivalismSkill extends Skill {

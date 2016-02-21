@@ -9,12 +9,12 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
-import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class GuardTask extends DelayedTask {
 

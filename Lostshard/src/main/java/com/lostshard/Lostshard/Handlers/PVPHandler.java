@@ -12,14 +12,14 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotToggleable;
+import com.lostshard.Plots.Models.Plot.PlotUpgrade;
 
 /**
  * @author Jacob Handling entity's hitting entity's.

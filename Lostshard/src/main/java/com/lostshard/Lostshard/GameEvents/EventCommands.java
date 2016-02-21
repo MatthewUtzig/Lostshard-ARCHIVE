@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.sk89q.intake.parametric.annotation.Optional;
 import com.sk89q.intake.parametric.annotation.Text;
 import com.sk89q.intake.parametric.annotation.Validate;

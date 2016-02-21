@@ -8,9 +8,9 @@ import javax.persistence.Transient;
 import org.bukkit.Material;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Recorders.SkillGainRecord;
+import com.lostshard.Plots.PlotManager;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)

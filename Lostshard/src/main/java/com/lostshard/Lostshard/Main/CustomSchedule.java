@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 
 import com.lostshard.Lostshard.Handlers.EnderdragonHandler;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
+import com.lostshard.Plots.PlotManager;
 
 import it.sauronsoftware.cron4j.Scheduler;
 

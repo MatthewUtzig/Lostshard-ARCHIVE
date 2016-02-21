@@ -19,8 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import com.lostshard.Lostshard.Handlers.ChatHandler;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Spells.Spells.SPL_ClearSky;
@@ -28,6 +26,9 @@ import com.lostshard.Lostshard.Spells.Spells.SPL_Day;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotToggleable;
 
 public class SpellManager {
 

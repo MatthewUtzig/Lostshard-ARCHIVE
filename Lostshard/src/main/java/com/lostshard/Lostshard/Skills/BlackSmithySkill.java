@@ -14,10 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotEffect;
 
 @Embeddable
 public class BlackSmithySkill extends Skill {
@@ -111,6 +111,10 @@ public class BlackSmithySkill extends Skill {
 		final int lvl = skill.getLvl();
 		if (pPlayer.getPvpTicks() > 0) {
 			Output.simpleError(player, "You can't enhance while in or shortly after combat.");
+			return;
+		}
+		if (pPlayer.getStamina() < ENHANCE_STAMINA_COST) {
+			Output.simpleError(player, "Not enough stamina - Enhancing requires " + ENHANCE_STAMINA_COST + ".");
 			return;
 		}
 		if (!canRepair(item) || item.getType().equals(Material.DIAMOND_HOE) || item.getType().equals(Material.IRON_HOE)

@@ -6,10 +6,10 @@ import com.lostshard.Lostshard.Manager.ConfigManager;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PartyManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.SpellManager;
 import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
+import com.lostshard.Plots.PlotManager;
 
 public interface Managers {
 

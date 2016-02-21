@@ -5,12 +5,12 @@ import java.util.Date;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.Models.Plot;
 import com.sk89q.intake.Command;
 
 /**

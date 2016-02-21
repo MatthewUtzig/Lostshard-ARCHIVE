@@ -10,7 +10,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.NPC.NPCType;
+import com.lostshard.Plots.NPCType;
 
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
@@ -39,7 +39,7 @@ public class NPCLibManager {
 		}
 	}
 
-	public boolean despawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
+	public boolean despawnNPC(com.lostshard.Plots.NPC lnpc) {
 		if (!this.isEnable)
 			return false;
 		final NPC npc = this.registry.getById(lnpc.getId());
@@ -81,7 +81,7 @@ public class NPCLibManager {
 		return this.isEnable;
 	}
 
-	public boolean moveNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
+	public boolean moveNPC(com.lostshard.Plots.NPC lnpc) {
 		if (!this.isEnable)
 			return false;
 		final NPC npc = this.registry.getById(lnpc.getId());
@@ -111,7 +111,7 @@ public class NPCLibManager {
 		}
 	}
 
-	public int spawnNPC(com.lostshard.Lostshard.NPC.NPC lnpc) {
+	public int spawnNPC(com.lostshard.Plots.NPC lnpc) {
 		if (!this.isEnable)
 			return -1;
 		final int id = this.generateID();

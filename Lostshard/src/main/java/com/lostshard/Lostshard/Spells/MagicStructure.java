@@ -15,7 +15,7 @@ import org.bukkit.block.BlockState;
 import org.hibernate.annotations.Type;
 
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
+import com.lostshard.Plots.PlotManager;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)

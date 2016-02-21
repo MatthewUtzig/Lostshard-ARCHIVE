@@ -9,11 +9,11 @@ import com.lostshard.Lostshard.Handlers.CapturepointHandler;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
 import com.lostshard.Lostshard.Objects.Camp;
 import com.lostshard.Lostshard.Skills.SurvivalismSkill;
 import com.lostshard.Lostshard.Spells.MagicStructure;
+import com.lostshard.Plots.PlotManager;
 
 public class GameLoop extends BukkitRunnable {
 

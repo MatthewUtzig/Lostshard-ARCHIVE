@@ -10,14 +10,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Handlers.DamageHandler;
-import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 import com.sk89q.intake.Command;
 import com.sk89q.intake.Require;
 import com.sk89q.intake.parametric.annotation.Optional;

@@ -7,8 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import com.lostshard.Lostshard.Intake.Sender;
-import com.lostshard.Lostshard.Intake.Vanish;
+import com.lostshard.CommandManager.Annotations.Sender;
+import com.lostshard.CommandManager.Annotations.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;

@@ -10,13 +10,13 @@ import org.bukkit.entity.Player;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Spells.Structures.Gate;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotToggleable;
 
 public class SPL_GateTravel extends Spell {
 

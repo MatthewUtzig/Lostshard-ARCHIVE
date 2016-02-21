@@ -6,17 +6,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import com.lostshard.CommandManager.Annotations.Sender;
+import com.lostshard.CommandManager.Annotations.Vanish;
+import com.lostshard.Economy.Wallet;
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.Intake.Sender;
-import com.lostshard.Lostshard.Intake.Vanish;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.NPC;
 import com.sk89q.intake.Command;
 import com.sk89q.intake.parametric.annotation.Range;
 

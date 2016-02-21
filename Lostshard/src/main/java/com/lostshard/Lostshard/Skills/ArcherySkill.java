@@ -37,25 +37,10 @@ public class ArcherySkill extends Skill {
 		final PseudoPlayer pPlayer = pm.getPlayer(attacker);
 
 		final Skill skill = pPlayer.getCurrentBuild().getArchery();
-		final int lvl = skill.getLvl();
 
 		final double damage = skill.getLvl() / 250;
-
-		if (entity instanceof Player && lvl >= 500 && Math.random() < .25 && ((Player) entity).getHealth() > 4
-				&& Math.abs(event.getDamage(DamageModifier.ARMOR)
-						+ event.getDamage(DamageModifier.MAGIC)) >= event.getDamage(DamageModifier.BASE) * .35) {
-			
-			final Player player = (Player) event.getEntity();
-			double health = player.getHealth() - (event.getDamage(DamageModifier.BASE) * .90 + damage * .6);
-			health = Math.max(health, 4);
-			if(health < event.getFinalDamage()) {
-				
-				player.setHealth(health);
-				event.setDamage(0);
-				player.sendMessage(ChatColor.GREEN + "The arrow pierces through your armor!");
-				attacker.sendMessage(ChatColor.GREEN + "Your arrow pierced through " + player.getName() + "'s armor.");
-			}
-		} else if (event.isApplicable(DamageModifier.BASE))
+		
+		if(!(entity instanceof Player) || !(pierce((Player) entity, attacker, event)))
 			event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE) + damage);
 
 		if (entity instanceof Monster || entity instanceof Player || entity instanceof Slime)
@@ -65,6 +50,39 @@ public class ArcherySkill extends Skill {
 
 		final int gain = skill.skillGain(pPlayer);
 		Output.gainSkill(attacker, "Archery", gain, skill.getLvl());
+	}
+	
+	private static boolean pierce(Player player, Player attacker, EntityDamageByEntityEvent event) {
+		final double armor = event.getOriginalDamage(DamageModifier.ARMOR);
+		
+		double damage = event.getDamage(DamageModifier.BASE);
+		
+		double chance = 1-(armor+4)/damage;
+		
+		damage *= .75;
+		
+		damage = Math.min(damage, 15);
+		
+		if (event.getFinalDamage() > damage)
+			return false;
+		
+		double health = player.getHealth();
+		
+		if(event.getFinalDamage() >= health)
+			return false;
+				
+		health = Math.max(1, health-damage);
+		
+		if(chance > Math.random()) {
+			if(event.getFinalDamage() < 1 && chance < .5)
+				event.setDamage(DamageModifier.BASE, event.getDamage(DamageModifier.BASE)+(1-event.getFinalDamage()));
+			return false;
+		}
+		player.setHealth(health);
+		event.setDamage(0);
+		player.sendMessage(ChatColor.GREEN + "The arrow pierces through your armor!");
+		attacker.sendMessage(ChatColor.GREEN + "Your arrow pierced through " + player.getName() + "'s armor.");
+		return true;
 	}
 
 	public ArcherySkill() {

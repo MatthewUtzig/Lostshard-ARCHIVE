@@ -10,12 +10,12 @@ import org.bukkit.entity.Player;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;
 import com.lostshard.Lostshard.Objects.Player.Runebook;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Spells.Structures.PermanentGate;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
+import com.lostshard.Plots.Models.Plot;
 
 public class SPL_PermanentGateTravel extends Spell {
 	public SPL_PermanentGateTravel(Scroll scroll) {

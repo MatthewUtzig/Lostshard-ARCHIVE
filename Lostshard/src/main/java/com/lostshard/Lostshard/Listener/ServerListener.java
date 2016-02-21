@@ -28,7 +28,7 @@ public class ServerListener extends LostshardListener {
 		}
 		if(event.getResult() == Result.KICK_BANNED || event.getResult() == Result.KICK_WHITELIST || event.getResult() == Result.KICK_OTHER)
 			return;
-		if(Bukkit.getOfflinePlayers().length >= Lostshard.getMaxPlayers()) {
+		if(Bukkit.getOnlinePlayers().size() < Lostshard.getMaxPlayers()) {
 			event.setResult(Result.ALLOWED);
 		}
 	}

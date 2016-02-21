@@ -2,12 +2,9 @@ package com.lostshard.Lostshard.Utils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
@@ -52,70 +49,12 @@ public class Utils {
 		player.addPotionEffect(new PotionEffect(type, duration, amplifier), force);
 	}
 
-	public static double adjustDamageForArmor(Player player, double newDamage) {
-		int defensePoints = 0;
-
-		final ItemStack helmet = player.getInventory().getHelmet();
-		final ItemStack chestplate = player.getInventory().getChestplate();
-		final ItemStack leggings = player.getInventory().getLeggings();
-		final ItemStack boots = player.getInventory().getBoots();
-
-		// Helmet
-		defensePoints += helmet == null ? 0
-				: helmet.equals(Material.LEATHER_HELMET) ? 1
-						: helmet.equals(Material.GOLD_HELMET) ? 2
-								: helmet.equals(Material.CHAINMAIL_HELMET) ? 3
-										: helmet.equals(Material.IRON_HELMET) ? 3
-												: helmet.equals(Material.DIAMOND_HELMET) ? 3 : 0;
-		// Chestplate
-		defensePoints += chestplate == null ? 0
-				: chestplate.equals(Material.LEATHER_CHESTPLATE) ? 3
-						: chestplate.equals(Material.GOLD_CHESTPLATE) ? 5
-								: chestplate.equals(Material.CHAINMAIL_CHESTPLATE) ? 5
-										: chestplate.equals(Material.IRON_CHESTPLATE) ? 6
-												: chestplate.equals(Material.DIAMOND_CHESTPLATE) ? 8 : 0;
-		// Leggings
-		defensePoints += leggings == null ? 0
-				: leggings.equals(Material.LEATHER_LEGGINGS) ? 2
-						: leggings.equals(Material.GOLD_LEGGINGS) ? 3
-								: leggings.equals(Material.CHAINMAIL_LEGGINGS) ? 4
-										: leggings.equals(Material.IRON_LEGGINGS) ? 5
-												: leggings.equals(Material.DIAMOND_LEGGINGS) ? 6 : 0;
-		// Boots
-		defensePoints += boots == null ? 0
-				: boots.equals(Material.LEATHER_BOOTS) ? 1
-						: boots.equals(Material.GOLD_BOOTS) ? 1
-								: boots.equals(Material.CHAINMAIL_BOOTS) ? 1
-										: boots.equals(Material.IRON_BOOTS) ? 2
-												: boots.equals(Material.DIAMOND_BOOTS) ? 3 : 0;
-
-		final float defensePercent = (float) defensePoints * 4 / 100;
-
-		final double adjustDamage = (int) Math.floor((float) newDamage * (1 - defensePercent));
-
-		return adjustDamage;
-	}
-
 	public static String booleanToString(boolean bol) {
 		return booleanToString(bol, "Yes", "No");
 	}
 
 	public static String booleanToString(boolean bol, String ifTrue, String ifFalse) {
 		return bol ? ifTrue : ifFalse;
-	}
-
-	public static double distance(Location loc1, Location loc2) {
-		return Math.sqrt(fastDistance(loc1, loc2));
-	}
-
-	public static double fastDistance(Location loc1, Location loc2) {
-		final double fastDist = Math.pow(loc2.getX() - loc1.getX(), 2) + Math.pow(loc2.getY() - loc1.getY(), 2)
-				+ Math.pow(loc2.getZ() - loc1.getZ(), 2);
-		return fastDist;
-	}
-
-	public static DecimalFormat getDecimalFormater() {
-		return new DecimalFormat("#,###,###,###", new DecimalFormatSymbols(Locale.ENGLISH));
 	}
 
 	public static ChatColor getDisplayColor(OfflinePlayer player) {
@@ -165,7 +104,7 @@ public class Utils {
 	}
 
 	public static boolean isWithin(Location loc1, Location loc2, double radius) {
-		return fastDistance(loc1, loc2) < Math.pow(radius, 2) && loc1.getWorld().equals(loc2.getWorld());
+		return loc1.getWorld().equals(loc2.getWorld()) && loc1.distance(loc2) < Math.pow(radius, 2);
 	}
 
 	public static String listToString(List<String> list) {

@@ -64,7 +64,7 @@ public class DamageManager {
 		
 		double armorModifier = getArmorModifier(player.getInventory());
 		
-		enchantmentReduction = Math.min(1-enchantmentModifier, enchantmentReduction);
+		enchantmentReduction = Math.min(1-armorModifier, enchantmentReduction);
 		
 		double armorReduction = event.getDamage(DamageModifier.BASE);
 		

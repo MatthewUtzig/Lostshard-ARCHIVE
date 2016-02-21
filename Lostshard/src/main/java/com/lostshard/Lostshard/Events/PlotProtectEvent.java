@@ -4,7 +4,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Plots.Models.Plot;
 
 public class PlotProtectEvent extends Event implements Cancellable {
 	private static final HandlerList handlers = new HandlerList();

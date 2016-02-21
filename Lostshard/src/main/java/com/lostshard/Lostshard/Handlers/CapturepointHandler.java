@@ -5,9 +5,9 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class CapturepointHandler {
 

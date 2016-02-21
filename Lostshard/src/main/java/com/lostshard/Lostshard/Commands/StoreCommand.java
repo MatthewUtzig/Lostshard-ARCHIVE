@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Manager.StoreManager;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;

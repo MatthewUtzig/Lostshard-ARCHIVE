@@ -10,15 +10,15 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.TaskManager;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Tasks.DelayedTask;
 import com.lostshard.Lostshard.Tasks.GuardTask;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.NPCType;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class GuardHandler {
 

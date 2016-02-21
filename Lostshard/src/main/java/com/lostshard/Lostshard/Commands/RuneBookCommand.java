@@ -2,8 +2,8 @@ package com.lostshard.Lostshard.Commands;
 
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Intake.Sender;
-import com.lostshard.Lostshard.Intake.Vanish;
+import com.lostshard.CommandManager.Annotations.Sender;
+import com.lostshard.CommandManager.Annotations.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.Rune;

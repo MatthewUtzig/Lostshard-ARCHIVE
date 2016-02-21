@@ -48,13 +48,13 @@ import org.bukkit.util.Vector;
 import com.lostshard.Lostshard.Events.EventManager;
 import com.lostshard.Lostshard.Events.PlotProtectEvent;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotToggleable;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Output;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotToggleable;
+import com.lostshard.Plots.Models.Plot.PlotUpgrade;
 
 import me.olivervscreeper.networkutilities.Message;
 import me.olivervscreeper.networkutilities.MessageDisplay;

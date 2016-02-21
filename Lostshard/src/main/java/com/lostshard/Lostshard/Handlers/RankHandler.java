@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.NPCType;
 
 public class RankHandler {
 

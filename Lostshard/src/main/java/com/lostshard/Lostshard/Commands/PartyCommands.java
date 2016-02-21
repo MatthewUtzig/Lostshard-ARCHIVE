@@ -5,8 +5,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.google.common.base.Joiner;
-import com.lostshard.Lostshard.Intake.Sender;
-import com.lostshard.Lostshard.Intake.Vanish;
+import com.lostshard.CommandManager.Annotations.Sender;
+import com.lostshard.CommandManager.Annotations.Vanish;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;

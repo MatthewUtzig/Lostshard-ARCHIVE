@@ -6,7 +6,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.lostshard.Lostshard.Intake.Sender;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Objects.ChestRefill;
 import com.lostshard.Lostshard.Utils.Output;

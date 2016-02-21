@@ -7,9 +7,9 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Handlers.HelpHandler;
-import com.lostshard.Lostshard.Intake.Sender;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.Groups.Clan;

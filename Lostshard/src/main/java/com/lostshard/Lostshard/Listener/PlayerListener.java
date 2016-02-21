@@ -1,5 +1,6 @@
 package com.lostshard.Lostshard.Listener;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -55,7 +56,6 @@ import com.lostshard.Lostshard.Objects.Managers;
 import com.lostshard.Lostshard.Objects.Player.OfflineMessage;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Objects.Player.PseudoScoreboard;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Skills.BlackSmithySkill;
 import com.lostshard.Lostshard.Skills.FishingSkill;
 import com.lostshard.Lostshard.Skills.SurvivalismSkill;
@@ -64,6 +64,7 @@ import com.lostshard.Lostshard.Spells.Structures.FireWalk;
 import com.lostshard.Lostshard.Spells.Structures.Gate;
 import com.lostshard.Lostshard.Utils.Output;
 import com.lostshard.Lostshard.Utils.SpellUtils;
+import com.lostshard.Plots.Models.Plot;
 
 public class PlayerListener extends LostshardListener implements Managers {
 
@@ -214,6 +215,26 @@ public class PlayerListener extends LostshardListener implements Managers {
 			event.setCancelled(true);
 	}
 
+	@EventHandler(priority = EventPriority.LOWEST)
+	private void onPlayerJoinProtection(PlayerJoinEvent event) {
+	    try {
+	        Field underlyingEntityField = Class.forName("").getDeclaredField("entity");
+		    underlyingEntityField.setAccessible(true);
+		    Object underlyingPlayerObj = underlyingEntityField.get(event.getPlayer());
+		    
+		    Class<?> ep = Class.forName("");
+		    
+		    if (underlyingPlayerObj instanceof Class) {
+		        Object underlyingPlayer = underlyingPlayerObj;
+		        Field f = underlyingPlayer.getClass().getField("invulnerableTicks");
+		        f.setInt(underlyingPlayer, 0);
+		    }
+		} catch (Exception e) {
+		    Lostshard.log.info("LoginInvulnerabilityFix exception: " + e.getMessage());
+		        e.printStackTrace();
+	    }
+	}
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		final Player player = event.getPlayer();

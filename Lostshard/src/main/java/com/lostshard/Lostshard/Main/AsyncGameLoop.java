@@ -7,12 +7,12 @@ import org.hibernate.Transaction;
 import com.lostshard.Lostshard.Manager.ChestRefillManager;
 import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
 import com.lostshard.Lostshard.Manager.RecordManager;
 //import com.lostshard.Lostshard.Objects.Groups.Clan;
 //import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 //import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recorders.Record;
+import com.lostshard.Plots.PlotManager;
 
 public class AsyncGameLoop extends BukkitRunnable {
 

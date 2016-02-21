@@ -12,8 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import com.lostshard.Lostshard.Main.Lostshard;
-import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class TabUtils {
 

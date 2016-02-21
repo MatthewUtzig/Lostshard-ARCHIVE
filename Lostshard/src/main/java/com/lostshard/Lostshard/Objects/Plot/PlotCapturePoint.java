@@ -28,6 +28,7 @@ import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
 import com.lostshard.Lostshard.Utils.Output;
+import com.lostshard.Plots.Models.Plot;
 
 import me.confuser.barapi.BarAPI;
 

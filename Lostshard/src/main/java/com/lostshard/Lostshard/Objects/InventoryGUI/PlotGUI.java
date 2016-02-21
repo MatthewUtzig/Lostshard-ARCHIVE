@@ -3,7 +3,7 @@ package com.lostshard.Lostshard.Objects.InventoryGUI;
 import org.bukkit.Material;
 
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Plots.Models.Plot;
 
 public class PlotGUI extends GUI {
 	private Plot plot;

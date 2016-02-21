@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
 
-import com.lostshard.Lostshard.Intake.IntakeManager;
+import com.lostshard.CommandManager.IntakeManager;
 import com.sk89q.intake.CommandMapping;
 
 public class DocumentationPrinter {
@@ -45,7 +45,7 @@ public class DocumentationPrinter {
 		Yaml yaml = new Yaml();
 		
 		try {
-			FileWriter w = new FileWriter("C:\\Users\\Jacob\\Desktop\\plugin.yml");
+			FileWriter w = new FileWriter("plugin.yml");
 			try{
 				yaml.dump(yml, w);
 			} finally {

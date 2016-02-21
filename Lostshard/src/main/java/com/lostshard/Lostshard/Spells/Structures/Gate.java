@@ -27,9 +27,9 @@ import org.hibernate.Transaction;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Objects.CustomObjects.SavableLocation;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Spells.MagicStructure;
 import com.lostshard.Lostshard.Utils.Output;
+import com.lostshard.Plots.Models.Plot;
 
 @MappedSuperclass
 @Access(AccessType.PROPERTY)

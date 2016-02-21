@@ -53,15 +53,15 @@ import org.bukkit.inventory.meta.SkullMeta;
 import com.lostshard.Lostshard.Main.Lostshard;
 import com.lostshard.Lostshard.Manager.NPCManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
-import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.Objects.Player.PseudoPlayer;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.Lostshard.Objects.Recorders.DeathRecord;
 import com.lostshard.Lostshard.Utils.ItemUtils;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.NPCType;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class DeathHandler {
 

@@ -30,6 +30,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 import org.hibernate.criterion.Restrictions;
 
+import com.lostshard.Economy.Wallet;
 import com.lostshard.Lostshard.Data.Locations;
 import com.lostshard.Lostshard.Data.Variables;
 import com.lostshard.Lostshard.Main.Lostshard;
@@ -37,18 +38,17 @@ import com.lostshard.Lostshard.Manager.ClanManager;
 import com.lostshard.Lostshard.Manager.PlayerManager;
 import com.lostshard.Lostshard.Objects.ChatChannel;
 import com.lostshard.Lostshard.Objects.PlayerListSet;
-import com.lostshard.Lostshard.Objects.Wallet;
 import com.lostshard.Lostshard.Objects.Groups.Clan;
 import com.lostshard.Lostshard.Objects.Groups.Party;
 import com.lostshard.Lostshard.Objects.InventoryGUI.GUI;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotEffect;
 import com.lostshard.Lostshard.Objects.Recent.RecentAttacker;
 import com.lostshard.Lostshard.Skills.Build;
 import com.lostshard.Lostshard.Skills.Skill;
 import com.lostshard.Lostshard.Spells.Scroll;
 import com.lostshard.Lostshard.Spells.Spell;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotEffect;
 
 /**
  * @author Jacob Rosborg

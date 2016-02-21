@@ -11,11 +11,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
 import com.lostshard.Lostshard.Data.Variables;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.NPC.NPCType;
 import com.lostshard.Lostshard.NPC.NPCLib.NPCLibManager;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
 import com.lostshard.Lostshard.Utils.Utils;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.NPCType;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class NPCManager {
 

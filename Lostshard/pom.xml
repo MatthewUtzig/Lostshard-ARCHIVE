@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.Lostshard.Lostshard</groupId>
 	<artifactId>Lostshard</artifactId>
@@ -157,4 +157,16 @@
     </dependency>
    </dependencies>
 </dependencyManagement>
+	<packaging>pom</packaging>
+  <modules>
+    <module>Plots</module>
+    <module>BanManagement</module>
+    <module>CommandManager</module>
+    <module>Core</module>
+    <module>Economy</module>
+    <module>BukkitPrimitives</module>
+    <module>OfflineMessages</module>
+    <module>Database</module>
+    <module>PseudoPlayer</module>
+  </modules>
 </project>

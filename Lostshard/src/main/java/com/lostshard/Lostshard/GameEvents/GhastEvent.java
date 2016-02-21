@@ -7,8 +7,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Manager.PlotManager;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
+import com.lostshard.Plots.PlotManager;
+import com.lostshard.Plots.Models.Plot;
 
 public class GhastEvent extends WorldEvent {
 

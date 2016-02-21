@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.bukkit.Location;
 
-import com.lostshard.Lostshard.NPC.NPC;
 import com.lostshard.Lostshard.Objects.Store.Store;
+import com.lostshard.Plots.NPC;
 
 public class StoreManager {
 

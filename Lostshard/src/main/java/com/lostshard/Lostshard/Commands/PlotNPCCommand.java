@@ -5,12 +5,12 @@ import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import com.lostshard.Lostshard.Intake.Sender;
-import com.lostshard.Lostshard.NPC.NPC;
-import com.lostshard.Lostshard.NPC.NPCType;
-import com.lostshard.Lostshard.Objects.Plot.Plot;
-import com.lostshard.Lostshard.Objects.Plot.Plot.PlotUpgrade;
+import com.lostshard.CommandManager.Annotations.Sender;
 import com.lostshard.Lostshard.Utils.Output;
+import com.lostshard.Plots.NPC;
+import com.lostshard.Plots.NPCType;
+import com.lostshard.Plots.Models.Plot;
+import com.lostshard.Plots.Models.Plot.PlotUpgrade;
 import com.sk89q.intake.Command;
 import com.sk89q.intake.parametric.annotation.Validate;
 
