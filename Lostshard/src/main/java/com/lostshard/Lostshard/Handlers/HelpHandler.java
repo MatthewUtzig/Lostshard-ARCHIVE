@@ -39,8 +39,7 @@ public class HelpHandler {
 				// section 2 page 2
 				bookMeta.addPage(ChatColor.DARK_PURPLE
 						+ "If you have any questions do not be afraid to ask one of the admins; \n" + ChatColor.GOLD
-						+ "- The_Defman \n" + ChatColor.GOLD + "- Phexos \n" + ChatColor.GOLD + "- Cannibal_Korg \n"
-						+ ChatColor.GOLD + "- BuffyTVS \n");
+						+ "- The_Defman \n" + ChatColor.GOLD + "- Phexos \n" + ChatColor.GOLD + "- Cannibal_Korg \n" );
 
 				// section 3 page 1
 				bookMeta.addPage(ChatColor.GOLD + "" + ChatColor.BOLD + "Banking & Currency\n\n" + ChatColor.DARK_PURPLE
