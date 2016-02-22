@@ -34,7 +34,7 @@ public class SkillUtilsCommand {
 		final PseudoPlayer pPlayer = pm.getPlayer(player);
 		if (name == null) {
 			pPlayer.getBuilds().set(pPlayer.getCurrentBuildId(), new Build());
-			Output.positiveMessage(player, "Skills wiped, but you diden chose a skill to increase.");
+			Output.positiveMessage(player, "Skills wiped, but you did not chose a skill to increase.");
 		} else {
 			final Build build = new Build();
 			final Skill skill = build.getSkillByName(name);
