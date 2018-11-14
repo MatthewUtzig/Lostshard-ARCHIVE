@@ -1,0 +1,24 @@
+Admin base: 4959 4 4962
+-The admin base contains command blocks that warp to various points in the map.
+
+Baghdad (Order): 64 302
+Booty Bay (Chaos): -381 90
+Hostility: -1264 326
+Conflict (arena): -1102 281
+Atonement Shrine: -632 -463
+Obliteration (Unfinished Dungeon): -42 -606
+Phexos server event arena: 3797 -1019
+
+
+Some moderate to large player bases (bases within 200 blocks of Baghdad excluded): 
+-681 132
+199 113
+-427 -121
+-441 -177
+447 218
+338 366
+-75 133
+-408 589
+-610 779
+-1064 687
+-344 366

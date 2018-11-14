@@ -1,0 +1,3 @@
+These files are provide to allow someone to recreate a Mincraft 1.8 Lostshard 2.0/2.1 server
+
+All secure information has been removed (user ips, chat logs, etc.)
