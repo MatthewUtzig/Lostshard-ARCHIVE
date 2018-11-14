@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Configurator/Configurator.iml" filepath="$PROJECT_DIR$/.idea/modules/Configurator/Configurator.iml" group="Configurator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Configurator/Configurator_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Configurator/Configurator_main.iml" group="Configurator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Configurator/Configurator_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Configurator/Configurator_test.iml" group="Configurator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Crate/Crate.iml" filepath="$PROJECT_DIR$/.idea/modules/Crate/Crate.iml" group="Crate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Crate/Crate_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Crate/Crate_main.iml" group="Crate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Crate/Crate_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Crate/Crate_test.iml" group="Crate" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Database/Database.iml" filepath="$PROJECT_DIR$/.idea/modules/Database/Database.iml" group="Database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Database/Database_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Database/Database_main.iml" group="Database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Database/Database_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Database/Database_test.iml" group="Database" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker.iml" filepath="$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker.iml" group="IPTracker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker_main.iml" filepath="$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker_main.iml" group="IPTracker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker_test.iml" filepath="$PROJECT_DIR$/.idea/modules/IPTracker/IPTracker_test.iml" group="IPTracker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard.iml" filepath="$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard.iml" group="Lostshard" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard_main.iml" group="Lostshard" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Lostshard/Lostshard_test.iml" group="Lostshard" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lostshard-parent.iml" filepath="$PROJECT_DIR$/.idea/modules/lostshard-parent.iml" />
+    </modules>
+  </component>
+</project>

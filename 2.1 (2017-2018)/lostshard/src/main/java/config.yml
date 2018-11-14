@@ -1,0 +1,33 @@
+MYSQL:
+  username: "root"
+  password: ""
+  url: "jdbc:mysql://localhost/lostshard"
+  driver: "com.mysql.jdbc.Driver"
+DAMAGE:
+  base: .9
+  armor: .7
+  magic: 1
+  resistance: 1
+  hardhat: 1
+  arrow: .8
+  hand: 1
+  swords: 1
+  diamondSword: 1
+  ironSword: 1
+  goldSword: 2
+  stoneSword: 1
+  woodSword: 1
+  axes: 1
+  diamondAxe: 1
+  ironAxe: 1
+  goldAxe: 2
+  stoneAxe: 1
+  woodAxe: 1
+GENERAL:
+  motd: ""
+LOCATIONS:
+  lawfull: "{\"world\":\"world\",\"x\":0.0,\"y\":60.0,\"z\":0.0,\"pitch\":0.0,\"yaw\":0.0}"
+  criminal: "{\"world\":\"world\",\"x\":100.0,\"y\":60.0,\"z\":0.0,\"pitch\":0.0,\"yaw\":0.0}"
+  build:
+    lawfull: "{\"world\":\"world\",\"x\":0.0,\"y\":60.0,\"z\":0.0,\"pitch\":0.0,\"yaw\":0.0}"
+    criminal: "{\"world\":\"world\",\"x\":100.0,\"y\":60.0,\"z\":0.0,\"pitch\":0.0,\"yaw\":0.0}"

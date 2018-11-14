@@ -1,0 +1,42 @@
+subprojects {
+    apply plugin: "idea"
+    apply plugin: "java"
+    apply plugin: "maven"
+    apply plugin: "checkstyle"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    sourceSets {
+        main {
+            java {
+                srcDir "src/main/java"
+            }
+            resources {
+                srcDir "src/main/resources"
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+        maven { url "http://maven.sk89q.com/repo/" }
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    build.dependsOn(checkstyleMain)
+    build.dependsOn(checkstyleTest)
+    build.dependsOn(sourcesJar)
+    build.dependsOn(javadocJar)
+}

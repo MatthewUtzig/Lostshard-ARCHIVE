@@ -1,0 +1,8 @@
+rootProject.name = 'lostshard-parent'
+
+include "Lostshard",
+        "Core",
+        "Crate",
+        "IPTracker",
+        "Database",
+        "Configurator"

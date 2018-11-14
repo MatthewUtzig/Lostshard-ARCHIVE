@@ -1,0 +1,8 @@
+group = 'com.lostshard.lostshard'
+version = '0.1-SNAPSHOT'
+
+dependencies {
+    compile group: "com.sk89q.intake", name: "intake", version: "4.0-SNAPSHOT"
+    compile group: "org.spigotmc", name: "spigot-api", version: "1.11.2-R0.1-SNAPSHOT"
+    compile group: 'org.mongodb', name: 'mongodb-driver-async', version: '3.4.2'
+}

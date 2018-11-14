@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Alts_main" target="1.8" />
+      <module name="Alts_test" target="1.8" />
+      <module name="Configurator_main" target="1.8" />
+      <module name="Configurator_test" target="1.8" />
+      <module name="Core_main" target="1.8" />
+      <module name="Core_test" target="1.8" />
+      <module name="Crate_main" target="1.8" />
+      <module name="Crate_test" target="1.8" />
+      <module name="Database_main" target="1.8" />
+      <module name="Database_test" target="1.8" />
+      <module name="IPTracker_main" target="1.8" />
+      <module name="IPTracker_test" target="1.8" />
+      <module name="Lostshard_main" target="1.8" />
+      <module name="lostshard_main" target="1.8" />
+      <module name="Lostshard_test" target="1.8" />
+      <module name="lostshard_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

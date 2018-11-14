@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.sk89q.intake:intake:4.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sk89q.intake/intake/4.0-SNAPSHOT/3150c9251b3cd186352aa150ce501b95207f6c20/intake-4.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sk89q.intake/intake/4.0-SNAPSHOT/4f11fe415fe44ae9f12659478cfc375b4a94ac22/intake-4.0-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
