@@ -1,0 +1,32 @@
+MYSQL:
+  username: "test"
+  password: "00101000"
+  url: "jdbc:mysql://51.254.209.47/alpha"
+DAMAGE:
+  base: 1
+  armor: 1
+  magic: 1
+  resistance: 1
+  hardhat: 1
+  arrow: 1
+  hand: 1
+  swords: 1
+  diamondSword: 1
+  ironSword: 1
+  goldSword: 1.2
+  stoneSword: 1
+  woodSword: 1
+  axes: 1
+  diamondAxe: 1
+  ironAxe: 1
+  goldAxe: 1.2
+  stoneAxe: 1
+  woodAxe: 1
+GENERAL:
+  motd: ""
+LOCATIONS:
+  lawfull: "{\"world\":\"world\",\"x\":65.5,\"y\":71.0,\"z\":302.5,\"pitch\":0.0,\"yaw\":180.0}"
+  criminal: "{\"world\":\"world\",\"x\":-357.5,\"y\":78.0,\"z\":93.5,\"pitch\":0.0,\"yaw\":90.0}"
+  build:
+    lawfull: "{\"world\":\"world\",\"x\":60.5,\"y\":71.0,\"z\":277.5,\"pitch\":0.0,\"yaw\":0.0}"
+    criminal: "{\"world\":\"world\",\"x\":-371.5,\"y\":74.0,\"z\":108.5,\"pitch\":0.0,\"yaw\":0.0}"
