@@ -1,0 +1,28 @@
+name: LostshardTutorial
+description: Lostshard Tutorial plugin
+author: mattzzigster
+website: www.lostshard.com
+version: 1.0
+main: me.lostshardtutorial2.tutorials.Main
+commands:
+    maintutorialcommand:
+        description: dont use
+        usage: /<command>
+    howmanylines:
+        description: Shows how many lines that text takes up
+        usage: /<command>
+    moneytutorialcommand:
+        description: dont use
+        usage: /<command>
+    kickself:
+        description: dont use
+        usage: /<command>
+    secondquestiononjoin:
+        description: dont use
+        usage: /<command>
+    usetextfortutorials:
+        description: dont use
+        usage: /<command>
+    usesignsfortutorials:
+        description: dont use
+        usage: /<command>
