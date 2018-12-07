@@ -18,29 +18,14 @@ height: 100%;
 html {overflow-y: scroll;}
 
 body {
-background-image:url('/web/20130724165614im_/http://www.lostshard.com/images/bg.jpg');
+background-image:url('images/bg.jpg');
 background-attachment:fixed;
 }
 
 @font-face {
 	font-family: 'BlackChanceryRegular';
-	src: url('/web/20130724165614im_/http://www.lostshard.com/blkchcry-webfont.eot');
-	src: local('☺'), url('/web/20130724165614im_/http://www.lostshard.com/blkchcry-webfont.woff') format('woff'), url('/web/20130724165614im_/http://www.lostshard.com/blkchcry-webfont.ttf') format('truetype'), url('/web/20130724165614im_/http://www.lostshard.com/blkchcry-webfont.svg#webfontSYve342J') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-
-@font-face {
-	/* This declaration targets Internet Explorer */
-	font-family: 'PEIXEFRITORegular';
-	src: url('/web/20130724165614im_/http://www.lostshard.com/ppeixe___-webfont.eot');
-}
-
-@font-face {
-	/* This declaration targets everything else */
-	font-family: 'PEIXEFRITORegular';
-	src: url(//web.archive.org/web/20130724165614im_/http://:/) format('no404'), url('/web/20130724165614im_/http://www.lostshard.com/peixe___-webfont.woff') format('woff'), url('/web/20130724165614im_/http://www.lostshard.com/ppeixe___-webfont.ttf') format('truetype'), url('/web/20130724165614im_/http://www.lostshard.com/ppeixe___-webfont.svg#webfont697MLbBO') format('svg');
+	src: url('fonts/blkchcry-webfont.eot');
+	src: local('☺'), url('fonts/blkchcry-webfont.woff') format('woff'), url('fonts/blkchcry-webfont.ttf') format('truetype'), url('fonts/blkchcry-webfont.svg#webfontSYve342J') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -48,7 +33,7 @@ background-attachment:fixed;
 @font-face {
 	/* This declaration targets Internet Explorer */
 	font-family: 'RMGingerRegular';
-	src: url('/web/20130724165614im_/http://www.lostshard.com/rm_ginger-webfont.eot');
+	src: url('fonts/rm_ginger-webfont.eot');
 }
 
 @font-face {
@@ -90,7 +75,7 @@ width:950px;
 height:auto !important; /* real browsers */
 height:100%; /* IE6: treaded as min-height*/
 min-height:100%; /* real browsers */
-background-image:url('/web/20130724165614im_/http://www.lostshard.com/parchcrap.png');
+background-image:url('images/sand');
 }
 
 #content {
@@ -144,7 +129,7 @@ text-align:center;
     position:relative;
     width:800; /* Change this to your images width */
     height:400px; /* Change this to your images height */
-    background:url(/web/20130724165614im_/http://www.lostshard.com/images/loading.gif) no-repeat 50% 50%;
+    background:url(images/loading.gif) no-repeat 50% 50%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -160,14 +145,6 @@ text-align:center;
     border:0;
     display:block;
 }
-/*
-     FILE ARCHIVED ON 16:56:14 Jul 24, 2013 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 12:16:52 Dec 07, 2018.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
-*/
 /*
 playback timings (ms):
   LoadShardBlock: 78.616 (3)
