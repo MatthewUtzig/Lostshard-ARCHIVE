@@ -187,6 +187,7 @@
 		Lost Shard is an RPG server for minecraft. It features, among other things, a gold based currency, a system of land ownership and skills and abilities that allow you to differentiate yourself from everyone else.</br>
 		</br>
 		</div>
+		<div id="header">Returning in Summer 2019</div>
 	</div>
 </div>
 </body>
