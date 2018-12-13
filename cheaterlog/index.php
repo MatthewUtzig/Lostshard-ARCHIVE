@@ -13,7 +13,7 @@
 			height: 100%;
 		}
 		body {
-			background: #fff; font-family: tahoma; font-size: 12px; margin: 0; padding: 0; height: 100%; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bg.jpg'); background-position: center; background-attachment: fixed;
+			background: #fff; font-family: tahoma; font-size: 12px; margin: 0; padding: 0; height: 100%; background-image: url('bg.jpg'); background-position: center; background-attachment: fixed;
 		}
 		.row {
 			display: block; height: 52px; border-bottom: 1px solid black; background: #fff;
@@ -51,7 +51,7 @@
 		}
 	</script>
 
-	<script src="/web/20181211145355js_/http://www.project610.com/cheatershit/calendar/ts_picker.js">
+	<script src="/cheaterlog/calendar/ts_picker.js">
 		//Script by Denis Gritcyuk: tspicker@yahoo.com
 		//Submitted to JavaScript Kit (http://javascriptkit.com)
 		//Visit http://javascriptkit.com for this script
@@ -68,7 +68,7 @@
 
 <body>
 
-<div style="width: 1150px; height: 100px; margin-top: 50px; margin-left: auto; margin-right: auto; background: #fff; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;"><a href="?"><img src="/web/20181211145355im_/http://www.project610.com/cheatershit/banner.png" alt="LS Cheater Shit 2.0 Banner!"/></a></div>
+<div style="width: 1150px; height: 100px; margin-top: 50px; margin-left: auto; margin-right: auto; background: #fff; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black;"><a href="?"><img src="/cheaterlog/banner.png" alt="LS Cheater Shit 2.0 Banner!"/></a></div>
 <div style="width: 1150px; border-left: 1px solid black; border-right: 1px solid black; margin-left: auto; margin-right: auto;">
 
 	<div class="row" style="font-weight: bold; border-top: 1px solid black; height: 20px; font-size: 12px; padding-top: 2px;">
