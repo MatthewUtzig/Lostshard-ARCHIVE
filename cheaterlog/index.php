@@ -353,7 +353,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Ban him when he comes online</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -386,7 +386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Ban him when he comes online"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -401,7 +401,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">vclipped with cmurbach</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -434,7 +434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="vclipped with cmurbach"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -449,7 +449,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">reach hacks prob. more</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -482,7 +482,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="reach hacks prob. more"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -497,7 +497,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -530,7 +530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -593,7 +593,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Map wiped</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -626,7 +626,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Map wiped"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -641,7 +641,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style="background: #ff0;">-1,910.5</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was no fall damaging around, if you want to perma go ahead</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -674,7 +674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style="background: #ff0;">-1,910.5</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was no fall damaging around, if you want to perma go ahead"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -689,7 +689,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style="background: #ff0;">-1,910.5</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">If we want to perma-him go right ahead, was flyhacking around</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -722,7 +722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style="background: #ff0;">-1,910.5</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="If we want to perma-him go right ahead, was flyhacking around"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -737,7 +737,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Asked if he cheated then he showed me, loged on a alt after getting ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -770,7 +770,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Asked if he cheated then he showed me, loged on a alt after getting ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -785,7 +785,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Said yes after being asked if he could noclip through walls - interrogate on sight</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -818,7 +818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Said yes after being asked if he could noclip through walls - interrogate on sight"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -833,7 +833,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Asked JTB_4272 if he can noclip through walls, jtb said yes - interrogate on sight</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -866,7 +866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Asked JTB_4272 if he can noclip through walls, jtb said yes - interrogate on sight"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -881,7 +881,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He only teleported to darkespawn after darke exploited into the house, because he admitted I told him that he could pay to be unbanned</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -914,7 +914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He only teleported to darkespawn after darke exploited into the house, because he admitted I told him that he could pay to be unbanned"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -929,7 +929,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Got wrecked in a banmatch vs htank2, forgot to mention that potions were illegal BEFORE being teleported to Conflict</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -962,7 +962,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Got wrecked in a banmatch vs htank2, forgot to mention that potions were illegal BEFORE being teleported to Conflict"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -977,7 +977,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">hacked into xstoux plot, ask him and ban him</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1010,7 +1010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="hacked into xstoux plot, ask him and ban him"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1025,7 +1025,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">hacked into xstoux plot, ask him and ban him</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1058,7 +1058,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="hacked into xstoux plot, ask him and ban him"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1073,7 +1073,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Cheating again....hacking into houses</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1106,7 +1106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Cheating again....hacking into houses"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1217,7 +1217,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Being Funcards THIS IS NOT DAREDEVIL ANYMORE</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1250,7 +1250,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Being Funcards THIS IS NOT DAREDEVIL ANYMORE"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1265,7 +1265,7 @@
 				<div class="cell">100000000</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">he dont need to come back ever.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1298,7 +1298,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="100000000"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="he dont need to come back ever."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1313,7 +1313,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Tryed lieing to me telling me he was not cheating but told him his ban would be shorter if he tells me what he was using then he starts to fly around...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1346,7 +1346,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Tryed lieing to me telling me he was not cheating but told him his ban would be shorter if he tells me what he was using then he starts to fly around..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1361,7 +1361,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">flying</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1394,7 +1394,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="flying"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1409,7 +1409,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Skypecall posted screen shot of him flying in reports on forms</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1442,7 +1442,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Skypecall posted screen shot of him flying in reports on forms"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1457,7 +1457,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Flying while x-raying, lazy hackers</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1490,7 +1490,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Flying while x-raying, lazy hackers"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1505,7 +1505,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">ddosing server today (is also nuubituubi50, I got kalastaja for x-ray again earlier - conn)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1538,7 +1538,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="ddosing server today (is also nuubituubi50, I got kalastaja for x-ray again earlier - conn)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1553,7 +1553,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged before interrogation</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1586,7 +1586,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged before interrogation"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1649,7 +1649,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">vikkgamer</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1682,7 +1682,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="vikkgamer"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1697,7 +1697,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">court in session (banned) / was perma banned on previous map</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1730,7 +1730,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="court in session (banned) / was perma banned on previous map"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1745,7 +1745,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged before interrogation, was perma-banned last map</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1778,7 +1778,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged before interrogation, was perma-banned last map"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1793,7 +1793,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1826,7 +1826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1841,7 +1841,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1874,7 +1874,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1889,7 +1889,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted to both</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1922,7 +1922,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted to both"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1937,7 +1937,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -1970,7 +1970,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -1985,7 +1985,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Joins the server for the first time.. starts to fly...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2018,7 +2018,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Joins the server for the first time.. starts to fly..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2033,7 +2033,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">FUCK ME SO HARD I WANT TO COME ON EVERY THING SO MANY THINGS I WANT TO SPERM ON OOOOOOOOOOO x3 in global after spammuing other shit</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2066,7 +2066,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="FUCK ME SO HARD I WANT TO COME ON EVERY THING SO MANY THINGS I WANT TO SPERM ON OOOOOOOOOOO x3 in global after spammuing other shit"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2081,7 +2081,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Denied that he was even at his computer after x-raying hard for like 45 minutes</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2114,7 +2114,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Denied that he was even at his computer after x-raying hard for like 45 minutes"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2129,7 +2129,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Vehemently denied it, claimed it was a glitch so technically exploiting anyways</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2162,7 +2162,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Vehemently denied it, claimed it was a glitch so technically exploiting anyways"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2177,7 +2177,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was a dick throughout the interrogation, didn't admit instantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2210,7 +2210,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was a dick throughout the interrogation, didn't admit instantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2225,7 +2225,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Asking in globle for me to help him exploit into a house. Told him not to joke about that then ban for 2 days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2258,7 +2258,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Asking in globle for me to help him exploit into a house. Told him not to joke about that then ban for 2 days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2273,7 +2273,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">said he was an admin</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2306,7 +2306,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="said he was an admin"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2321,7 +2321,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watch him I was spawning some wolves in and he killed them fast. Told me he lagged but later scorpy said Dark told him he used force feild to kill my wolves. I didn't tell scorpy about the wolves</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2354,7 +2354,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watch him I was spawning some wolves in and he killed them fast. Told me he lagged but later scorpy said Dark told him he used force feild to kill my wolves. I didn't tell scorpy about the wolves"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2369,7 +2369,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged before interrogation</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2402,7 +2402,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged before interrogation"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2417,7 +2417,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged in trap twice caught him a day later when he logged in to check if he was still in the trap</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2450,7 +2450,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged in trap twice caught him a day later when he logged in to check if he was still in the trap"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2465,7 +2465,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Tried to be cute and say he was stripmining, only his stripmining doesn't make ANY sense and always leads directly to ore</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2498,7 +2498,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Tried to be cute and say he was stripmining, only his stripmining doesn't make ANY sense and always leads directly to ore"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2513,7 +2513,7 @@
 				<div class="cell">420</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">finally</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2546,7 +2546,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="420"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="finally"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2561,7 +2561,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">http://i.imgur.com/49ow8QA.png</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2594,7 +2594,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="http://i.imgur.com/49ow8QA.png"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2609,7 +2609,7 @@
 				<div class="cell">4</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">kids dumb</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2642,7 +2642,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="4"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="kids dumb"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2657,7 +2657,7 @@
 				<div class="cell">8</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">yeah hack accusing,</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2690,7 +2690,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="8"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="yeah hack accusing,"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2705,7 +2705,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">2nd time this map</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2738,7 +2738,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="2nd time this map"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2753,7 +2753,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">again....</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2786,7 +2786,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="again...."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2801,7 +2801,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, perm banned for repeat offenses, should know better by now.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2834,7 +2834,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, perm banned for repeat offenses, should know better by now."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2849,7 +2849,7 @@
 				<div class="cell">4</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Accused ccharliee of exploiting in global</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2882,7 +2882,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="4"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Accused ccharliee of exploiting in global"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2897,7 +2897,7 @@
 				<div class="cell">64</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Accused Target_Hit of exploiting in global / admin disrespect [tenbux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2930,7 +2930,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="64"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Accused Target_Hit of exploiting in global / admin disrespect [tenbux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2945,7 +2945,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -2978,7 +2978,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -2993,7 +2993,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">[05:40] &lt;@LSBot&gt; [Global] WarForged111: You hacked through a wall [05:40] &lt;@LSBot&gt; [Global] WarForged111: into a protected are</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3026,7 +3026,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="[05:40] <@LSBot> [Global] WarForged111: You hacked through a wall [05:40] <@LSBot> [Global] WarForged111: into a protected are"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3041,7 +3041,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">see melodyann75 below</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3074,7 +3074,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="see melodyann75 below"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3089,7 +3089,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">claimed he wasnt uilidixbeast and he got hacked to which i told him to read up about account security and goodbye</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3122,7 +3122,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="claimed he wasnt uilidixbeast and he got hacked to which i told him to read up about account security and goodbye"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3137,7 +3137,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3170,7 +3170,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3185,7 +3185,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">perma until i hear from lucid about a contested paypal payment</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3218,7 +3218,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="perma until i hear from lucid about a contested paypal payment"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3233,7 +3233,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">hackusations in the general forum on forums.lostshard.com</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3266,7 +3266,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="hackusations in the general forum on forums.lostshard.com"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3281,7 +3281,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">changed to perma because he has been perma'd almost every map wow</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3314,7 +3314,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="changed to perma because he has been perma'd almost every map wow"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3329,7 +3329,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">[06:42] &lt;@LSBot&gt; [Global] tylernascar17: damn hackers [06:42] &lt;@LSBot&gt; [Global] tylernascar17: HI HACKERS</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3362,7 +3362,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="[06:42] <@LSBot> [Global] tylernascar17: damn hackers [06:42] <@LSBot> [Global] tylernascar17: HI HACKERS"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3377,7 +3377,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">[03:10] &lt;@LSBot&gt; [Global] ccharliee: Dont fight veijoel, aimbot...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3410,7 +3410,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="[03:10] <@LSBot> [Global] ccharliee: Dont fight veijoel, aimbot..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3425,7 +3425,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">knows better, posted an amusing thread in general after i told him to fuckoff in irc</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3458,7 +3458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="knows better, posted an amusing thread in general after i told him to fuckoff in irc"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3473,7 +3473,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Turns out this idiot actually wanted to play</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3506,7 +3506,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Turns out this idiot actually wanted to play"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3521,7 +3521,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"> Perma banned, repeat offender. Didnt even try to hide it after someone called him out in global</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3554,7 +3554,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=" Perma banned, repeat offender. Didnt even try to hide it after someone called him out in global"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3617,7 +3617,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3650,7 +3650,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3665,7 +3665,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3698,7 +3698,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3713,7 +3713,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited out of a trap</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3746,7 +3746,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited out of a trap"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3761,7 +3761,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spam and quit</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3794,7 +3794,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spam and quit"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3809,7 +3809,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Super jumped next to me and then I ask what he did and he said just making friends</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3842,7 +3842,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Super jumped next to me and then I ask what he did and he said just making friends"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3857,7 +3857,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">warnde</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3890,7 +3890,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="warnde"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3905,7 +3905,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">http://lostshard.com/phpbb/viewtopic.php?f=1&t;=3648&p;=27660#p27660</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3938,7 +3938,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="http://lostshard.com/phpbb/viewtopic.php?f=1&amp;t=3648&amp;p=27660#p27660"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -3953,7 +3953,7 @@
 				<div class="cell">3</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">boom; (misused report form + 1 days --fiddle)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -3986,7 +3986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="3"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="boom; (misused report form + 1 days --fiddle)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4001,7 +4001,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"> [MSG to x27r2d2] Target_Hit: shadow's hacking army's actually right</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4034,7 +4034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=" [MSG to x27r2d2] Target_Hit: shadow's hacking army's actually right"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4049,7 +4049,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">LoL</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4082,7 +4082,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="LoL"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4097,7 +4097,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out while i asked him, he didnt take fall damage at all, known cheater didnt kill him he logged</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4130,7 +4130,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out while i asked him, he didnt take fall damage at all, known cheater didnt kill him he logged"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4145,7 +4145,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Banned him first time, as Anker8778 keep ban evading, so /super ban i guess</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4178,7 +4178,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Banned him first time, as Anker8778 keep ban evading, so /super ban i guess"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4193,7 +4193,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">ScrubBasher and madjoshzombie was invisible, he ran next to us and hittet us without notice, he admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4226,7 +4226,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="ScrubBasher and madjoshzombie was invisible, he ran next to us and hittet us without notice, he admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4241,7 +4241,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">xray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4274,7 +4274,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="xray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4289,7 +4289,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">x-ray (martin found him)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4322,7 +4322,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="x-ray (martin found him)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4337,7 +4337,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spam</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4370,7 +4370,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spam"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4385,7 +4385,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">warned before</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4418,7 +4418,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="warned before"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4433,7 +4433,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious // found by Aries</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4466,7 +4466,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious // found by Aries"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4481,7 +4481,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4514,7 +4514,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4529,7 +4529,7 @@
 				<div class="cell">4</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed porn</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4562,7 +4562,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="4"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed porn"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4577,7 +4577,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4610,7 +4610,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4625,7 +4625,7 @@
 				<div class="cell">4</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">another spam day</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4658,7 +4658,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="4"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="another spam day"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4673,7 +4673,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">hard.... but he got banned for x-ray, admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4706,7 +4706,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="hard.... but he got banned for x-ray, admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4721,7 +4721,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">didnt admit he used nodus when i teleported him on water, and he became Jesus</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4754,7 +4754,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="didnt admit he used nodus when i teleported him on water, and he became Jesus"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4769,7 +4769,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4802,7 +4802,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4817,7 +4817,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, admitted</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4850,7 +4850,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, admitted"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4865,7 +4865,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">asking for ban, spamming</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4898,7 +4898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="asking for ban, spamming"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4913,7 +4913,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Speechless, admitted when prompted</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4946,7 +4946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Speechless, admitted when prompted"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -4961,7 +4961,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">watching him nuke, repairing his shit, taking mining drops</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -4994,7 +4994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="watching him nuke, repairing his shit, taking mining drops"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5009,7 +5009,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">nuking, mining w/ xcaver who was profiting</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5042,7 +5042,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="nuking, mining w/ xcaver who was profiting"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5057,7 +5057,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted, [tenbux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5090,7 +5090,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted, [tenbux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5105,7 +5105,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">$2 edit: these guys cheat every map, perma'd from before = perma this map. Gave them warnings, they flew ~10 seconds after... hacking must run in the family harharhar</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5138,7 +5138,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="$2 edit: these guys cheat every map, perma'd from before = perma this map. Gave them warnings, they flew ~10 seconds after... hacking must run in the family harharhar"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5153,7 +5153,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">$2 edit: these guys cheat every map, perma'd from before = perma this map. Gave him a warning, then flew ~10 seconds after</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5186,7 +5186,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="$2 edit: these guys cheat every map, perma'd from before = perma this map. Gave him a warning, then flew ~10 seconds after"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5201,7 +5201,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">$2 edit: these guys cheat every map, perma'd from before = perma this map. Is rangerunwield so I showed practically no mercy, mined straight through stone down ~7 blocks to line himself up with diamonds, was a dick and didn't admit</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5234,7 +5234,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="$2 edit: these guys cheat every map, perma'd from before = perma this map. Is rangerunwield so I showed practically no mercy, mined straight through stone down ~7 blocks to line himself up with diamonds, was a dick and didn't admit"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5249,7 +5249,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted pretty fast, acted like he didn't know it was illegal</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5282,7 +5282,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted pretty fast, acted like he didn't know it was illegal"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5297,7 +5297,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Warned 10 times in few days </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5330,7 +5330,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Warned 10 times in few days "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5345,7 +5345,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, x-rayed for iron lol</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5378,7 +5378,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, x-rayed for iron lol"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5393,7 +5393,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5426,7 +5426,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5441,7 +5441,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5474,7 +5474,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5489,7 +5489,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5522,7 +5522,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5537,7 +5537,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Usually wouldn't be that big of a deal but was using it to kill people, and he probably x-rayed up the armor he was wearing and junk</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5570,7 +5570,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Usually wouldn't be that big of a deal but was using it to kill people, and he probably x-rayed up the armor he was wearing and junk"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5585,7 +5585,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5618,7 +5618,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5633,7 +5633,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">telling people he is me (its empty_jay and he knows beetter)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5666,7 +5666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="telling people he is me (its empty_jay and he knows beetter)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5729,7 +5729,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Saw him flying in Chaos</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5762,7 +5762,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Saw him flying in Chaos"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5777,7 +5777,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5810,7 +5810,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5825,7 +5825,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">some fucking cunt forgot to add him to this list preivus THANKS</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5858,7 +5858,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="some fucking cunt forgot to add him to this list preivus THANKS"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5873,7 +5873,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5906,7 +5906,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -5921,7 +5921,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spam</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -5954,7 +5954,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spam"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6017,7 +6017,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6050,7 +6050,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6065,7 +6065,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6098,7 +6098,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6113,7 +6113,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6146,7 +6146,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6161,7 +6161,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was using some kind of cheats, probably nodus, to jump really high and not take fall damage</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6194,7 +6194,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was using some kind of cheats, probably nodus, to jump really high and not take fall damage"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6209,7 +6209,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray would not respond to my msg.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6242,7 +6242,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray would not respond to my msg."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6257,7 +6257,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted in priv msg.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6290,7 +6290,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted in priv msg."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6305,7 +6305,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Banned till new map. So_N_So crushed him.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6338,7 +6338,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Banned till new map. So_N_So crushed him."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6353,7 +6353,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Banned till next map</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6386,7 +6386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Banned till next map"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6401,7 +6401,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Banmatched lax, got raped, said </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6434,7 +6434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Banmatched lax, got raped, said "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6449,7 +6449,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He setup a clock machine and attempted but failed to dupe diamond blocks.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6482,7 +6482,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He setup a clock machine and attempted but failed to dupe diamond blocks."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6497,7 +6497,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Clear cheating with speed/fly hack minutes after I unbanned him.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6530,7 +6530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Clear cheating with speed/fly hack minutes after I unbanned him."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6545,7 +6545,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed server over and over.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6578,7 +6578,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed server over and over."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6593,7 +6593,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was jumping really high and not taking fall damage, immediately logged in with an alt.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6626,7 +6626,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was jumping really high and not taking fall damage, immediately logged in with an alt."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6641,7 +6641,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Came on after pokpok18 and spammed big time.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6674,7 +6674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Came on after pokpok18 and spammed big time."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6689,7 +6689,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed after being warned not to.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6722,7 +6722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed after being warned not to."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6737,7 +6737,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">New map! All bans after this apply through next map.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6770,7 +6770,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="New map! All bans after this apply through next map."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6785,7 +6785,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, did not admit immediately. Says his 100 mining led him to diamond ore veins.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6818,7 +6818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, did not admit immediately. Says his 100 mining led him to diamond ore veins."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6833,7 +6833,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6866,7 +6866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6881,7 +6881,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, called me faggot when I banned him. I also could not hit him for some reason.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6914,7 +6914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, called me faggot when I banned him. I also could not hit him for some reason."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6929,7 +6929,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Probably exploited, would not respond to private messages, will wait to see if he talks in his ban appeal.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -6962,7 +6962,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Probably exploited, would not respond to private messages, will wait to see if he talks in his ban appeal."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -6977,7 +6977,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited into a bunch of plots. Did the same thing last map and was perma banned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7010,7 +7010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited into a bunch of plots. Did the same thing last map and was perma banned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7025,7 +7025,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style="background: #ff0;">-2,139.4</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-rayed hard while nobody was watching, admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7058,7 +7058,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style="background: #ff0;">-2,139.4</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-rayed hard while nobody was watching, admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7073,7 +7073,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">flying/ban evasion</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7106,7 +7106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="flying/ban evasion"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7121,7 +7121,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7154,7 +7154,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7169,7 +7169,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed for quite some time, lagging LSBot</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7202,7 +7202,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed for quite some time, lagging LSBot"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7217,7 +7217,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was telling people to join his "server" which was actually a session stealer</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7250,7 +7250,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was telling people to join his " server" which was actually a session stealer"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7265,7 +7265,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Alt of zatarafejring known cheater, perma banned. Proudly admitted nodus client in global, had pvp hacks on too.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7298,7 +7298,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Alt of zatarafejring known cheater, perma banned. Proudly admitted nodus client in global, had pvp hacks on too."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7313,7 +7313,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7346,7 +7346,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7361,7 +7361,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-rayed hard, logged in the IOS</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7394,7 +7394,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-rayed hard, logged in the IOS"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7409,7 +7409,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed to join another server.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7442,7 +7442,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed to join another server."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7457,7 +7457,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">obvious x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7490,7 +7490,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="obvious x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7505,7 +7505,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">tw777 said something about him having x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7538,7 +7538,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="tw777 said something about him having x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7553,7 +7553,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">tw777 said something about him having x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7586,7 +7586,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="tw777 said something about him having x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7601,7 +7601,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">tw777 said something about him having x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7634,7 +7634,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="tw777 said something about him having x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7649,7 +7649,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style="background: #ff0;">-2,139.4</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Said he x-rayed in a private message, admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7682,7 +7682,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style="background: #ff0;">-2,139.4</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Said he x-rayed in a private message, admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7697,7 +7697,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7730,7 +7730,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7745,7 +7745,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Out of NOWHERE became a shit, he can come back when he posts... he's a dane, so I wouldn't be surprised to see him on one of his 50 alts though</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7778,7 +7778,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Out of NOWHERE became a shit, he can come back when he posts... he's a dane, so I wouldn't be surprised to see him on one of his 50 alts though"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7793,7 +7793,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7826,7 +7826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7841,7 +7841,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Denied at first, when jfrench admitted he spilled the beans. Observed by martin and myself, perma-d last map so he gone</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7874,7 +7874,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Denied at first, when jfrench admitted he spilled the beans. Observed by martin and myself, perma-d last map so he gone"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7889,7 +7889,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style="background: #ff0;">-2,141.4</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Observed by martin and myself, x-raying hard, admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7922,7 +7922,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style="background: #ff0;">-2,141.4</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Observed by martin and myself, x-raying hard, admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7937,7 +7937,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He got dunked! just ask connrad</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -7970,7 +7970,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He got dunked! just ask connrad"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -7985,7 +7985,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-raying like a boss, used derpmode, thanks for the tip-off grif</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8018,7 +8018,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-raying like a boss, used derpmode, thanks for the tip-off grif"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8033,7 +8033,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">hes suddenly joining, claiming hes own clan, knows everything abou Lost Shard, US IP</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8066,7 +8066,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="hes suddenly joining, claiming hes own clan, knows everything abou Lost Shard, US IP"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8081,7 +8081,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">edit: paid $10 bux. called me/tsarce a hacker, being a shit in general, annoying in the past too, from 4 to 15 days for being a shit in ban appeal</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8114,7 +8114,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="edit: paid $10 bux. called me/tsarce a hacker, being a shit in general, annoying in the past too, from 4 to 15 days for being a shit in ban appeal"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8129,7 +8129,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">denyed, but i saw him..... havent admit yet bad-all</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8162,7 +8162,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="denyed, but i saw him..... havent admit yet bad-all"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8225,7 +8225,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Pretty suspicious if you ask me, I can't really find a pattern to his mines but he signed out before I investigated</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8258,7 +8258,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Pretty suspicious if you ask me, I can't really find a pattern to his mines but he signed out before I investigated"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8273,7 +8273,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Told his friend he used it in private message, admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8306,7 +8306,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Told his friend he used it in private message, admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8321,7 +8321,7 @@
 				<div class="cell">10</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Big spammer</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8354,7 +8354,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="10"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Big spammer"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8369,7 +8369,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Did not admit in game. Got fraps for proof let's see if he still denies it.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8402,7 +8402,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Did not admit in game. Got fraps for proof let's see if he still denies it."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8609,7 +8609,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited through glass on a roof, claimed to glitch with teleport. He did not cast teleport.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8642,7 +8642,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited through glass on a roof, claimed to glitch with teleport. He did not cast teleport."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8705,7 +8705,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8738,7 +8738,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8897,7 +8897,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logget out while i tped him to IOS, he clearly x-rayed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8930,7 +8930,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logget out while i tped him to IOS, he clearly x-rayed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -8945,7 +8945,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Htank and I were fighting him with invis pots, I was behind him but somehow I died when htank did (tank was in front of him), possibly just lag on my end but I've gotten reports from outside sources as well</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -8978,7 +8978,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Htank and I were fighting him with invis pots, I was behind him but somehow I died when htank did (tank was in front of him), possibly just lag on my end but I've gotten reports from outside sources as well"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9041,7 +9041,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">autosprint, killed me while afking.. lol</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9074,7 +9074,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="autosprint, killed me while afking.. lol"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9089,7 +9089,7 @@
 				<div class="cell">10</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">announcing globally that he was using nodus</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9122,7 +9122,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="10"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="announcing globally that he was using nodus"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9137,7 +9137,7 @@
 				<div class="cell">10</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">announcing globally that he was using nodus</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9170,7 +9170,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="10"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="announcing globally that he was using nodus"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9185,7 +9185,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray. 2nd offense this map, perma.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9218,7 +9218,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray. 2nd offense this map, perma."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9281,7 +9281,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted pretty fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9314,7 +9314,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted pretty fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9329,7 +9329,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">autofish, modded optifine</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9362,7 +9362,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="autofish, modded optifine"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9377,7 +9377,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Really obvious, admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9410,7 +9410,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Really obvious, admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9425,7 +9425,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Double check to make sure he's not an alt</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9458,7 +9458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Double check to make sure he's not an alt"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9473,7 +9473,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">These are alts of the </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9506,7 +9506,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="These are alts of the "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9521,7 +9521,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Is this the same person? Tons of connections from the same IP on ayuip.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9554,7 +9554,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Is this the same person? Tons of connections from the same IP on ayuip."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9569,7 +9569,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, admitted immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9602,7 +9602,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, admitted immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9617,7 +9617,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, admitted fast, minecraft4432 ratted him out, and for some reason the guy had 44 diamond blocks on him while he was mining</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9650,7 +9650,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, admitted fast, minecraft4432 ratted him out, and for some reason the guy had 44 diamond blocks on him while he was mining"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9761,7 +9761,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited with losertaser. I have not seen him on after he got unban so I am just going to perma ban him because I done waiting for him to get on</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9794,7 +9794,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited with losertaser. I have not seen him on after he got unban so I am just going to perma ban him because I done waiting for him to get on"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9809,7 +9809,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Found by Panderson, exploited into a plot</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9842,7 +9842,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Found by Panderson, exploited into a plot"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9857,7 +9857,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Doesn't think he did anything wrong. Probably gonna do it again.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9890,7 +9890,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Doesn't think he did anything wrong. Probably gonna do it again."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9905,7 +9905,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed "Daredevil Hacks" 30 times</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9938,7 +9938,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed " daredevil hacks" 30 times"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -9953,7 +9953,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Ban invade from uilidixbeast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -9986,7 +9986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Ban invade from uilidixbeast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10001,7 +10001,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, second offense this map, he gone</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10034,7 +10034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, second offense this map, he gone"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10049,7 +10049,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Pretty obvious, logged during interrogation</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10082,7 +10082,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Pretty obvious, logged during interrogation"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10097,7 +10097,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10130,7 +10130,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10145,7 +10145,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was eating food while afk- conn</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10178,7 +10178,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was eating food while afk- conn"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10193,7 +10193,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">i fioun him using radar before food macro... [tenbux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10226,7 +10226,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="i fioun him using radar before food macro... [tenbux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10241,7 +10241,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Really sketchy situation, please see scuttlebutt in forums</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10274,7 +10274,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Really sketchy situation, please see scuttlebutt in forums"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10289,7 +10289,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">If i see anything that looks like it, ill ban him. i was so close just doing it.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10322,7 +10322,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="If i see anything that looks like it, ill ban him. i was so close just doing it."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10337,7 +10337,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">he admitted to pvp hacks this map. he said he took it off 2 weeks ago (ban him?)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10370,7 +10370,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="he admitted to pvp hacks this map. he said he took it off 2 weeks ago (ban him?)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10385,7 +10385,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10418,7 +10418,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10433,7 +10433,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, logged when confronted. Alt of soccer_pwns who just got banned. Perma ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10466,7 +10466,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, logged when confronted. Alt of soccer_pwns who just got banned. Perma ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10481,7 +10481,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">gotta go fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10514,7 +10514,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="gotta go fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10529,7 +10529,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-ray once again.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10562,7 +10562,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-ray once again."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10577,7 +10577,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted promptly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10610,7 +10610,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted promptly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10673,7 +10673,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited into oscarbj1234's plot.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10706,7 +10706,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited into oscarbj1234's plot."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10721,7 +10721,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"> X-ray, 30 day ban because they mined up so much.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10754,7 +10754,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=" X-ray, 30 day ban because they mined up so much."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10769,7 +10769,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-ray, 30 day ban because they mined up so much.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10802,7 +10802,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-ray, 30 day ban because they mined up so much."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10817,7 +10817,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-ray, 30 day ban because they mined up so much.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10850,7 +10850,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-ray, 30 day ban because they mined up so much."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10865,7 +10865,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-ray, </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10898,7 +10898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-ray, "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10913,7 +10913,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was being sneaky about it, but I finally caught him - took him to IOS, logged out instantly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10946,7 +10946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was being sneaky about it, but I finally caught him - took him to IOS, logged out instantly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -10961,7 +10961,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted when asked what he was doing wrong</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -10994,7 +10994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted when asked what he was doing wrong"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11009,7 +11009,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged out before we could do anything, watched him trying to get to diamond that was underneath bedrock, pretty funny, grif was there too</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11042,7 +11042,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged out before we could do anything, watched him trying to get to diamond that was underneath bedrock, pretty funny, grif was there too"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11153,7 +11153,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11186,7 +11186,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11201,7 +11201,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">i tped behind him and he hit me randomly then pasued midfight for a while as if turning off some cheats or somethin, not sure if cheating or not.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11234,7 +11234,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="i tped behind him and he hit me randomly then pasued midfight for a while as if turning off some cheats or somethin, not sure if cheating or not."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11249,7 +11249,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted isntantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11282,7 +11282,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted isntantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11297,7 +11297,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">told me he was 11 year old adopted, and hes brother. </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11330,7 +11330,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="told me he was 11 year old adopted, and hes brother. "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11345,7 +11345,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">caused a scene last time and was a bit of a wise ass about it</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11378,7 +11378,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="caused a scene last time and was a bit of a wise ass about it"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11393,7 +11393,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Did not admit to anything, obvious x-ray with video proof</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11426,7 +11426,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Did not admit to anything, obvious x-ray with video proof"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11441,7 +11441,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">obvious</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11474,7 +11474,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="obvious"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11537,7 +11537,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">didnt admit, said server sucked, doubt hes coming back</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11570,7 +11570,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="didnt admit, said server sucked, doubt hes coming back"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11585,7 +11585,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">pvp cheater, a lot of videos, hit me when i was behind him </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11618,7 +11618,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="pvp cheater, a lot of videos, hit me when i was behind him "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11633,7 +11633,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed like 10 lines 3 times on purpose</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11666,7 +11666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed like 10 lines 3 times on purpose"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11777,7 +11777,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">saw he x-rayed in irc, obvious x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11810,7 +11810,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="saw he x-rayed in irc, obvious x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11825,7 +11825,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged out on interrogation</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11858,7 +11858,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged out on interrogation"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11873,7 +11873,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted immediately</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11906,7 +11906,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted immediately"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11921,7 +11921,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted isntantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -11954,7 +11954,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted isntantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -11969,7 +11969,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was being confusing until I realized he didn't really speak english, switched to finnish and he admitted relatively fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12002,7 +12002,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was being confusing until I realized he didn't really speak english, switched to finnish and he admitted relatively fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12017,7 +12017,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12050,7 +12050,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12065,7 +12065,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">unban w/ warforged</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12098,7 +12098,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="unban w/ warforged"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12113,7 +12113,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammin</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12146,7 +12146,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammin"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12161,7 +12161,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">x-rayin, watched by Martin0087, Panderson, dox213 and connrad (10bux)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12194,7 +12194,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="x-rayin, watched by Martin0087, Panderson, dox213 and connrad (10bux)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12209,7 +12209,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">digging fucking EVERYTHING </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12242,7 +12242,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="digging fucking EVERYTHING "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12305,7 +12305,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed hard just for the sake of spamming, 15 day ban for how much he spammed</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12338,7 +12338,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed hard just for the sake of spamming, 15 day ban for how much he spammed"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12353,7 +12353,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12386,7 +12386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12401,7 +12401,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spamming, couldn't reach that guy </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12434,7 +12434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spamming, couldn't reach that guy "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12449,7 +12449,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Due to be unbanned 30 days after the wipe - conn</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12482,7 +12482,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Due to be unbanned 30 days after the wipe - conn"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12497,7 +12497,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged when interrogated</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12530,7 +12530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged when interrogated"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12545,7 +12545,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">keep spamming - warned - keep spamming</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12578,7 +12578,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="keep spamming - warned - keep spamming"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12593,7 +12593,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Tankdonuts alt, he told me it was hacked, so i banned hes alt. Random_cacti will make an ban apeal if something is wrong.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12626,7 +12626,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Tankdonuts alt, he told me it was hacked, so i banned hes alt. Random_cacti will make an ban apeal if something is wrong."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12641,7 +12641,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Mine straigt into ores, logged out after 3 times doing it. Alts xxsnipetntxx. next ban perm</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12674,7 +12674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Mine straigt into ores, logged out after 3 times doing it. Alts xxsnipetntxx. next ban perm"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12689,7 +12689,7 @@
 				<div class="cell">1</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">lost a ban match against cameron61599. Pardon one day after wipe day</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12722,7 +12722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="1"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="lost a ban match against cameron61599. Pardon one day after wipe day"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12737,7 +12737,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Permabanned by martin for x-ray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12770,7 +12770,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Permabanned by martin for x-ray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12785,7 +12785,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">need to get killed, if he pay 10$ before wipe. also banned tons of alts.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12818,7 +12818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="need to get killed, if he pay 10$ before wipe. also banned tons of alts."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12833,7 +12833,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">banned for x-ray, admitted </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12866,7 +12866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="banned for x-ray, admitted "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12881,7 +12881,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kill this guy when he comes on, martin didn't execute- conn</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('martin.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12914,7 +12914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kill this guy when he comes on, martin didn't execute- conn"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
+				<div class="cell" style="background-image: url('martin.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="martin0087"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12929,7 +12929,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray. his "brother" shockley22 is banned so I just perma'd them instead.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -12962,7 +12962,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray. his " brother" shockley22 is banned so i just perma'd them instead."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -12977,7 +12977,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13010,7 +13010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13025,7 +13025,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Hackusations and continuously saying he hacked</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13058,7 +13058,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Hackusations and continuously saying he hacked"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13073,7 +13073,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted fast.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13106,7 +13106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted fast."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13121,7 +13121,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to Ooopoo, only DareDevil account banned not alts.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13154,7 +13154,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to Ooopoo, only DareDevil account banned not alts."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13169,7 +13169,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, paid 10$ </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('hobberty.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13202,7 +13202,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, paid 10$ "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
+				<div class="cell" style="background-image: url('hobberty.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="hobberty"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13217,7 +13217,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">banned by luciddream, got caught x-raying and is an alt of 049er who got banned for x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13250,7 +13250,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="banned by luciddream, got caught x-raying and is an alt of 049er who got banned for x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13361,7 +13361,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Over 80 precious ores in under 10 minutes... people are dumb</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13394,7 +13394,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Over 80 precious ores in under 10 minutes... people are dumb"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13409,7 +13409,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watched him walk through an iron door... glitch/exploit/cheat</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13442,7 +13442,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watched him walk through an iron door... glitch/exploit/cheat"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13457,7 +13457,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">this kid was SOOOOOOOO busy</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13490,7 +13490,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="this kid was SOOOOOOOO busy"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13649,7 +13649,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">idiot</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13682,7 +13682,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="idiot"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13745,7 +13745,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, admitted fast: [note: killed when he came on]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13778,7 +13778,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, admitted fast: [note: killed when he came on]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13793,7 +13793,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious, admitted fast [note: killed when he came on (exorbis)]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13826,7 +13826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious, admitted fast [note: killed when he came on (exorbis)]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13889,7 +13889,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, admitted to it immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13922,7 +13922,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, admitted to it immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13937,7 +13937,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Major spam</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -13970,7 +13970,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Major spam"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -13985,7 +13985,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Major spam</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14018,7 +14018,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Major spam"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14081,7 +14081,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">blatent xray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14114,7 +14114,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="blatent xray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14129,7 +14129,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed the server. Eventually requested to be banned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14162,7 +14162,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed the server. Eventually requested to be banned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14177,7 +14177,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">didnt know xray was against the rules.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14210,7 +14210,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="didnt know xray was against the rules."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14273,7 +14273,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">edit: caught ban evading on bootlegpolecat advised him not to ban evade. Not as obvious as I would have liked, but it was clear enough. Admitted instantly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14306,7 +14306,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="edit: caught ban evading on bootlegpolecat advised him not to ban evade. Not as obvious as I would have liked, but it was clear enough. Admitted instantly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14465,7 +14465,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">pretty sure this guy is xraying, someone catch him in the act</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14498,7 +14498,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="pretty sure this guy is xraying, someone catch him in the act"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14513,7 +14513,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">blatent, admitted pretty much straight away</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14546,7 +14546,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="blatent, admitted pretty much straight away"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14561,7 +14561,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">blatent, admitted pretty much straight away</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14594,7 +14594,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="blatent, admitted pretty much straight away"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14609,7 +14609,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Killed a spectator in a pvp event.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14642,7 +14642,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Killed a spectator in a pvp event."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14801,7 +14801,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">45days for being a dick. Was trying to hide it pretty well, mining straight lines and then moving to where he saw diamonds through wall. Then he goes directly to diamond through a 2x1 tunnel under his base, dumbass.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14834,7 +14834,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="45days for being a dick. Was trying to hide it pretty well, mining straight lines and then moving to where he saw diamonds through wall. Then he goes directly to diamond through a 2x1 tunnel under his base, dumbass."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14897,7 +14897,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, he passed up a gold vein he mined to in order to reach diamonds. </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14930,7 +14930,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, he passed up a gold vein he mined to in order to reach diamonds. "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14945,7 +14945,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged in, immediately fired off a flying warning, said "test" in global and logged off. Probably just being paranoid, but I have a bad feeling about him.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -14978,7 +14978,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged in, immediately fired off a flying warning, said " test" in global and logged off. probably just being paranoid, but i have a bad feeling about him."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -14993,7 +14993,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, dug to 3 separate veins in darkness at different levels, refused to admit.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15026,7 +15026,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, dug to 3 separate veins in darkness at different levels, refused to admit."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15041,7 +15041,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spamming -  JOIN THIS EPIC SERVER IP --------&gt;70.49.81.36&lt;---------- JOIN NOW</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15074,7 +15074,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spamming -  JOIN THIS EPIC SERVER IP -------->70.49.81.36<---------- JOIN NOW"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15185,7 +15185,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, admitted to it immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15218,7 +15218,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, admitted to it immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15425,7 +15425,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Ayuip shows this player is indeed ccharliee (shocker)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15458,7 +15458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Ayuip shows this player is indeed ccharliee (shocker)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15473,7 +15473,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged out as soon as i asked him what he was doing, was blatantly xraying</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15506,7 +15506,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged out as soon as i asked him what he was doing, was blatantly xraying"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15521,7 +15521,7 @@
 				<div class="cell">10</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Stole loot and was a bitch about getting ooopoo banned for killing him, but ooopoo attempted to cheat so I reduced his sentence</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15554,7 +15554,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="10"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Stole loot and was a bitch about getting ooopoo banned for killing him, but ooopoo attempted to cheat so I reduced his sentence"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15569,7 +15569,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">obvious x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15602,7 +15602,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="obvious x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15617,7 +15617,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray aka PuggyWuggly aka 97something</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15650,7 +15650,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray aka PuggyWuggly aka 97something"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15665,7 +15665,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spamming for 5minutes straight</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15698,7 +15698,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spamming for 5minutes straight"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15713,7 +15713,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Did not admit to it. "rentoreino" is another person, saw them both playing at the same time.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15746,7 +15746,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Did not admit to it. " rentoreino" is another person, saw them both playing at the same time."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -15953,7 +15953,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Has a bad attitude, very likely to cheat again.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -15986,7 +15986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Has a bad attitude, very likely to cheat again."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16001,7 +16001,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Just a warning, nothing exciting.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16034,7 +16034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Just a warning, nothing exciting."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16049,7 +16049,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Denied/was a prick for a bit</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16082,7 +16082,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Denied/was a prick for a bit"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16097,7 +16097,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed server with "message fake and gay fuck this server". Aka Rabbit42</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16130,7 +16130,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed server with " message fake and gay fuck this server". aka rabbit42"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16145,7 +16145,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">After I globally warned the server not to abuse /report numerous times, he reported himself for being an asshole or something.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16178,7 +16178,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="After I globally warned the server not to abuse /report numerous times, he reported himself for being an asshole or something."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16193,7 +16193,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">After I globally warned the server not to abuse /report numerous times, he came on as an alt and immediately misused it. After I banned the alt, he came back as gokum and pretended like nothing happened. Dumbass...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16226,7 +16226,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="After I globally warned the server not to abuse /report numerous times, he came on as an alt and immediately misused it. After I banned the alt, he came back as gokum and pretended like nothing happened. Dumbass..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16241,7 +16241,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">xray, just after he gest unbanned for xray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16274,7 +16274,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="xray, just after he gest unbanned for xray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16289,7 +16289,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray.  aka xknightcsontos, aka quangv2001, aka blueakatsuki</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16322,7 +16322,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray.  aka xknightcsontos, aka quangv2001, aka blueakatsuki"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16337,7 +16337,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted to using a hacked client "supercraft hack"</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16370,7 +16370,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted to using a hacked client " supercraft hack""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16625,7 +16625,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">tried to get fresh with me so i was a jerk to him :&gt;</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16658,7 +16658,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="tried to get fresh with me so i was a jerk to him :>"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16721,7 +16721,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spamming "AVO IS HERE"</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16754,7 +16754,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spamming " avo is here""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16817,7 +16817,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spamming during a fight, knows better [10bux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16850,7 +16850,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spamming during a fight, knows better [10bux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16865,7 +16865,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">apparently paid</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16898,7 +16898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="apparently paid"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16913,7 +16913,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">funkyfudge banned for 5days for pvp during my event</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16946,7 +16946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="funkyfudge banned for 5days for pvp during my event"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -16961,7 +16961,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">blatent xray, fessed eventually 30days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -16994,7 +16994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="blatent xray, fessed eventually 30days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17249,7 +17249,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I've warned him at least 5 times</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17282,7 +17282,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I've warned him at least 5 times"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17393,7 +17393,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">put this ban in for 2$</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17426,7 +17426,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="put this ban in for 2$"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17441,7 +17441,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">put this ban in for 2$</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17474,7 +17474,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="put this ban in for 2$"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17585,7 +17585,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Ban match me, he wanted to be ban for 15 days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17618,7 +17618,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Ban match me, he wanted to be ban for 15 days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17633,7 +17633,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked 3 times in a row for flying, then boasted about using x-ray. [nb: unbanned per lucid's with time served; I made him appeal in global since he couldn't get into forums (exorbis)]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17666,7 +17666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked 3 times in a row for flying, then boasted about using x-ray. [nb: unbanned per lucid's with time served; I made him appeal in global since he couldn't get into forums (exorbis)]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17681,7 +17681,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was being mean to connrad so I ban him for 5 day </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17714,7 +17714,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was being mean to connrad so I ban him for 5 day "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17729,7 +17729,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a 30 days ban match to Uilidixbeast. -paid for unban (bongsnake)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17762,7 +17762,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a 30 days ban match to Uilidixbeast. -paid for unban (bongsnake)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17825,7 +17825,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">denied then admitted when told he would receive less time, kill this guy when you unban him i forgot</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17858,7 +17858,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="denied then admitted when told he would receive less time, kill this guy when you unban him i forgot"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17873,7 +17873,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">14krissBS1999: admin i use xray ååå i can se diamond and gold and iron</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -17906,7 +17906,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="14krissBS1999: admin i use xray ååå i can se diamond and gold and iron"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -17969,7 +17969,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Started insulting me in Swedish</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18002,7 +18002,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Started insulting me in Swedish"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18017,7 +18017,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Swedish, admitted pretty fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18050,7 +18050,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Swedish, admitted pretty fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18065,7 +18065,7 @@
 				<div class="cell">8</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out before I could get to him</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18098,7 +18098,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="8"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out before I could get to him"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18113,7 +18113,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Played dumb at first - telltale sign of a cheater: Had over 4 stacks of diamonds, but was new enough to not know wooden doors aren't protected</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18146,7 +18146,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Played dumb at first - telltale sign of a cheater: Had over 4 stacks of diamonds, but was new enough to not know wooden doors aren't protected"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18209,7 +18209,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Grif edit: This guy was evading, make him serve this ban if he appeals late. His aimbot tried to hit me, played dumb at first</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18242,7 +18242,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Grif edit: This guy was evading, make him serve this ban if he appeals late. His aimbot tried to hit me, played dumb at first"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18257,7 +18257,7 @@
 				<div class="cell">14</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it before I started talking, I'm giving him 14 for that</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18290,7 +18290,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="14"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it before I started talking, I'm giving him 14 for that"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18305,7 +18305,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admin disrespect</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18338,7 +18338,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admin disrespect"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18353,7 +18353,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was receiving x-rayed ore coordinates from sikle45 and mining them</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18386,7 +18386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was receiving x-rayed ore coordinates from sikle45 and mining them"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18401,7 +18401,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was following Nick_787 around, who was receiving x-rayed ore coordinates from sikle45</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18434,7 +18434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was following Nick_787 around, who was receiving x-rayed ore coordinates from sikle45"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18497,7 +18497,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">3 separate ore pockets including one gold pocket under bedrock, never admitted</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18530,7 +18530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="3 separate ore pockets including one gold pocket under bedrock, never admitted"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18641,7 +18641,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it pretty fast once I pressured him a bit, had to calm down his friend in Swedish.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18674,7 +18674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it pretty fast once I pressured him a bit, had to calm down his friend in Swedish."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18689,7 +18689,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watched this guy after some suspicious x-ray activity, noticed he jumped down a long distance without being hurt, tested by dropping him and he took no damage. I took his plot over, feel free to give it back when he comes back.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18722,7 +18722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watched this guy after some suspicious x-ray activity, noticed he jumped down a long distance without being hurt, tested by dropping him and he took no damage. I took his plot over, feel free to give it back when he comes back."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18785,7 +18785,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted using nodus but not using it to hack. then came back on an alt so i increased his ban</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18818,7 +18818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted using nodus but not using it to hack. then came back on an alt so i increased his ban"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18833,7 +18833,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Super obvious, confessed when given 10 seconds to.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18866,7 +18866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Super obvious, confessed when given 10 seconds to."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18881,7 +18881,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious X-ray, admitted it quickly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18914,7 +18914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious X-ray, admitted it quickly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18929,7 +18929,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Alright, there is NO way this guy is that lucky. I've witnessed ~2 obvious x-ray offenses, but other times he just zips right past ore. </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -18962,7 +18962,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Alright, there is NO way this guy is that lucky. I've witnessed ~2 obvious x-ray offenses, but other times he just zips right past ore. "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -18977,7 +18977,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">This was hilarious, www.ichosethewrench.com/easygame.png</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19010,7 +19010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="This was hilarious, www.ichosethewrench.com/easygame.png"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19073,7 +19073,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">xraying, quite a cool interrogation with connrad translating for me and him understanding, pretty rad actually $2 edit: second ban this map</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19106,7 +19106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="xraying, quite a cool interrogation with connrad translating for me and him understanding, pretty rad actually $2 edit: second ban this map"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19121,7 +19121,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Played dumb for a little bit until I turned on the heat, admitted pretty fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19154,7 +19154,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Played dumb for a little bit until I turned on the heat, admitted pretty fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19169,7 +19169,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">will not shut his fucking mouth jesus christ</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19202,7 +19202,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="will not shut his fucking mouth jesus christ"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19217,7 +19217,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">unbanned by bong - Had multiple reports of him using an aimbot, seemed like he could choose players for the bot to ignore... he forgot to ignore me</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19250,7 +19250,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="unbanned by bong - Had multiple reports of him using an aimbot, seemed like he could choose players for the bot to ignore... he forgot to ignore me"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19265,7 +19265,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted instantly, caught him red handed,</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19298,7 +19298,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted instantly, caught him red handed,"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19313,7 +19313,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Left the interrogation chamber repeatedly, ignored me</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19346,7 +19346,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Left the interrogation chamber repeatedly, ignored me"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19457,7 +19457,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Never admitted it, watched him dig to 3 separate veins in total darkness. When no other diamonds were in sight, he started tunneling for the surface and I took him to the chamber. </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19490,7 +19490,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Never admitted it, watched him dig to 3 separate veins in total darkness. When no other diamonds were in sight, he started tunneling for the surface and I took him to the chamber. "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19505,7 +19505,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted pretty fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19538,7 +19538,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted pretty fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19553,7 +19553,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Hackusated on nitto literally RIGHT after I told nitto not to hackusate</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19586,7 +19586,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Hackusated on nitto literally RIGHT after I told nitto not to hackusate"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19601,7 +19601,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Looked at irc and mined over 60 diamond in 14 mins. I was not on when it was happening. The time was 2:53 am to 3:07 am PST. I droped him from 40 blocks and he had nothing on him but still lived</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19634,7 +19634,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Looked at irc and mined over 60 diamond in 14 mins. I was not on when it was happening. The time was 2:53 am to 3:07 am PST. I droped him from 40 blocks and he had nothing on him but still lived"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19649,7 +19649,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted pretty fast</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19682,7 +19682,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted pretty fast"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19745,7 +19745,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged out and tried to run away, never responeded to me so i slayed him and here we are</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19778,7 +19778,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged out and tried to run away, never responeded to me so i slayed him and here we are"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19793,7 +19793,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watched him go from house to house, breaking through walls right next to chests and taking things, then moving on. Never confessed. Also set off warning level 700+ for speeding.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19826,7 +19826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watched him go from house to house, breaking through walls right next to chests and taking things, then moving on. Never confessed. Also set off warning level 700+ for speeding."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19841,7 +19841,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Screwed around for some time with his 3 partners, eventually admitted under pressure</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19874,7 +19874,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Screwed around for some time with his 3 partners, eventually admitted under pressure"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19889,7 +19889,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Screwed around for some time with his 3 partners, eventually admitted under pressure</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19922,7 +19922,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Screwed around for some time with his 3 partners, eventually admitted under pressure"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19937,7 +19937,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Screwed around for some time with his 3 partners, eventually admitted under pressure</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -19970,7 +19970,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Screwed around for some time with his 3 partners, eventually admitted under pressure"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -19985,7 +19985,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Screwed around for some time with his 3 partners, eventually admitted under pressure</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20018,7 +20018,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Screwed around for some time with his 3 partners, eventually admitted under pressure"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20081,7 +20081,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20114,7 +20114,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20177,7 +20177,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted once I put on the heat; $2 edit: Dude has </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20210,7 +20210,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted once I put on the heat; $2 edit: Dude has "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20657,7 +20657,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted instantly | He also broke into at least kraken's plot -lucid</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20690,7 +20690,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted instantly | He also broke into at least kraken's plot -lucid"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20705,7 +20705,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Got it out of him eventually.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20738,7 +20738,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Got it out of him eventually."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20753,7 +20753,7 @@
 				<div class="cell">14</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a ban match to JoeCool_02</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20786,7 +20786,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="14"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a ban match to JoeCool_02"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20801,7 +20801,7 @@
 				<div class="cell">14</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Asked for a 2 week ban match against me. Why people want to take all these breaks so suddenly is beyond me.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20834,7 +20834,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="14"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Asked for a 2 week ban match against me. Why people want to take all these breaks so suddenly is beyond me."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20849,7 +20849,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Asked to perma-ban match me because he's leaving for a year. Was informed that he can request to have that lifted at any time.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20882,7 +20882,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Asked to perma-ban match me because he's leaving for a year. Was informed that he can request to have that lifted at any time."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20897,7 +20897,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Thinks he should be perma-banned, openly admitted to x-raying a bunch</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20930,7 +20930,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Thinks he should be perma-banned, openly admitted to x-raying a bunch"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20945,7 +20945,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">This kid is dumb and stuff. Diablo 3 is a very good game.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -20978,7 +20978,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="This kid is dumb and stuff. Diablo 3 is a very good game."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -20993,7 +20993,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Didn't try to hide it at ALL, filled my screen with warnings and my inventory with loot</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21026,7 +21026,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Didn't try to hide it at ALL, filled my screen with warnings and my inventory with loot"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21137,7 +21137,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted relatively quickly once I flat-out accused him</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21170,7 +21170,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted relatively quickly once I flat-out accused him"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21185,7 +21185,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">tried to run away from interrogation, IM BUSY FARMING ITEMS FUCKOFF</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21218,7 +21218,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="tried to run away from interrogation, IM BUSY FARMING ITEMS FUCKOFF"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21233,7 +21233,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He's a definite hacker, used multiple ones but I busted officially for x-ray - admitted instantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21266,7 +21266,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He's a definite hacker, used multiple ones but I busted officially for x-ray - admitted instantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21281,7 +21281,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged in a suffocation trap, claims to not know it was illegal (He's been around long enough) [tenbux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21314,7 +21314,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged in a suffocation trap, claims to not know it was illegal (He's been around long enough) [tenbux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21329,7 +21329,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited out of the Thugz fall trap, admitted instantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21362,7 +21362,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited out of the Thugz fall trap, admitted instantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21377,7 +21377,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Saw LSBot shoot off a bunch of warnings, checked mine and he dug directly to ore and he took all the gold/diamond he saw.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21410,7 +21410,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Saw LSBot shoot off a bunch of warnings, checked mine and he dug directly to ore and he took all the gold/diamond he saw."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21425,7 +21425,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploiting into a plot. Admitted immediately upon confrontation. 30 day ban for previous infraction on last map.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21458,7 +21458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploiting into a plot. Admitted immediately upon confrontation. 30 day ban for previous infraction on last map."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21473,7 +21473,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray, played dumb when questioned, caught xray on fraps.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21506,7 +21506,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray, played dumb when questioned, caught xray on fraps."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21521,7 +21521,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Caught him x-raying red handed digging directly to ore. Got video proof because this kid said i world edited his plot before (i didnt) conn-edit: This guy was perma'd last map for doing something stupid, he's out!</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21554,7 +21554,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Caught him x-raying red handed digging directly to ore. Got video proof because this kid said i world edited his plot before (i didnt) conn-edit: This guy was perma'd last map for doing something stupid, he's out!"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21569,7 +21569,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious x-ray. Dug straight to gold etc, denied it when questioned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21602,7 +21602,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious x-ray. Dug straight to gold etc, denied it when questioned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21617,7 +21617,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Caught him exploiting, told him to stop, exorbis caught him again, waited for him to log on and I saw him exploiting AGAIN 45 day ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21650,7 +21650,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Caught him exploiting, told him to stop, exorbis caught him again, waited for him to log on and I saw him exploiting AGAIN 45 day ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21665,7 +21665,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed "f*ck admins ban me permanent" over and over.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21698,7 +21698,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed " f*ck admins ban me permanent" over and over."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21713,7 +21713,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He is semir, his ip linked to bongobot which is semir. Also ip banned 96.3.154.134</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21746,7 +21746,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He is semir, his ip linked to bongobot which is semir. Also ip banned 96.3.154.134"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21761,7 +21761,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was spamming </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21794,7 +21794,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was spamming "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21857,7 +21857,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited into nuclear plot and didn't admit to it and said he raped my mom</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21890,7 +21890,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited into nuclear plot and didn't admit to it and said he raped my mom"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21905,7 +21905,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out and in to become invincible when he fell into lava. Warned him not to log out and in to avoid damage.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21938,7 +21938,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out and in to become invincible when he fell into lava. Warned him not to log out and in to avoid damage."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -21953,7 +21953,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Caught him attempting to exploit into a plot with the log out exploit, warned him not to break another rule or he'll be banned. he said "frederikersejeset said it was legal" so watch him too i guess.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -21986,7 +21986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Caught him attempting to exploit into a plot with the log out exploit, warned him not to break another rule or he'll be banned. he said " frederikersejeset said it was legal" so watch him too i guess."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22001,7 +22001,7 @@
 				<div class="cell">22</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kazaren009 logged in with this alt to play and evaded his ban, since this is the 2nd offense this map it's a perma ban till next map.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22034,7 +22034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="22"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kazaren009 logged in with this alt to play and evaded his ban, since this is the 2nd offense this map it's a perma ban till next map."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22049,7 +22049,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">xraying, right after his friend / probably him was banned for it</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22082,7 +22082,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="xraying, right after his friend / probably him was banned for it"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22097,7 +22097,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">xraying, was a busy little dane</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22130,7 +22130,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="xraying, was a busy little dane"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22193,7 +22193,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Got stuck in a trap and logged out and back in to avoid damage and get out. Warned him and put him back in the trap, then he proceeded to log out and in 4 times after being warned twice.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22226,7 +22226,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Got stuck in a trap and logged out and back in to avoid damage and get out. Warned him and put him back in the trap, then he proceeded to log out and in 4 times after being warned twice."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22241,7 +22241,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Hackusations against seeker for hacks after losing a fight</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22274,7 +22274,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Hackusations against seeker for hacks after losing a fight"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22289,7 +22289,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">$2 note: guy can't post on forum, appealed through me in private message. admitted quickly that he was using a mod, mine straight to ore</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22322,7 +22322,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="$2 note: guy can't post on forum, appealed through me in private message. admitted quickly that he was using a mod, mine straight to ore"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22385,7 +22385,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style="background: #ff0;">-2,170.4</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He was saying he was not x-raying everytime I asked him so I gave him the 45 days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22418,7 +22418,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style="background: #ff0;">-2,170.4</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He was saying he was not x-raying everytime I asked him so I gave him the 45 days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22481,7 +22481,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">exorbis caught him x-raying. New players and exo was feeling nice, so he has been warned. if it happens again 45 day ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22514,7 +22514,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="exorbis caught him x-raying. New players and exo was feeling nice, so he has been warned. if it happens again 45 day ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22577,7 +22577,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">admitted quickly, is this first for this map ? </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22610,7 +22610,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="admitted quickly, is this first for this map ? "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22625,7 +22625,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spamming the same line with diff names for some time, this guy knows better</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22658,7 +22658,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spamming the same line with diff names for some time, this guy knows better"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22865,7 +22865,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was cheating (always running, setting off PvP triggers) and admitted to cheating. Started cheating again a bit after I told him to stop cheating.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22898,7 +22898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was cheating (always running, setting off PvP triggers) and admitted to cheating. Started cheating again a bit after I told him to stop cheating."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22913,7 +22913,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was using a hacked client and refused to stop cheating.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22946,7 +22946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was using a hacked client and refused to stop cheating."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -22961,7 +22961,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Flying/water walking, was an ass about it</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -22994,7 +22994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Flying/water walking, was an ass about it"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23057,7 +23057,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">logged out to avoid interrogation, pretty blatant xray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23090,7 +23090,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="logged out to avoid interrogation, pretty blatant xray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23105,7 +23105,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">using nodus client, lied for a while to panderson and then admitted after panderson told him he wouldnt ban him if he told him, so i did tehehe</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23138,7 +23138,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="using nodus client, lied for a while to panderson and then admitted after panderson told him he wouldnt ban him if he told him, so i did tehehe"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23153,7 +23153,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">spammed a bit and made irc lag for a min</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23186,7 +23186,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="spammed a bit and made irc lag for a min"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23345,7 +23345,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">This is technically his second ban this map, but i dont think logging to avoid guards is worth perma banning someone for, just teaching a lesson here.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23378,7 +23378,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="This is technically his second ban this map, but i dont think logging to avoid guards is worth perma banning someone for, just teaching a lesson here."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23393,7 +23393,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Idiot spamming, in the middle of an assignment so i did this quick, if he appeals its the first time ive seen him doing dumb shit</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23426,7 +23426,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Idiot spamming, in the middle of an assignment so i did this quick, if he appeals its the first time ive seen him doing dumb shit"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23441,7 +23441,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Update: Will be unbanned 30 days after wipe. Caught red handed with cloudwhite2 and vbliitz, all the same ip.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23474,7 +23474,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Update: Will be unbanned 30 days after wipe. Caught red handed with cloudwhite2 and vbliitz, all the same ip."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23489,7 +23489,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Update: Unbanned on wipe. Caught red-handed xraying with the_ender_reflex and vbliitz. All share the same ip.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23522,7 +23522,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Update: Unbanned on wipe. Caught red-handed xraying with the_ender_reflex and vbliitz. All share the same ip."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23537,7 +23537,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Update: Unbanned on wipe. Was caught x-raying red handed along with cloudwhite2 and the_ender_reflex. All same ip. Perma-banned due to being banned for PvP cheats before.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23570,7 +23570,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Update: Unbanned on wipe. Was caught x-raying red handed along with cloudwhite2 and the_ender_reflex. All same ip. Perma-banned due to being banned for PvP cheats before."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23585,7 +23585,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He logged out of a trap...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23618,7 +23618,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He logged out of a trap..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23633,7 +23633,7 @@
 				<div class="cell">420</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spammed for a long time, broke irc bot pretty hard. I didnt manage to catch him early so LSBOT might need a while to catchup.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23666,7 +23666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="420"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spammed for a long time, broke irc bot pretty hard. I didnt manage to catch him early so LSBOT might need a while to catchup."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23681,7 +23681,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Minor spamming, but enough to warrant a short ban. Told him to post an appeal, but he doesn't really need to.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23714,7 +23714,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Minor spamming, but enough to warrant a short ban. Told him to post an appeal, but he doesn't really need to."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23729,7 +23729,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Said so in party chat, admitted to me. X-rayed recently, perma'd</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23762,7 +23762,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Said so in party chat, admitted to me. X-rayed recently, perma'd"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23777,7 +23777,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He told his friend in a private message he got a </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23810,7 +23810,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He told his friend in a private message he got a "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23825,7 +23825,7 @@
 				<div class="cell">2147483647</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He got his hands on a hack program with an alt generator, he can screw with his IP so I can't blanket-ban his alts. He can teleport through walls in protected plots without magic, ban on sight.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23858,7 +23858,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2147483647"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He got his hands on a hack program with an alt generator, he can screw with his IP so I can't blanket-ban his alts. He can teleport through walls in protected plots without magic, ban on sight."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23921,7 +23921,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it right away.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -23954,7 +23954,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it right away."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -23969,7 +23969,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He responded to "Semir" in global. Dumbass...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24002,7 +24002,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He responded to " semir" in global. dumbass..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24161,7 +24161,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Took a while but he admitted it. (bongnote: after checking the logs this guy has been banned last month for the same thing by aries, permabanning until next map)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24194,7 +24194,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Took a while but he admitted it. (bongnote: after checking the logs this guy has been banned last month for the same thing by aries, permabanning until next map)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24257,7 +24257,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Showed the exploit to sikle, accepted full responsibility</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24290,7 +24290,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Showed the exploit to sikle, accepted full responsibility"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24305,7 +24305,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Apparently wasn't aware it was illegal, went along willingly with ddaydude</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24338,7 +24338,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Apparently wasn't aware it was illegal, went along willingly with ddaydude"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24593,7 +24593,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Played dumb, didnt answer questions, 45days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24626,7 +24626,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Played dumb, didnt answer questions, 45days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24737,7 +24737,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">URSULA.... IM NAKED</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24770,7 +24770,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="URSULA.... IM NAKED"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24881,7 +24881,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">x-rayed for then 2nd time admitted quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24914,7 +24914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="x-rayed for then 2nd time admitted quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24929,7 +24929,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it relatively soon, was a prick about it</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -24962,7 +24962,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it relatively soon, was a prick about it"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -24977,7 +24977,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">obvious xray. admitted immediately</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25010,7 +25010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="obvious xray. admitted immediately"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25025,7 +25025,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was calling people hackers so I told him to stop but he didn't.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25058,7 +25058,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was calling people hackers so I told him to stop but he didn't."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25073,7 +25073,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Xraying blatently, admitted to it straight away. Status update: unbanned due to $10 payment</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25106,7 +25106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Xraying blatently, admitted to it straight away. Status update: unbanned due to $10 payment"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25265,7 +25265,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Took some time but admitted to it</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25298,7 +25298,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Took some time but admitted to it"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25313,7 +25313,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Wanted to ban match me and lost was a 15 day match but I gave him 2 days -unbanned by bongsnake</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25346,7 +25346,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Wanted to ban match me and lost was a 15 day match but I gave him 2 days -unbanned by bongsnake"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25361,7 +25361,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25394,7 +25394,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25409,7 +25409,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted to flying when i was interrogating him for xray, admitted pretty quick but gave him 30 for admitting he uses hacked client too. -posted this for panderson, bongsnake</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('panderson.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25442,7 +25442,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted to flying when i was interrogating him for xray, admitted pretty quick but gave him 30 for admitting he uses hacked client too. -posted this for panderson, bongsnake"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
+				<div class="cell" style="background-image: url('panderson.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="panderson"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25505,7 +25505,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was using some kind of hacked client or mod. Set server triggs off to insane levels, would instantly break blocks automatically without swinging. Told him to stop exploiting/cheating, he did it several hours later when I logged in again. The 2nd time he said "oops I accidentally hit fly, sorry". Whatever fucker. 45 day ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25538,7 +25538,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was using some kind of hacked client or mod. Set server triggs off to insane levels, would instantly break blocks automatically without swinging. Told him to stop exploiting/cheating, he did it several hours later when I logged in again. The 2nd time he said " oops i accidentally hit fly, sorry". whatever fucker. 45 day ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25601,7 +25601,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it quickly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25634,7 +25634,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it quickly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25697,7 +25697,7 @@
 				<div class="cell">3</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">This guy logged out to avoid a trap instead of manning up and spawning/killing. 3 day ban for a little slap on the wrist.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25730,7 +25730,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="3"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="This guy logged out to avoid a trap instead of manning up and spawning/killing. 3 day ban for a little slap on the wrist."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25793,7 +25793,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it eventually.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25826,7 +25826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it eventually."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25889,7 +25889,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Set a bunch of server triggers off, tp'd ot him and found out he was invincible... kicked him just to see if some sync issue but he never came back. Also got a report about him hacking, looked to me like he had some kind of speed hack as well.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25922,7 +25922,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Set a bunch of server triggers off, tp'd ot him and found out he was invincible... kicked him just to see if some sync issue but he never came back. Also got a report about him hacking, looked to me like he had some kind of speed hack as well."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25937,7 +25937,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it pretty soon - check for IP match with rangerunwield -unbanned by bongsnake</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -25970,7 +25970,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it pretty soon - check for IP match with rangerunwield -unbanned by bongsnake"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -25985,7 +25985,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it right away</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26018,7 +26018,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it right away"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26321,7 +26321,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was finding things with x-ray for Ranger to mine.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26354,7 +26354,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was finding things with x-ray for Ranger to mine."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26369,7 +26369,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was mining things that handee123 found via x-ray</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26402,7 +26402,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was mining things that handee123 found via x-ray"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26513,7 +26513,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I'm pretty much certain he's x-raying. Just want to catch him in the act.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26546,7 +26546,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I'm pretty much certain he's x-raying. Just want to catch him in the act."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26561,7 +26561,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it quickly, claims it was an accident.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26594,7 +26594,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it quickly, claims it was an accident."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26657,7 +26657,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Blatant xray, wouldnt admit after 2minutes, barely talked.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26690,7 +26690,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Blatant xray, wouldnt admit after 2minutes, barely talked."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26753,7 +26753,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Told him at least 10 times, knock it off over 2 days.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26786,7 +26786,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Told him at least 10 times, knock it off over 2 days."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26897,7 +26897,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">connrad's ban, asked me to put it on here, hes on vacation - tehgrif</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26930,7 +26930,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="connrad's ban, asked me to put it on here, hes on vacation - tehgrif"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26945,7 +26945,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Didn't admit after 3 warnings, this guy got caught out as badly as you can with the old put 2 diamond blocks behind him in a wall while he was staring into stone for diamonds.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -26978,7 +26978,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Didn't admit after 3 warnings, this guy got caught out as badly as you can with the old put 2 diamond blocks behind him in a wall while he was staring into stone for diamonds."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -26993,7 +26993,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Login server was down, checked his tunnels and they are serious xray material, waiting for him to go mine again and crushing him.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27026,7 +27026,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Login server was down, checked his tunnels and they are serious xray material, waiting for him to go mine again and crushing him."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27089,7 +27089,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Blatent xray to diamonds</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27122,7 +27122,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Blatent xray to diamonds"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27233,7 +27233,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Confessed immediately, second offense this map.... my perma-ban senses are tingling.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27266,7 +27266,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Confessed immediately, second offense this map.... my perma-ban senses are tingling."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27329,7 +27329,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">to peackoxy</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27362,7 +27362,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="to peackoxy"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27377,7 +27377,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">to didems</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27410,7 +27410,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="to didems"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27425,7 +27425,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Tripped a ton of warnings, admitted instantly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27458,7 +27458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Tripped a ton of warnings, admitted instantly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27665,7 +27665,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watched him for 3minutes or so after the warnings started firing, looked like he was hitting way too much. (AYU: was this guy banned this map? I don't know the date it started. grif edit: He was banned, which makes this perma.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27698,7 +27698,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watched him for 3minutes or so after the warnings started firing, looked like he was hitting way too much. (AYU: was this guy banned this map? I don't know the date it started. grif edit: He was banned, which makes this perma."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27713,7 +27713,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Confessed eventually</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27746,7 +27746,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Confessed eventually"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27761,7 +27761,7 @@
 				<div class="cell">3</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to martin0087, start watching martin for pvp hacks just in case - he has an odd range</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27794,7 +27794,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="3"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to martin0087, start watching martin for pvp hacks just in case - he has an odd range"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27809,7 +27809,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was banned, came back with an alt generator to shatter the rules. Forever banned!</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27842,7 +27842,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was banned, came back with an alt generator to shatter the rules. Forever banned!"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27857,7 +27857,7 @@
 				<div class="cell">18</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to ENDAHMAN</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27890,7 +27890,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="18"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to ENDAHMAN"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27905,7 +27905,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted pretty much instantly.... forgot to slay him before I banned him, woops.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27938,7 +27938,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted pretty much instantly.... forgot to slay him before I banned him, woops."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -27953,7 +27953,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Accusing christian mj of xray and pvp cheats</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -27986,7 +27986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Accusing christian mj of xray and pvp cheats"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28001,7 +28001,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Apparently his friends were at his house and decided to get revenge on Lost Shard. Whether his story is true or not, he's taken responsibility. His friends (12kill4, etc etc) are not to be unbanned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28034,7 +28034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Apparently his friends were at his house and decided to get revenge on Lost Shard. Whether his story is true or not, he's taken responsibility. His friends (12kill4, etc etc) are not to be unbanned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28097,7 +28097,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Won't admit it, but fired off 'hit too fast' and 'hit out of sight' warnings constantly. Already warned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28130,7 +28130,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Won't admit it, but fired off 'hit too fast' and 'hit out of sight' warnings constantly. Already warned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28145,7 +28145,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Never actually x-rayed, but admitted to x-raying several times in global.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28178,7 +28178,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Never actually x-rayed, but admitted to x-raying several times in global."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28193,7 +28193,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Blatantly disobeyed orders to stop</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28226,7 +28226,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Blatantly disobeyed orders to stop"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28241,7 +28241,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I dropped him from roughly 40 million blocks, terminal velocity is a bitch... I then chased him out of Chaos, sniped him in the back of the head. Overall - Success!</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28274,7 +28274,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I dropped him from roughly 40 million blocks, terminal velocity is a bitch... I then chased him out of Chaos, sniped him in the back of the head. Overall - Success!"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28289,7 +28289,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spamming global with c, c, c etc</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28322,7 +28322,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spamming global with c, c, c etc"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28337,7 +28337,7 @@
 				<div class="cell">666</div>
 				<div class="cell" style="background: #ff0;">-1,640.5</div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Confessed to using a 'mapper'. Same IP as 049er, not sure if the same person.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28370,7 +28370,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="666"/></div>
 				<div class="cell" style="background: #ff0;">-1,640.5</div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Confessed to using a 'mapper'. Same IP as 049er, not sure if the same person."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28385,7 +28385,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Absolute spastic fucking novices wtf.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28418,7 +28418,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Absolute spastic fucking novices wtf."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28481,7 +28481,7 @@
 				<div class="cell">20</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a banmatch to kspksp</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28514,7 +28514,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="20"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a banmatch to kspksp"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28625,7 +28625,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I got him! Tested by spawning zombies in a cave next to him. Admitted it almost right away.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28658,7 +28658,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I got him! Tested by spawning zombies in a cave next to him. Admitted it almost right away."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28673,7 +28673,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28706,7 +28706,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28721,7 +28721,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">With Phexos.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28754,7 +28754,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="With Phexos."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28769,7 +28769,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted to exploiting into plots "Was only looking around"</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28802,7 +28802,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted to exploiting into plots " was only looking around""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28817,7 +28817,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">If he comes back, he'll probably push his luck. He's had ample warning, next offense is a ban.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28850,7 +28850,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="If he comes back, he'll probably push his luck. He's had ample warning, next offense is a ban."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28865,7 +28865,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted in pm to his friend yugilogan</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28898,7 +28898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted in pm to his friend yugilogan"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28913,7 +28913,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Using a feather to tickle people and make his wolf kill people in order, warned him and everyone else 3 times and he continued, killed and banned for 2 days.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28946,7 +28946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Using a feather to tickle people and make his wolf kill people in order, warned him and everyone else 3 times and he continued, killed and banned for 2 days."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -28961,7 +28961,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Norman Alliance</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -28994,7 +28994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Norman Alliance"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29009,7 +29009,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Has over 6-ish alts, is in The Norman Alliance</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29042,7 +29042,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Has over 6-ish alts, is in The Norman Alliance"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29057,7 +29057,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Blatant disregard for rules.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29090,7 +29090,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Blatant disregard for rules."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29105,7 +29105,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Wouldn't admit to it after pressured and warned he would get less of a penalty. Was digging tunnels to gold consistantly for 10+ minutes.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29138,7 +29138,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Wouldn't admit to it after pressured and warned he would get less of a penalty. Was digging tunnels to gold consistantly for 10+ minutes."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29153,7 +29153,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Blatent X-ray, Played dumb, its 4am so fuck him. 45days</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29186,7 +29186,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Blatent X-ray, Played dumb, its 4am so fuck him. 45days"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29393,7 +29393,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out in court.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29426,7 +29426,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out in court."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29441,7 +29441,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Watched him go for gold blocks directly 3-4 times over 3minutes. Wouldnt admit so full 45 ?</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29474,7 +29474,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Watched him go for gold blocks directly 3-4 times over 3minutes. Wouldnt admit so full 45 ?"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29537,7 +29537,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Didn't admit until slapped in the face with a bunch of evidence.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29570,7 +29570,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Didn't admit until slapped in the face with a bunch of evidence."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29633,7 +29633,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted quick. (Added for bong until he gets setup -tehgrif)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('bongsnake.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29666,7 +29666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted quick. (Added for bong until he gets setup -tehgrif)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
+				<div class="cell" style="background-image: url('bongsnake.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="bongsnake"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29681,7 +29681,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Relogging to avoid damage from fire.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29714,7 +29714,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Relogging to avoid damage from fire."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -29873,7 +29873,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Dug impossibly paths right to gold several times, denied it vehemently.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -29906,7 +29906,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Dug impossibly paths right to gold several times, denied it vehemently."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30065,7 +30065,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Never admitted it, seemed to go afk midway through interrogation.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30098,7 +30098,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Never admitted it, seemed to go afk midway through interrogation."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30113,7 +30113,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Had super-aim, when I was about to call him to court he spammed.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30146,7 +30146,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Had super-aim, when I was about to call him to court he spammed."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30161,7 +30161,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to icetech</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30194,7 +30194,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to icetech"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30353,7 +30353,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Wasn't successful, but set off warnings every time he fell. Confessed immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30386,7 +30386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Wasn't successful, but set off warnings every time he fell. Confessed immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30401,7 +30401,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Warned for logging out to avoid fall damage.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30434,7 +30434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Warned for logging out to avoid fall damage."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30497,7 +30497,7 @@
 				<div class="cell">1</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to martin0087, and I hate short bans.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30530,7 +30530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="1"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to martin0087, and I hate short bans."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30545,7 +30545,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to martin0087, and I hate short bans.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30578,7 +30578,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to martin0087, and I hate short bans."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30641,7 +30641,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">obvious xray, admitted immediately upon confrontation.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30674,7 +30674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="obvious xray, admitted immediately upon confrontation."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30689,7 +30689,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">He argued with me that Kaeus was using a hack to increase damage. Explained damage is server side, plus hobberty helped kill him and he didn't notice. He kept arguing and I told him to make a report on the forum, then called me a stupid fuck and a puss and requested to be banned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30722,7 +30722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="He argued with me that Kaeus was using a hack to increase damage. Explained damage is server side, plus hobberty helped kill him and he didn't notice. He kept arguing and I told him to make a report on the forum, then called me a stupid fuck and a puss and requested to be banned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30785,7 +30785,7 @@
 				<div class="cell">14</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a ban match against ShadowVirus7658 . UPDATE: They did a double or nothing match in which piring lost again so hes gone for 14.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30818,7 +30818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="14"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a ban match against ShadowVirus7658 . UPDATE: They did a double or nothing match in which piring lost again so hes gone for 14."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30833,7 +30833,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited into multiple plots.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30866,7 +30866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited into multiple plots."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30881,7 +30881,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I don't even know...</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -30914,7 +30914,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I don't even know..."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -30977,7 +30977,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to Chris1108. I supplied items, confiscated them both after the fight... kaz claims I gave him inedible food, I call bs seeing as I asked them both more than once if they were both ready, and he said [Donated $10]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31010,7 +31010,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to Chris1108. I supplied items, confiscated them both after the fight... kaz claims I gave him inedible food, I call bs seeing as I asked them both more than once if they were both ready, and he said [Donated $10]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31025,7 +31025,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious xray. Refused to admit it calling directly digging to ore . 30 day ban if he admits on forum, otherwise 45 days.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31058,7 +31058,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious xray. Refused to admit it calling directly digging to ore . 30 day ban if he admits on forum, otherwise 45 days."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31073,7 +31073,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it right away, but insisted that x-ray was 'modding', and not cheating.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31106,7 +31106,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it right away, but insisted that x-ray was 'modding', and not cheating."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31169,7 +31169,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a ban match versus ccharliee</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31202,7 +31202,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a ban match versus ccharliee"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31217,7 +31217,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I gave him at LEAST 5 warnings, reported things like </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31250,7 +31250,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I gave him at LEAST 5 warnings, reported things like "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31265,7 +31265,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">I gave him at LEAST 5 warnings, reported things like </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31298,7 +31298,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="I gave him at LEAST 5 warnings, reported things like "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31409,7 +31409,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Obvious xray. When confronted he immediately admitted to x-ray.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31442,7 +31442,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Obvious xray. When confronted he immediately admitted to x-ray."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31457,7 +31457,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">lol semir... fuckin' guy</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31490,7 +31490,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="lol semir... fuckin' guy"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31505,7 +31505,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Personally saw him use two separate exploits to gain entry into a plot.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31538,7 +31538,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Personally saw him use two separate exploits to gain entry into a plot."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31553,7 +31553,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was in team of 4 that used old/new exploits to gain entry into plots.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31586,7 +31586,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was in team of 4 that used old/new exploits to gain entry into plots."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31601,7 +31601,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Was in the team of 4 that used old and new exploits to gain entry into plots.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31634,7 +31634,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Was in the team of 4 that used old and new exploits to gain entry into plots."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31649,7 +31649,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Used old and new exploit to gain entry into multiple high profile plots and steal things.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31682,7 +31682,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Used old and new exploit to gain entry into multiple high profile plots and steal things."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31745,7 +31745,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Toggles fly mod, fired off 'tried to avoid fall damage' a bunch.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31778,7 +31778,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Toggles fly mod, fired off 'tried to avoid fall damage' a bunch."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -31793,7 +31793,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Got raped in a ban-match against Kazaren</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -31826,7 +31826,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Got raped in a ban-match against Kazaren"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32081,7 +32081,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Paid $10. Super obvious. Admitted eventually.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32114,7 +32114,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Paid $10. Super obvious. Admitted eventually."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32129,7 +32129,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Runs through caves to find gold, but rarely digs straight to ore. Uses veins connected to gold to seem like he's not x-raying for gold, but it seems fairly obvious. Observed by connrad, first pointed out by 2$</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32162,7 +32162,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Runs through caves to find gold, but rarely digs straight to ore. Uses veins connected to gold to seem like he's not x-raying for gold, but it seems fairly obvious. Observed by connrad, first pointed out by 2$"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32225,7 +32225,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Exploited into a house (used the logging out then placing blocks to teleport up trick)</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32258,7 +32258,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Exploited into a house (used the logging out then placing blocks to teleport up trick)"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32273,7 +32273,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spamming repeatedly, overloaded the LSBot, I hopped on and warned him to stop but he continued.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32306,7 +32306,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spamming repeatedly, overloaded the LSBot, I hopped on and warned him to stop but he continued."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32321,7 +32321,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Using some 'retarded mode' thing and then logged out like 15 times at once.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32354,7 +32354,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Using some 'retarded mode' thing and then logged out like 15 times at once."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32369,7 +32369,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Mines with reluctanthero, mines like a chicken with his head cut off. No patterns, occasionally straight to ore, but passes up veins regularly</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32402,7 +32402,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Mines with reluctanthero, mines like a chicken with his head cut off. No patterns, occasionally straight to ore, but passes up veins regularly"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32417,7 +32417,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Mines with Tsubakinoikari, mines like a chicken with his head cut off. No patterns, occasionally straight to ore, but passes up veins regularly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32450,7 +32450,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Mines with Tsubakinoikari, mines like a chicken with his head cut off. No patterns, occasionally straight to ore, but passes up veins regularly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32513,7 +32513,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted right away</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32546,7 +32546,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted right away"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32705,7 +32705,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32738,7 +32738,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32753,7 +32753,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32786,7 +32786,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -32801,7 +32801,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -32834,7 +32834,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33137,7 +33137,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Highly suspected. Interrogated by connrad and $2, let off with a warning.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33170,7 +33170,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Highly suspected. Interrogated by connrad and $2, let off with a warning."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33185,7 +33185,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it quickly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33218,7 +33218,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it quickly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33233,7 +33233,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it quickly.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33266,7 +33266,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it quickly."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33281,7 +33281,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a ban match versus ooopoo</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33314,7 +33314,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a ban match versus ooopoo"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33329,7 +33329,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Tunneled in the area of (-811,7,209), went straight to one ore deposit after another, stopping after mining the ore. Never confessed.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33362,7 +33362,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Tunneled in the area of (-811,7,209), went straight to one ore deposit after another, stopping after mining the ore. Never confessed."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33377,7 +33377,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a banmatch to cameron61599... third banmatch today</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33410,7 +33410,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a banmatch to cameron61599... third banmatch today"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33425,7 +33425,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to NuclearChickenn</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33458,7 +33458,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to NuclearChickenn"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33473,7 +33473,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost a ban-match to RDXFattyMan</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33506,7 +33506,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost a ban-match to RDXFattyMan"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33521,7 +33521,7 @@
 				<div class="cell">5</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Spamming obscenities into the chat-box, I told him spamming was bannable and he continued.   </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('connrad97.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33554,7 +33554,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="5"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Spamming obscenities into the chat-box, I told him spamming was bannable and he continued.   "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
+				<div class="cell" style="background-image: url('connrad97.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="connrad97"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33569,7 +33569,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Witnessed by countless players and 3 or more admins swapping gear while walking/swinging during a ban match with Ar1es. </div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33602,7 +33602,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Witnessed by countless players and 3 or more admins swapping gear while walking/swinging during a ban match with Ar1es. "/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33617,7 +33617,7 @@
 				<div class="cell">7</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost ban match versus mastercheese</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33650,7 +33650,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="7"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost ban match versus mastercheese"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33665,7 +33665,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Given ample warning, continued to /report pointless things like "pie" and "fart"</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33698,7 +33698,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Given ample warning, continued to /report pointless things like " pie" and "fart""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33713,7 +33713,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kid was spamming the server, fucking up LS bot etc.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('twodollar.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33746,7 +33746,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kid was spamming the server, fucking up LS bot etc."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
+				<div class="cell" style="background-image: url('twodollar.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="twodollarwhore"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33761,7 +33761,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Warned twice not to place blocks beneath himself on a plot to boost himself, just kept doing it. Admitted to it right away though. [Paid 10bux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33794,7 +33794,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Warned twice not to place blocks beneath himself on a plot to boost himself, just kept doing it. Admitted to it right away though. [Paid 10bux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33809,7 +33809,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lied, beat around the bush a bunch. Confessed eventually. [10bux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33842,7 +33842,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lied, beat around the bush a bunch. Confessed eventually. [10bux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33857,7 +33857,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lost to MipsNig</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33890,7 +33890,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lost to MipsNig"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33905,7 +33905,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it right away.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33938,7 +33938,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it right away."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -33953,7 +33953,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Wouldn't admit to it.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -33986,7 +33986,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Wouldn't admit to it."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34001,7 +34001,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">:(</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34034,7 +34034,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=":("/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayu"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34481,7 +34481,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34514,7 +34514,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34529,7 +34529,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34562,7 +34562,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34577,7 +34577,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34610,7 +34610,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34673,7 +34673,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out when I signed in to punish him and didn't come back.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34706,7 +34706,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out when I signed in to punish him and didn't come back."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34865,7 +34865,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34898,7 +34898,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34913,7 +34913,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34946,7 +34946,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -34961,7 +34961,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Banned without trial.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -34994,7 +34994,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Banned without trial."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35105,7 +35105,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it immediately. When I tried to execute him, he took no damage. Is there some sort of godmode hack?</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35138,7 +35138,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it immediately. When I tried to execute him, he took no damage. Is there some sort of godmode hack?"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35489,7 +35489,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Caught flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35522,7 +35522,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Caught flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35537,7 +35537,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Wouldn't confess what he did without being asked which cheats he was using. Probably did more than x-ray, but wouldn't say.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35570,7 +35570,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Wouldn't confess what he did without being asked which cheats he was using. Probably did more than x-ray, but wouldn't say."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35585,7 +35585,7 @@
 				<div class="cell">2</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Accused puxufin of flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35618,7 +35618,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="2"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Accused puxufin of flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35633,7 +35633,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Denied it until the bitter end, but got 'his cousin' who 'lives in the same apartment' to log in and then discussed in-game with very bad RPing what happened. 'Cousin' confessed to duping.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35666,7 +35666,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Denied it until the bitter end, but got 'his cousin' who 'lives in the same apartment' to log in and then discussed in-game with very bad RPing what happened. 'Cousin' confessed to duping."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35681,7 +35681,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Denied it vehemently. Disguised his x-raying like branch mining, but got greedy, made stairs down to a deposit of gold and diamond, made a couple fake branches and then grabbed more nearby diamond. (Around -35,8,2220) Oscarbj1234 is now mining in the same mine, adding more branches.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35714,7 +35714,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Denied it vehemently. Disguised his x-raying like branch mining, but got greedy, made stairs down to a deposit of gold and diamond, made a couple fake branches and then grabbed more nearby diamond. (Around -35,8,2220) Oscarbj1234 is now mining in the same mine, adding more branches."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35729,7 +35729,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lied about it at first.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35762,7 +35762,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lied about it at first."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35777,7 +35777,7 @@
 				<div class="cell">45</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">X-rayed like crazy [paid $10] - Owes 150 gold before 20:30EST (12-04) or banned again. - Paid</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35810,7 +35810,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="45"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="X-rayed like crazy [paid $10] - Owes 150 gold before 20:30EST (12-04) or banned again. - Paid"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35825,7 +35825,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lied about it at first.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35858,7 +35858,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lied about it at first."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35873,7 +35873,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out as soon as he was teleported to interrogation, never returned. [Paid $10]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35906,7 +35906,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out as soon as he was teleported to interrogation, never returned. [Paid $10]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35921,7 +35921,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Logged out as soon as he was teleported to interrogation, never returned.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -35954,7 +35954,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Logged out as soon as he was teleported to interrogation, never returned."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -35969,7 +35969,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it soonish.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36002,7 +36002,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it soonish."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36017,7 +36017,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Seemed to have a hard time grasping the concept of chatting, but confessed soon enough.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36050,7 +36050,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Seemed to have a hard time grasping the concept of chatting, but confessed soon enough."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36065,7 +36065,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Said he wasn't using x-ray, I called bullshit and he eventually logged out for a bit, came back and said he'd uninstalled it and apologized. [Paid 10bux]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36098,7 +36098,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Said he wasn't using x-ray, I called bullshit and he eventually logged out for a bit, came back and said he'd uninstalled it and apologized. [Paid 10bux]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36113,7 +36113,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Refused to stop while I was giving him plenty of chances.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36146,7 +36146,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Refused to stop while I was giving him plenty of chances."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36161,7 +36161,7 @@
 				<div class="cell">15</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Admitted it immediately.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36194,7 +36194,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="15"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Admitted it immediately."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36209,7 +36209,7 @@
 				<div class="cell">30</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Lied about it at first. [paid $10]</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36242,7 +36242,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="30"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Lied about it at first. [paid $10]"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36305,7 +36305,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36338,7 +36338,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36353,7 +36353,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36386,7 +36386,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36401,7 +36401,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll"></div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36434,7 +36434,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value=""/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36449,7 +36449,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Friend of glackmore who I am convinced is guilty of duping.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36482,7 +36482,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Friend of glackmore who I am convinced is guilty of duping."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36497,7 +36497,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Friend of glackmore who I am convinced is guilty of duping.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36530,7 +36530,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Friend of glackmore who I am convinced is guilty of duping."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36545,7 +36545,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36578,7 +36578,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36593,7 +36593,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36626,7 +36626,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36641,7 +36641,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36674,7 +36674,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36689,7 +36689,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying. Also a previous cheater.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36722,7 +36722,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying. Also a previous cheater."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36737,7 +36737,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Kicked for flying.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36770,7 +36770,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Kicked for flying."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36785,7 +36785,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">Found lots of ore, also kicked once for flying</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36818,7 +36818,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="Found lots of ore, also kicked once for flying"/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
@@ -36833,7 +36833,7 @@
 				<div class="cell">0</div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px; overflow-y: scroll">It's going to happen and you know it.</div>
-				<div class="cell" style="font-size: 12px; background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><br/>
+				<div class="cell" style="font-size: 12px; background-image: url('ayu.png'); font-weight: bold;"><br/>
 
 				</div>
 				<div style="clear: both;"></div>
@@ -36866,7 +36866,7 @@
 				<div class="cell"><input type="text" name="banlength" class="input" value="0"/></div>
 				<div class="cell" style=""></div>
 				<div class="cell" style="width: 250px;"><input type="text" name="details" class="input" style="width: 240px;" value="It's going to happen and you know it."/></div>
-				<div class="cell" style="background-image: url('/web/20181211145355im_/http://www.project610.com/cheatershit/ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
+				<div class="cell" style="background-image: url('ayu.png'); font-weight: bold;"><input type="text" name="banner" class="input" value="ayunema"/></div>
 				<div style="clear: both;"></div>
 				</div>
 				</form>
