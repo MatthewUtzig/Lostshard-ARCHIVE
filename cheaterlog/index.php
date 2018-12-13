@@ -586,7 +586,7 @@
 				<div class="row" id="visible923" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(923)">Edit</a><br/><a href="javascript:confirmdelete('?delete=923.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2014-02-06</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=NEW MAP">NEW MAP</a></div>
 				<div class="cell"></div>
 				<div class="cell"></div>
@@ -613,7 +613,7 @@
 				<input type="text" class="input" name="date" value="2014-02-06">
 				<a href="javascript:show_calendar('document.update923.date', document.update923.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -1210,7 +1210,7 @@
 				<div class="row" id="visible902" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(902)">Edit</a><br/><a href="javascript:confirmdelete('?delete=902.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-07-27</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=Ghetto_cockie">Ghetto_cockie</a></div>
 				<div class="cell"></div>
 				<div class="cell"></div>
@@ -1237,7 +1237,7 @@
 				<input type="text" class="input" name="date" value="2013-07-27">
 				<a href="javascript:show_calendar('document.update902.date', document.update902.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -1258,7 +1258,7 @@
 				<div class="row" id="visible901" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(901)">Edit</a><br/><a href="javascript:confirmdelete('?delete=901.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-07-27</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=funcards84">funcards84</a></div>
 				<div class="cell">Thanndreli style</div>
 				<div class="cell"></div>
@@ -1285,7 +1285,7 @@
 				<input type="text" class="input" name="date" value="2013-07-27">
 				<a href="javascript:show_calendar('document.update901.date', document.update901.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -1498,7 +1498,7 @@
 				<div class="row" id="visible895" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(895)">Edit</a><br/><a href="javascript:confirmdelete('?delete=895.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-06-02</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=kalastaja12">kalastaja12</a></div>
 				<div class="cell"></div>
 				<div class="cell"></div>
@@ -1525,7 +1525,7 @@
 				<input type="text" class="input" name="date" value="2013-06-02">
 				<a href="javascript:show_calendar('document.update895.date', document.update895.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -3562,7 +3562,7 @@
 				<div class="row" id="visible844" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(844)">Edit</a><br/><a href="javascript:confirmdelete('?delete=844.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-03-01</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=FiddleSpam">FiddleSpam</a></div>
 				<div class="cell">Spam</div>
 				<div class="cell"></div>
@@ -3589,7 +3589,7 @@
 				<input type="text" class="input" name="date" value="2013-03-01">
 				<a href="javascript:show_calendar('document.update844.date', document.update844.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -5674,7 +5674,7 @@
 				<div class="row" id="visible800" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(800)">Edit</a><br/><a href="javascript:confirmdelete('?delete=800.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-02-13</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=NEW MAP STARTS HERE">NEW MAP STARTS HERE</a></div>
 				<div class="cell">NEW MAP</div>
 				<div class="cell"></div>
@@ -5701,7 +5701,7 @@
 				<input type="text" class="input" name="date" value="2013-02-13">
 				<a href="javascript:show_calendar('document.update800.date', document.update800.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -5818,7 +5818,7 @@
 				<div class="row" id="visible795" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(795)">Edit</a><br/><a href="javascript:confirmdelete('?delete=795.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-02-02</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=randomguy1273 Godlytoaster Dothgar">randomguy1273 Godlytoaster Dothgar</a></div>
 				<div class="cell">preivus banned,</div>
 				<div class="cell"></div>
@@ -5845,7 +5845,7 @@
 				<input type="text" class="input" name="date" value="2013-02-02">
 				<a href="javascript:show_calendar('document.update795.date', document.update795.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -6970,7 +6970,7 @@
 				<div class="row" id="visible767" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(767)">Edit</a><br/><a href="javascript:confirmdelete('?delete=767.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2013-01-16</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=likeableguitar meanpeanut5 bloodyshanex">likeableguitar meanpeanut5 bloodyshanex</a></div>
 				<div class="cell">Exploit</div>
 				<div class="cell"></div>
@@ -6997,7 +6997,7 @@
 				<input type="text" class="input" name="date" value="2013-01-16">
 				<a href="javascript:show_calendar('document.update767.date', document.update767.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -8170,7 +8170,7 @@
 				<div class="row" id="visible741" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(741)">Edit</a><br/><a href="javascript:confirmdelete('?delete=741.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2012-12-24</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=santa claus">santa claus</a></div>
 				<div class="cell">flyhacking to peoples houses</div>
 				<div class="cell">2012-12-20</div>
@@ -8197,7 +8197,7 @@
 				<input type="text" class="input" name="date" value="2012-12-24">
 				<a href="javascript:show_calendar('document.update741.date', document.update741.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -12250,7 +12250,7 @@
 				<div class="row" id="visible645" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(645)">Edit</a><br/><a href="javascript:confirmdelete('?delete=645.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2012-10-11</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=NEW MAP STARTS HERE">NEW MAP STARTS HERE</a></div>
 				<div class="cell"></div>
 				<div class="cell"></div>
@@ -12277,7 +12277,7 @@
 				<input type="text" class="input" name="date" value="2012-10-11">
 				<a href="javascript:show_calendar('document.update645.date', document.update645.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -21706,7 +21706,7 @@
 				<div class="row" id="visible421" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(421)">Edit</a><br/><a href="javascript:confirmdelete('?delete=421.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2012-05-12</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=m4gicd1no5aurz aka zuperk00l_v aka andre1303 aka YOURALLCUNTS aka cougar88 aka jordanetheridge">m4gicd1no5aurz aka zuperk00l_v aka andre1303 aka YOURALLCUNTS aka cougar88 aka jordanetheridge</a></div>
 				<div class="cell">being semir</div>
 				<div class="cell"></div>
@@ -21733,7 +21733,7 @@
 				<input type="text" class="input" name="date" value="2012-05-12">
 				<a href="javascript:show_calendar('document.update421.date', document.update421.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -23818,7 +23818,7 @@
 				<div class="row" id="visible368" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(368)">Edit</a><br/><a href="javascript:confirmdelete('?delete=368.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2012-04-06</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=semir99 and co.">semir99 and co.</a></div>
 				<div class="cell">Being a shit</div>
 				<div class="cell"></div>
@@ -23845,7 +23845,7 @@
 				<input type="text" class="input" name="date" value="2012-04-06">
 				<a href="javascript:show_calendar('document.update368.date', document.update368.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -27802,7 +27802,7 @@
 				<div class="row" id="visible268" style="background: #ffffff;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(268)">Edit</a><br/><a href="javascript:confirmdelete('?delete=268.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2012-02-09</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=ploopy07">ploopy07</a></div>
 				<div class="cell">Flying</div>
 				<div class="cell"></div>
@@ -27829,7 +27829,7 @@
 				<input type="text" class="input" name="date" value="2012-02-09">
 				<a href="javascript:show_calendar('document.update268.date', document.update268.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
@@ -32650,7 +32650,7 @@
 				<div class="row" id="visible1" style="background: #e0e0e0;">
 				<div class="lcell" style="font-size: 14px;"><div style="width: 100%; height: 5px;"><!-- --></div><a href="javascript:void(0)" onclick="toggle(1)">Edit</a><br/><a href="javascript:confirmdelete('?delete=1.')" style="font-size: 10px;">Delete</a></div>
 				<div class="cell">2011-12-30</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;"><br/>FOREVER BANNED</div>
 				<div class="cell"><a href="?filter=name&amp;s=Thanndreli">Thanndreli</a></div>
 				<div class="cell">Being a shit</div>
 				<div class="cell"></div>
@@ -32677,7 +32677,7 @@
 				<input type="text" class="input" name="date" value="2011-12-30">
 				<a href="javascript:show_calendar('document.update1.date', document.update1.date.value);"><img src="calendar/cal.gif" width="16" height="16" alt="Click here to choose the date"></a>
 				</div>
-				<div class="cell" style="background: #fff url('/web/20181211145355im_/http://www.project610.com/cheatershit/rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
+				<div class="cell" style="background: #fff url('rainbow1x1.gif') repeat; color: #000; font-weight: bold;">
 				<select class="input" name="status"><option></option><option value="Banned">Banned</option><option value="Unbanned">Unbanned</option><option value="Suspected">Suspected</option><option value="Warned">Warned</option><option value="Perma banned">Perma banned</option><option selected value="FOREVER BANNED">FOREVER BANNED</option>
 				</select>
 				</div>
