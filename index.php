@@ -162,7 +162,7 @@
 		</div>
 
 		<div id="nav">
-		<a href="index.php" style="text-decoration:underline;">Home</a>, <a href="/wiki/wiki.php">Guide</a>, <a href="/blog/blog.php">Updates</a>, <a href="/server/server.php">Server Info</a>, <a href="/forums/forums.php">Forum</a>, <a href="/subscription/subscription.php">Subscription</a>
+		<a href="index.php" style="text-decoration:underline;">Home</a>, <a href="/wiki/wiki.php">Guide</a>, <a href="/blog/blog.php">Updates</a>, <a href="/server/server.php">Server Info</a>, <a href="/phpBB3">Forum</a>, <a href="/subscription/subscription.php">Subscription</a>
 		</div>
 		</br>
 		</br>
@@ -187,7 +187,7 @@
 		Lost Shard is an RPG server for minecraft. It features, among other things, a gold based currency, a system of land ownership and skills and abilities that allow you to differentiate yourself from everyone else.</br>
 		</br>
 		</div>
-		<div id="header">Returning in Summer 2019</div>
+		<div id="header">Returning in Summer 2019. Old forum archive restored.</div>
 	</div>
 </div>
 </body>
